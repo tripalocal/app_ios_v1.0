@@ -15,22 +15,22 @@
 		8EB570F31B01CF2B0026D419 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8EB570F11B01CF2B0026D419 /* LaunchScreen.xib */; };
 		8EB570FF1B01CF2B0026D419 /* TripalocalBetaTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EB570FE1B01CF2B0026D419 /* TripalocalBetaTests.m */; };
 		8EC86D5C1B0229F100B0A655 /* TLHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EC86D5B1B0229F100B0A655 /* TLHomeViewController.m */; };
-		8EC86D8F1B02324A00B0A655 /* date.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EC86D7F1B02324A00B0A655 /* date.png */; };
-		8EC86D901B02324A00B0A655 /* facebook_bt.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EC86D801B02324A00B0A655 /* facebook_bt.png */; };
-		8EC86D911B02324A00B0A655 /* group.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EC86D811B02324A00B0A655 /* group.png */; };
-		8EC86D921B02324A00B0A655 /* home_s.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EC86D821B02324A00B0A655 /* home_s.png */; };
-		8EC86D931B02324A00B0A655 /* home.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EC86D831B02324A00B0A655 /* home.png */; };
-		8EC86D941B02324A00B0A655 /* instant_booking.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EC86D841B02324A00B0A655 /* instant_booking.png */; };
-		8EC86D951B02324A00B0A655 /* myprofile_s.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EC86D851B02324A00B0A655 /* myprofile_s.png */; };
-		8EC86D961B02324A00B0A655 /* myprofile.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EC86D861B02324A00B0A655 /* myprofile.png */; };
-		8EC86D971B02324A00B0A655 /* mytrip_s.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EC86D871B02324A00B0A655 /* mytrip_s.png */; };
-		8EC86D981B02324A00B0A655 /* mytrip.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EC86D881B02324A00B0A655 /* mytrip.png */; };
-		8EC86D991B02324A00B0A655 /* search_s.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EC86D891B02324A00B0A655 /* search_s.png */; };
-		8EC86D9A1B02324A00B0A655 /* search.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EC86D8A1B02324A00B0A655 /* search.png */; };
-		8EC86D9B1B02324A00B0A655 /* time.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EC86D8B1B02324A00B0A655 /* time.png */; };
-		8EC86D9C1B02324A00B0A655 /* tripalocal_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EC86D8C1B02324A00B0A655 /* tripalocal_logo.png */; };
-		8EC86D9D1B02324A00B0A655 /* unwishlisted.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EC86D8D1B02324A00B0A655 /* unwishlisted.png */; };
-		8EC86D9E1B02324A00B0A655 /* wishlisted.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EC86D8E1B02324A00B0A655 /* wishlisted.png */; };
+		8EC86DAF1B02350000B0A655 /* date.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EC86D9F1B02350000B0A655 /* date.png */; };
+		8EC86DB01B02350000B0A655 /* facebook_bt.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EC86DA01B02350000B0A655 /* facebook_bt.png */; };
+		8EC86DB11B02350000B0A655 /* group.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EC86DA11B02350000B0A655 /* group.png */; };
+		8EC86DB21B02350000B0A655 /* home_s.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EC86DA21B02350000B0A655 /* home_s.png */; };
+		8EC86DB31B02350000B0A655 /* home.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EC86DA31B02350000B0A655 /* home.png */; };
+		8EC86DB41B02350000B0A655 /* instant_booking.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EC86DA41B02350000B0A655 /* instant_booking.png */; };
+		8EC86DB51B02350000B0A655 /* myprofile_s.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EC86DA51B02350000B0A655 /* myprofile_s.png */; };
+		8EC86DB61B02350000B0A655 /* myprofile.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EC86DA61B02350000B0A655 /* myprofile.png */; };
+		8EC86DB71B02350000B0A655 /* mytrip_s.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EC86DA71B02350000B0A655 /* mytrip_s.png */; };
+		8EC86DB81B02350000B0A655 /* mytrip.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EC86DA81B02350000B0A655 /* mytrip.png */; };
+		8EC86DB91B02350000B0A655 /* search_s.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EC86DA91B02350000B0A655 /* search_s.png */; };
+		8EC86DBA1B02350000B0A655 /* search.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EC86DAA1B02350000B0A655 /* search.png */; };
+		8EC86DBB1B02350000B0A655 /* time.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EC86DAB1B02350000B0A655 /* time.png */; };
+		8EC86DBC1B02350000B0A655 /* tripalocal_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EC86DAC1B02350000B0A655 /* tripalocal_logo.png */; };
+		8EC86DBD1B02350000B0A655 /* unwishlisted.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EC86DAD1B02350000B0A655 /* unwishlisted.png */; };
+		8EC86DBE1B02350000B0A655 /* wishlisted.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EC86DAE1B02350000B0A655 /* wishlisted.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,22 +59,22 @@
 		8EB570FE1B01CF2B0026D419 /* TripalocalBetaTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TripalocalBetaTests.m; sourceTree = "<group>"; };
 		8EC86D5A1B0229F100B0A655 /* TLHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TLHomeViewController.h; path = Controller/TLHomeViewController.h; sourceTree = "<group>"; };
 		8EC86D5B1B0229F100B0A655 /* TLHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TLHomeViewController.m; path = Controller/TLHomeViewController.m; sourceTree = "<group>"; };
-		8EC86D7F1B02324A00B0A655 /* date.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = date.png; sourceTree = "<group>"; };
-		8EC86D801B02324A00B0A655 /* facebook_bt.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = facebook_bt.png; sourceTree = "<group>"; };
-		8EC86D811B02324A00B0A655 /* group.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = group.png; sourceTree = "<group>"; };
-		8EC86D821B02324A00B0A655 /* home_s.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = home_s.png; sourceTree = "<group>"; };
-		8EC86D831B02324A00B0A655 /* home.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = home.png; sourceTree = "<group>"; };
-		8EC86D841B02324A00B0A655 /* instant_booking.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = instant_booking.png; sourceTree = "<group>"; };
-		8EC86D851B02324A00B0A655 /* myprofile_s.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = myprofile_s.png; sourceTree = "<group>"; };
-		8EC86D861B02324A00B0A655 /* myprofile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = myprofile.png; sourceTree = "<group>"; };
-		8EC86D871B02324A00B0A655 /* mytrip_s.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mytrip_s.png; sourceTree = "<group>"; };
-		8EC86D881B02324A00B0A655 /* mytrip.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mytrip.png; sourceTree = "<group>"; };
-		8EC86D891B02324A00B0A655 /* search_s.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = search_s.png; sourceTree = "<group>"; };
-		8EC86D8A1B02324A00B0A655 /* search.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = search.png; sourceTree = "<group>"; };
-		8EC86D8B1B02324A00B0A655 /* time.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = time.png; sourceTree = "<group>"; };
-		8EC86D8C1B02324A00B0A655 /* tripalocal_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tripalocal_logo.png; sourceTree = "<group>"; };
-		8EC86D8D1B02324A00B0A655 /* unwishlisted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = unwishlisted.png; sourceTree = "<group>"; };
-		8EC86D8E1B02324A00B0A655 /* wishlisted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wishlisted.png; sourceTree = "<group>"; };
+		8EC86D9F1B02350000B0A655 /* date.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = date.png; path = Images/date.png; sourceTree = "<group>"; };
+		8EC86DA01B02350000B0A655 /* facebook_bt.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = facebook_bt.png; path = Images/facebook_bt.png; sourceTree = "<group>"; };
+		8EC86DA11B02350000B0A655 /* group.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = group.png; path = Images/group.png; sourceTree = "<group>"; };
+		8EC86DA21B02350000B0A655 /* home_s.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = home_s.png; path = Images/home_s.png; sourceTree = "<group>"; };
+		8EC86DA31B02350000B0A655 /* home.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = home.png; path = Images/home.png; sourceTree = "<group>"; };
+		8EC86DA41B02350000B0A655 /* instant_booking.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = instant_booking.png; path = Images/instant_booking.png; sourceTree = "<group>"; };
+		8EC86DA51B02350000B0A655 /* myprofile_s.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = myprofile_s.png; path = Images/myprofile_s.png; sourceTree = "<group>"; };
+		8EC86DA61B02350000B0A655 /* myprofile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = myprofile.png; path = Images/myprofile.png; sourceTree = "<group>"; };
+		8EC86DA71B02350000B0A655 /* mytrip_s.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = mytrip_s.png; path = Images/mytrip_s.png; sourceTree = "<group>"; };
+		8EC86DA81B02350000B0A655 /* mytrip.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = mytrip.png; path = Images/mytrip.png; sourceTree = "<group>"; };
+		8EC86DA91B02350000B0A655 /* search_s.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = search_s.png; path = Images/search_s.png; sourceTree = "<group>"; };
+		8EC86DAA1B02350000B0A655 /* search.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = search.png; path = Images/search.png; sourceTree = "<group>"; };
+		8EC86DAB1B02350000B0A655 /* time.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = time.png; path = Images/time.png; sourceTree = "<group>"; };
+		8EC86DAC1B02350000B0A655 /* tripalocal_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = tripalocal_logo.png; path = Images/tripalocal_logo.png; sourceTree = "<group>"; };
+		8EC86DAD1B02350000B0A655 /* unwishlisted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = unwishlisted.png; path = Images/unwishlisted.png; sourceTree = "<group>"; };
+		8EC86DAE1B02350000B0A655 /* wishlisted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = wishlisted.png; path = Images/wishlisted.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,22 +129,22 @@
 		8EB570E21B01CF2B0026D419 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				8EC86D7F1B02324A00B0A655 /* date.png */,
-				8EC86D801B02324A00B0A655 /* facebook_bt.png */,
-				8EC86D811B02324A00B0A655 /* group.png */,
-				8EC86D821B02324A00B0A655 /* home_s.png */,
-				8EC86D831B02324A00B0A655 /* home.png */,
-				8EC86D841B02324A00B0A655 /* instant_booking.png */,
-				8EC86D851B02324A00B0A655 /* myprofile_s.png */,
-				8EC86D861B02324A00B0A655 /* myprofile.png */,
-				8EC86D871B02324A00B0A655 /* mytrip_s.png */,
-				8EC86D881B02324A00B0A655 /* mytrip.png */,
-				8EC86D891B02324A00B0A655 /* search_s.png */,
-				8EC86D8A1B02324A00B0A655 /* search.png */,
-				8EC86D8B1B02324A00B0A655 /* time.png */,
-				8EC86D8C1B02324A00B0A655 /* tripalocal_logo.png */,
-				8EC86D8D1B02324A00B0A655 /* unwishlisted.png */,
-				8EC86D8E1B02324A00B0A655 /* wishlisted.png */,
+				8EC86D9F1B02350000B0A655 /* date.png */,
+				8EC86DA01B02350000B0A655 /* facebook_bt.png */,
+				8EC86DA11B02350000B0A655 /* group.png */,
+				8EC86DA21B02350000B0A655 /* home_s.png */,
+				8EC86DA31B02350000B0A655 /* home.png */,
+				8EC86DA41B02350000B0A655 /* instant_booking.png */,
+				8EC86DA51B02350000B0A655 /* myprofile_s.png */,
+				8EC86DA61B02350000B0A655 /* myprofile.png */,
+				8EC86DA71B02350000B0A655 /* mytrip_s.png */,
+				8EC86DA81B02350000B0A655 /* mytrip.png */,
+				8EC86DA91B02350000B0A655 /* search_s.png */,
+				8EC86DAA1B02350000B0A655 /* search.png */,
+				8EC86DAB1B02350000B0A655 /* time.png */,
+				8EC86DAC1B02350000B0A655 /* tripalocal_logo.png */,
+				8EC86DAD1B02350000B0A655 /* unwishlisted.png */,
+				8EC86DAE1B02350000B0A655 /* wishlisted.png */,
 				8EB570E31B01CF2B0026D419 /* Info.plist */,
 				8EB570E41B01CF2B0026D419 /* main.m */,
 			);
@@ -276,24 +276,24 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8EC86D941B02324A00B0A655 /* instant_booking.png in Resources */,
+				8EC86DB41B02350000B0A655 /* instant_booking.png in Resources */,
 				8EB570EE1B01CF2B0026D419 /* Main.storyboard in Resources */,
-				8EC86D921B02324A00B0A655 /* home_s.png in Resources */,
-				8EC86D9E1B02324A00B0A655 /* wishlisted.png in Resources */,
-				8EC86D8F1B02324A00B0A655 /* date.png in Resources */,
-				8EC86D9D1B02324A00B0A655 /* unwishlisted.png in Resources */,
-				8EC86D961B02324A00B0A655 /* myprofile.png in Resources */,
+				8EC86DB21B02350000B0A655 /* home_s.png in Resources */,
+				8EC86DBE1B02350000B0A655 /* wishlisted.png in Resources */,
+				8EC86DAF1B02350000B0A655 /* date.png in Resources */,
+				8EC86DBD1B02350000B0A655 /* unwishlisted.png in Resources */,
+				8EC86DB61B02350000B0A655 /* myprofile.png in Resources */,
 				8EB570F31B01CF2B0026D419 /* LaunchScreen.xib in Resources */,
-				8EC86D951B02324A00B0A655 /* myprofile_s.png in Resources */,
-				8EC86D931B02324A00B0A655 /* home.png in Resources */,
-				8EC86D911B02324A00B0A655 /* group.png in Resources */,
-				8EC86D9C1B02324A00B0A655 /* tripalocal_logo.png in Resources */,
-				8EC86D991B02324A00B0A655 /* search_s.png in Resources */,
-				8EC86D9B1B02324A00B0A655 /* time.png in Resources */,
-				8EC86D9A1B02324A00B0A655 /* search.png in Resources */,
-				8EC86D901B02324A00B0A655 /* facebook_bt.png in Resources */,
-				8EC86D981B02324A00B0A655 /* mytrip.png in Resources */,
-				8EC86D971B02324A00B0A655 /* mytrip_s.png in Resources */,
+				8EC86DB51B02350000B0A655 /* myprofile_s.png in Resources */,
+				8EC86DB31B02350000B0A655 /* home.png in Resources */,
+				8EC86DB11B02350000B0A655 /* group.png in Resources */,
+				8EC86DBC1B02350000B0A655 /* tripalocal_logo.png in Resources */,
+				8EC86DB91B02350000B0A655 /* search_s.png in Resources */,
+				8EC86DBB1B02350000B0A655 /* time.png in Resources */,
+				8EC86DBA1B02350000B0A655 /* search.png in Resources */,
+				8EC86DB01B02350000B0A655 /* facebook_bt.png in Resources */,
+				8EC86DB81B02350000B0A655 /* mytrip.png in Resources */,
+				8EC86DB71B02350000B0A655 /* mytrip_s.png in Resources */,
 				8EB570F01B01CF2B0026D419 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
