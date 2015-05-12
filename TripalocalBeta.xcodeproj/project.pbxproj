@@ -1,0 +1,431 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		8EB570E51B01CF2B0026D419 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EB570E41B01CF2B0026D419 /* main.m */; };
+		8EB570E81B01CF2B0026D419 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EB570E71B01CF2B0026D419 /* AppDelegate.m */; };
+		8EB570EB1B01CF2B0026D419 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EB570EA1B01CF2B0026D419 /* ViewController.m */; };
+		8EB570EE1B01CF2B0026D419 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8EB570EC1B01CF2B0026D419 /* Main.storyboard */; };
+		8EB570F01B01CF2B0026D419 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8EB570EF1B01CF2B0026D419 /* Images.xcassets */; };
+		8EB570F31B01CF2B0026D419 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8EB570F11B01CF2B0026D419 /* LaunchScreen.xib */; };
+		8EB570FF1B01CF2B0026D419 /* TripalocalBetaTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EB570FE1B01CF2B0026D419 /* TripalocalBetaTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		8EB570F91B01CF2B0026D419 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8EB570D71B01CF2B0026D419 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8EB570DE1B01CF2B0026D419;
+			remoteInfo = TripalocalBeta;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		8EB570DF1B01CF2B0026D419 /* TripalocalBeta.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TripalocalBeta.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8EB570E31B01CF2B0026D419 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8EB570E41B01CF2B0026D419 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		8EB570E61B01CF2B0026D419 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		8EB570E71B01CF2B0026D419 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		8EB570E91B01CF2B0026D419 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		8EB570EA1B01CF2B0026D419 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		8EB570ED1B01CF2B0026D419 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		8EB570EF1B01CF2B0026D419 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		8EB570F21B01CF2B0026D419 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		8EB570F81B01CF2B0026D419 /* TripalocalBetaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TripalocalBetaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		8EB570FD1B01CF2B0026D419 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8EB570FE1B01CF2B0026D419 /* TripalocalBetaTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TripalocalBetaTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		8EB570DC1B01CF2B0026D419 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8EB570F51B01CF2B0026D419 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		8EB570D61B01CF2B0026D419 = {
+			isa = PBXGroup;
+			children = (
+				8EB570E11B01CF2B0026D419 /* TripalocalBeta */,
+				8EB570FB1B01CF2B0026D419 /* TripalocalBetaTests */,
+				8EB570E01B01CF2B0026D419 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		8EB570E01B01CF2B0026D419 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8EB570DF1B01CF2B0026D419 /* TripalocalBeta.app */,
+				8EB570F81B01CF2B0026D419 /* TripalocalBetaTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		8EB570E11B01CF2B0026D419 /* TripalocalBeta */ = {
+			isa = PBXGroup;
+			children = (
+				8EB570E61B01CF2B0026D419 /* AppDelegate.h */,
+				8EB570E71B01CF2B0026D419 /* AppDelegate.m */,
+				8EB570E91B01CF2B0026D419 /* ViewController.h */,
+				8EB570EA1B01CF2B0026D419 /* ViewController.m */,
+				8EB570EC1B01CF2B0026D419 /* Main.storyboard */,
+				8EB570EF1B01CF2B0026D419 /* Images.xcassets */,
+				8EB570F11B01CF2B0026D419 /* LaunchScreen.xib */,
+				8EB570E21B01CF2B0026D419 /* Supporting Files */,
+			);
+			path = TripalocalBeta;
+			sourceTree = "<group>";
+		};
+		8EB570E21B01CF2B0026D419 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				8EB570E31B01CF2B0026D419 /* Info.plist */,
+				8EB570E41B01CF2B0026D419 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		8EB570FB1B01CF2B0026D419 /* TripalocalBetaTests */ = {
+			isa = PBXGroup;
+			children = (
+				8EB570FE1B01CF2B0026D419 /* TripalocalBetaTests.m */,
+				8EB570FC1B01CF2B0026D419 /* Supporting Files */,
+			);
+			path = TripalocalBetaTests;
+			sourceTree = "<group>";
+		};
+		8EB570FC1B01CF2B0026D419 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				8EB570FD1B01CF2B0026D419 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		8EB570DE1B01CF2B0026D419 /* TripalocalBeta */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8EB571021B01CF2B0026D419 /* Build configuration list for PBXNativeTarget "TripalocalBeta" */;
+			buildPhases = (
+				8EB570DB1B01CF2B0026D419 /* Sources */,
+				8EB570DC1B01CF2B0026D419 /* Frameworks */,
+				8EB570DD1B01CF2B0026D419 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TripalocalBeta;
+			productName = TripalocalBeta;
+			productReference = 8EB570DF1B01CF2B0026D419 /* TripalocalBeta.app */;
+			productType = "com.apple.product-type.application";
+		};
+		8EB570F71B01CF2B0026D419 /* TripalocalBetaTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8EB571051B01CF2B0026D419 /* Build configuration list for PBXNativeTarget "TripalocalBetaTests" */;
+			buildPhases = (
+				8EB570F41B01CF2B0026D419 /* Sources */,
+				8EB570F51B01CF2B0026D419 /* Frameworks */,
+				8EB570F61B01CF2B0026D419 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8EB570FA1B01CF2B0026D419 /* PBXTargetDependency */,
+			);
+			name = TripalocalBetaTests;
+			productName = TripalocalBetaTests;
+			productReference = 8EB570F81B01CF2B0026D419 /* TripalocalBetaTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		8EB570D71B01CF2B0026D419 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0630;
+				ORGANIZATIONNAME = Tripalocal;
+				TargetAttributes = {
+					8EB570DE1B01CF2B0026D419 = {
+						CreatedOnToolsVersion = 6.3.1;
+					};
+					8EB570F71B01CF2B0026D419 = {
+						CreatedOnToolsVersion = 6.3.1;
+						TestTargetID = 8EB570DE1B01CF2B0026D419;
+					};
+				};
+			};
+			buildConfigurationList = 8EB570DA1B01CF2B0026D419 /* Build configuration list for PBXProject "TripalocalBeta" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 8EB570D61B01CF2B0026D419;
+			productRefGroup = 8EB570E01B01CF2B0026D419 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				8EB570DE1B01CF2B0026D419 /* TripalocalBeta */,
+				8EB570F71B01CF2B0026D419 /* TripalocalBetaTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		8EB570DD1B01CF2B0026D419 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8EB570EE1B01CF2B0026D419 /* Main.storyboard in Resources */,
+				8EB570F31B01CF2B0026D419 /* LaunchScreen.xib in Resources */,
+				8EB570F01B01CF2B0026D419 /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8EB570F61B01CF2B0026D419 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		8EB570DB1B01CF2B0026D419 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8EB570EB1B01CF2B0026D419 /* ViewController.m in Sources */,
+				8EB570E81B01CF2B0026D419 /* AppDelegate.m in Sources */,
+				8EB570E51B01CF2B0026D419 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8EB570F41B01CF2B0026D419 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8EB570FF1B01CF2B0026D419 /* TripalocalBetaTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		8EB570FA1B01CF2B0026D419 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8EB570DE1B01CF2B0026D419 /* TripalocalBeta */;
+			targetProxy = 8EB570F91B01CF2B0026D419 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		8EB570EC1B01CF2B0026D419 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8EB570ED1B01CF2B0026D419 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		8EB570F11B01CF2B0026D419 /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8EB570F21B01CF2B0026D419 /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		8EB571001B01CF2B0026D419 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		8EB571011B01CF2B0026D419 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		8EB571031B01CF2B0026D419 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = TripalocalBeta/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		8EB571041B01CF2B0026D419 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = TripalocalBeta/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		8EB571061B01CF2B0026D419 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = TripalocalBetaTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TripalocalBeta.app/TripalocalBeta";
+			};
+			name = Debug;
+		};
+		8EB571071B01CF2B0026D419 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = TripalocalBetaTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TripalocalBeta.app/TripalocalBeta";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		8EB570DA1B01CF2B0026D419 /* Build configuration list for PBXProject "TripalocalBeta" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8EB571001B01CF2B0026D419 /* Debug */,
+				8EB571011B01CF2B0026D419 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8EB571021B01CF2B0026D419 /* Build configuration list for PBXNativeTarget "TripalocalBeta" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8EB571031B01CF2B0026D419 /* Debug */,
+				8EB571041B01CF2B0026D419 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		8EB571051B01CF2B0026D419 /* Build configuration list for PBXNativeTarget "TripalocalBetaTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8EB571061B01CF2B0026D419 /* Debug */,
+				8EB571071B01CF2B0026D419 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 8EB570D71B01CF2B0026D419 /* Project object */;
+}
