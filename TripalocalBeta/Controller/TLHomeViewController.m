@@ -7,25 +7,65 @@
 //
 
 #import "TLHomeViewController.h"
-
+#import "TLHomeTableViewCell.h"
 @interface TLHomeViewController ()
-
+{
+    NSMutableArray *locationsURLString;
+    NSMutableArray *locations;
+}
 @end
 
 @implementation TLHomeViewController
+@synthesize homeTable;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-//    UIImage *tabBarIcon = [[UIImage imageNamed:@"home_t1.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-//    UIImage *tabBarIconSelected = [[UIImage imageNamed:@"home_s.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-//
-//    self.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"" image:tabBarIcon selectedImage:tabBarIconSelected];
+    
+    //Init
+    locations = [[NSMutableArray alloc]init];
+    locationsURLString = [[NSMutableArray alloc]init];
+    [locations addObject:@"Melbourne"];
+    [locations addObject:@"Sydney"];
+    [locationsURLString addObject:@"https://www.tripalocal.com/images/mobile/home/Melbourne.jpg"];
+    [locationsURLString addObject:@"https://www.tripalocal.com/images/mobile/home/Sydney.jpg"];
+    homeTable.dataSource=self;
+    homeTable.delegate=self;
     // Do any additional setup after loading the view.
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+    
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    static NSString *cellIdentifier=@"homeTableCell";
+    
+    TLHomeTableViewCell *cell=[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    if(!cell)
+    {
+        cell=[[TLHomeTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+    }
+    
+    NSData *homeLocationImageData1 = [[NSData alloc]initWithContentsOfURL:[NSURL URLWithString:[locationsURLString objectAtIndex:indexPath.row]]];
+    cell.homeLocationImage.image = [[UIImage alloc]initWithData:homeLocationImageData1];
+    cell.homeLocationLabel.text = [locations objectAtIndex:indexPath.row];
+    cell.homeLocationLabel.textAlignment = NSTextAlignmentCenter;
+    //TODO: Center Problem
+//    cell.homeLocationLabel.center = [cell.superview convertPoint:cell.center toView:cell];
+//    [cell.homeLocationLabel setCenter:CGPointMake(cell.center.x, cell.center.y)];
+    
+    return cell;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return locations.count;
+}
+
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    return 1;
 }
 
 /*

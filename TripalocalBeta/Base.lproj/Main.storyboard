@@ -72,9 +72,59 @@
                     <view key="view" contentMode="scaleToFill" id="2H3-vb-Jco">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="308" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="NVF-HZ-jJe">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="homeTableCell" rowHeight="308" id="vs9-4i-Q7w" customClass="TLHomeTableViewCell">
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vs9-4i-Q7w" id="VqP-ef-kjH">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="t6B-ED-uPI">
+                                                    <rect key="frame" x="0.0" y="0.0" width="600" height="307"/>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UWB-M2-STK">
+                                                    <rect key="frame" x="125" y="132" width="351" height="43"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="351" id="PLk-nB-DWy"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="37"/>
+                                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="t6B-ED-uPI" secondAttribute="trailing" id="Duh-1c-HJG"/>
+                                                <constraint firstAttribute="bottom" secondItem="t6B-ED-uPI" secondAttribute="bottom" id="GwV-Ug-n6m"/>
+                                                <constraint firstItem="UWB-M2-STK" firstAttribute="centerX" secondItem="t6B-ED-uPI" secondAttribute="centerX" id="IVi-Az-nDK"/>
+                                                <constraint firstItem="UWB-M2-STK" firstAttribute="centerY" secondItem="t6B-ED-uPI" secondAttribute="centerY" id="KYb-la-Tca"/>
+                                                <constraint firstItem="t6B-ED-uPI" firstAttribute="top" secondItem="VqP-ef-kjH" secondAttribute="top" id="ZUb-xT-mdU"/>
+                                                <constraint firstItem="t6B-ED-uPI" firstAttribute="leading" secondItem="VqP-ef-kjH" secondAttribute="leading" id="kJe-1G-0e2"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="homeLocationImage" destination="t6B-ED-uPI" id="O7v-8J-vQk"/>
+                                            <outlet property="homeLocationLabel" destination="UWB-M2-STK" id="pAC-zo-Y9G"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="NVF-HZ-jJe" secondAttribute="trailing" id="5ca-c2-wsO"/>
+                            <constraint firstItem="NVF-HZ-jJe" firstAttribute="top" secondItem="2H3-vb-Jco" secondAttribute="top" id="5om-zT-ck0"/>
+                            <constraint firstItem="NVF-HZ-jJe" firstAttribute="bottom" secondItem="hQH-iI-1Vd" secondAttribute="top" id="oZL-39-ywV"/>
+                            <constraint firstItem="NVF-HZ-jJe" firstAttribute="leading" secondItem="2H3-vb-Jco" secondAttribute="leading" id="pGT-mV-p0I"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Home" id="x8P-zc-siF"/>
+                    <connections>
+                        <outlet property="homeTable" destination="NVF-HZ-jJe" id="CPY-lC-1wQ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kiN-fn-PkQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

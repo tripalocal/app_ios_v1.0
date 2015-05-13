@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface TLHomeViewController : UIViewController
+@interface TLHomeViewController : UIViewController<UITableViewDelegate,UITableViewDataSource>
+@property (weak, nonatomic) IBOutlet UITableView *homeTable;
 
 @end

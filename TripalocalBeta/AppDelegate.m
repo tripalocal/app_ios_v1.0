@@ -39,6 +39,7 @@
     tabBarItem4.selectedImage = [[UIImage imageNamed:@"myprofile_s.png"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal ];
     tabBarItem4.image = [[UIImage imageNamed:@"myprofile.png"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal ];
     tabBarItem4.title = @"MyProfile";
+    
     return YES;
 }
 
