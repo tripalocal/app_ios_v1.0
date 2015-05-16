@@ -30,9 +30,7 @@
     [locationsURLString addObject:@"https://www.tripalocal.com/images/mobile/home/Sydney.jpg"];
     homeTable.dataSource=self;
     homeTable.delegate=self;
-
-    //Hide nav bar
-    [self.navigationController setNavigationBarHidden:YES];
+    // Do any additional setup after loading the view.
 }
 
 - (void)didReceiveMemoryWarning {
