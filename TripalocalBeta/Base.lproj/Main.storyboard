@@ -2,6 +2,8 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="MaF-g6-zXX">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+        <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -35,27 +37,60 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="My Trips" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a3d-FZ-9M0">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="My Trips" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a3d-FZ-9M0">
                                 <rect key="frame" x="210" y="97" width="181" height="77"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="181" id="QdQ-1a-Eye"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="40"/>
                                 <color key="textColor" red="0.47831833964646464" green="0.47831833964646464" blue="0.47831833964646464" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="mBa-ke-oLd">
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="mBa-ke-oLd">
                                 <rect key="frame" x="183" y="28" width="234" height="29"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="234" id="kv2-fS-Vky"/>
+                                    <constraint firstAttribute="height" constant="28" id="ssQ-qz-JMz"/>
+                                </constraints>
                                 <segments>
                                     <segment title="Upcoming"/>
                                     <segment title="Previous"/>
                                 </segments>
                             </segmentedControl>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="When you book an experience, you will see your itinerary here." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="htZ-tI-MWU">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="When you book an experience, you will see your itinerary here." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="htZ-tI-MWU">
                                 <rect key="frame" x="123" y="142" width="354" height="181"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="354" id="KA1-8g-laD"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="21"/>
                                 <color key="textColor" red="0.47831833959999998" green="0.47831833959999998" blue="0.47831833959999998" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XoS-kg-W2X">
+                                <rect key="frame" x="218" y="292" width="165" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="165" id="HKL-fz-26V"/>
+                                </constraints>
+                                <state key="normal" title="START EXPLORING">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.99000018936294254" green="1" blue="0.99802263903605126" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="mBa-ke-oLd" firstAttribute="top" secondItem="kB3-ed-41M" secondAttribute="bottom" constant="8" symbolic="YES" id="6sM-sA-ZWh"/>
+                            <constraint firstItem="g1g-G3-zOg" firstAttribute="top" secondItem="htZ-tI-MWU" secondAttribute="bottom" constant="228" id="B1c-Zu-eGo"/>
+                            <constraint firstItem="XoS-kg-W2X" firstAttribute="baseline" secondItem="htZ-tI-MWU" secondAttribute="baseline" id="Ees-Ou-P3J"/>
+                            <constraint firstItem="g1g-G3-zOg" firstAttribute="top" secondItem="XoS-kg-W2X" secondAttribute="bottom" constant="219" id="Hze-va-ha7"/>
+                            <constraint firstItem="g1g-G3-zOg" firstAttribute="top" secondItem="a3d-FZ-9M0" secondAttribute="bottom" constant="377" id="WpK-51-f8E"/>
+                            <constraint firstItem="htZ-tI-MWU" firstAttribute="centerX" secondItem="a3d-FZ-9M0" secondAttribute="centerX" id="ZjU-1a-sc8"/>
+                            <constraint firstItem="XoS-kg-W2X" firstAttribute="centerX" secondItem="htZ-tI-MWU" secondAttribute="centerX" id="hul-Wk-Hea"/>
+                            <constraint firstItem="a3d-FZ-9M0" firstAttribute="top" secondItem="mBa-ke-oLd" secondAttribute="bottom" constant="41" id="ofb-Cd-fhA"/>
+                            <constraint firstItem="htZ-tI-MWU" firstAttribute="top" secondItem="mBa-ke-oLd" secondAttribute="bottom" constant="86" id="sgb-gP-pSX"/>
+                            <constraint firstItem="htZ-tI-MWU" firstAttribute="centerX" secondItem="zPH-X4-SUA" secondAttribute="centerX" id="vCa-RI-4mh"/>
+                            <constraint firstItem="XoS-kg-W2X" firstAttribute="firstBaseline" secondItem="htZ-tI-MWU" secondAttribute="baseline" id="xOo-3b-2pc"/>
+                            <constraint firstItem="mBa-ke-oLd" firstAttribute="centerX" secondItem="a3d-FZ-9M0" secondAttribute="centerX" id="ztY-yi-19Y"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="" id="nUE-tO-0QT"/>
                 </viewController>
