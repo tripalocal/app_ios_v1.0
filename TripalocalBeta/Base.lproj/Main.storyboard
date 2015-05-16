@@ -4,7 +4,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
     </dependencies>
     <scenes>
-        <!--Item-->
+        <!--View Controller-->
         <scene sceneID="6oW-bW-GTF">
             <objects>
                 <viewController id="Vv1-NM-1zM" sceneMemberID="viewController">
@@ -17,13 +17,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="RMx-f9-VUe"/>
+                    <tabBarItem key="tabBarItem" title="" id="RMx-f9-VUe"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="w31-Ul-gTt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="69" y="682"/>
         </scene>
-        <!--Item-->
+        <!--View Controller-->
         <scene sceneID="KA0-qX-Fmj">
             <objects>
                 <viewController id="XTj-v7-22M" sceneMemberID="viewController">
@@ -36,13 +36,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="nUE-tO-0QT"/>
+                    <tabBarItem key="tabBarItem" title="" id="nUE-tO-0QT"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TY9-Pk-azR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="70" y="1389"/>
         </scene>
-        <!--Item-->
+        <!--View Controller-->
         <scene sceneID="Vgc-Gw-4pm">
             <objects>
                 <viewController id="kzd-lv-S2Q" sceneMemberID="viewController">
@@ -55,13 +55,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="2EZ-dV-Iyc"/>
+                    <tabBarItem key="tabBarItem" title="" id="2EZ-dV-Iyc"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mDm-9I-iUc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="67" y="2130"/>
         </scene>
-        <!--Home-->
+        <!--Home View Controller-->
         <scene sceneID="EjL-d6-zfH">
             <objects>
                 <viewController id="LAP-Cp-zS6" customClass="TLHomeViewController" sceneMemberID="viewController">
@@ -121,7 +121,7 @@
                             <constraint firstItem="NVF-HZ-jJe" firstAttribute="leading" secondItem="2H3-vb-Jco" secondAttribute="leading" id="pGT-mV-p0I"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Home" id="x8P-zc-siF"/>
+                    <tabBarItem key="tabBarItem" title="" id="x8P-zc-siF"/>
                     <connections>
                         <outlet property="homeTable" destination="NVF-HZ-jJe" id="CPY-lC-1wQ"/>
                     </connections>
