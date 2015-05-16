@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		8E26A6631B0397EF00A5A5CF /* TLHomeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E26A6621B0397EF00A5A5CF /* TLHomeTableViewCell.m */; };
+		8E26A6661B07781E00A5A5CF /* TLMyTripViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E26A6651B07781E00A5A5CF /* TLMyTripViewController.m */; };
 		8EB570E51B01CF2B0026D419 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EB570E41B01CF2B0026D419 /* main.m */; };
 		8EB570E81B01CF2B0026D419 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EB570E71B01CF2B0026D419 /* AppDelegate.m */; };
 		8EB570EB1B01CF2B0026D419 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EB570EA1B01CF2B0026D419 /* ViewController.m */; };
@@ -47,6 +48,8 @@
 /* Begin PBXFileReference section */
 		8E26A6611B0397EF00A5A5CF /* TLHomeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TLHomeTableViewCell.h; path = Controller/TLHomeTableViewCell.h; sourceTree = "<group>"; };
 		8E26A6621B0397EF00A5A5CF /* TLHomeTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TLHomeTableViewCell.m; path = Controller/TLHomeTableViewCell.m; sourceTree = "<group>"; };
+		8E26A6641B07781E00A5A5CF /* TLMyTripViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TLMyTripViewController.h; path = Controller/TLMyTripViewController.h; sourceTree = "<group>"; };
+		8E26A6651B07781E00A5A5CF /* TLMyTripViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TLMyTripViewController.m; path = Controller/TLMyTripViewController.m; sourceTree = "<group>"; };
 		8EB570DF1B01CF2B0026D419 /* TripalocalBeta.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TripalocalBeta.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8EB570E31B01CF2B0026D419 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8EB570E41B01CF2B0026D419 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -197,6 +200,8 @@
 				8EC86D5B1B0229F100B0A655 /* TLHomeViewController.m */,
 				8E26A6611B0397EF00A5A5CF /* TLHomeTableViewCell.h */,
 				8E26A6621B0397EF00A5A5CF /* TLHomeTableViewCell.m */,
+				8E26A6641B07781E00A5A5CF /* TLMyTripViewController.h */,
+				8E26A6651B07781E00A5A5CF /* TLMyTripViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -320,6 +325,7 @@
 				8EB570EB1B01CF2B0026D419 /* ViewController.m in Sources */,
 				8EC86D5C1B0229F100B0A655 /* TLHomeViewController.m in Sources */,
 				8E26A6631B0397EF00A5A5CF /* TLHomeTableViewCell.m in Sources */,
+				8E26A6661B07781E00A5A5CF /* TLMyTripViewController.m in Sources */,
 				8EB570E81B01CF2B0026D419 /* AppDelegate.m in Sources */,
 				8EB570E51B01CF2B0026D419 /* main.m in Sources */,
 			);
