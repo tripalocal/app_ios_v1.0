@@ -78,4 +78,7 @@
 }
 */
 
+- (IBAction)myButton:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:nil]; 
+}
 @end
