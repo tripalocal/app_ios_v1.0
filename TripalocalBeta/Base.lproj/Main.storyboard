@@ -151,13 +151,23 @@
                                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kzm-nc-CF2">
+                                                    <rect key="frame" x="0.0" y="0.0" width="600" height="307"/>
+                                                    <state key="normal" title="Button">
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                </button>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="kzm-nc-CF2" firstAttribute="trailing" secondItem="t6B-ED-uPI" secondAttribute="trailing" id="3Ja-vn-KSg"/>
+                                                <constraint firstItem="kzm-nc-CF2" firstAttribute="bottom" secondItem="t6B-ED-uPI" secondAttribute="bottom" id="BUj-0f-Qgy"/>
                                                 <constraint firstAttribute="trailing" secondItem="t6B-ED-uPI" secondAttribute="trailing" id="Duh-1c-HJG"/>
                                                 <constraint firstAttribute="bottom" secondItem="t6B-ED-uPI" secondAttribute="bottom" id="GwV-Ug-n6m"/>
                                                 <constraint firstItem="UWB-M2-STK" firstAttribute="centerX" secondItem="t6B-ED-uPI" secondAttribute="centerX" id="IVi-Az-nDK"/>
                                                 <constraint firstItem="UWB-M2-STK" firstAttribute="centerY" secondItem="t6B-ED-uPI" secondAttribute="centerY" id="KYb-la-Tca"/>
+                                                <constraint firstItem="kzm-nc-CF2" firstAttribute="leading" secondItem="t6B-ED-uPI" secondAttribute="leading" id="ZAb-ZC-jGk"/>
                                                 <constraint firstItem="t6B-ED-uPI" firstAttribute="top" secondItem="VqP-ef-kjH" secondAttribute="top" id="ZUb-xT-mdU"/>
+                                                <constraint firstItem="kzm-nc-CF2" firstAttribute="top" secondItem="t6B-ED-uPI" secondAttribute="top" id="fdX-TD-YKz"/>
                                                 <constraint firstItem="t6B-ED-uPI" firstAttribute="leading" secondItem="VqP-ef-kjH" secondAttribute="leading" id="kJe-1G-0e2"/>
                                             </constraints>
                                         </tableViewCellContentView>
