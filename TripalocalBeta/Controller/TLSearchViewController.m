@@ -108,12 +108,14 @@
         NSDictionary *experiencesArray = [experiences objectAtIndex:i];
         NSString *languageString = [experiencesArray objectForKey:@"language"];
         NSString *descriptionString = [experiencesArray objectForKey:@"description"];
-        NSString *durationString = [experiencesArray objectForKey:@"duration"];
+        NSNumber *durationNumber = [experiencesArray objectForKey:@"duration"];
+        NSString *durationString = [durationNumber stringValue];
+        NSString *handledDurationString = [durationString stringByAppendingString:@" Hours"];
         NSString *titleString = [experiencesArray objectForKey:@"title"];
         
         [languageArray addObject:languageString];
         [descriptionArray addObject:descriptionString];
-        [durationArray addObject:durationString];
+        [durationArray addObject:handledDurationString];
         [titleArray addObject:titleString];
     }
     
@@ -144,9 +146,9 @@
     }
     
     cell.languageLabel.text=[languageArray objectAtIndex:indexPath.row];
-//    cell.timeLabel.text=[durationArray objectAtIndex:indexPath.row];
-//    cell.descriptionLabel.text=[descriptionArray objectAtIndex:indexPath.row];
-//    cell.titleLabel.text=[titleArray objectAtIndex:indexPath.row];
+    cell.durationLabel.text=[durationArray objectAtIndex:indexPath.row];
+    cell.descriptionLabel.text=[descriptionArray objectAtIndex:indexPath.row];
+    cell.titleLabel.text=[titleArray objectAtIndex:indexPath.row];
 
     return cell;
 }

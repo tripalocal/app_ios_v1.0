@@ -51,16 +51,7 @@
                                                         <action selector="saveButton:" destination="LDF-8G-MQi" eventType="touchUpInside" id="2bw-ok-gRa"/>
                                                     </connections>
                                                 </button>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="1hrs" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8ew-mt-y9x">
-                                                    <rect key="frame" x="211" y="371" width="42" height="21"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="42" id="s4X-4M-1Cp"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="English" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Alp-8W-QIP">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="English" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Alp-8W-QIP">
                                                     <rect key="frame" x="261" y="371" width="61" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="61" id="u7a-ek-8RX"/>
@@ -81,35 +72,34 @@
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HPQ-Dj-jQ6">
+                                                    <rect key="frame" x="211" y="371" width="42" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="trailingMargin" secondItem="c6f-xA-Omb" secondAttribute="trailing" constant="21" id="1wr-i9-K3u"/>
                                                 <constraint firstItem="c6f-xA-Omb" firstAttribute="top" secondItem="oM6-Th-qbN" secondAttribute="bottom" constant="8" symbolic="YES" id="3Ct-oA-OZq"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="c6f-xA-Omb" secondAttribute="bottom" constant="41" id="3dN-EO-JQX"/>
-                                                <constraint firstItem="Alp-8W-QIP" firstAttribute="baseline" secondItem="8ew-mt-y9x" secondAttribute="firstBaseline" id="9Cb-QT-rHl"/>
                                                 <constraint firstItem="c6f-xA-Omb" firstAttribute="leading" secondItem="Q6g-ip-gyI" secondAttribute="trailing" constant="25" id="DHf-tT-PsO"/>
                                                 <constraint firstItem="055-Oc-Nk9" firstAttribute="top" secondItem="Q6g-ip-gyI" secondAttribute="bottom" constant="4" id="La4-GB-Po5"/>
-                                                <constraint firstItem="8ew-mt-y9x" firstAttribute="leading" secondItem="055-Oc-Nk9" secondAttribute="trailing" constant="36" id="Rv6-xr-wfe"/>
-                                                <constraint firstItem="8ew-mt-y9x" firstAttribute="baseline" secondItem="055-Oc-Nk9" secondAttribute="firstBaseline" id="TyT-d7-u0e"/>
-                                                <constraint firstItem="Alp-8W-QIP" firstAttribute="baseline" secondItem="8ew-mt-y9x" secondAttribute="baseline" id="WJi-yg-meS"/>
                                                 <constraint firstItem="Q6g-ip-gyI" firstAttribute="top" secondItem="oM6-Th-qbN" secondAttribute="bottom" constant="6" id="Z3U-Pz-PpC"/>
                                                 <constraint firstItem="055-Oc-Nk9" firstAttribute="bottom" secondItem="AXb-fY-G8x" secondAttribute="bottomMargin" id="b2T-o0-FqF"/>
-                                                <constraint firstItem="Alp-8W-QIP" firstAttribute="leading" secondItem="8ew-mt-y9x" secondAttribute="trailing" constant="8" symbolic="YES" id="bWh-xf-6QH"/>
-                                                <constraint firstItem="055-Oc-Nk9" firstAttribute="baseline" secondItem="8ew-mt-y9x" secondAttribute="baseline" id="c6q-Ds-xKm"/>
                                                 <constraint firstItem="055-Oc-Nk9" firstAttribute="leading" secondItem="AXb-fY-G8x" secondAttribute="leadingMargin" constant="3" id="jiF-y8-KKy"/>
                                                 <constraint firstAttribute="trailing" secondItem="oM6-Th-qbN" secondAttribute="trailing" id="sTQ-TM-nAz"/>
                                                 <constraint firstItem="oM6-Th-qbN" firstAttribute="top" secondItem="AXb-fY-G8x" secondAttribute="top" id="sr5-gQ-VcE"/>
                                                 <constraint firstItem="Q6g-ip-gyI" firstAttribute="leading" secondItem="AXb-fY-G8x" secondAttribute="leadingMargin" constant="-7" id="tBa-0L-DUB"/>
                                                 <constraint firstItem="oM6-Th-qbN" firstAttribute="leading" secondItem="AXb-fY-G8x" secondAttribute="leading" id="vRH-Gr-wpz"/>
-                                                <constraint firstItem="8ew-mt-y9x" firstAttribute="top" secondItem="Q6g-ip-gyI" secondAttribute="bottom" constant="8" symbolic="YES" id="yUe-Lt-YEn"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="descriptionLabel" destination="Q6g-ip-gyI" id="6GP-Dr-dRM"/>
+                                            <outlet property="durationLabel" destination="HPQ-Dj-jQ6" id="NxB-18-t1L"/>
                                             <outlet property="experienceImage" destination="oM6-Th-qbN" id="H7T-q8-SXi"/>
                                             <outlet property="hostImage" destination="c6f-xA-Omb" id="zUm-rQ-SGH"/>
                                             <outlet property="languageLabel" destination="Alp-8W-QIP" id="cd9-ll-BqN"/>
-                                            <outlet property="timeLabel" destination="8ew-mt-y9x" id="5Nf-mG-2RK"/>
                                             <outlet property="titleLabel" destination="MPN-Ad-XSG" id="rZ8-kv-360"/>
                                         </connections>
                                     </tableViewCell>

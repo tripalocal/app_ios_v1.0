@@ -13,8 +13,9 @@
 @property (weak, nonatomic) IBOutlet UIImageView *hostImage;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *descriptionLabel;
-@property (weak, nonatomic) IBOutlet UILabel *timeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *languageLabel;
+@property (weak, nonatomic) IBOutlet UILabel *durationLabel;
+
 - (IBAction)saveButton:(id)sender;
 
 @end
