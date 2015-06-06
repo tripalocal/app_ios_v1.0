@@ -19,11 +19,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="406" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="qhu-7o-tTO">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="406" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="qhu-7o-tTO">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="406" id="LDF-8G-MQi" customClass="TLSearchTableViewCell">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SearchCell" rowHeight="406" id="LDF-8G-MQi" customClass="TLSearchTableViewCell">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="LDF-8G-MQi" id="AXb-fY-G8x">
@@ -47,6 +47,9 @@
                                                     <state key="normal" title="Save to wishlist">
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
+                                                    <connections>
+                                                        <action selector="saveButton:" destination="LDF-8G-MQi" eventType="touchUpInside" id="2bw-ok-gRa"/>
+                                                    </connections>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="1hrs" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8ew-mt-y9x">
                                                     <rect key="frame" x="211" y="371" width="42" height="21"/>
@@ -67,7 +70,13 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q6g-ip-gyI">
-                                                    <rect key="frame" x="8" y="223" width="400" height="140"/>
+                                                    <rect key="frame" x="8" y="243" width="400" height="120"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MPN-Ad-XSG">
+                                                    <rect key="frame" x="18" y="223" width="42" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
@@ -95,19 +104,24 @@
                                                 <constraint firstItem="8ew-mt-y9x" firstAttribute="top" secondItem="Q6g-ip-gyI" secondAttribute="bottom" constant="8" symbolic="YES" id="yUe-Lt-YEn"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="descriptionLabel" destination="Q6g-ip-gyI" id="6GP-Dr-dRM"/>
+                                            <outlet property="experienceImage" destination="oM6-Th-qbN" id="H7T-q8-SXi"/>
+                                            <outlet property="hostImage" destination="c6f-xA-Omb" id="zUm-rQ-SGH"/>
+                                            <outlet property="languageLabel" destination="Alp-8W-QIP" id="cd9-ll-BqN"/>
+                                            <outlet property="timeLabel" destination="8ew-mt-y9x" id="5Nf-mG-2RK"/>
+                                            <outlet property="titleLabel" destination="MPN-Ad-XSG" id="rZ8-kv-360"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="qhu-7o-tTO" firstAttribute="top" secondItem="pdN-h5-unU" secondAttribute="top" id="126-eg-MzN"/>
-                            <constraint firstItem="qhu-7o-tTO" firstAttribute="leading" secondItem="pdN-h5-unU" secondAttribute="leading" id="20Z-nP-IhI"/>
-                            <constraint firstItem="qhu-7o-tTO" firstAttribute="bottom" secondItem="YUS-Ai-Me4" secondAttribute="top" id="7cG-pg-5mo"/>
-                            <constraint firstAttribute="trailing" secondItem="qhu-7o-tTO" secondAttribute="trailing" id="cMi-x5-kxE"/>
-                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="" id="RMx-f9-VUe"/>
+                    <connections>
+                        <outlet property="tableView" destination="qhu-7o-tTO" id="bKk-wh-l5B"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="w31-Ul-gTt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

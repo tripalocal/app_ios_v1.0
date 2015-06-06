@@ -9,5 +9,12 @@
 #import <UIKit/UIKit.h>
 
 @interface TLSearchTableViewCell : UITableViewCell
+@property (weak, nonatomic) IBOutlet UIImageView *experienceImage;
+@property (weak, nonatomic) IBOutlet UIImageView *hostImage;
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+@property (weak, nonatomic) IBOutlet UILabel *descriptionLabel;
+@property (weak, nonatomic) IBOutlet UILabel *timeLabel;
+@property (weak, nonatomic) IBOutlet UILabel *languageLabel;
+- (IBAction)saveButton:(id)sender;
 
 @end

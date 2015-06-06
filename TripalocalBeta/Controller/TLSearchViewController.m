@@ -7,6 +7,9 @@
 //
 
 #import "TLSearchViewController.h"
+#import "TLSearchTableViewCell.h"
+#import "Spinner.h"
+
 @interface TLSearchViewController ()
 
 @end
@@ -14,10 +17,32 @@
 @implementation TLSearchViewController{
     NSURLConnection *connection;
     NSMutableData *jsonData;
+    NSMutableArray *languageArray;
+    NSMutableArray *durationArray;
+    NSMutableArray *descriptionArray;
+    NSMutableArray *titleArray;
+    
+    int connectionFinished;
+    Spinner *spinner;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    _tableView.dataSource=self;
+    _tableView.delegate=self;
+    
+    //spinner
+    spinner = [Spinner loadSpinnerIntoView:self.view];
+    
+    connectionFinished=0;
+    
+    //Init
+    languageArray = [[NSMutableArray alloc]init];
+    durationArray = [[NSMutableArray alloc]init];
+    descriptionArray = [[NSMutableArray alloc]init];
+    titleArray = [[NSMutableArray alloc]init];
+    
+    //Request for network
     NSString *post = [NSString stringWithFormat:@"{\"start_datetime\":\"2015-05-08\", \"end_datetime\":\"2015-05-24\", \"city\":\"melbourne\", \"guest_number\":\"2\", \"keywords\":\"Food&Wine,Education,History&Culture\"}"];
     NSData *postData = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
     NSString *postLength = [NSString stringWithFormat:@"%lu", (unsigned long)[postData length]];
@@ -31,8 +56,11 @@
     NSURLResponse *requestResponse;
     NSData *requestHandler = [NSURLConnection sendSynchronousRequest:request returningResponse:&requestResponse error:nil];
     
-    NSString *requestReply = [[NSString alloc] initWithBytes:[requestHandler bytes] length:[requestHandler length] encoding:NSASCIIStringEncoding];
-    NSLog(@"requestReply: %@", requestReply);
+//    NSString *requestReply = [[NSString alloc] initWithBytes:[requestHandler bytes] length:[requestHandler length] encoding:NSASCIIStringEncoding];
+//    NSLog(@"requestReply: %@", requestReply);
+    if (request!=NULL) {
+        NSLog(@"requestReply: YES");
+    }
     
     connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
     if (connection) {
@@ -40,6 +68,8 @@
             jsonData=[[NSMutableData alloc]init];
         }
     }
+    
+    
    
 }
 
@@ -67,20 +97,74 @@
 -(void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
     NSLog(@"Connection Did Finish Loading.");
-    NSDictionary *allDataDictionary=[NSJSONSerialization JSONObjectWithData:jsonData options:0 error:nil];
+    NSMutableArray *allDataDictionary=[NSJSONSerialization JSONObjectWithData:jsonData options:0 error:nil];
     
+    //TODO: Json Length Detection
+    NSDictionary *indexOfExperience = [allDataDictionary objectAtIndex:0];
+    NSString *cityString = [indexOfExperience objectForKey:@"city"];
+    NSMutableArray *experiences = [indexOfExperience objectForKey:@"experiences"];
+    
+    for (int i=0; i<experiences.count; i++) {
+        NSDictionary *experiencesArray = [experiences objectAtIndex:i];
+        NSString *languageString = [experiencesArray objectForKey:@"language"];
+        NSString *descriptionString = [experiencesArray objectForKey:@"description"];
+        NSString *durationString = [experiencesArray objectForKey:@"duration"];
+        NSString *titleString = [experiencesArray objectForKey:@"title"];
+        
+        [languageArray addObject:languageString];
+        [descriptionArray addObject:descriptionString];
+        [durationArray addObject:durationString];
+        [titleArray addObject:titleString];
+    }
+    
+    
+    
+    //Finish Loading
+    connectionFinished=1;
+    NSLog(@"Loading: %@",languageArray);
+    NSLog(@"number of cells: %lu",(unsigned long)languageArray.count);
+    [spinner removeSpinner];
 
 }
 
 
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    while (connectionFinished==0) {
+        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate distantFuture]];
+    }
+    
+    static NSString *cellIdentifier=@"SearchCell";
+    
+    TLSearchTableViewCell *cell=[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    if(!cell)
+    {
+        cell=[[TLSearchTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+    }
+    
+    cell.languageLabel.text=[languageArray objectAtIndex:indexPath.row];
+//    cell.timeLabel.text=[durationArray objectAtIndex:indexPath.row];
+//    cell.descriptionLabel.text=[descriptionArray objectAtIndex:indexPath.row];
+//    cell.titleLabel.text=[titleArray objectAtIndex:indexPath.row];
+
+    return cell;
 }
-*/
+
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    while (connectionFinished==0) {
+        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate distantFuture]];
+    }
+    
+    return [languageArray count];
+}
+
+
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 1;
+}
 
 @end
