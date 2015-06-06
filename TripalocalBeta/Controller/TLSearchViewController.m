@@ -21,7 +21,7 @@
     NSMutableArray *durationArray;
     NSMutableArray *descriptionArray;
     NSMutableArray *titleArray;
-    
+    NSMutableArray *hostImageURLArray;
     int connectionFinished;
     Spinner *spinner;
 }
@@ -41,6 +41,8 @@
     durationArray = [[NSMutableArray alloc]init];
     descriptionArray = [[NSMutableArray alloc]init];
     titleArray = [[NSMutableArray alloc]init];
+    hostImageURLArray = [[NSMutableArray alloc]init];
+
     
     //Request for network
     NSString *post = [NSString stringWithFormat:@"{\"start_datetime\":\"2015-05-08\", \"end_datetime\":\"2015-05-24\", \"city\":\"melbourne\", \"guest_number\":\"2\", \"keywords\":\"Food&Wine,Education,History&Culture\"}"];
@@ -96,6 +98,7 @@
 
 -(void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
+    NSString *baseImageURLString = @"https://www.tripalocal.com/images/";
     NSLog(@"Connection Did Finish Loading.");
     NSMutableArray *allDataDictionary=[NSJSONSerialization JSONObjectWithData:jsonData options:0 error:nil];
     
@@ -112,11 +115,14 @@
         NSString *durationString = [durationNumber stringValue];
         NSString *handledDurationString = [durationString stringByAppendingString:@" Hours"];
         NSString *titleString = [experiencesArray objectForKey:@"title"];
+        NSString *retrivedHostImageURLString = [experiencesArray objectForKey:@"host_image"];
+        NSString *finalHostImageURLString = [baseImageURLString stringByAppendingString:retrivedHostImageURLString];
         
         [languageArray addObject:languageString];
         [descriptionArray addObject:descriptionString];
         [durationArray addObject:handledDurationString];
         [titleArray addObject:titleString];
+        [hostImageURLArray addObject:finalHostImageURLString];
     }
     
     
@@ -145,11 +151,22 @@
         cell=[[TLSearchTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
     
-    cell.languageLabel.text=[languageArray objectAtIndex:indexPath.row];
-    cell.durationLabel.text=[durationArray objectAtIndex:indexPath.row];
-    cell.descriptionLabel.text=[descriptionArray objectAtIndex:indexPath.row];
-    cell.titleLabel.text=[titleArray objectAtIndex:indexPath.row];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        NSData *hostImageData = [[NSData alloc]initWithContentsOfURL:[NSURL URLWithString:[hostImageURLArray objectAtIndex:indexPath.row]]];
 
+        dispatch_sync(dispatch_get_main_queue(), ^{
+            cell.languageLabel.text=[languageArray objectAtIndex:indexPath.row];
+            cell.durationLabel.text=[durationArray objectAtIndex:indexPath.row];
+            cell.descriptionLabel.text=[descriptionArray objectAtIndex:indexPath.row];
+            cell.titleLabel.text=[titleArray objectAtIndex:indexPath.row];
+            cell.hostImage.image = [[UIImage alloc]initWithData:hostImageData];
+
+        });
+
+    });
+    
+    
+    
     return cell;
 }
 
