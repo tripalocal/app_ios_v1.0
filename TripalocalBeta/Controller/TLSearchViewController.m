@@ -22,6 +22,7 @@
     NSMutableArray *descriptionArray;
     NSMutableArray *titleArray;
     NSMutableArray *hostImageURLArray;
+    NSMutableArray *experienceImageURLArray;
     int connectionFinished;
     Spinner *spinner;
 }
@@ -42,6 +43,8 @@
     descriptionArray = [[NSMutableArray alloc]init];
     titleArray = [[NSMutableArray alloc]init];
     hostImageURLArray = [[NSMutableArray alloc]init];
+    experienceImageURLArray = [[NSMutableArray alloc]init];
+
 
     
     //Request for network
@@ -117,12 +120,16 @@
         NSString *titleString = [experiencesArray objectForKey:@"title"];
         NSString *retrivedHostImageURLString = [experiencesArray objectForKey:@"host_image"];
         NSString *finalHostImageURLString = [baseImageURLString stringByAppendingString:retrivedHostImageURLString];
+        NSNumber *idNumber = [experiencesArray objectForKey:@"id"];
+        NSString *idString = [idNumber stringValue];
+        NSString *experienceImageURLString = [[[baseImageURLString stringByAppendingString:@"thumbnails/experiences/experience"] stringByAppendingString:idString] stringByAppendingString:@"_1.jpg"];
         
         [languageArray addObject:languageString];
         [descriptionArray addObject:descriptionString];
         [durationArray addObject:handledDurationString];
         [titleArray addObject:titleString];
         [hostImageURLArray addObject:finalHostImageURLString];
+        [experienceImageURLArray addObject:experienceImageURLString];
     }
     
     
@@ -153,14 +160,15 @@
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         NSData *hostImageData = [[NSData alloc]initWithContentsOfURL:[NSURL URLWithString:[hostImageURLArray objectAtIndex:indexPath.row]]];
-
+        NSData *experienceImageData = [[NSData alloc]initWithContentsOfURL:[NSURL URLWithString:[experienceImageURLArray objectAtIndex:indexPath.row]]];
+        
         dispatch_sync(dispatch_get_main_queue(), ^{
             cell.languageLabel.text=[languageArray objectAtIndex:indexPath.row];
             cell.durationLabel.text=[durationArray objectAtIndex:indexPath.row];
             cell.descriptionLabel.text=[descriptionArray objectAtIndex:indexPath.row];
             cell.titleLabel.text=[titleArray objectAtIndex:indexPath.row];
             cell.hostImage.image = [[UIImage alloc]initWithData:hostImageData];
-
+            cell.experienceImage.image = [[UIImage alloc]initWithData:experienceImageData];
         });
 
     });
