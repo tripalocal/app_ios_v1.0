@@ -10,6 +10,7 @@
 		8E26A6631B0397EF00A5A5CF /* TLHomeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E26A6621B0397EF00A5A5CF /* TLHomeTableViewCell.m */; };
 		8E26A66C1B080BE300A5A5CF /* TLSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E26A66B1B080BE300A5A5CF /* TLSearchViewController.m */; };
 		8E26A66F1B080BFF00A5A5CF /* TLSearchTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E26A66E1B080BFF00A5A5CF /* TLSearchTableViewCell.m */; };
+		8E92CF7A1B3E2B3700D4BB4B /* TLDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E92CF791B3E2B3700D4BB4B /* TLDetailViewController.m */; };
 		8EB570E51B01CF2B0026D419 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EB570E41B01CF2B0026D419 /* main.m */; };
 		8EB570E81B01CF2B0026D419 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EB570E71B01CF2B0026D419 /* AppDelegate.m */; };
 		8EB570EB1B01CF2B0026D419 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EB570EA1B01CF2B0026D419 /* ViewController.m */; };
@@ -54,6 +55,8 @@
 		8E26A66B1B080BE300A5A5CF /* TLSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TLSearchViewController.m; path = Controller/TLSearchViewController.m; sourceTree = "<group>"; };
 		8E26A66D1B080BFF00A5A5CF /* TLSearchTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TLSearchTableViewCell.h; path = Controller/TLSearchTableViewCell.h; sourceTree = "<group>"; };
 		8E26A66E1B080BFF00A5A5CF /* TLSearchTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TLSearchTableViewCell.m; path = Controller/TLSearchTableViewCell.m; sourceTree = "<group>"; };
+		8E92CF781B3E2B3700D4BB4B /* TLDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TLDetailViewController.h; path = Controller/TLDetailViewController.h; sourceTree = "<group>"; };
+		8E92CF791B3E2B3700D4BB4B /* TLDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TLDetailViewController.m; path = Controller/TLDetailViewController.m; sourceTree = "<group>"; };
 		8EB570DF1B01CF2B0026D419 /* TripalocalBeta.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TripalocalBeta.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8EB570E31B01CF2B0026D419 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8EB570E41B01CF2B0026D419 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -212,6 +215,8 @@
 				8E26A66B1B080BE300A5A5CF /* TLSearchViewController.m */,
 				8E26A66D1B080BFF00A5A5CF /* TLSearchTableViewCell.h */,
 				8E26A66E1B080BFF00A5A5CF /* TLSearchTableViewCell.m */,
+				8E92CF781B3E2B3700D4BB4B /* TLDetailViewController.h */,
+				8E92CF791B3E2B3700D4BB4B /* TLDetailViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -333,6 +338,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8E26A66F1B080BFF00A5A5CF /* TLSearchTableViewCell.m in Sources */,
+				8E92CF7A1B3E2B3700D4BB4B /* TLDetailViewController.m in Sources */,
 				8EB570EB1B01CF2B0026D419 /* ViewController.m in Sources */,
 				8EC86D5C1B0229F100B0A655 /* TLHomeViewController.m in Sources */,
 				8EB982501B2280D800ADE430 /* Spinner.m in Sources */,

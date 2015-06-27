@@ -7,14 +7,14 @@
 	<key>IDESourceControlProjectIdentifier</key>
 	<string>AACF11CD-D500-4A13-BF94-68E17AD511AA</string>
 	<key>IDESourceControlProjectName</key>
-	<string>project</string>
+	<string>TripalocalBeta</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>169EE0F3FD170A40F4B4BFFE27886439E6D17F9A</key>
 		<string>https://github.com/tripalocal/app_ios_v1.0.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>TripalocalBeta.xcodeproj/project.xcworkspace</string>
+	<string>TripalocalBeta.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>169EE0F3FD170A40F4B4BFFE27886439E6D17F9A</key>
