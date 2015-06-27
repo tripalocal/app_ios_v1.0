@@ -105,33 +105,35 @@
     NSLog(@"Connection Did Finish Loading.");
     NSMutableArray *allDataDictionary=[NSJSONSerialization JSONObjectWithData:jsonData options:0 error:nil];
     
-    //TODO: Json Length Detection
-    NSDictionary *indexOfExperience = [allDataDictionary objectAtIndex:0];
-    NSString *cityString = [indexOfExperience objectForKey:@"city"];
-    NSMutableArray *experiences = [indexOfExperience objectForKey:@"experiences"];
+    NSUInteger numOfData = allDataDictionary.count;
     
-    for (int i=0; i<experiences.count; i++) {
-        NSDictionary *experiencesArray = [experiences objectAtIndex:i];
-        NSString *languageString = [experiencesArray objectForKey:@"language"];
-        NSString *descriptionString = [experiencesArray objectForKey:@"description"];
-        NSNumber *durationNumber = [experiencesArray objectForKey:@"duration"];
-        NSString *durationString = [durationNumber stringValue];
-        NSString *handledDurationString = [durationString stringByAppendingString:@" Hours"];
-        NSString *titleString = [experiencesArray objectForKey:@"title"];
-        NSString *retrivedHostImageURLString = [experiencesArray objectForKey:@"host_image"];
-        NSString *finalHostImageURLString = [baseImageURLString stringByAppendingString:retrivedHostImageURLString];
-        NSNumber *idNumber = [experiencesArray objectForKey:@"id"];
-        NSString *idString = [idNumber stringValue];
-        NSString *experienceImageURLString = [[[baseImageURLString stringByAppendingString:@"thumbnails/experiences/experience"] stringByAppendingString:idString] stringByAppendingString:@"_1.jpg"];
+//    for ( int currentIndex = 0 ; currentIndex < numOfData ; currentIndex++){
+        NSDictionary *indexOfExperience = [allDataDictionary objectAtIndex:0];
+        NSString *cityString = [indexOfExperience objectForKey:@"city"];
+        NSMutableArray *experiences = [indexOfExperience objectForKey:@"experiences"];
         
-        [languageArray addObject:languageString];
-        [descriptionArray addObject:descriptionString];
-        [durationArray addObject:handledDurationString];
-        [titleArray addObject:titleString];
-        [hostImageURLArray addObject:finalHostImageURLString];
-        [experienceImageURLArray addObject:experienceImageURLString];
-    }
-    
+        for (int i=0; i<experiences.count; i++) {
+            NSDictionary *experiencesArray = [experiences objectAtIndex:i];
+            NSString *languageString = [experiencesArray objectForKey:@"language"];
+            NSString *descriptionString = [experiencesArray objectForKey:@"description"];
+            NSNumber *durationNumber = [experiencesArray objectForKey:@"duration"];
+            NSString *durationString = [durationNumber stringValue];
+            NSString *handledDurationString = [durationString stringByAppendingString:@" Hours"];
+            NSString *titleString = [experiencesArray objectForKey:@"title"];
+            NSString *retrivedHostImageURLString = [experiencesArray objectForKey:@"host_image"];
+            NSString *finalHostImageURLString = [baseImageURLString stringByAppendingString:retrivedHostImageURLString];
+            NSNumber *idNumber = [experiencesArray objectForKey:@"id"];
+            NSString *idString = [idNumber stringValue];
+            NSString *experienceImageURLString = [[[baseImageURLString stringByAppendingString:@"thumbnails/experiences/experience"] stringByAppendingString:idString] stringByAppendingString:@"_1.jpg"];
+            
+            [languageArray addObject:languageString];
+            [descriptionArray addObject:descriptionString];
+            [durationArray addObject:handledDurationString];
+            [titleArray addObject:titleString];
+            [hostImageURLArray addObject:finalHostImageURLString];
+            [experienceImageURLArray addObject:experienceImageURLString];
+        }
+//    }
     
     
     //Finish Loading
@@ -184,7 +186,7 @@
     while (connectionFinished==0) {
         [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate distantFuture]];
     }
-    
+
     return [languageArray count];
 }
 
