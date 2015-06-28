@@ -52,9 +52,7 @@
     cell.homeLocationImage.image = [[UIImage alloc]initWithData:homeLocationImageData1];
     cell.homeLocationLabel.text = [locations objectAtIndex:indexPath.row];
     cell.homeLocationLabel.textAlignment = NSTextAlignmentCenter;
-    //TODO: Center Problem
-//    cell.homeLocationLabel.center = [cell.superview convertPoint:cell.center toView:cell];
-//    [cell.homeLocationLabel setCenter:CGPointMake(cell.center.x, cell.center.y)];
+    
     
     return cell;
 }

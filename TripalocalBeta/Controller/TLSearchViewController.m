@@ -151,9 +151,9 @@
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    while (connectionFinished==0) {
-        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate distantFuture]];
-    }
+//    while (connectionFinished==0) {
+//        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate distantFuture]];
+//    }
     
     static NSString *cellIdentifier=@"SearchCell";
     
@@ -162,6 +162,13 @@
     {
         cell=[[TLSearchTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
+    
+    cell.hostImage.image = nil;
+    cell.experienceImage.image = nil;
+    cell.languageLabel.text=@"Loading...";
+    cell.durationLabel.text=@"Loading...";
+    cell.descriptionLabel.text=@"Loading...";
+    cell.titleLabel.text=@"Loading...";
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         NSData *hostImageData = [[NSData alloc]initWithContentsOfURL:[NSURL URLWithString:[hostImageURLArray objectAtIndex:indexPath.row]]];
