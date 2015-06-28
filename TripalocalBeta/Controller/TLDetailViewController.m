@@ -9,6 +9,10 @@
 #import "TLDetailViewController.h"
 #import "TLDetailTableViewCell0.h"
 #import "TLDetailTableViewCell1.h"
+#import "TLDetailTableViewCell2.h"
+#import "TLDetailTableViewCell3.h"
+#import "TLDetailTableViewCell4.h"
+#import "TLDetailTableViewCell5.h"
 
 @interface TLDetailViewController ()
 {
@@ -81,38 +85,70 @@
 {
     static NSString *cellIdentifier0=@"cell0";
     TLDetailTableViewCell0 *cell=(TLDetailTableViewCell0 *) [tableView dequeueReusableCellWithIdentifier:cellIdentifier0];
-//    static NSString *cellIdentifier1=@"cell1";
-//    TLDetailTableViewCell1 *cell1=(TLDetailTableViewCell1 *) [tableView dequeueReusableCellWithIdentifier:cellIdentifier1];
-    if(!cell)
-    {
-        cell=[[TLDetailTableViewCell0 alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier0];
+    static NSString *cellIdentifier1=@"cell1";
+    TLDetailTableViewCell1 *cell1=(TLDetailTableViewCell1 *) [tableView dequeueReusableCellWithIdentifier:cellIdentifier1];
+    
+    static NSString *cellIdentifier2=@"cell2";
+    TLDetailTableViewCell2 *cell2=(TLDetailTableViewCell2 *) [tableView dequeueReusableCellWithIdentifier:cellIdentifier2];
+    
+    static NSString *cellIdentifier3=@"cell3";
+    TLDetailTableViewCell3 *cell3=(TLDetailTableViewCell3 *) [tableView dequeueReusableCellWithIdentifier:cellIdentifier3];
+    
+    static NSString *cellIdentifier4=@"cell4";
+    TLDetailTableViewCell4 *cell4=(TLDetailTableViewCell4 *) [tableView dequeueReusableCellWithIdentifier:cellIdentifier4];
+    
+    static NSString *cellIdentifier5=@"cell5";
+    TLDetailTableViewCell5 *cell5=(TLDetailTableViewCell5 *) [tableView dequeueReusableCellWithIdentifier:cellIdentifier5];
+    
+
+    switch (indexPath.row) {
+        case 0:
+            if(!cell)
+            {
+                cell=[[TLDetailTableViewCell0 alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier0];
+            }
+            
+            return cell;
+        case 1:
+            if(!cell1)
+            {
+                cell1=[[TLDetailTableViewCell1 alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier1];
+            }
+            return cell1;
+        case 2:
+            if(!cell2)
+            {
+                cell2=[[TLDetailTableViewCell2 alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier2];
+            }
+            return cell2;
+        case 3:
+            if(!cell3)
+            {
+                cell3=[[TLDetailTableViewCell3 alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier3];
+            }
+            return cell3;
+        case 4:
+            if(!cell4)
+            {
+                cell4=[[TLDetailTableViewCell4 alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier4];
+            }
+            return cell4;
+        case 5:
+            if(!cell5)
+            {
+                cell5=[[TLDetailTableViewCell5 alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier5];
+            }
+            return cell5;
+        default:
+            break;
     }
-//    cell.reservationLabel.textAlignment=NSTextAlignmentCenter;
-//
-//    switch (indexPath.row) {
-//        case 0:
-//            if(!cell)
-//            {
-//                cell=[[TLDetailTableViewCell0 alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier0];
-//            }
-//            
-//            return cell;
-//        case 1:
-//            if(!cell1)
-//            {
-//                cell1=[[TLDetailTableViewCell1 alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier1];
-//            }
-//            
-//        default:
-//            break;
-//    }
     return cell;
 }
 
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 1;
+    return 6;
 }
 
 

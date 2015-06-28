@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		5649BD371B3FC40F00465D6C /* TLDetailTableViewCell0.m in Sources */ = {isa = PBXBuildFile; fileRef = 5649BD361B3FC40F00465D6C /* TLDetailTableViewCell0.m */; };
 		5649BD3A1B3FC42600465D6C /* TLDetailTableViewCell1.m in Sources */ = {isa = PBXBuildFile; fileRef = 5649BD391B3FC42600465D6C /* TLDetailTableViewCell1.m */; };
+		5649BD3D1B3FD56E00465D6C /* TLDetailTableViewCell2.m in Sources */ = {isa = PBXBuildFile; fileRef = 5649BD3C1B3FD56E00465D6C /* TLDetailTableViewCell2.m */; };
+		5649BD401B3FD58800465D6C /* TLDetailTableViewCell3.m in Sources */ = {isa = PBXBuildFile; fileRef = 5649BD3F1B3FD58800465D6C /* TLDetailTableViewCell3.m */; };
+		5649BD431B3FD5A400465D6C /* TLDetailTableViewCell4.m in Sources */ = {isa = PBXBuildFile; fileRef = 5649BD421B3FD5A400465D6C /* TLDetailTableViewCell4.m */; };
+		5649BD461B3FD5CA00465D6C /* TLDetailTableViewCell5.m in Sources */ = {isa = PBXBuildFile; fileRef = 5649BD451B3FD5CA00465D6C /* TLDetailTableViewCell5.m */; };
 		8E26A6631B0397EF00A5A5CF /* TLHomeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E26A6621B0397EF00A5A5CF /* TLHomeTableViewCell.m */; };
 		8E26A66C1B080BE300A5A5CF /* TLSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E26A66B1B080BE300A5A5CF /* TLSearchViewController.m */; };
 		8E26A66F1B080BFF00A5A5CF /* TLSearchTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E26A66E1B080BFF00A5A5CF /* TLSearchTableViewCell.m */; };
@@ -55,6 +59,14 @@
 		5649BD361B3FC40F00465D6C /* TLDetailTableViewCell0.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TLDetailTableViewCell0.m; path = "Controller/Custom Cells/TLDetailTableViewCell0.m"; sourceTree = "<group>"; };
 		5649BD381B3FC42600465D6C /* TLDetailTableViewCell1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TLDetailTableViewCell1.h; path = "Controller/Custom Cells/TLDetailTableViewCell1.h"; sourceTree = "<group>"; };
 		5649BD391B3FC42600465D6C /* TLDetailTableViewCell1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TLDetailTableViewCell1.m; path = "Controller/Custom Cells/TLDetailTableViewCell1.m"; sourceTree = "<group>"; };
+		5649BD3B1B3FD56E00465D6C /* TLDetailTableViewCell2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TLDetailTableViewCell2.h; path = "Controller/Custom Cells/TLDetailTableViewCell2.h"; sourceTree = "<group>"; };
+		5649BD3C1B3FD56E00465D6C /* TLDetailTableViewCell2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TLDetailTableViewCell2.m; path = "Controller/Custom Cells/TLDetailTableViewCell2.m"; sourceTree = "<group>"; };
+		5649BD3E1B3FD58800465D6C /* TLDetailTableViewCell3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TLDetailTableViewCell3.h; path = "Controller/Custom Cells/TLDetailTableViewCell3.h"; sourceTree = "<group>"; };
+		5649BD3F1B3FD58800465D6C /* TLDetailTableViewCell3.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TLDetailTableViewCell3.m; path = "Controller/Custom Cells/TLDetailTableViewCell3.m"; sourceTree = "<group>"; };
+		5649BD411B3FD5A300465D6C /* TLDetailTableViewCell4.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TLDetailTableViewCell4.h; path = "Controller/Custom Cells/TLDetailTableViewCell4.h"; sourceTree = "<group>"; };
+		5649BD421B3FD5A400465D6C /* TLDetailTableViewCell4.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TLDetailTableViewCell4.m; path = "Controller/Custom Cells/TLDetailTableViewCell4.m"; sourceTree = "<group>"; };
+		5649BD441B3FD5CA00465D6C /* TLDetailTableViewCell5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TLDetailTableViewCell5.h; path = "Controller/Custom Cells/TLDetailTableViewCell5.h"; sourceTree = "<group>"; };
+		5649BD451B3FD5CA00465D6C /* TLDetailTableViewCell5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TLDetailTableViewCell5.m; path = "Controller/Custom Cells/TLDetailTableViewCell5.m"; sourceTree = "<group>"; };
 		8E26A6611B0397EF00A5A5CF /* TLHomeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TLHomeTableViewCell.h; path = Controller/TLHomeTableViewCell.h; sourceTree = "<group>"; };
 		8E26A6621B0397EF00A5A5CF /* TLHomeTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TLHomeTableViewCell.m; path = Controller/TLHomeTableViewCell.m; sourceTree = "<group>"; };
 		8E26A66A1B080BE300A5A5CF /* TLSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TLSearchViewController.h; path = Controller/TLSearchViewController.h; sourceTree = "<group>"; };
@@ -127,6 +139,14 @@
 				5649BD361B3FC40F00465D6C /* TLDetailTableViewCell0.m */,
 				5649BD381B3FC42600465D6C /* TLDetailTableViewCell1.h */,
 				5649BD391B3FC42600465D6C /* TLDetailTableViewCell1.m */,
+				5649BD3B1B3FD56E00465D6C /* TLDetailTableViewCell2.h */,
+				5649BD3C1B3FD56E00465D6C /* TLDetailTableViewCell2.m */,
+				5649BD3E1B3FD58800465D6C /* TLDetailTableViewCell3.h */,
+				5649BD3F1B3FD58800465D6C /* TLDetailTableViewCell3.m */,
+				5649BD411B3FD5A300465D6C /* TLDetailTableViewCell4.h */,
+				5649BD421B3FD5A400465D6C /* TLDetailTableViewCell4.m */,
+				5649BD441B3FD5CA00465D6C /* TLDetailTableViewCell5.h */,
+				5649BD451B3FD5CA00465D6C /* TLDetailTableViewCell5.m */,
 			);
 			name = "Custom Cells";
 			sourceTree = "<group>";
@@ -356,12 +376,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				8E26A66F1B080BFF00A5A5CF /* TLSearchTableViewCell.m in Sources */,
+				5649BD461B3FD5CA00465D6C /* TLDetailTableViewCell5.m in Sources */,
+				5649BD431B3FD5A400465D6C /* TLDetailTableViewCell4.m in Sources */,
 				5649BD3A1B3FC42600465D6C /* TLDetailTableViewCell1.m in Sources */,
 				5649BD371B3FC40F00465D6C /* TLDetailTableViewCell0.m in Sources */,
 				8E92CF7A1B3E2B3700D4BB4B /* TLDetailViewController.m in Sources */,
 				8EB570EB1B01CF2B0026D419 /* ViewController.m in Sources */,
 				8EC86D5C1B0229F100B0A655 /* TLHomeViewController.m in Sources */,
 				8EB982501B2280D800ADE430 /* Spinner.m in Sources */,
+				5649BD3D1B3FD56E00465D6C /* TLDetailTableViewCell2.m in Sources */,
+				5649BD401B3FD58800465D6C /* TLDetailTableViewCell3.m in Sources */,
 				8E26A6631B0397EF00A5A5CF /* TLHomeTableViewCell.m in Sources */,
 				8EB570E81B01CF2B0026D419 /* AppDelegate.m in Sources */,
 				8E26A66C1B080BE300A5A5CF /* TLSearchViewController.m in Sources */,
