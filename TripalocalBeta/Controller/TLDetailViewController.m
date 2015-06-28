@@ -7,6 +7,8 @@
 //
 
 #import "TLDetailViewController.h"
+#import "TLDetailTableViewCell0.h"
+#import "TLDetailTableViewCell1.h"
 
 @interface TLDetailViewController ()
 {
@@ -77,21 +79,40 @@
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *cellIdentifier=@"cell";
-    
-    UITableViewCell *cell=(UITableViewCell *) [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    static NSString *cellIdentifier0=@"cell0";
+    TLDetailTableViewCell0 *cell=(TLDetailTableViewCell0 *) [tableView dequeueReusableCellWithIdentifier:cellIdentifier0];
+//    static NSString *cellIdentifier1=@"cell1";
+//    TLDetailTableViewCell1 *cell1=(TLDetailTableViewCell1 *) [tableView dequeueReusableCellWithIdentifier:cellIdentifier1];
     if(!cell)
     {
-        cell=[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+        cell=[[TLDetailTableViewCell0 alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier0];
     }
-    
+//    cell.reservationLabel.textAlignment=NSTextAlignmentCenter;
+//
+//    switch (indexPath.row) {
+//        case 0:
+//            if(!cell)
+//            {
+//                cell=[[TLDetailTableViewCell0 alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier0];
+//            }
+//            
+//            return cell;
+//        case 1:
+//            if(!cell1)
+//            {
+//                cell1=[[TLDetailTableViewCell1 alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier1];
+//            }
+//            
+//        default:
+//            break;
+//    }
     return cell;
 }
 
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 5;
+    return 1;
 }
 
 
