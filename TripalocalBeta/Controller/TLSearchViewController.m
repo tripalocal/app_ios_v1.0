@@ -12,7 +12,7 @@
 #import "TLDetailViewController.h"
 
 @interface TLSearchViewController ()
-
+@property (strong, nonatomic) NSMutableDictionary *cachedImages;
 @end
 
 @implementation TLSearchViewController{
@@ -47,7 +47,7 @@
     hostImageURLArray = [[NSMutableArray alloc]init];
     experienceImageURLArray = [[NSMutableArray alloc]init];
     experienceIDArray = [[NSMutableArray alloc]init];
-
+    self.cachedImages = [[NSMutableDictionary alloc]init];
     
     //Request for network
     NSString *post = [NSString stringWithFormat:@"{\"start_datetime\":\"2015-05-08\", \"end_datetime\":\"2015-05-24\", \"city\":\"melbourne\", \"guest_number\":\"2\", \"keywords\":\"Food & wine, Education, History & culture, Architecture, For couples, Photography worthy, Livability research, Kids friendly, Outdoor & nature, Shopping, Sports & leisure, Host with car, Extreme fun, Events, Health & beauty, Private group\"}"];
@@ -151,9 +151,9 @@
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//    while (connectionFinished==0) {
-//        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate distantFuture]];
-//    }
+    while (connectionFinished==0) {
+        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate distantFuture]];
+    }
     
     static NSString *cellIdentifier=@"SearchCell";
     
@@ -163,6 +163,8 @@
         cell=[[TLSearchTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
     
+    
+    //Placeholders
     cell.hostImage.image = nil;
     cell.experienceImage.image = nil;
     cell.languageLabel.text=@"Loading...";
@@ -170,20 +172,35 @@
     cell.descriptionLabel.text=@"Loading...";
     cell.titleLabel.text=@"Loading...";
     
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        NSData *hostImageData = [[NSData alloc]initWithContentsOfURL:[NSURL URLWithString:[hostImageURLArray objectAtIndex:indexPath.row]]];
-        NSData *experienceImageData = [[NSData alloc]initWithContentsOfURL:[NSURL URLWithString:[experienceImageURLArray objectAtIndex:indexPath.row]]];
+    NSString *hostImageCachingIdentifier = [NSString stringWithFormat:@"Cell%ldOfHostImage",(long)indexPath.row];
+    NSString *expImageCachingIdentifier = [NSString stringWithFormat:@"Cell%ldOfExpImage",(long)indexPath.row];
+    
+    if([self.cachedImages objectForKey:hostImageCachingIdentifier]!=nil){
+        cell.hostImage.image = [self.cachedImages valueForKey:hostImageCachingIdentifier];
+        cell.experienceImage.image = [self.cachedImages valueForKey:expImageCachingIdentifier];
+    }
+    else{
         
-        dispatch_sync(dispatch_get_main_queue(), ^{
-            cell.languageLabel.text=[languageArray objectAtIndex:indexPath.row];
-            cell.durationLabel.text=[durationArray objectAtIndex:indexPath.row];
-            cell.descriptionLabel.text=[descriptionArray objectAtIndex:indexPath.row];
-            cell.titleLabel.text=[titleArray objectAtIndex:indexPath.row];
-            cell.hostImage.image = [[UIImage alloc]initWithData:hostImageData];
-            cell.experienceImage.image = [[UIImage alloc]initWithData:experienceImageData];
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            NSData *hostImageData = [[NSData alloc]initWithContentsOfURL:[NSURL URLWithString:[hostImageURLArray objectAtIndex:indexPath.row]]];
+            NSData *experienceImageData = [[NSData alloc]initWithContentsOfURL:[NSURL URLWithString:[experienceImageURLArray objectAtIndex:indexPath.row]]];
+            
+            dispatch_sync(dispatch_get_main_queue(), ^{
+                
+                cell.hostImage.image = [[UIImage alloc]initWithData:hostImageData];
+                [self.cachedImages setValue:cell.hostImage.image forKey:hostImageCachingIdentifier];
+                cell.experienceImage.image = [[UIImage alloc]initWithData:experienceImageData];
+                [self.cachedImages setValue:cell.experienceImage.image forKey:expImageCachingIdentifier];
+
+            });
+            
         });
 
-    });
+    }
+    cell.languageLabel.text=[languageArray objectAtIndex:indexPath.row];
+    cell.durationLabel.text=[durationArray objectAtIndex:indexPath.row];
+    cell.descriptionLabel.text=[descriptionArray objectAtIndex:indexPath.row];
+    cell.titleLabel.text=[titleArray objectAtIndex:indexPath.row];
     
     
     
