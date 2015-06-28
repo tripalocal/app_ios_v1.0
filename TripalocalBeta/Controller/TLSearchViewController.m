@@ -9,6 +9,7 @@
 #import "TLSearchViewController.h"
 #import "TLSearchTableViewCell.h"
 #import "Spinner.h"
+#import "TLDetailViewController.h"
 
 @interface TLSearchViewController ()
 
@@ -23,6 +24,7 @@
     NSMutableArray *titleArray;
     NSMutableArray *hostImageURLArray;
     NSMutableArray *experienceImageURLArray;
+    NSMutableArray *experienceIDArray;
     int connectionFinished;
     Spinner *spinner;
 }
@@ -44,11 +46,11 @@
     titleArray = [[NSMutableArray alloc]init];
     hostImageURLArray = [[NSMutableArray alloc]init];
     experienceImageURLArray = [[NSMutableArray alloc]init];
-
+    experienceIDArray = [[NSMutableArray alloc]init];
 
     
     //Request for network
-    NSString *post = [NSString stringWithFormat:@"{\"start_datetime\":\"2015-05-08\", \"end_datetime\":\"2015-05-24\", \"city\":\"melbourne\", \"guest_number\":\"2\", \"keywords\":\"Food&Wine,Education,History&Culture\"}"];
+    NSString *post = [NSString stringWithFormat:@"{\"start_datetime\":\"2015-05-08\", \"end_datetime\":\"2015-05-24\", \"city\":\"melbourne\", \"guest_number\":\"2\", \"keywords\":\"Food & wine, Education, History & culture, Architecture, For couples, Photography worthy, Livability research, Kids friendly, Outdoor & nature, Shopping, Sports & leisure, Host with car, Extreme fun, Events, Health & beauty, Private group\"}"];
     NSData *postData = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
     NSString *postLength = [NSString stringWithFormat:@"%lu", (unsigned long)[postData length]];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
@@ -132,6 +134,7 @@
             [titleArray addObject:titleString];
             [hostImageURLArray addObject:finalHostImageURLString];
             [experienceImageURLArray addObject:experienceImageURLString];
+            [experienceIDArray addObject:idString];
         }
 //    }
     
@@ -194,6 +197,18 @@
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return 1;
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"SearchResultSegue"]) {
+        TLDetailViewController *vc=[segue destinationViewController];
+        NSIndexPath *index=[_tableView indexPathForSelectedRow];
+        vc.experience_id_string = [experienceIDArray objectAtIndex:index.row];
+       
+    }
+    
+    
 }
 
 @end

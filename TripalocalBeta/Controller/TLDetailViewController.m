@@ -21,8 +21,8 @@
     [super viewDidLoad];
     _myTable.delegate = self;
     _myTable.dataSource = self;
+    NSLog(@"Clicked ID: %@", _experience_id_string);
     
-    // Do any additional setup after loading the view.
 }
 
 - (void)didReceiveMemoryWarning {
@@ -47,7 +47,7 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 1;
+    return 5;
 }
 
 

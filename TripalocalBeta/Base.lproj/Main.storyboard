@@ -115,7 +115,7 @@
                                             <outlet property="hostImage" destination="HiY-IO-vZ9" id="uFP-UZ-KMP"/>
                                             <outlet property="languageLabel" destination="ygt-NW-EA8" id="ajk-Kb-2AR"/>
                                             <outlet property="titleLabel" destination="zgH-Ns-R3F" id="XED-iy-JwY"/>
-                                            <segue destination="1Mj-3z-OfA" kind="push" id="kbr-ju-FAs"/>
+                                            <segue destination="1Mj-3z-OfA" kind="push" identifier="SearchResultSegue" id="kbr-ju-FAs"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -419,7 +419,6 @@
         <!--Item-->
         <scene sceneID="lvZ-Aw-7aL">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Ebx-cp-llZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="DGn-L1-CUZ" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="kcL-w8-bSH"/>
                     <toolbarItems/>
@@ -433,6 +432,7 @@
                         <segue destination="Vj1-wG-sag" kind="relationship" relationship="rootViewController" id="9om-gD-QPJ"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ebx-cp-llZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="698" y="682"/>
         </scene>

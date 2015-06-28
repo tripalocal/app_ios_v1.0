@@ -10,5 +10,6 @@
 
 @interface TLDetailViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *myTable;
+@property NSString *experience_id_string;
 
 @end
