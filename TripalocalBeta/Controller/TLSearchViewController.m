@@ -141,7 +141,7 @@
     
     //Finish Loading
     connectionFinished=1;
-    NSLog(@"Loading: %@",languageArray);
+//    NSLog(@"Loading: %@",languageArray);
     NSLog(@"number of cells: %lu",(unsigned long)languageArray.count);
     [spinner removeSpinner];
 
