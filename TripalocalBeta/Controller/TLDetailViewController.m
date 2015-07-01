@@ -59,12 +59,7 @@
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     [request setValue:postLength forHTTPHeaderField:@"Content-Length"];
     [request setHTTPBody:postData];
-    
-    NSURLResponse *requestResponse;
-    NSData *requestHandler = [NSURLConnection sendSynchronousRequest:request returningResponse:&requestResponse error:nil];
-    
-    NSString *requestReply = [[NSString alloc] initWithBytes:[requestHandler bytes] length:[requestHandler length] encoding:NSASCIIStringEncoding];
-//    NSLog(@"requestReply: %@", requestReply);
+
     
     connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
     if (connection) {
@@ -188,29 +183,34 @@
 -(void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
     NSDictionary *allDataDictionary=[NSJSONSerialization JSONObjectWithData:jsonData options:0 error:nil];
-    hostImageURL=[allDataDictionary objectForKey:@"host_image"];
-    expLanguage=[allDataDictionary objectForKey:@"experience_language"];
-    NSNumber *expPriceNumber = [allDataDictionary objectForKey:@"experience_price"];
-    expPrice = [expPriceNumber stringValue];
-    NSNumber *expDurationNumber = [allDataDictionary objectForKey:@"experience_duration"];
-    expDuration = [expDurationNumber stringValue];
-    expTitle = [allDataDictionary objectForKey:@"experience_title"];
-    expDescription = [allDataDictionary objectForKey:@"experience_description"];
-    expActivity = [allDataDictionary objectForKey:@"experience_activity"];
-    expInteraction = [allDataDictionary objectForKey:@"experience_interaction"];
-    hostFirstName = [allDataDictionary objectForKey:@"host_firstname"];
-    hostBio = [allDataDictionary objectForKey:@"host_bio"];
-    
-    expReviewsArray = [allDataDictionary objectForKey:@"experience_reviews"];
-    NSUInteger numberOfReviews = expReviewsArray.count;
-    numOfReviews = [NSString stringWithFormat:@"%lu",(unsigned long)numberOfReviews];
-    NSNumber *rateNumber = [allDataDictionary objectForKey:@"experience_rate"];
-    expRate = [rateNumber stringValue];
-    NSDictionary *reviewDictionary0 = [expReviewsArray objectAtIndex:0];
-    reviewFirst = [reviewDictionary0 objectForKey:@"reviewer_firstname"];
-    reviewLast = [reviewDictionary0 objectForKey:@"reviewer_lastname"];
-    reviewerImageURL = [reviewDictionary0 objectForKey:@"reviewer_image"];
-    reviewComment = [reviewDictionary0 objectForKey:@"review_comment"];
+    @try {
+        hostImageURL=[allDataDictionary objectForKey:@"host_image"];
+        expLanguage=[allDataDictionary objectForKey:@"experience_language"];
+        NSNumber *expPriceNumber = [allDataDictionary objectForKey:@"experience_price"];
+        expPrice = [expPriceNumber stringValue];
+        NSNumber *expDurationNumber = [allDataDictionary objectForKey:@"experience_duration"];
+        expDuration = [expDurationNumber stringValue];
+        expTitle = [allDataDictionary objectForKey:@"experience_title"];
+        expDescription = [allDataDictionary objectForKey:@"experience_description"];
+        expActivity = [allDataDictionary objectForKey:@"experience_activity"];
+        expInteraction = [allDataDictionary objectForKey:@"experience_interaction"];
+        hostFirstName = [allDataDictionary objectForKey:@"host_firstname"];
+        hostBio = [allDataDictionary objectForKey:@"host_bio"];
+        expReviewsArray = [allDataDictionary objectForKey:@"experience_reviews"];
+        NSUInteger numberOfReviews = expReviewsArray.count;
+        numOfReviews = [NSString stringWithFormat:@"%lu",(unsigned long)numberOfReviews];
+        NSNumber *rateNumber = [allDataDictionary objectForKey:@"experience_rate"];
+        expRate = [rateNumber stringValue];
+        NSDictionary *reviewDictionary0 = [expReviewsArray objectAtIndex:0];
+        reviewFirst = [reviewDictionary0 objectForKey:@"reviewer_firstname"];
+        reviewLast = [reviewDictionary0 objectForKey:@"reviewer_lastname"];
+        reviewerImageURL = [reviewDictionary0 objectForKey:@"reviewer_image"];
+        reviewComment = [reviewDictionary0 objectForKey:@"review_comment"];
+        
+    }
+    @catch (NSException * e) {
+        NSLog(@"Experience/(ID:%@/) Exception: %@", _experience_id_string, e);
+    }
     
     NSLog(@"%@,%@,%@,%@",expTitle,expPrice,reviewerImageURL,reviewComment);
 }
