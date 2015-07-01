@@ -26,16 +26,11 @@
     NSMutableArray *experienceImageURLArray;
     NSMutableArray *experienceIDArray;
     int connectionFinished;
-    Spinner *spinner;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    _tableView.dataSource=self;
-    _tableView.delegate=self;
     
-    //spinner
-    spinner = [Spinner loadSpinnerIntoView:self.view];
     
     connectionFinished=0;
     
@@ -60,11 +55,12 @@
     [request setValue:postLength forHTTPHeaderField:@"Content-Length"];
     [request setHTTPBody:postData];
     
-    NSURLResponse *requestResponse;
-    NSData *requestHandler = [NSURLConnection sendSynchronousRequest:request returningResponse:&requestResponse error:nil];
+//    NSURLResponse *requestResponse;
+//    NSData *requestHandler = [NSURLConnection sendSynchronousRequest:request returningResponse:&requestResponse error:nil];
     
 //    NSString *requestReply = [[NSString alloc] initWithBytes:[requestHandler bytes] length:[requestHandler length] encoding:NSASCIIStringEncoding];
 //    NSLog(@"requestReply: %@", requestReply);
+    
     if (request!=NULL) {
         NSLog(@"requestReply: YES");
     }
@@ -94,6 +90,7 @@
 -(void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
 {
     [jsonData appendData:data];
+    
 }
 
 -(void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
@@ -137,13 +134,14 @@
             [experienceIDArray addObject:idString];
         }
 //    }
-    
+    _tableView.dataSource=self;
+    _tableView.delegate=self;
+    [_tableView reloadData];
     
     //Finish Loading
     connectionFinished=1;
 //    NSLog(@"Loading: %@",languageArray);
     NSLog(@"number of cells: %lu",(unsigned long)languageArray.count);
-    [spinner removeSpinner];
 
 }
 
@@ -203,16 +201,15 @@
     cell.titleLabel.text=[titleArray objectAtIndex:indexPath.row];
     
     
-    
     return cell;
 }
 
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    while (connectionFinished==0) {
-        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate distantFuture]];
-    }
+//    while (connectionFinished==0) {
+//        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate distantFuture]];
+//    }
 
     return [languageArray count];
 }

@@ -193,6 +193,7 @@
     expInteraction = [allDataDictionary objectForKey:@"experience_interaction"];
     hostFirstName = [allDataDictionary objectForKey:@"host_firstname"];
     hostBio = [allDataDictionary objectForKey:@"host_bio"];
+    
     expReviewsArray = [allDataDictionary objectForKey:@"experience_reviews"];
     NSUInteger numberOfReviews = expReviewsArray.count;
     numOfReviews = [NSString stringWithFormat:@"%lu",(unsigned long)numberOfReviews];
