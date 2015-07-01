@@ -10,5 +10,5 @@
 
 @interface TLSearchViewController : UIViewController <UITableViewDataSource,UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-
+@property NSString *cityName;
 @end

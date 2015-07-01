@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="MaF-g6-zXX">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="MaF-g6-zXX">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -484,33 +484,20 @@
                                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iWr-eG-6ha">
-                                                    <rect key="frame" x="0.0" y="0.0" width="600" height="307"/>
-                                                    <state key="normal">
-                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                    </state>
-                                                    <connections>
-                                                        <action selector="myButton:" destination="LAP-Cp-zS6" eventType="touchUpInside" id="urn-oO-1yN"/>
-                                                        <segue destination="Vj1-wG-sag" kind="push" id="IcW-y8-pQw"/>
-                                                    </connections>
-                                                </button>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="iWr-eG-6ha" firstAttribute="top" secondItem="t6B-ED-uPI" secondAttribute="top" id="42w-wj-KCB"/>
                                                 <constraint firstAttribute="trailing" secondItem="t6B-ED-uPI" secondAttribute="trailing" id="Duh-1c-HJG"/>
                                                 <constraint firstAttribute="bottom" secondItem="t6B-ED-uPI" secondAttribute="bottom" id="GwV-Ug-n6m"/>
                                                 <constraint firstItem="UWB-M2-STK" firstAttribute="centerX" secondItem="t6B-ED-uPI" secondAttribute="centerX" id="IVi-Az-nDK"/>
-                                                <constraint firstItem="iWr-eG-6ha" firstAttribute="bottom" secondItem="t6B-ED-uPI" secondAttribute="bottom" id="JrR-9X-ic1"/>
                                                 <constraint firstItem="UWB-M2-STK" firstAttribute="centerY" secondItem="t6B-ED-uPI" secondAttribute="centerY" id="KYb-la-Tca"/>
-                                                <constraint firstItem="iWr-eG-6ha" firstAttribute="trailing" secondItem="t6B-ED-uPI" secondAttribute="trailing" id="X3k-li-dgA"/>
                                                 <constraint firstItem="t6B-ED-uPI" firstAttribute="top" secondItem="VqP-ef-kjH" secondAttribute="top" id="ZUb-xT-mdU"/>
-                                                <constraint firstItem="iWr-eG-6ha" firstAttribute="leading" secondItem="t6B-ED-uPI" secondAttribute="leading" id="e5A-Tq-408"/>
                                                 <constraint firstItem="t6B-ED-uPI" firstAttribute="leading" secondItem="VqP-ef-kjH" secondAttribute="leading" id="kJe-1G-0e2"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="homeLocationImage" destination="t6B-ED-uPI" id="O7v-8J-vQk"/>
                                             <outlet property="homeLocationLabel" destination="UWB-M2-STK" id="pAC-zo-Y9G"/>
+                                            <segue destination="Vj1-wG-sag" kind="show" identifier="ExpListSegue" id="r1b-Gj-oet"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -573,7 +560,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ebx-cp-llZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="698" y="682"/>
+            <point key="canvasLocation" x="771" y="742"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="u40-tt-rk7">
@@ -1154,6 +1141,6 @@
         <image name="visa.png" width="32" height="20"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="IcW-y8-pQw"/>
+        <segue reference="r1b-Gj-oet"/>
     </inferredMetricsTieBreakers>
 </document>

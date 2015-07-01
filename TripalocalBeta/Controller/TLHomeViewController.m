@@ -8,6 +8,8 @@
 
 #import "TLHomeViewController.h"
 #import "TLHomeTableViewCell.h"
+#import "TLSearchViewController.h"
+
 @interface TLHomeViewController ()
 {
     NSMutableArray *locationsURLString;
@@ -26,6 +28,7 @@
     locationsURLString = [[NSMutableArray alloc]init];
     [locations addObject:@"Melbourne"];
     [locations addObject:@"Sydney"];
+ 
     [locationsURLString addObject:@"https://www.tripalocal.com/images/mobile/home/Melbourne.jpg"];
     [locationsURLString addObject:@"https://www.tripalocal.com/images/mobile/home/Sydney.jpg"];
     homeTable.dataSource=self;
@@ -66,15 +69,13 @@
     return 1;
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    if ([segue.identifier isEqualToString:@"ExpListSegue"]) {
+        TLSearchViewController *vc=[segue destinationViewController];
+        NSIndexPath *index=[homeTable indexPathForSelectedRow];
+        vc.cityName = [locations objectAtIndex:index.row];
+    }
 }
-*/
 
 - (IBAction)myButton:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil]; 

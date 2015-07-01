@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface TLHomeViewController : UIViewController<UITableViewDelegate,UITableViewDataSource>
-@property (weak, nonatomic) IBOutlet UITableView *homeTable;
+@property (strong, nonatomic) IBOutlet UITableView *homeTable;
 - (IBAction)myButton:(id)sender;
 
 @end
