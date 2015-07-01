@@ -10,7 +10,6 @@
 #import "TLHomeTableViewCell.h"
 #import "TLSearchViewController.h"
 #import "Constant.h"
-#import "JGProgressHUD.h"
 
 @interface TLHomeViewController ()
 {

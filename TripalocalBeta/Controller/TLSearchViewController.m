@@ -247,7 +247,12 @@
         TLDetailViewController *vc=[segue destinationViewController];
         NSIndexPath *index=[_tableView indexPathForSelectedRow];
         vc.experience_id_string = [experienceIDArray objectAtIndex:index.row];
-       
+        
+        NSString *hostImageCachingIdentifier = [NSString stringWithFormat:@"Cell%ldOfHostImage",(long)index.row];
+        NSString *expImageCachingIdentifier = [NSString stringWithFormat:@"Cell%ldOfExpImage",(long)index.row];
+        vc.hostImage = [self.cachedImages valueForKey:hostImageCachingIdentifier];
+        vc.coverImage = [self.cachedImages valueForKey:expImageCachingIdentifier];
+
     }
     
     

@@ -13,6 +13,7 @@
 #import "TLDetailTableViewCell3.h"
 #import "TLDetailTableViewCell4.h"
 #import "TLDetailTableViewCell5.h"
+#import "JGProgressHUD.h"
 
 @interface TLDetailViewController ()
 {
@@ -35,6 +36,9 @@
     NSString *reviewLast;
     NSString *reviewerImageURL;
     NSString *reviewComment;
+    JGProgressHUD *HUD;
+    int connectionFinished;
+
 }
 
 @end
@@ -45,9 +49,16 @@
     [super viewDidLoad];
     _myTable.delegate = self;
     _myTable.dataSource = self;
+    connectionFinished=0;
     
-    
-    
+    //Indicator
+    HUD = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleDark];
+    HUD.HUDView.layer.shadowColor = [UIColor blackColor].CGColor;
+    HUD.HUDView.layer.shadowOffset = CGSizeZero;
+    HUD.HUDView.layer.shadowOpacity = 0.4f;
+    HUD.HUDView.layer.shadowRadius = 8.0f;
+    HUD.textLabel.text = @"Loading";
+    [HUD showInView:self.view];
     
     NSString *post = [NSString stringWithFormat:@"{\"experience_id\":\"%@\"}",_experience_id_string];
     NSLog(@"(Detail)POST: %@", post);
@@ -97,15 +108,24 @@
     
     UITableViewCell *requestButtonCell = [tableView dequeueReusableCellWithIdentifier:@"RequestButtonCell"];
     
-
+    while (connectionFinished==0) {
+        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate distantFuture]];
+    }
+    
     switch (indexPath.row) {
         case 0:
             if(!cell)
             {
                 cell=[[TLDetailTableViewCell0 alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier0];
             }
+            cell.coverImage.image = _coverImage;
+            cell.reservationLabel.text = [cell.reservationLabel.text stringByAppendingFormat:@" %@", hostFirstName];
+            cell.languageLabel.text = expLanguage;
+            cell.priceLabel.text = [cell.priceLabel.text stringByAppendingFormat:@" %@",expPrice];
+            cell.durationLabel.text = [cell.durationLabel.text stringByAppendingFormat:@"for %@ hours", expDuration];
             
             return cell;
+        
         case 1:
             if(!cell1)
             {
@@ -144,6 +164,8 @@
         default:
             break;
     }
+    
+    
     return cell;
 }
 
@@ -206,12 +228,12 @@
         reviewLast = [reviewDictionary0 objectForKey:@"reviewer_lastname"];
         reviewerImageURL = [reviewDictionary0 objectForKey:@"reviewer_image"];
         reviewComment = [reviewDictionary0 objectForKey:@"review_comment"];
-        
+        connectionFinished=1;
     }
     @catch (NSException * e) {
         NSLog(@"Experience/(ID:%@/) Exception: %@", _experience_id_string, e);
     }
-    
+    [HUD dismissAfterDelay:3.0];
     NSLog(@"%@,%@,%@,%@",expTitle,expPrice,reviewerImageURL,reviewComment);
 }
 
