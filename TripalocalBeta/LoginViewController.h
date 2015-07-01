@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import "Constant.h"
-#import "User.h"
 
 @interface LoginViewController : UITableViewController <UITextFieldDelegate>
 

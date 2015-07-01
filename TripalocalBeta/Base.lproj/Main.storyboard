@@ -442,13 +442,24 @@
                     <view key="view" contentMode="scaleToFill" id="pES-FR-pLd">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qMO-ua-TLS">
+                                <rect key="frame" x="229" y="218" width="38" height="30"/>
+                                <state key="normal" title="Login">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="qlR-wd-pxo" kind="presentation" id="Tv0-5O-aoR"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="" id="2EZ-dV-Iyc"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mDm-9I-iUc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="67" y="2130"/>
+            <point key="canvasLocation" x="881" y="2130"/>
         </scene>
         <!--Home View Controller-->
         <scene sceneID="EjL-d6-zfH">
@@ -635,11 +646,23 @@
                                                         <constraint firstAttribute="width" constant="200" id="tcf-II-2tO"/>
                                                     </constraints>
                                                 </imageView>
+                                                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="384-uT-iq4">
+                                                    <rect key="frame" x="527" y="18" width="48" height="30"/>
+                                                    <state key="normal" title="Cancel">
+                                                        <color key="titleColor" red="0.10926186409999999" green="1" blue="0.79704178729999997" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="dismissLogin:" destination="qlR-wd-pxo" eventType="touchUpInside" id="ySp-Br-LVN"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="centerY" secondItem="RZk-n3-EJK" secondAttribute="centerY" id="4Yh-Jd-RrO"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="384-uT-iq4" secondAttribute="trailing" constant="10" id="AqL-PB-GxO"/>
                                                 <constraint firstItem="RZk-n3-EJK" firstAttribute="top" secondItem="OMP-j5-2i1" secondAttribute="topMargin" constant="37" id="GLU-vn-gYa"/>
                                                 <constraint firstItem="RZk-n3-EJK" firstAttribute="centerX" secondItem="OMP-j5-2i1" secondAttribute="centerX" id="NBa-d9-Tp2"/>
+                                                <constraint firstItem="384-uT-iq4" firstAttribute="top" secondItem="OMP-j5-2i1" secondAttribute="topMargin" constant="10" id="V3a-lF-Axx"/>
                                                 <constraint firstAttribute="centerY" secondItem="RZk-n3-EJK" secondAttribute="centerY" id="VlX-3z-bUa"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="RZk-n3-EJK" secondAttribute="bottom" constant="27" id="kaC-iw-f4X"/>
                                             </constraints>
@@ -710,13 +733,13 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" borderStyle="line" placeholder="Email Address" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bvK-Y0-Ggi">
-                                                    <rect key="frame" x="80" y="7" width="460" height="40"/>
+                                                    <rect key="frame" x="80" y="8" width="460" height="40"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="40" id="hxf-RA-VC1"/>
                                                         <constraint firstAttribute="width" constant="300" id="rfJ-qj-cjK"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits"/>
+                                                    <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
                                                     <connections>
                                                         <action selector="inputFieldChanged:" destination="qlR-wd-pxo" eventType="editingDidEnd" id="9Hn-AL-Z08"/>
                                                     </connections>
@@ -826,7 +849,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qlm-2l-zKk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2963" y="1746"/>
+            <point key="canvasLocation" x="1907" y="2026"/>
         </scene>
         <!--Payment View Controller-->
         <scene sceneID="ryw-le-I1d">

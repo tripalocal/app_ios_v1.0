@@ -15,13 +15,16 @@
 		5649BD461B3FD5CA00465D6C /* TLDetailTableViewCell5.m in Sources */ = {isa = PBXBuildFile; fileRef = 5649BD451B3FD5CA00465D6C /* TLDetailTableViewCell5.m */; };
 		5649BDDD1B4387DE00465D6C /* libJGProgressHUD.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5649BDD41B4387C900465D6C /* libJGProgressHUD.a */; };
 		5649BDDE1B4387EA00465D6C /* JGProgressHUD Resources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 5649BDD61B4387C900465D6C /* JGProgressHUD Resources.bundle */; };
+		87F356401B439D3B00949F43 /* Constant.m in Sources */ = {isa = PBXBuildFile; fileRef = 87F356391B439D3B00949F43 /* Constant.m */; };
+		87F356411B439D3B00949F43 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87F3563B1B439D3B00949F43 /* LoginViewController.m */; };
+		87F356421B439D3B00949F43 /* PaymentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87F3563D1B439D3B00949F43 /* PaymentViewController.m */; };
+		87F356431B439D3B00949F43 /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87F3563F1B439D3B00949F43 /* SignUpViewController.m */; };
 		8E26A6631B0397EF00A5A5CF /* TLHomeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E26A6621B0397EF00A5A5CF /* TLHomeTableViewCell.m */; };
 		8E26A66C1B080BE300A5A5CF /* TLSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E26A66B1B080BE300A5A5CF /* TLSearchViewController.m */; };
 		8E26A66F1B080BFF00A5A5CF /* TLSearchTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E26A66E1B080BFF00A5A5CF /* TLSearchTableViewCell.m */; };
 		8E92CF7A1B3E2B3700D4BB4B /* TLDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E92CF791B3E2B3700D4BB4B /* TLDetailViewController.m */; };
 		8EB570E51B01CF2B0026D419 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EB570E41B01CF2B0026D419 /* main.m */; };
 		8EB570E81B01CF2B0026D419 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EB570E71B01CF2B0026D419 /* AppDelegate.m */; };
-		8EB570EB1B01CF2B0026D419 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EB570EA1B01CF2B0026D419 /* ViewController.m */; };
 		8EB570EE1B01CF2B0026D419 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8EB570EC1B01CF2B0026D419 /* Main.storyboard */; };
 		8EB570F01B01CF2B0026D419 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8EB570EF1B01CF2B0026D419 /* Images.xcassets */; };
 		8EB570F31B01CF2B0026D419 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8EB570F11B01CF2B0026D419 /* LaunchScreen.xib */; };
@@ -105,6 +108,14 @@
 		5649BD441B3FD5CA00465D6C /* TLDetailTableViewCell5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TLDetailTableViewCell5.h; path = "Controller/Custom Cells/TLDetailTableViewCell5.h"; sourceTree = "<group>"; };
 		5649BD451B3FD5CA00465D6C /* TLDetailTableViewCell5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TLDetailTableViewCell5.m; path = "Controller/Custom Cells/TLDetailTableViewCell5.m"; sourceTree = "<group>"; };
 		5649BDCD1B4387C800465D6C /* JGProgressHUD.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = JGProgressHUD.xcodeproj; path = "Supported Files/JGProgressHUD/JGProgressHUD.xcodeproj"; sourceTree = "<group>"; };
+		87F356381B439D3B00949F43 /* Constant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constant.h; sourceTree = "<group>"; };
+		87F356391B439D3B00949F43 /* Constant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constant.m; sourceTree = "<group>"; };
+		87F3563A1B439D3B00949F43 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		87F3563B1B439D3B00949F43 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		87F3563C1B439D3B00949F43 /* PaymentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaymentViewController.h; sourceTree = "<group>"; };
+		87F3563D1B439D3B00949F43 /* PaymentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaymentViewController.m; sourceTree = "<group>"; };
+		87F3563E1B439D3B00949F43 /* SignUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpViewController.h; sourceTree = "<group>"; };
+		87F3563F1B439D3B00949F43 /* SignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpViewController.m; sourceTree = "<group>"; };
 		8E26A6611B0397EF00A5A5CF /* TLHomeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TLHomeTableViewCell.h; path = Controller/TLHomeTableViewCell.h; sourceTree = "<group>"; };
 		8E26A6621B0397EF00A5A5CF /* TLHomeTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TLHomeTableViewCell.m; path = Controller/TLHomeTableViewCell.m; sourceTree = "<group>"; };
 		8E26A66A1B080BE300A5A5CF /* TLSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TLSearchViewController.h; path = Controller/TLSearchViewController.h; sourceTree = "<group>"; };
@@ -118,8 +129,6 @@
 		8EB570E41B01CF2B0026D419 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		8EB570E61B01CF2B0026D419 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		8EB570E71B01CF2B0026D419 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		8EB570E91B01CF2B0026D419 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		8EB570EA1B01CF2B0026D419 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		8EB570ED1B01CF2B0026D419 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		8EB570EF1B01CF2B0026D419 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		8EB570F21B01CF2B0026D419 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -221,6 +230,8 @@
 		8EB570E11B01CF2B0026D419 /* TripalocalBeta */ = {
 			isa = PBXGroup;
 			children = (
+				87F356381B439D3B00949F43 /* Constant.h */,
+				87F356391B439D3B00949F43 /* Constant.m */,
 				8EC86D511B021DDC00B0A655 /* Controller */,
 				8EC86D501B021DD800B0A655 /* View */,
 				8EC86D4F1B021DD000B0A655 /* Model */,
@@ -296,9 +307,13 @@
 		8EC86D511B021DDC00B0A655 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				87F3563A1B439D3B00949F43 /* LoginViewController.h */,
+				87F3563B1B439D3B00949F43 /* LoginViewController.m */,
+				87F3563C1B439D3B00949F43 /* PaymentViewController.h */,
+				87F3563D1B439D3B00949F43 /* PaymentViewController.m */,
+				87F3563E1B439D3B00949F43 /* SignUpViewController.h */,
+				87F3563F1B439D3B00949F43 /* SignUpViewController.m */,
 				5649BD311B3FC32800465D6C /* Custom Cells */,
-				8EB570E91B01CF2B0026D419 /* ViewController.h */,
-				8EB570EA1B01CF2B0026D419 /* ViewController.m */,
 				8EC86D5A1B0229F100B0A655 /* TLHomeViewController.h */,
 				8EC86D5B1B0229F100B0A655 /* TLHomeViewController.m */,
 				8E26A66A1B080BE300A5A5CF /* TLSearchViewController.h */,
@@ -462,10 +477,12 @@
 				5649BD461B3FD5CA00465D6C /* TLDetailTableViewCell5.m in Sources */,
 				5649BD431B3FD5A400465D6C /* TLDetailTableViewCell4.m in Sources */,
 				5649BD3A1B3FC42600465D6C /* TLDetailTableViewCell1.m in Sources */,
+				87F356431B439D3B00949F43 /* SignUpViewController.m in Sources */,
 				5649BD371B3FC40F00465D6C /* TLDetailTableViewCell0.m in Sources */,
 				8E92CF7A1B3E2B3700D4BB4B /* TLDetailViewController.m in Sources */,
-				8EB570EB1B01CF2B0026D419 /* ViewController.m in Sources */,
+				87F356411B439D3B00949F43 /* LoginViewController.m in Sources */,
 				8EC86D5C1B0229F100B0A655 /* TLHomeViewController.m in Sources */,
+				87F356421B439D3B00949F43 /* PaymentViewController.m in Sources */,
 				8EB982501B2280D800ADE430 /* Spinner.m in Sources */,
 				5649BD3D1B3FD56E00465D6C /* TLDetailTableViewCell2.m in Sources */,
 				5649BD401B3FD58800465D6C /* TLDetailTableViewCell3.m in Sources */,
@@ -473,6 +490,7 @@
 				8EB570E81B01CF2B0026D419 /* AppDelegate.m in Sources */,
 				8E26A66C1B080BE300A5A5CF /* TLSearchViewController.m in Sources */,
 				8EB570E51B01CF2B0026D419 /* main.m in Sources */,
+				87F356401B439D3B00949F43 /* Constant.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

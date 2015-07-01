@@ -17,6 +17,10 @@
 
 @implementation LoginViewController
 
+- (IBAction)dismissLogin:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
 - (IBAction)login:(id)sender {
     [self.loginButton setEnabled:NO];
     NSURL *url = [NSURL URLWithString:loginServiceTestServerURL];
