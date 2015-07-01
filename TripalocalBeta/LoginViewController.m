@@ -27,8 +27,17 @@
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     [request setHTTPMethod:@"POST"];
     
-    NSString *body =  [NSString stringWithFormat:@"email=%@&password=%@", self.emailField.text, self.passwordField.text];
-    [request setHTTPBody:[body dataUsingEncoding:NSUTF8StringEncoding]];
+    NSDictionary *tmp = [[NSDictionary alloc] initWithObjectsAndKeys:
+                         self.emailField.text, @"email",
+                         self.passwordField.text, @"password",
+                         nil];
+    
+    NSData *postdata = [NSJSONSerialization dataWithJSONObject:tmp options:0 error:nil];
+    [request setHTTPBody:postdata];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    
+    NSString * converted =[[NSString alloc] initWithData:postdata encoding:NSUTF8StringEncoding];
+    NSLog(@"Sending data = %@", converted);
     
     void (^resultHandler) (NSURLResponse *response,
                            NSData *data, NSError *connectionError) = ^(NSURLResponse *response,
@@ -38,19 +47,24 @@
         NSLog(@"JSON data = %@", jsonStringResult);
         
         if (connectionError == nil) {
+            NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *) response;
+            
             NSDictionary *result = [NSJSONSerialization JSONObjectWithData:data
                                                                    options:0
                                                                      error:nil];
 
-            NSInteger userId = [[result objectForKey:@"user_id"] integerValue];
-            NSString *token = [result objectForKey:@"token"];
-//            Successflly login
-//            {
-//                "token": "cc99d502c5cf2b03342d0a60f81a20e49a24f77f",
-//                "user_id": 455
-//            }
-            if (userId && token) {
+            if ([httpResponse statusCode] == 200) {
+//                            Successflly login
+//                            {
+//                                "token": "cc99d502c5cf2b03342d0a60f81a20e49a24f77f",
+//                                "user_id": 455
+//                            }
+                NSString *token = [result objectForKey:@"token"];
+                NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+                [userDefaults setObject:token forKey:@"user_token"];
+                [[NSUserDefaults standardUserDefaults] synchronize];
                 
+                [self dismissViewControllerAnimated:YES completion:nil];                
             } else {
                 NSString *errorMsg = [result objectForKey:@"error"];
                 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Login Failed"

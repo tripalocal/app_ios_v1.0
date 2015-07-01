@@ -10,5 +10,6 @@
 #define TripalocalBeta_Constant_h
 
 FOUNDATION_EXPORT NSString *const loginServiceTestServerURL;
-
+FOUNDATION_EXPORT NSString *const myprofileServiceTestServerURL;
+FOUNDATION_EXPORT NSString *const logoutServiceTestServerURL;
 #endif
