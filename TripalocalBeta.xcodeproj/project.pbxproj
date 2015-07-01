@@ -13,8 +13,6 @@
 		5649BD401B3FD58800465D6C /* TLDetailTableViewCell3.m in Sources */ = {isa = PBXBuildFile; fileRef = 5649BD3F1B3FD58800465D6C /* TLDetailTableViewCell3.m */; };
 		5649BD431B3FD5A400465D6C /* TLDetailTableViewCell4.m in Sources */ = {isa = PBXBuildFile; fileRef = 5649BD421B3FD5A400465D6C /* TLDetailTableViewCell4.m */; };
 		5649BD461B3FD5CA00465D6C /* TLDetailTableViewCell5.m in Sources */ = {isa = PBXBuildFile; fileRef = 5649BD451B3FD5CA00465D6C /* TLDetailTableViewCell5.m */; };
-		5649BD981B43781E00465D6C /* libJGProgressHUD.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5649BD8F1B4377FB00465D6C /* libJGProgressHUD.a */; };
-		5649BD991B437A7F00465D6C /* JGProgressHUD Resources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 5649BD911B4377FB00465D6C /* JGProgressHUD Resources.bundle */; };
 		8E26A6631B0397EF00A5A5CF /* TLHomeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E26A6621B0397EF00A5A5CF /* TLHomeTableViewCell.m */; };
 		8E26A66C1B080BE300A5A5CF /* TLSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E26A66B1B080BE300A5A5CF /* TLSearchViewController.m */; };
 		8E26A66F1B080BFF00A5A5CF /* TLSearchTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E26A66E1B080BFF00A5A5CF /* TLSearchTableViewCell.m */; };
@@ -47,41 +45,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		5649BD8E1B4377FB00465D6C /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 5649BD881B4377FB00465D6C /* JGProgressHUD.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 6BC01873197B2AA500DA4C49;
-			remoteInfo = JGProgressHUD;
-		};
-		5649BD901B4377FB00465D6C /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 5649BD881B4377FB00465D6C /* JGProgressHUD.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 6B60B24019A3B3C500ED1A4E;
-			remoteInfo = "JGProgressHUD Resources";
-		};
-		5649BD921B4377FB00465D6C /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 5649BD881B4377FB00465D6C /* JGProgressHUD.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 6BF7DC5A1AEFCFD9000A0AE0;
-			remoteInfo = "JGProgressHUD Framework";
-		};
-		5649BD941B43780A00465D6C /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 5649BD881B4377FB00465D6C /* JGProgressHUD.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 6B60B23F19A3B3C500ED1A4E;
-			remoteInfo = "JGProgressHUD Resources";
-		};
-		5649BD961B43780E00465D6C /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 5649BD881B4377FB00465D6C /* JGProgressHUD.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 6BC01872197B2AA500DA4C49;
-			remoteInfo = JGProgressHUD;
-		};
 		8EB570F91B01CF2B0026D419 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 8EB570D71B01CF2B0026D419 /* Project object */;
@@ -104,7 +67,6 @@
 		5649BD421B3FD5A400465D6C /* TLDetailTableViewCell4.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TLDetailTableViewCell4.m; path = "Controller/Custom Cells/TLDetailTableViewCell4.m"; sourceTree = "<group>"; };
 		5649BD441B3FD5CA00465D6C /* TLDetailTableViewCell5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TLDetailTableViewCell5.h; path = "Controller/Custom Cells/TLDetailTableViewCell5.h"; sourceTree = "<group>"; };
 		5649BD451B3FD5CA00465D6C /* TLDetailTableViewCell5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TLDetailTableViewCell5.m; path = "Controller/Custom Cells/TLDetailTableViewCell5.m"; sourceTree = "<group>"; };
-		5649BD881B4377FB00465D6C /* JGProgressHUD.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = JGProgressHUD.xcodeproj; path = JGProgressHUD/JGProgressHUD.xcodeproj; sourceTree = "<group>"; };
 		8E26A6611B0397EF00A5A5CF /* TLHomeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TLHomeTableViewCell.h; path = Controller/TLHomeTableViewCell.h; sourceTree = "<group>"; };
 		8E26A6621B0397EF00A5A5CF /* TLHomeTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TLHomeTableViewCell.m; path = Controller/TLHomeTableViewCell.m; sourceTree = "<group>"; };
 		8E26A66A1B080BE300A5A5CF /* TLSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TLSearchViewController.h; path = Controller/TLSearchViewController.h; sourceTree = "<group>"; };
@@ -153,7 +115,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5649BD981B43781E00465D6C /* libJGProgressHUD.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -190,20 +151,9 @@
 			name = "Custom Cells";
 			sourceTree = "<group>";
 		};
-		5649BD891B4377FB00465D6C /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				5649BD8F1B4377FB00465D6C /* libJGProgressHUD.a */,
-				5649BD911B4377FB00465D6C /* JGProgressHUD Resources.bundle */,
-				5649BD931B4377FB00465D6C /* JGProgressHUD.framework */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		8EB570D61B01CF2B0026D419 = {
 			isa = PBXGroup;
 			children = (
-				5649BD881B4377FB00465D6C /* JGProgressHUD.xcodeproj */,
 				8EB570E11B01CF2B0026D419 /* TripalocalBeta */,
 				8EB570FB1B01CF2B0026D419 /* TripalocalBetaTests */,
 				8EB570E01B01CF2B0026D419 /* Products */,
@@ -323,8 +273,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				5649BD971B43780E00465D6C /* PBXTargetDependency */,
-				5649BD951B43780A00465D6C /* PBXTargetDependency */,
 			);
 			name = TripalocalBeta;
 			productName = TripalocalBeta;
@@ -378,12 +326,6 @@
 			mainGroup = 8EB570D61B01CF2B0026D419;
 			productRefGroup = 8EB570E01B01CF2B0026D419 /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = 5649BD891B4377FB00465D6C /* Products */;
-					ProjectRef = 5649BD881B4377FB00465D6C /* JGProgressHUD.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				8EB570DE1B01CF2B0026D419 /* TripalocalBeta */,
@@ -392,36 +334,11 @@
 		};
 /* End PBXProject section */
 
-/* Begin PBXReferenceProxy section */
-		5649BD8F1B4377FB00465D6C /* libJGProgressHUD.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libJGProgressHUD.a;
-			remoteRef = 5649BD8E1B4377FB00465D6C /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		5649BD911B4377FB00465D6C /* JGProgressHUD Resources.bundle */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = "JGProgressHUD Resources.bundle";
-			remoteRef = 5649BD901B4377FB00465D6C /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		5649BD931B4377FB00465D6C /* JGProgressHUD.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = JGProgressHUD.framework;
-			remoteRef = 5649BD921B4377FB00465D6C /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
-
 /* Begin PBXResourcesBuildPhase section */
 		8EB570DD1B01CF2B0026D419 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5649BD991B437A7F00465D6C /* JGProgressHUD Resources.bundle in Resources */,
 				8EC86DB41B02350000B0A655 /* instant_booking.png in Resources */,
 				8EB570EE1B01CF2B0026D419 /* Main.storyboard in Resources */,
 				8EC86DB21B02350000B0A655 /* home_s.png in Resources */,
@@ -487,16 +404,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		5649BD951B43780A00465D6C /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "JGProgressHUD Resources";
-			targetProxy = 5649BD941B43780A00465D6C /* PBXContainerItemProxy */;
-		};
-		5649BD971B43780E00465D6C /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = JGProgressHUD;
-			targetProxy = 5649BD961B43780E00465D6C /* PBXContainerItemProxy */;
-		};
 		8EB570FA1B01CF2B0026D419 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 8EB570DE1B01CF2B0026D419 /* TripalocalBeta */;
@@ -624,7 +531,6 @@
 				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = TripalocalBeta/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				"OTHER_LDFLAGS[arch=*]" = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "TripalocalBeta/TripalocalBeta-Bridging-Header.h";
 			};

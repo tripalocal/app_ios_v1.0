@@ -10,7 +10,6 @@
 #import "TLSearchTableViewCell.h"
 #import "Spinner.h"
 #import "TLDetailViewController.h"
-#import "JGProgressHUD.h"
 
 @interface TLSearchViewController ()
 @property (strong, nonatomic) NSMutableDictionary *cachedImages;
@@ -27,8 +26,6 @@
     NSMutableArray *experienceImageURLArray;
     NSMutableArray *experienceIDArray;
     int connectionFinished;
-    JGProgressHUD *HUD;
-
 }
 
 - (void)viewDidLoad {
@@ -36,11 +33,6 @@
     
     
     connectionFinished=0;
-    
-    //Indicator
-    HUD = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleDark];
-    HUD.textLabel.text = @"Loading";
-    [HUD showInView:self.view];
     
     //Init
     languageArray = [[NSMutableArray alloc]init];
@@ -146,20 +138,6 @@
     _tableView.delegate=self;
     [_tableView reloadData];
     
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        HUD.indicatorView = nil;
-        
-        HUD.textLabel.font = [UIFont systemFontOfSize:30.0f];
-        
-        HUD.textLabel.text = @"Done";
-        
-        HUD.position = JGProgressHUDPositionBottomCenter;
-    });
-    
-    HUD.marginInsets = UIEdgeInsetsMake(0.0f, 0.0f, 60.0f, 0.0f);
-    
-    [HUD dismissAfterDelay:3.0];
-    
     //Finish Loading
     connectionFinished=1;
 //    NSLog(@"Loading: %@",languageArray);
@@ -229,6 +207,10 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+//    while (connectionFinished==0) {
+//        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate distantFuture]];
+//    }
+
     return [languageArray count];
 }
 
