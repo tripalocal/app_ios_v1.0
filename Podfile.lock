@@ -1,0 +1,27 @@
+PODS:
+  - PaymentKit (1.1)
+  - Stripe (4.0.3):
+    - Stripe/Checkout (= 4.0.3)
+    - Stripe/Core (= 4.0.3)
+  - Stripe/Checkout (4.0.3):
+    - Stripe/Core
+  - Stripe/Core (4.0.3)
+
+DEPENDENCIES:
+  - PaymentKit (from `https://github.com/stripe/PaymentKit.git`)
+  - Stripe
+
+EXTERNAL SOURCES:
+  PaymentKit:
+    :git: https://github.com/stripe/PaymentKit.git
+
+CHECKOUT OPTIONS:
+  PaymentKit:
+    :commit: a5e0b165998314d465ed69286827bffc4ca22c37
+    :git: https://github.com/stripe/PaymentKit.git
+
+SPEC CHECKSUMS:
+  PaymentKit: 6c4ac9e4ca4c7cc2e753f28ecfc34c6a8c225b8e
+  Stripe: 43a4307dc789483a61668d187c4a917d1348b0b6
+
+COCOAPODS: 0.37.2

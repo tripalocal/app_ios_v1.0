@@ -100,6 +100,8 @@
     static NSString *cellIdentifier5=@"cell5";
     TLDetailTableViewCell5 *cell5=(TLDetailTableViewCell5 *) [tableView dequeueReusableCellWithIdentifier:cellIdentifier5];
     
+    UITableViewCell *requestButtonCell = [tableView dequeueReusableCellWithIdentifier:@"RequestButtonCell"];
+    
 
     switch (indexPath.row) {
         case 0:
@@ -139,6 +141,11 @@
                 cell5=[[TLDetailTableViewCell5 alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier5];
             }
             return cell5;
+        case 6:
+            if (!requestButtonCell) {
+                requestButtonCell = [tableView dequeueReusableCellWithIdentifier:@"RequestButtonCell"];
+            }
+            return requestButtonCell;
         default:
             break;
     }
@@ -148,7 +155,7 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 6;
+    return 7;
 }
 
 
