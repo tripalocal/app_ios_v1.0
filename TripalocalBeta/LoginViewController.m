@@ -24,6 +24,8 @@
     [self.loginButton setEnabled:NO];
     NSURL *url = [NSURL URLWithString:loginServiceTestServerURL];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    
+    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     [request setHTTPMethod:@"POST"];
     
     NSDictionary *tmp = [[NSDictionary alloc] initWithObjectsAndKeys:
@@ -33,17 +35,20 @@
     
     NSData *postdata = [NSJSONSerialization dataWithJSONObject:tmp options:0 error:nil];
     [request setHTTPBody:postdata];
-    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     
-    NSString * converted =[[NSString alloc] initWithData:postdata encoding:NSUTF8StringEncoding];
-    NSLog(@"Sending data = %@", converted);
+#if DEBUG
+    NSString * decodedData =[[NSString alloc] initWithData:postdata encoding:NSUTF8StringEncoding];
+    NSLog(@"Sending data = %@", decodedData);
+#endif
     
     void (^resultHandler) (NSURLResponse *response,
                            NSData *data, NSError *connectionError) = ^(NSURLResponse *response,
                                                                        NSData *data, NSError *connectionError){
-        NSString *jsonStringResult = [[NSString alloc] initWithData:data
+#if DEBUG
+        NSString *decodedData = [[NSString alloc] initWithData:data
                                                            encoding:NSUTF8StringEncoding];
-        NSLog(@"JSON data = %@", jsonStringResult);
+        NSLog(@"Receiving data = %@", decodedData);
+#endif
         
         if (connectionError == nil) {
             NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *) response;

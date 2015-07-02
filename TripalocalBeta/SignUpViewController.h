@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Constant.h"
 
 @interface SignUpViewController : UITableViewController <UITextFieldDelegate>
 
