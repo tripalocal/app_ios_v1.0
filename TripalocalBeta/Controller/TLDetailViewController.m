@@ -13,6 +13,7 @@
 #import "TLDetailTableViewCell3.h"
 #import "TLDetailTableViewCell4.h"
 #import "TLDetailTableViewCell5.h"
+#import "JGProgressHUD.h"
 
 @interface TLDetailViewController ()
 {
@@ -35,6 +36,9 @@
     NSString *reviewLast;
     NSString *reviewerImageURL;
     NSString *reviewComment;
+    JGProgressHUD *HUD;
+    int connectionFinished;
+
 }
 
 @end
@@ -45,9 +49,16 @@
     [super viewDidLoad];
     _myTable.delegate = self;
     _myTable.dataSource = self;
+    connectionFinished=0;
     
-    
-    
+    //Indicator
+    HUD = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleDark];
+    HUD.HUDView.layer.shadowColor = [UIColor blackColor].CGColor;
+    HUD.HUDView.layer.shadowOffset = CGSizeZero;
+    HUD.HUDView.layer.shadowOpacity = 0.4f;
+    HUD.HUDView.layer.shadowRadius = 8.0f;
+    HUD.textLabel.text = @"Loading";
+    [HUD showInView:self.view];
     
     NSString *post = [NSString stringWithFormat:@"{\"experience_id\":\"%@\"}",_experience_id_string];
     NSLog(@"(Detail)POST: %@", post);
@@ -59,12 +70,7 @@
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     [request setValue:postLength forHTTPHeaderField:@"Content-Length"];
     [request setHTTPBody:postData];
-    
-    NSURLResponse *requestResponse;
-    NSData *requestHandler = [NSURLConnection sendSynchronousRequest:request returningResponse:&requestResponse error:nil];
-    
-    NSString *requestReply = [[NSString alloc] initWithBytes:[requestHandler bytes] length:[requestHandler length] encoding:NSASCIIStringEncoding];
-//    NSLog(@"requestReply: %@", requestReply);
+
     
     connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
     if (connection) {
@@ -102,15 +108,24 @@
     
     UITableViewCell *requestButtonCell = [tableView dequeueReusableCellWithIdentifier:@"RequestButtonCell"];
     
-
+    while (connectionFinished==0) {
+        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate distantFuture]];
+    }
+    
     switch (indexPath.row) {
         case 0:
             if(!cell)
             {
                 cell=[[TLDetailTableViewCell0 alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier0];
             }
+            cell.coverImage.image = _coverImage;
+            cell.reservationLabel.text = [cell.reservationLabel.text stringByAppendingFormat:@" %@", hostFirstName];
+            cell.languageLabel.text = expLanguage;
+            cell.priceLabel.text = [cell.priceLabel.text stringByAppendingFormat:@" %@",expPrice];
+            cell.durationLabel.text = [cell.durationLabel.text stringByAppendingFormat:@"for %@ hours", expDuration];
             
             return cell;
+        
         case 1:
             if(!cell1)
             {
@@ -149,6 +164,8 @@
         default:
             break;
     }
+    
+    
     return cell;
 }
 
@@ -188,30 +205,35 @@
 -(void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
     NSDictionary *allDataDictionary=[NSJSONSerialization JSONObjectWithData:jsonData options:0 error:nil];
-    hostImageURL=[allDataDictionary objectForKey:@"host_image"];
-    expLanguage=[allDataDictionary objectForKey:@"experience_language"];
-    NSNumber *expPriceNumber = [allDataDictionary objectForKey:@"experience_price"];
-    expPrice = [expPriceNumber stringValue];
-    NSNumber *expDurationNumber = [allDataDictionary objectForKey:@"experience_duration"];
-    expDuration = [expDurationNumber stringValue];
-    expTitle = [allDataDictionary objectForKey:@"experience_title"];
-    expDescription = [allDataDictionary objectForKey:@"experience_description"];
-    expActivity = [allDataDictionary objectForKey:@"experience_activity"];
-    expInteraction = [allDataDictionary objectForKey:@"experience_interaction"];
-    hostFirstName = [allDataDictionary objectForKey:@"host_firstname"];
-    hostBio = [allDataDictionary objectForKey:@"host_bio"];
-    
-    expReviewsArray = [allDataDictionary objectForKey:@"experience_reviews"];
-    NSUInteger numberOfReviews = expReviewsArray.count;
-    numOfReviews = [NSString stringWithFormat:@"%lu",(unsigned long)numberOfReviews];
-    NSNumber *rateNumber = [allDataDictionary objectForKey:@"experience_rate"];
-    expRate = [rateNumber stringValue];
-    NSDictionary *reviewDictionary0 = [expReviewsArray objectAtIndex:0];
-    reviewFirst = [reviewDictionary0 objectForKey:@"reviewer_firstname"];
-    reviewLast = [reviewDictionary0 objectForKey:@"reviewer_lastname"];
-    reviewerImageURL = [reviewDictionary0 objectForKey:@"reviewer_image"];
-    reviewComment = [reviewDictionary0 objectForKey:@"review_comment"];
-    
+    @try {
+        hostImageURL=[allDataDictionary objectForKey:@"host_image"];
+        expLanguage=[allDataDictionary objectForKey:@"experience_language"];
+        NSNumber *expPriceNumber = [allDataDictionary objectForKey:@"experience_price"];
+        expPrice = [expPriceNumber stringValue];
+        NSNumber *expDurationNumber = [allDataDictionary objectForKey:@"experience_duration"];
+        expDuration = [expDurationNumber stringValue];
+        expTitle = [allDataDictionary objectForKey:@"experience_title"];
+        expDescription = [allDataDictionary objectForKey:@"experience_description"];
+        expActivity = [allDataDictionary objectForKey:@"experience_activity"];
+        expInteraction = [allDataDictionary objectForKey:@"experience_interaction"];
+        hostFirstName = [allDataDictionary objectForKey:@"host_firstname"];
+        hostBio = [allDataDictionary objectForKey:@"host_bio"];
+        expReviewsArray = [allDataDictionary objectForKey:@"experience_reviews"];
+        NSUInteger numberOfReviews = expReviewsArray.count;
+        numOfReviews = [NSString stringWithFormat:@"%lu",(unsigned long)numberOfReviews];
+        NSNumber *rateNumber = [allDataDictionary objectForKey:@"experience_rate"];
+        expRate = [rateNumber stringValue];
+        NSDictionary *reviewDictionary0 = [expReviewsArray objectAtIndex:0];
+        reviewFirst = [reviewDictionary0 objectForKey:@"reviewer_firstname"];
+        reviewLast = [reviewDictionary0 objectForKey:@"reviewer_lastname"];
+        reviewerImageURL = [reviewDictionary0 objectForKey:@"reviewer_image"];
+        reviewComment = [reviewDictionary0 objectForKey:@"review_comment"];
+        connectionFinished=1;
+    }
+    @catch (NSException * e) {
+        NSLog(@"Experience/(ID:%@/) Exception: %@", _experience_id_string, e);
+    }
+    [HUD dismissAfterDelay:3.0];
     NSLog(@"%@,%@,%@,%@",expTitle,expPrice,reviewerImageURL,reviewComment);
 }
 
