@@ -49,60 +49,58 @@
     NSLog(@"Sending data = %@", decodedData);
 #endif
     
-    void (^resultHandler) (NSURLResponse *response,
-                           NSData *data, NSError *connectionError) = ^(NSURLResponse *response,
-                                                                       NSData *data, NSError *connectionError) {
+
+    NSError *connectionError = nil;
+    NSURLResponse *response = nil;
+    
+    NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&connectionError];
+    
+    if (connectionError == nil) {
+        NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *) response;
         
-#if DEBUG
-        NSString *decodedData = [[NSString alloc] initWithData:data
-                                                           encoding:NSUTF8StringEncoding];
-        NSLog(@"Receiving data = %@", decodedData);
-#endif
+        NSDictionary *result = [NSJSONSerialization JSONObjectWithData:data
+                                                               options:0
+                                                                 error:nil];
         
-        if (connectionError == nil) {
-            NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *) response;
+        if ([httpResponse statusCode] == 200) {
+            //                                            Successflly signed up
+            //                                            {
+            //                                                "token": "cc99d502c5cf2b03342d0a60f81a20e49a24f77f",
+            //                                                "user_id": 455
+            //                                            }
+            NSString *token = [result objectForKey:@"token"];
+            NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+            [userDefaults setObject:token forKey:@"user_token"];
+            [[NSUserDefaults standardUserDefaults] synchronize];
             
-            NSDictionary *result = [NSJSONSerialization JSONObjectWithData:data
-                                                                   options:0
-                                                                     error:nil];
+            [self.presentingViewController.presentingViewController dismissViewControllerAnimated:YES completion:nil];
             
-            if ([httpResponse statusCode] == 200) {
-//                                            Successflly signed up
-//                                            {
-//                                                "token": "cc99d502c5cf2b03342d0a60f81a20e49a24f77f",
-//                                                "user_id": 455
-//                                            }
-                NSString *token = [result objectForKey:@"token"];
-                NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-                [userDefaults setObject:token forKey:@"user_token"];
-                [[NSUserDefaults standardUserDefaults] synchronize];
-                
-                [self.presentingViewController.presentingViewController dismissViewControllerAnimated:YES completion:nil];
-                
-            } else {
-                NSString *errorMsg = [result objectForKey:@"error"];
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Signup Failed"
-                                                                message:errorMsg
-                                                               delegate:nil
-                                                      cancelButtonTitle:@"OK"
-                                                      otherButtonTitles:nil];
-                [alert show];
-            }
         } else {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No network connection"
-                                                            message:@"You must be connected to the internet."
+            NSString *errorMsg = [result objectForKey:@"error"];
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Signup Failed"
+                                                            message:errorMsg
                                                            delegate:nil
                                                   cancelButtonTitle:@"OK"
                                                   otherButtonTitles:nil];
             [alert show];
         }
         
-        [self.signupButton setEnabled:YES];
-    };
+#if DEBUG
+        NSString *decodedData = [[NSString alloc] initWithData:data
+                                                      encoding:NSUTF8StringEncoding];
+        NSLog(@"Receiving data = %@", decodedData);
+#endif
+    } else {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No network connection"
+                                                        message:@"You must be connected to the internet."
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+        [alert show];
+    }
     
-    [NSURLConnection sendAsynchronousRequest:request
-                                       queue:[NSOperationQueue mainQueue]
-                           completionHandler: resultHandler];
+        [self.signupButton setEnabled:YES];
+ 
 }
 
 - (IBAction)dismissSignup:(id)sender {

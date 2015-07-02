@@ -33,8 +33,8 @@
 }
 
 - (IBAction)confirmAndPay:(id)sender {
-    NSLog(@"sfasdaf");
     [self postPaymentInfo];
+    
 }
 
 - (void)viewDidLoad {
@@ -44,6 +44,28 @@
     self.monthField.delegate = self;
     self.yearField.delegate = self;
     self.ccvField.delegate = self;
+    
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
+                                   initWithTarget:self
+                                   action:@selector(dismissKeyboard)];
+    
+    [self.tableView addGestureRecognizer:tap];
+    self.tableView.alwaysBounceVertical = NO;
+}
+
+-(void)dismissKeyboard {
+    [self.view endEditing:YES];
+}
+
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
+{
+    return YES;
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [textField resignFirstResponder];
+    return YES;
 }
 
 - (void)didReceiveMemoryWarning {

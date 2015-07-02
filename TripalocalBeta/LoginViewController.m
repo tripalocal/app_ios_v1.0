@@ -41,58 +41,117 @@
     NSLog(@"Sending data = %@", decodedData);
 #endif
     
-    void (^resultHandler) (NSURLResponse *response,
-                           NSData *data, NSError *connectionError) = ^(NSURLResponse *response,
-                                                                       NSData *data, NSError *connectionError){
-#if DEBUG
-        NSString *decodedData = [[NSString alloc] initWithData:data
-                                                           encoding:NSUTF8StringEncoding];
-        NSLog(@"Receiving data = %@", decodedData);
-#endif
+    NSError *connectionError = nil;
+    NSURLResponse *response = nil;
+    
+    NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&connectionError];
+    
+    if (connectionError == nil) {
+        NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *) response;
         
-        if (connectionError == nil) {
-            NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *) response;
+        NSDictionary *result = [NSJSONSerialization JSONObjectWithData:data
+                                                               options:0
+                                                                 error:nil];
+        
+        if ([httpResponse statusCode] == 200) {
+            //                            Successflly login
+            //                            {
+            //                                "token": "cc99d502c5cf2b03342d0a60f81a20e49a24f77f",
+            //                                "user_id": 455
+            //                            }
+            NSString *token = [result objectForKey:@"token"];
+            [self fetchProfileAndCache: token];
             
-            NSDictionary *result = [NSJSONSerialization JSONObjectWithData:data
-                                                                   options:0
-                                                                     error:nil];
+            NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+            [userDefaults setObject:token forKey:@"user_token"];
+            [[NSUserDefaults standardUserDefaults] synchronize];
 
-            if ([httpResponse statusCode] == 200) {
-//                            Successflly login
-//                            {
-//                                "token": "cc99d502c5cf2b03342d0a60f81a20e49a24f77f",
-//                                "user_id": 455
-//                            }
-                NSString *token = [result objectForKey:@"token"];
-                NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-                [userDefaults setObject:token forKey:@"user_token"];
-                [[NSUserDefaults standardUserDefaults] synchronize];
-                
-                [self dismissViewControllerAnimated:YES completion:nil];                
-            } else {
-                NSString *errorMsg = [result objectForKey:@"error"];
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Login Failed"
-                                                                message:errorMsg
-                                                               delegate:nil
-                                                      cancelButtonTitle:@"OK"
-                                                      otherButtonTitles:nil];
-                [alert show];
-            }
+            [self dismissViewControllerAnimated:YES completion:nil];
         } else {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No network connection"
-                                                            message:@"You must be connected to the internet."
+            NSString *errorMsg = [result objectForKey:@"error"];
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Login Failed"
+                                                            message:errorMsg
                                                            delegate:nil
                                                   cancelButtonTitle:@"OK"
                                                   otherButtonTitles:nil];
             [alert show];
         }
         
-        [self.loginButton setEnabled:YES];
-    };
+#if DEBUG
+        NSString *decodedData = [[NSString alloc] initWithData:data
+                                                      encoding:NSUTF8StringEncoding];
+        NSLog(@"Receiving data = %@", decodedData);
+#endif
+    } else {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No network connection"
+                                                        message:@"You must be connected to the internet."
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+        [alert show];
+    }
     
-    [NSURLConnection sendAsynchronousRequest:request
-                                       queue:[NSOperationQueue mainQueue]
-                           completionHandler: resultHandler];
+    [self.loginButton setEnabled:YES];
+
+}
+
+- (void) fetchProfileAndCache:(NSString *) token {
+    NSURL *url = [NSURL URLWithString:myprofileServiceTestServerURL];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    [request setHTTPMethod:@"GET"];
+    [request addValue:[NSString stringWithFormat:@"Token %@", token] forHTTPHeaderField:@"Authorization"];
+    
+    NSError *connectionError = nil;
+    NSURLResponse *response = nil;
+    
+    NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&connectionError];
+    
+    if (connectionError == nil) {
+        NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *) response;
+        NSDictionary *result = [NSJSONSerialization JSONObjectWithData:data
+                                                               options:0
+                                                                 error:nil];
+        //            {
+        //                "last_name": "He",
+        //                "image": "",
+        //                "id": 455,
+        //                "first_name": "Ye",
+        //                "phone_number": "",
+        //                "bio": "",
+        //                "rate": null,
+        //                "email": "yehe01@gmail.com"
+        //            }
+        
+        if ([httpResponse statusCode] == 200) {
+            NSString *lastName = [result objectForKey:@"last_name"];
+            NSString *firstName = [result objectForKey:@"first_name"];
+            NSString *email = [result objectForKey:@"email"];
+            NSString *bio = [result objectForKey:@"bio"];
+            NSString *phoneNumber = [result objectForKey:@"phone_number"];
+            
+            NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+            [userDefaults setObject:lastName forKey:@"user_last_name"];
+            [userDefaults setObject:firstName forKey:@"user_first_name"];
+            [userDefaults setObject:email forKey:@"user_email"];
+            [userDefaults setObject:bio forKey:@"user_bio"];
+            [userDefaults setObject:phoneNumber forKey:@"user_phone_number"];
+            [[NSUserDefaults standardUserDefaults] synchronize];
+        }
+        
+#if DEBUG
+        NSString *decodedData = [[NSString alloc] initWithData:data
+                                                      encoding:NSUTF8StringEncoding];
+        NSLog(@"Receiving data = %@", decodedData);
+#endif
+    } else {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No network connection"
+                                                        message:@"You must be connected to the internet."
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+        [alert show];
+    }
+    
 }
 
 - (IBAction)facebookLogin:(id)sender {
