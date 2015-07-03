@@ -38,7 +38,7 @@
     NSString *reviewComment;
     JGProgressHUD *HUD;
     int connectionFinished;
-
+    NSData *reviewerImageData;
 }
 
 @end
@@ -110,6 +110,7 @@
         [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate distantFuture]];
     }
     
+    
     switch (indexPath.row) {
         case 0:
             if(!cell)
@@ -138,26 +139,39 @@
             if(!cell2)
             {
                 cell2=[[TLDetailTableViewCell2 alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier2];
-            
             }
+            cell2.hostFirstNameLabel.text = hostFirstName;
+            cell2.hostImage.image = _hostImage;
+            cell2.hostBioLabel.text = hostBio;
+            
             return cell2;
         case 3:
             if(!cell3)
             {
                 cell3=[[TLDetailTableViewCell3 alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier3];
             }
+            cell3.countLabel.text = numOfReviews;
+            cell3.rateLabel.text = expRate;
+            cell3.reviewerFirstName.text = reviewFirst;
+            cell3.reviewerLastName.text = reviewLast;
+            cell3.commentLabel.text = reviewComment;
+            //Reviewer Image
+            
             return cell3;
         case 4:
             if(!cell4)
             {
                 cell4=[[TLDetailTableViewCell4 alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier4];
             }
+            
+            cell4.coverImage.image = _coverImage;
             return cell4;
         case 5:
             if(!cell5)
             {
                 cell5=[[TLDetailTableViewCell5 alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier5];
             }
+            
             return cell5;
         
         default:
