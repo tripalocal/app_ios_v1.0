@@ -16,3 +16,5 @@ NSString *const myprofileServiceTestServerURL = @"http://adventure007.cloudapp.n
 NSString *const logoutServiceTestServerURL = @"http://adventure007.cloudapp.net/service_logout/";
 
 NSString *const signupServiceTestServerURL = @"http://adventure007.cloudapp.net/service_signup/";
+
+NSString *const testServerImageURL = @"http://adventure007.cloudapp.net/images/";

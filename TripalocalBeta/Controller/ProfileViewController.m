@@ -90,7 +90,8 @@
     self.phoneField.text = [userDefaults stringForKey:@"user_phone_number"];
     self.bioField.text = [userDefaults stringForKey:@"user_bio"];
     self.emailField.text = [userDefaults stringForKey:@"user_email"];
-    self.image.image = [userDefaults objectForKey:@"user_image"];
+    UIImage* image = [UIImage imageWithData:[userDefaults objectForKey:@"user_image"]];
+    self.image.image = image;
 }
 
 -(void) viewDidLoad {
