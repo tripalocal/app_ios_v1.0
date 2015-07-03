@@ -11,6 +11,7 @@
 @interface TLDetailTableViewCell0 : UITableViewCell
 
 @property (weak, nonatomic) IBOutlet UIImageView *coverImage;
+@property (weak, nonatomic) IBOutlet UIImageView *hostImage;
 @property (weak, nonatomic) IBOutlet UILabel *reservationLabel;
 @property (weak, nonatomic) IBOutlet UILabel *languageLabel;
 @property (weak, nonatomic) IBOutlet UILabel *priceLabel;

@@ -209,6 +209,12 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="JGX-d6-HBd">
+                                                    <rect key="frame" x="266" y="96" width="68" height="68"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="68" id="8NJ-YB-Qzl"/>
+                                                    </constraints>
+                                                </imageView>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="jSP-6t-dAh" firstAttribute="leading" secondItem="pfh-OS-Wji" secondAttribute="trailing" constant="30" id="2b2-5q-J5W"/>
@@ -222,8 +228,11 @@
                                                 <constraint firstItem="pfh-OS-Wji" firstAttribute="bottom" secondItem="iCx-eM-MjF" secondAttribute="bottomMargin" id="Lnr-st-Kjr"/>
                                                 <constraint firstItem="hbz-Sb-etl" firstAttribute="leading" secondItem="iCx-eM-MjF" secondAttribute="leading" id="MDk-Zc-r7g"/>
                                                 <constraint firstItem="pfh-OS-Wji" firstAttribute="baseline" secondItem="K4a-U4-pQM" secondAttribute="firstBaseline" id="Mrk-A7-4wp"/>
+                                                <constraint firstItem="Qeu-2l-orb" firstAttribute="top" secondItem="JGX-d6-HBd" secondAttribute="bottom" constant="8" symbolic="YES" id="SYp-Gr-zT0"/>
                                                 <constraint firstItem="Qeu-2l-orb" firstAttribute="centerX" secondItem="KIl-ZR-VVU" secondAttribute="centerX" id="VeU-Ry-PMa"/>
                                                 <constraint firstItem="KIl-ZR-VVU" firstAttribute="top" secondItem="Qeu-2l-orb" secondAttribute="bottom" constant="8" symbolic="YES" id="ZQA-cu-1LG"/>
+                                                <constraint firstItem="JGX-d6-HBd" firstAttribute="centerX" secondItem="Qeu-2l-orb" secondAttribute="centerX" id="bG9-hl-b1C"/>
+                                                <constraint firstItem="JGX-d6-HBd" firstAttribute="top" secondItem="iCx-eM-MjF" secondAttribute="topMargin" constant="88" id="hhN-r3-nEh"/>
                                                 <constraint firstItem="ZzR-aR-8nO" firstAttribute="leading" secondItem="iCx-eM-MjF" secondAttribute="leadingMargin" constant="103" id="jGP-mt-FKx"/>
                                                 <constraint firstItem="pfh-OS-Wji" firstAttribute="leading" secondItem="iCx-eM-MjF" secondAttribute="leading" constant="200" id="mua-Ne-CC8"/>
                                                 <constraint firstAttribute="trailing" secondItem="hbz-Sb-etl" secondAttribute="trailing" id="xOE-FD-MtC"/>
@@ -234,6 +243,7 @@
                                         <connections>
                                             <outlet property="coverImage" destination="hbz-Sb-etl" id="IYU-Pv-zWs"/>
                                             <outlet property="durationLabel" destination="K4a-U4-pQM" id="ZX6-OL-SlN"/>
+                                            <outlet property="hostImage" destination="JGX-d6-HBd" id="IJY-iY-u3P"/>
                                             <outlet property="languageLabel" destination="KIl-ZR-VVU" id="GGA-Yf-jkv"/>
                                             <outlet property="priceLabel" destination="pfh-OS-Wji" id="Vwf-h2-xOV"/>
                                             <outlet property="reservationLabel" destination="Qeu-2l-orb" id="62J-Gs-Axb"/>
