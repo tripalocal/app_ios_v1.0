@@ -12,6 +12,10 @@
 
 - (void)awakeFromNib {
     // Initialization code
+    // Initialization code
+    _hostImage.layer.cornerRadius = _hostImage.frame.size.height / 2;
+    _hostImage.layer.masksToBounds = YES;
+    _hostImage.layer.borderWidth = 0;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

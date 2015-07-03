@@ -38,7 +38,7 @@
     NSString *reviewComment;
     JGProgressHUD *HUD;
     int connectionFinished;
-
+    NSData *reviewerImageData;
 }
 
 @end
@@ -106,11 +106,10 @@
     static NSString *cellIdentifier5=@"cell5";
     TLDetailTableViewCell5 *cell5=(TLDetailTableViewCell5 *) [tableView dequeueReusableCellWithIdentifier:cellIdentifier5];
     
-    UITableViewCell *requestButtonCell = [tableView dequeueReusableCellWithIdentifier:@"RequestButtonCell"];
-    
     while (connectionFinished==0) {
         [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate distantFuture]];
     }
+    
     
     switch (indexPath.row) {
         case 0:
@@ -119,6 +118,7 @@
                 cell=[[TLDetailTableViewCell0 alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier0];
             }
             cell.coverImage.image = _coverImage;
+            cell.hostImage.image = _hostImage;
             cell.reservationLabel.text = [cell.reservationLabel.text stringByAppendingFormat:@" %@", hostFirstName];
             cell.languageLabel.text = expLanguage;
             cell.priceLabel.text = [cell.priceLabel.text stringByAppendingFormat:@" %@",expPrice];
@@ -131,36 +131,49 @@
             {
                 cell1=[[TLDetailTableViewCell1 alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier1];
             }
+            cell1.expTitleLabel.text = expTitle;
+            cell1.expDescriptionLabel.text = [expDescription stringByAppendingFormat:@" %@ %@", expActivity, expInteraction];
+            
             return cell1;
         case 2:
             if(!cell2)
             {
                 cell2=[[TLDetailTableViewCell2 alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier2];
             }
+            cell2.hostFirstNameLabel.text = hostFirstName;
+            cell2.hostImage.image = _hostImage;
+            cell2.hostBioLabel.text = hostBio;
+            
             return cell2;
         case 3:
             if(!cell3)
             {
                 cell3=[[TLDetailTableViewCell3 alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier3];
             }
+            cell3.countLabel.text = numOfReviews;
+            cell3.rateLabel.text = expRate;
+            cell3.reviewerFirstName.text = reviewFirst;
+            cell3.reviewerLastName.text = reviewLast;
+            cell3.commentLabel.text = reviewComment;
+            //Reviewer Image
+            
             return cell3;
         case 4:
             if(!cell4)
             {
                 cell4=[[TLDetailTableViewCell4 alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier4];
             }
+            
+            cell4.coverImage.image = _coverImage;
             return cell4;
         case 5:
             if(!cell5)
             {
                 cell5=[[TLDetailTableViewCell5 alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier5];
             }
+            
             return cell5;
-        case 6:
-            if (!requestButtonCell) {
-                requestButtonCell = [tableView dequeueReusableCellWithIdentifier:@"RequestButtonCell"];
-            }
-            return requestButtonCell;
+        
         default:
             break;
     }
@@ -172,7 +185,7 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 7;
+    return 6;
 }
 
 
