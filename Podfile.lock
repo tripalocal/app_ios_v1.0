@@ -1,27 +1,29 @@
 PODS:
-  - PaymentKit (1.1)
-  - Stripe (4.0.3):
-    - Stripe/Checkout (= 4.0.3)
-    - Stripe/Core (= 4.0.3)
-  - Stripe/Checkout (4.0.3):
-    - Stripe/Core
-  - Stripe/Core (4.0.3)
+  - Bolts (1.2.0):
+    - Bolts/AppLinks (= 1.2.0)
+    - Bolts/Tasks (= 1.2.0)
+  - Bolts/AppLinks (1.2.0):
+    - Bolts/Tasks
+  - Bolts/Tasks (1.2.0)
+  - FBSDKCoreKit (4.3.0):
+    - Bolts (~> 1.1)
+    - FBSDKCoreKit/arc (= 4.3.0)
+    - FBSDKCoreKit/no-arc (= 4.3.0)
+  - FBSDKCoreKit/arc (4.3.0):
+    - Bolts (~> 1.1)
+  - FBSDKCoreKit/no-arc (4.3.0):
+    - Bolts (~> 1.1)
+    - FBSDKCoreKit/arc
+  - FBSDKLoginKit (4.3.0):
+    - FBSDKCoreKit
 
 DEPENDENCIES:
-  - PaymentKit (from `https://github.com/stripe/PaymentKit.git`)
-  - Stripe
-
-EXTERNAL SOURCES:
-  PaymentKit:
-    :git: https://github.com/stripe/PaymentKit.git
-
-CHECKOUT OPTIONS:
-  PaymentKit:
-    :commit: a5e0b165998314d465ed69286827bffc4ca22c37
-    :git: https://github.com/stripe/PaymentKit.git
+  - FBSDKCoreKit
+  - FBSDKLoginKit
 
 SPEC CHECKSUMS:
-  PaymentKit: 6c4ac9e4ca4c7cc2e753f28ecfc34c6a8c225b8e
-  Stripe: 43a4307dc789483a61668d187c4a917d1348b0b6
+  Bolts: d176cb1e0012175589e389a9db49b85e27787576
+  FBSDKCoreKit: a3a60225a84abeace291d0fe71cae29a627382c2
+  FBSDKLoginKit: 6bc2f8f2628c3b6d2e346762fff8cb55cfd3a58d
 
 COCOAPODS: 0.37.2

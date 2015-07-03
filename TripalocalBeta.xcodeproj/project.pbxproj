@@ -15,10 +15,15 @@
 		5649BD461B3FD5CA00465D6C /* TLDetailTableViewCell5.m in Sources */ = {isa = PBXBuildFile; fileRef = 5649BD451B3FD5CA00465D6C /* TLDetailTableViewCell5.m */; };
 		5649BDDD1B4387DE00465D6C /* libJGProgressHUD.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5649BDD41B4387C900465D6C /* libJGProgressHUD.a */; };
 		5649BDDE1B4387EA00465D6C /* JGProgressHUD Resources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 5649BDD61B4387C900465D6C /* JGProgressHUD Resources.bundle */; };
+		7412FDE1EDC10952539BF3C5 /* libPods-TripalocalBeta.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D1136758DFF7CE52CD971824 /* libPods-TripalocalBeta.a */; };
+		87A3C09D1B461129009A3B07 /* RequestController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87A3C09C1B461129009A3B07 /* RequestController.m */; };
+		87A3C0A11B463C6C009A3B07 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87A3C0A01B463C6C009A3B07 /* HomeViewController.m */; };
 		87F356401B439D3B00949F43 /* Constant.m in Sources */ = {isa = PBXBuildFile; fileRef = 87F356391B439D3B00949F43 /* Constant.m */; };
 		87F356411B439D3B00949F43 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87F3563B1B439D3B00949F43 /* LoginViewController.m */; };
 		87F356421B439D3B00949F43 /* PaymentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87F3563D1B439D3B00949F43 /* PaymentViewController.m */; };
 		87F356431B439D3B00949F43 /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87F3563F1B439D3B00949F43 /* SignUpViewController.m */; };
+		87F356521B43AAD300949F43 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87F356511B43AAD300949F43 /* ProfileViewController.m */; };
+		87F356561B43C8C300949F43 /* UnloginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87F356551B43C8C300949F43 /* UnloginViewController.m */; };
 		8E26A6631B0397EF00A5A5CF /* TLHomeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E26A6621B0397EF00A5A5CF /* TLHomeTableViewCell.m */; };
 		8E26A66C1B080BE300A5A5CF /* TLSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E26A66B1B080BE300A5A5CF /* TLSearchViewController.m */; };
 		8E26A66F1B080BFF00A5A5CF /* TLSearchTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E26A66E1B080BFF00A5A5CF /* TLSearchTableViewCell.m */; };
@@ -95,6 +100,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		343996C22E7455135C839270 /* Pods-TripalocalBeta.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TripalocalBeta.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TripalocalBeta/Pods-TripalocalBeta.debug.xcconfig"; sourceTree = "<group>"; };
 		5649BD351B3FC40F00465D6C /* TLDetailTableViewCell0.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TLDetailTableViewCell0.h; path = "Controller/Custom Cells/TLDetailTableViewCell0.h"; sourceTree = "<group>"; };
 		5649BD361B3FC40F00465D6C /* TLDetailTableViewCell0.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TLDetailTableViewCell0.m; path = "Controller/Custom Cells/TLDetailTableViewCell0.m"; sourceTree = "<group>"; };
 		5649BD381B3FC42600465D6C /* TLDetailTableViewCell1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TLDetailTableViewCell1.h; path = "Controller/Custom Cells/TLDetailTableViewCell1.h"; sourceTree = "<group>"; };
@@ -108,6 +114,10 @@
 		5649BD441B3FD5CA00465D6C /* TLDetailTableViewCell5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TLDetailTableViewCell5.h; path = "Controller/Custom Cells/TLDetailTableViewCell5.h"; sourceTree = "<group>"; };
 		5649BD451B3FD5CA00465D6C /* TLDetailTableViewCell5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TLDetailTableViewCell5.m; path = "Controller/Custom Cells/TLDetailTableViewCell5.m"; sourceTree = "<group>"; };
 		5649BDCD1B4387C800465D6C /* JGProgressHUD.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = JGProgressHUD.xcodeproj; path = "Supported Files/JGProgressHUD/JGProgressHUD.xcodeproj"; sourceTree = "<group>"; };
+		87A3C09B1B461129009A3B07 /* RequestController.h */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.h; path = RequestController.h; sourceTree = "<group>"; tabWidth = 4; usesTabs = 0; wrapsLines = 1; };
+		87A3C09C1B461129009A3B07 /* RequestController.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.objc; path = RequestController.m; sourceTree = "<group>"; tabWidth = 4; usesTabs = 0; wrapsLines = 1; };
+		87A3C09F1B463C6C009A3B07 /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HomeViewController.h; path = Controller/HomeViewController.h; sourceTree = "<group>"; };
+		87A3C0A01B463C6C009A3B07 /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HomeViewController.m; path = Controller/HomeViewController.m; sourceTree = "<group>"; };
 		87F356381B439D3B00949F43 /* Constant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constant.h; sourceTree = "<group>"; };
 		87F356391B439D3B00949F43 /* Constant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constant.m; sourceTree = "<group>"; };
 		87F3563A1B439D3B00949F43 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
@@ -116,6 +126,10 @@
 		87F3563D1B439D3B00949F43 /* PaymentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaymentViewController.m; sourceTree = "<group>"; };
 		87F3563E1B439D3B00949F43 /* SignUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpViewController.h; sourceTree = "<group>"; };
 		87F3563F1B439D3B00949F43 /* SignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpViewController.m; sourceTree = "<group>"; };
+		87F356501B43AAD300949F43 /* ProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProfileViewController.h; path = Controller/ProfileViewController.h; sourceTree = "<group>"; };
+		87F356511B43AAD300949F43 /* ProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProfileViewController.m; path = Controller/ProfileViewController.m; sourceTree = "<group>"; };
+		87F356541B43C8C300949F43 /* UnloginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UnloginViewController.h; path = Controller/UnloginViewController.h; sourceTree = "<group>"; };
+		87F356551B43C8C300949F43 /* UnloginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UnloginViewController.m; path = Controller/UnloginViewController.m; sourceTree = "<group>"; };
 		8E26A6611B0397EF00A5A5CF /* TLHomeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TLHomeTableViewCell.h; path = Controller/TLHomeTableViewCell.h; sourceTree = "<group>"; };
 		8E26A6621B0397EF00A5A5CF /* TLHomeTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TLHomeTableViewCell.m; path = Controller/TLHomeTableViewCell.m; sourceTree = "<group>"; };
 		8E26A66A1B080BE300A5A5CF /* TLSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TLSearchViewController.h; path = Controller/TLSearchViewController.h; sourceTree = "<group>"; };
@@ -155,6 +169,8 @@
 		8EC86DAC1B02350000B0A655 /* tripalocal_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = tripalocal_logo.png; path = Images/tripalocal_logo.png; sourceTree = "<group>"; };
 		8EC86DAD1B02350000B0A655 /* unwishlisted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = unwishlisted.png; path = Images/unwishlisted.png; sourceTree = "<group>"; };
 		8EC86DAE1B02350000B0A655 /* wishlisted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = wishlisted.png; path = Images/wishlisted.png; sourceTree = "<group>"; };
+		CB095F374C2B9151DA4B6FA4 /* Pods-TripalocalBeta.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TripalocalBeta.release.xcconfig"; path = "Pods/Target Support Files/Pods-TripalocalBeta/Pods-TripalocalBeta.release.xcconfig"; sourceTree = "<group>"; };
+		D1136758DFF7CE52CD971824 /* libPods-TripalocalBeta.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TripalocalBeta.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -163,6 +179,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5649BDDD1B4387DE00465D6C /* libJGProgressHUD.a in Frameworks */,
+				7412FDE1EDC10952539BF3C5 /* libPods-TripalocalBeta.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -215,6 +232,8 @@
 				8EB570E11B01CF2B0026D419 /* TripalocalBeta */,
 				8EB570FB1B01CF2B0026D419 /* TripalocalBetaTests */,
 				8EB570E01B01CF2B0026D419 /* Products */,
+				D55EC080181294D57A97550E /* Pods */,
+				F82D1B26B1D2E61BDB99608C /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -307,6 +326,14 @@
 		8EC86D511B021DDC00B0A655 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				87A3C09F1B463C6C009A3B07 /* HomeViewController.h */,
+				87A3C0A01B463C6C009A3B07 /* HomeViewController.m */,
+				87F356541B43C8C300949F43 /* UnloginViewController.h */,
+				87F356551B43C8C300949F43 /* UnloginViewController.m */,
+				87F356501B43AAD300949F43 /* ProfileViewController.h */,
+				87F356511B43AAD300949F43 /* ProfileViewController.m */,
+				87A3C09B1B461129009A3B07 /* RequestController.h */,
+				87A3C09C1B461129009A3B07 /* RequestController.m */,
 				87F3563A1B439D3B00949F43 /* LoginViewController.h */,
 				87F3563B1B439D3B00949F43 /* LoginViewController.m */,
 				87F3563C1B439D3B00949F43 /* PaymentViewController.h */,
@@ -324,6 +351,23 @@
 			name = Controller;
 			sourceTree = "<group>";
 		};
+		D55EC080181294D57A97550E /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				343996C22E7455135C839270 /* Pods-TripalocalBeta.debug.xcconfig */,
+				CB095F374C2B9151DA4B6FA4 /* Pods-TripalocalBeta.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		F82D1B26B1D2E61BDB99608C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D1136758DFF7CE52CD971824 /* libPods-TripalocalBeta.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -331,9 +375,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8EB571021B01CF2B0026D419 /* Build configuration list for PBXNativeTarget "TripalocalBeta" */;
 			buildPhases = (
+				9E9349A752558E96174A8CB8 /* Check Pods Manifest.lock */,
 				8EB570DB1B01CF2B0026D419 /* Sources */,
 				8EB570DC1B01CF2B0026D419 /* Frameworks */,
 				8EB570DD1B01CF2B0026D419 /* Resources */,
+				0F925872D042AC1B45D1417C /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -468,12 +514,46 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		0F925872D042AC1B45D1417C /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TripalocalBeta/Pods-TripalocalBeta-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9E9349A752558E96174A8CB8 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		8EB570DB1B01CF2B0026D419 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				8E26A66F1B080BFF00A5A5CF /* TLSearchTableViewCell.m in Sources */,
+				87F356521B43AAD300949F43 /* ProfileViewController.m in Sources */,
 				5649BD461B3FD5CA00465D6C /* TLDetailTableViewCell5.m in Sources */,
 				5649BD431B3FD5A400465D6C /* TLDetailTableViewCell4.m in Sources */,
 				5649BD3A1B3FC42600465D6C /* TLDetailTableViewCell1.m in Sources */,
@@ -481,12 +561,15 @@
 				5649BD371B3FC40F00465D6C /* TLDetailTableViewCell0.m in Sources */,
 				8E92CF7A1B3E2B3700D4BB4B /* TLDetailViewController.m in Sources */,
 				87F356411B439D3B00949F43 /* LoginViewController.m in Sources */,
+				87F356561B43C8C300949F43 /* UnloginViewController.m in Sources */,
 				8EC86D5C1B0229F100B0A655 /* TLHomeViewController.m in Sources */,
 				87F356421B439D3B00949F43 /* PaymentViewController.m in Sources */,
+				87A3C09D1B461129009A3B07 /* RequestController.m in Sources */,
 				8EB982501B2280D800ADE430 /* Spinner.m in Sources */,
 				5649BD3D1B3FD56E00465D6C /* TLDetailTableViewCell2.m in Sources */,
 				5649BD401B3FD58800465D6C /* TLDetailTableViewCell3.m in Sources */,
 				8E26A6631B0397EF00A5A5CF /* TLHomeTableViewCell.m in Sources */,
+				87A3C0A11B463C6C009A3B07 /* HomeViewController.m in Sources */,
 				8EB570E81B01CF2B0026D419 /* AppDelegate.m in Sources */,
 				8E26A66C1B080BE300A5A5CF /* TLSearchViewController.m in Sources */,
 				8EB570E51B01CF2B0026D419 /* main.m in Sources */,
@@ -624,6 +707,7 @@
 		};
 		8EB571031B01CF2B0026D419 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 343996C22E7455135C839270 /* Pods-TripalocalBeta.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -637,6 +721,7 @@
 		};
 		8EB571041B01CF2B0026D419 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CB095F374C2B9151DA4B6FA4 /* Pods-TripalocalBeta.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;

@@ -24,57 +24,77 @@
     [self.loginButton setEnabled:NO];
     NSURL *url = [NSURL URLWithString:loginServiceTestServerURL];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    
+    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     [request setHTTPMethod:@"POST"];
     
-    NSString *body =  [NSString stringWithFormat:@"email=%@&password=%@", self.emailField.text, self.passwordField.text];
-    [request setHTTPBody:[body dataUsingEncoding:NSUTF8StringEncoding]];
+    NSDictionary *tmp = [[NSDictionary alloc] initWithObjectsAndKeys:
+                         self.emailField.text, @"email",
+                         self.passwordField.text, @"password",
+                         nil];
     
-    void (^resultHandler) (NSURLResponse *response,
-                           NSData *data, NSError *connectionError) = ^(NSURLResponse *response,
-                                                                       NSData *data, NSError *connectionError){
-        NSString *jsonStringResult = [[NSString alloc] initWithData:data
-                                                           encoding:NSUTF8StringEncoding];
-        NSLog(@"JSON data = %@", jsonStringResult);
+    NSData *postdata = [NSJSONSerialization dataWithJSONObject:tmp options:0 error:nil];
+    [request setHTTPBody:postdata];
+    
+#if DEBUG
+    NSString * decodedData =[[NSString alloc] initWithData:postdata encoding:NSUTF8StringEncoding];
+    NSLog(@"Sending data = %@", decodedData);
+#endif
+    
+    NSError *connectionError = nil;
+    NSURLResponse *response = nil;
+    
+    NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&connectionError];
+    
+    if (connectionError == nil) {
+        NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *) response;
         
-        if (connectionError == nil) {
-            NSDictionary *result = [NSJSONSerialization JSONObjectWithData:data
-                                                                   options:0
-                                                                     error:nil];
-
-            NSInteger userId = [[result objectForKey:@"user_id"] integerValue];
+        NSDictionary *result = [NSJSONSerialization JSONObjectWithData:data
+                                                               options:0
+                                                                 error:nil];
+        
+        if ([httpResponse statusCode] == 200) {
+            //                            Successflly login
+            //                            {
+            //                                "token": "cc99d502c5cf2b03342d0a60f81a20e49a24f77f",
+            //                                "user_id": 455
+            //                            }
             NSString *token = [result objectForKey:@"token"];
-//            Successflly login
-//            {
-//                "token": "cc99d502c5cf2b03342d0a60f81a20e49a24f77f",
-//                "user_id": 455
-//            }
-            if (userId && token) {
-                
-            } else {
-                NSString *errorMsg = [result objectForKey:@"error"];
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Login Failed"
-                                                                message:errorMsg
-                                                               delegate:nil
-                                                      cancelButtonTitle:@"OK"
-                                                      otherButtonTitles:nil];
-                [alert show];
-            }
+            [self fetchProfileAndCache: token];
+            
+            NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+            [userDefaults setObject:token forKey:@"user_token"];
+            [[NSUserDefaults standardUserDefaults] synchronize];
+
+            [self dismissViewControllerAnimated:YES completion:nil];
         } else {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No network connection"
-                                                            message:@"You must be connected to the internet."
+            NSString *errorMsg = [result objectForKey:@"error"];
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Login Failed"
+                                                            message:errorMsg
                                                            delegate:nil
                                                   cancelButtonTitle:@"OK"
                                                   otherButtonTitles:nil];
             [alert show];
         }
         
-        [self.loginButton setEnabled:YES];
-    };
+#if DEBUG
+        NSString *decodedData = [[NSString alloc] initWithData:data
+                                                      encoding:NSUTF8StringEncoding];
+        NSLog(@"Receiving data = %@", decodedData);
+#endif
+    } else {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No network connection"
+                                                        message:@"You must be connected to the internet."
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+        [alert show];
+    }
     
-    [NSURLConnection sendAsynchronousRequest:request
-                                       queue:[NSOperationQueue mainQueue]
-                           completionHandler: resultHandler];
+    [self.loginButton setEnabled:YES];
+
 }
+
 
 - (IBAction)facebookLogin:(id)sender {
     NSLog(@"facebookloginclicked");

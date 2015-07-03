@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Constant.h"
 
-@interface SignUpViewController : UITableViewController <UITextFieldDelegate>
+#import "RequestController.h"
+
+@interface SignUpViewController : RequestController <UITextFieldDelegate>
 
 @end

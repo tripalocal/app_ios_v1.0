@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "Constant.h"
 
-@interface LoginViewController : UITableViewController <UITextFieldDelegate>
+#import "RequestController.h"
+
+@interface LoginViewController : RequestController <UITextFieldDelegate>
 
 @end
