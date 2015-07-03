@@ -9,5 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface TLDetailTableViewCell1 : UITableViewCell
+@property (weak, nonatomic) IBOutlet UILabel *expTitleLabel;
+@property (weak, nonatomic) IBOutlet UILabel *expDescriptionLabel;
 
 @end

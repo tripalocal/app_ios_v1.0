@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface TLDetailTableViewCell4 : UITableViewCell
+@property (weak, nonatomic) IBOutlet UIImageView *coverImage;
 
 @end

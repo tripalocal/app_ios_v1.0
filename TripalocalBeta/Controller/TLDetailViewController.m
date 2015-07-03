@@ -132,11 +132,15 @@
             {
                 cell1=[[TLDetailTableViewCell1 alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier1];
             }
+            cell1.expTitleLabel.text = expTitle;
+            cell1.expDescriptionLabel.text = [expDescription stringByAppendingFormat:@" %@ %@", expActivity, expInteraction];
+            
             return cell1;
         case 2:
             if(!cell2)
             {
                 cell2=[[TLDetailTableViewCell2 alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier2];
+            
             }
             return cell2;
         case 3:
