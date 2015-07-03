@@ -119,6 +119,7 @@
                 cell=[[TLDetailTableViewCell0 alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier0];
             }
             cell.coverImage.image = _coverImage;
+            cell.hostImage.image = _hostImage;
             cell.reservationLabel.text = [cell.reservationLabel.text stringByAppendingFormat:@" %@", hostFirstName];
             cell.languageLabel.text = expLanguage;
             cell.priceLabel.text = [cell.priceLabel.text stringByAppendingFormat:@" %@",expPrice];
