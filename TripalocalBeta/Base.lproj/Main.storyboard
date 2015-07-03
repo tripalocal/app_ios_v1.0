@@ -509,7 +509,7 @@
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="128" id="S8i-Ut-O6e"/>
                                                 </constraints>
-                                                <mutableString key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</mutableString>
+                                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                             </textView>
@@ -629,6 +629,7 @@
                     <connections>
                         <outlet property="bioField" destination="Tre-a5-gwy" id="Gwn-k3-lcM"/>
                         <outlet property="emailField" destination="1u1-1a-TGy" id="cnA-cT-n69"/>
+                        <outlet property="image" destination="ohD-dX-RiG" id="eK6-OX-3gf"/>
                         <outlet property="phoneField" destination="bbB-KO-mIb" id="FMW-l7-KJE"/>
                         <outlet property="usernameField" destination="HIb-A3-vXE" id="fLw-ZO-MLw"/>
                     </connections>

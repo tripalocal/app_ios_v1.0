@@ -13,6 +13,7 @@
 @property (strong, nonatomic) IBOutlet UITextView *bioField;
 @property (strong, nonatomic) IBOutlet UILabel *emailField;
 @property (strong, nonatomic) IBOutlet UILabel *phoneField;
+@property (strong, nonatomic) IBOutlet UIImageView *image;
 
 @end
 
@@ -89,6 +90,7 @@
     self.phoneField.text = [userDefaults stringForKey:@"user_phone_number"];
     self.bioField.text = [userDefaults stringForKey:@"user_bio"];
     self.emailField.text = [userDefaults stringForKey:@"user_email"];
+    self.image.image = [userDefaults objectForKey:@"user_image"];
 }
 
 -(void) viewDidLoad {

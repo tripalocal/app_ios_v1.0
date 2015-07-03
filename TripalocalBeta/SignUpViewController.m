@@ -9,6 +9,7 @@
 #import "SignUpViewController.h"
 
 @interface SignUpViewController ()
+
 @property (strong, nonatomic) IBOutlet UITextField *emailField;
 @property (strong, nonatomic) IBOutlet UITextField *passwordField;
 @property (strong, nonatomic) IBOutlet UITextField *firstnameField;
@@ -69,6 +70,8 @@
             //                                                "user_id": 455
             //                                            }
             NSString *token = [result objectForKey:@"token"];
+            [self fetchProfileAndCache: token];
+            
             NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
             [userDefaults setObject:token forKey:@"user_token"];
             [[NSUserDefaults standardUserDefaults] synchronize];
@@ -100,7 +103,6 @@
     }
     
         [self.signupButton setEnabled:YES];
- 
 }
 
 - (IBAction)dismissSignup:(id)sender {
