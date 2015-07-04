@@ -496,8 +496,6 @@
 			isa = PBXGroup;
 			children = (
 				87FC2D481B47FE860017F30E /* alipay.jpg */,
-				87FC2D4A1B4803190017F30E /* Order.h */,
-				87FC2D4B1B4803190017F30E /* Order.m */,
 				5649BDCD1B4387C800465D6C /* JGProgressHUD.xcodeproj */,
 				8EC86D9F1B02350000B0A655 /* date.png */,
 				8EC86DA01B02350000B0A655 /* facebook_bt.png */,
@@ -541,6 +539,8 @@
 		8EC86D4F1B021DD000B0A655 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				87FC2D4A1B4803190017F30E /* Order.h */,
+				87FC2D4B1B4803190017F30E /* Order.m */,
 				8EB570E61B01CF2B0026D419 /* AppDelegate.h */,
 				8EB570E71B01CF2B0026D419 /* AppDelegate.m */,
 				8EB9824E1B2280D800ADE430 /* Spinner.h */,
@@ -970,6 +970,8 @@
 					"$(SRCROOT)/**",
 					"$(PROJECT_DIR)/TripalocalBeta",
 				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "TripalocalBeta/TripalocalBeta-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"${PODS_ROOT}/Headers/Public\"",
@@ -985,7 +987,7 @@
 					"$(SRCROOT)",
 					"$(PROJECT_DIR)",
 				);
-				ONLY_ACTIVE_ARCH = NO;
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "TripalocalBeta/TripalocalBeta-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -1004,6 +1006,8 @@
 					"$(SRCROOT)/**",
 					"$(PROJECT_DIR)/TripalocalBeta",
 				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "TripalocalBeta/TripalocalBeta-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"${PODS_ROOT}/Headers/Public\"",
@@ -1019,7 +1023,7 @@
 					"$(SRCROOT)",
 					"$(PROJECT_DIR)",
 				);
-				ONLY_ACTIVE_ARCH = NO;
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "TripalocalBeta/TripalocalBeta-Bridging-Header.h";
 				VALID_ARCHS = "armv7 armv7s arm64";
