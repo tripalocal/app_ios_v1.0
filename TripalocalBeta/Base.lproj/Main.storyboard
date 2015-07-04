@@ -850,7 +850,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hz5-xR-DvZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="215" y="2264"/>
+            <point key="canvasLocation" x="55" y="2296"/>
         </scene>
         <!--Home View Controller-->
         <scene sceneID="EjL-d6-zfH">
@@ -1024,8 +1024,8 @@
                                                         <constraint firstAttribute="width" constant="100" id="owW-B5-oC1"/>
                                                     </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Credit Card" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pdn-CU-hSY">
-                                                    <rect key="frame" x="290" y="26" width="89" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Credit Card" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pdn-CU-hSY">
+                                                    <rect key="frame" x="256" y="26" width="89" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -1046,6 +1046,44 @@
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="OZw-p2-sEq" id="HuA-ok-1Y9">
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="alipay.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="Isn-sk-443">
+                                                    <rect key="frame" x="47" y="5" width="100" height="64"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="100" id="iB4-GA-4aw"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Alipay" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7au-Hj-kjn">
+                                                    <rect key="frame" x="277" y="26" width="47" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="Isn-sk-443" firstAttribute="top" secondItem="HuA-ok-1Y9" secondAttribute="topMargin" id="Ds2-of-4X2"/>
+                                                <constraint firstAttribute="centerX" secondItem="7au-Hj-kjn" secondAttribute="centerX" id="JNu-7v-Hth"/>
+                                                <constraint firstItem="Isn-sk-443" firstAttribute="top" secondItem="HuA-ok-1Y9" secondAttribute="topMargin" constant="-8" id="MEZ-Qu-tae"/>
+                                                <constraint firstAttribute="centerY" secondItem="Isn-sk-443" secondAttribute="centerY" id="Tv5-dR-Vv2"/>
+                                                <constraint firstAttribute="bottom" secondItem="Isn-sk-443" secondAttribute="bottom" constant="5" id="Zb5-q5-Hi4"/>
+                                                <constraint firstItem="Isn-sk-443" firstAttribute="leading" secondItem="HuA-ok-1Y9" secondAttribute="leadingMargin" constant="39" id="fOe-Q5-Hlc"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="Isn-sk-443" secondAttribute="bottom" constant="2" id="k1b-Xe-NQA"/>
+                                                <constraint firstItem="Isn-sk-443" firstAttribute="top" secondItem="HuA-ok-1Y9" secondAttribute="topMargin" id="lj6-ht-eky"/>
+                                                <constraint firstItem="Isn-sk-443" firstAttribute="top" secondItem="HuA-ok-1Y9" secondAttribute="topMargin" constant="2" id="tbg-lK-gH4"/>
+                                                <constraint firstItem="Isn-sk-443" firstAttribute="top" secondItem="HuA-ok-1Y9" secondAttribute="top" constant="5" id="ukZ-R1-Pzi"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="Isn-sk-443" secondAttribute="bottom" constant="2" id="xTV-jJ-0FI"/>
+                                                <constraint firstAttribute="centerY" secondItem="7au-Hj-kjn" secondAttribute="centerY" id="yUI-Xa-yet"/>
+                                            </constraints>
+                                            <variation key="default">
+                                                <mask key="constraints">
+                                                    <exclude reference="Ds2-of-4X2"/>
+                                                    <exclude reference="MEZ-Qu-tae"/>
+                                                    <exclude reference="k1b-Xe-NQA"/>
+                                                    <exclude reference="lj6-ht-eky"/>
+                                                    <exclude reference="tbg-lK-gH4"/>
+                                                    <exclude reference="xTV-jJ-0FI"/>
+                                                </mask>
+                                            </variation>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </cells>
@@ -1104,7 +1142,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="b87-h4-5sR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4476" y="2757"/>
+            <point key="canvasLocation" x="5716" y="2133"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="98a-fC-tpS">
@@ -1343,7 +1381,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qlm-2l-zKk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1255" y="3068"/>
+            <point key="canvasLocation" x="70" y="3292"/>
         </scene>
         <!--Payment View Controller-->
         <scene sceneID="ryw-le-I1d">
@@ -1873,7 +1911,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5r-39-8lW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2325" y="3059"/>
+            <point key="canvasLocation" x="1429" y="3731"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="tY3-GF-ugz">
@@ -2127,6 +2165,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="alipay.jpg" width="214" height="96"/>
         <image name="facebook_bt.png" width="419" height="67"/>
         <image name="tripalocal_logo.png" width="287" height="99"/>
         <image name="visa.png" width="32" height="20"/>
