@@ -42,19 +42,13 @@
     tabBarItem4.imageInsets = UIEdgeInsetsMake(6, 0, -6, 0);
     tabBarItem4.selectedImage = [[UIImage imageNamed:@"myprofile_s.png"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal ];
     tabBarItem4.image = [[UIImage imageNamed:@"myprofile.png"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal ];
-    tabBarItem4.title = @"sidePane";
+    tabBarItem4.title = @"nil";
 
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
-- (void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item {
-    if ([item.title isEqual: @"sidePane"]) {
-//        [self performSegueWithIdentifier: @"slideInSidePane"];
-    }
 }
 
 /*

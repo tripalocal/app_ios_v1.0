@@ -14,5 +14,5 @@ FOUNDATION_EXPORT NSString *const myprofileServiceTestServerURL;
 FOUNDATION_EXPORT NSString *const logoutServiceTestServerURL;
 FOUNDATION_EXPORT NSString *const signupServiceTestServerURL;
 FOUNDATION_EXPORT NSString *const testServerImageURL;
-
+FOUNDATION_EXPORT NSString *const testServerPayment;
 #endif

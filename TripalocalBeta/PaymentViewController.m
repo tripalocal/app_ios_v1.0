@@ -29,17 +29,98 @@
 }
 
 - (void)postPaymentInfo {
+    [self.confirmButton setEnabled:NO];
+    NSDictionary *expInfo = [[NSDictionary alloc] initWithObjectsAndKeys:
+                             self.date, @"date",
+                             [NSNumber numberWithInteger: self.guestNumber], @"guest_number",
+                             self.expId, @"id",
+                             self.timePeriod, @"time",
+                             nil];
+    
+    NSDictionary *tmp = [[NSDictionary alloc] initWithObjectsAndKeys:
+                         self.cardNumberField.text, @"card_number",
+                         @"", @"coupon",
+                         [NSNumber numberWithInt: self.ccvField.text.intValue], @"cvv",
+                         [NSNumber numberWithInt: self.monthField.text.intValue], @"expiration_month",
+                         [NSNumber numberWithInt: self.yearField.text.intValue], @"expiration_year",
+                         [NSArray arrayWithObject:expInfo], @"itinerary_string",
+                         nil];
+    
+    NSData *postdata = [NSJSONSerialization dataWithJSONObject:tmp options:0 error:nil];
+    
+    NSString *jsonString = [[NSString alloc] initWithData:postdata encoding:NSUTF8StringEncoding];
+    // This will be the json string in the preferred format
+    jsonString = [jsonString stringByReplacingOccurrencesOfString:@"\\/" withString:@"/"];
+    
+    // And this will be the json data object
+    NSData *processedData = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
+    
+#if DEBUG
+    NSLog(@"Sending payment request = %@", jsonString);
+#endif
+    
+    NSURL *url = [NSURL URLWithString:testServerPayment];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    [request setHTTPMethod:@"POST"];
+    
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    NSString *token = [userDefaults stringForKey:@"user_token"];
+    
+    [request addValue:[NSString stringWithFormat:@"Token %@", token] forHTTPHeaderField:@"Authorization"];
+    
+    [request setHTTPBody:processedData];
+    
+    NSError *connectionError = nil;
+    NSURLResponse *response = nil;
+    
+    NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&connectionError];
+    
+    if (connectionError == nil) {
+        NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *) response;
+        
+        NSDictionary *result = [NSJSONSerialization JSONObjectWithData:data
+                                                               options:0
+                                                                 error:nil];
+        
+        if ([httpResponse statusCode] == 200) {
+            [self performSegueWithIdentifier:@"paymentSuccess" sender:nil];
+        } else {
+            NSString *errorMsg = [result objectForKey:@"error"];
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Payment Failed"
+                                                            message:errorMsg
+                                                           delegate:nil
+                                                  cancelButtonTitle:@"OK"
+                                                  otherButtonTitles:nil];
+            [alert show];
+        }
+        
+#if DEBUG
+        NSString *decodedData = [[NSString alloc] initWithData:data
+                                                      encoding:NSUTF8StringEncoding];
+        NSLog(@"Receiving data = %@", decodedData);
+#endif
+    } else {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No network connection"
+                                                        message:@"You must be connected to the internet."
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+        [alert show];
+    }
+
+    
+    [self.confirmButton setEnabled:YES];
     
 }
 
 - (IBAction)confirmAndPay:(id)sender {
     [self postPaymentInfo];
-    
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self.confirmButton setEnabled:YES];
+    [self.confirmButton setEnabled:NO];
     self.cardNumberField.delegate = self;
     self.monthField.delegate = self;
     self.yearField.delegate = self;
@@ -93,15 +174,6 @@
     NSUInteger newLength = [textField.text length] + [string length] - range.length;
     return newLength <= maxLength;
 }
-
-//- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-//    return 1;
-//}
-//
-//- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-//    return 5;
-//}
-
 
 /*
 #pragma mark - Navigation
