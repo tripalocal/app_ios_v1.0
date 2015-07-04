@@ -140,7 +140,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="T7l-hn-DwO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1510" y="682"/>
+            <point key="canvasLocation" x="1846" y="610"/>
         </scene>
         <!--Detail View Controller-->
         <scene sceneID="CJt-fC-pFw">
@@ -418,6 +418,7 @@
                                             <outlet property="reviewerFirstName" destination="cwq-bs-AAm" id="L9J-K3-CAa"/>
                                             <outlet property="reviewerImage" destination="m9j-z9-0Ya" id="Vcu-RS-Y6T"/>
                                             <outlet property="reviewerLastName" destination="JRj-we-H2H" id="t7O-Nj-3LW"/>
+                                            <segue destination="qlR-wd-pxo" kind="presentation" identifier="loginSegue" id="iTE-pw-1wj"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell4" rowHeight="106" id="d7G-qW-T4r" customClass="TLDetailTableViewCell4">
@@ -496,12 +497,12 @@
                                 </prototypes>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ob8-Wd-umG">
-                                <rect key="frame" x="0.0" y="1516" width="600" height="35"/>
+                                <rect key="frame" x="0.0" y="1517" width="600" height="35"/>
                                 <state key="normal" title="Button">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="kxA-XS-eFc" kind="show" id="yth-zW-bka"/>
+                                    <action selector="checkout:" destination="1Mj-3z-OfA" eventType="touchUpInside" id="4Og-r4-ZdL"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -521,11 +522,12 @@
                     <size key="freeformSize" width="600" height="1600"/>
                     <connections>
                         <outlet property="myTable" destination="VsV-ga-mVG" id="ddt-lL-gUw"/>
+                        <segue destination="kxA-XS-eFc" kind="show" identifier="checkoutSegue" id="379-C3-9Qt"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5IH-7H-1Yc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2560" y="321"/>
+            <point key="canvasLocation" x="3176" y="529"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="KA0-qX-Fmj">
@@ -607,7 +609,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TY9-Pk-azR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="70" y="1389"/>
+            <point key="canvasLocation" x="69" y="1167"/>
         </scene>
         <!--Profile View Controller-->
         <scene sceneID="6VQ-cc-4aj">
@@ -831,12 +833,6 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oaq-c7-mf0">
-                                <rect key="frame" x="218" y="354" width="164" height="30"/>
-                                <state key="normal" title="Go To Payment Options">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -1116,7 +1112,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qpm-JT-zMU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3960" y="1762"/>
+            <point key="canvasLocation" x="4216" y="1914"/>
         </scene>
         <!--Payment Success-->
         <scene sceneID="BRg-gE-OmS">
@@ -1142,7 +1138,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="b87-h4-5sR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5716" y="2133"/>
+            <point key="canvasLocation" x="5964" y="1861"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="98a-fC-tpS">
@@ -1272,7 +1268,7 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
                                                     <connections>
-                                                        <action selector="inputFieldChanged:" destination="qlR-wd-pxo" eventType="editingDidEnd" id="9Hn-AL-Z08"/>
+                                                        <action selector="inputFieldChanged:" destination="qlR-wd-pxo" eventType="editingChanged" id="nzu-nC-9WD"/>
                                                     </connections>
                                                 </textField>
                                             </subviews>
@@ -1296,7 +1292,7 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                     <connections>
-                                                        <action selector="inputFieldChanged:" destination="qlR-wd-pxo" eventType="editingDidEnd" id="x3r-K6-D4k"/>
+                                                        <action selector="inputFieldChanged:" destination="qlR-wd-pxo" eventType="editingChanged" id="mxE-CE-16J"/>
                                                     </connections>
                                                 </textField>
                                             </subviews>
@@ -1640,7 +1636,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rFs-z5-udK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4749" y="1974"/>
+            <point key="canvasLocation" x="4941" y="1774"/>
         </scene>
         <!--Sign Up View Controller-->
         <scene sceneID="iVW-lS-ofL">
@@ -1741,6 +1737,9 @@
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
+                                                    <connections>
+                                                        <action selector="inputFieldChanged:" destination="car-Wk-e6I" eventType="editingChanged" id="Ero-0s-xsd"/>
+                                                    </connections>
                                                 </textField>
                                             </subviews>
                                             <constraints>
@@ -1762,6 +1761,9 @@
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
+                                                    <connections>
+                                                        <action selector="inputFieldChanged:" destination="car-Wk-e6I" eventType="editingChanged" id="qvR-tJ-gND"/>
+                                                    </connections>
                                                 </textField>
                                             </subviews>
                                             <constraints>
@@ -1783,6 +1785,9 @@
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
+                                                    <connections>
+                                                        <action selector="inputFieldChanged:" destination="car-Wk-e6I" eventType="editingChanged" id="hV6-6Q-qm4"/>
+                                                    </connections>
                                                 </textField>
                                             </subviews>
                                             <constraints>
@@ -1804,6 +1809,9 @@
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
+                                                    <connections>
+                                                        <action selector="inputFieldChanged:" destination="car-Wk-e6I" eventType="editingChanged" id="OE1-jp-gvb"/>
+                                                    </connections>
                                                 </textField>
                                             </subviews>
                                             <constraints>
@@ -1911,7 +1919,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5r-39-8lW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1429" y="3731"/>
+            <point key="canvasLocation" x="813" y="3883"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="tY3-GF-ugz">
@@ -2143,7 +2151,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ocD-zP-ayy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1752" y="2229"/>
+            <point key="canvasLocation" x="1796" y="4093"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="PQH-us-ok9">
@@ -2161,7 +2169,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ozV-js-o6c" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1674" y="1389"/>
+            <point key="canvasLocation" x="904" y="2214"/>
         </scene>
     </scenes>
     <resources>
@@ -2172,5 +2180,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="r1b-Gj-oet"/>
+        <segue reference="iTE-pw-1wj"/>
     </inferredMetricsTieBreakers>
 </document>

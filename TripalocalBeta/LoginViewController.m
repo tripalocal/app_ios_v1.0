@@ -103,13 +103,16 @@
 - (IBAction)inputFieldChanged:(id)sender {
     if (self.emailField.text && self.passwordField.text && self.emailField.text.length > 0 && self.passwordField.text.length > 0) {
         [self.loginButton setEnabled:YES];
+        self.loginButton.alpha = 1;
     } else {
         [self.loginButton setEnabled:NO];
+        self.loginButton.alpha = 0.5;
     }
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.loginButton.alpha = 0.5;
     self.emailField.delegate = self;
     self.passwordField.delegate = self;
     
@@ -123,6 +126,7 @@
     self.passwordField.borderStyle = UITextBorderStyleRoundedRect;
     
     self.tableView.alwaysBounceVertical = NO;
+    self.passwordField.secureTextEntry = YES;
 }
 
 

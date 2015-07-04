@@ -29,6 +29,8 @@
 
 - (IBAction)signup:(id)sender {
     [self.signupButton setEnabled:NO];
+    self.signupButton.alpha = 0.5;
+    
     NSURL *url = [NSURL URLWithString:signupServiceTestServerURL];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     
@@ -102,16 +104,28 @@
         [alert show];
     }
     
-        [self.signupButton setEnabled:YES];
+    [self.signupButton setEnabled:YES];
+    self.signupButton.alpha = 1;
 }
 
 - (IBAction)dismissSignup:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+- (IBAction)inputFieldChanged:(id)sender {
+    if (self.emailField.text && self.passwordField.text && self.firstnameField.text && self.lastnameField.text && self.emailField.text.length > 0 && self.passwordField.text.length > 0 && self.firstnameField.text.length > 0 && self.lastnameField.text.length > 0) {
+        [self.signupButton setEnabled:YES];
+        self.signupButton.alpha = 1;
+    } else {
+        [self.signupButton setEnabled:NO];
+        self.signupButton.alpha = 0.5;
+    }
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.signupButton.alpha = 0.5;
     self.emailField.delegate = self;
     self.passwordField.delegate = self;
     self.firstnameField.delegate = self;
@@ -129,7 +143,7 @@
     self.lastnameField.borderStyle = UITextBorderStyleRoundedRect;
     
     self.tableView.alwaysBounceVertical = NO;
-
+    self.passwordField.secureTextEntry = YES;
 }
 
 - (void)didReceiveMemoryWarning {

@@ -48,7 +48,9 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
+    if (indexPath.row != 1) {
+        return;
+    }
     NSString *partner = @"2088911571600817";
     NSString *seller = @"jemma@tripalocal.com";
     NSString *privateKey = @"MIICdgIBADANBgkqhkiG9w0BAQEFAASCAmAwggJcAgEAAoGBAMo40P7Z3K/zsFF5QuWXBkjfeqc8lUYbhNIpQhqiB4x2H8mlR8nNcGhQVNYLzPa8hbf33uZPyWawd8f3rdeWRF07Rw87ubdm2sK9RK23LpcPwbbt42Vgp3Y/XaWag8hFcgaUMtdyAAqrS0s0uq/JFWaGKytIzO6jKT1i8mNNzTtPAgMBAAECgYBp8QYc3couK/6tUFfprAtQ1jONtcGGbxhQeej1xvkpbyEMJRjM8mH3ZE5trNT+Vpm/XY5bHmWm9MBr9KgQj9rUBceyJI2y4TRM629/21b9/V/vAqimiaXOpu+y2jAqHEhylb7idNPHElJNbpMaw59yC9CGMhb6UFLxJLrSOdm0AQJBAPiyrcBxsTuS+eFm8k8NaanhWm4+a/HCocV4W+2yfi3HY1WcgnD2UvHNE1U4w4pYQXmPQ7+XSuzB4cu1K6uoRQECQQDQKM3F52GqFglAlLYuYfn2bBZFo1M31cBal5D4xfvQdLzv3nYkMxIAyycet4XOjUOBeQJu6Qv4Ru1rwUnpL/BPAkBOObWZYKmEuZhLo9v3rZpcyvtszcmaQ8Qqns8blxdFQwAlv5LwASrZz82S8sXe0B/YIo4Gx4nTqrBhKN1Rox4BAkEAhLO+mw/rHzd1JoqnqeIkLIizmimI/+tw+U/ux+nPoxEI8hJsVp+INqFMizSMRSWhh4TRnEtNqjXtXeiXaeV52QJAO1h0ba2xzyZJs93T/qdNhuWSs8QPUu6AntnJawxoMxXtJq5rHX+6puBsdnaJ9hQISZ3JEYaNWUlQqRe5iZmk8g==";
