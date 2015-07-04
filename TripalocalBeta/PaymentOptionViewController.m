@@ -124,6 +124,7 @@
         controller.date = self.date;
         controller.timePeriod = self.timePeriod;
         controller.unitPrice = self.unitPrice;
+        controller.totalPrice = self.totalPrice;
     }
 }
 

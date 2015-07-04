@@ -16,6 +16,9 @@
 @property (strong, nonatomic) IBOutlet UITextField *monthField;
 @property (strong, nonatomic) IBOutlet UITextField *yearField;
 @property (strong, nonatomic) IBOutlet UIButton *confirmButton;
+@property (strong, nonatomic) IBOutlet UILabel *totalPriceLabel;
+@property (strong, nonatomic) IBOutlet UILabel *unitPriceLabel;
+@property (strong, nonatomic) IBOutlet UILabel *guestNumberLabel;
 
 @end
 
@@ -132,6 +135,10 @@
     
     [self.tableView addGestureRecognizer:tap];
     self.tableView.alwaysBounceVertical = NO;
+    
+    self.unitPriceLabel.text = [self.unitPrice stringValue];
+    self.totalPriceField.text = [self.totalPrice stringValue];
+    self.guestNumberLabel.text = [NSString stringWithFormat:@"%lu", self.guestNumber];
 }
 
 -(void)dismissKeyboard {

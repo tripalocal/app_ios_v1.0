@@ -12,7 +12,9 @@
 @interface PaymentViewController : UITableViewController <UITextFieldDelegate>
 @property (nonatomic) NSInteger guestNumber;
 @property (nonatomic) NSNumber *unitPrice;
+@property (nonatomic) NSNumber *totalPrice;
 @property (nonatomic) NSString *expId;
 @property (nonatomic) NSString *date;
 @property (nonatomic) NSString *timePeriod;
+
 @end
