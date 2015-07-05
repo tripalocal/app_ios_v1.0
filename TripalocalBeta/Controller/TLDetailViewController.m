@@ -14,6 +14,7 @@
 #import "TLDetailTableViewCell4.h"
 #import "TLDetailTableViewCell5.h"
 #import "JGProgressHUD.h"
+#import "Constant.h"
 
 @interface TLDetailViewController ()
 {
@@ -41,7 +42,7 @@
     NSData *reviewerImageData;
 }
 
-@property (strong, nonatomic) UIImage *cachedReviewerImage;
+@property (strong, nonatomic) NSMutableDictionary *cachedImages;
 @end
 
 @implementation TLDetailViewController
@@ -52,7 +53,7 @@
     _myTable.dataSource = self;
     connectionFinished=0;
     
-    self.cachedReviewerImage = [[UIImage alloc]init];
+    self.cachedImages = [[NSMutableDictionary alloc]init];
     
     //Indicator
     HUD = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleDark];
@@ -114,13 +115,7 @@
     }
     
     
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        reviewerImageData = [[NSData alloc]initWithContentsOfURL:[NSURL URLWithString:reviewerImageURL]];
-        dispatch_sync(dispatch_get_main_queue(), ^{
-            _cachedReviewerImage = [[UIImage alloc]initWithData:reviewerImageData];
-        });
-        
-    });
+    NSString *imageCachingIdentifier = [NSString stringWithFormat:@"Cell%ldOfHostImage",(long)indexPath.row];
     switch (indexPath.row) {
         case 0:
             if(!cell)
@@ -160,12 +155,31 @@
             {
                 cell3=[[TLDetailTableViewCell3 alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier3];
             }
+            
+            
             cell3.countLabel.text = numOfReviews;
             cell3.rateLabel.text = expRate;
             cell3.reviewerFirstName.text = reviewFirst;
             cell3.reviewerLastName.text = reviewLast;
             cell3.commentLabel.text = reviewComment;
-            cell3.reviewerImage.image = _cachedReviewerImage;
+
+            
+            
+            if([self.cachedImages objectForKey:imageCachingIdentifier]!=nil){
+                cell3.reviewerImage.image = [self.cachedImages valueForKey:imageCachingIdentifier];
+            }
+            else{
+                
+                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                    NSData *hostImageData = [[NSData alloc]initWithContentsOfURL:[NSURL URLWithString:reviewerImageURL]];
+                    dispatch_sync(dispatch_get_main_queue(), ^{
+                        cell3.reviewerImage.image = [[UIImage alloc]initWithData:hostImageData];
+                        [self.cachedImages setValue:cell3.reviewerImage.image forKey:imageCachingIdentifier];
+                    });
+                
+                });
+                
+            }
             //Reviewer Image
             
             
@@ -251,7 +265,7 @@
         NSDictionary *reviewDictionary0 = [expReviewsArray objectAtIndex:0];
         reviewFirst = [reviewDictionary0 objectForKey:@"reviewer_firstname"];
         reviewLast = [reviewDictionary0 objectForKey:@"reviewer_lastname"];
-        reviewerImageURL = [reviewDictionary0 objectForKey:@"reviewer_image"];
+        reviewerImageURL = [imageBaseURL stringByAppendingString:[reviewDictionary0 objectForKey:@"reviewer_image"]];
         reviewComment = [reviewDictionary0 objectForKey:@"review_comment"];
         connectionFinished=1;
     }
@@ -259,6 +273,8 @@
         NSLog(@"Experience/(ID:%@/) Exception: %@", _experience_id_string, e);
     }
     [HUD dismissAfterDelay:3.0];
+    
+    
     NSLog(@"%@,%@,%@,%@",expTitle,expPrice,reviewerImageURL,reviewComment);
 }
 

@@ -18,3 +18,5 @@ NSString *const logoutServiceTestServerURL = @"http://adventure007.cloudapp.net/
 NSString *const signupServiceTestServerURL = @"http://adventure007.cloudapp.net/service_signup/";
 
 NSString *const testServerImageURL = @"http://adventure007.cloudapp.net/images/";
+
+NSString *const imageBaseURL = @"https://www.tripalocal.com/images/";
