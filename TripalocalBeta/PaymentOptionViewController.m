@@ -83,9 +83,11 @@
         order.inputCharset = @"utf-8";
         order.itBPay = @"30m";
         order.showUrl = @"m.alipay.com";
+        order.currency = @"AUD";
+        order.forex = @"FP";
         
         //应用注册scheme,在AlixPayDemo-Info.plist定义URL types
-        NSString *appScheme = @"alisdkdemo";
+        NSString *appScheme = @"tripalocal";
         
         NSString *orderSpec = [order description];
 
@@ -98,19 +100,143 @@
         NSString *signedString = [signer signString:orderSpec];
         
         //将签名成功字符串格式化为订单字符串,请严格按照该格式
+        // remenber to copy to app delegate for mobie app callback.
         NSString *orderString = nil;
         if (signedString != nil) {
             orderString = [NSString stringWithFormat:@"%@&sign=\"%@\"&sign_type=\"%@\"",
                            orderSpec, signedString, @"RSA"];
             
             [[AlipaySDK defaultService] payOrder:orderString fromScheme:appScheme callback:^(NSDictionary *resultDic) {
+#if DEBUG
                 NSLog(@"reslut = %@",resultDic);
+#endif
+                if ([self paymentSuccess:resultDic]) {
+#if DEBUG
+                    NSLog(@"Payment status = %@", @"success");
+#endif
+                    // parse complex string from alipay
+                    NSString *resultString = [resultDic objectForKey:@"result"];
+                    resultString = [resultString stringByReplacingOccurrencesOfString:@"\"" withString:@""];
+                    resultString = [resultString stringByReplacingOccurrencesOfString:@"\\" withString:@""];
+                    
+                    for (NSString *pairString in [resultString componentsSeparatedByString:@"&"]) {
+                        NSArray *pair = [pairString componentsSeparatedByString:@"="];
+                        
+                        if ([pair count] == 2) {
+                            NSString *keyString = (NSString *)[pair objectAtIndex:0];
+                            if ([keyString containsString:@"out_trade_no"]) {
+                                NSString *orderNumber = (NSString *)[pair objectAtIndex:1];
+                                
+                                [self alipayRequesttoServer: orderNumber];
+                            }
+                        }
+                    }
+                    
+                } else {
+                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Alipay Failed"
+                                                                    message:@"Occured an error during payment."
+                                                                   delegate:nil
+                                                          cancelButtonTitle:@"OK"
+                                                          otherButtonTitles:nil];
+                    [alert show];
+                }
             }];
             
             [tableView deselectRowAtIndexPath:indexPath animated:YES];
         }
     }
     
+}
+
+// todo: try until success
+- (void) alipayRequesttoServer:(NSString *) tradeNumber {
+    NSDictionary *expInfo = [[NSDictionary alloc] initWithObjectsAndKeys:
+                             self.date, @"date",
+                             [NSNumber numberWithInteger: self.guestNumber], @"guest_number",
+                             self.expId, @"id",
+                             self.timePeriod, @"time",
+                             nil];
+    
+    NSDictionary *tmp = [[NSDictionary alloc] initWithObjectsAndKeys:
+                         tradeNumber, @"card_number",
+                         @"", @"coupon",
+                         @"ALIPAY", @"cvv",
+                         [NSNumber numberWithInt:0], @"expiration_month",
+                         [NSNumber numberWithInt:0], @"expiration_year",
+                         [NSArray arrayWithObject:expInfo], @"itinerary_string",
+                         nil];
+    
+    NSData *postdata = [NSJSONSerialization dataWithJSONObject:tmp options:0 error:nil];
+    
+    NSString *jsonString = [[NSString alloc] initWithData:postdata encoding:NSUTF8StringEncoding];
+    // This will be the json string in the preferred format
+    jsonString = [jsonString stringByReplacingOccurrencesOfString:@"\\/" withString:@"/"];
+    
+    // And this will be the json data object
+    NSData *processedData = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
+    
+#if DEBUG
+    NSLog(@"Sending alipay request to our server = %@", jsonString);
+#endif
+    
+    NSURL *url = [NSURL URLWithString:testServerPayment];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    [request setHTTPMethod:@"POST"];
+    
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    NSString *token = [userDefaults stringForKey:@"user_token"];
+    
+    [request addValue:[NSString stringWithFormat:@"Token %@", token] forHTTPHeaderField:@"Authorization"];
+    
+    [request setHTTPBody:processedData];
+    
+    NSError *connectionError = nil;
+    NSURLResponse *response = nil;
+    
+    NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&connectionError];
+    
+    if (connectionError == nil) {
+        NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *) response;
+        
+        NSDictionary *result = [NSJSONSerialization JSONObjectWithData:data
+                                                               options:0
+                                                                 error:nil];
+        
+        if ([httpResponse statusCode] == 200) {
+            [self performSegueWithIdentifier:@"alipaySuccess" sender:nil];
+            
+        } else {
+            [self performSegueWithIdentifier:@"alipayFail" sender:nil];
+        }
+        
+#if DEBUG
+        NSString *decodedData = [[NSString alloc] initWithData:data
+                                                      encoding:NSUTF8StringEncoding];
+        NSLog(@"Receiving data = %@", decodedData);
+#endif
+    } else {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No network connection"
+                                                        message:@"You must be connected to the internet."
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+        [alert show];
+    }
+    
+}
+
+- (BOOL)paymentSuccess:(NSDictionary *)resultDict {
+    NSString *resultString = [resultDict objectForKey:@"result"];
+    
+    if ([[resultDict objectForKey:@"resultStatus"] intValue] == 9000 && resultString) {
+
+        if ([resultString containsString:@"success=\"true\""]) {
+            return YES;
+        }
+    }
+    
+    return NO;
 }
 
 

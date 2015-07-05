@@ -52,10 +52,18 @@
     if (self.showUrl) {
         [discription appendFormat:@"&show_url=\"%@\"",self.showUrl];//m.alipay.com
     }
+    
+    if (self.currency) {
+        [discription appendFormat:@"&currency=\"%@\"",self.currency];
+    }
+    
+    if (self.forex) {
+        [discription appendFormat:@"&forex_biz=\"%@\"",self.forex];
+    }
     for (NSString * key in [self.extraParams allKeys]) {
         [discription appendFormat:@"&%@=\"%@\"", key, [self.extraParams objectForKey:key]];
     }
-    // todo: add currency and forex
+    
     return discription;
 }
 

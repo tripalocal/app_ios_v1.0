@@ -55,8 +55,14 @@
         
         [[AlipaySDK defaultService] processAuth_V2Result:url
                                          standbyCallback:^(NSDictionary *resultDic) {
-                                             NSLog(@"result = %@",resultDic);
-                                             NSString *resultStr = resultDic[@"result"];
+#if DEBUG
+                                             NSLog(@"reslut = %@",resultDic);
+#endif
+                                             if ([self paymentSuccess:resultDic]) {
+#if DEBUG
+                                                 NSLog(@"Payment status = %@", @"success");
+#endif
+                                             }
                                          }];
         
     }
@@ -64,5 +70,15 @@
     return YES;
 }
 
+- (BOOL)paymentSuccess:(NSDictionary *)resultDict {
+    NSDictionary *resultObject = [resultDict objectForKey:@"result"];
+    if ([[resultDict objectForKey:@"resultStatus"] intValue] == 9000 && resultObject) {
+        if ([[resultDict objectForKey:@"success"] isEqual: @"true"]) {
+            return YES;
+        }
+    }
+    
+    return NO;
+}
 
 @end

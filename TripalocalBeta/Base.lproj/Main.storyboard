@@ -1094,6 +1094,10 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="91L-YO-hxn" userLabel="Payment Option"/>
+                    <connections>
+                        <segue destination="Neb-KE-6OB" kind="show" identifier="alipaySuccess" id="olF-su-vgo"/>
+                        <segue destination="5cL-Iu-7ua" kind="show" identifier="alipayFail" id="l6i-69-WjH"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aBM-4S-nfl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1141,7 +1145,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="b87-h4-5sR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5964" y="1861"/>
+            <point key="canvasLocation" x="4532" y="4485"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="98a-fC-tpS">
@@ -1726,6 +1730,7 @@
                         <outlet property="unitPriceLabel" destination="fS6-Jb-9Xg" id="pVz-7R-BZH"/>
                         <outlet property="yearField" destination="OXh-34-cQS" id="WEt-Ij-2Av"/>
                         <segue destination="Neb-KE-6OB" kind="show" identifier="paymentSuccess" id="D3s-lN-9D6"/>
+                        <segue destination="5cL-Iu-7ua" kind="show" identifier="paymentFail" id="Ay9-p3-d5Q"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rFs-z5-udK" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2265,6 +2270,54 @@
             </objects>
             <point key="canvasLocation" x="904" y="2214"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="qVS-Mc-yxK">
+            <objects>
+                <viewController id="X6h-Gz-GOe" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="3g2-yJ-8VO"/>
+                        <viewControllerLayoutGuide type="bottom" id="dAe-Bk-lmv"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="NM9-ZX-mmH">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9HU-R0-fdz" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3684" y="3903"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="s83-8Y-88j">
+            <objects>
+                <viewController id="5cL-Iu-7ua" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="kEI-lG-OUN"/>
+                        <viewControllerLayoutGuide type="bottom" id="k0d-Xv-l8q"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="a4a-fy-AnC">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="1600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Payment failed please call:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jZd-K8-egz">
+                                <rect key="frame" x="198" y="790" width="205" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="centerY" secondItem="jZd-K8-egz" secondAttribute="centerY" id="Eeo-Gx-GeE"/>
+                            <constraint firstAttribute="centerX" secondItem="jZd-K8-egz" secondAttribute="centerX" id="c0d-Tk-0hU"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="f5f-ly-hll" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5506" y="3754"/>
+        </scene>
     </scenes>
     <resources>
         <image name="alipay.jpg" width="214" height="96"/>
@@ -2275,5 +2328,7 @@
     <inferredMetricsTieBreakers>
         <segue reference="r1b-Gj-oet"/>
         <segue reference="iTE-pw-1wj"/>
+        <segue reference="l6i-69-WjH"/>
+        <segue reference="olF-su-vgo"/>
     </inferredMetricsTieBreakers>
 </document>

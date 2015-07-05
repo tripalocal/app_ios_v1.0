@@ -43,7 +43,7 @@
 - (IBAction)guestValueChange:(id)sender {
     self.guestNumber = self.guestInput.text.integerValue;
     //todo:
-    self.unitPrice = [NSNumber numberWithFloat:0.5];
+    self.unitPrice = [NSNumber numberWithFloat:0.01];
     NSNumber *totalPrice = [NSNumber numberWithFloat: self.guestNumber * [self.unitPrice floatValue]];
     self.totalPrice = totalPrice;
     [self updatePriceLabels];
@@ -93,7 +93,7 @@
         PaymentOptionViewController *controller = (PaymentOptionViewController *)navController.topViewController;
         
         // hard code expID. should pass here from detail page.
-        controller.expId = @"2";
+        controller.expId = @"20";
         controller.guestNumber = self.guestNumber;
         controller.date = self.dateLabel.text;
         

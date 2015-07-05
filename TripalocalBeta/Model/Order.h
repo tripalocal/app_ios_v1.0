@@ -23,6 +23,8 @@
 @property(nonatomic, copy) NSString * inputCharset;
 @property(nonatomic, copy) NSString * itBPay;
 @property(nonatomic, copy) NSString * showUrl;
+@property(nonatomic, copy) NSString * currency;
+@property(nonatomic, copy) NSString * forex;
 
 @property(nonatomic, readonly) NSMutableDictionary * extraParams;
 
