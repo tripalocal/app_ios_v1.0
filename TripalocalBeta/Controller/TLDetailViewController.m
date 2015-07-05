@@ -41,6 +41,7 @@
     NSData *reviewerImageData;
 }
 
+@property (strong, nonatomic) UIImage *cachedReviewerImage;
 @end
 
 @implementation TLDetailViewController
@@ -50,6 +51,8 @@
     _myTable.delegate = self;
     _myTable.dataSource = self;
     connectionFinished=0;
+    
+    self.cachedReviewerImage = [[UIImage alloc]init];
     
     //Indicator
     HUD = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleDark];
@@ -111,6 +114,13 @@
     }
     
     
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        reviewerImageData = [[NSData alloc]initWithContentsOfURL:[NSURL URLWithString:reviewerImageURL]];
+        dispatch_sync(dispatch_get_main_queue(), ^{
+            _cachedReviewerImage = [[UIImage alloc]initWithData:reviewerImageData];
+        });
+        
+    });
     switch (indexPath.row) {
         case 0:
             if(!cell)
@@ -155,7 +165,9 @@
             cell3.reviewerFirstName.text = reviewFirst;
             cell3.reviewerLastName.text = reviewLast;
             cell3.commentLabel.text = reviewComment;
+            cell3.reviewerImage.image = _cachedReviewerImage;
             //Reviewer Image
+            
             
             return cell3;
         case 4:
