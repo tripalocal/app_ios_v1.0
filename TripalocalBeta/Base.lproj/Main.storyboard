@@ -524,6 +524,9 @@
                                 <state key="normal" title="REQUEST TO BOOK">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <segue destination="kUd-54-eJE" kind="show" id="NK4-6Q-yhg"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1095,7 +1098,7 @@
                         <viewControllerLayoutGuide type="bottom" id="iRP-VU-fYV"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Tj6-Xq-NCq">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="1600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
