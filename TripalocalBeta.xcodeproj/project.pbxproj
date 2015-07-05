@@ -17,6 +17,7 @@
 		5649BDDE1B4387EA00465D6C /* JGProgressHUD Resources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 5649BDD61B4387C900465D6C /* JGProgressHUD Resources.bundle */; };
 		5649BDF01B46702300465D6C /* (null) in Resources */ = {isa = PBXBuildFile; };
 		5649BDF11B46702300465D6C /* (null) in Resources */ = {isa = PBXBuildFile; };
+		5653A8ED1B48FB8D005CA2A7 /* default_profile_image.png in Resources */ = {isa = PBXBuildFile; fileRef = 5653A8EC1B48FB8D005CA2A7 /* default_profile_image.png */; };
 		7412FDE1EDC10952539BF3C5 /* libPods-TripalocalBeta.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D1136758DFF7CE52CD971824 /* libPods-TripalocalBeta.a */; };
 		8788B9D11B48EE570002B4D1 /* visa.png in Resources */ = {isa = PBXBuildFile; fileRef = 8788B9CF1B48EE570002B4D1 /* visa.png */; };
 		8788B9D21B48EE570002B4D1 /* alipay.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8788B9D01B48EE570002B4D1 /* alipay.jpg */; };
@@ -133,6 +134,7 @@
 		5649BD441B3FD5CA00465D6C /* TLDetailTableViewCell5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TLDetailTableViewCell5.h; path = "Controller/Custom Cells/TLDetailTableViewCell5.h"; sourceTree = "<group>"; };
 		5649BD451B3FD5CA00465D6C /* TLDetailTableViewCell5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TLDetailTableViewCell5.m; path = "Controller/Custom Cells/TLDetailTableViewCell5.m"; sourceTree = "<group>"; };
 		5649BDCD1B4387C800465D6C /* JGProgressHUD.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = JGProgressHUD.xcodeproj; path = "Supported Files/JGProgressHUD/JGProgressHUD.xcodeproj"; sourceTree = "<group>"; };
+		5653A8EC1B48FB8D005CA2A7 /* default_profile_image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = default_profile_image.png; path = Images/default_profile_image.png; sourceTree = "<group>"; };
 		8788B9CF1B48EE570002B4D1 /* visa.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = visa.png; path = Images/visa.png; sourceTree = "<group>"; };
 		8788B9D01B48EE570002B4D1 /* alipay.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = alipay.jpg; path = Images/alipay.jpg; sourceTree = "<group>"; };
 		87A3C09B1B461129009A3B07 /* RequestController.h */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.h; path = RequestController.h; sourceTree = "<group>"; tabWidth = 4; usesTabs = 0; wrapsLines = 1; };
@@ -499,6 +501,7 @@
 		8EB570E21B01CF2B0026D419 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				5653A8EC1B48FB8D005CA2A7 /* default_profile_image.png */,
 				8788B9CF1B48EE570002B4D1 /* visa.png */,
 				8788B9D01B48EE570002B4D1 /* alipay.jpg */,
 				5649BDCD1B4387C800465D6C /* JGProgressHUD.xcodeproj */,
@@ -734,6 +737,7 @@
 				8EB570EE1B01CF2B0026D419 /* Main.storyboard in Resources */,
 				8EC86DB21B02350000B0A655 /* home_s.png in Resources */,
 				8EC86DBE1B02350000B0A655 /* wishlisted.png in Resources */,
+				5653A8ED1B48FB8D005CA2A7 /* default_profile_image.png in Resources */,
 				8EC86DAF1B02350000B0A655 /* date.png in Resources */,
 				5649BDF11B46702300465D6C /* (null) in Resources */,
 				8EC86DBD1B02350000B0A655 /* unwishlisted.png in Resources */,
