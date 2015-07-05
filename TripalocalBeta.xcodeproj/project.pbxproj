@@ -17,9 +17,9 @@
 		5649BDDE1B4387EA00465D6C /* JGProgressHUD Resources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 5649BDD61B4387C900465D6C /* JGProgressHUD Resources.bundle */; };
 		5649BDF01B46702300465D6C /* (null) in Resources */ = {isa = PBXBuildFile; };
 		5649BDF11B46702300465D6C /* (null) in Resources */ = {isa = PBXBuildFile; };
-		5653A8E91B48E8F0005CA2A7 /* alipay.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5653A8E81B48E8F0005CA2A7 /* alipay.jpg */; };
 		7412FDE1EDC10952539BF3C5 /* libPods-TripalocalBeta.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D1136758DFF7CE52CD971824 /* libPods-TripalocalBeta.a */; };
-		8788B9C61B4899530002B4D1 /* visa.png in Resources */ = {isa = PBXBuildFile; fileRef = 8788B9C51B4899530002B4D1 /* visa.png */; };
+		8788B9D11B48EE570002B4D1 /* visa.png in Resources */ = {isa = PBXBuildFile; fileRef = 8788B9CF1B48EE570002B4D1 /* visa.png */; };
+		8788B9D21B48EE570002B4D1 /* alipay.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8788B9D01B48EE570002B4D1 /* alipay.jpg */; };
 		87A3C09D1B461129009A3B07 /* RequestController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87A3C09C1B461129009A3B07 /* RequestController.m */; };
 		87A3C0A11B463C6C009A3B07 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87A3C0A01B463C6C009A3B07 /* HomeViewController.m */; };
 		87F356401B439D3B00949F43 /* Constant.m in Sources */ = {isa = PBXBuildFile; fileRef = 87F356391B439D3B00949F43 /* Constant.m */; };
@@ -133,8 +133,8 @@
 		5649BD441B3FD5CA00465D6C /* TLDetailTableViewCell5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TLDetailTableViewCell5.h; path = "Controller/Custom Cells/TLDetailTableViewCell5.h"; sourceTree = "<group>"; };
 		5649BD451B3FD5CA00465D6C /* TLDetailTableViewCell5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TLDetailTableViewCell5.m; path = "Controller/Custom Cells/TLDetailTableViewCell5.m"; sourceTree = "<group>"; };
 		5649BDCD1B4387C800465D6C /* JGProgressHUD.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = JGProgressHUD.xcodeproj; path = "Supported Files/JGProgressHUD/JGProgressHUD.xcodeproj"; sourceTree = "<group>"; };
-		5653A8E81B48E8F0005CA2A7 /* alipay.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = alipay.jpg; sourceTree = "<group>"; };
-		8788B9C51B4899530002B4D1 /* visa.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = visa.png; sourceTree = "<group>"; };
+		8788B9CF1B48EE570002B4D1 /* visa.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = visa.png; path = Images/visa.png; sourceTree = "<group>"; };
+		8788B9D01B48EE570002B4D1 /* alipay.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = alipay.jpg; path = Images/alipay.jpg; sourceTree = "<group>"; };
 		87A3C09B1B461129009A3B07 /* RequestController.h */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.h; path = RequestController.h; sourceTree = "<group>"; tabWidth = 4; usesTabs = 0; wrapsLines = 1; };
 		87A3C09C1B461129009A3B07 /* RequestController.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.objc; path = RequestController.m; sourceTree = "<group>"; tabWidth = 4; usesTabs = 0; wrapsLines = 1; };
 		87A3C09F1B463C6C009A3B07 /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HomeViewController.h; path = Controller/HomeViewController.h; sourceTree = "<group>"; };
@@ -499,8 +499,8 @@
 		8EB570E21B01CF2B0026D419 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				8788B9C51B4899530002B4D1 /* visa.png */,
-				5653A8E81B48E8F0005CA2A7 /* alipay.jpg */,
+				8788B9CF1B48EE570002B4D1 /* visa.png */,
+				8788B9D01B48EE570002B4D1 /* alipay.jpg */,
 				5649BDCD1B4387C800465D6C /* JGProgressHUD.xcodeproj */,
 				8EC86D9F1B02350000B0A655 /* date.png */,
 				8EC86DA01B02350000B0A655 /* facebook_bt.png */,
@@ -737,6 +737,7 @@
 				8EC86DAF1B02350000B0A655 /* date.png in Resources */,
 				5649BDF11B46702300465D6C /* (null) in Resources */,
 				8EC86DBD1B02350000B0A655 /* unwishlisted.png in Resources */,
+				8788B9D11B48EE570002B4D1 /* visa.png in Resources */,
 				8EC86DB61B02350000B0A655 /* myprofile.png in Resources */,
 				8EB570F31B01CF2B0026D419 /* LaunchScreen.xib in Resources */,
 				8EC86DB51B02350000B0A655 /* myprofile_s.png in Resources */,
@@ -745,12 +746,11 @@
 				5649BDF01B46702300465D6C /* (null) in Resources */,
 				8EC86DBC1B02350000B0A655 /* tripalocal_logo.png in Resources */,
 				8EC86DB91B02350000B0A655 /* search_s.png in Resources */,
+				8788B9D21B48EE570002B4D1 /* alipay.jpg in Resources */,
 				8EC86DBB1B02350000B0A655 /* time.png in Resources */,
-				5653A8E91B48E8F0005CA2A7 /* alipay.jpg in Resources */,
 				8EC86DBA1B02350000B0A655 /* search.png in Resources */,
 				8EC86DB01B02350000B0A655 /* facebook_bt.png in Resources */,
 				8EC86DB81B02350000B0A655 /* mytrip.png in Resources */,
-				8788B9C61B4899530002B4D1 /* visa.png in Resources */,
 				8EC86DB71B02350000B0A655 /* mytrip_s.png in Resources */,
 				8EB570F01B01CF2B0026D419 /* Images.xcassets in Resources */,
 			);
