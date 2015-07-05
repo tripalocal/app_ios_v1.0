@@ -394,8 +394,6 @@
                                                         <constraint firstAttribute="height" constant="95" id="x5K-1J-Orw"/>
                                                     </constraints>
                                                 </imageView>
-
-
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JRj-we-H2H">
                                                     <rect key="frame" x="282" y="162" width="42" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -519,15 +517,16 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ob8-Wd-umG">
-
-                                <rect key="frame" x="0.0" y="1517" width="600" height="35"/>
-                                <state key="normal" title="Button">
+                            <button opaque="NO" alpha="0.90000000000000002" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ob8-Wd-umG">
+                                <rect key="frame" x="0.0" y="1518" width="600" height="34"/>
+                                <color key="backgroundColor" red="0.0" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="REQUEST TO BOOK">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <action selector="checkout:" destination="1Mj-3z-OfA" eventType="touchUpInside" id="4Og-r4-ZdL"/>
-
                                 </connections>
                             </button>
                         </subviews>
@@ -537,7 +536,7 @@
                             <constraint firstAttribute="trailing" secondItem="VsV-ga-mVG" secondAttribute="trailing" id="HCw-QP-W9Z"/>
                             <constraint firstItem="VsV-ga-mVG" firstAttribute="top" secondItem="LLn-bB-sKH" secondAttribute="top" id="aeG-OG-RzB"/>
                             <constraint firstItem="VsV-ga-mVG" firstAttribute="bottom" secondItem="ZBL-Vl-4G4" secondAttribute="top" id="cFs-ev-9hx"/>
-                            <constraint firstItem="ZBL-Vl-4G4" firstAttribute="top" secondItem="Ob8-Wd-umG" secondAttribute="bottom" id="im8-EV-tRP"/>
+                            <constraint firstItem="ZBL-Vl-4G4" firstAttribute="top" secondItem="Ob8-Wd-umG" secondAttribute="bottom" constant="-1" id="im8-EV-tRP"/>
                             <constraint firstItem="Ob8-Wd-umG" firstAttribute="leading" secondItem="LLn-bB-sKH" secondAttribute="leadingMargin" constant="-16" id="rem-E2-kQW"/>
                             <constraint firstItem="VsV-ga-mVG" firstAttribute="leading" secondItem="LLn-bB-sKH" secondAttribute="leading" id="sth-lL-eJB"/>
                         </constraints>
@@ -1127,24 +1126,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aBM-4S-nfl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3479" y="2408"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="YEu-MY-dIX">
-            <objects>
-                <viewController id="kUd-54-eJE" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="DRh-Fw-ndB"/>
-                        <viewControllerLayoutGuide type="bottom" id="iRP-VU-fYV"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="Tj6-Xq-NCq">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="1600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="PDg-hw-fWQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3638" y="321"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="m1I-iH-U0y">
