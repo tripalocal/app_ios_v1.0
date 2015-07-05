@@ -20,3 +20,5 @@ NSString *const signupServiceTestServerURL = @"http://adventure007.cloudapp.net/
 NSString *const testServerImageURL = @"http://adventure007.cloudapp.net/images/";
 
 NSString *const imageBaseURL = @"https://www.tripalocal.com/images/";
+
+NSString *const testServerPayment = @"http://adventure007.cloudapp.net/service_booking/";

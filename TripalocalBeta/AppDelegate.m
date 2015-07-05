@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import <AlipaySDK/AlipaySDK.h>
 
 @interface AppDelegate ()
 
@@ -41,6 +42,43 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+
+- (BOOL)application:(UIApplication *)application
+            openURL:(NSURL *)url
+  sourceApplication:(NSString *)sourceApplication
+         annotation:(id)annotation {
+    
+    
+    if ([url.host isEqualToString:@"safepay"]) {
+        
+        [[AlipaySDK defaultService] processAuth_V2Result:url
+                                         standbyCallback:^(NSDictionary *resultDic) {
+#if DEBUG
+                                             NSLog(@"reslut = %@",resultDic);
+#endif
+                                             if ([self paymentSuccess:resultDic]) {
+#if DEBUG
+                                                 NSLog(@"Payment status = %@", @"success");
+#endif
+                                             }
+                                         }];
+        
+    }
+    
+    return YES;
+}
+
+- (BOOL)paymentSuccess:(NSDictionary *)resultDict {
+    NSDictionary *resultObject = [resultDict objectForKey:@"result"];
+    if ([[resultDict objectForKey:@"resultStatus"] intValue] == 9000 && resultObject) {
+        if ([[resultDict objectForKey:@"success"] isEqual: @"true"]) {
+            return YES;
+        }
+    }
+    
+    return NO;
 }
 
 @end

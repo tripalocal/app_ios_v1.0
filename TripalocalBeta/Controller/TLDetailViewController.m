@@ -47,6 +47,18 @@
 
 @implementation TLDetailViewController
 
+// Should login in first to access checkout page.
+- (IBAction)checkout:(id)sender {
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    NSString *token = [userDefaults stringForKey:@"user_token"];
+    
+    if (token) {
+        [self performSegueWithIdentifier:@"checkoutSegue" sender:nil];
+    } else {
+        [self performSegueWithIdentifier:@"loginSegue" sender:nil];
+    }
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     _myTable.delegate = self;
