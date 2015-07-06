@@ -18,6 +18,10 @@
 		5649BDF01B46702300465D6C /* (null) in Resources */ = {isa = PBXBuildFile; };
 		5649BDF11B46702300465D6C /* (null) in Resources */ = {isa = PBXBuildFile; };
 		7412FDE1EDC10952539BF3C5 /* libPods-TripalocalBeta.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D1136758DFF7CE52CD971824 /* libPods-TripalocalBeta.a */; };
+		8729E1321B4A0374004C3065 /* MyTripViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8729E1311B4A0374004C3065 /* MyTripViewController.m */; };
+		8729E1361B4A1D7F004C3065 /* UpcommingTripsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8729E1351B4A1D7F004C3065 /* UpcommingTripsViewController.m */; };
+		8729E1391B4A1D9B004C3065 /* PreviousTripsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8729E1381B4A1D9B004C3065 /* PreviousTripsViewController.m */; };
+		8729E13C1B4A6335004C3065 /* MyTripTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8729E13B1B4A6335004C3065 /* MyTripTableViewCell.m */; };
 		8788B9D11B48EE570002B4D1 /* visa.png in Resources */ = {isa = PBXBuildFile; fileRef = 8788B9CF1B48EE570002B4D1 /* visa.png */; };
 		8788B9D21B48EE570002B4D1 /* alipay.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8788B9D01B48EE570002B4D1 /* alipay.jpg */; };
 		87A3C09D1B461129009A3B07 /* RequestController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87A3C09C1B461129009A3B07 /* RequestController.m */; };
@@ -133,6 +137,14 @@
 		5649BD441B3FD5CA00465D6C /* TLDetailTableViewCell5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TLDetailTableViewCell5.h; path = "Controller/Custom Cells/TLDetailTableViewCell5.h"; sourceTree = "<group>"; };
 		5649BD451B3FD5CA00465D6C /* TLDetailTableViewCell5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TLDetailTableViewCell5.m; path = "Controller/Custom Cells/TLDetailTableViewCell5.m"; sourceTree = "<group>"; };
 		5649BDCD1B4387C800465D6C /* JGProgressHUD.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = JGProgressHUD.xcodeproj; path = "Supported Files/JGProgressHUD/JGProgressHUD.xcodeproj"; sourceTree = "<group>"; };
+		8729E1301B4A0374004C3065 /* MyTripViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyTripViewController.h; sourceTree = "<group>"; };
+		8729E1311B4A0374004C3065 /* MyTripViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyTripViewController.m; sourceTree = "<group>"; };
+		8729E1341B4A1D7F004C3065 /* UpcommingTripsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpcommingTripsViewController.h; sourceTree = "<group>"; };
+		8729E1351B4A1D7F004C3065 /* UpcommingTripsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpcommingTripsViewController.m; sourceTree = "<group>"; };
+		8729E1371B4A1D9B004C3065 /* PreviousTripsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreviousTripsViewController.h; sourceTree = "<group>"; };
+		8729E1381B4A1D9B004C3065 /* PreviousTripsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreviousTripsViewController.m; sourceTree = "<group>"; };
+		8729E13A1B4A6335004C3065 /* MyTripTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyTripTableViewCell.h; sourceTree = "<group>"; };
+		8729E13B1B4A6335004C3065 /* MyTripTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyTripTableViewCell.m; sourceTree = "<group>"; };
 		8788B9CF1B48EE570002B4D1 /* visa.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = visa.png; path = Images/visa.png; sourceTree = "<group>"; };
 		8788B9D01B48EE570002B4D1 /* alipay.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = alipay.jpg; path = Images/alipay.jpg; sourceTree = "<group>"; };
 		87A3C09B1B461129009A3B07 /* RequestController.h */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.h; path = RequestController.h; sourceTree = "<group>"; tabWidth = 4; usesTabs = 0; wrapsLines = 1; };
@@ -323,6 +335,8 @@
 		5649BD311B3FC32800465D6C /* Custom Cells */ = {
 			isa = PBXGroup;
 			children = (
+				8729E13A1B4A6335004C3065 /* MyTripTableViewCell.h */,
+				8729E13B1B4A6335004C3065 /* MyTripTableViewCell.m */,
 				8E26A6611B0397EF00A5A5CF /* TLHomeTableViewCell.h */,
 				8E26A6621B0397EF00A5A5CF /* TLHomeTableViewCell.m */,
 				8E26A66D1B080BFF00A5A5CF /* TLSearchTableViewCell.h */,
@@ -565,6 +579,12 @@
 		8EC86D511B021DDC00B0A655 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				8729E1341B4A1D7F004C3065 /* UpcommingTripsViewController.h */,
+				8729E1351B4A1D7F004C3065 /* UpcommingTripsViewController.m */,
+				8729E1371B4A1D9B004C3065 /* PreviousTripsViewController.h */,
+				8729E1381B4A1D9B004C3065 /* PreviousTripsViewController.m */,
+				8729E1301B4A0374004C3065 /* MyTripViewController.h */,
+				8729E1311B4A0374004C3065 /* MyTripViewController.m */,
 				87FC2D231B4797CA0017F30E /* PaymentOptionViewController.h */,
 				87FC2D241B4797CA0017F30E /* PaymentOptionViewController.m */,
 				87FC2D1E1B476A3B0017F30E /* CheckoutViewController.h */,
@@ -804,11 +824,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				8E26A66F1B080BFF00A5A5CF /* TLSearchTableViewCell.m in Sources */,
+				8729E1361B4A1D7F004C3065 /* UpcommingTripsViewController.m in Sources */,
 				87FC2D201B476A3B0017F30E /* CheckoutViewController.m in Sources */,
 				87F356521B43AAD300949F43 /* ProfileViewController.m in Sources */,
 				5649BD461B3FD5CA00465D6C /* TLDetailTableViewCell5.m in Sources */,
 				5649BD431B3FD5A400465D6C /* TLDetailTableViewCell4.m in Sources */,
 				5649BD3A1B3FC42600465D6C /* TLDetailTableViewCell1.m in Sources */,
+				8729E13C1B4A6335004C3065 /* MyTripTableViewCell.m in Sources */,
 				87FC2DB41B480ABF0017F30E /* DataSigner.m in Sources */,
 				87FC2DB31B480ABF0017F30E /* base64.m in Sources */,
 				87F356431B439D3B00949F43 /* SignUpViewController.m in Sources */,
@@ -816,6 +838,7 @@
 				8E92CF7A1B3E2B3700D4BB4B /* TLDetailViewController.m in Sources */,
 				87FC2DB71B480ABF0017F30E /* NSDataEx.m in Sources */,
 				87F356411B439D3B00949F43 /* LoginViewController.m in Sources */,
+				8729E1321B4A0374004C3065 /* MyTripViewController.m in Sources */,
 				87F356561B43C8C300949F43 /* UnloginViewController.m in Sources */,
 				87FC2D4C1B4803190017F30E /* Order.m in Sources */,
 				8EC86D5C1B0229F100B0A655 /* TLHomeViewController.m in Sources */,
@@ -831,6 +854,7 @@
 				5649BD401B3FD58800465D6C /* TLDetailTableViewCell3.m in Sources */,
 				8E26A6631B0397EF00A5A5CF /* TLHomeTableViewCell.m in Sources */,
 				87A3C0A11B463C6C009A3B07 /* HomeViewController.m in Sources */,
+				8729E1391B4A1D9B004C3065 /* PreviousTripsViewController.m in Sources */,
 				8EB570E81B01CF2B0026D419 /* AppDelegate.m in Sources */,
 				8E26A66C1B080BE300A5A5CF /* TLSearchViewController.m in Sources */,
 				8EB570E51B01CF2B0026D419 /* main.m in Sources */,

@@ -244,7 +244,8 @@
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([segue.identifier isEqualToString:@"SearchResultSegue"]) {
-        TLDetailViewController *vc=[segue destinationViewController];
+        UINavigationController *navController = (UINavigationController *)segue.destinationViewController;
+        TLDetailViewController *vc = (TLDetailViewController *) navController.topViewController;
         NSIndexPath *index=[_tableView indexPathForSelectedRow];
         vc.experience_id_string = [experienceIDArray objectAtIndex:index.row];
         

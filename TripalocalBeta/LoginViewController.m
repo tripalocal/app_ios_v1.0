@@ -54,11 +54,6 @@
                                                                  error:nil];
         
         if ([httpResponse statusCode] == 200) {
-            //                            Successflly login
-            //                            {
-            //                                "token": "cc99d502c5cf2b03342d0a60f81a20e49a24f77f",
-            //                                "user_id": 455
-            //                            }
             NSString *token = [result objectForKey:@"token"];
             [self fetchProfileAndCache: token];
             
