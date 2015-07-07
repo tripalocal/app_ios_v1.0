@@ -31,7 +31,7 @@
     }
     
     if ([myTrips count] == 0) {
-        
+// todo
     }
 }
 
@@ -106,8 +106,10 @@
     // convert back
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"dd-LL-yyyy"];
+    [dateFormatter setTimeZone:[NSTimeZone systemTimeZone]];
     NSDateFormatter *timeFormatter = [[NSDateFormatter alloc] init];
     [timeFormatter setDateFormat:@"HH:mm"];
+    [timeFormatter setTimeZone:[NSTimeZone systemTimeZone]];
     
     UIImage *hostImage = [self fetchImage:imageURL];
     cell.hostImage.image = hostImage;
@@ -129,6 +131,7 @@
     cell.hostNameLabel.text = [trip objectForKey:@"host_name"];
     cell.guestNumberLabel.text = [[trip objectForKey:@"guest_number"] stringValue];
     cell.experienceTitle.text = [trip objectForKey:@"experience_title"];
+    [cell.experienceTitle setTextColor:[UIColor colorWithRed:0.00f green:0.82f blue:0.82f alpha:1.0f]];
     cell.telephoneLabel.text = [trip objectForKey:@"host_phone_number"];
     cell.instructionText.text = [trip objectForKey:@"meetup_spot"];
     NSString *status = [trip objectForKey:@"status"];
@@ -143,9 +146,11 @@
 
 - (NSDate *)parseDateTimeString:(NSString *) datetimeString{
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-    [dateFormat setDateFormat:@"yyyy-LL-dd'T'HH:mm:ss'+'"];
-    NSRange needleRange = NSMakeRange(0, 20);
-    return [dateFormat dateFromString:[datetimeString substringWithRange:needleRange]];
+    [dateFormat setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"UTC"]];
+    [dateFormat setDateFormat:@"yyyy-LL-dd'T'HH:mm:ss'Z'"];
+    NSRange needleRange = NSMakeRange(0, 19);
+    NSString *dateStringUTC = [[datetimeString substringWithRange:needleRange] stringByAppendingString: @"Z"];
+    return [dateFormat dateFromString:dateStringUTC];
 }
 
 - (NSDate *)dateWithNoTime:(NSDate *)date {

@@ -21,8 +21,7 @@
         NSDate *today = [NSDate date];
         NSString *datetimeString = [trip objectForKey:@"datetime"];
         NSDate *date = [super parseDateTimeString:datetimeString];
-//        todo:
-        if ([date compare:today] == NSOrderedDescending) {
+        if ([date compare:today] == NSOrderedAscending) {
             [resultTrips addObject:trip];
         }
     }

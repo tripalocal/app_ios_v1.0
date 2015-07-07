@@ -16,6 +16,10 @@
 
 - (void)awakeFromNib {
     // Initialization code
+    self.callButton.layer.cornerRadius = 2;
+    self.callButton.layer.masksToBounds = YES;
+    self.callButton.layer.borderWidth = 1.0f;
+    self.callButton.layer.borderColor = [UIColor grayColor].CGColor;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

@@ -39,12 +39,11 @@
 }
 
 - (IBAction)changeToPreviousView:(id)sender {
-    [self.previousButton setBackgroundColor:[UIColor blueColor]];
-    [self.previousButton setTintColor:[UIColor whiteColor]];
-    
+    UIColor *themeColor = [UIColor colorWithRed:0.00f green:0.82f blue:0.82f alpha:1.0f];
+    [self.previousButton setBackgroundColor:themeColor];
+    [self.previousButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [self.upcommingButton setBackgroundColor:[UIColor whiteColor]];
-//    [myButton setTitleColor:[UIColor colorWithRed:150.0/256.0 green:150.0/256.0 blue:150.0/256.0 alpha:1.0] forState:UIControlStateHighlighted];
-    [self.upcommingButton setTintColor:[UIColor blueColor]];
+    [self.upcommingButton setTitleColor:themeColor forState:UIControlStateNormal];
 
     UIViewController *incomingViewController = [self.allViewControllers objectAtIndex:1];
     [self cycleFromViewController:self.currentViewController toViewController:incomingViewController];
@@ -52,10 +51,11 @@
 
 
 - (IBAction)changeToUpcommingView:(id)sender {
-    [self.upcommingButton setBackgroundColor:[UIColor blueColor]];
-    [self.upcommingButton setTintColor:[UIColor whiteColor]];
+    UIColor *themeColor = [UIColor colorWithRed:0.00f green:0.82f blue:0.82f alpha:1.0f];
+    [self.upcommingButton setBackgroundColor:themeColor];
+    [self.upcommingButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [self.previousButton setBackgroundColor:[UIColor whiteColor]];
-    [self.previousButton setTintColor:[UIColor blueColor]];
+    [self.previousButton setTitleColor:themeColor forState:UIControlStateNormal];
 
     UIViewController *incomingViewController = [self.allViewControllers objectAtIndex:0];
     [self cycleFromViewController:self.currentViewController toViewController:incomingViewController];
@@ -66,7 +66,6 @@
     if (newVC) {
         newVC.view.frame = CGRectMake(CGRectGetMinX(self.myTripContentView.bounds), CGRectGetMinY(self.myTripContentView.bounds), CGRectGetWidth(self.myTripContentView.bounds), CGRectGetHeight(self.myTripContentView.bounds));
         if (oldVC) {
-            
             // Start both the view controller transitions
             [oldVC willMoveToParentViewController:nil];
             [self addChildViewController:newVC];
