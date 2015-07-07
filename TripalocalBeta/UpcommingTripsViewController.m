@@ -16,17 +16,21 @@
 @end
 
 @implementation UpcommingTripsViewController {
-    NSArray *myTrips;
+    NSMutableArray *myTrips;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    myTrips = [[NSArray alloc] init];
+    myTrips = [[NSMutableArray alloc] init];
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     NSString *token = [userDefaults stringForKey:@"user_token"];
     if (token) {
         [self fetchMyTrips:token];
+    }
+    
+    if ([myTrips count] == 0) {
+        
     }
 }
 
@@ -45,9 +49,22 @@
         NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *) response;
         
         if ([httpResponse statusCode] == 200) {
-            myTrips = [NSJSONSerialization JSONObjectWithData:data
+            NSArray *allTrips = [NSJSONSerialization JSONObjectWithData:data
                                                       options:0
                                                         error:nil];
+            NSDate *today = [NSDate date];
+            for (NSDictionary *trip in allTrips) {
+                NSString *datetimeString = [trip objectForKey:@"datetime"];
+                NSDate *date = [self parseDateTimeString:datetimeString];
+            
+                if (!([date compare:today] == NSOrderedAscending)) {
+                    [myTrips addObject:trip];
+                }
+            }
+            
+            NSSortDescriptor *datetimeDescriptor = [[NSSortDescriptor alloc] initWithKey:@"datetime" ascending:YES];
+            NSArray *sortDescriptors = [NSArray arrayWithObject:datetimeDescriptor];
+            myTrips = (NSMutableArray *)[myTrips sortedArrayUsingDescriptors:sortDescriptors];
         }
         
 #if DEBUG
@@ -84,23 +101,35 @@
     }
     
     NSDictionary *trip = [myTrips objectAtIndex:indexPath.row];
-//    {
-//        "datetime": "2015-07-08T22:00:00+10:00",
-//        "experience_title": "Hidden Contemporary Art Galleries",
-//        "guest_number": 1,
-//        "host_phone_number": "0424563037",
-//        "experience_id": 20,
-//        "status": "paid",
-//        "meetup_spot": "We will start the walk at Flinder St Station, and depends on time we can finish in the city or end in Fitzroy. I can also take you back to your hotel or wherever that's convenient for you.",
-//        "host_image": "hosts/8/host8_1_YeokW.jpg",
-//        "host_name": "Yeok W."
-//    }
     NSString *imageURL = [trip objectForKey:@"host_image"];
     // get image and background image
-    NSString *datetimeSring = [trip objectForKey:@"datetime"];
+    NSString *datetimeString = [trip objectForKey:@"datetime"];
+    // Convert string to date object
+    NSDate *date = [self parseDateTimeString:datetimeString];
     
-    cell.dateLabel.text = @"blahs";
-    cell.timeLabel.text = @"ahs";
+    // convert back
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"dd-LL-yyyy"];
+    NSDateFormatter *timeFormatter = [[NSDateFormatter alloc] init];
+    [timeFormatter setDateFormat:@"HH:mm"];
+    
+    UIImage *hostImage = [self fetchImage:imageURL];
+    cell.hostImage.image = hostImage;
+    
+    NSString *absoluteImageURL = [NSString stringWithFormat:@"%@thumbnails/experiences/experience%@_1.jpg", testServerImageURL, [trip objectForKey:@"experience_id"]];
+    NSData *experienceImageData = [[NSData alloc]initWithContentsOfURL:[NSURL URLWithString:absoluteImageURL]];
+    cell.backgroudImage.image = [[UIImage alloc]initWithData:experienceImageData];
+    
+    NSDate *today = [NSDate date];
+    NSDate *dateOnly = [self dateWithNoTime: date];
+    if ([dateOnly compare:[self dateWithNoTime:today]] == NSOrderedSame) {
+        cell.dateLabel.text = @"Today";
+        [cell.dateLabel setTextColor:[UIColor redColor]];
+    } else {
+        cell.dateLabel.text = [dateFormatter stringFromDate:date];
+    }
+
+    cell.timeLabel.text = [timeFormatter stringFromDate:date];
     cell.hostNameLabel.text = [trip objectForKey:@"host_name"];
     cell.guestNumberLabel.text = [[trip objectForKey:@"guest_number"] stringValue];
     cell.experienceTitle.text = [trip objectForKey:@"experience_title"];
@@ -114,6 +143,21 @@
     }
     
     return cell;
+}
+
+- (NSDate *)parseDateTimeString:(NSString *) datetimeString{
+    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+    [dateFormat setDateFormat:@"yyyy-LL-dd'T'HH:mm:ss'+'"];
+    NSRange needleRange = NSMakeRange(0, 20);
+    return [dateFormat dateFromString:[datetimeString substringWithRange:needleRange]];
+}
+
+- (NSDate *)dateWithNoTime:(NSDate *)date {
+    unsigned int flags = NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear;
+    NSCalendar* calendar = [NSCalendar currentCalendar];
+    NSDateComponents* components = [calendar components:flags fromDate:date];
+    NSDate* dateOnly = [calendar dateFromComponents:components];
+    return dateOnly;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -131,13 +175,40 @@
     TLDetailViewController *controller = (TLDetailViewController *)navController.topViewController;
     NSIndexPath *index = [self.tableView indexPathForSelectedRow];
     NSDictionary *trip = [myTrips objectAtIndex:index.row];
-    
+
     controller.experience_id_string = [trip objectForKey:@"experience_id"];
+
     //        NSString *hostImageCachingIdentifier = [NSString stringWithFormat:@"Cell%ldOfHostImage",(long)index.row];
     //        NSString *expImageCachingIdentifier = [NSString stringWithFormat:@"Cell%ldOfExpImage",(long)index.row];
     //        vc.hostImage = [self.cachedImages valueForKey:hostImageCachingIdentifier];
     //        vc.coverImage = [self.cachedImages valueForKey:expImageCachingIdentifier];
     
+}
+
+- (UIImage *) fetchImage:(NSString *) imageURL {
+    NSString *absoluteImageURL = [NSString stringWithFormat:@"%@%@", testServerImageURL, imageURL];
+    NSURL *url = [NSURL URLWithString:absoluteImageURL];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    [request setHTTPMethod:@"GET"];
+    
+    NSError *connectionError = nil;
+    NSURLResponse *response = nil;
+    UIImage *image = nil;
+    
+    NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&connectionError];
+    
+    if (connectionError == nil) {
+        image = [UIImage imageWithData:data];
+    } else {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No network connection"
+                                                        message:@"You must be connected to the internet."
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+        [alert show];
+    }
+    
+    return image;
 }
 
 @end
