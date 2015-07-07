@@ -92,8 +92,7 @@
         UINavigationController *navController = (UINavigationController *)segue.destinationViewController;
         PaymentOptionViewController *controller = (PaymentOptionViewController *)navController.topViewController;
         
-        // hard code expID. should pass here from detail page.
-        controller.expId = @"20";
+        controller.expId = _exp_ID_string ;
         controller.guestNumber = self.guestNumber;
         controller.date = self.dateLabel.text;
         

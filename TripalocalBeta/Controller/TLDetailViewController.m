@@ -15,6 +15,7 @@
 #import "TLDetailTableViewCell5.h"
 #import "JGProgressHUD.h"
 #import "Constant.h"
+#import "CheckoutViewController.h"
 
 @interface TLDetailViewController ()
 {
@@ -297,6 +298,16 @@
     
     
     NSLog(@"%@,%@,%@,%@",expTitle,expPrice,reviewerImageURL,reviewComment);
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    if ([segue.identifier isEqualToString:@"checkoutSegue"]) {
+        CheckoutViewController *vc=[segue destinationViewController];
+        vc.exp_ID_string = _experience_id_string;
+        vc.expImage = _coverImage;
+        //title, duration, language, date
+    }
+    
 }
 
 @end
