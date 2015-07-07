@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface MyTripViewController : UIViewController
-
+@property (strong, nonatomic) IBOutlet UIView *segmentTitleView;
 @end

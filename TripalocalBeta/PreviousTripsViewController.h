@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MyTripTableViewController.h"
 
-@interface PreviousTripsViewController : UIViewController
+@interface PreviousTripsViewController : MyTripTableViewController
 
 @end

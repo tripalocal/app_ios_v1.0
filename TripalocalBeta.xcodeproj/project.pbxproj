@@ -32,6 +32,7 @@
 		87F356431B439D3B00949F43 /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87F3563F1B439D3B00949F43 /* SignUpViewController.m */; };
 		87F356521B43AAD300949F43 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87F356511B43AAD300949F43 /* ProfileViewController.m */; };
 		87F356561B43C8C300949F43 /* UnloginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87F356551B43C8C300949F43 /* UnloginViewController.m */; };
+		87F6F7661B4B948100A3A6EB /* MyTripTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87F6F7651B4B948100A3A6EB /* MyTripTableViewController.m */; };
 		87FC2D201B476A3B0017F30E /* CheckoutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87FC2D1F1B476A3B0017F30E /* CheckoutViewController.m */; };
 		87FC2D251B4797CA0017F30E /* PaymentOptionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87FC2D241B4797CA0017F30E /* PaymentOptionViewController.m */; };
 		87FC2D3C1B47F8390017F30E /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87FC2D3B1B47F8390017F30E /* SystemConfiguration.framework */; };
@@ -163,6 +164,8 @@
 		87F356511B43AAD300949F43 /* ProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProfileViewController.m; path = Controller/ProfileViewController.m; sourceTree = "<group>"; };
 		87F356541B43C8C300949F43 /* UnloginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UnloginViewController.h; path = Controller/UnloginViewController.h; sourceTree = "<group>"; };
 		87F356551B43C8C300949F43 /* UnloginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UnloginViewController.m; path = Controller/UnloginViewController.m; sourceTree = "<group>"; };
+		87F6F7641B4B948100A3A6EB /* MyTripTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyTripTableViewController.h; sourceTree = "<group>"; };
+		87F6F7651B4B948100A3A6EB /* MyTripTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyTripTableViewController.m; sourceTree = "<group>"; };
 		87FC2D1E1B476A3B0017F30E /* CheckoutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckoutViewController.h; sourceTree = "<group>"; };
 		87FC2D1F1B476A3B0017F30E /* CheckoutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CheckoutViewController.m; sourceTree = "<group>"; };
 		87FC2D231B4797CA0017F30E /* PaymentOptionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaymentOptionViewController.h; sourceTree = "<group>"; };
@@ -579,6 +582,8 @@
 		8EC86D511B021DDC00B0A655 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				87F6F7641B4B948100A3A6EB /* MyTripTableViewController.h */,
+				87F6F7651B4B948100A3A6EB /* MyTripTableViewController.m */,
 				8729E1341B4A1D7F004C3065 /* UpcommingTripsViewController.h */,
 				8729E1351B4A1D7F004C3065 /* UpcommingTripsViewController.m */,
 				8729E1371B4A1D9B004C3065 /* PreviousTripsViewController.h */,
@@ -839,6 +844,7 @@
 				87FC2DB71B480ABF0017F30E /* NSDataEx.m in Sources */,
 				87F356411B439D3B00949F43 /* LoginViewController.m in Sources */,
 				8729E1321B4A0374004C3065 /* MyTripViewController.m in Sources */,
+				87F6F7661B4B948100A3A6EB /* MyTripTableViewController.m in Sources */,
 				87F356561B43C8C300949F43 /* UnloginViewController.m in Sources */,
 				87FC2D4C1B4803190017F30E /* Order.m in Sources */,
 				8EC86D5C1B0229F100B0A655 /* TLHomeViewController.m in Sources */,

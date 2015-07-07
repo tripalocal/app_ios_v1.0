@@ -7,12 +7,15 @@
 //
 
 #import "MyTripViewController.h"
+#import "UpcommingTripsViewController.h"
+#import "PreviousTripsViewController.h"
 
 @interface MyTripViewController ()
 @property (nonatomic, copy) NSArray *allViewControllers;
+
+@property (strong, nonatomic) IBOutlet UIView *myTripContentView;
 @property (strong, nonatomic) IBOutlet UIButton *upcommingButton;
 @property (strong, nonatomic) IBOutlet UIButton *previousButton;
-@property (strong, nonatomic) IBOutlet UIView *myTripContentView;
 
 @property (nonatomic, strong) UIViewController *currentViewController;
 @end
@@ -22,11 +25,15 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    UIViewController *upcommingTripsController = [self.storyboard instantiateViewControllerWithIdentifier:@"upcomming_trips_controller"];
+    UINavigationController *upcommingNav = [self.storyboard instantiateViewControllerWithIdentifier:@"upcomming_trips_controller"];
+    UpcommingTripsViewController *upcommingController = (UpcommingTripsViewController *)upcommingNav.topViewController;
+    [upcommingController setContainerController:self];
     
-    UIViewController *previousTripsController = [self.storyboard instantiateViewControllerWithIdentifier:@"previous_trips_controller"];
+    UINavigationController *previousNav = [self.storyboard instantiateViewControllerWithIdentifier:@"previous_trips_controller"];
+    PreviousTripsViewController *previousController = (PreviousTripsViewController *)previousNav.topViewController;
+    [previousController setContainerController:self];
     
-    self.allViewControllers = [[NSArray alloc] initWithObjects:upcommingTripsController, previousTripsController, nil];
+    self.allViewControllers = [[NSArray alloc] initWithObjects:upcommingNav, previousNav, nil];
     
     [self cycleFromViewController:self.currentViewController toViewController:[self.allViewControllers objectAtIndex:0]];
 }

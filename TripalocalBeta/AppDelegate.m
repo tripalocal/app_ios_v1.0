@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import <AlipaySDK/AlipaySDK.h>
+#import "Constant.h"
 
 @interface AppDelegate ()
 
@@ -62,6 +63,34 @@
 #if DEBUG
                                                  NSLog(@"Payment status = %@", @"success");
 #endif
+                                                 // parse complex string from alipay
+                                                 NSString *resultString = [resultDic objectForKey:@"result"];
+                                                 resultString = [resultString stringByReplacingOccurrencesOfString:@"\"" withString:@""];
+                                                 resultString = [resultString stringByReplacingOccurrencesOfString:@"\\" withString:@""];
+                                                 
+                                                 for (NSString *pairString in [resultString componentsSeparatedByString:@"&"]) {
+                                                     NSArray *pair = [pairString componentsSeparatedByString:@"="];
+                                                     
+                                                     if ([pair count] == 2) {
+                                                         NSString *keyString = (NSString *)[pair objectAtIndex:0];
+                                                         if ([keyString containsString:@"out_trade_no"]) {
+                                                             NSString *orderNumber = (NSString *)[pair objectAtIndex:1];
+                                                             
+                                                             NSDictionary *aDictionary = [[NSDictionary alloc] initWithObjectsAndKeys:
+                                                                                          orderNumber, @"orderNumber",
+                                                                                          nil];
+//                                                             [self alipayRequesttoServer: orderNumber];
+                                                             [[NSNotificationCenter defaultCenter] postNotificationName:@"alipayNotification" object:nil userInfo:aDictionary];
+                                                         }
+                                                     }
+                                                 }
+                                             } else {
+                                                 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Alipay Failed"
+                                                                                                 message:@"Occured an error during payment."
+                                                                                                delegate:nil
+                                                                                       cancelButtonTitle:@"OK"
+                                                                                       otherButtonTitles:nil];
+                                                 [alert show];
                                              }
                                          }];
         
