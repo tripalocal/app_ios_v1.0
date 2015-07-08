@@ -43,7 +43,8 @@
     int connectionFinished;
     NSData *reviewerImageData;
     NSMutableArray *dynamicPriceArray;
-    NSNumber *maxNumber;
+    NSNumber *maxGuestNum;
+    NSNumber *minGuestNum;
     NSString *foodString;
     NSString *ticketString;
     NSString *transportString;
@@ -334,6 +335,9 @@
         transportString = [allDataDictionary objectForKey:@"included_transport_detail"];
         availableDateArray = [allDataDictionary objectForKey:@"available_options"];
         dynamicPriceArray = [allDataDictionary objectForKey:@"experience_dynamic_price"];
+        
+        maxGuestNum = [allDataDictionary objectForKey:@"experience_guest_number_max"];
+        minGuestNum = [allDataDictionary objectForKey:@"experience_guest_number_min"];
         //Transport
         connectionFinished=1;
     }
@@ -356,7 +360,8 @@
         vc.dynamicPriceArray = dynamicPriceArray;
         vc.languageString = expLanguage;
         vc.durationString = expDuration;
-
+        vc.maxGuestNum = maxGuestNum;
+        vc.minGuestNum = minGuestNum;
     }
     
 }

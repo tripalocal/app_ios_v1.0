@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "PaymentOptionViewController.h"
 
-@interface CheckoutViewController : UIViewController <UITextFieldDelegate>
+@interface CheckoutViewController : UIViewController <UITextFieldDelegate,UIPickerViewDataSource, UIPickerViewDelegate>
 @property (nonatomic) NSInteger guestNumber;
 @property (nonatomic) NSNumber *unitPrice;
 @property (nonatomic) NSNumber *totalPrice;
@@ -23,5 +23,12 @@
 @property NSString *expTitle;
 @property NSString *durationString;
 @property NSString *languageString;
+@property NSNumber *maxGuestNum;
+@property NSNumber *minGuestNum;
+
+@property (weak, nonatomic) IBOutlet UIPickerView *datePicker;
+@property (weak, nonatomic) IBOutlet UIPickerView *timePicker;
+@property (weak, nonatomic) IBOutlet UIPickerView *guestPicker;
+
 
 @end
