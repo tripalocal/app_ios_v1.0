@@ -334,6 +334,7 @@
         foodString = [allDataDictionary objectForKey:@"included_food_detail"];
         transportString = [allDataDictionary objectForKey:@"included_transport_detail"];
         availableDateArray = [allDataDictionary objectForKey:@"available_options"];
+        NSLog(@"TEST:%lu DATE DATA",(unsigned long)availableDateArray.count);
         dynamicPriceArray = [allDataDictionary objectForKey:@"experience_dynamic_price"];
         
         maxGuestNum = [allDataDictionary objectForKey:@"experience_guest_number_max"];

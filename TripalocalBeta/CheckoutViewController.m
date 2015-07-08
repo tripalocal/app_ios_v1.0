@@ -10,6 +10,10 @@
 
 @interface CheckoutViewController (){
     NSMutableArray *guestPickerData;
+    NSMutableArray *datePickerData;
+    NSMutableArray *timePickerData;
+    NSMutableDictionary *wholePickerData;
+    NSMutableArray *dynamicTimeArray;
 }
 
 @property (strong, nonatomic) IBOutlet UILabel *dateLabel;
@@ -44,15 +48,57 @@
     
     _guestPicker.delegate = self;
     _guestPicker.dataSource = self;
+    _datePicker.delegate = self;
+    _datePicker.dataSource = self;
+    _timePicker.delegate = self;
+    _timePicker.dataSource = self;
     
-    //Initialize guest dat
+    //Initialize guest data
     guestPickerData = [[NSMutableArray alloc]init];
+    datePickerData = [[NSMutableArray alloc]init];
+    timePickerData = [[NSMutableArray alloc]init];
+    wholePickerData = [[NSMutableDictionary alloc]init];
+    
     int i = [_minGuestNum intValue];
     int max = [_maxGuestNum intValue];
     for (; i<= max; i++) {
         NSNumber *currentIndexNumber = [NSNumber numberWithInt:i];
         [guestPickerData addObject:currentIndexNumber];
     }
+    
+    //Resolve
+    int storedFlag = 0;
+    int lastIndex = 0;
+    
+    for (int i = 0; i<_availbleDateArray.count; i++) {
+        NSMutableDictionary *currentDic = [_availbleDateArray objectAtIndex:i];
+        NSString *currentDateString = [currentDic objectForKey:@"date_string"];
+        NSString *currentTimeString = [currentDic objectForKey:@"time_string"];
+        
+        if(storedFlag == 0)
+        {
+            [datePickerData addObject:currentDateString];
+            storedFlag = 1;
+            [timePickerData addObject:currentTimeString];
+        }
+        else if(datePickerData.count>0){
+            if (![currentDateString isEqualToString:datePickerData[lastIndex]]) {
+                [datePickerData addObject:currentDateString];
+                [wholePickerData setValue:timePickerData forKey:datePickerData[lastIndex]];
+                [timePickerData removeAllObjects];
+                [timePickerData addObject:currentTimeString];
+                lastIndex ++;
+                storedFlag = 1;
+            }
+            else{
+                [timePickerData addObject:currentTimeString];
+            }
+        }
+        NSArray *array = [wholePickerData objectForKey:@"12/07/2015"];
+        NSLog(@"WHOLE DATA:%lu",(unsigned long)array.count);
+    }
+    
+    dynamicTimeArray = [wholePickerData objectForKey:[datePickerData objectAtIndex:0]];
 }
 
 #pragma mark - Picker View
@@ -61,16 +107,44 @@
 }
 
 -(NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component{
-    return guestPickerData.count;
+    if ([pickerView isEqual:_guestPicker]) {
+        return guestPickerData.count;
+    }
+    
+    if ([pickerView isEqual:_datePicker]) {
+        return datePickerData.count;
+    }
+    
+    if ([pickerView isEqual:_timePicker]) {
+        return dynamicTimeArray.count;
+    }
+    
+    return 0;
 }
 
 -(NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component{
-    return [guestPickerData[row] stringValue];
+    if ([pickerView isEqual:_guestPicker]) {
+        return [guestPickerData[row] stringValue];
+    }
+    
+    if ([pickerView isEqual:_datePicker]) {
+        return datePickerData[row];
+    }
+    
+    if ([pickerView isEqual:_timePicker]) {
+        return dynamicTimeArray[row];
+    }
+    
+    return nil;
 }
 
 #pragma mark - Picker Value
 -(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component{
-    
+    if ([pickerView isEqual:_datePicker]) {
+        dynamicTimeArray = [wholePickerData objectForKey:[datePickerData objectAtIndex:row]];
+        [_timePicker selectRow:0 inComponent:0 animated:YES];
+        [_timePicker reloadAllComponents];
+    }
 }
 
 
