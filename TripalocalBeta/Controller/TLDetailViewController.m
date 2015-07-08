@@ -221,6 +221,10 @@
                 cell5=[[TLDetailTableViewCell5 alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier5];
             }
             
+            cell5.foodLabel.text = [cell5.foodLabel.text stringByAppendingFormat:@": \n%@", foodString];
+            cell5.ticketLabel.text = [cell5.ticketLabel.text stringByAppendingFormat:@": \n%@", ticketString];
+            cell5.transportLabel.text = [cell5.transportLabel.text stringByAppendingFormat:@": \n%@", transportString];
+
             return cell5;
         
         default:
@@ -230,6 +234,35 @@
     
     return cell;
 }
+
+//-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+//    switch (indexPath.row) {
+//        case 0:
+//            return 306;
+//            break;
+//        case 1:
+//            return 480;
+//            break;
+//        case 2:
+//            return 480;
+//            break;
+//        case 3:
+//            return 480;
+//            break;
+//        case 4:
+//            return 306;
+//            break;
+//        case 5:
+//            return 306;
+//            break;
+//        default:
+//            return 306;
+//            break;
+//    }
+//    return 306;
+//    
+//}
+
 
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section

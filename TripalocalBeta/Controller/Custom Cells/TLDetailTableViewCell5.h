@@ -10,4 +10,8 @@
 
 @interface TLDetailTableViewCell5 : UITableViewCell
 
+@property (weak, nonatomic) IBOutlet UILabel *foodLabel;
+@property (weak, nonatomic) IBOutlet UILabel *ticketLabel;
+@property (weak, nonatomic) IBOutlet UILabel *transportLabel;
+
 @end

@@ -13,4 +13,5 @@
 @property NSString *experience_id_string;
 @property UIImage *coverImage;
 @property UIImage *hostImage;
+
 @end
