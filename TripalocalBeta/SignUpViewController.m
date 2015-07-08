@@ -15,6 +15,7 @@
 @property (strong, nonatomic) IBOutlet UITextField *firstnameField;
 @property (strong, nonatomic) IBOutlet UITextField *lastnameField;
 @property (strong, nonatomic) IBOutlet UIButton *signupButton;
+@property (strong, nonatomic) IBOutlet UITextView *termsTextView;
 
 @end
 
@@ -138,6 +139,21 @@
     self.firstnameField.borderStyle = UITextBorderStyleRoundedRect;
     self.lastnameField.borderStyle = UITextBorderStyleRoundedRect;
     self.passwordField.secureTextEntry = YES;
+    
+    UIColor *themeColor = [UIColor colorWithRed:0.00f green:0.82f blue:0.82f alpha:1.0f];
+
+    [self.termsTextView setLinkTextAttributes:@{NSForegroundColorAttributeName:themeColor}];
+    NSMutableAttributedString * str = [[NSMutableAttributedString alloc] initWithString:@"By signing up, I agree to Tripalocal’s Terms of Service, Privacy Policy, and Refund Policy."];
+    [str addAttribute: NSLinkAttributeName value: @"https://tripalocal.com/termsofservice" range: NSMakeRange(39, 16)];
+    
+    [str addAttribute: NSFontAttributeName value:[UIFont systemFontOfSize:12] range:NSMakeRange(0, str.length)];
+    [str addAttribute: NSForegroundColorAttributeName value:[UIColor grayColor] range:NSMakeRange(0, str.length)];
+
+    [str addAttribute: NSLinkAttributeName value: @"https://tripalocal.com/privacypolicy" range: NSMakeRange(57, 14)];
+
+    [str addAttribute: NSLinkAttributeName value: @"https://tripalocal.com/refundpolicy" range: NSMakeRange(77, 13)];
+
+    self.termsTextView.attributedText = str;
 }
 
 - (void)didReceiveMemoryWarning {

@@ -11,6 +11,7 @@
 @interface LoginViewController ()
 @property (strong, nonatomic) IBOutlet UITextField *emailField;
 @property (strong, nonatomic) IBOutlet UITextField *passwordField;
+@property (strong, nonatomic) IBOutlet UITextView *forgotPasswordText;
 @property (strong, nonatomic) IBOutlet UIButton *loginButton;
 @end
 
@@ -120,6 +121,15 @@
     self.emailField.borderStyle = UITextBorderStyleRoundedRect;
     self.passwordField.borderStyle = UITextBorderStyleRoundedRect;
     self.passwordField.secureTextEntry = YES;
+    
+    UIColor *themeColor = [UIColor colorWithRed:0.00f green:0.82f blue:0.82f alpha:1.0f];
+    
+    [self.forgotPasswordText setLinkTextAttributes:@{NSForegroundColorAttributeName:themeColor}];
+    NSMutableAttributedString * str = [[NSMutableAttributedString alloc] initWithString:@"Forgot password?"];
+    [str addAttribute: NSLinkAttributeName value: @"https://tripalocal.com/accounts/password/reset/" range: NSMakeRange(0, str.length)];
+    [str addAttribute: NSFontAttributeName value:[UIFont systemFontOfSize:15] range:NSMakeRange(0, str.length)];
+    
+    self.forgotPasswordText.attributedText = str;
 }
 
 

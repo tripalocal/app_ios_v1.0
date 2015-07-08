@@ -22,17 +22,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     myTrips = [[NSMutableArray alloc] init];
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    NSString *token = [userDefaults stringForKey:@"user_token"];
-    if (token) {
-        [self fetchMyTrips:token];
-    }
-    
-    if ([myTrips count] == 0) {
-// todo
-    }
 }
 
 - (void)fetchMyTrips:(NSString *) token {
@@ -162,18 +152,25 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
+    // todo: put this in viewWillAppear?
+
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    NSString *token = [userDefaults stringForKey:@"user_token"];
+    if (token) {
+        [self fetchMyTrips:token];
+    }
+    
+    if ([myTrips count] == 0) {
+        // todo:
+    }
+    
     MyTripViewController *mytripController = (MyTripViewController *)self.containerController;
     mytripController.segmentTitleView.hidden = NO;
     [self.navigationController setNavigationBarHidden:YES animated:animated];
+    [self.tableView reloadData];
+    
     [super viewWillAppear:animated];
 }
-
-//- (void)viewWillDisappear:(BOOL)animated {
-//    //    MyTripViewController *mytripController = (MyTripViewController *)self.containerController;
-//    //    mytripController.segmentTitleView.hidden = YES;
-//    [self.navigationController setNavigationBarHidden:NO animated:animated];
-//    [super viewWillDisappear:animated];
-//}
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     [self.navigationController setNavigationBarHidden:NO animated:NO];

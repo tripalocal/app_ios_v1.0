@@ -762,7 +762,7 @@
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oct-0g-FlX">
                                                 <rect key="frame" x="274" y="1000" width="53" height="30"/>
                                                 <state key="normal" title="Log out">
-                                                    <color key="titleColor" red="0.10926186409999999" green="1" blue="0.79704178729999997" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="titleColor" red="0.0" green="0.81568627449999997" blue="0.81568627449999997" alpha="1" colorSpace="calibratedRGB"/>
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
                                                 <connections>
@@ -782,6 +782,7 @@
                                             <constraint firstItem="Tre-a5-gwy" firstAttribute="top" secondItem="ahF-Fk-HqK" secondAttribute="bottom" constant="16" id="B1G-oe-SZo"/>
                                             <constraint firstItem="HIb-A3-vXE" firstAttribute="leading" secondItem="w6f-on-qPW" secondAttribute="leading" constant="25" id="GKy-qz-rZY"/>
                                             <constraint firstItem="ohD-dX-RiG" firstAttribute="leading" secondItem="w6f-on-qPW" secondAttribute="leadingMargin" constant="-8" id="Gbe-8a-Ubz"/>
+                                            <constraint firstItem="bbB-KO-mIb" firstAttribute="leading" secondItem="r5b-1l-hs4" secondAttribute="trailing" constant="385" id="JoJ-rb-2fR"/>
                                             <constraint firstAttribute="trailing" secondItem="bbB-KO-mIb" secondAttribute="trailing" constant="25" id="L8h-YO-SFN"/>
                                             <constraint firstItem="Tre-a5-gwy" firstAttribute="leading" secondItem="832-oQ-Hha" secondAttribute="leading" id="Mkw-0s-eQD"/>
                                             <constraint firstAttribute="bottom" secondItem="oct-0g-FlX" secondAttribute="bottom" constant="70" id="Mxu-v0-3Y5"/>
@@ -870,7 +871,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WVl-lH-V4f" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1751" y="2536"/>
+            <point key="canvasLocation" x="-2211" y="2320"/>
         </scene>
         <!--Item-->
         <scene sceneID="E0L-Im-XHT">
@@ -1721,7 +1722,7 @@ it’s mot convenient.</string>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qpm-JT-zMU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="7464" y="1914"/>
+            <point key="canvasLocation" x="6296" y="1378"/>
         </scene>
         <!--Payment Success-->
         <scene sceneID="BRg-gE-OmS">
@@ -1818,14 +1819,38 @@ it’s mot convenient.</string>
                                     <action selector="login:" destination="Gep-Sa-s2z" eventType="touchUpInside" id="RXG-0k-xaM"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Don't have an account?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gYc-pg-Spy">
-                                <rect key="frame" x="160" y="345" width="173" height="20"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Don't have an account?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gYc-pg-Spy">
+                                <rect key="frame" x="160" y="345" width="164" height="18"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TRH-7o-eaW">
-                                <rect key="frame" x="348" y="339" width="56" height="32"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="right" misplaced="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5fo-kU-Kno">
+                                <rect key="frame" x="330" y="244" width="110" height="31"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="110" id="2ZL-ov-X0X"/>
+                                    <constraint firstAttribute="height" constant="31" id="ADK-q7-4Ab"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="ckb-Rr-hti"/>
+                                </constraints>
+                                <attributedString key="attributedText">
+                                    <fragment content="Forgot password?">
+                                        <attributes>
+                                            <font key="NSFont" size="12" name="HelveticaNeue"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="2ZL-ov-X0X"/>
+                                        <exclude reference="ckb-Rr-hti"/>
+                                    </mask>
+                                </variation>
+                            </textView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TRH-7o-eaW">
+                                <rect key="frame" x="339" y="339" width="53" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <state key="normal" title="Sign up">
                                     <color key="titleColor" red="0.0" green="0.81568627449999997" blue="0.81568627449999997" alpha="1" colorSpace="calibratedRGB"/>
@@ -1842,27 +1867,37 @@ it’s mot convenient.</string>
                             <constraint firstAttribute="trailingMargin" secondItem="384-uT-iq4" secondAttribute="trailing" id="BbW-Ox-mdO"/>
                             <constraint firstItem="TRH-7o-eaW" firstAttribute="leading" secondItem="gYc-pg-Spy" secondAttribute="trailing" constant="15" id="DUx-AB-WxV"/>
                             <constraint firstAttribute="centerX" secondItem="Dil-Ca-PYR" secondAttribute="centerX" id="DW0-2I-lQH"/>
+                            <constraint firstItem="5fo-kU-Kno" firstAttribute="top" secondItem="THH-3M-C7P" secondAttribute="bottom" constant="4" id="ElQ-09-pOV"/>
                             <constraint firstItem="RZk-n3-EJK" firstAttribute="top" secondItem="l5f-QG-KhJ" secondAttribute="bottom" constant="30" id="KIa-si-D7Q"/>
                             <constraint firstAttribute="centerX" secondItem="RZk-n3-EJK" secondAttribute="centerX" id="StS-7V-wGr"/>
                             <constraint firstItem="THH-3M-C7P" firstAttribute="top" secondItem="bvK-Y0-Ggi" secondAttribute="bottom" constant="15" id="VjG-eG-C5b"/>
                             <constraint firstItem="bvK-Y0-Ggi" firstAttribute="top" secondItem="RZk-n3-EJK" secondAttribute="bottom" constant="30" id="ZZq-fB-Yat"/>
                             <constraint firstItem="Dil-Ca-PYR" firstAttribute="leading" secondItem="gYc-pg-Spy" secondAttribute="leading" id="aFR-wo-riP"/>
                             <constraint firstAttribute="centerX" secondItem="bvK-Y0-Ggi" secondAttribute="centerX" id="cmT-YT-pIT"/>
+                            <constraint firstItem="Dil-Ca-PYR" firstAttribute="top" secondItem="5fo-kU-Kno" secondAttribute="bottom" constant="5" id="hJf-75-Xzc"/>
                             <constraint firstAttribute="centerX" secondItem="THH-3M-C7P" secondAttribute="centerX" id="jZ5-td-eDc"/>
                             <constraint firstItem="Dil-Ca-PYR" firstAttribute="top" secondItem="THH-3M-C7P" secondAttribute="bottom" constant="40" id="jl5-lZ-KwU"/>
+                            <constraint firstItem="5fo-kU-Kno" firstAttribute="top" secondItem="THH-3M-C7P" secondAttribute="bottom" constant="8" symbolic="YES" id="kaX-zB-LfB"/>
                             <constraint firstItem="384-uT-iq4" firstAttribute="top" secondItem="l5f-QG-KhJ" secondAttribute="bottom" id="ncw-AP-Yrf"/>
                             <constraint firstItem="gYc-pg-Spy" firstAttribute="top" secondItem="Dil-Ca-PYR" secondAttribute="bottom" constant="25" id="nvT-sb-VhV"/>
+                            <constraint firstItem="THH-3M-C7P" firstAttribute="trailing" secondItem="5fo-kU-Kno" secondAttribute="trailing" id="uT4-Uq-Cce"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="kaX-zB-LfB"/>
+                            </mask>
+                        </variation>
                     </view>
                     <connections>
                         <outlet property="emailField" destination="bvK-Y0-Ggi" id="j9x-h3-0fz"/>
+                        <outlet property="forgotPasswordText" destination="5fo-kU-Kno" id="NCh-No-zPh"/>
                         <outlet property="loginButton" destination="Dil-Ca-PYR" id="ukV-Il-l6h"/>
                         <outlet property="passwordField" destination="THH-3M-C7P" id="z7S-bg-pDt"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0yY-Ri-ooe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-702" y="3492"/>
+            <point key="canvasLocation" x="150" y="3553"/>
         </scene>
         <!--Sign Up View Controller-->
         <scene sceneID="UB0-6I-hOI">
@@ -1974,14 +2009,21 @@ it’s mot convenient.</string>
                                     <action selector="dismissSignup:" destination="4oY-XU-sGU" eventType="touchUpInside" id="E4N-dG-npr"/>
                                 </connections>
                             </button>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" text="By signing up, I agree to Tripalocal’s Terms of Service, Privacy Policy, and Refund Policy." translatesAutoresizingMaskIntoConstraints="NO" id="eWt-eg-aBX">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eWt-eg-aBX">
                                 <rect key="frame" x="160" y="358" width="280" height="45"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="TZv-Vq-Ntx"/>
                                     <constraint firstAttribute="width" constant="280" id="s0n-8B-xRU"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                <attributedString key="attributedText">
+                                    <fragment content="By signing up, I agree to Tripalocal’s Terms of Service, Privacy Policy, and Refund Policy.">
+                                        <attributes>
+                                            <font key="NSFont" size="12" name="HelveticaNeue"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                         </subviews>
@@ -2023,11 +2065,12 @@ it’s mot convenient.</string>
                         <outlet property="lastnameField" destination="XMe-5V-ghg" id="Ods-R8-QUn"/>
                         <outlet property="passwordField" destination="7UK-5Z-rPU" id="84g-Yz-tID"/>
                         <outlet property="signupButton" destination="AKu-ka-eSr" id="5E1-Pl-cSf"/>
+                        <outlet property="termsTextView" destination="eWt-eg-aBX" id="eCU-ew-lpy"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3WZ-gb-Vi4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="69" y="3521"/>
+            <point key="canvasLocation" x="1065" y="3553"/>
         </scene>
         <!--Payment View Controller-->
         <scene sceneID="ryw-le-I1d">
@@ -2332,8 +2375,8 @@ it’s mot convenient.</string>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="XmP-HG-a0S" id="Xv6-0r-mdM">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oqy-nf-4IH">
-                                                    <rect key="frame" x="106" y="4" width="315" height="42"/>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oqy-nf-4IH">
+                                                    <rect key="frame" x="150" y="5" width="300" height="40"/>
                                                     <color key="backgroundColor" red="0.10926186413622774" green="1" blue="0.79704178732544317" alpha="1" colorSpace="calibratedRGB"/>
                                                     <accessibility key="accessibilityConfiguration">
                                                         <bool key="isElement" value="NO"/>
@@ -2378,7 +2421,7 @@ it’s mot convenient.</string>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rFs-z5-udK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="8189" y="1774"/>
+            <point key="canvasLocation" x="7345" y="2370"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="tY3-GF-ugz">
@@ -2610,7 +2653,7 @@ it’s mot convenient.</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ocD-zP-ayy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1764" y="4105"/>
+            <point key="canvasLocation" x="2012" y="4457"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="PQH-us-ok9">
@@ -2676,7 +2719,7 @@ it’s mot convenient.</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f5f-ly-hll" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5506" y="3754"/>
+            <point key="canvasLocation" x="6150" y="3458"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="hEd-zI-itc">

@@ -81,7 +81,7 @@
 }
 
 
-- (void) getProfileInfo {
+- (void) setUserProfile {
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     NSString *lastName = [userDefaults stringForKey:@"user_last_name"];
     NSString *firstName = [userDefaults stringForKey:@"user_first_name"];
@@ -91,7 +91,12 @@
     self.bioField.text = [userDefaults stringForKey:@"user_bio"];
     self.emailField.text = [userDefaults stringForKey:@"user_email"];
     UIImage* image = [UIImage imageWithData:[userDefaults objectForKey:@"user_image"]];
-    self.image.image = image;
+    if (image) {
+        self.image.image = image;
+    } else {
+        self.image.image = [UIImage imageNamed: @"default_profile_image.png"];
+    }
+
 }
 
 -(void) viewDidLoad {
@@ -100,7 +105,7 @@
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     NSString *token = [userDefaults stringForKey:@"user_token"];
     if (token) {
-        [self getProfileInfo];
+        [self setUserProfile];
     }
 }
 
