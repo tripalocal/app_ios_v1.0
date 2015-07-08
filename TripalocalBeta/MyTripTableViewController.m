@@ -18,11 +18,19 @@
 
 @implementation MyTripTableViewController {
     NSMutableArray *myTrips;
+    NSDateFormatter *dateFormatter;
+    NSDateFormatter *timeFormatter;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     myTrips = [[NSMutableArray alloc] init];
+    dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"dd-LL-yyyy"];
+    [dateFormatter setTimeZone:[NSTimeZone systemTimeZone]];
+    timeFormatter = [[NSDateFormatter alloc] init];
+    [timeFormatter setDateFormat:@"HH:mm"];
+    [timeFormatter setTimeZone:[NSTimeZone systemTimeZone]];
 }
 
 - (void)fetchMyTrips:(NSString *) token {
@@ -89,25 +97,28 @@
     cell.parentView = self.tableView;
     NSDictionary *trip = [myTrips objectAtIndex:indexPath.row];
     NSString *imageURL = [trip objectForKey:@"host_image"];
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        NSData *hostImageData = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString: [testServerImageURL stringByAppendingString: imageURL]]];
+        dispatch_sync(dispatch_get_main_queue(), ^{
+            cell.hostImage.image = [[UIImage alloc] initWithData:hostImageData];
+        });
+    });
+    
+    NSString *absoluteImageURL = [NSString stringWithFormat:@"%@thumbnails/experiences/experience%@_1.jpg", testServerImageURL, [trip objectForKey:@"experience_id"]];
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        NSData *backgroundImageData = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:absoluteImageURL]];
+        dispatch_sync(dispatch_get_main_queue(), ^{
+            cell.backgroudImage.image = [[UIImage alloc] initWithData:backgroundImageData];
+        });
+    });
+    
     NSString *datetimeString = [trip objectForKey:@"datetime"];
     // Convert string to date object
     NSDate *date = [self parseDateTimeString:datetimeString];
     
     // convert back
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"dd-LL-yyyy"];
-    [dateFormatter setTimeZone:[NSTimeZone systemTimeZone]];
-    NSDateFormatter *timeFormatter = [[NSDateFormatter alloc] init];
-    [timeFormatter setDateFormat:@"HH:mm"];
-    [timeFormatter setTimeZone:[NSTimeZone systemTimeZone]];
-    
-    UIImage *hostImage = [self fetchImage:imageURL];
-    cell.hostImage.image = hostImage;
-    
-    NSString *absoluteImageURL = [NSString stringWithFormat:@"%@thumbnails/experiences/experience%@_1.jpg", testServerImageURL, [trip objectForKey:@"experience_id"]];
-    NSData *experienceImageData = [[NSData alloc]initWithContentsOfURL:[NSURL URLWithString:absoluteImageURL]];
-    cell.backgroudImage.image = [[UIImage alloc]initWithData:experienceImageData];
-    
     NSDate *today = [NSDate date];
     NSDate *dateOnly = [self dateWithNoTime: date];
     if ([dateOnly compare:[self dateWithNoTime:today]] == NSOrderedSame) {
@@ -115,6 +126,7 @@
         [cell.dateLabel setTextColor:[UIColor redColor]];
     } else {
         cell.dateLabel.text = [dateFormatter stringFromDate:date];
+        [cell.dateLabel setTextColor:[UIColor blackColor]];
     }
     
     cell.timeLabel.text = [timeFormatter stringFromDate:date];
@@ -152,8 +164,6 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    // todo: put this in viewWillAppear?
-
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     NSString *token = [userDefaults stringForKey:@"user_token"];
     if (token) {
@@ -184,12 +194,6 @@
     NSDictionary *trip = [myTrips objectAtIndex:index.row];
     
     controller.experience_id_string = [trip objectForKey:@"experience_id"];
-    
-    //        NSString *hostImageCachingIdentifier = [NSString stringWithFormat:@"Cell%ldOfHostImage",(long)index.row];
-    //        NSString *expImageCachingIdentifier = [NSString stringWithFormat:@"Cell%ldOfExpImage",(long)index.row];
-    //        vc.hostImage = [self.cachedImages valueForKey:hostImageCachingIdentifier];
-    //        vc.coverImage = [self.cachedImages valueForKey:expImageCachingIdentifier];
-    
 }
 
 - (UIImage *) fetchImage:(NSString *) imageURL {

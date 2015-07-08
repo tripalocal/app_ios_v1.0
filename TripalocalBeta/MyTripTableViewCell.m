@@ -15,7 +15,6 @@
 @implementation MyTripTableViewCell
 
 - (void)awakeFromNib {
-    // Initialization code
     self.callButton.layer.cornerRadius = 2;
     self.callButton.layer.masksToBounds = YES;
     self.callButton.layer.borderWidth = 1.0f;
@@ -33,8 +32,6 @@
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
 }
 
 
