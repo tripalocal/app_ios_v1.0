@@ -17,8 +17,7 @@
     NSString *token = [userDefaults stringForKey:@"user_token"];
     
     if (token) {
-        
-        UIViewController *profileViewController = (UIViewController *)[self.storyboard instantiateViewControllerWithIdentifier:@"loggedin_controller"];
+        UIViewController *profileViewController = (UIViewController *)[self.storyboard instantiateViewControllerWithIdentifier:@"menu_controller"];
         
         NSMutableArray *listOfViewControllers = [NSMutableArray arrayWithArray:self.tabBarController.viewControllers];
         [listOfViewControllers removeLastObject];
@@ -32,6 +31,8 @@
         profileViewController.tabBarItem = myprofileBarItem;
         
         [self.tabBarController setViewControllers:listOfViewControllers];
+    } else {
+    [self.navigationController setNavigationBarHidden:YES animated:animated];
     }
 }
 

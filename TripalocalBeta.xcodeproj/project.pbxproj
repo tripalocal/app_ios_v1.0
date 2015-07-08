@@ -23,6 +23,7 @@
 		8729E1361B4A1D7F004C3065 /* UpcommingTripsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8729E1351B4A1D7F004C3065 /* UpcommingTripsViewController.m */; };
 		8729E1391B4A1D9B004C3065 /* PreviousTripsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8729E1381B4A1D9B004C3065 /* PreviousTripsViewController.m */; };
 		8729E13C1B4A6335004C3065 /* MyTripTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8729E13B1B4A6335004C3065 /* MyTripTableViewCell.m */; };
+		874265871B4D272F00D76C72 /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 874265861B4D272F00D76C72 /* MenuViewController.m */; };
 		8788B9D11B48EE570002B4D1 /* visa.png in Resources */ = {isa = PBXBuildFile; fileRef = 8788B9CF1B48EE570002B4D1 /* visa.png */; };
 		8788B9D21B48EE570002B4D1 /* alipay.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8788B9D01B48EE570002B4D1 /* alipay.jpg */; };
 		87A3C09D1B461129009A3B07 /* RequestController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87A3C09C1B461129009A3B07 /* RequestController.m */; };
@@ -49,6 +50,7 @@
 		87FC2DB81B480ABF0017F30E /* openssl_wrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 87FC2D621B480ABE0017F30E /* openssl_wrapper.m */; };
 		87FC2DB91B480ABF0017F30E /* RSADataSigner.m in Sources */ = {isa = PBXBuildFile; fileRef = 87FC2D641B480ABE0017F30E /* RSADataSigner.m */; };
 		87FC2DBA1B480ABF0017F30E /* RSADataVerifier.m in Sources */ = {isa = PBXBuildFile; fileRef = 87FC2D661B480ABE0017F30E /* RSADataVerifier.m */; };
+		87FFF3D31B4D380100326104 /* EditProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87FFF3D21B4D380100326104 /* EditProfileViewController.m */; };
 		8E26A6631B0397EF00A5A5CF /* TLHomeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E26A6621B0397EF00A5A5CF /* TLHomeTableViewCell.m */; };
 		8E26A66C1B080BE300A5A5CF /* TLSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E26A66B1B080BE300A5A5CF /* TLSearchViewController.m */; };
 		8E26A66F1B080BFF00A5A5CF /* TLSearchTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E26A66E1B080BFF00A5A5CF /* TLSearchTableViewCell.m */; };
@@ -148,6 +150,8 @@
 		8729E1381B4A1D9B004C3065 /* PreviousTripsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreviousTripsViewController.m; sourceTree = "<group>"; };
 		8729E13A1B4A6335004C3065 /* MyTripTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyTripTableViewCell.h; sourceTree = "<group>"; };
 		8729E13B1B4A6335004C3065 /* MyTripTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyTripTableViewCell.m; sourceTree = "<group>"; };
+		874265851B4D272F00D76C72 /* MenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuViewController.h; sourceTree = "<group>"; };
+		874265861B4D272F00D76C72 /* MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuViewController.m; sourceTree = "<group>"; };
 		8788B9CF1B48EE570002B4D1 /* visa.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = visa.png; path = Images/visa.png; sourceTree = "<group>"; };
 		8788B9D01B48EE570002B4D1 /* alipay.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = alipay.jpg; path = Images/alipay.jpg; sourceTree = "<group>"; };
 		87A3C09B1B461129009A3B07 /* RequestController.h */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.h; path = RequestController.h; sourceTree = "<group>"; tabWidth = 4; usesTabs = 0; wrapsLines = 1; };
@@ -270,6 +274,8 @@
 		87FC2DB01B480ABF0017F30E /* x509.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = x509.h; sourceTree = "<group>"; };
 		87FC2DB11B480ABF0017F30E /* x509_vfy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = x509_vfy.h; sourceTree = "<group>"; };
 		87FC2DB21B480ABF0017F30E /* x509v3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = x509v3.h; sourceTree = "<group>"; };
+		87FFF3D11B4D380100326104 /* EditProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditProfileViewController.h; sourceTree = "<group>"; };
+		87FFF3D21B4D380100326104 /* EditProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditProfileViewController.m; sourceTree = "<group>"; };
 		8E26A6611B0397EF00A5A5CF /* TLHomeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TLHomeTableViewCell.h; path = Controller/TLHomeTableViewCell.h; sourceTree = "<group>"; };
 		8E26A6621B0397EF00A5A5CF /* TLHomeTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TLHomeTableViewCell.m; path = Controller/TLHomeTableViewCell.m; sourceTree = "<group>"; };
 		8E26A66A1B080BE300A5A5CF /* TLSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TLSearchViewController.h; path = Controller/TLSearchViewController.h; sourceTree = "<group>"; };
@@ -585,6 +591,10 @@
 		8EC86D511B021DDC00B0A655 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				87FFF3D11B4D380100326104 /* EditProfileViewController.h */,
+				87FFF3D21B4D380100326104 /* EditProfileViewController.m */,
+				874265851B4D272F00D76C72 /* MenuViewController.h */,
+				874265861B4D272F00D76C72 /* MenuViewController.m */,
 				87F6F7641B4B948100A3A6EB /* MyTripTableViewController.h */,
 				87F6F7651B4B948100A3A6EB /* MyTripTableViewController.m */,
 				8729E1341B4A1D7F004C3065 /* UpcommingTripsViewController.h */,
@@ -837,6 +847,7 @@
 				8729E1361B4A1D7F004C3065 /* UpcommingTripsViewController.m in Sources */,
 				87FC2D201B476A3B0017F30E /* CheckoutViewController.m in Sources */,
 				87F356521B43AAD300949F43 /* ProfileViewController.m in Sources */,
+				874265871B4D272F00D76C72 /* MenuViewController.m in Sources */,
 				5649BD461B3FD5CA00465D6C /* TLDetailTableViewCell5.m in Sources */,
 				5649BD431B3FD5A400465D6C /* TLDetailTableViewCell4.m in Sources */,
 				5649BD3A1B3FC42600465D6C /* TLDetailTableViewCell1.m in Sources */,
@@ -844,6 +855,7 @@
 				87FC2DB41B480ABF0017F30E /* DataSigner.m in Sources */,
 				87FC2DB31B480ABF0017F30E /* base64.m in Sources */,
 				87F356431B439D3B00949F43 /* SignUpViewController.m in Sources */,
+				87FFF3D31B4D380100326104 /* EditProfileViewController.m in Sources */,
 				5649BD371B3FC40F00465D6C /* TLDetailTableViewCell0.m in Sources */,
 				8E92CF7A1B3E2B3700D4BB4B /* TLDetailViewController.m in Sources */,
 				87FC2DB71B480ABF0017F30E /* NSDataEx.m in Sources */,
