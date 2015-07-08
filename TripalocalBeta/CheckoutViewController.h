@@ -18,4 +18,10 @@
 @property (weak, nonatomic) IBOutlet UIImageView *coverImage;
 @property NSString *exp_ID_string;
 @property UIImage *expImage;
+@property NSMutableArray *dynamicPriceArray;
+@property NSMutableArray *availbleDateArray;
+@property NSString *expTitle;
+@property NSString *durationString;
+@property NSString *languageString;
+
 @end

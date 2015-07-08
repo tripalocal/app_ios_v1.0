@@ -42,6 +42,12 @@
     JGProgressHUD *HUD;
     int connectionFinished;
     NSData *reviewerImageData;
+    NSMutableArray *dynamicPriceArray;
+    NSNumber *maxNumber;
+    NSString *foodString;
+    NSString *ticketString;
+    NSString *transportString;
+    NSMutableArray *availableDateArray;
 }
 
 @property (strong, nonatomic) NSMutableDictionary *cachedImages;
@@ -289,6 +295,13 @@
         PREreviewerImageURL =[reviewDictionary0 objectForKey:@"reviewer_image"];
         reviewerImageURL = [imageBaseURL stringByAppendingString: PREreviewerImageURL];
         reviewComment = [reviewDictionary0 objectForKey:@"review_comment"];
+        
+        ticketString = [allDataDictionary objectForKey:@"included_ticket_detail"];
+        foodString = [allDataDictionary objectForKey:@"included_food_detail"];
+        transportString = [allDataDictionary objectForKey:@"included_transport_detail"];
+        availableDateArray = [allDataDictionary objectForKey:@"available_options"];
+        dynamicPriceArray = [allDataDictionary objectForKey:@"experience_dynamic_price"];
+        //Transport
         connectionFinished=1;
     }
     @catch (NSException * e) {
@@ -305,7 +318,12 @@
         CheckoutViewController *vc=[segue destinationViewController];
         vc.exp_ID_string = _experience_id_string;
         vc.expImage = _coverImage;
-        //title, duration, language, date
+        vc.availbleDateArray = availableDateArray;
+        vc.expTitle = expTitle;
+        vc.dynamicPriceArray = dynamicPriceArray;
+        vc.languageString = expLanguage;
+        vc.durationString = expDuration;
+
     }
     
 }
