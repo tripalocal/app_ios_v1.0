@@ -20,15 +20,17 @@
     [super viewDidLoad];
     
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    NSString *token = [userDefaults stringForKey:@"user_token"];
     UIImage* image = [UIImage imageWithData:[userDefaults objectForKey:@"user_image"]];
-    if (token) {
-        if (image) {
-            self.image.image = image;
-        } else {
-            self.image.image = [UIImage imageNamed: @"default_profile_image.png"];
-        }
+    if (image) {
+        self.image.image = image;
+    } else {
+        self.image.image = [UIImage imageNamed: @"default_profile_image.png"];
     }
+    
+    self.image.layer.cornerRadius = self.image.frame.size.height / 2;
+    self.image.layer.masksToBounds = YES;
+    self.image.layer.borderWidth = 0;
+
 }
 
 - (IBAction)logout:(id)sender {
@@ -92,7 +94,6 @@
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -105,15 +106,5 @@
     [super viewWillDisappear:animated];
 }
 
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

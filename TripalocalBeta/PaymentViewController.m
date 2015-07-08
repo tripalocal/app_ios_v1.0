@@ -9,8 +9,6 @@
 #import "PaymentViewController.h"
 
 @interface PaymentViewController ()
-@property (strong, nonatomic) IBOutlet UILabel *unitPriceField;
-@property (strong, nonatomic) IBOutlet UILabel *totalPriceField;
 @property (strong, nonatomic) IBOutlet UITextField *cardNumberField;
 @property (strong, nonatomic) IBOutlet UITextField *ccvField;
 @property (strong, nonatomic) IBOutlet UITextField *monthField;
@@ -26,8 +24,10 @@
 - (IBAction)inputFiledChanged:(id)sender {
     if (self.cardNumberField.text && self.monthField.text && self.yearField && self.ccvField && self.cardNumberField.text.length > 0 && self.monthField.text.length > 0 && self.yearField.text.length > 0 && self.ccvField.text.length > 0) {
         [self.confirmButton setEnabled:YES];
+        self.confirmButton.alpha = 1;
     } else {
         [self.confirmButton setEnabled:NO];
+        self.confirmButton.alpha = 0.5;
     }
 }
 
@@ -124,6 +124,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.confirmButton setEnabled:NO];
+    self.confirmButton.alpha = 0.5;
     self.cardNumberField.delegate = self;
     self.monthField.delegate = self;
     self.yearField.delegate = self;
@@ -133,12 +134,12 @@
                                    initWithTarget:self
                                    action:@selector(dismissKeyboard)];
     
-    [self.tableView addGestureRecognizer:tap];
-    self.tableView.alwaysBounceVertical = NO;
-    
+    [self.view addGestureRecognizer:tap];
+
     self.unitPriceLabel.text = [self.unitPrice stringValue];
-    self.totalPriceField.text = [self.totalPrice stringValue];
     self.guestNumberLabel.text = [NSString stringWithFormat:@"%lu", self.guestNumber];
+    self.totalPriceLabel.text = [self.totalPrice stringValue];
+
 }
 
 -(void)dismissKeyboard {
@@ -182,14 +183,5 @@
     return newLength <= maxLength;
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

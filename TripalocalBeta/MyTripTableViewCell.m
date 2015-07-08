@@ -20,6 +20,15 @@
     self.callButton.layer.masksToBounds = YES;
     self.callButton.layer.borderWidth = 1.0f;
     self.callButton.layer.borderColor = [UIColor grayColor].CGColor;
+    
+    if (!self.hostImage) {
+        self.hostImage.image = [UIImage imageNamed: @"default_profile_image.png"];
+    }
+    
+    self.hostImage.layer.cornerRadius = self.hostImage.frame.size.height / 2;
+    self.hostImage.layer.masksToBounds = YES;
+    self.hostImage.layer.borderWidth = 0;
+
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

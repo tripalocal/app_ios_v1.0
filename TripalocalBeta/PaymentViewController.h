@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "Constant.h"
 
-@interface PaymentViewController : UITableViewController <UITextFieldDelegate>
+@interface PaymentViewController : UIViewController <UITextFieldDelegate>
 @property (nonatomic) NSInteger guestNumber;
 @property (nonatomic) NSNumber *unitPrice;
 @property (nonatomic) NSNumber *totalPrice;
