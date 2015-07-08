@@ -66,11 +66,6 @@
                                                                  error:nil];
         
         if ([httpResponse statusCode] == 200) {
-            //                                            Successflly signed up
-            //                                            {
-            //                                                "token": "cc99d502c5cf2b03342d0a60f81a20e49a24f77f",
-            //                                                "user_id": 455
-            //                                            }
             NSString *token = [result objectForKey:@"token"];
             [self fetchProfileAndCache: token];
             
@@ -126,6 +121,7 @@
     [super viewDidLoad];
     
     self.signupButton.alpha = 0.5;
+    [self.signupButton setEnabled:NO];
     self.emailField.delegate = self;
     self.passwordField.delegate = self;
     self.firstnameField.delegate = self;
@@ -135,14 +131,12 @@
                                    initWithTarget:self
                                    action:@selector(dismissKeyboard)];
     
-    [self.tableView addGestureRecognizer:tap];
+    [self.view addGestureRecognizer:tap];
     
     self.emailField.borderStyle = UITextBorderStyleRoundedRect;
     self.passwordField.borderStyle = UITextBorderStyleRoundedRect;
     self.firstnameField.borderStyle = UITextBorderStyleRoundedRect;
     self.lastnameField.borderStyle = UITextBorderStyleRoundedRect;
-    
-    self.tableView.alwaysBounceVertical = NO;
     self.passwordField.secureTextEntry = YES;
 }
 

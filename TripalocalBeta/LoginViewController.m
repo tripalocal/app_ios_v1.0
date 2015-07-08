@@ -115,12 +115,10 @@
                                    initWithTarget:self
                                    action:@selector(dismissKeyboard)];
     
-    [self.tableView addGestureRecognizer:tap];
+    [self.view addGestureRecognizer:tap];
     
     self.emailField.borderStyle = UITextBorderStyleRoundedRect;
     self.passwordField.borderStyle = UITextBorderStyleRoundedRect;
-    
-    self.tableView.alwaysBounceVertical = NO;
     self.passwordField.secureTextEntry = YES;
 }
 
