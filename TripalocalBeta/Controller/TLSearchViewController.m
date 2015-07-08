@@ -184,7 +184,7 @@
     
     
     //Placeholders
-    cell.hostImage.image = nil;
+    cell.hostImage.image = [UIImage imageNamed:@"default_profile_image.png"];
     cell.experienceImage.image = nil;
     cell.languageLabel.text=@"Loading...";
     cell.durationLabel.text=@"Loading...";

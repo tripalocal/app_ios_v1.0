@@ -15,6 +15,7 @@
 #import "TLDetailTableViewCell5.h"
 #import "JGProgressHUD.h"
 #import "Constant.h"
+#import "CheckoutViewController.h"
 
 @interface TLDetailViewController ()
 {
@@ -35,6 +36,7 @@
     NSString *expRate;
     NSString *reviewFirst;
     NSString *reviewLast;
+    NSString *PREreviewerImageURL;
     NSString *reviewerImageURL;
     NSString *reviewComment;
     JGProgressHUD *HUD;
@@ -175,10 +177,13 @@
             cell3.reviewerLastName.text = reviewLast;
             cell3.commentLabel.text = reviewComment;
 
-            
+            cell3.reviewerImage.image = [UIImage imageNamed:@"default_profile_image.png"];
             
             if([self.cachedImages objectForKey:imageCachingIdentifier]!=nil){
                 cell3.reviewerImage.image = [self.cachedImages valueForKey:imageCachingIdentifier];
+            }
+            else if(PREreviewerImageURL.length <= 0){
+                cell3.reviewerImage.image = [UIImage imageNamed:@"default_profile_image.png"];
             }
             else{
                 
@@ -260,7 +265,11 @@
         hostImageURL=[allDataDictionary objectForKey:@"host_image"];
         expLanguage=[allDataDictionary objectForKey:@"experience_language"];
         NSNumber *expPriceNumber = [allDataDictionary objectForKey:@"experience_price"];
-        expPrice = [expPriceNumber stringValue];
+        NSNumberFormatter *formatter = [[NSNumberFormatter alloc]init];
+        [formatter setNumberStyle:NSNumberFormatterDecimalStyle];
+        [formatter setMaximumFractionDigits:2];
+        [formatter setRoundingMode: NSNumberFormatterRoundUp];
+        expPrice = [formatter stringFromNumber:expPriceNumber];
         NSNumber *expDurationNumber = [allDataDictionary objectForKey:@"experience_duration"];
         expDuration = [expDurationNumber stringValue];
         expTitle = [allDataDictionary objectForKey:@"experience_title"];
@@ -277,7 +286,8 @@
         NSDictionary *reviewDictionary0 = [expReviewsArray objectAtIndex:0];
         reviewFirst = [reviewDictionary0 objectForKey:@"reviewer_firstname"];
         reviewLast = [reviewDictionary0 objectForKey:@"reviewer_lastname"];
-        reviewerImageURL = [imageBaseURL stringByAppendingString:[reviewDictionary0 objectForKey:@"reviewer_image"]];
+        PREreviewerImageURL =[reviewDictionary0 objectForKey:@"reviewer_image"];
+        reviewerImageURL = [imageBaseURL stringByAppendingString: PREreviewerImageURL];
         reviewComment = [reviewDictionary0 objectForKey:@"review_comment"];
         connectionFinished=1;
     }
@@ -288,6 +298,17 @@
     
     
     NSLog(@"%@,%@,%@,%@",expTitle,expPrice,reviewerImageURL,reviewComment);
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    if ([segue.identifier isEqualToString:@"checkoutSegue"]) {
+        UINavigationController *nvc = (UINavigationController *)[segue destinationViewController];
+        CheckoutViewController *controller = (CheckoutViewController *)nvc.topViewController;
+        controller.exp_ID_string = _experience_id_string;
+        controller.expImage = _coverImage;
+        //title, duration, language, date
+    }
+    
 }
 
 @end

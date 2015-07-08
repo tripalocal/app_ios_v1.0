@@ -14,4 +14,7 @@
 @property (nonatomic) NSNumber *unitPrice;
 @property (nonatomic) NSNumber *totalPrice;
 @property (nonatomic) NSInteger hours;
+
+@property NSString *exp_ID_string;
+@property UIImage *expImage;
 @end
