@@ -61,6 +61,7 @@
                                    action:@selector(dismissKeyboard)];
     
     [self.view addGestureRecognizer:tap];
+    _coverImage.image = _expImage;
 }
 
 - (void)didReceiveMemoryWarning {

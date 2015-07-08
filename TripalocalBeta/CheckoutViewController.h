@@ -15,6 +15,7 @@
 @property (nonatomic) NSNumber *totalPrice;
 @property (nonatomic) NSInteger hours;
 
+@property (weak, nonatomic) IBOutlet UIImageView *coverImage;
 @property NSString *exp_ID_string;
 @property UIImage *expImage;
 @end
