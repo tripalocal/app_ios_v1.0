@@ -14,6 +14,7 @@
     NSMutableArray *timePickerData;
     NSMutableDictionary *wholePickerData;
     NSMutableArray *dynamicTimeArray;
+    NSMutableArray *timeArray;
 }
 
 @property (strong, nonatomic) IBOutlet UILabel *dateLabel;
@@ -58,6 +59,7 @@
     datePickerData = [[NSMutableArray alloc]init];
     timePickerData = [[NSMutableArray alloc]init];
     wholePickerData = [[NSMutableDictionary alloc]init];
+    timeArray = [[NSMutableArray alloc]init];
     
     int i = [_minGuestNum intValue];
     int max = [_maxGuestNum intValue];
@@ -69,7 +71,7 @@
     //Resolve
     int storedFlag = 0;
     int lastIndex = 0;
-    
+    [timeArray addObject:timePickerData];
     for (int i = 0; i<_availbleDateArray.count; i++) {
         NSMutableDictionary *currentDic = [_availbleDateArray objectAtIndex:i];
         NSString *currentDateString = [currentDic objectForKey:@"date_string"];
@@ -78,26 +80,26 @@
         if(storedFlag == 0)
         {
             [datePickerData addObject:currentDateString];
+            [timeArray[0] addObject:currentTimeString];
             storedFlag = 1;
-            [timePickerData addObject:currentTimeString];
         }
         else if(datePickerData.count>0){
             if (![currentDateString isEqualToString:datePickerData[lastIndex]]) {
                 [datePickerData addObject:currentDateString];
-                [wholePickerData setValue:timePickerData forKey:datePickerData[lastIndex]];
-                [timePickerData removeAllObjects];
-                [timePickerData addObject:currentTimeString];
+                [wholePickerData setValue:timeArray[lastIndex] forKey:datePickerData[lastIndex]];
                 lastIndex ++;
                 storedFlag = 1;
+                NSMutableArray *newTimePickerData = [[NSMutableArray alloc]init];
+                [timeArray addObject:newTimePickerData];
+                [timeArray[lastIndex] addObject:currentTimeString];
             }
             else{
-                [timePickerData addObject:currentTimeString];
+                [timeArray[lastIndex] addObject:currentTimeString];
             }
         }
-        NSArray *array = [wholePickerData objectForKey:@"12/07/2015"];
-        NSLog(@"WHOLE DATA:%lu",(unsigned long)array.count);
+        
     }
-    
+    [wholePickerData setValue:timeArray[lastIndex] forKey:datePickerData[lastIndex]];
     dynamicTimeArray = [wholePickerData objectForKey:[datePickerData objectAtIndex:0]];
 }
 
