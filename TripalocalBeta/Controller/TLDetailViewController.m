@@ -42,6 +42,13 @@
     JGProgressHUD *HUD;
     int connectionFinished;
     NSData *reviewerImageData;
+    NSMutableArray *dynamicPriceArray;
+    NSNumber *maxGuestNum;
+    NSNumber *minGuestNum;
+    NSString *foodString;
+    NSString *ticketString;
+    NSString *transportString;
+    NSMutableArray *availableDateArray;
 }
 
 @property (strong, nonatomic) NSMutableDictionary *cachedImages;
@@ -215,6 +222,10 @@
                 cell5=[[TLDetailTableViewCell5 alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier5];
             }
             
+            cell5.foodLabel.text = [cell5.foodLabel.text stringByAppendingFormat:@": \n%@", foodString];
+            cell5.ticketLabel.text = [cell5.ticketLabel.text stringByAppendingFormat:@": \n%@", ticketString];
+            cell5.transportLabel.text = [cell5.transportLabel.text stringByAppendingFormat:@": \n%@", transportString];
+
             return cell5;
         
         default:
@@ -224,6 +235,35 @@
     
     return cell;
 }
+
+//-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+//    switch (indexPath.row) {
+//        case 0:
+//            return 306;
+//            break;
+//        case 1:
+//            return 480;
+//            break;
+//        case 2:
+//            return 480;
+//            break;
+//        case 3:
+//            return 480;
+//            break;
+//        case 4:
+//            return 306;
+//            break;
+//        case 5:
+//            return 306;
+//            break;
+//        default:
+//            return 306;
+//            break;
+//    }
+//    return 306;
+//    
+//}
+
 
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -289,6 +329,17 @@
         PREreviewerImageURL =[reviewDictionary0 objectForKey:@"reviewer_image"];
         reviewerImageURL = [imageBaseURL stringByAppendingString: PREreviewerImageURL];
         reviewComment = [reviewDictionary0 objectForKey:@"review_comment"];
+        
+        ticketString = [allDataDictionary objectForKey:@"included_ticket_detail"];
+        foodString = [allDataDictionary objectForKey:@"included_food_detail"];
+        transportString = [allDataDictionary objectForKey:@"included_transport_detail"];
+        availableDateArray = [allDataDictionary objectForKey:@"available_options"];
+        NSLog(@"TEST:%lu DATE DATA",(unsigned long)availableDateArray.count);
+        dynamicPriceArray = [allDataDictionary objectForKey:@"experience_dynamic_price"];
+        
+        maxGuestNum = [allDataDictionary objectForKey:@"experience_guest_number_max"];
+        minGuestNum = [allDataDictionary objectForKey:@"experience_guest_number_min"];
+        //Transport
         connectionFinished=1;
     }
     @catch (NSException * e) {
@@ -302,11 +353,17 @@
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     if ([segue.identifier isEqualToString:@"checkoutSegue"]) {
-        UINavigationController *nvc = (UINavigationController *)[segue destinationViewController];
-        CheckoutViewController *controller = (CheckoutViewController *)nvc.topViewController;
-        controller.exp_ID_string = _experience_id_string;
-        controller.expImage = _coverImage;
-        //title, duration, language, date
+        CheckoutViewController *vc=[segue destinationViewController];
+        vc.exp_ID_string = _experience_id_string;
+        vc.expImage = _coverImage;
+        vc.availbleDateArray = availableDateArray;
+        vc.expTitleString = expTitle;
+        vc.fixPriceString = expPrice;
+        vc.dynamicPriceArray = dynamicPriceArray;
+        vc.languageString = expLanguage;
+        vc.durationString = expDuration;
+        vc.maxGuestNum = maxGuestNum;
+        vc.minGuestNum = minGuestNum;
     }
     
 }
