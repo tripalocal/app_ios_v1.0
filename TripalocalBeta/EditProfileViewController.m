@@ -7,6 +7,7 @@
 //
 
 #import "EditProfileViewController.h"
+#import "Constant.h"
 
 @interface EditProfileViewController ()
 @property (strong, nonatomic) IBOutlet UILabel *usernameField;
@@ -28,6 +29,48 @@
 
 - (void) saveProfile {
     [self.navigationController popViewControllerAnimated:YES];
+    NSURL *url = [NSURL URLWithString:myprofileServiceTestServerURL];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    [request setHTTPMethod:@"POST"];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    NSString *token = [userDefaults stringForKey:@"user_token"];
+    
+    [request addValue:[NSString stringWithFormat:@"Token %@", token] forHTTPHeaderField:@"Authorization"];
+    NSDictionary *tmp = [[NSDictionary alloc] initWithObjectsAndKeys:
+                         self.phoneNumber.text, @"phone_number",
+                         nil];
+    
+    NSData *postdata = [NSJSONSerialization dataWithJSONObject:tmp options:0 error:nil];
+    [request setHTTPBody:postdata];
+    NSError *connectionError = nil;
+    NSURLResponse *response = nil;
+    
+    [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&connectionError];
+    
+    if (connectionError == nil) {
+        NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *) response;
+        
+        if ([httpResponse statusCode] == 200) {
+            
+            [userDefaults setObject:self.phoneNumber.text forKey:@"user_phone_number"];
+            [[NSUserDefaults standardUserDefaults] synchronize];
+        } else {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Server Error"
+                                                            message:@"Save Profile Failed"
+                                                           delegate:nil
+                                                  cancelButtonTitle:@"OK"
+                                                  otherButtonTitles:nil];
+            [alert show];
+        }
+    } else {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No network connection"
+                                                        message:@"You must be connected to the internet."
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+        [alert show];
+    }
 }
 
 - (void)didReceiveMemoryWarning {

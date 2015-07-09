@@ -22,8 +22,7 @@
 
 -(void) viewDidLoad {
     [super viewDidLoad];
-    
-    [self setUserProfile];
+
     UIBarButtonItem *editProfileButton = [[UIBarButtonItem alloc] initWithTitle:@"Edit" style:UIBarButtonItemStylePlain target:self action:@selector(editPrifle)];
     self.navigationItem.rightBarButtonItem = editProfileButton;
 }
@@ -47,6 +46,13 @@
     } else {
         self.image.image = [UIImage imageNamed: @"default_profile_image.png"];
     }
+
 }
+
+- (void)viewWillAppear:(BOOL)animated {
+    [self setUserProfile];
+    [super viewWillAppear:animated];
+}
+
 
 @end

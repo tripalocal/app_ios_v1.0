@@ -521,7 +521,7 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <button opaque="NO" alpha="0.90000000000000002" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ob8-Wd-umG">
+                            <button opaque="NO" alpha="0.90000000000000002" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ob8-Wd-umG">
                                 <rect key="frame" x="0.0" y="1502" width="600" height="50"/>
                                 <color key="backgroundColor" red="0.0" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -817,6 +817,7 @@
                                                 <exclude reference="n4n-7K-A6Y"/>
                                                 <exclude reference="pHk-YZ-Eg9"/>
                                                 <exclude reference="UJ1-pM-Se2"/>
+                                                <exclude reference="JoJ-rb-2fR"/>
                                             </mask>
                                         </variation>
                                     </view>
@@ -1013,8 +1014,8 @@
                                 </constraints>
                                 <variation key="default">
                                     <mask key="constraints">
-                                        <exclude reference="cnn-7s-lrv"/>
                                         <exclude reference="EQ3-Uz-XlZ"/>
+                                        <exclude reference="cnn-7s-lrv"/>
                                     </mask>
                                 </variation>
                             </scrollView>
@@ -1815,7 +1816,7 @@ it’s mot convenient.</string>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ebx-cp-llZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1583" y="742"/>
+            <point key="canvasLocation" x="1119" y="662"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="u40-tt-rk7">
@@ -1991,9 +1992,9 @@ it’s mot convenient.</string>
                                 </constraints>
                                 <variation key="default">
                                     <mask key="constraints">
-                                        <exclude reference="UfY-MZ-wao"/>
-                                        <exclude reference="RNT-OS-agi"/>
                                         <exclude reference="CIA-4v-asU"/>
+                                        <exclude reference="RNT-OS-agi"/>
+                                        <exclude reference="UfY-MZ-wao"/>
                                     </mask>
                                 </variation>
                             </imageView>
@@ -2983,9 +2984,9 @@ it’s mot convenient.</string>
         <image name="visa.png" width="102" height="64"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="3LH-dC-8Wl"/>
-        <segue reference="I7p-1k-Jcw"/>
-        <segue reference="r1b-Gj-oet"/>
         <segue reference="84E-Wr-GXn"/>
+        <segue reference="r1b-Gj-oet"/>
+        <segue reference="kbr-ju-FAs"/>
+        <segue reference="I7p-1k-Jcw"/>
     </inferredMetricsTieBreakers>
 </document>
