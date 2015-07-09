@@ -357,7 +357,8 @@
         vc.exp_ID_string = _experience_id_string;
         vc.expImage = _coverImage;
         vc.availbleDateArray = availableDateArray;
-        vc.expTitle = expTitle;
+        vc.expTitleString = expTitle;
+        vc.fixPriceString = expPrice;
         vc.dynamicPriceArray = dynamicPriceArray;
         vc.languageString = expLanguage;
         vc.durationString = expDuration;

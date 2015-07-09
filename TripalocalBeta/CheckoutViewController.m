@@ -15,13 +15,13 @@
     NSMutableDictionary *wholePickerData;
     NSMutableArray *dynamicTimeArray;
     NSMutableArray *timeArray;
+    
+    NSString *selectedTimeString;
+    NSString *selectedDateString;
+    NSString *selectedGuestString;
 }
 
-@property (strong, nonatomic) IBOutlet UILabel *dateLabel;
-@property (strong, nonatomic) IBOutlet UILabel *timeLabel;
-@property (strong, nonatomic) IBOutlet UILabel *unitPriceLabel;
-@property (strong, nonatomic) IBOutlet UILabel *totalPriceLabel;
-@property (strong, nonatomic) IBOutlet UITextField *hoursInput;
+
 
 @end
 
@@ -101,6 +101,25 @@
     }
     [wholePickerData setValue:timeArray[lastIndex] forKey:datePickerData[lastIndex]];
     dynamicTimeArray = [wholePickerData objectForKey:[datePickerData objectAtIndex:0]];
+    
+    [_timePicker selectRow:3 inComponent:0 animated:NO];
+    [_datePicker selectRow:3 inComponent:0 animated:NO];
+    [_guestPicker selectRow:3 inComponent:0 animated:NO];
+
+    selectedDateString = datePickerData[0];
+    selectedTimeString = dynamicTimeArray[0];
+    selectedGuestString = guestPickerData[0];
+    
+    _durationLangLabel.text = [_durationString stringByAppendingFormat:@"hrs • %@", _languageString];
+    _expTitleLabel.text = _expTitleString;
+    _unitPriceLabel.text = [@"$" stringByAppendingFormat:@"%@ AUD x %@ pp",_fixPriceString,selectedGuestString];
+    
+    NSNumberFormatter *f = [[NSNumberFormatter alloc] init];
+    f.numberStyle = NSNumberFormatterDecimalStyle;
+    NSNumber *priceNumber = [f numberFromString:_fixPriceString];
+    NSNumber *guestNumber = @([selectedGuestString intValue]);
+    NSNumber *totalPriceNumber =@([priceNumber floatValue]* [guestNumber intValue]);
+    _totalPriceLabel.text = [@"$" stringByAppendingFormat:@" %@",[totalPriceNumber stringValue]];
 }
 
 #pragma mark - Picker View
@@ -144,9 +163,27 @@
 -(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component{
     if ([pickerView isEqual:_datePicker]) {
         dynamicTimeArray = [wholePickerData objectForKey:[datePickerData objectAtIndex:row]];
-        [_timePicker selectRow:0 inComponent:0 animated:YES];
+        [_timePicker selectRow:3 inComponent:0 animated:YES];
         [_timePicker reloadAllComponents];
+        selectedDateString = datePickerData[row];
+
     }
+    if ([pickerView isEqual:_timePicker]) {
+        selectedTimeString = dynamicTimeArray[row];
+
+    }
+    if ([pickerView isEqual:_guestPicker]) {
+        selectedGuestString = guestPickerData[row];
+        _unitPriceLabel.text = [@"$" stringByAppendingFormat:@"%@ AUD x %@ pp",_fixPriceString,selectedGuestString];
+        NSNumberFormatter *f = [[NSNumberFormatter alloc] init];
+        f.numberStyle = NSNumberFormatterDecimalStyle;
+        NSNumber *priceNumber = [f numberFromString:_fixPriceString];
+        NSNumber *guestNumber = @([selectedGuestString intValue]);
+        NSNumber *totalPriceNumber =@([priceNumber floatValue]* [guestNumber intValue]);
+        _totalPriceLabel.text = [@"$" stringByAppendingFormat:@" %@",[totalPriceNumber stringValue]];
+    }
+    
+    NSLog(@"Selected Date:%@ Time:%@ Guest:%@",selectedDateString,selectedTimeString,selectedGuestString);
 }
 
 
@@ -181,7 +218,6 @@
         
         controller.expId = _exp_ID_string ;
         controller.guestNumber = self.guestNumber;
-        controller.date = self.dateLabel.text;
         
         
 //        NSDate *startTime = self.timePicker.date;

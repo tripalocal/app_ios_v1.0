@@ -2174,16 +2174,21 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$ AUD x  pp" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QMJ-QN-apu">
-                                                <rect key="frame" x="53" y="628" width="187" height="21"/>
+                                                <rect key="frame" x="20" y="628" width="280" height="21"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="QMJ-QN-apu" secondAttribute="height" multiplier="116:13" id="vq9-YL-gyE"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
+                                                <variation key="default">
+                                                    <mask key="constraints">
+                                                        <exclude reference="vq9-YL-gyE"/>
+                                                    </mask>
+                                                </variation>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3UK-ph-0dR">
-                                                <rect key="frame" x="250" y="70" width="217" height="21"/>
+                                                <rect key="frame" x="250" y="70" width="340" height="21"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -2230,7 +2235,7 @@
                                                 <rect key="frame" x="140" y="422" width="320" height="162"/>
                                             </pickerView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Coupon" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o9Q-uK-FNJ">
-                                                <rect key="frame" x="53" y="662" width="62" height="21"/>
+                                                <rect key="frame" x="20" y="662" width="62" height="21"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -2245,7 +2250,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Code" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="K2W-PP-9P3">
-                                                <rect key="frame" x="195" y="662" width="200" height="30"/>
+                                                <rect key="frame" x="162" y="662" width="200" height="30"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="200" id="QAP-DB-X3c"/>
                                                 </constraints>
@@ -2268,8 +2273,9 @@
                                             <constraint firstItem="QMJ-QN-apu" firstAttribute="top" secondItem="Zw4-tc-m8I" secondAttribute="bottom" constant="9" id="GWT-Sw-oeV"/>
                                             <constraint firstAttribute="centerX" secondItem="qzN-60-yHz" secondAttribute="leading" multiplier="0.8" id="I5c-q8-yLy"/>
                                             <constraint firstItem="o9Q-uK-FNJ" firstAttribute="leading" secondItem="QMJ-QN-apu" secondAttribute="leading" id="KVS-EV-zg7"/>
+                                            <constraint firstItem="QMJ-QN-apu" firstAttribute="trailing" secondItem="DvV-aY-zzz" secondAttribute="centerX" id="NqH-7R-S6X"/>
                                             <constraint firstAttribute="trailing" secondItem="2w2-8z-grV" secondAttribute="trailing" id="Or4-rc-DkN"/>
-                                            <constraint firstAttribute="trailing" secondItem="3UK-ph-0dR" secondAttribute="trailing" constant="133" id="QS9-gi-znZ"/>
+                                            <constraint firstAttribute="trailing" secondItem="3UK-ph-0dR" secondAttribute="trailing" constant="10" id="QS9-gi-znZ"/>
                                             <constraint firstItem="o9Q-uK-FNJ" firstAttribute="trailing" secondItem="DvV-aY-zzz" secondAttribute="centerX" multiplier="1.25" id="QkL-Yd-a3t"/>
                                             <constraint firstItem="2w2-8z-grV" firstAttribute="top" secondItem="K2W-PP-9P3" secondAttribute="bottom" constant="68" id="R4D-Sz-0dg"/>
                                             <constraint firstItem="n8M-p4-HN0" firstAttribute="top" secondItem="vB4-78-tOI" secondAttribute="top" id="RAd-59-OlI"/>
@@ -2286,7 +2292,7 @@
                                             <constraint firstItem="ha7-ei-jNy" firstAttribute="top" secondItem="DvV-aY-zzz" secondAttribute="top" constant="8" id="dng-nk-Had"/>
                                             <constraint firstItem="vB4-78-tOI" firstAttribute="top" secondItem="iXH-t5-Usp" secondAttribute="bottom" id="e55-Rk-gkF"/>
                                             <constraint firstAttribute="centerX" secondItem="tfj-Gx-ZM8" secondAttribute="leading" multiplier="0.8" id="ef2-fd-nhl"/>
-                                            <constraint firstItem="QMJ-QN-apu" firstAttribute="leading" secondItem="DvV-aY-zzz" secondAttribute="leading" constant="53" id="fuw-Vv-Ouj"/>
+                                            <constraint firstItem="QMJ-QN-apu" firstAttribute="leading" secondItem="DvV-aY-zzz" secondAttribute="leading" constant="20" id="fuw-Vv-Ouj"/>
                                             <constraint firstItem="nBu-ZQ-Ifc" firstAttribute="leading" secondItem="DvV-aY-zzz" secondAttribute="leading" id="fwM-fh-fXs"/>
                                             <constraint firstItem="QMJ-QN-apu" firstAttribute="top" secondItem="qzN-60-yHz" secondAttribute="top" id="gzY-cN-qA4"/>
                                             <constraint firstItem="nBu-ZQ-Ifc" firstAttribute="top" secondItem="DvV-aY-zzz" secondAttribute="top" id="hkK-oy-3Jj"/>
@@ -2302,6 +2308,7 @@
                                         </constraints>
                                         <variation key="default">
                                             <mask key="constraints">
+                                                <exclude reference="rpW-k8-1nw"/>
                                                 <exclude reference="5Tx-3l-fQg"/>
                                                 <exclude reference="QkL-Yd-a3t"/>
                                                 <exclude reference="b9P-va-AOK"/>
@@ -2339,8 +2346,12 @@
                     <connections>
                         <outlet property="coverImage" destination="nBu-ZQ-Ifc" id="qB7-46-9bU"/>
                         <outlet property="datePicker" destination="vB4-78-tOI" id="TIQ-he-uZV"/>
+                        <outlet property="durationLangLabel" destination="3UK-ph-0dR" id="gY3-3o-pQW"/>
+                        <outlet property="expTitleLabel" destination="ha7-ei-jNy" id="hFA-Hd-Pgc"/>
                         <outlet property="guestPicker" destination="svS-kQ-4ec" id="6WP-a9-g2v"/>
                         <outlet property="timePicker" destination="n8M-p4-HN0" id="NUO-7A-L5X"/>
+                        <outlet property="totalPriceLabel" destination="qzN-60-yHz" id="3hB-u0-2Ge"/>
+                        <outlet property="unitPriceLabel" destination="QMJ-QN-apu" id="DE0-1G-c6i"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ocD-zP-ayy" userLabel="First Responder" sceneMemberID="firstResponder"/>

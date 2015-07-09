@@ -17,10 +17,11 @@
 
 @property (weak, nonatomic) IBOutlet UIImageView *coverImage;
 @property NSString *exp_ID_string;
+@property NSString *expTitleString;
 @property UIImage *expImage;
+@property NSString *fixPriceString;
 @property NSMutableArray *dynamicPriceArray;
 @property NSMutableArray *availbleDateArray;
-@property NSString *expTitle;
 @property NSString *durationString;
 @property NSString *languageString;
 @property NSNumber *maxGuestNum;
@@ -29,6 +30,10 @@
 @property (weak, nonatomic) IBOutlet UIPickerView *datePicker;
 @property (weak, nonatomic) IBOutlet UIPickerView *timePicker;
 @property (weak, nonatomic) IBOutlet UIPickerView *guestPicker;
+@property (weak, nonatomic) IBOutlet UILabel *expTitleLabel;
+@property (weak, nonatomic) IBOutlet UILabel *durationLangLabel;
+@property (weak, nonatomic) IBOutlet UILabel *unitPriceLabel;
+@property (weak, nonatomic) IBOutlet UILabel *totalPriceLabel;
 
 
 @end
