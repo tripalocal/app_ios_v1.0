@@ -15,7 +15,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *descriptionLabel;
 @property (weak, nonatomic) IBOutlet UILabel *languageLabel;
 @property (weak, nonatomic) IBOutlet UILabel *durationLabel;
-
-- (IBAction)saveButton:(id)sender;
+@property (strong, nonatomic) IBOutlet UIButton *wishListButton;
 
 @end

@@ -118,16 +118,20 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"ExpListSegue"]) {
         TLSearchViewController *vc=[segue destinationViewController];
+        
         NSIndexPath *index=[homeTable indexPathForSelectedRow];
-        vc.cityName = [locations objectAtIndex:index.row];
+        NSString *cityName = [locations objectAtIndex:index.row];
+        vc.cityName = cityName;
     }
 }
 
-- (IBAction)unwindToHome:(UIStoryboardSegue *)unwindSegue
-{
+
+
+- (IBAction)unwindToHome:(UIStoryboardSegue *)unwindSegue {
+    // from payment success
 }
 
 - (IBAction)myButton:(id)sender {
-    [self dismissViewControllerAnimated:YES completion:nil]; 
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 @end

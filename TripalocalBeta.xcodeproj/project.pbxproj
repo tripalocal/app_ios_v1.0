@@ -24,6 +24,7 @@
 		8729E1391B4A1D9B004C3065 /* PreviousTripsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8729E1381B4A1D9B004C3065 /* PreviousTripsViewController.m */; };
 		8729E13C1B4A6335004C3065 /* MyTripTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8729E13B1B4A6335004C3065 /* MyTripTableViewCell.m */; };
 		874265871B4D272F00D76C72 /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 874265861B4D272F00D76C72 /* MenuViewController.m */; };
+		874522AB1B4E3FDF00876EB4 /* WishLishViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 874522AA1B4E3FDF00876EB4 /* WishLishViewController.m */; };
 		8788B9D11B48EE570002B4D1 /* visa.png in Resources */ = {isa = PBXBuildFile; fileRef = 8788B9CF1B48EE570002B4D1 /* visa.png */; };
 		8788B9D21B48EE570002B4D1 /* alipay.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8788B9D01B48EE570002B4D1 /* alipay.jpg */; };
 		87A3C09D1B461129009A3B07 /* RequestController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87A3C09C1B461129009A3B07 /* RequestController.m */; };
@@ -153,6 +154,8 @@
 		8729E13B1B4A6335004C3065 /* MyTripTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyTripTableViewCell.m; sourceTree = "<group>"; };
 		874265851B4D272F00D76C72 /* MenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuViewController.h; sourceTree = "<group>"; };
 		874265861B4D272F00D76C72 /* MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuViewController.m; sourceTree = "<group>"; };
+		874522A91B4E3FDF00876EB4 /* WishLishViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WishLishViewController.h; sourceTree = "<group>"; };
+		874522AA1B4E3FDF00876EB4 /* WishLishViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WishLishViewController.m; sourceTree = "<group>"; };
 		8788B9CF1B48EE570002B4D1 /* visa.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = visa.png; path = Images/visa.png; sourceTree = "<group>"; };
 		8788B9D01B48EE570002B4D1 /* alipay.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = alipay.jpg; path = Images/alipay.jpg; sourceTree = "<group>"; };
 		87A3C09B1B461129009A3B07 /* RequestController.h */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.h; path = RequestController.h; sourceTree = "<group>"; tabWidth = 4; usesTabs = 0; wrapsLines = 1; };
@@ -594,6 +597,8 @@
 		8EC86D511B021DDC00B0A655 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				874522A91B4E3FDF00876EB4 /* WishLishViewController.h */,
+				874522AA1B4E3FDF00876EB4 /* WishLishViewController.m */,
 				87FFF3D51B4D549C00326104 /* PaymentSuccessViewController.h */,
 				87FFF3D61B4D549C00326104 /* PaymentSuccessViewController.m */,
 				87FFF3D11B4D380100326104 /* EditProfileViewController.h */,
@@ -873,6 +878,7 @@
 				8EC86D5C1B0229F100B0A655 /* TLHomeViewController.m in Sources */,
 				87FC2DBA1B480ABF0017F30E /* RSADataVerifier.m in Sources */,
 				87FC2DB61B480ABF0017F30E /* MD5DataSigner.m in Sources */,
+				874522AB1B4E3FDF00876EB4 /* WishLishViewController.m in Sources */,
 				87F356421B439D3B00949F43 /* PaymentViewController.m in Sources */,
 				87FC2DB91B480ABF0017F30E /* RSADataSigner.m in Sources */,
 				87A3C09D1B461129009A3B07 /* RequestController.m in Sources */,

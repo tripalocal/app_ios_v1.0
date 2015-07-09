@@ -78,9 +78,11 @@
             [userDefaults setObject:email forKey:@"user_email"];
             [userDefaults setObject:bio forKey:@"user_bio"];
             [userDefaults setObject:phoneNumber forKey:@"user_phone_number"];
+            NSMutableArray *wishList = [[NSMutableArray alloc] init];
+            [userDefaults setObject:wishList forKey:@"wish_list"];
             
             [userDefaults setObject:UIImagePNGRepresentation(image) forKey:@"user_image"];
-            [[NSUserDefaults standardUserDefaults] synchronize];
+            [userDefaults synchronize];
         }
         
 #if DEBUG
