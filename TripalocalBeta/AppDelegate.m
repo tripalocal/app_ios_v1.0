@@ -53,9 +53,8 @@
     
     
     if ([url.host isEqualToString:@"safepay"]) {
-        
-        [[AlipaySDK defaultService] processAuth_V2Result:url
-                                         standbyCallback:^(NSDictionary *resultDic) {
+        [[AlipaySDK defaultService] processOrderWithPaymentResult:url
+                                                  standbyCallback:^(NSDictionary *resultDic) {
 #if DEBUG
                                              NSLog(@"reslut = %@",resultDic);
 #endif
@@ -79,7 +78,6 @@
                                                              NSDictionary *aDictionary = [[NSDictionary alloc] initWithObjectsAndKeys:
                                                                                           orderNumber, @"orderNumber",
                                                                                           nil];
-//                                                             [self alipayRequesttoServer: orderNumber];
                                                              [[NSNotificationCenter defaultCenter] postNotificationName:@"alipayNotification" object:nil userInfo:aDictionary];
                                                          }
                                                      }
