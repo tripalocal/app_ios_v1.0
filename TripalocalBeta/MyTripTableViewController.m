@@ -116,20 +116,20 @@
     
     NSString *datetimeString = [trip objectForKey:@"datetime"];
     // Convert string to date object
-    NSDate *date = [self parseDateTimeString:datetimeString];
+    NSDate *dateUTC = [self parseDateTimeString:datetimeString];
     
     // convert back
     NSDate *today = [NSDate date];
-    NSDate *dateOnly = [self dateWithNoTime: date];
+    NSDate *dateOnly = [self dateWithNoTime: dateUTC];
     if ([dateOnly compare:[self dateWithNoTime:today]] == NSOrderedSame) {
         cell.dateLabel.text = @"Today";
         [cell.dateLabel setTextColor:[UIColor redColor]];
     } else {
-        cell.dateLabel.text = [dateFormatter stringFromDate:date];
+        cell.dateLabel.text = [dateFormatter stringFromDate:dateUTC];
         [cell.dateLabel setTextColor:[UIColor blackColor]];
     }
     
-    cell.timeLabel.text = [timeFormatter stringFromDate:date];
+    cell.timeLabel.text = [timeFormatter stringFromDate:dateUTC];
     cell.hostNameLabel.text = [trip objectForKey:@"host_name"];
     cell.guestNumberLabel.text = [[trip objectForKey:@"guest_number"] stringValue];
     cell.experienceTitle.text = [trip objectForKey:@"experience_title"];
@@ -146,13 +146,15 @@
     return cell;
 }
 
-- (NSDate *)parseDateTimeString:(NSString *) datetimeString{
+- (NSDate *)parseDateTimeString:(NSString *) datetimeString {
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-    [dateFormat setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"UTC"]];
-    [dateFormat setDateFormat:@"yyyy-LL-dd'T'HH:mm:ss'Z'"];
-    NSRange needleRange = NSMakeRange(0, 19);
-    NSString *dateStringUTC = [[datetimeString substringWithRange:needleRange] stringByAppendingString: @"Z"];
-    return [dateFormat dateFromString:dateStringUTC];
+//    [dateFormat setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"UTC"]];
+    [dateFormat setDateFormat:@"yyyy-LL-dd'T'HH:mm:ssZ"];
+    NSRange lastColumn = [datetimeString rangeOfString:@":" options:NSBackwardsSearch];
+    
+    NSString *resultDateTimeString = [datetimeString stringByReplacingCharactersInRange:lastColumn
+                                                                             withString: @""];
+    return [dateFormat dateFromString:resultDateTimeString];
 }
 
 - (NSDate *)dateWithNoTime:(NSDate *)date {
