@@ -30,10 +30,10 @@
 //
 
 
-- (void)updatePriceLabels {
-    self.unitPriceLabel.text = [self.unitPrice stringValue];
-    self.totalPriceLabel.text = [self.totalPrice stringValue];
-}
+//- (void)updatePriceLabels {
+//    self.unitPriceLabel.text = [self.unitPrice stringValue];
+//    self.totalPriceLabel.text = [self.totalPrice stringValue];
+//}
 
 
 
@@ -112,14 +112,16 @@
     
     _durationLangLabel.text = [_durationString stringByAppendingFormat:@"hrs • %@", _languageString];
     _expTitleLabel.text = _expTitleString;
-    _unitPriceLabel.text = [@"$" stringByAppendingFormat:@"%@ AUD x %@ pp",_fixPriceString,selectedGuestString];
+    // todo: default value not equal to picker view
+    _unitPriceLabel.text = [@"$" stringByAppendingFormat:@" %@ AUD x %@ pp",_fixPriceString,selectedGuestString];
     
     NSNumberFormatter *f = [[NSNumberFormatter alloc] init];
     f.numberStyle = NSNumberFormatterDecimalStyle;
-    NSNumber *priceNumber = [f numberFromString:_fixPriceString];
-    NSNumber *guestNumber = @([selectedGuestString intValue]);
-    NSNumber *totalPriceNumber =@([priceNumber floatValue]* [guestNumber intValue]);
-    _totalPriceLabel.text = [@"$" stringByAppendingFormat:@" %@",[totalPriceNumber stringValue]];
+    self.unitPrice = [f numberFromString:_fixPriceString];
+    self.guestNumber = [selectedGuestString intValue];
+    self.totalPrice =@([self.unitPrice floatValue]* self.guestNumber);
+    _totalPriceLabel.text = [@"$" stringByAppendingFormat:@" %@ AUD",[self.totalPrice stringValue]];
+    _totalPriceLabel.textColor = [UIColor colorWithRed:0.00f green:0.82f blue:0.82f alpha:1.0f];
 }
 
 #pragma mark - Picker View
@@ -174,13 +176,19 @@
     }
     if ([pickerView isEqual:_guestPicker]) {
         selectedGuestString = guestPickerData[row];
-        _unitPriceLabel.text = [@"$" stringByAppendingFormat:@"%@ AUD x %@ pp",_fixPriceString,selectedGuestString];
+        
         NSNumberFormatter *f = [[NSNumberFormatter alloc] init];
         f.numberStyle = NSNumberFormatterDecimalStyle;
-        NSNumber *priceNumber = [f numberFromString:_fixPriceString];
-        NSNumber *guestNumber = @([selectedGuestString intValue]);
-        NSNumber *totalPriceNumber =@([priceNumber floatValue]* [guestNumber intValue]);
-        _totalPriceLabel.text = [@"$" stringByAppendingFormat:@" %@",[totalPriceNumber stringValue]];
+        self.unitPrice = [f numberFromString:_fixPriceString];
+        
+        self.guestNumber = [selectedGuestString intValue];
+        self.totalPrice =@([self.unitPrice floatValue] * self.guestNumber);
+        
+        self.unitPriceLabel.text = [@"$" stringByAppendingFormat:@" %@ AUD x %@ pp",_fixPriceString, selectedGuestString];
+
+        NSNumberFormatter *fmt = [[NSNumberFormatter alloc] init];
+        [fmt setPositiveFormat:@"0.##"];
+        self.totalPriceLabel.text = [@"$" stringByAppendingFormat:@" %@ AUD", [fmt stringFromNumber: self.totalPrice]];
     }
     
     NSLog(@"Selected Date:%@ Time:%@ Guest:%@",selectedDateString,selectedTimeString,selectedGuestString);
@@ -220,16 +228,24 @@
         controller.guestNumber = self.guestNumber;
         
         
-//        NSDate *startTime = self.timePicker.date;
-        NSDateFormatter *format = [[NSDateFormatter alloc] init];
-        format.dateFormat = @"HH";
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        dateFormatter.dateFormat = @"dd/MM/yyyy";
         
-//        NSString *startHour = [format stringFromDate:startTime];
-        NSTimeInterval secondsIntHours = self.hours * 60 * 60;
-//        NSDate *endTime = [startTime dateByAddingTimeInterval: secondsIntHours];
-//        NSString *endHour = [format stringFromDate:endTime];
+        NSDateFormatter *timeFormatter = [[NSDateFormatter alloc] init];
+        timeFormatter.dateFormat = @"HH:mm";
         
-//        controller.timePeriod = [NSString stringWithFormat:@"%@:00-%@:00", startHour, endHour];
+        NSDate *date = [dateFormatter dateFromString:selectedDateString];
+        NSDate *startTime = [timeFormatter dateFromString:selectedTimeString];
+        NSTimeInterval secondsIntHours = [self.durationString integerValue] * 60 * 60;
+        NSDate *endTime = [startTime dateByAddingTimeInterval: secondsIntHours];
+        NSString *endTimeString = [timeFormatter stringFromDate:endTime];
+
+        // output format
+        dateFormatter.dateFormat = @"yyyy/MM/dd";
+        
+        controller.date = [dateFormatter stringFromDate:date];
+        controller.timePeriod = [NSString stringWithFormat:@"%@-%@", selectedTimeString, endTimeString];
+
         controller.unitPrice = self.unitPrice;
         controller.totalPrice = self.totalPrice;
     }

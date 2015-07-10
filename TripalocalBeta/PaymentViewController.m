@@ -136,9 +136,12 @@
     
     [self.view addGestureRecognizer:tap];
 
-    self.unitPriceLabel.text = [self.unitPrice stringValue];
+    NSNumberFormatter *fmt = [[NSNumberFormatter alloc] init];
+    [fmt setPositiveFormat:@"0.##"];
+    self.unitPriceLabel.text = [fmt stringFromNumber: self.unitPrice];
     self.guestNumberLabel.text = [NSString stringWithFormat:@"%lu", self.guestNumber];
-    self.totalPriceLabel.text = [self.totalPrice stringValue];
+    self.totalPriceLabel.text = [@"$" stringByAppendingFormat:@" %@ AUD", [fmt stringFromNumber: self.totalPrice]];
+    self.totalPriceLabel.textColor = [UIColor colorWithRed:0.00f green:0.82f blue:0.82f alpha:1.0f];
 
 }
 

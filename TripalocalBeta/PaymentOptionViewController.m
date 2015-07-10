@@ -75,7 +75,9 @@
         order.productDescription = @"Experience in au"; //商品描述
         
         //商品价格
-        order.amount = [NSString stringWithFormat:@"%.2f",self.totalPrice.floatValue];
+//        order.amount = [NSString stringWithFormat:@"%.2f",self.totalPrice.floatValue];
+        // set small amount for test
+        order.amount = [NSString stringWithFormat:@"0.01"];
         
         order.notifyURL =  @"http://notify.msp.hk/notify.htm";
         order.service = @"mobile.securitypay.pay";

@@ -16,6 +16,7 @@
 #import "JGProgressHUD.h"
 #import "Constant.h"
 #import "CheckoutViewController.h"
+#import "Constant.h"
 
 @interface TLDetailViewController ()
 {
@@ -61,9 +62,7 @@
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     NSString *token = [userDefaults stringForKey:@"user_token"];
     
-    if (token) {
-        [self performSegueWithIdentifier:@"checkoutSegue" sender:nil];
-    } else {
+    if (!token) {
         [self performSegueWithIdentifier:@"loginSegue" sender:nil];
     }
 }
@@ -86,6 +85,7 @@
     [HUD showInView:self.view];
     
     NSString *post = [NSString stringWithFormat:@"{\"experience_id\":\"%@\"}",_experience_id_string];
+    
     NSLog(@"(Detail)POST: %@", post);
     NSData *postData = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
     NSString *postLength = [NSString stringWithFormat:@"%lu", (unsigned long)[postData length]];
@@ -136,15 +136,40 @@
     }
     
     
-    NSString *imageCachingIdentifier = [NSString stringWithFormat:@"Cell%ldOfHostImage",(long)indexPath.row];
+    NSString *hostImageCachingIdentifier = [NSString stringWithFormat:@"Cell%ldOfHostImage",(long)indexPath.row];
+    NSString *expImageCachingIdentifier = [NSString stringWithFormat:@"Cell%ldOfExpImage",(long)indexPath.row];
     switch (indexPath.row) {
         case 0:
-            if(!cell)
-            {
-                cell=[[TLDetailTableViewCell0 alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier0];
+            if (!cell) {
+                cell = [[TLDetailTableViewCell0 alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier0];
             }
+            
+            if ([self.cachedImages objectForKey:hostImageCachingIdentifier]) {
+                cell.hostImage.image = [self.cachedImages valueForKey:hostImageCachingIdentifier];
+                cell.coverImage.image = [self.cachedImages valueForKey:expImageCachingIdentifier];
+            } else {
+                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                    NSData *hostImageData = [[NSData alloc]initWithContentsOfURL:[NSURL URLWithString:hostImageURL]];
+                    dispatch_sync(dispatch_get_main_queue(), ^{
+                        cell.hostImage.image = [[UIImage alloc] initWithData:hostImageData];
+                        [self.cachedImages setValue:cell.hostImage.image forKey:hostImageCachingIdentifier];
+                    });
+                    
+                });
+                
+                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                    NSString *coverImageURL = [NSString stringWithFormat:@"%@thumbnails/experiences/experience%@_1.jpg", testServerImageURL, _experience_id_string];
+                    NSData *coverImageData = [[NSData alloc]initWithContentsOfURL:[NSURL URLWithString:coverImageURL]];
+                    dispatch_sync(dispatch_get_main_queue(), ^{
+                        cell.coverImage.image = [[UIImage alloc] initWithData:coverImageData];
+                        [self.cachedImages setValue:cell.coverImage.image forKey:expImageCachingIdentifier];
+                    });
+                    
+                });
+                
+            }
+// todo request cover image
             cell.coverImage.image = _coverImage;
-            cell.hostImage.image = _hostImage;
             cell.reservationLabel.text = [cell.reservationLabel.text stringByAppendingFormat:@" %@", hostFirstName];
             cell.languageLabel.text = expLanguage;
             cell.priceLabel.text = [cell.priceLabel.text stringByAppendingFormat:@" %@",expPrice];
@@ -186,8 +211,8 @@
 
             cell3.reviewerImage.image = [UIImage imageNamed:@"default_profile_image.png"];
             
-            if([self.cachedImages objectForKey:imageCachingIdentifier]!=nil){
-                cell3.reviewerImage.image = [self.cachedImages valueForKey:imageCachingIdentifier];
+            if([self.cachedImages objectForKey:hostImageCachingIdentifier]!=nil){
+                cell3.reviewerImage.image = [self.cachedImages valueForKey:hostImageCachingIdentifier];
             }
             else if(PREreviewerImageURL.length <= 0){
                 cell3.reviewerImage.image = [UIImage imageNamed:@"default_profile_image.png"];
@@ -198,7 +223,7 @@
                     NSData *hostImageData = [[NSData alloc]initWithContentsOfURL:[NSURL URLWithString:reviewerImageURL]];
                     dispatch_sync(dispatch_get_main_queue(), ^{
                         cell3.reviewerImage.image = [[UIImage alloc]initWithData:hostImageData];
-                        [self.cachedImages setValue:cell3.reviewerImage.image forKey:imageCachingIdentifier];
+                        [self.cachedImages setValue:cell3.reviewerImage.image forKey:hostImageCachingIdentifier];
                     });
                 
                 });
@@ -235,35 +260,6 @@
     
     return cell;
 }
-
-//-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-//    switch (indexPath.row) {
-//        case 0:
-//            return 306;
-//            break;
-//        case 1:
-//            return 480;
-//            break;
-//        case 2:
-//            return 480;
-//            break;
-//        case 3:
-//            return 480;
-//            break;
-//        case 4:
-//            return 306;
-//            break;
-//        case 5:
-//            return 306;
-//            break;
-//        default:
-//            return 306;
-//            break;
-//    }
-//    return 306;
-//    
-//}
-
 
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -302,7 +298,7 @@
 {
     NSDictionary *allDataDictionary=[NSJSONSerialization JSONObjectWithData:jsonData options:0 error:nil];
     @try {
-        hostImageURL=[allDataDictionary objectForKey:@"host_image"];
+        hostImageURL = [imageBaseURL stringByAppendingString: [allDataDictionary objectForKey:@"host_image"]];
         expLanguage=[allDataDictionary objectForKey:@"experience_language"];
         NSNumber *expPriceNumber = [allDataDictionary objectForKey:@"experience_price"];
         NSNumberFormatter *formatter = [[NSNumberFormatter alloc]init];

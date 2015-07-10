@@ -200,7 +200,7 @@
         
         NSString *hostImageCachingIdentifier = [NSString stringWithFormat:@"Cell%ldOfHostImage",(long)index.row];
         NSString *expImageCachingIdentifier = [NSString stringWithFormat:@"Cell%ldOfExpImage",(long)index.row];
-//      todo: wait till image loaded
+//      todo: wait till image loaded ? Or load later?
         vc.hostImage = [self.cachedImages valueForKey:hostImageCachingIdentifier];
         vc.coverImage = [self.cachedImages valueForKey:expImageCachingIdentifier];
 
