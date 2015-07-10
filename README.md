@@ -12,5 +12,9 @@ In order to use 'Pod', always use the .xcworkspace file to open your project in 
 ### RGB Value
 \#00d0d0
 
+## Backgroud Color
+
+### RGB Value
+\#f7f7f7
 
 

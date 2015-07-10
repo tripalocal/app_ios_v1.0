@@ -23,5 +23,6 @@
 @property (strong, nonatomic) IBOutlet UILabel *telephoneLabel;
 @property (strong, nonatomic) IBOutlet UIButton *callButton;
 @property (weak, nonatomic) UITableView* parentView;
+@property (strong, nonatomic) IBOutlet UIButton *messageButton;
 
 @end

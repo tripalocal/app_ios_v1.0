@@ -87,10 +87,16 @@
     return [myTrips count];
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+//    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    [self performSegueWithIdentifier:@"MyTripsToExpList" sender:self];
+}
+
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *) indexPath {
     MyTripTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MyTripTableViewCell"];
     if(!cell) {
-        cell = [[MyTripTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"MyTripTableViewCell"];
+        [tableView registerNib:[UINib nibWithNibName:@"MyTripTableViewCell" bundle:nil] forCellReuseIdentifier:@"MyTripTableViewCell"];
+        cell = [tableView dequeueReusableCellWithIdentifier:@"MyTripTableViewCell"];
     }
     
     cell.tag = indexPath.row;
