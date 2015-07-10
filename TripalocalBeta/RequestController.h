@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "Constant.h"
 
-@interface RequestController : UITableViewController
+@interface RequestController : UIViewController
 
 - (void)fetchProfileAndCache: (NSString*)token;
 

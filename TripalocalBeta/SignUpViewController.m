@@ -15,6 +15,7 @@
 @property (strong, nonatomic) IBOutlet UITextField *firstnameField;
 @property (strong, nonatomic) IBOutlet UITextField *lastnameField;
 @property (strong, nonatomic) IBOutlet UIButton *signupButton;
+@property (strong, nonatomic) IBOutlet UITextView *termsTextView;
 
 @end
 
@@ -66,11 +67,6 @@
                                                                  error:nil];
         
         if ([httpResponse statusCode] == 200) {
-            //                                            Successflly signed up
-            //                                            {
-            //                                                "token": "cc99d502c5cf2b03342d0a60f81a20e49a24f77f",
-            //                                                "user_id": 455
-            //                                            }
             NSString *token = [result objectForKey:@"token"];
             [self fetchProfileAndCache: token];
             
@@ -126,6 +122,7 @@
     [super viewDidLoad];
     
     self.signupButton.alpha = 0.5;
+    [self.signupButton setEnabled:NO];
     self.emailField.delegate = self;
     self.passwordField.delegate = self;
     self.firstnameField.delegate = self;
@@ -135,15 +132,28 @@
                                    initWithTarget:self
                                    action:@selector(dismissKeyboard)];
     
-    [self.tableView addGestureRecognizer:tap];
+    [self.view addGestureRecognizer:tap];
     
     self.emailField.borderStyle = UITextBorderStyleRoundedRect;
     self.passwordField.borderStyle = UITextBorderStyleRoundedRect;
     self.firstnameField.borderStyle = UITextBorderStyleRoundedRect;
     self.lastnameField.borderStyle = UITextBorderStyleRoundedRect;
-    
-    self.tableView.alwaysBounceVertical = NO;
     self.passwordField.secureTextEntry = YES;
+    
+    UIColor *themeColor = [UIColor colorWithRed:0.00f green:0.82f blue:0.82f alpha:1.0f];
+
+    [self.termsTextView setLinkTextAttributes:@{NSForegroundColorAttributeName:themeColor}];
+    NSMutableAttributedString * str = [[NSMutableAttributedString alloc] initWithString:@"By signing up, I agree to Tripalocal’s Terms of Service, Privacy Policy, and Refund Policy."];
+    [str addAttribute: NSLinkAttributeName value: @"https://tripalocal.com/termsofservice" range: NSMakeRange(39, 16)];
+    
+    [str addAttribute: NSFontAttributeName value:[UIFont systemFontOfSize:12] range:NSMakeRange(0, str.length)];
+    [str addAttribute: NSForegroundColorAttributeName value:[UIColor grayColor] range:NSMakeRange(0, str.length)];
+
+    [str addAttribute: NSLinkAttributeName value: @"https://tripalocal.com/privacypolicy" range: NSMakeRange(57, 14)];
+
+    [str addAttribute: NSLinkAttributeName value: @"https://tripalocal.com/refundpolicy" range: NSMakeRange(77, 13)];
+
+    self.termsTextView.attributedText = str;
 }
 
 - (void)didReceiveMemoryWarning {

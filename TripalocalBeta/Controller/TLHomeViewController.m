@@ -91,8 +91,6 @@
     
     cell.homeLocationLabel.text = [locations objectAtIndex:indexPath.row];
     cell.homeLocationLabel.textAlignment = NSTextAlignmentCenter;
-    
-    
    
     
     return cell;
@@ -107,15 +105,33 @@
     return 1;
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [self.navigationController setNavigationBarHidden:YES animated:animated];
+    [super viewWillAppear:animated];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [self.navigationController setNavigationBarHidden:NO animated:animated];
+    [super viewWillDisappear:animated];
+}
+
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"ExpListSegue"]) {
         TLSearchViewController *vc=[segue destinationViewController];
+        
         NSIndexPath *index=[homeTable indexPathForSelectedRow];
-        vc.cityName = [locations objectAtIndex:index.row];
+        NSString *cityName = [locations objectAtIndex:index.row];
+        vc.cityName = cityName;
     }
 }
 
+
+
+- (IBAction)unwindToHome:(UIStoryboardSegue *)unwindSegue {
+    // from payment success
+}
+
 - (IBAction)myButton:(id)sender {
-    [self dismissViewControllerAnimated:YES completion:nil]; 
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 @end

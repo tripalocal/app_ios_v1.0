@@ -8,7 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface TLSearchViewController : UIViewController <UITableViewDataSource,UITableViewDelegate>
+@interface TLSearchViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property NSString *cityName;
+@property (nonatomic, retain) NSMutableArray *expList;
 @end

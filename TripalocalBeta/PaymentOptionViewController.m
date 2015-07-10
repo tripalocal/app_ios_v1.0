@@ -20,6 +20,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(alipayNotification:) name:@"alipayNotification" object:nil];
 }
 
 #pragma mark -
@@ -33,8 +34,7 @@
     NSString *sourceStr = @"0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     NSMutableString *resultStr = [[NSMutableString alloc] init];
     srand(time(0));
-    for (int i = 0; i < kNumber; i++)
-    {
+    for (int i = 0; i < kNumber; i++) {
         unsigned index = rand() % [sourceStr length];
         NSString *oneStr = [sourceStr substringWithRange:NSMakeRange(index, 1)];
         [resultStr appendString:oneStr];
@@ -75,7 +75,9 @@
         order.productDescription = @"Experience in au"; //商品描述
         
         //商品价格
-        order.amount = [NSString stringWithFormat:@"%.2f",self.totalPrice.floatValue];
+//        order.amount = [NSString stringWithFormat:@"%.2f",self.totalPrice.floatValue];
+        // set small amount for test
+        order.amount = [NSString stringWithFormat:@"0.01"];
         
         order.notifyURL =  @"http://notify.msp.hk/notify.htm";
         order.service = @"mobile.securitypay.pay";
@@ -131,7 +133,6 @@
                             }
                         }
                     }
-                    
                 } else {
                     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Alipay Failed"
                                                                     message:@"Occured an error during payment."
@@ -148,7 +149,6 @@
     
 }
 
-// todo: try until success
 - (void) alipayRequesttoServer:(NSString *) tradeNumber {
     NSDictionary *expInfo = [[NSDictionary alloc] initWithObjectsAndKeys:
                              self.date, @"date",
@@ -198,11 +198,7 @@
     
     if (connectionError == nil) {
         NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *) response;
-        
-        NSDictionary *result = [NSJSONSerialization JSONObjectWithData:data
-                                                               options:0
-                                                                 error:nil];
-        
+
         if ([httpResponse statusCode] == 200) {
             [self performSegueWithIdentifier:@"alipaySuccess" sender:nil];
             
@@ -239,6 +235,10 @@
     return NO;
 }
 
+-(void)alipayNotification:(NSNotification *)anote {
+    NSDictionary *dict = [anote userInfo];
+    [self alipayRequesttoServer: [dict objectForKey:@"orderNumber"]];
+}
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if([segue.identifier isEqualToString:@"payByCreditCard"]){

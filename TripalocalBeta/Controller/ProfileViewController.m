@@ -20,68 +20,18 @@
 
 @implementation ProfileViewController
 
-- (IBAction)logout:(id)sender {
-    NSURL *url = [NSURL URLWithString:logoutServiceTestServerURL];
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
-    [request setHTTPMethod:@"POST"];
+-(void) viewDidLoad {
+    [super viewDidLoad];
 
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    NSString *token = [userDefaults stringForKey:@"user_token"];
-    
-    [request addValue:[NSString stringWithFormat:@"Token %@", token] forHTTPHeaderField:@"Authorization"];
-    
-    NSError *connectionError = nil;
-    NSURLResponse *response = nil;
-    
-    NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&connectionError];
-
-    if (connectionError == nil) {
-        NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *) response;
-        
-        if ([httpResponse statusCode] == 200) {
-            //              Scuccessfully logged out and remove user defualts
-            NSString *appDomain = [[NSBundle mainBundle] bundleIdentifier];
-            [[NSUserDefaults standardUserDefaults] removePersistentDomainForName:appDomain];
-            
-            [self swapUnloggedinController];
-        }
-        
-#if DEBUG
-        NSString *decodedData = [[NSString alloc] initWithData:data
-                                                      encoding:NSUTF8StringEncoding];
-        NSLog(@"Receiving data = %@", decodedData);
-#endif
-    } else {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No network connection"
-                                                        message:@"You must be connected to the internet."
-                                                       delegate:nil
-                                              cancelButtonTitle:@"OK"
-                                              otherButtonTitles:nil];
-        [alert show];
-    }
-    
+    UIBarButtonItem *editProfileButton = [[UIBarButtonItem alloc] initWithTitle:@"Edit" style:UIBarButtonItemStylePlain target:self action:@selector(editPrifle)];
+    self.navigationItem.rightBarButtonItem = editProfileButton;
 }
 
-- (void)swapUnloggedinController {
-
-    UIViewController *unloggedinViewController = (UIViewController *)[self.storyboard instantiateViewControllerWithIdentifier:@"unloggedin_controller"];
-    
-    NSMutableArray *listOfViewControllers = [NSMutableArray arrayWithArray:self.tabBarController.viewControllers];
-    [listOfViewControllers removeLastObject];
-    [listOfViewControllers addObject:unloggedinViewController];
-    
-    UITabBarItem *myprofileBarItem = [[UITabBarItem alloc] init];
-    myprofileBarItem.imageInsets = UIEdgeInsetsMake(6, 0, -6, 0);
-    myprofileBarItem.selectedImage = [[UIImage imageNamed:@"myprofile_s.png"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal ];
-    myprofileBarItem.image = [[UIImage imageNamed:@"myprofile.png"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal ];
-    myprofileBarItem.title = nil;
-    unloggedinViewController.tabBarItem = myprofileBarItem;
-    
-    [self.tabBarController setViewControllers:listOfViewControllers];
+- (void) editPrifle {
+     [self performSegueWithIdentifier:@"edit_profile" sender:self];
 }
 
-
-- (void) getProfileInfo {
+- (void) setUserProfile {
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     NSString *lastName = [userDefaults stringForKey:@"user_last_name"];
     NSString *firstName = [userDefaults stringForKey:@"user_first_name"];
@@ -91,17 +41,18 @@
     self.bioField.text = [userDefaults stringForKey:@"user_bio"];
     self.emailField.text = [userDefaults stringForKey:@"user_email"];
     UIImage* image = [UIImage imageWithData:[userDefaults objectForKey:@"user_image"]];
-    self.image.image = image;
+    if (image) {
+        self.image.image = image;
+    } else {
+        self.image.image = [UIImage imageNamed: @"default_profile_image.png"];
+    }
+
 }
 
--(void) viewDidLoad {
-    [super viewDidLoad];
-    
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    NSString *token = [userDefaults stringForKey:@"user_token"];
-    if (token) {
-        [self getProfileInfo];
-    }
+- (void)viewWillAppear:(BOOL)animated {
+    [self setUserProfile];
+    [super viewWillAppear:animated];
 }
+
 
 @end
