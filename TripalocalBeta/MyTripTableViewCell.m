@@ -15,7 +15,8 @@
 @implementation MyTripTableViewCell
 
 - (void)awakeFromNib {
-    UIEdgeInsets contentInsets = UIEdgeInsetsMake(0.0f, 15.0f, 0.0f, 15.0f);
+    self.statusButton.layer.cornerRadius = 5;
+    self.statusButton.layer.masksToBounds = YES;
     
     self.callButton.layer.cornerRadius = 5;
     self.callButton.layer.masksToBounds = YES;
@@ -33,7 +34,8 @@
     
     self.hostImage.layer.cornerRadius = self.hostImage.frame.size.height / 2;
     self.hostImage.layer.masksToBounds = YES;
-    self.hostImage.layer.borderWidth = 0;
+    self.hostImage.layer.borderColor = [UIColor whiteColor].CGColor;
+    self.hostImage.layer.borderWidth = 3.0f;
 
 }
 

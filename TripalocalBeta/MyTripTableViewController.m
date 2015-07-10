@@ -136,7 +136,7 @@
     }
     
     cell.timeLabel.text = [timeFormatter stringFromDate:dateUTC];
-    cell.hostNameLabel.text = [trip objectForKey:@"host_name"];
+    cell.hostNameLabel.text = [@"with " stringByAppendingString:[trip objectForKey:@"host_name"]];
     cell.guestNumberLabel.text = [[trip objectForKey:@"guest_number"] stringValue];
     cell.experienceTitle.text = [trip objectForKey:@"experience_title"];
     [cell.experienceTitle setTextColor:[UIColor colorWithRed:0.00f green:0.82f blue:0.82f alpha:1.0f]];
@@ -144,9 +144,11 @@
     cell.instructionText.text = [trip objectForKey:@"meetup_spot"];
     NSString *status = [trip objectForKey:@"status"];
     if ([status isEqualToString:@"paid"]) {
-        cell.statusLabel.text = @"Requested";
+        [cell.statusButton setTitle:@"Requested" forState:UIControlStateNormal];
+        [cell.statusButton setBackgroundColor:[UIColor colorWithRed:0.00f green:0.82f blue:0.82f alpha:1.0f]];
     } else {
-        cell.statusLabel.text = @"Confirmed";
+        [cell.statusButton setTitle:@"Confirmed" forState:UIControlStateNormal];
+        [cell.statusButton setBackgroundColor:[UIColor colorWithRed:0.51f green:0.82f blue:0.00f alpha:1.0f]];
     }
     
     return cell;

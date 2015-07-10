@@ -27,19 +27,12 @@
                         </variation>
                     </imageView>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="GlP-Hl-WGR">
-                        <rect key="frame" x="110" y="80" width="100" height="100"/>
+                        <rect key="frame" x="110" y="90" width="100" height="100"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="GlP-Hl-WGR" secondAttribute="height" multiplier="1:1" id="fPc-dp-4mj"/>
                             <constraint firstAttribute="height" constant="100" id="vG7-8O-ML8"/>
                         </constraints>
                     </imageView>
-                    <label userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Status" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" enabled="NO" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PGn-n4-knk">
-                        <rect key="frame" x="135" y="180" width="50" height="21"/>
-                        <color key="backgroundColor" red="0.51372549020000002" green="0.82352941180000006" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                        <nil key="highlightedColor"/>
-                    </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="time.png" translatesAutoresizingMaskIntoConstraints="NO" id="KCa-sC-CyO">
                         <rect key="frame" x="140" y="221" width="40" height="40"/>
                         <constraints>
@@ -144,6 +137,7 @@
                     </textView>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5W7-EW-cFl">
                         <rect key="frame" x="28" y="376" width="120" height="40"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="120" id="75b-sV-SXB"/>
                             <constraint firstAttribute="height" constant="40" id="Kb6-Ng-2g6"/>
@@ -157,6 +151,20 @@
                             <action selector="callHost:" destination="540-BA-9v3" eventType="touchUpInside" id="lc3-Ki-4bP"/>
                         </connections>
                     </button>
+                    <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QcJ-ws-pqS">
+                        <rect key="frame" x="117" y="180" width="86" height="25"/>
+                        <color key="backgroundColor" red="0.51372549020000002" green="0.82352941180000006" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="25" id="16S-eM-SZv"/>
+                            <constraint firstAttribute="width" constant="86" id="xJ8-OI-ui1"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <inset key="titleEdgeInsets" minX="3" minY="1" maxX="3" maxY="1"/>
+                        <state key="normal" title="Requested">
+                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                    </button>
                 </subviews>
                 <color key="backgroundColor" red="0.96862745098039216" green="0.96862745098039216" blue="0.96862745098039216" alpha="1" colorSpace="calibratedRGB"/>
                 <constraints>
@@ -164,6 +172,7 @@
                     <constraint firstAttribute="trailing" secondItem="4BU-ZU-zZd" secondAttribute="trailing" id="5dw-dI-bsh"/>
                     <constraint firstAttribute="trailingMargin" secondItem="Q9f-kf-8PB" secondAttribute="trailing" constant="20" id="8QV-mt-n68"/>
                     <constraint firstItem="uqc-RW-yRe" firstAttribute="top" secondItem="1Wj-iy-xdr" secondAttribute="top" id="9Qx-1u-mn7"/>
+                    <constraint firstItem="QcJ-ws-pqS" firstAttribute="top" secondItem="4BU-ZU-zZd" secondAttribute="bottom" id="AI8-AM-l1C"/>
                     <constraint firstAttribute="centerX" secondItem="UTa-gY-UVn" secondAttribute="centerX" id="Adz-KZ-uBs"/>
                     <constraint firstItem="1Wj-iy-xdr" firstAttribute="centerX" secondItem="Arf-9T-nbb" secondAttribute="centerX" id="Bo1-VF-zr9"/>
                     <constraint firstItem="1Wj-iy-xdr" firstAttribute="leading" secondItem="KCa-sC-CyO" secondAttribute="trailing" constant="50" id="Ch0-ip-SxF"/>
@@ -175,17 +184,17 @@
                     <constraint firstAttribute="centerX" secondItem="Mu4-ms-ko4" secondAttribute="centerX" id="HqN-uh-JiR"/>
                     <constraint firstItem="p90-eq-6tn" firstAttribute="centerY" secondItem="Arf-9T-nbb" secondAttribute="centerY" id="JEF-Vn-Umr"/>
                     <constraint firstItem="Q9f-kf-8PB" firstAttribute="centerY" secondItem="5W7-EW-cFl" secondAttribute="centerY" id="P3P-nh-74C"/>
-                    <constraint firstItem="PGn-n4-knk" firstAttribute="top" secondItem="GlP-Hl-WGR" secondAttribute="bottom" id="Pjq-CC-IZO"/>
                     <constraint firstItem="nfw-9T-YBG" firstAttribute="top" secondItem="NcW-Cq-Xax" secondAttribute="bottom" constant="8" id="VWU-6m-2iu"/>
                     <constraint firstAttribute="centerX" secondItem="Ktj-CW-97u" secondAttribute="centerX" id="Wfx-pU-PyD"/>
                     <constraint firstItem="UTa-gY-UVn" firstAttribute="top" secondItem="5W7-EW-cFl" secondAttribute="bottom" constant="10" id="Xa5-W1-xdg"/>
-                    <constraint firstItem="KCa-sC-CyO" firstAttribute="top" secondItem="PGn-n4-knk" secondAttribute="bottom" constant="20" id="Y6T-tj-w4c"/>
+                    <constraint firstItem="QcJ-ws-pqS" firstAttribute="top" secondItem="GlP-Hl-WGR" secondAttribute="bottom" id="Zvn-Un-ghj"/>
+                    <constraint firstItem="KCa-sC-CyO" firstAttribute="top" secondItem="QcJ-ws-pqS" secondAttribute="bottom" constant="16" id="cnn-Hd-TnD"/>
                     <constraint firstItem="1Wj-iy-xdr" firstAttribute="width" secondItem="1Wj-iy-xdr" secondAttribute="height" multiplier="1:1" id="cxz-83-TB2"/>
                     <constraint firstAttribute="centerX" secondItem="KCa-sC-CyO" secondAttribute="centerX" id="dfv-nE-zT8"/>
                     <constraint firstItem="KCa-sC-CyO" firstAttribute="leading" secondItem="uqc-RW-yRe" secondAttribute="trailing" constant="50" id="fDI-cW-Z1p"/>
                     <constraint firstItem="4BU-ZU-zZd" firstAttribute="leading" secondItem="Loi-EL-dOj" secondAttribute="leading" id="fW3-AV-RuL"/>
+                    <constraint firstAttribute="centerX" secondItem="QcJ-ws-pqS" secondAttribute="centerX" id="gBG-yC-eok"/>
                     <constraint firstItem="tKa-q0-vvk" firstAttribute="top" secondItem="uqc-RW-yRe" secondAttribute="bottom" constant="1" id="gym-fF-cul"/>
-                    <constraint firstAttribute="centerX" secondItem="PGn-n4-knk" secondAttribute="centerX" id="iH5-SZ-LZ4"/>
                     <constraint firstItem="Mu4-ms-ko4" firstAttribute="top" secondItem="p90-eq-6tn" secondAttribute="bottom" constant="14" id="jhc-vP-Ge1"/>
                     <constraint firstItem="uqc-RW-yRe" firstAttribute="centerX" secondItem="tKa-q0-vvk" secondAttribute="centerX" id="kLO-fZ-ayX"/>
                     <constraint firstItem="Ktj-CW-97u" firstAttribute="top" secondItem="UTa-gY-UVn" secondAttribute="bottom" constant="8" id="kSW-r5-uvc"/>
@@ -193,12 +202,15 @@
                     <constraint firstAttribute="centerX" secondItem="p90-eq-6tn" secondAttribute="centerX" id="m35-uu-uOf"/>
                     <constraint firstItem="uqc-RW-yRe" firstAttribute="top" secondItem="KCa-sC-CyO" secondAttribute="top" id="mmF-Er-G78"/>
                     <constraint firstAttribute="centerX" secondItem="GlP-Hl-WGR" secondAttribute="centerX" id="oZc-HH-NLE"/>
-                    <constraint firstItem="GlP-Hl-WGR" firstAttribute="bottom" secondItem="4BU-ZU-zZd" secondAttribute="bottom" id="pW7-70-LFS"/>
+                    <constraint firstItem="GlP-Hl-WGR" firstAttribute="bottom" secondItem="4BU-ZU-zZd" secondAttribute="bottom" constant="10" id="pW7-70-LFS"/>
                     <constraint firstItem="p90-eq-6tn" firstAttribute="centerY" secondItem="tKa-q0-vvk" secondAttribute="centerY" id="rSE-06-gdP"/>
+                    <constraint firstItem="KCa-sC-CyO" firstAttribute="top" secondItem="QcJ-ws-pqS" secondAttribute="bottom" constant="11" id="woG-uu-0Qr"/>
                 </constraints>
                 <variation key="default">
                     <mask key="constraints">
+                        <exclude reference="Zvn-Un-ghj"/>
                         <exclude reference="GQ2-4U-irc"/>
+                        <exclude reference="woG-uu-0Qr"/>
                         <exclude reference="cxz-83-TB2"/>
                     </mask>
                 </variation>
@@ -213,7 +225,7 @@
                 <outlet property="hostNameLabel" destination="NcW-Cq-Xax" id="BFE-0n-2di"/>
                 <outlet property="instructionText" destination="Ktj-CW-97u" id="bNZ-YR-02E"/>
                 <outlet property="messageButton" destination="Q9f-kf-8PB" id="0UX-bg-qDh"/>
-                <outlet property="statusLabel" destination="PGn-n4-knk" id="7OY-8b-5GM"/>
+                <outlet property="statusButton" destination="QcJ-ws-pqS" id="CMv-ib-pPG"/>
                 <outlet property="telephoneLabel" destination="nfw-9T-YBG" id="Zq4-rw-cyv"/>
                 <outlet property="timeLabel" destination="p90-eq-6tn" id="aAT-r7-3kk"/>
             </connections>
