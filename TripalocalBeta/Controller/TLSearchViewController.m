@@ -26,6 +26,9 @@
     
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
+    
+    self.expList = [self fetchExpData:self.cityName];
+    [self.tableView reloadData];
 }
 
 - (IBAction)toggleWishList:(id)sender {
@@ -185,8 +188,6 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    self.expList = [self fetchExpData:self.cityName];
-    [self.tableView reloadData];
     [super viewWillAppear:animated];
 }
 

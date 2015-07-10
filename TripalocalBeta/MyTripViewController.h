@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "NeedToLoginView.h"
 
-@interface MyTripViewController : UIViewController
+@interface MyTripViewController : UIViewController <NeedToLoginViewDelegate>
 @property (strong, nonatomic) IBOutlet UIView *segmentTitleView;
 @end

@@ -9,10 +9,12 @@
 #import "MyTripViewController.h"
 #import "UpcommingTripsViewController.h"
 #import "PreviousTripsViewController.h"
+#import "NeedToLoginView.h"
 
 @interface MyTripViewController ()
 @property (nonatomic, copy) NSArray *allViewControllers;
 
+@property (retain, nonatomic) IBOutlet NeedToLoginView *needToLoginView;
 @property (strong, nonatomic) IBOutlet UIView *myTripContentView;
 @property (strong, nonatomic) IBOutlet UIButton *upcommingButton;
 @property (strong, nonatomic) IBOutlet UIButton *previousButton;
@@ -34,8 +36,25 @@
     [previousController setContainerController:self];
     
     self.allViewControllers = [[NSArray alloc] initWithObjects:upcommingNav, previousNav, nil];
-    
-    [self cycleFromViewController:self.currentViewController toViewController:[self.allViewControllers objectAtIndex:0]];
+
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    NSString *token = [userDefaults stringForKey:@"user_token"];
+    if (token) {
+        [self.view sendSubviewToBack:self.needToLoginView];
+        [self cycleFromViewController:self.currentViewController toViewController:[self.allViewControllers objectAtIndex:0]];
+    } else {
+        self.needToLoginView.delegate = self;
+        [self.view bringSubviewToFront:self.needToLoginView];
+    }
+    [super viewWillAppear:animated];
+}
+
+- (void)loginClicked {
+        UIViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"login_view_controller"];
+        [self presentViewController:vc animated:YES completion:nil];
 }
 
 - (IBAction)changeToPreviousView:(id)sender {
