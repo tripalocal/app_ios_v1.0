@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TLSearchTableViewCell.h"
 
-@interface TLSearchViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
+@interface TLSearchViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, SearchTableViewCellDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property NSString *cityName;
 @property (nonatomic, retain) NSMutableArray *expList;

@@ -31,11 +31,14 @@
     [self.tableView reloadData];
 }
 
-- (IBAction)toggleWishList:(id)sender {
-    UIButton *button = (UIButton *)sender;
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+- (void)saveToWishListClicked:(NSInteger)buttonTag {
+    [self toggleWishList: buttonTag];
+}
+
+- (IBAction)toggleWishList:(NSInteger)buttonTag {
+   NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     NSString *token = [userDefaults stringForKey:@"user_token"];
-    NSIndexPath * index = [NSIndexPath indexPathForRow:button.tag inSection:0];
+    NSIndexPath * index = [NSIndexPath indexPathForRow:buttonTag inSection:0];
     
     if (token) {
         NSString *expIdString = [[[self.expList objectAtIndex:index.row] objectForKey:@"id"] stringValue];
@@ -59,11 +62,12 @@
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    static NSString *cellIdentifier=@"SearchCell";
+    static NSString *cellIdentifier = @"SearchCell";
     
     TLSearchTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"SearchCell"];
     if(!cell) {
-        cell = [[TLSearchTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+        [tableView registerNib:[UINib nibWithNibName:@"SearchViewCell" bundle:nil] forCellReuseIdentifier:cellIdentifier];
+        cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     }
     
     NSDictionary *exp = [self.expList objectAtIndex:indexPath.row];
@@ -108,11 +112,11 @@
     NSMutableArray *wishList = [userDefaults objectForKey:@"wish_list"];
     
     if ([wishList containsObject:expIdString]) {
-        [cell.wishListButton setTitle:@"Remove from wishlist" forState:UIControlStateNormal];
+        [cell.wishListButton setBackgroundImage:[UIImage imageNamed:@"wishlisted.png"] forState:UIControlStateNormal];
     } else {
-        [cell.wishListButton setTitle:@"Save to wishlist" forState:UIControlStateNormal];
+        [cell.wishListButton setBackgroundImage:[UIImage imageNamed:@"unwishlisted.png"] forState:UIControlStateNormal];
     }
-    
+    cell.delegate = self;
     cell.wishListButton.tag = indexPath.row;
     return cell;
 }
@@ -187,8 +191,9 @@
     return expList;
 }
 
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    //    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    [self performSegueWithIdentifier:@"SearchResultSegue" sender:self];
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender

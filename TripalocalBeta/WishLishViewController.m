@@ -75,6 +75,13 @@
     return expList;
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    self.expList = [self fetchExpData:self.cityName];
+    [self.tableView reloadData];
+    [super viewWillAppear:animated];
+}
+
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }

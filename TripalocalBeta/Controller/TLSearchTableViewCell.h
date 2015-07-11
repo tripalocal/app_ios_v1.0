@@ -7,14 +7,21 @@
 //
 
 #import <UIKit/UIKit.h>
+@protocol SearchTableViewCellDelegate <NSObject>
+
+- (void)saveToWishListClicked:(NSInteger)buttonTag;
+
+@end
 
 @interface TLSearchTableViewCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UIImageView *experienceImage;
 @property (weak, nonatomic) IBOutlet UIImageView *hostImage;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+
 @property (weak, nonatomic) IBOutlet UILabel *descriptionLabel;
+
 @property (weak, nonatomic) IBOutlet UILabel *languageLabel;
 @property (weak, nonatomic) IBOutlet UILabel *durationLabel;
-@property (strong, nonatomic) IBOutlet UIButton *wishListButton;
-
+@property (weak, nonatomic) IBOutlet UIButton *wishListButton;
+@property (nonatomic, weak) id <SearchTableViewCellDelegate> delegate;
 @end

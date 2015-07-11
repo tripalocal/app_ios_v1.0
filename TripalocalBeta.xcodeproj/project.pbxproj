@@ -54,6 +54,7 @@
 		87FC2DB81B480ABF0017F30E /* openssl_wrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 87FC2D621B480ABE0017F30E /* openssl_wrapper.m */; };
 		87FC2DB91B480ABF0017F30E /* RSADataSigner.m in Sources */ = {isa = PBXBuildFile; fileRef = 87FC2D641B480ABE0017F30E /* RSADataSigner.m */; };
 		87FC2DBA1B480ABF0017F30E /* RSADataVerifier.m in Sources */ = {isa = PBXBuildFile; fileRef = 87FC2D661B480ABE0017F30E /* RSADataVerifier.m */; };
+		87FCA49F1B509BF70060AA8B /* SearchViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87FCA49E1B509BF70060AA8B /* SearchViewCell.xib */; };
 		87FFF3D31B4D380100326104 /* EditProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87FFF3D21B4D380100326104 /* EditProfileViewController.m */; };
 		87FFF3D71B4D549C00326104 /* PaymentSuccessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87FFF3D61B4D549C00326104 /* PaymentSuccessViewController.m */; };
 		8E26A6631B0397EF00A5A5CF /* TLHomeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E26A6621B0397EF00A5A5CF /* TLHomeTableViewCell.m */; };
@@ -288,6 +289,7 @@
 		87FC2DB01B480ABF0017F30E /* x509.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = x509.h; sourceTree = "<group>"; };
 		87FC2DB11B480ABF0017F30E /* x509_vfy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = x509_vfy.h; sourceTree = "<group>"; };
 		87FC2DB21B480ABF0017F30E /* x509v3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = x509v3.h; sourceTree = "<group>"; };
+		87FCA49E1B509BF70060AA8B /* SearchViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchViewCell.xib; sourceTree = "<group>"; };
 		87FFF3D11B4D380100326104 /* EditProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditProfileViewController.h; sourceTree = "<group>"; };
 		87FFF3D21B4D380100326104 /* EditProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditProfileViewController.m; sourceTree = "<group>"; };
 		87FFF3D51B4D549C00326104 /* PaymentSuccessViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaymentSuccessViewController.h; sourceTree = "<group>"; };
@@ -610,6 +612,7 @@
 				871196561B4FF6BA00BA8672 /* NeedToLoginView.xib */,
 				871196511B4FCE7200BA8672 /* MyTripTableViewCell.xib */,
 				8EB570EC1B01CF2B0026D419 /* Main.storyboard */,
+				87FCA49E1B509BF70060AA8B /* SearchViewCell.xib */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -822,6 +825,7 @@
 				8EC86DBB1B02350000B0A655 /* time.png in Resources */,
 				8E4371381B4CB9F6003A3C8A /* meals.png in Resources */,
 				8EC86DBA1B02350000B0A655 /* search.png in Resources */,
+				87FCA49F1B509BF70060AA8B /* SearchViewCell.xib in Resources */,
 				8EC86DB01B02350000B0A655 /* facebook_bt.png in Resources */,
 				8EC86DB81B02350000B0A655 /* mytrip.png in Resources */,
 				8E43713B1B4CBA05003A3C8A /* bus.png in Resources */,
