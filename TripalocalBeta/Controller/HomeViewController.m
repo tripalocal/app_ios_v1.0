@@ -35,8 +35,8 @@
     tabBarItem2.title =nil;
     
     tabBarItem3.imageInsets = UIEdgeInsetsMake(6, 0, -6, 0);
-    tabBarItem3.selectedImage = [[UIImage imageNamed:@"wishlisted.png"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal ];
-    tabBarItem3.image = [[UIImage imageNamed:@"unwishlisted.png"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal ];
+    tabBarItem3.selectedImage = [[UIImage imageNamed:@"heart.png"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal ];
+    tabBarItem3.image = [[UIImage imageNamed:@"heart.png"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal ];
     tabBarItem3.title = nil;
     
     tabBarItem4.imageInsets = UIEdgeInsetsMake(6, 0, -6, 0);

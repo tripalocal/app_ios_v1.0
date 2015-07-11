@@ -75,10 +75,28 @@
     return expList;
 }
 
+- (void)loginClicked {
+    UIViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"login_view_controller"];
+    [self presentViewController:vc animated:YES completion:nil];
+}
+
 - (void)viewWillAppear:(BOOL)animated {
-    self.expList = [self fetchExpData:self.cityName];
-    [self.tableView reloadData];
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    NSString *token = [userDefaults stringForKey:@"user_token"];
+    if (token) {
+        [self.view sendSubviewToBack:self.needToLoginView];
+        self.expList = [self fetchExpData:self.cityName];
+        [self.tableView reloadData];
+    } else {
+        self.needToLoginView.delegate = self;
+        [self.view bringSubviewToFront:self.needToLoginView];
+    }
+    [self.navigationController setNavigationBarHidden:YES animated:animated];
     [super viewWillAppear:animated];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [self.navigationController setNavigationBarHidden:NO animated:animated];
 }
 
 

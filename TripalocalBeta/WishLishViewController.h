@@ -8,7 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "TLSearchViewController.h"
+#import "NeedToLoginView.h"
 
-@interface WishLishViewController : TLSearchViewController
-
+@interface WishLishViewController : TLSearchViewController <NeedToLoginViewDelegate>
+@property (retain, nonatomic) IBOutlet NeedToLoginView *needToLoginView;
 @end

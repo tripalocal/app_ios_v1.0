@@ -14,22 +14,12 @@
             <rect key="frame" x="0.0" y="0.0" width="306" height="373"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="My Trips" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vms-tg-7ei">
-                    <rect key="frame" x="121" y="80" width="65" height="21"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please login first" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vms-tg-7ei">
+                    <rect key="frame" x="90" y="80" width="127" height="21"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="When book an experience, you will see your itenary here." translatesAutoresizingMaskIntoConstraints="NO" id="gn0-t5-x5T">
-                    <rect key="frame" x="43" y="126" width="220" height="50"/>
-                    <color key="backgroundColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="220" id="0Go-Sa-AmG"/>
-                        <constraint firstAttribute="height" constant="50" id="1OO-su-BO2"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                </textView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mp7-xz-mJ5">
                     <rect key="frame" x="43" y="216" width="220" height="40"/>
                     <color key="backgroundColor" red="0.10926186409999999" green="1" blue="0.79704178729999997" alpha="1" colorSpace="calibratedRGB"/>
@@ -54,12 +44,10 @@
             </subviews>
             <color key="backgroundColor" red="0.96862745098039216" green="0.96862745098039216" blue="0.96862745098039216" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
-                <constraint firstAttribute="centerX" secondItem="gn0-t5-x5T" secondAttribute="centerX" id="DrJ-UW-enz"/>
+                <constraint firstItem="Mp7-xz-mJ5" firstAttribute="top" secondItem="Vms-tg-7ei" secondAttribute="bottom" constant="115" id="3NZ-se-YTi"/>
                 <constraint firstAttribute="centerX" secondItem="Vms-tg-7ei" secondAttribute="centerX" id="E5S-Ak-JXU"/>
                 <constraint firstAttribute="centerX" secondItem="Mp7-xz-mJ5" secondAttribute="centerX" id="ecR-zm-B2Y"/>
                 <constraint firstItem="Vms-tg-7ei" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="80" id="mfC-ni-jOb"/>
-                <constraint firstItem="Mp7-xz-mJ5" firstAttribute="top" secondItem="gn0-t5-x5T" secondAttribute="bottom" constant="40" id="se0-sI-sYQ"/>
-                <constraint firstItem="gn0-t5-x5T" firstAttribute="top" secondItem="Vms-tg-7ei" secondAttribute="bottom" constant="25" id="yeQ-yb-fBH"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>

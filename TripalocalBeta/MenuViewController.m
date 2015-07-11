@@ -10,7 +10,8 @@
 #import "Constant.h"
 
 @interface MenuViewController ()
-@property (strong, nonatomic) IBOutlet UIImageView *image;
+@property (weak, nonatomic) IBOutlet UIImageView *image;
+@property (weak, nonatomic) IBOutlet UILabel *hostName;
 
 @end
 
@@ -21,6 +22,8 @@
     
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     UIImage* image = [UIImage imageWithData:[userDefaults objectForKey:@"user_image"]];
+    self.hostName.text = [userDefaults objectForKey:@"host_name"];
+    
     if (image) {
         self.image.image = image;
     } else {
@@ -30,6 +33,8 @@
     self.image.layer.cornerRadius = self.image.frame.size.height / 2;
     self.image.layer.masksToBounds = YES;
     self.image.layer.borderWidth = 0;
+    self.image.layer.borderColor = [UIColor whiteColor].CGColor;
+    self.image.layer.borderWidth = 3.0f;
 
 }
 

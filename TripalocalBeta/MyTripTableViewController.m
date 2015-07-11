@@ -31,6 +31,7 @@
     timeFormatter = [[NSDateFormatter alloc] init];
     [timeFormatter setDateFormat:@"HH:mm"];
     [timeFormatter setTimeZone:[NSTimeZone systemTimeZone]];
+    [self.view insertSubview:self.nomatchesView belowSubview:self.tableView];
 }
 
 - (void)fetchMyTrips:(NSString *) token {
@@ -178,10 +179,11 @@
     NSString *token = [userDefaults stringForKey:@"user_token"];
     if (token) {
         [self fetchMyTrips:token];
-    }
-    
-    if ([myTrips count] == 0) {
-        // todo:
+            if([myTrips count] == 0 ){
+                [self.view bringSubviewToFront:self.nomatchesView];
+            } else {
+                [self.view sendSubviewToBack:self.nomatchesView];
+            }
     }
     
     MyTripViewController *mytripController = (MyTripViewController *)self.containerController;
@@ -230,6 +232,9 @@
     }
     
     return image;
+}
+- (IBAction)startExploring:(id)sender {
+    [self.tabBarController setSelectedIndex:0];
 }
 
 @end
