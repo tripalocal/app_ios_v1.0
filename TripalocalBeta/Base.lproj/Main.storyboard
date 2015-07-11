@@ -173,35 +173,58 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="21c-Bx-GUB" id="adX-1X-9Et">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Experience" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YyL-sl-sa8">
-                                                    <rect key="frame" x="8" y="27" width="584" height="26"/>
-                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Experience" lineBreakMode="characterWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YyL-sl-sa8">
+                                                    <rect key="frame" x="15" y="8" width="575" height="22"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loading..." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RzH-gg-VSj">
-                                                    <rect key="frame" x="8" y="61" width="584" height="216"/>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iab-Lb-EH0">
+                                                    <rect key="frame" x="250" y="225" width="100" height="30"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="216" id="6QG-Vn-CZE"/>
+                                                        <constraint firstAttribute="width" constant="100" id="eBR-Ql-ePz"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <state key="normal" title="Read More">
+                                                        <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="toggleReadMore:" destination="21c-Bx-GUB" eventType="touchUpInside" id="jXM-OY-VbS"/>
+                                                    </connections>
+                                                </button>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RzH-gg-VSj">
+                                                    <rect key="frame" x="15" y="55" width="575" height="96"/>
+                                                    <string key="text">asdf asdfafsdf asdf asdf as df asd fa sasdfs afsd f as df asd fa sdf as df as df as df as df as df asd fa s fas d fas df as df asdf a sfd fa asdf asdfafsdf asdf asdf as df asd fa sasdfs afsd f as df asd fa sdf as df as df as df as df as df asd fa s fas d fas df as df asdf a sfd fa asdf asdfafsdf asdf asdf as df asd fa sasdfs afsd f as df asd fa sdf as df as df as df as df as df asd fa s fas d fas df as df asdf a sfd faasdf asdfafsdf asdf asdf as df asd fa sasdfs afsd f as df asd fa sdf as df as df as df as df as df asd fa s fas d fas df as df asdf a sfd fa  </string>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="RzH-gg-VSj" firstAttribute="leading" secondItem="adX-1X-9Et" secondAttribute="leadingMargin" id="1Aa-3c-nCd"/>
-                                                <constraint firstItem="RzH-gg-VSj" firstAttribute="trailing" secondItem="adX-1X-9Et" secondAttribute="trailingMargin" id="LZW-v3-P5p"/>
-                                                <constraint firstItem="RzH-gg-VSj" firstAttribute="bottom" secondItem="adX-1X-9Et" secondAttribute="bottomMargin" id="duK-Jb-Hpd"/>
-                                                <constraint firstItem="YyL-sl-sa8" firstAttribute="top" secondItem="adX-1X-9Et" secondAttribute="topMargin" constant="19" id="k7H-Tq-7cK"/>
-                                                <constraint firstItem="YyL-sl-sa8" firstAttribute="trailing" secondItem="adX-1X-9Et" secondAttribute="trailingMargin" id="pFi-XY-Sy9"/>
-                                                <constraint firstItem="YyL-sl-sa8" firstAttribute="leading" secondItem="adX-1X-9Et" secondAttribute="leadingMargin" id="rUv-hC-u7K"/>
+                                                <constraint firstItem="RzH-gg-VSj" firstAttribute="top" secondItem="YyL-sl-sa8" secondAttribute="bottom" constant="25" id="5It-ZS-GDa"/>
+                                                <constraint firstAttribute="bottom" secondItem="iab-Lb-EH0" secondAttribute="bottom" constant="30" id="RkQ-gU-Qof"/>
+                                                <constraint firstAttribute="centerX" secondItem="iab-Lb-EH0" secondAttribute="centerX" id="SLW-L6-iId"/>
+                                                <constraint firstItem="YyL-sl-sa8" firstAttribute="leading" secondItem="RzH-gg-VSj" secondAttribute="leading" id="hfC-MI-Xa1"/>
+                                                <constraint firstItem="YyL-sl-sa8" firstAttribute="top" secondItem="adX-1X-9Et" secondAttribute="topMargin" id="k7H-Tq-7cK"/>
+                                                <constraint firstItem="YyL-sl-sa8" firstAttribute="width" secondItem="RzH-gg-VSj" secondAttribute="width" id="oKf-c1-GnK"/>
+                                                <constraint firstItem="YyL-sl-sa8" firstAttribute="trailing" secondItem="adX-1X-9Et" secondAttribute="trailing" constant="15" id="pFi-XY-Sy9"/>
+                                                <constraint firstItem="YyL-sl-sa8" firstAttribute="leading" secondItem="adX-1X-9Et" secondAttribute="leading" constant="15" id="rUv-hC-u7K"/>
                                                 <constraint firstItem="RzH-gg-VSj" firstAttribute="top" secondItem="YyL-sl-sa8" secondAttribute="bottom" constant="8" id="sRx-Mr-Nja"/>
+                                                <constraint firstAttribute="trailing" secondItem="YyL-sl-sa8" secondAttribute="trailing" constant="10" id="tNY-uk-cUO"/>
                                             </constraints>
+                                            <variation key="default">
+                                                <mask key="constraints">
+                                                    <exclude reference="pFi-XY-Sy9"/>
+                                                    <exclude reference="sRx-Mr-Nja"/>
+                                                </mask>
+                                            </variation>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
                                         <connections>
                                             <outlet property="expDescriptionLabel" destination="RzH-gg-VSj" id="QNG-Ae-is6"/>
                                             <outlet property="expTitleLabel" destination="YyL-sl-sa8" id="AUb-pB-O7D"/>
+                                            <outlet property="readMoreButton" destination="iab-Lb-EH0" id="fiT-MB-Z5h"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell2" rowHeight="261" id="cOA-m7-GbH" customClass="TLDetailTableViewCell2">
@@ -2694,9 +2717,9 @@
         <image name="visa.png" width="102" height="64"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Pkv-bo-ySw"/>
-        <segue reference="I7p-1k-Jcw"/>
+        <segue reference="EaH-Mn-GG8"/>
+        <segue reference="yiP-PS-w0n"/>
         <segue reference="r1b-Gj-oet"/>
-        <segue reference="84E-Wr-GXn"/>
+        <segue reference="I7p-1k-Jcw"/>
     </inferredMetricsTieBreakers>
 </document>

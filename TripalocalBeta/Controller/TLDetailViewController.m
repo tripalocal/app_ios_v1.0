@@ -69,6 +69,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.isReadMoreButtonTouched = NO;
+    self.indexOfReadMoreButton = -1;
+    
+    self.cellHeights = [@[@306, @286, @261, @330, @106, @217] mutableCopy];
     _myTable.delegate = self;
     _myTable.dataSource = self;
     connectionFinished=0;
@@ -182,9 +186,24 @@
             {
                 cell1=[[TLDetailTableViewCell1 alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier1];
             }
+            
+            cell1.parentView = self.myTable;
             cell1.expTitleLabel.text = expTitle;
             cell1.expDescriptionLabel.text = [expDescription stringByAppendingFormat:@" %@ %@", expActivity, expInteraction];
-            
+            if (self.isReadMoreButtonTouched && [indexPath row] == self.indexOfReadMoreButton) {
+                [cell1.readMoreButton setTitle:@"Read Less" forState:UIControlStateNormal];
+                cell1.expDescriptionLabel.lineBreakMode = NSLineBreakByWordWrapping;
+                cell1.expDescriptionLabel.numberOfLines = 0;
+                [cell1.expDescriptionLabel sizeToFit];
+                // important
+                self.isReadMoreButtonTouched = NO;
+                self.indexOfReadMoreButton = -1;
+            } else {
+                [cell1.readMoreButton setTitle:@"Read More" forState:UIControlStateNormal];
+                cell1.expDescriptionLabel.lineBreakMode = NSLineBreakByTruncatingTail;
+                cell1.expDescriptionLabel.numberOfLines = 5;
+            }
+
             return cell1;
         case 2:
             if(!cell2)
@@ -345,6 +364,10 @@
     
     
     NSLog(@"%@,%@,%@,%@",expTitle,expPrice,reviewerImageURL,reviewComment);
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return [[self.cellHeights objectAtIndex:indexPath.row] floatValue];
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
