@@ -233,6 +233,8 @@
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    if(instantTimeArray.count == 0)
+        return 1;
     return instantTimeArray.count;
 }
 
@@ -242,9 +244,17 @@
     if(!cell){
         cell=[[InstantBookingTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
-    cell.instantDateLabel.text = [instantDateArray objectAtIndex:indexPath.row];
-    cell.instantTimeLabel.text = [instantTimeArray objectAtIndex:indexPath.row];
-    
+    if(instantTimeArray.count == 0){
+        cell.instantDateLabel.text = @"No instant booking available";
+        cell.instantTimeLabel.text = @"";
+        cell.instantView.hidden = YES;
+    }
+    else{
+        cell.instantView.hidden = NO;
+        cell.instantDateLabel.text = [instantDateArray objectAtIndex:indexPath.row];
+        cell.instantTimeLabel.text = [instantTimeArray objectAtIndex:indexPath.row];
+        
+    }
     return cell;
 }
 
