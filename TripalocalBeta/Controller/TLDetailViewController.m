@@ -21,8 +21,6 @@
 
 @interface TLDetailViewController ()
 {
-    NSURLConnection *connection;
-    NSMutableData *jsonData;
     NSString *hostImageURL;
     NSString *expLanguage;
     NSString *expPrice;
@@ -104,14 +102,89 @@
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     [request setValue:postLength forHTTPHeaderField:@"Content-Length"];
     [request setHTTPBody:postData];
-
     
-    connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
-    if (connection) {
-        if (jsonData==NULL) {
-            jsonData=[[NSMutableData alloc]init];
+    NSError *connectionError = nil;
+    NSURLResponse *response = nil;
+    
+    NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&connectionError];
+    
+    if (connectionError == nil) {
+        NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *) response;
+        
+        NSDictionary *result = [NSJSONSerialization JSONObjectWithData:data
+                                                               options:0
+                                                                 error:nil];
+        
+        if ([httpResponse statusCode] == 200) {
+            NSDictionary *allDataDictionary=[NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+            @try {
+                hostImageURL = [imageBaseURL stringByAppendingString: [allDataDictionary objectForKey:@"host_image"]];
+                expLanguage = [self transformLanugage:[allDataDictionary objectForKey:@"experience_language"]];
+                NSNumber *expPriceNumber = [allDataDictionary objectForKey:@"experience_price"];
+                NSNumberFormatter *formatter = [[NSNumberFormatter alloc]init];
+                [formatter setNumberStyle:NSNumberFormatterDecimalStyle];
+                [formatter setMaximumFractionDigits:2];
+                [formatter setRoundingMode: NSNumberFormatterRoundUp];
+                expPrice = [formatter stringFromNumber:expPriceNumber];
+                NSNumber *expDurationNumber = [allDataDictionary objectForKey:@"experience_duration"];
+                expDuration = [expDurationNumber stringValue];
+                expTitle = [allDataDictionary objectForKey:@"experience_title"];
+                expDescription = [allDataDictionary objectForKey:@"experience_description"];
+                expActivity = [allDataDictionary objectForKey:@"experience_activity"];
+                expInteraction = [allDataDictionary objectForKey:@"experience_interaction"];
+                hostFirstName = [allDataDictionary objectForKey:@"host_firstname"];
+                hostBio = [allDataDictionary objectForKey:@"host_bio"];
+                expReviewsArray = [allDataDictionary objectForKey:@"experience_reviews"];
+                NSUInteger numberOfReviews = expReviewsArray.count;
+                numOfReviews = [NSString stringWithFormat:@"%lu",(unsigned long)numberOfReviews];
+                NSNumber *rateNumber = [allDataDictionary objectForKey:@"experience_rate"];
+                expRate = [rateNumber stringValue];
+                NSDictionary *reviewDictionary0 = [expReviewsArray objectAtIndex:0];
+                reviews = expReviewsArray;
+                reviewFirst = [reviewDictionary0 objectForKey:@"reviewer_firstname"];
+                reviewLast = [reviewDictionary0 objectForKey:@"reviewer_lastname"];
+                PREreviewerImageURL =[reviewDictionary0 objectForKey:@"reviewer_image"];
+                reviewerImageURL = [imageBaseURL stringByAppendingString: PREreviewerImageURL];
+                reviewComment = [reviewDictionary0 objectForKey:@"review_comment"];
+                
+                ticketString = [allDataDictionary objectForKey:@"included_ticket_detail"];
+                foodString = [allDataDictionary objectForKey:@"included_food_detail"];
+                transportString = [allDataDictionary objectForKey:@"included_transport_detail"];
+                availableDateArray = [allDataDictionary objectForKey:@"available_options"];
+                NSLog(@"TEST:%lu DATE DATA",(unsigned long)availableDateArray.count);
+                dynamicPriceArray = [allDataDictionary objectForKey:@"experience_dynamic_price"];
+                maxGuestNum = [allDataDictionary objectForKey:@"experience_guest_number_max"];
+                minGuestNum = [allDataDictionary objectForKey:@"experience_guest_number_min"];
+            }
+            @catch (NSException * e) {
+                NSLog(@"Experience/(ID:%@/) Exception: %@", _experience_id_string, e);
+            }
+            [HUD dismissAfterDelay:1.5];
+        } else {
+            NSString *errorMsg = [result objectForKey:@"Server Error"];
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Connection Failed"
+                                                            message:errorMsg
+                                                           delegate:nil
+                                                  cancelButtonTitle:@"OK"
+                                                  otherButtonTitles:nil];
+            [alert show];
         }
+        
+#if DEBUG
+        NSString *decodedData = [[NSString alloc] initWithData:data
+                                                      encoding:NSUTF8StringEncoding];
+        NSLog(@"Receiving data = %@", decodedData);
+#endif
+    } else {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No network connection"
+                                                        message:@"You must be connected to the internet."
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+        [alert show];
     }
+
+    NSLog(@"%@,%@,%@,%@",expTitle,expPrice,reviewerImageURL,reviewComment);
     
 }
 
@@ -139,11 +212,6 @@
     
     static NSString *cellIdentifier5=@"cell5";
     TLDetailTableViewCell5 *cell5=(TLDetailTableViewCell5 *) [tableView dequeueReusableCellWithIdentifier:cellIdentifier5];
-    
-    while (connectionFinished==0) {
-        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate distantFuture]];
-    }
-    
     
     NSString *hostImageCachingIdentifier = [NSString stringWithFormat:@"Cell%ldOfHostImage",(long)indexPath.row];
     NSString *expImageCachingIdentifier = [NSString stringWithFormat:@"Cell%ldOfExpImage",(long)indexPath.row];
@@ -328,19 +396,6 @@
 }
 
 
--(void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
-{
-    [jsonData setLength:0];
-}
-
--(void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
-{
-    [jsonData appendData:data];
-    
-}
-
-
-
 -(void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
 {
     NSLog(@"Error:(Details)Failed with connection error.");
@@ -363,56 +418,7 @@
 
 -(void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
-    NSDictionary *allDataDictionary=[NSJSONSerialization JSONObjectWithData:jsonData options:0 error:nil];
-    @try {
-        hostImageURL = [imageBaseURL stringByAppendingString: [allDataDictionary objectForKey:@"host_image"]];
-        expLanguage = [self transformLanugage:[allDataDictionary objectForKey:@"experience_language"]];
-        NSNumber *expPriceNumber = [allDataDictionary objectForKey:@"experience_price"];
-        NSNumberFormatter *formatter = [[NSNumberFormatter alloc]init];
-        [formatter setNumberStyle:NSNumberFormatterDecimalStyle];
-        [formatter setMaximumFractionDigits:2];
-        [formatter setRoundingMode: NSNumberFormatterRoundUp];
-        expPrice = [formatter stringFromNumber:expPriceNumber];
-        NSNumber *expDurationNumber = [allDataDictionary objectForKey:@"experience_duration"];
-        expDuration = [expDurationNumber stringValue];
-        expTitle = [allDataDictionary objectForKey:@"experience_title"];
-        expDescription = [allDataDictionary objectForKey:@"experience_description"];
-        expActivity = [allDataDictionary objectForKey:@"experience_activity"];
-        expInteraction = [allDataDictionary objectForKey:@"experience_interaction"];
-        hostFirstName = [allDataDictionary objectForKey:@"host_firstname"];
-        hostBio = [allDataDictionary objectForKey:@"host_bio"];
-        expReviewsArray = [allDataDictionary objectForKey:@"experience_reviews"];
-        NSUInteger numberOfReviews = expReviewsArray.count;
-        numOfReviews = [NSString stringWithFormat:@"%lu",(unsigned long)numberOfReviews];
-        NSNumber *rateNumber = [allDataDictionary objectForKey:@"experience_rate"];
-        expRate = [rateNumber stringValue];
-        NSDictionary *reviewDictionary0 = [expReviewsArray objectAtIndex:0];
-        reviews = expReviewsArray;
-        reviewFirst = [reviewDictionary0 objectForKey:@"reviewer_firstname"];
-        reviewLast = [reviewDictionary0 objectForKey:@"reviewer_lastname"];
-        PREreviewerImageURL =[reviewDictionary0 objectForKey:@"reviewer_image"];
-        reviewerImageURL = [imageBaseURL stringByAppendingString: PREreviewerImageURL];
-        reviewComment = [reviewDictionary0 objectForKey:@"review_comment"];
-        
-        ticketString = [allDataDictionary objectForKey:@"included_ticket_detail"];
-        foodString = [allDataDictionary objectForKey:@"included_food_detail"];
-        transportString = [allDataDictionary objectForKey:@"included_transport_detail"];
-        availableDateArray = [allDataDictionary objectForKey:@"available_options"];
-        NSLog(@"TEST:%lu DATE DATA",(unsigned long)availableDateArray.count);
-        dynamicPriceArray = [allDataDictionary objectForKey:@"experience_dynamic_price"];
-        
-        maxGuestNum = [allDataDictionary objectForKey:@"experience_guest_number_max"];
-        minGuestNum = [allDataDictionary objectForKey:@"experience_guest_number_min"];
-        //Transport
-        connectionFinished=1;
-    }
-    @catch (NSException * e) {
-        NSLog(@"Experience/(ID:%@/) Exception: %@", _experience_id_string, e);
-    }
-    [HUD dismissAfterDelay:3.0];
-    
-    
-    NSLog(@"%@,%@,%@,%@",expTitle,expPrice,reviewerImageURL,reviewComment);
+
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
