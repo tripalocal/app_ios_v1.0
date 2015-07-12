@@ -18,6 +18,8 @@
 		5649BDF01B46702300465D6C /* (null) in Resources */ = {isa = PBXBuildFile; };
 		5649BDF11B46702300465D6C /* (null) in Resources */ = {isa = PBXBuildFile; };
 		5653A8ED1B48FB8D005CA2A7 /* default_profile_image.png in Resources */ = {isa = PBXBuildFile; fileRef = 5653A8EC1B48FB8D005CA2A7 /* default_profile_image.png */; };
+		568AE82C1B52061E00D48DBC /* flash.png in Resources */ = {isa = PBXBuildFile; fileRef = 568AE82B1B52061E00D48DBC /* flash.png */; };
+		568AE8301B52087500D48DBC /* InstantBookingTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 568AE82F1B52087500D48DBC /* InstantBookingTableViewCell.m */; };
 		7412FDE1EDC10952539BF3C5 /* libPods-TripalocalBeta.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D1136758DFF7CE52CD971824 /* libPods-TripalocalBeta.a */; };
 		871196521B4FCE7200BA8672 /* MyTripTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 871196511B4FCE7200BA8672 /* MyTripTableViewCell.xib */; };
 		871196571B4FF6BA00BA8672 /* NeedToLoginView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 871196561B4FF6BA00BA8672 /* NeedToLoginView.xib */; };
@@ -152,6 +154,9 @@
 		5649BD451B3FD5CA00465D6C /* TLDetailTableViewCell5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TLDetailTableViewCell5.m; path = "Controller/Custom Cells/TLDetailTableViewCell5.m"; sourceTree = "<group>"; };
 		5649BDCD1B4387C800465D6C /* JGProgressHUD.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = JGProgressHUD.xcodeproj; path = "Supported Files/JGProgressHUD/JGProgressHUD.xcodeproj"; sourceTree = "<group>"; };
 		5653A8EC1B48FB8D005CA2A7 /* default_profile_image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = default_profile_image.png; path = Images/default_profile_image.png; sourceTree = "<group>"; };
+		568AE82B1B52061E00D48DBC /* flash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = flash.png; sourceTree = "<group>"; };
+		568AE82E1B52087500D48DBC /* InstantBookingTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InstantBookingTableViewCell.h; path = "Controller/Custom Cells/InstantBookingTableViewCell.h"; sourceTree = "<group>"; };
+		568AE82F1B52087500D48DBC /* InstantBookingTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InstantBookingTableViewCell.m; path = "Controller/Custom Cells/InstantBookingTableViewCell.m"; sourceTree = "<group>"; };
 		871196511B4FCE7200BA8672 /* MyTripTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyTripTableViewCell.xib; sourceTree = "<group>"; };
 		871196561B4FF6BA00BA8672 /* NeedToLoginView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = NeedToLoginView.xib; path = ../NeedToLoginView.xib; sourceTree = "<group>"; };
 		871196581B4FF74300BA8672 /* NeedToLoginView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NeedToLoginView.h; sourceTree = "<group>"; };
@@ -387,6 +392,8 @@
 				5649BD421B3FD5A400465D6C /* TLDetailTableViewCell4.m */,
 				5649BD441B3FD5CA00465D6C /* TLDetailTableViewCell5.h */,
 				5649BD451B3FD5CA00465D6C /* TLDetailTableViewCell5.m */,
+				568AE82E1B52087500D48DBC /* InstantBookingTableViewCell.h */,
+				568AE82F1B52087500D48DBC /* InstantBookingTableViewCell.m */,
 			);
 			name = "Custom Cells";
 			sourceTree = "<group>";
@@ -557,6 +564,7 @@
 				5649BDCD1B4387C800465D6C /* JGProgressHUD.xcodeproj */,
 				8EC86D9F1B02350000B0A655 /* date.png */,
 				8EC86DA01B02350000B0A655 /* facebook_bt.png */,
+				568AE82B1B52061E00D48DBC /* flash.png */,
 				8EC86DA11B02350000B0A655 /* group.png */,
 				8EC86DA21B02350000B0A655 /* home_s.png */,
 				8EC86DA31B02350000B0A655 /* home.png */,
@@ -816,6 +824,7 @@
 				8EC86DBD1B02350000B0A655 /* unwishlisted.png in Resources */,
 				8788B9D11B48EE570002B4D1 /* visa.png in Resources */,
 				8EC86DB61B02350000B0A655 /* myprofile.png in Resources */,
+				568AE82C1B52061E00D48DBC /* flash.png in Resources */,
 				8EB570F31B01CF2B0026D419 /* LaunchScreen.xib in Resources */,
 				8EC86DB51B02350000B0A655 /* myprofile_s.png in Resources */,
 				8EC86DB31B02350000B0A655 /* home.png in Resources */,
@@ -919,6 +928,7 @@
 				87FC2D251B4797CA0017F30E /* PaymentOptionViewController.m in Sources */,
 				8EB982501B2280D800ADE430 /* Spinner.m in Sources */,
 				5649BD3D1B3FD56E00465D6C /* TLDetailTableViewCell2.m in Sources */,
+				568AE8301B52087500D48DBC /* InstantBookingTableViewCell.m in Sources */,
 				87FC2DB81B480ABF0017F30E /* openssl_wrapper.m in Sources */,
 				5649BD401B3FD58800465D6C /* TLDetailTableViewCell3.m in Sources */,
 				8E26A6631B0397EF00A5A5CF /* TLHomeTableViewCell.m in Sources */,

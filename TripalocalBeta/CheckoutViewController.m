@@ -7,6 +7,7 @@
 //
 
 #import "CheckoutViewController.h"
+#import "InstantBookingTableViewCell.h"
 
 @interface CheckoutViewController (){
     NSMutableArray *guestPickerData;
@@ -55,6 +56,8 @@
     _datePicker.dataSource = self;
     _timePicker.delegate = self;
     _timePicker.dataSource = self;
+    _instantTable.dataSource = self;
+    _instantTable.delegate = self;
     
     //Initialize guest data
     guestPickerData = [[NSMutableArray alloc]init];
@@ -225,6 +228,25 @@
     return YES;
 }
 
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    return 1;
+}
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return instantTimeArray.count;
+}
+
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    static NSString *cellIdentifier = @"instantCell";
+    InstantBookingTableViewCell *cell = (InstantBookingTableViewCell *) [tableView dequeueReusableCellWithIdentifier:cellIdentifier];;
+    if(!cell){
+        cell=[[InstantBookingTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+    }
+    cell.instantDateLabel.text = [instantDateArray objectAtIndex:indexPath.row];
+    cell.instantTimeLabel.text = [instantTimeArray objectAtIndex:indexPath.row];
+    
+    return cell;
+}
 
 #pragma mark - Navigation
 

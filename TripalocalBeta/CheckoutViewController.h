@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "PaymentOptionViewController.h"
 
-@interface CheckoutViewController : UIViewController <UITextFieldDelegate,UIPickerViewDataSource, UIPickerViewDelegate>
+@interface CheckoutViewController : UIViewController <UITextFieldDelegate,UIPickerViewDataSource, UIPickerViewDelegate, UITableViewDataSource,UITableViewDelegate>
 @property (nonatomic) NSInteger guestNumber;
 @property (nonatomic) NSNumber *unitPrice;
 @property (nonatomic) NSNumber *totalPrice;
@@ -35,5 +35,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *unitPriceLabel;
 @property (weak, nonatomic) IBOutlet UILabel *totalPriceLabel;
 
+@property (weak, nonatomic) IBOutlet UITableView *instantTable;
 
 @end
