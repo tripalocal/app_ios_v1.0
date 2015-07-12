@@ -13,6 +13,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *image;
 @property (weak, nonatomic) IBOutlet UILabel *hostName;
 @property (strong, nonatomic) IBOutlet UIView *wishLIstImage;
+@property (strong, nonatomic) IBOutlet UIView *backgroundView;
 
 @end
 
@@ -30,6 +31,10 @@
     } else {
         self.image.image = [UIImage imageNamed: @"default_profile_image.png"];
     }
+    
+    self.backgroundView.layer.cornerRadius = 5;
+    self.backgroundView.layer.borderColor = [UIColor grayColor].CGColor;
+    self.backgroundView.layer.borderWidth = 1;
     
     self.image.layer.cornerRadius = self.image.frame.size.height / 2;
     self.image.layer.masksToBounds = YES;

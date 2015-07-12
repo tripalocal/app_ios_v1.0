@@ -175,8 +175,6 @@
                 });
                 
             }
-// todo request cover image
-            cell.coverImage.image = _coverImage;
             cell.reservationLabel.text = [cell.reservationLabel.text stringByAppendingFormat:@" %@", hostFirstName];
             // language
             cell.languageLabel.text = expLanguage;
@@ -223,9 +221,19 @@
                 cell2.hostBioLabel.numberOfLines = 5;
             }
             
-            // get host image
+            if ([self.cachedImages objectForKey:hostImageCachingIdentifier]) {
+                cell2.hostImage.image = [self.cachedImages valueForKey:hostImageCachingIdentifier];
+            } else {
+                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                    NSData *hostImageData = [[NSData alloc]initWithContentsOfURL:[NSURL URLWithString:hostImageURL]];
+                    dispatch_sync(dispatch_get_main_queue(), ^{
+                        cell2.hostImage.image = [[UIImage alloc] initWithData:hostImageData];
+                        [self.cachedImages setValue:cell2.hostImage.image forKey:hostImageCachingIdentifier];
+                    });
+                    
+                });
+            }
             cell2.hostFirstNameLabel.text = [@"About the host, " stringByAppendingString: hostFirstName];
-            cell2.hostImage.image = _hostImage;
             cell2.hostBioLabel.text = hostBio;
             
             return cell2;
@@ -264,12 +272,26 @@
             
             return cell3;
         case 4:
-            if(!cell4)
-            {
+            if(!cell4) {
                 cell4=[[TLDetailTableViewCell4 alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier4];
             }
             
-            cell4.coverImage.image = _coverImage;
+            if ([self.cachedImages objectForKey:expImageCachingIdentifier]) {
+                cell4.coverImage.image = [self.cachedImages valueForKey:expImageCachingIdentifier];
+            } else {
+                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                    NSString *backgroundImageURL = [NSString stringWithFormat:@"%@thumbnails/experiences/experience%@_1.jpg", testServerImageURL, _experience_id_string];
+                    
+                    NSData *experienceImageData = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:backgroundImageURL]];
+                    
+                    dispatch_sync(dispatch_get_main_queue(), ^{
+                        cell4.coverImage.image = [[UIImage alloc] initWithData:experienceImageData];
+                        [self.cachedImages setValue:cell4.coverImage.image forKey:expImageCachingIdentifier];
+                    });
+                    
+                });
+            }
+            
             return cell4;
         case 5:
             if(!cell5)
@@ -386,7 +408,7 @@
     if ([segue.identifier isEqualToString:@"checkoutSegue"]) {
         CheckoutViewController *vc=[segue destinationViewController];
         vc.exp_ID_string = _experience_id_string;
-        vc.expImage = _coverImage;
+        vc.expImage = self.coverImage;
         vc.availbleDateArray = availableDateArray;
         vc.expTitleString = expTitle;
         vc.fixPriceString = expPrice;

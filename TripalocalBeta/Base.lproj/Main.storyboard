@@ -1224,7 +1224,11 @@
                                 <rect key="frame" x="0.0" y="248" width="600" height="60"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="heart.png" translatesAutoresizingMaskIntoConstraints="NO" id="eXs-vb-CrI">
-                                        <rect key="frame" x="277" y="0.0" width="46" height="60"/>
+                                        <rect key="frame" x="278" y="8" width="45" height="45"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="45" id="Pwy-VX-Nv4"/>
+                                            <constraint firstAttribute="height" constant="45" id="QQA-gN-JiV"/>
+                                        </constraints>
                                     </imageView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1234,6 +1238,11 @@
                                     <constraint firstAttribute="centerY" secondItem="eXs-vb-CrI" secondAttribute="centerY" id="oFw-Xe-yk5"/>
                                     <constraint firstAttribute="centerX" secondItem="eXs-vb-CrI" secondAttribute="centerX" id="oRU-xW-Qk2"/>
                                 </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="gkk-ye-vQg"/>
+                                    </mask>
+                                </variation>
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
@@ -1251,6 +1260,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="pAL-LB-tME"/>
                     <connections>
+                        <outlet property="backgroundView" destination="gbB-HA-Ql0" id="2Wv-5V-05G"/>
                         <outlet property="hostName" destination="WIV-jZ-czn" id="q1m-Uo-CGe"/>
                         <outlet property="image" destination="iDB-hB-AXx" id="vEw-Eg-hlT"/>
                         <outlet property="wishLIstImage" destination="gbB-HA-Ql0" id="l4C-n6-gvD"/>
@@ -1260,7 +1270,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cVi-UG-mt1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-379" y="2044"/>
+            <point key="canvasLocation" x="-619" y="2040"/>
         </scene>
         <!--Unlogin View Controller-->
         <scene sceneID="E0L-Im-XHT">
@@ -2941,7 +2951,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0WW-8F-8IW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1275" y="2182"/>
+            <point key="canvasLocation" x="-1499" y="2270"/>
         </scene>
     </scenes>
     <resources>
@@ -2953,7 +2963,7 @@
         <image name="default_profile_image.png" width="200" height="200"/>
         <image name="discover.png" width="143" height="91"/>
         <image name="flash.png" width="36" height="36"/>
-        <image name="heart.png" width="46" height="48"/>
+        <image name="heart.png" width="54" height="54"/>
         <image name="mastercard.png" width="199" height="127"/>
         <image name="meals.png" width="27" height="27"/>
         <image name="tickets.png" width="27" height="27"/>

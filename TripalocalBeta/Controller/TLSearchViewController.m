@@ -203,13 +203,6 @@
         TLDetailViewController *vc = (TLDetailViewController *) navController.topViewController;
         NSIndexPath *index=[_tableView indexPathForSelectedRow];
         vc.experience_id_string = [[[self.expList objectAtIndex:index.row] objectForKey:@"id"] stringValue];
-        
-        NSString *hostImageCachingIdentifier = [NSString stringWithFormat:@"Cell%ldOfHostImage",(long)index.row];
-        NSString *expImageCachingIdentifier = [NSString stringWithFormat:@"Cell%ldOfExpImage",(long)index.row];
-//      todo: wait till image loaded ? Or load later?
-        vc.hostImage = [self.cachedImages valueForKey:hostImageCachingIdentifier];
-        vc.coverImage = [self.cachedImages valueForKey:expImageCachingIdentifier];
-
     }
     
 }
