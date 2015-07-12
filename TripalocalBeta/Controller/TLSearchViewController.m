@@ -136,10 +136,20 @@
     }
     cell.delegate = self;
     cell.wishListButton.tag = indexPath.row;
-    cell.priceLabel.text = [[[self.expList objectAtIndex:indexPath.row] objectForKey:@"price"] stringValue];
+    cell.priceLabel.text = [self decimalwithFormat:@"0" floatV:[[[self.expList objectAtIndex:indexPath.row] objectForKey:@"price"] floatValue]];
 
     return cell;
 }
+
+- (NSString *) decimalwithFormat:(NSString *)format  floatV:(float)floatV
+{
+    NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];
+    
+    [numberFormatter setPositiveFormat:format];
+    
+    return  [numberFormatter stringFromNumber:[NSNumber numberWithFloat:floatV]];
+}
+
 
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {

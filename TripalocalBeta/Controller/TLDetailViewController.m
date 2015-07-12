@@ -124,8 +124,9 @@
                 NSNumberFormatter *formatter = [[NSNumberFormatter alloc]init];
                 [formatter setNumberStyle:NSNumberFormatterDecimalStyle];
                 [formatter setMaximumFractionDigits:2];
+                
                 [formatter setRoundingMode: NSNumberFormatterRoundUp];
-                expPrice = [formatter stringFromNumber:expPriceNumber];
+                expPrice = [self decimalwithFormat:@"0" floatV:[expPriceNumber floatValue]];
                 NSNumber *expDurationNumber = [allDataDictionary objectForKey:@"experience_duration"];
                 expDuration = [expDurationNumber stringValue];
                 expTitle = [allDataDictionary objectForKey:@"experience_title"];
@@ -186,6 +187,15 @@
 
     NSLog(@"%@,%@,%@,%@",expTitle,expPrice,reviewerImageURL,reviewComment);
     
+}
+
+- (NSString *) decimalwithFormat:(NSString *)format  floatV:(float)floatV
+{
+    NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];
+    
+    [numberFormatter setPositiveFormat:format];
+    
+    return  [numberFormatter stringFromNumber:[NSNumber numberWithFloat:floatV]];
 }
 
 - (void)didReceiveMemoryWarning {
