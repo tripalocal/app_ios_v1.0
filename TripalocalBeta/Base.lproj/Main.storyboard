@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="MaF-g6-zXX">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="MaF-g6-zXX">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -407,7 +407,6 @@
                                             <outlet property="rateLabel" destination="C8x-xO-h77" id="r8g-lD-HM8"/>
                                             <outlet property="reviewerImage" destination="m9j-z9-0Ya" id="Vcu-RS-Y6T"/>
                                             <outlet property="reviewerName" destination="JRj-we-H2H" id="bFu-gE-w3R"/>
-                                            <segue destination="Gep-Sa-s2z" kind="presentation" identifier="loginSegue" trigger="accessoryAction" id="EaH-Mn-GG8"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell4" rowHeight="130" id="d7G-qW-T4r" customClass="TLDetailTableViewCell4">
@@ -539,7 +538,6 @@
                                 </state>
                                 <connections>
                                     <action selector="checkout:" destination="1Mj-3z-OfA" eventType="touchUpInside" id="4Og-r4-ZdL"/>
-                                    <segue destination="3mc-0F-dSQ" kind="show" identifier="checkoutSegue" id="R3J-Vq-nYc"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -559,6 +557,8 @@
                     <size key="freeformSize" width="600" height="1600"/>
                     <connections>
                         <outlet property="myTable" destination="VsV-ga-mVG" id="ddt-lL-gUw"/>
+                        <segue destination="Gep-Sa-s2z" kind="presentation" identifier="loginSegue" id="hPI-YE-UZz"/>
+                        <segue destination="3mc-0F-dSQ" kind="show" identifier="checkoutSegue" id="zFv-4M-BDv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5IH-7H-1Yc" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -663,7 +663,7 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="MGZ-6K-r21"/>
                                         </constraints>
-                                        <state key="normal" title="Upcomming">
+                                        <state key="normal" title="Upcoming">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -2822,11 +2822,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6o6-Os-fpy" userLabel="neetToLoginView" customClass="NeedToLoginView">
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6o6-Os-fpy" userLabel="neetToLoginView" customClass="NeedToLoginView">
                                 <rect key="frame" x="0.0" y="64" width="600" height="487"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="340" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Jhg-L1-puJ">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="340" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Jhg-L1-puJ">
                                 <rect key="frame" x="0.0" y="64" width="600" height="487"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </tableView>
@@ -2972,9 +2972,9 @@
         <image name="visa.png" width="102" height="64"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Pkv-bo-ySw"/>
-        <segue reference="olF-su-vgo"/>
         <segue reference="r1b-Gj-oet"/>
-        <segue reference="84E-Wr-GXn"/>
+        <segue reference="Pkv-bo-ySw"/>
+        <segue reference="hPI-YE-UZz"/>
+        <segue reference="olF-su-vgo"/>
     </inferredMetricsTieBreakers>
 </document>

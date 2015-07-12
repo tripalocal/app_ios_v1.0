@@ -145,7 +145,7 @@
     NSMutableArray *expList = [[NSMutableArray alloc] init];
     
     // fixed date?
-    NSString *post = [NSString stringWithFormat:@"{\"start_datetime\":\"2015-05-08\", \"end_datetime\":\"2015-05-28\", \"city\":\"%@\", \"guest_number\":\"2\", \"keywords\":\"Food & wine, Education, History & culture, Architecture, For couples, Photography worthy, Livability research, Kids friendly, Outdoor & nature, Shopping, Sports & leisure, Host with car, Extreme fun, Events, Health & beauty, Private group\"}", cityName];
+    NSString *post = [NSString stringWithFormat:@"{\"start_datetime\":\"2015-05-08\", \"end_datetime\":\"2015-05-9\", \"city\":\"%@\", \"guest_number\":\"2\", \"keywords\":\"Food & wine, Education, History & culture, Architecture, For couples, Photography worthy, Livability research, Kids friendly, Outdoor & nature, Shopping, Sports & leisure, Host with car, Extreme fun, Events, Health & beauty, Private group\"}", cityName];
 #ifdef DEBUG
     NSLog(@"Sending date = %@",post);
 #endif

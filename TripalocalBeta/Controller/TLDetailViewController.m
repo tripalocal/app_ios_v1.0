@@ -66,6 +66,8 @@
     
     if (!token) {
         [self performSegueWithIdentifier:@"loginSegue" sender:nil];
+    } else {
+        [self performSegueWithIdentifier:@"checkoutSegue" sender:nil];
     }
 }
 
