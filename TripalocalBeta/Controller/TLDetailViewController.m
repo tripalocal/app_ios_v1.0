@@ -346,14 +346,27 @@
     NSLog(@"Error:(Details)Failed with connection error.");
 }
 
-
+-(NSString *) transformLanugage:(NSString *) languageString {
+    NSMutableArray *languages = [[languageString componentsSeparatedByString:@";"] mutableCopy];
+    [languages removeLastObject];
+    for (NSUInteger i = 0; i < [languages count]; ++i) {
+        NSString * language = [languages objectAtIndex:i];
+        if ([language isEqualToString:@"mandarin"]) {
+            [languages replaceObjectAtIndex:i withObject:@"中文"];
+        } else {
+            [languages replaceObjectAtIndex:i withObject:[language capitalizedString]];
+        }
+    }
+    
+    return [languages componentsJoinedByString:@"/"];
+}
 
 -(void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
     NSDictionary *allDataDictionary=[NSJSONSerialization JSONObjectWithData:jsonData options:0 error:nil];
     @try {
         hostImageURL = [imageBaseURL stringByAppendingString: [allDataDictionary objectForKey:@"host_image"]];
-        expLanguage=[allDataDictionary objectForKey:@"experience_language"];
+        expLanguage = [self transformLanugage:[allDataDictionary objectForKey:@"experience_language"]];
         NSNumber *expPriceNumber = [allDataDictionary objectForKey:@"experience_price"];
         NSNumberFormatter *formatter = [[NSNumberFormatter alloc]init];
         [formatter setNumberStyle:NSNumberFormatterDecimalStyle];

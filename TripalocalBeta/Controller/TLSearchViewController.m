@@ -61,6 +61,21 @@
     
 }
 
+-(NSString *) transformLanugage:(NSString *) languageString {
+    NSMutableArray *languages = [[languageString componentsSeparatedByString:@";"] mutableCopy];
+    [languages removeLastObject];
+    for (NSUInteger i = 0; i < [languages count]; ++i) {
+        NSString * language = [languages objectAtIndex:i];
+        if ([language isEqualToString:@"mandarin"]) {
+            [languages replaceObjectAtIndex:i withObject:@"中文"];
+        } else {
+            [languages replaceObjectAtIndex:i withObject:[language capitalizedString]];
+        }
+    }
+    
+    return [languages componentsJoinedByString:@"/"];
+}
+
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     static NSString *cellIdentifier = @"SearchCell";
@@ -79,7 +94,7 @@
     cell.durationLabel.text = handledDurationString;
     cell.titleLabel.text = [exp objectForKey:@"title"];
     cell.hostImage.image = [UIImage imageNamed:@"default_profile_image.png"];
-    cell.languageLabel.text = [exp objectForKey:@"language"];
+    cell.languageLabel.text = [self transformLanugage:(NSString *)[exp objectForKey:@"language"]];
     cell.descriptionLabel.text = [exp objectForKey:@"description"];
     cell.hostImage.image = [UIImage imageNamed:@"default_profile_image.png"];
     cell.experienceImage.image = nil;

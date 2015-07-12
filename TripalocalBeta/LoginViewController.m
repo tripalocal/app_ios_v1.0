@@ -122,7 +122,7 @@
     self.passwordField.borderStyle = UITextBorderStyleRoundedRect;
     self.passwordField.secureTextEntry = YES;
     
-    UIColor *themeColor = [UIColor colorWithRed:0.00f green:0.82f blue:0.82f alpha:1.0f];
+    UIColor *themeColor = [UIColor colorWithRed:0.20f green:0.80f blue:0.80f alpha:1.0f];
     
     [self.forgotPasswordText setLinkTextAttributes:@{NSForegroundColorAttributeName:themeColor}];
     NSMutableAttributedString * str = [[NSMutableAttributedString alloc] initWithString:@"Forgot password?"];

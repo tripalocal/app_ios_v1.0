@@ -7,10 +7,10 @@ In order to use 'Pod', always use the .xcworkspace file to open your project in 
 ## Theme Color
 
 ### UIColor
-[UIColor colorWithRed:0.00f green:0.82f blue:0.82f alpha:1.0f]
+[UIColor colorWithRed:0.20f green:0.80f blue:0.80f alpha:1.0f]
 
 ### RGB Value
-\#00d0d0
+\#33cccc
 
 ## Backgroud Color
 
