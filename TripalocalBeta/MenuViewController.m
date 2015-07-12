@@ -24,7 +24,14 @@
     
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     UIImage* image = [UIImage imageWithData:[userDefaults objectForKey:@"user_image"]];
-    self.hostName.text = [userDefaults objectForKey:@"host_name"];
+    NSString *origHostName = [userDefaults objectForKey:@"host_name"];
+    NSArray *array = [origHostName componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    array = [array filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"SELF != ''"]];
+    NSString *firstName = [array objectAtIndex:1];
+    NSString *lastName = [array objectAtIndex:0];
+    NSString *lastNameInitial = [[lastName substringWithRange:NSMakeRange(0, 1)] stringByAppendingString:@"."];
+    
+    self.hostName.text = [[NSArray arrayWithObjects:firstName, lastNameInitial, nil] componentsJoinedByString:@" "];
     
     if (image) {
         self.image.image = image;
