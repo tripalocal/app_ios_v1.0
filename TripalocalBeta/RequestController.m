@@ -82,6 +82,8 @@
             [userDefaults setObject:wishList forKey:@"wish_list"];
             
             [userDefaults setObject:UIImagePNGRepresentation(image) forKey:@"user_image"];
+            NSString *hostName = [NSString stringWithFormat:@"%@ %@", lastName, firstName];
+            [userDefaults setObject:hostName forKey:@"host_name"];
             [userDefaults synchronize];
         }
         

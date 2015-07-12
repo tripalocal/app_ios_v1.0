@@ -31,6 +31,7 @@
     timeFormatter = [[NSDateFormatter alloc] init];
     [timeFormatter setDateFormat:@"HH:mm"];
     [timeFormatter setTimeZone:[NSTimeZone systemTimeZone]];
+    [self.view insertSubview:self.nomatchesView belowSubview:self.tableView];
 }
 
 - (void)fetchMyTrips:(NSString *) token {
@@ -87,10 +88,16 @@
     return [myTrips count];
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+//    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    [self performSegueWithIdentifier:@"MyTripsToExpList" sender:self];
+}
+
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *) indexPath {
     MyTripTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MyTripTableViewCell"];
     if(!cell) {
-        cell = [[MyTripTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"MyTripTableViewCell"];
+        [tableView registerNib:[UINib nibWithNibName:@"MyTripTableViewCell" bundle:nil] forCellReuseIdentifier:@"MyTripTableViewCell"];
+        cell = [tableView dequeueReusableCellWithIdentifier:@"MyTripTableViewCell"];
     }
     
     cell.tag = indexPath.row;
@@ -130,7 +137,7 @@
     }
     
     cell.timeLabel.text = [timeFormatter stringFromDate:dateUTC];
-    cell.hostNameLabel.text = [trip objectForKey:@"host_name"];
+    cell.hostNameLabel.text = [@"with " stringByAppendingString:[trip objectForKey:@"host_name"]];
     cell.guestNumberLabel.text = [[trip objectForKey:@"guest_number"] stringValue];
     cell.experienceTitle.text = [trip objectForKey:@"experience_title"];
     [cell.experienceTitle setTextColor:[UIColor colorWithRed:0.00f green:0.82f blue:0.82f alpha:1.0f]];
@@ -138,9 +145,11 @@
     cell.instructionText.text = [trip objectForKey:@"meetup_spot"];
     NSString *status = [trip objectForKey:@"status"];
     if ([status isEqualToString:@"paid"]) {
-        cell.statusLabel.text = @"Requested";
+        [cell.statusButton setTitle:@"Requested" forState:UIControlStateNormal];
+        [cell.statusButton setBackgroundColor:[UIColor colorWithRed:0.00f green:0.82f blue:0.82f alpha:1.0f]];
     } else {
-        cell.statusLabel.text = @"Confirmed";
+        [cell.statusButton setTitle:@"Confirmed" forState:UIControlStateNormal];
+        [cell.statusButton setBackgroundColor:[UIColor colorWithRed:0.51f green:0.82f blue:0.00f alpha:1.0f]];
     }
     
     return cell;
@@ -170,10 +179,11 @@
     NSString *token = [userDefaults stringForKey:@"user_token"];
     if (token) {
         [self fetchMyTrips:token];
-    }
-    
-    if ([myTrips count] == 0) {
-        // todo:
+            if([myTrips count] == 0 ){
+                [self.view bringSubviewToFront:self.nomatchesView];
+            } else {
+                [self.view sendSubviewToBack:self.nomatchesView];
+            }
     }
     
     MyTripViewController *mytripController = (MyTripViewController *)self.containerController;
@@ -222,6 +232,9 @@
     }
     
     return image;
+}
+- (IBAction)startExploring:(id)sender {
+    [self.tabBarController setSelectedIndex:0];
 }
 
 @end

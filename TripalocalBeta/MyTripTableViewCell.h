@@ -12,8 +12,8 @@
 @property (strong, nonatomic) IBOutlet UIImageView *backgroudImage;
 @property (strong, nonatomic) IBOutlet UIImageView *hostImage;
 @property (strong, nonatomic) IBOutlet UILabel *dateLabel;
-@property (strong, nonatomic) IBOutlet UILabel *statusLabel;
 
+@property (strong, nonatomic) IBOutlet UIButton *statusButton;
 @property (strong, nonatomic) IBOutlet UITextView *instructionText;
 @property (strong, nonatomic) IBOutlet UILabel *timeLabel;
 @property (strong, nonatomic) IBOutlet UILabel *guestNumberLabel;
@@ -23,5 +23,6 @@
 @property (strong, nonatomic) IBOutlet UILabel *telephoneLabel;
 @property (strong, nonatomic) IBOutlet UIButton *callButton;
 @property (weak, nonatomic) UITableView* parentView;
+@property (strong, nonatomic) IBOutlet UIButton *messageButton;
 
 @end

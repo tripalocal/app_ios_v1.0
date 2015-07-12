@@ -12,10 +12,17 @@
 
 - (void)awakeFromNib {
     // Initialization code
-    // Initialization code
-    _hostImage.layer.cornerRadius = _hostImage.frame.size.height / 2;
-    _hostImage.layer.masksToBounds = YES;
-    _hostImage.layer.borderWidth = 0;
+
+    self.hostImage.layer.cornerRadius = self.hostImage.frame.size.height / 2;
+    self.hostImage.layer.masksToBounds = YES;
+    self.hostImage.layer.borderColor = [UIColor whiteColor].CGColor;
+    self.hostImage.layer.borderWidth = 3.0f;
+//    
+//    self.descriptonText.contentInset = UIEdgeInsetsMake(-4,-4,-4,-4);
+}
+- (IBAction)clickSaveToWishList:(id)sender {
+    UIButton *button = (UIButton *)sender;
+    [self.delegate saveToWishListClicked:button.tag];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

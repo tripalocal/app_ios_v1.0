@@ -19,6 +19,9 @@
 		5649BDF11B46702300465D6C /* (null) in Resources */ = {isa = PBXBuildFile; };
 		5653A8ED1B48FB8D005CA2A7 /* default_profile_image.png in Resources */ = {isa = PBXBuildFile; fileRef = 5653A8EC1B48FB8D005CA2A7 /* default_profile_image.png */; };
 		7412FDE1EDC10952539BF3C5 /* libPods-TripalocalBeta.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D1136758DFF7CE52CD971824 /* libPods-TripalocalBeta.a */; };
+		871196521B4FCE7200BA8672 /* MyTripTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 871196511B4FCE7200BA8672 /* MyTripTableViewCell.xib */; };
+		871196571B4FF6BA00BA8672 /* NeedToLoginView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 871196561B4FF6BA00BA8672 /* NeedToLoginView.xib */; };
+		8711965A1B4FF74300BA8672 /* NeedToLoginView.m in Sources */ = {isa = PBXBuildFile; fileRef = 871196591B4FF74300BA8672 /* NeedToLoginView.m */; };
 		8729E1321B4A0374004C3065 /* MyTripViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8729E1311B4A0374004C3065 /* MyTripViewController.m */; };
 		8729E1361B4A1D7F004C3065 /* UpcommingTripsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8729E1351B4A1D7F004C3065 /* UpcommingTripsViewController.m */; };
 		8729E1391B4A1D9B004C3065 /* PreviousTripsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8729E1381B4A1D9B004C3065 /* PreviousTripsViewController.m */; };
@@ -51,6 +54,8 @@
 		87FC2DB81B480ABF0017F30E /* openssl_wrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 87FC2D621B480ABE0017F30E /* openssl_wrapper.m */; };
 		87FC2DB91B480ABF0017F30E /* RSADataSigner.m in Sources */ = {isa = PBXBuildFile; fileRef = 87FC2D641B480ABE0017F30E /* RSADataSigner.m */; };
 		87FC2DBA1B480ABF0017F30E /* RSADataVerifier.m in Sources */ = {isa = PBXBuildFile; fileRef = 87FC2D661B480ABE0017F30E /* RSADataVerifier.m */; };
+		87FCA49F1B509BF70060AA8B /* SearchViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87FCA49E1B509BF70060AA8B /* SearchViewCell.xib */; };
+		87FCA4A51B50D4890060AA8B /* heart.png in Resources */ = {isa = PBXBuildFile; fileRef = 87FCA4A41B50D4890060AA8B /* heart.png */; };
 		87FFF3D31B4D380100326104 /* EditProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87FFF3D21B4D380100326104 /* EditProfileViewController.m */; };
 		87FFF3D71B4D549C00326104 /* PaymentSuccessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87FFF3D61B4D549C00326104 /* PaymentSuccessViewController.m */; };
 		8E26A6631B0397EF00A5A5CF /* TLHomeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E26A6621B0397EF00A5A5CF /* TLHomeTableViewCell.m */; };
@@ -147,6 +152,10 @@
 		5649BD451B3FD5CA00465D6C /* TLDetailTableViewCell5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TLDetailTableViewCell5.m; path = "Controller/Custom Cells/TLDetailTableViewCell5.m"; sourceTree = "<group>"; };
 		5649BDCD1B4387C800465D6C /* JGProgressHUD.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = JGProgressHUD.xcodeproj; path = "Supported Files/JGProgressHUD/JGProgressHUD.xcodeproj"; sourceTree = "<group>"; };
 		5653A8EC1B48FB8D005CA2A7 /* default_profile_image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = default_profile_image.png; path = Images/default_profile_image.png; sourceTree = "<group>"; };
+		871196511B4FCE7200BA8672 /* MyTripTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyTripTableViewCell.xib; sourceTree = "<group>"; };
+		871196561B4FF6BA00BA8672 /* NeedToLoginView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = NeedToLoginView.xib; path = ../NeedToLoginView.xib; sourceTree = "<group>"; };
+		871196581B4FF74300BA8672 /* NeedToLoginView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NeedToLoginView.h; sourceTree = "<group>"; };
+		871196591B4FF74300BA8672 /* NeedToLoginView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NeedToLoginView.m; sourceTree = "<group>"; };
 		8729E1301B4A0374004C3065 /* MyTripViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyTripViewController.h; sourceTree = "<group>"; };
 		8729E1311B4A0374004C3065 /* MyTripViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyTripViewController.m; sourceTree = "<group>"; };
 		8729E1341B4A1D7F004C3065 /* UpcommingTripsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpcommingTripsViewController.h; sourceTree = "<group>"; };
@@ -281,6 +290,8 @@
 		87FC2DB01B480ABF0017F30E /* x509.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = x509.h; sourceTree = "<group>"; };
 		87FC2DB11B480ABF0017F30E /* x509_vfy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = x509_vfy.h; sourceTree = "<group>"; };
 		87FC2DB21B480ABF0017F30E /* x509v3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = x509v3.h; sourceTree = "<group>"; };
+		87FCA49E1B509BF70060AA8B /* SearchViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchViewCell.xib; sourceTree = "<group>"; };
+		87FCA4A41B50D4890060AA8B /* heart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = heart.png; path = Images/heart.png; sourceTree = "<group>"; };
 		87FFF3D11B4D380100326104 /* EditProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditProfileViewController.h; sourceTree = "<group>"; };
 		87FFF3D21B4D380100326104 /* EditProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditProfileViewController.m; sourceTree = "<group>"; };
 		87FFF3D51B4D549C00326104 /* PaymentSuccessViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaymentSuccessViewController.h; sourceTree = "<group>"; };
@@ -536,6 +547,7 @@
 		8EB570E21B01CF2B0026D419 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				87FCA4A41B50D4890060AA8B /* heart.png */,
 				5653A8EC1B48FB8D005CA2A7 /* default_profile_image.png */,
 				8788B9CF1B48EE570002B4D1 /* visa.png */,
 				8E43713C1B4CBA0E003A3C8A /* tickets.png */,
@@ -598,7 +610,12 @@
 		8EC86D501B021DD800B0A655 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				871196581B4FF74300BA8672 /* NeedToLoginView.h */,
+				871196591B4FF74300BA8672 /* NeedToLoginView.m */,
+				871196561B4FF6BA00BA8672 /* NeedToLoginView.xib */,
+				871196511B4FCE7200BA8672 /* MyTripTableViewCell.xib */,
 				8EB570EC1B01CF2B0026D419 /* Main.storyboard */,
+				87FCA49E1B509BF70060AA8B /* SearchViewCell.xib */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -787,6 +804,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				871196571B4FF6BA00BA8672 /* NeedToLoginView.xib in Resources */,
 				5649BDDE1B4387EA00465D6C /* JGProgressHUD Resources.bundle in Resources */,
 				8EC86DB41B02350000B0A655 /* instant_booking.png in Resources */,
 				8EB570EE1B01CF2B0026D419 /* Main.storyboard in Resources */,
@@ -802,6 +820,7 @@
 				8EC86DB51B02350000B0A655 /* myprofile_s.png in Resources */,
 				8EC86DB31B02350000B0A655 /* home.png in Resources */,
 				8EC86DB11B02350000B0A655 /* group.png in Resources */,
+				87FCA4A51B50D4890060AA8B /* heart.png in Resources */,
 				5649BDF01B46702300465D6C /* (null) in Resources */,
 				8EC86DBC1B02350000B0A655 /* tripalocal_logo.png in Resources */,
 				8E43713D1B4CBA0E003A3C8A /* tickets.png in Resources */,
@@ -810,10 +829,12 @@
 				8EC86DBB1B02350000B0A655 /* time.png in Resources */,
 				8E4371381B4CB9F6003A3C8A /* meals.png in Resources */,
 				8EC86DBA1B02350000B0A655 /* search.png in Resources */,
+				87FCA49F1B509BF70060AA8B /* SearchViewCell.xib in Resources */,
 				8EC86DB01B02350000B0A655 /* facebook_bt.png in Resources */,
 				8EC86DB81B02350000B0A655 /* mytrip.png in Resources */,
 				8E43713B1B4CBA05003A3C8A /* bus.png in Resources */,
 				8EC86DB71B02350000B0A655 /* mytrip_s.png in Resources */,
+				871196521B4FCE7200BA8672 /* MyTripTableViewCell.xib in Resources */,
 				8EB570F01B01CF2B0026D419 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -872,6 +893,7 @@
 				87F356521B43AAD300949F43 /* ProfileViewController.m in Sources */,
 				874265871B4D272F00D76C72 /* MenuViewController.m in Sources */,
 				5649BD461B3FD5CA00465D6C /* TLDetailTableViewCell5.m in Sources */,
+				8711965A1B4FF74300BA8672 /* NeedToLoginView.m in Sources */,
 				5649BD431B3FD5A400465D6C /* TLDetailTableViewCell4.m in Sources */,
 				5649BD3A1B3FC42600465D6C /* TLDetailTableViewCell1.m in Sources */,
 				8729E13C1B4A6335004C3065 /* MyTripTableViewCell.m in Sources */,

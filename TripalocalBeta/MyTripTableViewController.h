@@ -8,7 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MyTripTableViewController : UITableViewController
+@interface MyTripTableViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 @property (nonatomic, strong) UIViewController *containerController;
 - (NSDate *)parseDateTimeString:(NSString *) datetimeString;
+@property (retain, nonatomic) IBOutlet UIView *nomatchesView;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+
 @end
