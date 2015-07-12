@@ -14,7 +14,7 @@
 @property NSString *experience_id_string;
 @property UIImage *coverImage;
 @property UIImage *hostImage;
-@property BOOL isReadMoreButtonTouched;
-@property int indexOfReadMoreButton;
+@property BOOL isExpReadMoreOpen;
+@property BOOL isHostReadMoreOpen;
 
 @end

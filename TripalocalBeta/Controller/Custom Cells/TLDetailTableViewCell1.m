@@ -34,8 +34,8 @@
         CGFloat newHeight = self.expDescriptionLabel.frame.size.height;
         
         TLDetailViewController * target = (TLDetailViewController *) self.parentView.delegate;
-        target.isReadMoreButtonTouched = YES;
-        target.indexOfReadMoreButton = 1;
+        
+        target.isExpReadMoreOpen = YES;
         CGFloat changedHeight = self.frame.size.height + newHeight - origHeight;
         [target.cellHeights setObject:[NSNumber numberWithFloat:changedHeight] atIndexedSubscript:indexPath.row];
     } else {
@@ -47,6 +47,7 @@
         CGFloat newHeight = self.expDescriptionLabel.frame.size.height;
         TLDetailViewController * target = (TLDetailViewController *) self.parentView.delegate;
 
+        target.isExpReadMoreOpen = NO;
         CGFloat changedHeight = self.frame.size.height + newHeight - origHeight;
         [target.cellHeights setObject:[NSNumber numberWithFloat:changedHeight] atIndexedSubscript:indexPath.row];
     }

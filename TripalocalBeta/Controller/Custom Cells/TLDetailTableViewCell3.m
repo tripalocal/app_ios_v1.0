@@ -15,6 +15,9 @@
     _reviewerImage.layer.cornerRadius = _reviewerImage.frame.size.height /2;
     _reviewerImage.layer.masksToBounds = YES;
     _reviewerImage.layer.borderWidth = 0;
+    
+    self.reviewerImage.layer.borderColor = [UIColor whiteColor].CGColor;
+    self.reviewerImage.layer.borderWidth = 3.0f;
 }
 
 
