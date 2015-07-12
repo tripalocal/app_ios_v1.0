@@ -131,8 +131,12 @@
     
     if ([wishList containsObject:expIdString]) {
         [cell.wishListButton setBackgroundImage:[UIImage imageNamed:@"wishlisted.png"] forState:UIControlStateNormal];
+        cell.smallWishImage.image = [UIImage imageNamed:@"heart_sr.png"];
+        cell.wishStatus.text = @"Saved";
     } else {
         [cell.wishListButton setBackgroundImage:[UIImage imageNamed:@"unwishlisted.png"] forState:UIControlStateNormal];
+        cell.smallWishImage.image = [UIImage imageNamed:@"heart_sw.png"];
+        cell.wishStatus.text = @"Add to wishlist";
     }
     cell.delegate = self;
     cell.wishListButton.tag = indexPath.row;

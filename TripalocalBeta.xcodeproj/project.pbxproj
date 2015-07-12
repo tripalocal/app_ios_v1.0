@@ -60,6 +60,8 @@
 		87FCA4A81B52002A0060AA8B /* ReviewTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87FCA4A71B52002A0060AA8B /* ReviewTableViewController.m */; };
 		87FCA4BE1B5288FA0060AA8B /* creditcard_hori.png in Resources */ = {isa = PBXBuildFile; fileRef = 87FCA4BC1B5288FA0060AA8B /* creditcard_hori.png */; };
 		87FCA4BF1B5288FA0060AA8B /* creditcard_box.png in Resources */ = {isa = PBXBuildFile; fileRef = 87FCA4BD1B5288FA0060AA8B /* creditcard_box.png */; };
+		87FCA4C31B52CB890060AA8B /* heart_sw.png in Resources */ = {isa = PBXBuildFile; fileRef = 87FCA4C11B52CB890060AA8B /* heart_sw.png */; };
+		87FCA4C41B52CB8A0060AA8B /* heart_sr.png in Resources */ = {isa = PBXBuildFile; fileRef = 87FCA4C21B52CB890060AA8B /* heart_sr.png */; };
 		87FFF3D31B4D380100326104 /* EditProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87FFF3D21B4D380100326104 /* EditProfileViewController.m */; };
 		87FFF3D71B4D549C00326104 /* PaymentSuccessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87FFF3D61B4D549C00326104 /* PaymentSuccessViewController.m */; };
 		8E26A6631B0397EF00A5A5CF /* TLHomeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E26A6621B0397EF00A5A5CF /* TLHomeTableViewCell.m */; };
@@ -302,6 +304,8 @@
 		87FCA4A71B52002A0060AA8B /* ReviewTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReviewTableViewController.m; sourceTree = "<group>"; };
 		87FCA4BC1B5288FA0060AA8B /* creditcard_hori.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = creditcard_hori.png; path = Images/creditcard_hori.png; sourceTree = "<group>"; };
 		87FCA4BD1B5288FA0060AA8B /* creditcard_box.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = creditcard_box.png; path = Images/creditcard_box.png; sourceTree = "<group>"; };
+		87FCA4C11B52CB890060AA8B /* heart_sw.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = heart_sw.png; sourceTree = "<group>"; };
+		87FCA4C21B52CB890060AA8B /* heart_sr.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = heart_sr.png; sourceTree = "<group>"; };
 		87FFF3D11B4D380100326104 /* EditProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditProfileViewController.h; sourceTree = "<group>"; };
 		87FFF3D21B4D380100326104 /* EditProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditProfileViewController.m; sourceTree = "<group>"; };
 		87FFF3D51B4D549C00326104 /* PaymentSuccessViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaymentSuccessViewController.h; sourceTree = "<group>"; };
@@ -566,6 +570,8 @@
 				8E43713C1B4CBA0E003A3C8A /* tickets.png */,
 				8E4371371B4CB9F6003A3C8A /* meals.png */,
 				8788B9D01B48EE570002B4D1 /* alipay.jpg */,
+				87FCA4C11B52CB890060AA8B /* heart_sw.png */,
+				87FCA4C21B52CB890060AA8B /* heart_sr.png */,
 				8E43713A1B4CBA05003A3C8A /* bus.png */,
 				5649BDCD1B4387C800465D6C /* JGProgressHUD.xcodeproj */,
 				8EC86D9F1B02350000B0A655 /* date.png */,
@@ -835,6 +841,7 @@
 				8EB570F31B01CF2B0026D419 /* LaunchScreen.xib in Resources */,
 				8EC86DB51B02350000B0A655 /* myprofile_s.png in Resources */,
 				8EC86DB31B02350000B0A655 /* home.png in Resources */,
+				87FCA4C41B52CB8A0060AA8B /* heart_sr.png in Resources */,
 				8EC86DB11B02350000B0A655 /* group.png in Resources */,
 				87FCA4A51B50D4890060AA8B /* heart.png in Resources */,
 				5649BDF01B46702300465D6C /* (null) in Resources */,
@@ -852,6 +859,7 @@
 				87FCA4BE1B5288FA0060AA8B /* creditcard_hori.png in Resources */,
 				8E43713B1B4CBA05003A3C8A /* bus.png in Resources */,
 				8EC86DB71B02350000B0A655 /* mytrip_s.png in Resources */,
+				87FCA4C31B52CB890060AA8B /* heart_sw.png in Resources */,
 				871196521B4FCE7200BA8672 /* MyTripTableViewCell.xib in Resources */,
 				8EB570F01B01CF2B0026D419 /* Images.xcassets in Resources */,
 			);

@@ -37,8 +37,8 @@
                             <constraint firstAttribute="width" constant="70" id="Kq6-Bb-6hD"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="English,Mandrin;" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VXA-RA-wwn">
-                        <rect key="frame" x="47" y="312" width="101" height="16"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="English/中文" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VXA-RA-wwn">
+                        <rect key="frame" x="163" y="312" width="75" height="16"/>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
@@ -57,7 +57,13 @@
                         </connections>
                     </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="nhrs" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WrF-UF-LNZ">
-                        <rect key="frame" x="10" y="312" width="27" height="16"/>
+                        <rect key="frame" x="129" y="312" width="27" height="16"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="•" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LpN-oS-Izi">
+                        <rect key="frame" x="123" y="312" width="5" height="16"/>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
@@ -144,7 +150,28 @@
                         </constraints>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="•" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WP7-gk-RL6">
-                        <rect key="frame" x="38" y="312" width="8" height="16"/>
+                        <rect key="frame" x="157" y="312" width="5" height="16"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="5" id="DQt-I7-ihR"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="DQt-I7-ihR"/>
+                            </mask>
+                        </variation>
+                    </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="heart_sw.png" translatesAutoresizingMaskIntoConstraints="NO" id="V8s-6W-DgS">
+                        <rect key="frame" x="10" y="310" width="20" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="fmf-nd-1vc"/>
+                            <constraint firstAttribute="width" constant="20" id="pBW-ni-LAO"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add to wishlist" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vbT-Pi-N42">
+                        <rect key="frame" x="33" y="312" width="89" height="16"/>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
@@ -152,20 +179,27 @@
                 </subviews>
                 <color key="backgroundColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
                 <constraints>
+                    <constraint firstItem="V8s-6W-DgS" firstAttribute="centerY" secondItem="vbT-Pi-N42" secondAttribute="centerY" id="6PN-IG-jO7"/>
                     <constraint firstItem="WrF-UF-LNZ" firstAttribute="top" secondItem="yPu-mj-PYq" secondAttribute="bottom" constant="50" id="6pE-qg-uzt"/>
                     <constraint firstItem="yPu-mj-PYq" firstAttribute="top" secondItem="Arv-NA-oKb" secondAttribute="bottom" constant="22" id="6y2-1Q-KNN"/>
                     <constraint firstItem="WP7-gk-RL6" firstAttribute="leading" secondItem="WrF-UF-LNZ" secondAttribute="trailing" constant="1" id="7nk-6h-IbF"/>
                     <constraint firstItem="jo6-5w-vXc" firstAttribute="leading" secondItem="yPu-mj-PYq" secondAttribute="leading" id="8cT-5k-zIP"/>
+                    <constraint firstItem="vbT-Pi-N42" firstAttribute="centerY" secondItem="WrF-UF-LNZ" secondAttribute="centerY" constant="-2.5" id="CFz-fr-iaQ"/>
                     <constraint firstItem="Arv-NA-oKb" firstAttribute="width" secondItem="yPu-mj-PYq" secondAttribute="width" id="DLf-20-S2Y"/>
+                    <constraint firstItem="vbT-Pi-N42" firstAttribute="leading" secondItem="3ce-ZM-Qg4" secondAttribute="leadingMargin" constant="30" id="GVA-fE-ehS"/>
                     <constraint firstItem="VXA-RA-wwn" firstAttribute="leading" secondItem="WrF-UF-LNZ" secondAttribute="trailing" constant="10" id="IAu-Iv-Qg8"/>
                     <constraint firstItem="WrF-UF-LNZ" firstAttribute="top" secondItem="yPu-mj-PYq" secondAttribute="bottom" constant="18" id="LA3-XP-slO"/>
                     <constraint firstItem="WrF-UF-LNZ" firstAttribute="top" secondItem="jo6-5w-vXc" secondAttribute="bottom" constant="6" id="Lci-yX-vgV"/>
                     <constraint firstItem="WrF-UF-LNZ" firstAttribute="centerY" secondItem="VXA-RA-wwn" secondAttribute="centerY" id="MIE-1Z-Pz2"/>
+                    <constraint firstItem="WrF-UF-LNZ" firstAttribute="leading" secondItem="3ce-ZM-Qg4" secondAttribute="leadingMargin" constant="50" id="ORR-fE-FF9"/>
                     <constraint firstItem="yPu-mj-PYq" firstAttribute="leading" secondItem="Arv-NA-oKb" secondAttribute="leading" id="PK2-y6-yT6"/>
                     <constraint firstItem="0jL-qD-YXf" firstAttribute="top" secondItem="3ce-ZM-Qg4" secondAttribute="top" constant="10" id="Pc4-mJ-7Yw"/>
                     <constraint firstItem="yPu-mj-PYq" firstAttribute="bottom" secondItem="jo6-5w-vXc" secondAttribute="top" constant="10" id="QQq-jU-ff4"/>
+                    <constraint firstItem="LpN-oS-Izi" firstAttribute="leading" secondItem="WrF-UF-LNZ" secondAttribute="trailing" constant="10" id="RBn-px-4BD"/>
                     <constraint firstItem="jo6-5w-vXc" firstAttribute="trailing" secondItem="gyd-4V-1DV" secondAttribute="trailing" id="TVo-hf-Gk6"/>
                     <constraint firstItem="wwM-E3-awN" firstAttribute="leading" secondItem="3ce-ZM-Qg4" secondAttribute="leading" id="WfB-Gr-BND"/>
+                    <constraint firstItem="LpN-oS-Izi" firstAttribute="centerY" secondItem="vbT-Pi-N42" secondAttribute="centerY" id="YoG-dK-ruX"/>
+                    <constraint firstItem="yPu-mj-PYq" firstAttribute="leading" secondItem="V8s-6W-DgS" secondAttribute="leading" id="Zl8-Bv-mwQ"/>
                     <constraint firstAttribute="trailing" secondItem="wwM-E3-awN" secondAttribute="trailing" id="aHW-5R-dS9"/>
                     <constraint firstItem="Arv-NA-oKb" firstAttribute="leading" secondItem="3ce-ZM-Qg4" secondAttribute="leading" constant="10" id="aWo-8r-Bpq"/>
                     <constraint firstAttribute="trailing" secondItem="gyd-4V-1DV" secondAttribute="trailing" constant="12" id="bSR-W6-6wo"/>
@@ -173,11 +207,15 @@
                     <constraint firstItem="yPu-mj-PYq" firstAttribute="top" secondItem="Arv-NA-oKb" secondAttribute="bottom" constant="5" id="fyi-UD-3Kh"/>
                     <constraint firstAttribute="trailing" secondItem="0jL-qD-YXf" secondAttribute="trailing" constant="10" id="mZa-Wq-ac9"/>
                     <constraint firstItem="WrF-UF-LNZ" firstAttribute="leading" secondItem="yPu-mj-PYq" secondAttribute="leading" id="mg4-N9-0qu"/>
+                    <constraint firstItem="LpN-oS-Izi" firstAttribute="centerY" secondItem="WrF-UF-LNZ" secondAttribute="centerY" id="nSv-wk-uJS"/>
                     <constraint firstItem="wwM-E3-awN" firstAttribute="top" secondItem="0jL-qD-YXf" secondAttribute="bottom" constant="-38" id="ohw-7C-IUe"/>
+                    <constraint firstItem="LpN-oS-Izi" firstAttribute="leading" secondItem="vbT-Pi-N42" secondAttribute="trailing" constant="1" id="s1S-BH-gzA"/>
+                    <constraint firstItem="WrF-UF-LNZ" firstAttribute="leading" secondItem="LpN-oS-Izi" secondAttribute="trailing" constant="1" id="sq9-FV-rrj"/>
                     <constraint firstItem="0jL-qD-YXf" firstAttribute="leading" secondItem="wwM-E3-awN" secondAttribute="trailing" constant="-45" id="tEg-k2-Zjw"/>
                     <constraint firstItem="WP7-gk-RL6" firstAttribute="centerY" secondItem="WrF-UF-LNZ" secondAttribute="centerY" id="tug-Yf-MdN"/>
                     <constraint firstItem="yPu-mj-PYq" firstAttribute="centerY" secondItem="gyd-4V-1DV" secondAttribute="centerY" id="vn6-m4-DhG"/>
                     <constraint firstItem="jo6-5w-vXc" firstAttribute="leading" secondItem="VXA-RA-wwn" secondAttribute="trailing" constant="-138" id="wJf-Xc-Eff"/>
+                    <constraint firstItem="vbT-Pi-N42" firstAttribute="leading" secondItem="V8s-6W-DgS" secondAttribute="trailing" constant="3" id="xCJ-p0-Gey"/>
                     <constraint firstItem="wwM-E3-awN" firstAttribute="centerY" secondItem="Hw7-Yt-n0F" secondAttribute="top" multiplier="0.8" id="xYQ-gB-OT0"/>
                     <constraint firstItem="wwM-E3-awN" firstAttribute="top" secondItem="3ce-ZM-Qg4" secondAttribute="top" id="xzO-bV-OaJ"/>
                     <constraint firstItem="Arv-NA-oKb" firstAttribute="top" secondItem="wwM-E3-awN" secondAttribute="bottom" constant="8" id="yJd-x8-wLm"/>
@@ -191,7 +229,13 @@
                         <exclude reference="QQq-jU-ff4"/>
                         <exclude reference="tEg-k2-Zjw"/>
                         <exclude reference="wJf-Xc-Eff"/>
+                        <exclude reference="CFz-fr-iaQ"/>
+                        <exclude reference="GVA-fE-ehS"/>
+                        <exclude reference="RBn-px-4BD"/>
                         <exclude reference="6pE-qg-uzt"/>
+                        <exclude reference="ORR-fE-FF9"/>
+                        <exclude reference="mg4-N9-0qu"/>
+                        <exclude reference="IAu-Iv-Qg8"/>
                     </mask>
                 </variation>
             </tableViewCellContentView>
@@ -203,13 +247,16 @@
                 <outlet property="hostImage" destination="gyd-4V-1DV" id="ZAW-I8-HiD"/>
                 <outlet property="languageLabel" destination="VXA-RA-wwn" id="PMQ-X8-rgB"/>
                 <outlet property="priceLabel" destination="n8b-jk-X4D" id="aA8-hR-V7P"/>
+                <outlet property="smallWishImage" destination="V8s-6W-DgS" id="l0N-KH-mvs"/>
                 <outlet property="titleLabel" destination="Arv-NA-oKb" id="G0o-i3-YCu"/>
                 <outlet property="wishListButton" destination="0jL-qD-YXf" id="jkh-zs-InB"/>
+                <outlet property="wishStatus" destination="vbT-Pi-N42" id="pE7-G3-3ay"/>
             </connections>
             <point key="canvasLocation" x="559" y="266"/>
         </tableViewCell>
     </objects>
     <resources>
+        <image name="heart_sw.png" width="36" height="36"/>
         <image name="unwishlisted.png" width="54" height="54"/>
     </resources>
 </document>
