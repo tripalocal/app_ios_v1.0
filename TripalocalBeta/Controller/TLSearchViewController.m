@@ -220,6 +220,7 @@
 {
     if ([segue.identifier isEqualToString:@"SearchResultSegue"]) {
         UINavigationController *navController = (UINavigationController *)segue.destinationViewController;
+        navController.hidesBottomBarWhenPushed = YES;
         TLDetailViewController *vc = (TLDetailViewController *) navController.topViewController;
         NSIndexPath *index=[_tableView indexPathForSelectedRow];
         vc.experience_id_string = [[[self.expList objectAtIndex:index.row] objectForKey:@"id"] stringValue];
