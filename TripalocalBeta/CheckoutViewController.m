@@ -7,6 +7,7 @@
 //
 
 #import "CheckoutViewController.h"
+#import "InstantBookingTableViewCell.h"
 
 @interface CheckoutViewController (){
     NSMutableArray *guestPickerData;
@@ -15,7 +16,9 @@
     NSMutableDictionary *wholePickerData;
     NSMutableArray *dynamicTimeArray;
     NSMutableArray *timeArray;
-    
+    NSMutableArray *instantDateArray;
+    NSMutableArray *instantTimeArray;
+    BOOL isInstant;
     NSString *selectedTimeString;
     NSString *selectedDateString;
     NSString *selectedGuestString;
@@ -53,6 +56,10 @@
     _datePicker.dataSource = self;
     _timePicker.delegate = self;
     _timePicker.dataSource = self;
+    _instantTable.dataSource = self;
+    _instantTable.delegate = self;
+    [_instantTable allowsSelection];
+    [_instantTable setAllowsSelection:YES];
     
     //Initialize guest data
     guestPickerData = [[NSMutableArray alloc]init];
@@ -60,6 +67,8 @@
     timePickerData = [[NSMutableArray alloc]init];
     wholePickerData = [[NSMutableDictionary alloc]init];
     timeArray = [[NSMutableArray alloc]init];
+    instantDateArray = [[NSMutableArray alloc]init];
+    instantTimeArray = [[NSMutableArray alloc]init];
     
     int i = [_minGuestNum intValue];
     int max = [_maxGuestNum intValue];
@@ -98,6 +107,11 @@
             }
         }
         
+        isInstant = [[currentDic objectForKey:@"instant_booking"]boolValue];
+        if(isInstant){
+            [instantDateArray addObject:currentDateString];
+            [instantTimeArray addObject:currentTimeString];
+        }
     }
     [wholePickerData setValue:timeArray[lastIndex] forKey:datePickerData[lastIndex]];
     dynamicTimeArray = [wholePickerData objectForKey:[datePickerData objectAtIndex:0]];
@@ -216,6 +230,41 @@
     return YES;
 }
 
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    return 1;
+}
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    if(instantTimeArray.count == 0)
+        return 1;
+    return instantTimeArray.count;
+}
+
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    static NSString *cellIdentifier = @"instantCell";
+    InstantBookingTableViewCell *cell = (InstantBookingTableViewCell *) [tableView dequeueReusableCellWithIdentifier:cellIdentifier];;
+    if(!cell){
+        cell=[[InstantBookingTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+    }
+    
+    if(instantTimeArray.count == 0){
+        cell.instantDateLabel.text = @"No instant booking available";
+        cell.instantTimeLabel.text = @"";
+        cell.instantView.hidden = YES;
+    }
+    else{
+        cell.instantView.hidden = NO;
+        cell.instantDateLabel.text = [instantDateArray objectAtIndex:indexPath.row];
+        cell.instantTimeLabel.text = [instantTimeArray objectAtIndex:indexPath.row];
+        cell.selectionStyle = UITableViewCellSelectionStyleBlue;
+    }
+    
+    return cell;
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    NSLog(@"TABLE SELECTED");
+}
 
 #pragma mark - Navigation
 
