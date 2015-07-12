@@ -117,14 +117,17 @@
             
             dispatch_sync(dispatch_get_main_queue(), ^{
                 cell.hostImage.image = [[UIImage alloc] initWithData:hostImageData];
-                cell.experienceImage.image = [[UIImage alloc] initWithData:experienceImageData];
+                
+                UIImage *croppedImg = nil;
+                croppedImg = [self croppIngimageByImageName:[[UIImage alloc] initWithData:experienceImageData] toRect:cell.experienceImage.frame];
+                cell.experienceImage.image = croppedImg;
+                
                 [self.cachedImages setValue:cell.hostImage.image forKey:hostImageCachingIdentifier];
                 [self.cachedImages setValue:cell.experienceImage.image forKey:expImageCachingIdentifier];
             });
             
         });
     }
-    
     
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     NSMutableArray *wishList = [userDefaults objectForKey:@"wish_list"];
@@ -143,6 +146,17 @@
     cell.priceLabel.text = [self decimalwithFormat:@"0" floatV:[[[self.expList objectAtIndex:indexPath.row] objectForKey:@"price"] floatValue]];
 
     return cell;
+}
+
+
+// todo: move to utility file
+- (UIImage *)croppIngimageByImageName:(UIImage *)imageToCrop toRect:(CGRect)rect
+{
+    CGImageRef imageRef = CGImageCreateWithImageInRect([imageToCrop CGImage], rect);
+    UIImage *cropped = [UIImage imageWithCGImage:imageRef];
+    CGImageRelease(imageRef);
+    
+    return cropped;
 }
 
 - (NSString *) decimalwithFormat:(NSString *)format  floatV:(float)floatV

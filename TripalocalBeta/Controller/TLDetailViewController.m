@@ -74,7 +74,7 @@
     self.isExpReadMoreOpen = NO;
     self.isHostReadMoreOpen = NO;
 
-    self.cellHeights = [@[@306, @240, @320, @385, @106, @240] mutableCopy];
+    self.cellHeights = [@[@306, @240, @320, @385, @164, @240] mutableCopy];
     _myTable.delegate = self;
     _myTable.dataSource = self;
     connectionFinished=0;
@@ -189,6 +189,7 @@
     
 }
 
+// todo: move to utility file
 - (NSString *) decimalwithFormat:(NSString *)format  floatV:(float)floatV
 {
     NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];
@@ -200,9 +201,16 @@
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
+- (UIImage *)croppIngimageByImageName:(UIImage *)imageToCrop toRect:(CGRect)rect
+{
+    CGImageRef imageRef = CGImageCreateWithImageInRect([imageToCrop CGImage], rect);
+    UIImage *cropped = [UIImage imageWithCGImage:imageRef];
+    CGImageRelease(imageRef);
+    
+    return cropped;
+}
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -248,7 +256,11 @@
                     NSString *coverImageURL = [NSString stringWithFormat:@"%@thumbnails/experiences/experience%@_1.jpg", testServerImageURL, _experience_id_string];
                     NSData *coverImageData = [[NSData alloc]initWithContentsOfURL:[NSURL URLWithString:coverImageURL]];
                     dispatch_sync(dispatch_get_main_queue(), ^{
-                        cell.coverImage.image = [[UIImage alloc] initWithData:coverImageData];
+                        
+                        UIImage *croppedImg = nil;
+                        croppedImg = [self croppIngimageByImageName:[[UIImage alloc] initWithData:coverImageData] toRect:cell.coverImage.frame];
+                        cell.coverImage.image = croppedImg;
+                        
                         [self.cachedImages setValue:cell.coverImage.image forKey:expImageCachingIdentifier];
                     });
                     
@@ -365,10 +377,13 @@
                     NSData *experienceImageData = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:backgroundImageURL]];
                     
                     dispatch_sync(dispatch_get_main_queue(), ^{
-                        cell4.coverImage.image = [[UIImage alloc] initWithData:experienceImageData];
+                        
+                        UIImage *croppedImg = nil;
+                        croppedImg = [self croppIngimageByImageName:[[UIImage alloc] initWithData:experienceImageData] toRect:cell.coverImage.frame];
+                        
+                        cell4.coverImage.image = croppedImg;
                         [self.cachedImages setValue:cell4.coverImage.image forKey:expImageCachingIdentifier];
                     });
-                    
                 });
             }
             

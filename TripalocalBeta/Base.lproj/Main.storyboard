@@ -414,28 +414,19 @@
                                             <outlet property="reviewerName" destination="JRj-we-H2H" id="bFu-gE-w3R"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell4" rowHeight="130" id="d7G-qW-T4r" customClass="TLDetailTableViewCell4">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell4" rowHeight="164" id="d7G-qW-T4r" customClass="TLDetailTableViewCell4">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="d7G-qW-T4r" id="F3y-0h-HzC">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bXl-1g-Daa">
-                                                    <rect key="frame" x="251" y="33" width="0.0" height="0.0"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="aXL-Ek-5jl">
-                                                    <rect key="frame" x="0.0" y="0.0" width="600" height="129"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aXL-Ek-5jl">
+                                                    <rect key="frame" x="0.0" y="0.0" width="600" height="164"/>
                                                 </imageView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="bXl-1g-Daa" firstAttribute="top" secondItem="F3y-0h-HzC" secondAttribute="topMargin" constant="25" id="3MO-bb-oNb"/>
                                                 <constraint firstAttribute="trailing" secondItem="aXL-Ek-5jl" secondAttribute="trailing" id="J84-FO-F4o"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="bXl-1g-Daa" secondAttribute="trailing" constant="243" id="KhJ-Wy-o78"/>
                                                 <constraint firstItem="aXL-Ek-5jl" firstAttribute="top" secondItem="F3y-0h-HzC" secondAttribute="top" id="e3U-rg-kGl"/>
-                                                <constraint firstItem="bXl-1g-Daa" firstAttribute="leading" secondItem="F3y-0h-HzC" secondAttribute="leadingMargin" constant="243" id="tkG-Mc-S3H"/>
                                                 <constraint firstItem="aXL-Ek-5jl" firstAttribute="leading" secondItem="F3y-0h-HzC" secondAttribute="leading" id="v5W-xO-yqd"/>
                                                 <constraint firstAttribute="bottom" secondItem="aXL-Ek-5jl" secondAttribute="bottom" id="zcB-xJ-cKk"/>
                                             </constraints>
