@@ -244,6 +244,7 @@
     if(!cell){
         cell=[[InstantBookingTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
+    
     if(instantTimeArray.count == 0){
         cell.instantDateLabel.text = @"No instant booking available";
         cell.instantTimeLabel.text = @"";
@@ -255,6 +256,7 @@
         cell.instantTimeLabel.text = [instantTimeArray objectAtIndex:indexPath.row];
         
     }
+    
     return cell;
 }
 

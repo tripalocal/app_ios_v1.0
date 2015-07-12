@@ -2394,7 +2394,7 @@
                                                         <connections>
                                                             <outlet property="instantDateLabel" destination="CrS-Fm-xFi" id="Qcz-u6-eNf"/>
                                                             <outlet property="instantTimeLabel" destination="UOE-uk-YDB" id="Xki-l0-o99"/>
-                                                            <outlet property="instantView" destination="OUY-hh-D0L" id="ZnH-9b-sTA"/>
+                                                            <outlet property="instantView" destination="OUY-hh-D0L" id="YoU-JF-yld"/>
                                                         </connections>
                                                     </tableViewCell>
                                                 </prototypes>
