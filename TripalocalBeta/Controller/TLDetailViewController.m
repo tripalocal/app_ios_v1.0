@@ -337,7 +337,7 @@
             
             
             cell3.countLabel.text = [NSString stringWithFormat:@"%@ reviews", numOfReviews];
-            cell3.rateLabel.text = [NSString stringWithFormat:@"%@ stars", expRate];
+            cell3.reviewStars.rating = [expRate floatValue];
             cell3.reviewerName.text = [NSString stringWithFormat:@"%@ %@", reviewFirst, reviewLast];
             cell3.commentLabel.text = reviewComment;
 

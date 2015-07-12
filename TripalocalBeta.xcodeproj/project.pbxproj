@@ -62,6 +62,8 @@
 		87FCA4BF1B5288FA0060AA8B /* creditcard_box.png in Resources */ = {isa = PBXBuildFile; fileRef = 87FCA4BD1B5288FA0060AA8B /* creditcard_box.png */; };
 		87FCA4C31B52CB890060AA8B /* heart_sw.png in Resources */ = {isa = PBXBuildFile; fileRef = 87FCA4C11B52CB890060AA8B /* heart_sw.png */; };
 		87FCA4C41B52CB8A0060AA8B /* heart_sr.png in Resources */ = {isa = PBXBuildFile; fileRef = 87FCA4C21B52CB890060AA8B /* heart_sr.png */; };
+		87FCA4C81B52D8BC0060AA8B /* star_y.png in Resources */ = {isa = PBXBuildFile; fileRef = 87FCA4C61B52D8BC0060AA8B /* star_y.png */; };
+		87FCA4C91B52D8BC0060AA8B /* star_w.png in Resources */ = {isa = PBXBuildFile; fileRef = 87FCA4C71B52D8BC0060AA8B /* star_w.png */; };
 		87FFF3D31B4D380100326104 /* EditProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87FFF3D21B4D380100326104 /* EditProfileViewController.m */; };
 		87FFF3D71B4D549C00326104 /* PaymentSuccessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87FFF3D61B4D549C00326104 /* PaymentSuccessViewController.m */; };
 		8E26A6631B0397EF00A5A5CF /* TLHomeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E26A6621B0397EF00A5A5CF /* TLHomeTableViewCell.m */; };
@@ -306,6 +308,8 @@
 		87FCA4BD1B5288FA0060AA8B /* creditcard_box.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = creditcard_box.png; path = Images/creditcard_box.png; sourceTree = "<group>"; };
 		87FCA4C11B52CB890060AA8B /* heart_sw.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = heart_sw.png; sourceTree = "<group>"; };
 		87FCA4C21B52CB890060AA8B /* heart_sr.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = heart_sr.png; sourceTree = "<group>"; };
+		87FCA4C61B52D8BC0060AA8B /* star_y.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = star_y.png; path = Images/star_y.png; sourceTree = "<group>"; };
+		87FCA4C71B52D8BC0060AA8B /* star_w.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = star_w.png; path = Images/star_w.png; sourceTree = "<group>"; };
 		87FFF3D11B4D380100326104 /* EditProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditProfileViewController.h; sourceTree = "<group>"; };
 		87FFF3D21B4D380100326104 /* EditProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditProfileViewController.m; sourceTree = "<group>"; };
 		87FFF3D51B4D549C00326104 /* PaymentSuccessViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaymentSuccessViewController.h; sourceTree = "<group>"; };
@@ -580,6 +584,8 @@
 				8EC86DA11B02350000B0A655 /* group.png */,
 				8EC86DA21B02350000B0A655 /* home_s.png */,
 				8EC86DA31B02350000B0A655 /* home.png */,
+				87FCA4C61B52D8BC0060AA8B /* star_y.png */,
+				87FCA4C71B52D8BC0060AA8B /* star_w.png */,
 				8EC86DA41B02350000B0A655 /* instant_booking.png */,
 				8EC86DA51B02350000B0A655 /* myprofile_s.png */,
 				8EC86DA61B02350000B0A655 /* myprofile.png */,
@@ -829,6 +835,7 @@
 				871196571B4FF6BA00BA8672 /* NeedToLoginView.xib in Resources */,
 				5649BDDE1B4387EA00465D6C /* JGProgressHUD Resources.bundle in Resources */,
 				8EC86DB41B02350000B0A655 /* instant_booking.png in Resources */,
+				87FCA4C91B52D8BC0060AA8B /* star_w.png in Resources */,
 				8EB570EE1B01CF2B0026D419 /* Main.storyboard in Resources */,
 				8EC86DB21B02350000B0A655 /* home_s.png in Resources */,
 				8EC86DBE1B02350000B0A655 /* wishlisted.png in Resources */,
@@ -857,6 +864,7 @@
 				8EC86DB01B02350000B0A655 /* facebook_bt.png in Resources */,
 				8EC86DB81B02350000B0A655 /* mytrip.png in Resources */,
 				87FCA4BE1B5288FA0060AA8B /* creditcard_hori.png in Resources */,
+				87FCA4C81B52D8BC0060AA8B /* star_y.png in Resources */,
 				8E43713B1B4CBA05003A3C8A /* bus.png in Resources */,
 				8EC86DB71B02350000B0A655 /* mytrip_s.png in Resources */,
 				87FCA4C31B52CB890060AA8B /* heart_sw.png in Resources */,
