@@ -11,6 +11,7 @@
 #import "TLDetailViewController.h"
 #import "MyTripViewController.h"
 #import "Constant.h"
+#import "TLHomeViewController.h"
 
 @interface MyTripTableViewController ()
 
@@ -234,6 +235,8 @@
     return image;
 }
 - (IBAction)startExploring:(id)sender {
+    UINavigationController * first = [self.tabBarController.viewControllers objectAtIndex:0];
+    [first performSelector:@selector(popToRootViewControllerAnimated:) withObject:nil];
     [self.tabBarController setSelectedIndex:0];
 }
 
