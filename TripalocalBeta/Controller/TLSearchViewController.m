@@ -28,6 +28,7 @@
     self.tableView.dataSource = self;
     
     self.expList = [self fetchExpData:self.cityName];
+    
     [self.tableView reloadData];
 }
 
@@ -80,6 +81,8 @@
     cell.hostImage.image = [UIImage imageNamed:@"default_profile_image.png"];
     cell.languageLabel.text = [exp objectForKey:@"language"];
     cell.descriptionLabel.text = [exp objectForKey:@"description"];
+    cell.hostImage.image = [UIImage imageNamed:@"default_profile_image.png"];
+    cell.experienceImage.image = nil;
     
     NSString *hostImageCachingIdentifier = [NSString stringWithFormat:@"Cell%ldOfHostImage",(long)indexPath.row];
     NSString *expImageCachingIdentifier = [NSString stringWithFormat:@"Cell%ldOfExpImage",(long)indexPath.row];
@@ -118,6 +121,8 @@
     }
     cell.delegate = self;
     cell.wishListButton.tag = indexPath.row;
+    cell.priceLabel.text = [[[self.expList objectAtIndex:indexPath.row] objectForKey:@"price"] stringValue];
+
     return cell;
 }
 
