@@ -10,6 +10,15 @@
 
 @implementation UnloginViewController
 
+- (void)viewDidLoad {
+    self.hostImage.image = [UIImage imageNamed: @"default_profile_image.png"];
+    self.hostImage.layer.cornerRadius = self.hostImage.frame.size.height / 2;
+    self.hostImage.layer.masksToBounds = YES;
+    self.hostImage.layer.borderWidth = 0;
+    self.hostImage.layer.borderColor = [UIColor whiteColor].CGColor;
+    self.hostImage.layer.borderWidth = 3.0f;
+}
+
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     

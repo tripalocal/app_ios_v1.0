@@ -10,5 +10,6 @@
 #import "Constant.h"
 
 @interface UnloginViewController : UIViewController
+@property (weak, nonatomic) IBOutlet UIImageView *hostImage;
 
 @end
