@@ -39,10 +39,13 @@
                              self.expId, @"id",
                              self.timePeriod, @"time",
                              nil];
-    
+    if ([self.coupon length] == 0) {
+        self.coupon = @"";
+    }
+
     NSDictionary *tmp = [[NSDictionary alloc] initWithObjectsAndKeys:
                          self.cardNumberField.text, @"card_number",
-                         @"", @"coupon",
+                         self.coupon, @"coupon",
                          [NSNumber numberWithInt: self.ccvField.text.intValue], @"cvv",
                          [NSNumber numberWithInt: self.monthField.text.intValue], @"expiration_month",
                          [NSNumber numberWithInt: self.yearField.text.intValue], @"expiration_year",

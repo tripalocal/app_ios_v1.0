@@ -16,6 +16,7 @@
 #import "JGProgressHUD.h"
 #import "Constant.h"
 #import "CheckoutViewController.h"
+#import "ReviewTableViewController.h"
 #import "Constant.h"
 
 @interface TLDetailViewController ()
@@ -50,6 +51,7 @@
     NSString *ticketString;
     NSString *transportString;
     NSMutableArray *availableDateArray;
+    NSArray *reviews;
 }
 
 @property (strong, nonatomic) NSMutableDictionary *cachedImages;
@@ -69,11 +71,16 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.isExpReadMoreOpen = NO;
+    self.isHostReadMoreOpen = NO;
+
+    self.cellHeights = [@[@306, @240, @320, @385, @106, @240] mutableCopy];
     _myTable.delegate = self;
     _myTable.dataSource = self;
     connectionFinished=0;
     
     self.cachedImages = [[NSMutableDictionary alloc]init];
+    reviews = [[NSArray alloc] init];
     
     //Indicator
     HUD = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleDark];
@@ -171,9 +178,10 @@
 // todo request cover image
             cell.coverImage.image = _coverImage;
             cell.reservationLabel.text = [cell.reservationLabel.text stringByAppendingFormat:@" %@", hostFirstName];
+            // language
             cell.languageLabel.text = expLanguage;
-            cell.priceLabel.text = [cell.priceLabel.text stringByAppendingFormat:@" %@",expPrice];
-            cell.durationLabel.text = [cell.durationLabel.text stringByAppendingFormat:@"for %@ hours", expDuration];
+            cell.priceLabel.text = [NSString stringWithFormat:@"$%@",expPrice];
+            cell.durationLabel.text = [NSString stringWithFormat:@"for %@ hours", expDuration];
             
             return cell;
         
@@ -182,16 +190,41 @@
             {
                 cell1=[[TLDetailTableViewCell1 alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier1];
             }
+            
+            cell1.parentView = self.myTable;
             cell1.expTitleLabel.text = expTitle;
             cell1.expDescriptionLabel.text = [expDescription stringByAppendingFormat:@" %@ %@", expActivity, expInteraction];
-            
+            if (self.isExpReadMoreOpen) {
+                [cell1.readMoreButton setTitle:@"Read Less" forState:UIControlStateNormal];
+                cell1.expDescriptionLabel.lineBreakMode = NSLineBreakByWordWrapping;
+                cell1.expDescriptionLabel.numberOfLines = 0;
+                [cell1.expDescriptionLabel sizeToFit];
+            } else {
+                [cell1.readMoreButton setTitle:@"Read More" forState:UIControlStateNormal];
+                cell1.expDescriptionLabel.lineBreakMode = NSLineBreakByTruncatingTail;
+                cell1.expDescriptionLabel.numberOfLines = 5;
+            }
+
             return cell1;
         case 2:
             if(!cell2)
             {
                 cell2=[[TLDetailTableViewCell2 alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier2];
             }
-            cell2.hostFirstNameLabel.text = hostFirstName;
+            cell2.parentView = self.myTable;
+            if (self.isHostReadMoreOpen) {
+                [cell2.readMoreButton setTitle:@"Read Less" forState:UIControlStateNormal];
+                cell2.hostBioLabel.lineBreakMode = NSLineBreakByWordWrapping;
+                cell2.hostBioLabel.numberOfLines = 0;
+                [cell2.hostBioLabel sizeToFit];
+            } else {
+                [cell2.readMoreButton setTitle:@"Read More" forState:UIControlStateNormal];
+                cell2.hostBioLabel.lineBreakMode = NSLineBreakByTruncatingTail;
+                cell2.hostBioLabel.numberOfLines = 5;
+            }
+            
+            // get host image
+            cell2.hostFirstNameLabel.text = [@"About the host, " stringByAppendingString: hostFirstName];
             cell2.hostImage.image = _hostImage;
             cell2.hostBioLabel.text = hostBio;
             
@@ -203,10 +236,9 @@
             }
             
             
-            cell3.countLabel.text = numOfReviews;
-            cell3.rateLabel.text = expRate;
-            cell3.reviewerFirstName.text = reviewFirst;
-            cell3.reviewerLastName.text = reviewLast;
+            cell3.countLabel.text = [NSString stringWithFormat:@"%@ reviews", numOfReviews];
+            cell3.rateLabel.text = [NSString stringWithFormat:@"%@ stars", expRate];
+            cell3.reviewerName.text = [NSString stringWithFormat:@"%@ %@", reviewFirst, reviewLast];
             cell3.commentLabel.text = reviewComment;
 
             cell3.reviewerImage.image = [UIImage imageNamed:@"default_profile_image.png"];
@@ -229,8 +261,6 @@
                 });
                 
             }
-            //Reviewer Image
-            
             
             return cell3;
         case 4:
@@ -247,9 +277,9 @@
                 cell5=[[TLDetailTableViewCell5 alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier5];
             }
             
-            cell5.foodLabel.text = [cell5.foodLabel.text stringByAppendingFormat:@": \n%@", foodString];
-            cell5.ticketLabel.text = [cell5.ticketLabel.text stringByAppendingFormat:@": \n%@", ticketString];
-            cell5.transportLabel.text = [cell5.transportLabel.text stringByAppendingFormat:@": \n%@", transportString];
+            cell5.foodLabel.text = [cell5.foodLabel.text stringByAppendingFormat:@": %@", foodString];
+            cell5.ticketLabel.text = [cell5.ticketLabel.text stringByAppendingFormat:@": %@", ticketString];
+            cell5.transportLabel.text = [cell5.transportLabel.text stringByAppendingFormat:@": %@", transportString];
 
             return cell5;
         
@@ -320,6 +350,7 @@
         NSNumber *rateNumber = [allDataDictionary objectForKey:@"experience_rate"];
         expRate = [rateNumber stringValue];
         NSDictionary *reviewDictionary0 = [expReviewsArray objectAtIndex:0];
+        reviews = expReviewsArray;
         reviewFirst = [reviewDictionary0 objectForKey:@"reviewer_firstname"];
         reviewLast = [reviewDictionary0 objectForKey:@"reviewer_lastname"];
         PREreviewerImageURL =[reviewDictionary0 objectForKey:@"reviewer_image"];
@@ -347,6 +378,10 @@
     NSLog(@"%@,%@,%@,%@",expTitle,expPrice,reviewerImageURL,reviewComment);
 }
 
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return [[self.cellHeights objectAtIndex:indexPath.row] floatValue];
+}
+
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     if ([segue.identifier isEqualToString:@"checkoutSegue"]) {
         CheckoutViewController *vc=[segue destinationViewController];
@@ -360,6 +395,9 @@
         vc.durationString = expDuration;
         vc.maxGuestNum = maxGuestNum;
         vc.minGuestNum = minGuestNum;
+    } else if ([segue.identifier isEqualToString:@"view_all_reviews"]) {
+        ReviewTableViewController *vc=[segue destinationViewController];
+        vc.reviews = reviews;
     }
     
 }

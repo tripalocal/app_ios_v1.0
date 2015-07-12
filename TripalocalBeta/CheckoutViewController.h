@@ -26,6 +26,7 @@
 @property NSString *languageString;
 @property NSNumber *maxGuestNum;
 @property NSNumber *minGuestNum;
+@property (weak, nonatomic) IBOutlet UITextField *couponField;
 
 @property (weak, nonatomic) IBOutlet UIPickerView *datePicker;
 @property (weak, nonatomic) IBOutlet UIPickerView *timePicker;

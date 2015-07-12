@@ -58,6 +58,11 @@
 		87FC2DBA1B480ABF0017F30E /* RSADataVerifier.m in Sources */ = {isa = PBXBuildFile; fileRef = 87FC2D661B480ABE0017F30E /* RSADataVerifier.m */; };
 		87FCA49F1B509BF70060AA8B /* SearchViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87FCA49E1B509BF70060AA8B /* SearchViewCell.xib */; };
 		87FCA4A51B50D4890060AA8B /* heart.png in Resources */ = {isa = PBXBuildFile; fileRef = 87FCA4A41B50D4890060AA8B /* heart.png */; };
+		87FCA4A81B52002A0060AA8B /* ReviewTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87FCA4A71B52002A0060AA8B /* ReviewTableViewController.m */; };
+		87FCA4AF1B522ABA0060AA8B /* mastercard.png in Resources */ = {isa = PBXBuildFile; fileRef = 87FCA4AC1B522ABA0060AA8B /* mastercard.png */; };
+		87FCA4B01B522ABA0060AA8B /* discover.png in Resources */ = {isa = PBXBuildFile; fileRef = 87FCA4AD1B522ABA0060AA8B /* discover.png */; };
+		87FCA4B11B522ABA0060AA8B /* aexpress.png in Resources */ = {isa = PBXBuildFile; fileRef = 87FCA4AE1B522ABA0060AA8B /* aexpress.png */; };
+		87FCA4B41B522C6C0060AA8B /* creditcard.png in Resources */ = {isa = PBXBuildFile; fileRef = 87FCA4B31B522C6C0060AA8B /* creditcard.png */; };
 		87FFF3D31B4D380100326104 /* EditProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87FFF3D21B4D380100326104 /* EditProfileViewController.m */; };
 		87FFF3D71B4D549C00326104 /* PaymentSuccessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87FFF3D61B4D549C00326104 /* PaymentSuccessViewController.m */; };
 		8E26A6631B0397EF00A5A5CF /* TLHomeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E26A6621B0397EF00A5A5CF /* TLHomeTableViewCell.m */; };
@@ -297,6 +302,12 @@
 		87FC2DB21B480ABF0017F30E /* x509v3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = x509v3.h; sourceTree = "<group>"; };
 		87FCA49E1B509BF70060AA8B /* SearchViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchViewCell.xib; sourceTree = "<group>"; };
 		87FCA4A41B50D4890060AA8B /* heart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = heart.png; path = Images/heart.png; sourceTree = "<group>"; };
+		87FCA4A61B52002A0060AA8B /* ReviewTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReviewTableViewController.h; sourceTree = "<group>"; };
+		87FCA4A71B52002A0060AA8B /* ReviewTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReviewTableViewController.m; sourceTree = "<group>"; };
+		87FCA4AC1B522ABA0060AA8B /* mastercard.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = mastercard.png; path = Images/mastercard.png; sourceTree = "<group>"; };
+		87FCA4AD1B522ABA0060AA8B /* discover.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = discover.png; path = Images/discover.png; sourceTree = "<group>"; };
+		87FCA4AE1B522ABA0060AA8B /* aexpress.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = aexpress.png; path = Images/aexpress.png; sourceTree = "<group>"; };
+		87FCA4B31B522C6C0060AA8B /* creditcard.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = creditcard.png; path = Images/creditcard.png; sourceTree = "<group>"; };
 		87FFF3D11B4D380100326104 /* EditProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditProfileViewController.h; sourceTree = "<group>"; };
 		87FFF3D21B4D380100326104 /* EditProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditProfileViewController.m; sourceTree = "<group>"; };
 		87FFF3D51B4D549C00326104 /* PaymentSuccessViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaymentSuccessViewController.h; sourceTree = "<group>"; };
@@ -554,6 +565,10 @@
 		8EB570E21B01CF2B0026D419 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				87FCA4AC1B522ABA0060AA8B /* mastercard.png */,
+				87FCA4B31B522C6C0060AA8B /* creditcard.png */,
+				87FCA4AD1B522ABA0060AA8B /* discover.png */,
+				87FCA4AE1B522ABA0060AA8B /* aexpress.png */,
 				87FCA4A41B50D4890060AA8B /* heart.png */,
 				5653A8EC1B48FB8D005CA2A7 /* default_profile_image.png */,
 				8788B9CF1B48EE570002B4D1 /* visa.png */,
@@ -631,6 +646,8 @@
 		8EC86D511B021DDC00B0A655 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				87FCA4A61B52002A0060AA8B /* ReviewTableViewController.h */,
+				87FCA4A71B52002A0060AA8B /* ReviewTableViewController.m */,
 				874522A91B4E3FDF00876EB4 /* WishLishViewController.h */,
 				874522AA1B4E3FDF00876EB4 /* WishLishViewController.m */,
 				87FFF3D51B4D549C00326104 /* PaymentSuccessViewController.h */,
@@ -816,6 +833,7 @@
 				5649BDDE1B4387EA00465D6C /* JGProgressHUD Resources.bundle in Resources */,
 				8EC86DB41B02350000B0A655 /* instant_booking.png in Resources */,
 				8EB570EE1B01CF2B0026D419 /* Main.storyboard in Resources */,
+				87FCA4B01B522ABA0060AA8B /* discover.png in Resources */,
 				8EC86DB21B02350000B0A655 /* home_s.png in Resources */,
 				8EC86DBE1B02350000B0A655 /* wishlisted.png in Resources */,
 				5653A8ED1B48FB8D005CA2A7 /* default_profile_image.png in Resources */,
@@ -829,9 +847,12 @@
 				8EC86DB51B02350000B0A655 /* myprofile_s.png in Resources */,
 				8EC86DB31B02350000B0A655 /* home.png in Resources */,
 				8EC86DB11B02350000B0A655 /* group.png in Resources */,
+				87FCA4B11B522ABA0060AA8B /* aexpress.png in Resources */,
 				87FCA4A51B50D4890060AA8B /* heart.png in Resources */,
 				5649BDF01B46702300465D6C /* (null) in Resources */,
+				87FCA4AF1B522ABA0060AA8B /* mastercard.png in Resources */,
 				8EC86DBC1B02350000B0A655 /* tripalocal_logo.png in Resources */,
+				87FCA4B41B522C6C0060AA8B /* creditcard.png in Resources */,
 				8E43713D1B4CBA0E003A3C8A /* tickets.png in Resources */,
 				8EC86DB91B02350000B0A655 /* search_s.png in Resources */,
 				8788B9D21B48EE570002B4D1 /* alipay.jpg in Resources */,
@@ -910,6 +931,7 @@
 				87FC2DB31B480ABF0017F30E /* base64.m in Sources */,
 				87F356431B439D3B00949F43 /* SignUpViewController.m in Sources */,
 				87FFF3D31B4D380100326104 /* EditProfileViewController.m in Sources */,
+				87FCA4A81B52002A0060AA8B /* ReviewTableViewController.m in Sources */,
 				5649BD371B3FC40F00465D6C /* TLDetailTableViewCell0.m in Sources */,
 				8E92CF7A1B3E2B3700D4BB4B /* TLDetailViewController.m in Sources */,
 				87FC2DB71B480ABF0017F30E /* NSDataEx.m in Sources */,

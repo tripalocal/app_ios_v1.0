@@ -11,6 +11,7 @@
 
 @interface PaymentOptionViewController : UITableViewController
 @property (nonatomic) NSInteger guestNumber;
+@property (nonatomic) NSString *coupon;
 @property (nonatomic) NSNumber *unitPrice;
 @property (nonatomic) NSNumber *totalPrice;
 @property (nonatomic) NSString *expId;
