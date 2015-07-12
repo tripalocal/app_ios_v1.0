@@ -251,6 +251,7 @@
         controller.timePeriod = self.timePeriod;
         controller.unitPrice = self.unitPrice;
         controller.totalPrice = self.totalPrice;
+        controller.coupon = self.coupon;
     }
 }
 

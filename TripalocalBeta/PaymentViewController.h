@@ -13,6 +13,7 @@
 @property (nonatomic) NSInteger guestNumber;
 @property (nonatomic) NSNumber *unitPrice;
 @property (nonatomic) NSNumber *totalPrice;
+@property (nonatomic) NSString *coupon;
 @property (nonatomic) NSString *expId;
 @property (nonatomic) NSString *date;
 @property (nonatomic) NSString *timePeriod;
