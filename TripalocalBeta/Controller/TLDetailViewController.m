@@ -16,6 +16,7 @@
 #import "JGProgressHUD.h"
 #import "Constant.h"
 #import "CheckoutViewController.h"
+#import "ReviewTableViewController.h"
 #import "Constant.h"
 
 @interface TLDetailViewController ()
@@ -50,6 +51,7 @@
     NSString *ticketString;
     NSString *transportString;
     NSMutableArray *availableDateArray;
+    NSArray *reviews;
 }
 
 @property (strong, nonatomic) NSMutableDictionary *cachedImages;
@@ -78,6 +80,7 @@
     connectionFinished=0;
     
     self.cachedImages = [[NSMutableDictionary alloc]init];
+    reviews = [[NSArray alloc] init];
     
     //Indicator
     HUD = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleDark];
@@ -235,7 +238,7 @@
             
             cell3.countLabel.text = [NSString stringWithFormat:@"%@ reviews", numOfReviews];
             cell3.rateLabel.text = [NSString stringWithFormat:@"%@ stars", expRate];
-            cell3.reviewerName.text = [NSString stringWithFormat:@"%@ %@", reviewFirst, reviewFirst];
+            cell3.reviewerName.text = [NSString stringWithFormat:@"%@ %@", reviewFirst, reviewLast];
             cell3.commentLabel.text = reviewComment;
 
             cell3.reviewerImage.image = [UIImage imageNamed:@"default_profile_image.png"];
@@ -258,8 +261,6 @@
                 });
                 
             }
-            //Reviewer Image
-            
             
             return cell3;
         case 4:
@@ -349,6 +350,7 @@
         NSNumber *rateNumber = [allDataDictionary objectForKey:@"experience_rate"];
         expRate = [rateNumber stringValue];
         NSDictionary *reviewDictionary0 = [expReviewsArray objectAtIndex:0];
+        reviews = expReviewsArray;
         reviewFirst = [reviewDictionary0 objectForKey:@"reviewer_firstname"];
         reviewLast = [reviewDictionary0 objectForKey:@"reviewer_lastname"];
         PREreviewerImageURL =[reviewDictionary0 objectForKey:@"reviewer_image"];
@@ -393,6 +395,9 @@
         vc.durationString = expDuration;
         vc.maxGuestNum = maxGuestNum;
         vc.minGuestNum = minGuestNum;
+    } else if ([segue.identifier isEqualToString:@"view_all_reviews"]) {
+        ReviewTableViewController *vc=[segue destinationViewController];
+        vc.reviews = reviews;
     }
     
 }
