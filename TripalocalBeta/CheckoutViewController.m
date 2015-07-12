@@ -58,6 +58,8 @@
     _timePicker.dataSource = self;
     _instantTable.dataSource = self;
     _instantTable.delegate = self;
+    [_instantTable allowsSelection];
+    [_instantTable setAllowsSelection:YES];
     
     //Initialize guest data
     guestPickerData = [[NSMutableArray alloc]init];
@@ -254,10 +256,14 @@
         cell.instantView.hidden = NO;
         cell.instantDateLabel.text = [instantDateArray objectAtIndex:indexPath.row];
         cell.instantTimeLabel.text = [instantTimeArray objectAtIndex:indexPath.row];
-        
+        cell.selectionStyle = UITableViewCellSelectionStyleBlue;
     }
     
     return cell;
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    NSLog(@"TABLE SELECTED");
 }
 
 #pragma mark - Navigation
