@@ -24,4 +24,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *durationLabel;
 @property (weak, nonatomic) IBOutlet UIButton *wishListButton;
 @property (nonatomic, weak) id <SearchTableViewCellDelegate> delegate;
+@property (weak, nonatomic) IBOutlet UIView *PriceBackgroundView;
+@property (weak, nonatomic) IBOutlet UILabel *priceLabel;
+
 @end
