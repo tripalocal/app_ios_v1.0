@@ -15,7 +15,9 @@
     NSMutableDictionary *wholePickerData;
     NSMutableArray *dynamicTimeArray;
     NSMutableArray *timeArray;
-    
+    NSMutableArray *instantDateArray;
+    NSMutableArray *instantTimeArray;
+    BOOL isInstant;
     NSString *selectedTimeString;
     NSString *selectedDateString;
     NSString *selectedGuestString;
@@ -60,6 +62,8 @@
     timePickerData = [[NSMutableArray alloc]init];
     wholePickerData = [[NSMutableDictionary alloc]init];
     timeArray = [[NSMutableArray alloc]init];
+    instantDateArray = [[NSMutableArray alloc]init];
+    instantTimeArray = [[NSMutableArray alloc]init];
     
     int i = [_minGuestNum intValue];
     int max = [_maxGuestNum intValue];
@@ -98,6 +102,11 @@
             }
         }
         
+        isInstant = [[currentDic objectForKey:@"instant_booking"]boolValue];
+        if(isInstant){
+            [instantDateArray addObject:currentDateString];
+            [instantTimeArray addObject:currentTimeString];
+        }
     }
     [wholePickerData setValue:timeArray[lastIndex] forKey:datePickerData[lastIndex]];
     dynamicTimeArray = [wholePickerData objectForKey:[datePickerData objectAtIndex:0]];
