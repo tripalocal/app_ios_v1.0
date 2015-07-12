@@ -32,6 +32,9 @@
     locationsURLString = [[NSMutableArray alloc]init];
     self.cachedImages = [[NSMutableDictionary alloc]init];
 
+    homeTable.dataSource=self;
+    homeTable.delegate=self;
+    
     [locations addObject:@"Melbourne"];
     [locations addObject:@"Sydney"];
     [locations addObject:@"Brisbane"];
@@ -47,10 +50,7 @@
     [locationsURLString addObject:@"https://www.tripalocal.com/images/mobile/home/Cairns.jpg"];
     [locationsURLString addObject:@"https://www.tripalocal.com/images/mobile/home/Goldcoast.jpg"];
     [locationsURLString addObject:@"https://www.tripalocal.com/images/mobile/home/Hobart.jpg"];
-    [self cacheForImage];
-    
-    
-    
+
 }
 
 - (void)didReceiveMemoryWarning {
@@ -69,8 +69,7 @@
         [self.cachedImages setValue:image forKey:imageCachingIdentifier];
         
     }
-    homeTable.dataSource=self;
-    homeTable.delegate=self;
+
 
 }
 
@@ -83,10 +82,22 @@
         cell=[[TLHomeTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
     
-    
     NSString *imageCachingIdentifier = [NSString stringWithFormat:@"Cell%ld",(long)indexPath.row];
-    if([self.cachedImages objectForKey:imageCachingIdentifier]!=nil){
-        cell.homeLocationImage.image = [self.cachedImages valueForKey:imageCachingIdentifier];
+    
+    if([self.cachedImages objectForKey:imageCachingIdentifier]){
+        cell.homeLocationImage.image = [self.cachedImages objectForKey:imageCachingIdentifier];
+    } else {
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            NSString *homeLocationImageURLString = [locationsURLString objectAtIndex:indexPath.row];
+
+            NSData *homeLocationImageDate = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:homeLocationImageURLString]];
+            
+            dispatch_sync(dispatch_get_main_queue(), ^{
+                cell.homeLocationImage.image = [[UIImage alloc] initWithData:homeLocationImageDate];
+                [self.cachedImages setObject:cell.homeLocationImage.image forKey:imageCachingIdentifier];
+            });
+            
+        });
     }
     
     cell.homeLocationLabel.text = [locations objectAtIndex:indexPath.row];

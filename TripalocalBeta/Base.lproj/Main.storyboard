@@ -526,7 +526,7 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <button opaque="NO" alpha="0.90000000000000002" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ob8-Wd-umG">
+                            <button opaque="NO" alpha="0.90000000000000002" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ob8-Wd-umG">
                                 <rect key="frame" x="0.0" y="1506" width="600" height="45"/>
                                 <color key="backgroundColor" red="0.0" green="0.81568627449999997" blue="0.81568627449999997" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -1186,16 +1186,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xxx-UD-uaH">
-                                <rect key="frame" x="266" y="285" width="69" height="30"/>
-                                <state key="normal" title="My Profile">
-                                    <color key="titleColor" red="0.0" green="0.81568627449999997" blue="0.81568627449999997" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="hu3-eo-ryU" kind="show" id="V8t-Xz-RjI"/>
-                                </connections>
-                            </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="iDB-hB-AXx">
                                 <rect key="frame" x="250" y="94" width="100" height="100"/>
                                 <constraints>
@@ -1210,9 +1200,14 @@
                                 </variation>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="So1-Kc-APW">
-                                <rect key="frame" x="274" y="401" width="53" height="30"/>
+                                <rect key="frame" x="200" y="460" width="200" height="40"/>
+                                <color key="backgroundColor" red="0.0" green="0.81568627449999997" blue="0.81568627449999997" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="CcR-3A-9Ij"/>
+                                    <constraint firstAttribute="width" constant="200" id="cGT-B4-B5z"/>
+                                </constraints>
                                 <state key="normal" title="Log out">
-                                    <color key="titleColor" red="0.0" green="0.81568627449999997" blue="0.81568627449999997" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -1225,16 +1220,32 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gbB-HA-Ql0">
+                                <rect key="frame" x="0.0" y="248" width="600" height="60"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="heart.png" translatesAutoresizingMaskIntoConstraints="NO" id="eXs-vb-CrI">
+                                        <rect key="frame" x="277" y="0.0" width="46" height="60"/>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="WRe-4W-3Rn"/>
+                                    <constraint firstItem="eXs-vb-CrI" firstAttribute="height" secondItem="gbB-HA-Ql0" secondAttribute="height" id="gkk-ye-vQg"/>
+                                    <constraint firstAttribute="centerY" secondItem="eXs-vb-CrI" secondAttribute="centerY" id="oFw-Xe-yk5"/>
+                                    <constraint firstAttribute="centerX" secondItem="eXs-vb-CrI" secondAttribute="centerX" id="oRU-xW-Qk2"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="centerX" secondItem="So1-Kc-APW" secondAttribute="centerX" id="3OS-LP-j94"/>
-                            <constraint firstAttribute="centerX" secondItem="xxx-UD-uaH" secondAttribute="centerX" id="Eum-bM-re0"/>
+                            <constraint firstItem="gbB-HA-Ql0" firstAttribute="top" secondItem="WIV-jZ-czn" secondAttribute="bottom" constant="25" id="H01-Ij-GGZ"/>
                             <constraint firstItem="WIV-jZ-czn" firstAttribute="top" secondItem="iDB-hB-AXx" secondAttribute="bottom" constant="8" id="JAv-1E-aP1"/>
-                            <constraint firstItem="So1-Kc-APW" firstAttribute="top" secondItem="xxx-UD-uaH" secondAttribute="bottom" constant="86" id="cgO-nv-YBG"/>
+                            <constraint firstAttribute="width" secondItem="gbB-HA-Ql0" secondAttribute="width" id="NtW-Hg-b1n"/>
+                            <constraint firstItem="IFn-a3-9vr" firstAttribute="top" secondItem="So1-Kc-APW" secondAttribute="bottom" constant="100" id="Zw0-yB-bTJ"/>
                             <constraint firstAttribute="centerX" secondItem="iDB-hB-AXx" secondAttribute="centerX" id="gPr-t9-nrt"/>
-                            <constraint firstAttribute="centerY" secondItem="xxx-UD-uaH" secondAttribute="centerY" id="nPZ-M5-KzX"/>
                             <constraint firstItem="iDB-hB-AXx" firstAttribute="top" secondItem="dFg-HN-2sc" secondAttribute="bottom" constant="30" id="oF9-aA-CcH"/>
+                            <constraint firstAttribute="centerX" secondItem="gbB-HA-Ql0" secondAttribute="centerX" id="oKV-Cb-XQq"/>
                             <constraint firstAttribute="centerX" secondItem="WIV-jZ-czn" secondAttribute="centerX" id="qoU-rZ-9NT"/>
                         </constraints>
                     </view>
@@ -1242,11 +1253,14 @@
                     <connections>
                         <outlet property="hostName" destination="WIV-jZ-czn" id="q1m-Uo-CGe"/>
                         <outlet property="image" destination="iDB-hB-AXx" id="vEw-Eg-hlT"/>
+                        <outlet property="wishLIstImage" destination="gbB-HA-Ql0" id="l4C-n6-gvD"/>
+                        <segue destination="hu3-eo-ryU" kind="show" identifier="show_my_profile" id="kuN-Ok-J3Y"/>
+                        <segue destination="vP5-Mp-CG5" kind="show" identifier="show_wishlist" id="k2W-eK-gbG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cVi-UG-mt1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-409" y="2208"/>
+            <point key="canvasLocation" x="-379" y="2044"/>
         </scene>
         <!--Unlogin View Controller-->
         <scene sceneID="E0L-Im-XHT">
@@ -1273,8 +1287,8 @@
                                     <constraint firstAttribute="width" secondItem="0MN-RZ-Tsj" secondAttribute="height" id="kXz-AJ-uln"/>
                                 </constraints>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="96H-G9-Y49">
-                                <rect key="frame" x="191" y="372" width="220" height="40"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="96H-G9-Y49">
+                                <rect key="frame" x="190" y="372" width="220" height="40"/>
                                 <color key="backgroundColor" red="0.0" green="0.81568627450980391" blue="0.81568627450980391" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="220" id="1Ug-Oz-8Qu"/>
@@ -1401,7 +1415,6 @@
                     <connections>
                         <segue destination="ffA-Vz-IRx" kind="relationship" relationship="viewControllers" id="YDA-tl-btB"/>
                         <segue destination="DGn-L1-CUZ" kind="relationship" relationship="viewControllers" id="Oar-3A-CM7"/>
-                        <segue destination="vP5-Mp-CG5" kind="relationship" relationship="viewControllers" id="rH0-p4-PXE"/>
                         <segue destination="XTj-v7-22M" kind="relationship" relationship="viewControllers" id="iyk-UW-ael"/>
                         <segue destination="rck-fR-8GJ" kind="relationship" relationship="viewControllers" id="Wp3-cj-IHP"/>
                     </connections>
@@ -2387,7 +2400,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="1600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kc2-SR-fKy">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Kc2-SR-fKy">
                                 <rect key="frame" x="0.0" y="64" width="600" height="1487"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DvV-aY-zzz" userLabel="Content View">
@@ -2572,7 +2585,7 @@
                                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
-                                                                <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OUY-hh-D0L">
+                                                                <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OUY-hh-D0L">
                                                                     <rect key="frame" x="194" y="4" width="162" height="34"/>
                                                                     <subviews>
                                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="flash.png" translatesAutoresizingMaskIntoConstraints="NO" id="5gW-Mi-U7H">
@@ -2940,6 +2953,7 @@
         <image name="default_profile_image.png" width="200" height="200"/>
         <image name="discover.png" width="143" height="91"/>
         <image name="flash.png" width="36" height="36"/>
+        <image name="heart.png" width="46" height="48"/>
         <image name="mastercard.png" width="199" height="127"/>
         <image name="meals.png" width="27" height="27"/>
         <image name="tickets.png" width="27" height="27"/>
@@ -2948,9 +2962,9 @@
         <image name="visa.png" width="102" height="64"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="r1b-Gj-oet"/>
-        <segue reference="yiP-PS-w0n"/>
+        <segue reference="Pkv-bo-ySw"/>
         <segue reference="olF-su-vgo"/>
+        <segue reference="r1b-Gj-oet"/>
         <segue reference="84E-Wr-GXn"/>
     </inferredMetricsTieBreakers>
 </document>

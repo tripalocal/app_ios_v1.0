@@ -91,14 +91,9 @@
         self.needToLoginView.delegate = self;
         [self.view bringSubviewToFront:self.needToLoginView];
     }
-    [self.navigationController setNavigationBarHidden:YES animated:animated];
+    
     [super viewWillAppear:animated];
 }
-
-- (void)viewWillDisappear:(BOOL)animated {
-    [self.navigationController setNavigationBarHidden:NO animated:animated];
-}
-
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

@@ -12,6 +12,7 @@
 @interface MenuViewController ()
 @property (weak, nonatomic) IBOutlet UIImageView *image;
 @property (weak, nonatomic) IBOutlet UILabel *hostName;
+@property (strong, nonatomic) IBOutlet UIView *wishLIstImage;
 
 @end
 
@@ -35,7 +36,26 @@
     self.image.layer.borderWidth = 0;
     self.image.layer.borderColor = [UIColor whiteColor].CGColor;
     self.image.layer.borderWidth = 3.0f;
+    
+    UITapGestureRecognizer *hostImageSingleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapHostImage)];
+    hostImageSingleTap.numberOfTapsRequired = 1;
+    [self.image setUserInteractionEnabled:YES];
+    [self.image addGestureRecognizer:hostImageSingleTap];
+    
+    UITapGestureRecognizer *wishListSingleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(wishListTapped)];
+    wishListSingleTap.numberOfTapsRequired = 1;
+    [self.wishLIstImage setUserInteractionEnabled:YES];
+    [self.wishLIstImage addGestureRecognizer:wishListSingleTap];
+}
 
+
+-(void)wishListTapped{
+    [self performSegueWithIdentifier:@"show_wishlist" sender:self];
+}
+
+-(void)tapHostImage{
+    NSLog(@"single Tap on imageview");
+    [self performSegueWithIdentifier:@"show_my_profile" sender:self];
 }
 
 - (IBAction)logout:(id)sender {
