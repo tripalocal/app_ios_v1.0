@@ -21,6 +21,7 @@
 		568AE82C1B52061E00D48DBC /* flash.png in Resources */ = {isa = PBXBuildFile; fileRef = 568AE82B1B52061E00D48DBC /* flash.png */; };
 		568AE8301B52087500D48DBC /* InstantBookingTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 568AE82F1B52087500D48DBC /* InstantBookingTableViewCell.m */; };
 		7412FDE1EDC10952539BF3C5 /* libPods-TripalocalBeta.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D1136758DFF7CE52CD971824 /* libPods-TripalocalBeta.a */; };
+		870AEB791B53A81D00959465 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 870AEB7B1B53A81D00959465 /* Localizable.strings */; };
 		871196521B4FCE7200BA8672 /* MyTripTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 871196511B4FCE7200BA8672 /* MyTripTableViewCell.xib */; };
 		871196571B4FF6BA00BA8672 /* NeedToLoginView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 871196561B4FF6BA00BA8672 /* NeedToLoginView.xib */; };
 		8711965A1B4FF74300BA8672 /* NeedToLoginView.m in Sources */ = {isa = PBXBuildFile; fileRef = 871196591B4FF74300BA8672 /* NeedToLoginView.m */; };
@@ -163,6 +164,10 @@
 		568AE82B1B52061E00D48DBC /* flash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = flash.png; sourceTree = "<group>"; };
 		568AE82E1B52087500D48DBC /* InstantBookingTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InstantBookingTableViewCell.h; path = "Controller/Custom Cells/InstantBookingTableViewCell.h"; sourceTree = "<group>"; };
 		568AE82F1B52087500D48DBC /* InstantBookingTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InstantBookingTableViewCell.m; path = "Controller/Custom Cells/InstantBookingTableViewCell.m"; sourceTree = "<group>"; };
+		870AEB771B53A6B000959465 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
+		870AEB781B53A6B000959465 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
+		870AEB7A1B53A81D00959465 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		870AEB7C1B53A82900959465 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		871196511B4FCE7200BA8672 /* MyTripTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyTripTableViewCell.xib; sourceTree = "<group>"; };
 		871196561B4FF6BA00BA8672 /* NeedToLoginView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = NeedToLoginView.xib; path = ../NeedToLoginView.xib; sourceTree = "<group>"; };
 		871196581B4FF74300BA8672 /* NeedToLoginView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NeedToLoginView.h; sourceTree = "<group>"; };
@@ -567,6 +572,7 @@
 		8EB570E21B01CF2B0026D419 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				870AEB7B1B53A81D00959465 /* Localizable.strings */,
 				87FCA4A41B50D4890060AA8B /* heart.png */,
 				87FCA4BC1B5288FA0060AA8B /* creditcard_hori.png */,
 				87FCA4BD1B5288FA0060AA8B /* creditcard_box.png */,
@@ -785,6 +791,7 @@
 			knownRegions = (
 				en,
 				Base,
+				"zh-Hans",
 			);
 			mainGroup = 8EB570D61B01CF2B0026D419;
 			productRefGroup = 8EB570E01B01CF2B0026D419 /* Products */;
@@ -854,6 +861,7 @@
 				5649BDF01B46702300465D6C /* (null) in Resources */,
 				87FCA4BF1B5288FA0060AA8B /* creditcard_box.png in Resources */,
 				8EC86DBC1B02350000B0A655 /* tripalocal_logo.png in Resources */,
+				870AEB791B53A81D00959465 /* Localizable.strings in Resources */,
 				8E43713D1B4CBA0E003A3C8A /* tickets.png in Resources */,
 				8EC86DB91B02350000B0A655 /* search_s.png in Resources */,
 				8788B9D21B48EE570002B4D1 /* alipay.jpg in Resources */,
@@ -997,10 +1005,20 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		870AEB7B1B53A81D00959465 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				870AEB7A1B53A81D00959465 /* en */,
+				870AEB7C1B53A82900959465 /* zh-Hans */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		8EB570EC1B01CF2B0026D419 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				8EB570ED1B01CF2B0026D419 /* Base */,
+				870AEB771B53A6B000959465 /* zh-Hans */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -1009,6 +1027,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				8EB570F21B01CF2B0026D419 /* Base */,
+				870AEB781B53A6B000959465 /* zh-Hans */,
 			);
 			name = LaunchScreen.xib;
 			sourceTree = "<group>";
