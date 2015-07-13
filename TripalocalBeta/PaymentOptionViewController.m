@@ -76,7 +76,7 @@
         
         //商品价格
 //        order.amount = [NSString stringWithFormat:@"%.2f",self.totalPrice.floatValue];
-        // set small amount for test
+
         order.amount = [NSString stringWithFormat:@"0.01"];
         
         order.notifyURL =  @"http://notify.msp.hk/notify.htm";

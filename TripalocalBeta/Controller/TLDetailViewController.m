@@ -40,7 +40,6 @@
     NSString *reviewerImageURL;
     NSString *reviewComment;
     JGProgressHUD *HUD;
-    int connectionFinished;
     NSData *reviewerImageData;
     NSMutableArray *dynamicPriceArray;
     NSNumber *maxGuestNum;
@@ -77,7 +76,6 @@
     self.cellHeights = [@[@306, @240, @320, @385, @164, @240] mutableCopy];
     _myTable.delegate = self;
     _myTable.dataSource = self;
-    connectionFinished=0;
     
     self.cachedImages = [[NSMutableDictionary alloc]init];
     reviews = [[NSArray alloc] init];
@@ -97,6 +95,7 @@
     NSData *postData = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
     NSString *postLength = [NSString stringWithFormat:@"%lu", (unsigned long)[postData length]];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+    // move to constant
     [request setURL:[NSURL URLWithString:@"https://www.tripalocal.com/service_experience/"]];
     [request setHTTPMethod:@"POST"];
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
@@ -190,7 +189,7 @@
 }
 
 // todo: move to utility file
-- (NSString *) decimalwithFormat:(NSString *)format  floatV:(float)floatV
+- (NSString *) decimalwithFormat:(NSString *)format floatV:(float)floatV
 {
     NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];
     
@@ -439,11 +438,6 @@
     }
     
     return [languages componentsJoinedByString:@"/"];
-}
-
--(void)connectionDidFinishLoading:(NSURLConnection *)connection
-{
-
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
