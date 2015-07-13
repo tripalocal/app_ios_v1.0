@@ -36,7 +36,7 @@
 }
 
 - (void)fetchMyTrips:(NSString *) token {
-    NSURL *url = [NSURL URLWithString:testServerMyTrip];
+    NSURL *url = [NSURL URLWithString:mytripService];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     [request setHTTPMethod:@"GET"];
     [request addValue:[NSString stringWithFormat:@"Token %@", token] forHTTPHeaderField:@"Authorization"];
@@ -107,13 +107,13 @@
     NSString *imageURL = [trip objectForKey:@"host_image"];
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        NSData *hostImageData = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString: [testServerImageURL stringByAppendingString: imageURL]]];
+        NSData *hostImageData = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString: [imageServiceURL stringByAppendingString: imageURL]]];
         dispatch_sync(dispatch_get_main_queue(), ^{
             cell.hostImage.image = [[UIImage alloc] initWithData:hostImageData];
         });
     });
     
-    NSString *absoluteImageURL = [NSString stringWithFormat:@"%@thumbnails/experiences/experience%@_1.jpg", testServerImageURL, [trip objectForKey:@"experience_id"]];
+    NSString *absoluteImageURL = [NSString stringWithFormat:@"%@thumbnails/experiences/experience%@_1.jpg", imageServiceURL, [trip objectForKey:@"experience_id"]];
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         NSData *backgroundImageData = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:absoluteImageURL]];
@@ -210,7 +210,7 @@
 }
 
 - (UIImage *) fetchImage:(NSString *) imageURL {
-    NSString *absoluteImageURL = [NSString stringWithFormat:@"%@%@", testServerImageURL, imageURL];
+    NSString *absoluteImageURL = [NSString stringWithFormat:@"%@%@", imageServiceURL, imageURL];
     NSURL *url = [NSURL URLWithString:absoluteImageURL];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     [request setHTTPMethod:@"GET"];

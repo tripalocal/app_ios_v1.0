@@ -44,7 +44,7 @@
     NSString *reviewFirst = [review objectForKey:@"reviewer_firstname"];
     NSString *reviewLast = [review objectForKey:@"reviewer_lastname"];
     NSString *PREreviewerImageURL =[ review objectForKey:@"reviewer_image"];
-    NSString *reviewerImageURL = [testServerImageURL stringByAppendingString: PREreviewerImageURL];
+    NSString *reviewerImageURL = [imageServiceURL stringByAppendingString: PREreviewerImageURL];
     NSString *reviewComment = [review objectForKey:@"review_comment"];
 
     TLDetailTableViewCell3 *cell = [tableView dequeueReusableCellWithIdentifier:@"cell3" forIndexPath:indexPath];

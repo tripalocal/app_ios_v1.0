@@ -23,7 +23,7 @@
 
 - (IBAction)login:(id)sender {
     [self.loginButton setEnabled:NO];
-    NSURL *url = [NSURL URLWithString:loginServiceTestServerURL];
+    NSURL *url = [NSURL URLWithString:loginServiceURL];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
@@ -79,7 +79,7 @@
         NSLog(@"Receiving data = %@", decodedData);
 #endif
     } else {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No network connection"
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No network connection:"
                                                         message:@"You must be connected to the internet."
                                                        delegate:nil
                                               cancelButtonTitle:@"OK"

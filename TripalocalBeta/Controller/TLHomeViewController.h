@@ -11,5 +11,4 @@
 @interface TLHomeViewController : UIViewController<UITableViewDelegate,UITableViewDataSource>
 @property (strong, nonatomic) IBOutlet UITableView *homeTable;
 - (IBAction)myButton:(id)sender;
-- (void)popToRootViewController;
 @end

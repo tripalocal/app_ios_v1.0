@@ -71,7 +71,7 @@
 }
 
 - (IBAction)logout:(id)sender {
-    NSURL *url = [NSURL URLWithString:logoutServiceTestServerURL];
+    NSURL *url = [NSURL URLWithString:logoutServiceURL];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     [request setHTTPMethod:@"POST"];
     

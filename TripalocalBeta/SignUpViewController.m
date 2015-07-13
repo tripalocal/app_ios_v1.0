@@ -32,7 +32,7 @@
     [self.signupButton setEnabled:NO];
     self.signupButton.alpha = 0.5;
     
-    NSURL *url = [NSURL URLWithString:signupServiceTestServerURL];
+    NSURL *url = [NSURL URLWithString:signupServiceURL];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];

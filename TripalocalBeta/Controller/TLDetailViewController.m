@@ -253,7 +253,7 @@
                 });
                 
                 dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                    NSString *coverImageURL = [NSString stringWithFormat:@"%@thumbnails/experiences/experience%@_1.jpg", testServerImageURL, _experience_id_string];
+                    NSString *coverImageURL = [NSString stringWithFormat:@"%@thumbnails/experiences/experience%@_1.jpg", imageServiceURL, _experience_id_string];
                     NSData *coverImageData = [[NSData alloc]initWithContentsOfURL:[NSURL URLWithString:coverImageURL]];
                     dispatch_sync(dispatch_get_main_queue(), ^{
                         
@@ -372,7 +372,7 @@
                 cell4.coverImage.image = [self.cachedImages valueForKey:expImageCachingIdentifier];
             } else {
                 dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                    NSString *backgroundImageURL = [NSString stringWithFormat:@"%@thumbnails/experiences/experience%@_1.jpg", testServerImageURL, _experience_id_string];
+                    NSString *backgroundImageURL = [NSString stringWithFormat:@"%@thumbnails/experiences/experience%@_1.jpg", imageServiceURL, _experience_id_string];
                     
                     NSData *experienceImageData = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:backgroundImageURL]];
                     

@@ -11,7 +11,7 @@
 @implementation RequestController
 
 - (UIImage *) fetchImage:(NSString *) token :(NSString *) imageURL {
-    NSString *absoluteImageURL = [NSString stringWithFormat:@"%@%@", testServerImageURL, imageURL];
+    NSString *absoluteImageURL = [NSString stringWithFormat:@"%@%@", imageServiceURL, imageURL];
     NSURL *url = [NSURL URLWithString:absoluteImageURL];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     [request setHTTPMethod:@"GET"];
@@ -37,7 +37,7 @@
 }
 
 - (void) fetchProfileAndCache:(NSString *) token {
-    NSURL *url = [NSURL URLWithString:myprofileServiceTestServerURL];
+    NSURL *url = [NSURL URLWithString:myprofileServiceURL];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     [request setHTTPMethod:@"GET"];
     [request addValue:[NSString stringWithFormat:@"Token %@", token] forHTTPHeaderField:@"Authorization"];
