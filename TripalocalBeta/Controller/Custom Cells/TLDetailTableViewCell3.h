@@ -7,12 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "EDStarRating.h"
 
 @interface TLDetailTableViewCell3 : UITableViewCell
 @property (weak, nonatomic) IBOutlet UILabel *countLabel;
-@property (weak, nonatomic) IBOutlet UILabel *rateLabel;
+
 @property (weak, nonatomic) IBOutlet UIImageView *reviewerImage;
 @property (weak, nonatomic) IBOutlet UILabel *reviewerName;
 @property (weak, nonatomic) IBOutlet UILabel *commentLabel;
+@property (strong, nonatomic) IBOutlet EDStarRating *reviewStars;
 
 @end

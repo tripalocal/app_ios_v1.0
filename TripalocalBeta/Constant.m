@@ -9,18 +9,36 @@
 #import <Foundation/Foundation.h>
 #import "Constant.h"
 
-NSString *const loginServiceTestServerURL = @"http://adventure007.cloudapp.net/service_login/";
+//NSString *const loginServiceTestServerURL = @"http://adventure007.cloudapp.net/service_login/";
+//
+//NSString *const myprofileServiceTestServerURL = @"http://adventure007.cloudapp.net/service_myprofile/";
+//
+//NSString *const logoutServiceTestServerURL = @"http://adventure007.cloudapp.net/service_logout/";
+//
+//NSString *const signupServiceTestServerURL = @"http://adventure007.cloudapp.net/service_signup/";
+//
+//NSString *const testServerImageURL = @"http://adventure007.cloudapp.net/images/";
+//
+//NSString *const imageBaseURL = @"https://www.tripalocal.com/images/";
+//
+//NSString *const testServerPayment = @"http://adventure007.cloudapp.net/service_booking/";
+//
+//NSString *const testServerMyTrip = @"http://adventure007.cloudapp.net/service_mytrip/";
 
-NSString *const myprofileServiceTestServerURL = @"http://adventure007.cloudapp.net/service_myprofile/";
+NSString *const loginServiceURL = @"https://www.tripalocal.com/service_login/";
 
-NSString *const logoutServiceTestServerURL = @"http://adventure007.cloudapp.net/service_logout/";
+NSString *const myprofileServiceURL = @"https://www.tripalocal.com/service_myprofile/";
 
-NSString *const signupServiceTestServerURL = @"http://adventure007.cloudapp.net/service_signup/";
+NSString *const logoutServiceURL = @"https://www.tripalocal.com/service_logout/";
 
-NSString *const testServerImageURL = @"http://adventure007.cloudapp.net/images/";
+NSString *const signupServiceURL = @"https://www.tripalocal.com/service_signup/";
+
+NSString *const imageServiceURL = @"https://www.tripalocal.com/images/";
 
 NSString *const imageBaseURL = @"https://www.tripalocal.com/images/";
 
-NSString *const testServerPayment = @"http://adventure007.cloudapp.net/service_booking/";
+NSString *const paymentServiceURL = @"https://www.tripalocal.com/service_booking/";
 
-NSString *const testServerMyTrip = @"http://adventure007.cloudapp.net/service_mytrip/";
+NSString *const mytripService = @"https://www.tripalocal.com/service_mytrip/";
+
+

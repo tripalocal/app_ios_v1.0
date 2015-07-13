@@ -18,8 +18,29 @@
     
     self.reviewerImage.layer.borderColor = [UIColor whiteColor].CGColor;
     self.reviewerImage.layer.borderWidth = 3.0f;
+    
+    
+    CGSize newSize = CGSizeMake(15, 15);
+    self.reviewStars.starImage = [self imageWithImage:[UIImage imageNamed:@"star_w.png"] scaledToSize:newSize];
+    self.reviewStars.starHighlightedImage = [self imageWithImage:[UIImage imageNamed:@"star_y.png"] scaledToSize:newSize];
+    self.reviewStars.maxRating = 5.0;
+//    self.reviewStars.delegate = (id)self;
+    self.reviewStars.horizontalMargin = 12;
+    [self.reviewStars sizeToFit];
+    self.reviewStars.editable = NO;
+    self.reviewStars.displayMode = EDStarRatingDisplayFull;
 }
 
+- (UIImage *)imageWithImage:(UIImage *)image scaledToSize:(CGSize)newSize {
+    //UIGraphicsBeginImageContext(newSize);
+    // In next line, pass 0.0 to use the current device's pixel scaling factor (and thus account for Retina resolution).
+    // Pass 1.0 to force exact pixel size.
+    UIGraphicsBeginImageContextWithOptions(newSize, NO, 0.0);
+    [image drawInRect:CGRectMake(0, 0, newSize.width, newSize.height)];
+    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return newImage;
+}
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];

@@ -233,8 +233,8 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="date.png" width="72" height="72"/>
+        <image name="date.png" width="54" height="54"/>
         <image name="group.png" width="72" height="72"/>
-        <image name="time.png" width="72" height="72"/>
+        <image name="time.png" width="54" height="54"/>
     </resources>
 </document>

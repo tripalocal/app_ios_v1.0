@@ -53,8 +53,9 @@
 }
 
 - (void)loginClicked {
-        UIViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"login_view_controller"];
-        [self presentViewController:vc animated:YES completion:nil];
+    [self.tabBarController setSelectedIndex:3];
+//        UIViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"login_view_controller"];
+//        [self presentViewController:vc animated:YES completion:nil];
 }
 
 - (IBAction)changeToPreviousView:(id)sender {

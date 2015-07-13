@@ -12,6 +12,8 @@
 @interface MenuViewController ()
 @property (weak, nonatomic) IBOutlet UIImageView *image;
 @property (weak, nonatomic) IBOutlet UILabel *hostName;
+@property (strong, nonatomic) IBOutlet UIView *wishLIstImage;
+@property (strong, nonatomic) IBOutlet UIView *backgroundView;
 
 @end
 
@@ -22,7 +24,14 @@
     
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     UIImage* image = [UIImage imageWithData:[userDefaults objectForKey:@"user_image"]];
-    self.hostName.text = [userDefaults objectForKey:@"host_name"];
+    NSString *origHostName = [userDefaults objectForKey:@"host_name"];
+    NSArray *array = [origHostName componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    array = [array filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"SELF != ''"]];
+    NSString *firstName = [array objectAtIndex:1];
+    NSString *lastName = [array objectAtIndex:0];
+    NSString *lastNameInitial = [[lastName substringWithRange:NSMakeRange(0, 1)] stringByAppendingString:@"."];
+    
+    self.hostName.text = [[NSArray arrayWithObjects:firstName, lastNameInitial, nil] componentsJoinedByString:@" "];
     
     if (image) {
         self.image.image = image;
@@ -30,16 +39,39 @@
         self.image.image = [UIImage imageNamed: @"default_profile_image.png"];
     }
     
+    self.backgroundView.layer.cornerRadius = 5;
+    self.backgroundView.layer.borderColor = [UIColor grayColor].CGColor;
+    self.backgroundView.layer.borderWidth = 1;
+    
     self.image.layer.cornerRadius = self.image.frame.size.height / 2;
     self.image.layer.masksToBounds = YES;
     self.image.layer.borderWidth = 0;
     self.image.layer.borderColor = [UIColor whiteColor].CGColor;
     self.image.layer.borderWidth = 3.0f;
+    
+    UITapGestureRecognizer *hostImageSingleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapHostImage)];
+    hostImageSingleTap.numberOfTapsRequired = 1;
+    [self.image setUserInteractionEnabled:YES];
+    [self.image addGestureRecognizer:hostImageSingleTap];
+    
+    UITapGestureRecognizer *wishListSingleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(wishListTapped)];
+    wishListSingleTap.numberOfTapsRequired = 1;
+    [self.wishLIstImage setUserInteractionEnabled:YES];
+    [self.wishLIstImage addGestureRecognizer:wishListSingleTap];
+}
 
+
+-(void)wishListTapped{
+    [self performSegueWithIdentifier:@"show_wishlist" sender:self];
+}
+
+-(void)tapHostImage{
+    NSLog(@"single Tap on imageview");
+    [self performSegueWithIdentifier:@"show_my_profile" sender:self];
 }
 
 - (IBAction)logout:(id)sender {
-    NSURL *url = [NSURL URLWithString:logoutServiceTestServerURL];
+    NSURL *url = [NSURL URLWithString:logoutServiceURL];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     [request setHTTPMethod:@"POST"];
     

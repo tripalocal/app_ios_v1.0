@@ -61,6 +61,21 @@
     
 }
 
+-(NSString *) transformLanugage:(NSString *) languageString {
+    NSMutableArray *languages = [[languageString componentsSeparatedByString:@";"] mutableCopy];
+    [languages removeLastObject];
+    for (NSUInteger i = 0; i < [languages count]; ++i) {
+        NSString * language = [languages objectAtIndex:i];
+        if ([language isEqualToString:@"mandarin"]) {
+            [languages replaceObjectAtIndex:i withObject:@"中文"];
+        } else {
+            [languages replaceObjectAtIndex:i withObject:[language capitalizedString]];
+        }
+    }
+    
+    return [languages componentsJoinedByString:@"/"];
+}
+
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     static NSString *cellIdentifier = @"SearchCell";
@@ -79,7 +94,7 @@
     cell.durationLabel.text = handledDurationString;
     cell.titleLabel.text = [exp objectForKey:@"title"];
     cell.hostImage.image = [UIImage imageNamed:@"default_profile_image.png"];
-    cell.languageLabel.text = [exp objectForKey:@"language"];
+    cell.languageLabel.text = [self transformLanugage:(NSString *)[exp objectForKey:@"language"]];
     cell.descriptionLabel.text = [exp objectForKey:@"description"];
     cell.hostImage.image = [UIImage imageNamed:@"default_profile_image.png"];
     cell.experienceImage.image = nil;
@@ -94,15 +109,19 @@
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
             NSString *hostImageURL = [exp objectForKey:@"host_image"];
             
-            NSData *hostImageData = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:[testServerImageURL stringByAppendingString: hostImageURL]]];
+            NSData *hostImageData = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:[imageServiceURL stringByAppendingString: hostImageURL]]];
             
-            NSString *backgroundImageURL = [NSString stringWithFormat:@"%@thumbnails/experiences/experience%@_1.jpg", testServerImageURL, expIdString];
+            NSString *backgroundImageURL = [NSString stringWithFormat:@"%@thumbnails/experiences/experience%@_1.jpg", imageServiceURL, expIdString];
             
             NSData *experienceImageData = [[NSData alloc]initWithContentsOfURL:[NSURL URLWithString:backgroundImageURL]];
             
             dispatch_sync(dispatch_get_main_queue(), ^{
                 cell.hostImage.image = [[UIImage alloc] initWithData:hostImageData];
-                cell.experienceImage.image = [[UIImage alloc] initWithData:experienceImageData];
+                
+                UIImage *croppedImg = nil;
+                croppedImg = [self croppIngimageByImageName:[[UIImage alloc] initWithData:experienceImageData] toRect:cell.experienceImage.frame];
+                cell.experienceImage.image = croppedImg;
+                
                 [self.cachedImages setValue:cell.hostImage.image forKey:hostImageCachingIdentifier];
                 [self.cachedImages setValue:cell.experienceImage.image forKey:expImageCachingIdentifier];
             });
@@ -110,21 +129,45 @@
         });
     }
     
-    
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     NSMutableArray *wishList = [userDefaults objectForKey:@"wish_list"];
     
     if ([wishList containsObject:expIdString]) {
         [cell.wishListButton setBackgroundImage:[UIImage imageNamed:@"wishlisted.png"] forState:UIControlStateNormal];
+        cell.smallWishImage.image = [UIImage imageNamed:@"heart_sr.png"];
+        cell.wishStatus.text = @"Saved";
     } else {
         [cell.wishListButton setBackgroundImage:[UIImage imageNamed:@"unwishlisted.png"] forState:UIControlStateNormal];
+        cell.smallWishImage.image = [UIImage imageNamed:@"heart_sw.png"];
+        cell.wishStatus.text = @"Add to wishlist";
     }
     cell.delegate = self;
     cell.wishListButton.tag = indexPath.row;
-    cell.priceLabel.text = [[[self.expList objectAtIndex:indexPath.row] objectForKey:@"price"] stringValue];
+    cell.priceLabel.text = [self decimalwithFormat:@"0" floatV:[[[self.expList objectAtIndex:indexPath.row] objectForKey:@"price"] floatValue]];
 
     return cell;
 }
+
+
+// todo: move to utility file
+- (UIImage *)croppIngimageByImageName:(UIImage *)imageToCrop toRect:(CGRect)rect
+{
+    CGImageRef imageRef = CGImageCreateWithImageInRect([imageToCrop CGImage], rect);
+    UIImage *cropped = [UIImage imageWithCGImage:imageRef];
+    CGImageRelease(imageRef);
+    
+    return cropped;
+}
+
+- (NSString *) decimalwithFormat:(NSString *)format  floatV:(float)floatV
+{
+    NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];
+    
+    [numberFormatter setPositiveFormat:format];
+    
+    return  [numberFormatter stringFromNumber:[NSNumber numberWithFloat:floatV]];
+}
+
 
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -205,16 +248,10 @@
 {
     if ([segue.identifier isEqualToString:@"SearchResultSegue"]) {
         UINavigationController *navController = (UINavigationController *)segue.destinationViewController;
+        navController.hidesBottomBarWhenPushed = YES;
         TLDetailViewController *vc = (TLDetailViewController *) navController.topViewController;
         NSIndexPath *index=[_tableView indexPathForSelectedRow];
         vc.experience_id_string = [[[self.expList objectAtIndex:index.row] objectForKey:@"id"] stringValue];
-        
-        NSString *hostImageCachingIdentifier = [NSString stringWithFormat:@"Cell%ldOfHostImage",(long)index.row];
-        NSString *expImageCachingIdentifier = [NSString stringWithFormat:@"Cell%ldOfExpImage",(long)index.row];
-//      todo: wait till image loaded ? Or load later?
-        vc.hostImage = [self.cachedImages valueForKey:hostImageCachingIdentifier];
-        vc.coverImage = [self.cachedImages valueForKey:expImageCachingIdentifier];
-
     }
     
 }

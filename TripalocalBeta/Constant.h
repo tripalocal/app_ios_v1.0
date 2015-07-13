@@ -9,13 +9,13 @@
 #ifndef TripalocalBeta_Constant_h
 #define TripalocalBeta_Constant_h
 
-FOUNDATION_EXPORT NSString *const loginServiceTestServerURL;
-FOUNDATION_EXPORT NSString *const myprofileServiceTestServerURL;
-FOUNDATION_EXPORT NSString *const logoutServiceTestServerURL;
-FOUNDATION_EXPORT NSString *const signupServiceTestServerURL;
-FOUNDATION_EXPORT NSString *const testServerImageURL;
+FOUNDATION_EXPORT NSString *const loginServiceURL;
+FOUNDATION_EXPORT NSString *const myprofileServiceURL;
+FOUNDATION_EXPORT NSString *const logoutServiceURL;
+FOUNDATION_EXPORT NSString *const signupServiceURL;
+FOUNDATION_EXPORT NSString *const imageServiceURL;
 FOUNDATION_EXPORT NSString *const imageBaseURL;
-FOUNDATION_EXPORT NSString *const testServerPayment;
-FOUNDATION_EXPORT NSString *const testServerMyTrip;
+FOUNDATION_EXPORT NSString *const paymentServiceURL;
+FOUNDATION_EXPORT NSString *const mytripService;
 
 #endif

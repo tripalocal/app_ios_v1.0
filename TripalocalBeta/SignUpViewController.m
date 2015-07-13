@@ -32,7 +32,7 @@
     [self.signupButton setEnabled:NO];
     self.signupButton.alpha = 0.5;
     
-    NSURL *url = [NSURL URLWithString:signupServiceTestServerURL];
+    NSURL *url = [NSURL URLWithString:signupServiceURL];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
@@ -140,7 +140,7 @@
     self.lastnameField.borderStyle = UITextBorderStyleRoundedRect;
     self.passwordField.secureTextEntry = YES;
     
-    UIColor *themeColor = [UIColor colorWithRed:0.00f green:0.82f blue:0.82f alpha:1.0f];
+    UIColor *themeColor = [UIColor colorWithRed:0.20f green:0.80f blue:0.80f alpha:1.0f];
 
     [self.termsTextView setLinkTextAttributes:@{NSForegroundColorAttributeName:themeColor}];
     NSMutableAttributedString * str = [[NSMutableAttributedString alloc] initWithString:@"By signing up, I agree to Tripalocal’s Terms of Service, Privacy Policy, and Refund Policy."];

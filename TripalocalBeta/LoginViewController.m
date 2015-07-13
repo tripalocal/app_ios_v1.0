@@ -23,7 +23,7 @@
 
 - (IBAction)login:(id)sender {
     [self.loginButton setEnabled:NO];
-    NSURL *url = [NSURL URLWithString:loginServiceTestServerURL];
+    NSURL *url = [NSURL URLWithString:loginServiceURL];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
@@ -79,7 +79,7 @@
         NSLog(@"Receiving data = %@", decodedData);
 #endif
     } else {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No network connection"
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No network connection:"
                                                         message:@"You must be connected to the internet."
                                                        delegate:nil
                                               cancelButtonTitle:@"OK"
@@ -122,7 +122,7 @@
     self.passwordField.borderStyle = UITextBorderStyleRoundedRect;
     self.passwordField.secureTextEntry = YES;
     
-    UIColor *themeColor = [UIColor colorWithRed:0.00f green:0.82f blue:0.82f alpha:1.0f];
+    UIColor *themeColor = [UIColor colorWithRed:0.20f green:0.80f blue:0.80f alpha:1.0f];
     
     [self.forgotPasswordText setLinkTextAttributes:@{NSForegroundColorAttributeName:themeColor}];
     NSMutableAttributedString * str = [[NSMutableAttributedString alloc] initWithString:@"Forgot password?"];

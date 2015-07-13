@@ -13,4 +13,5 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property NSString *cityName;
 @property (nonatomic, retain) NSMutableArray *expList;
+
 @end

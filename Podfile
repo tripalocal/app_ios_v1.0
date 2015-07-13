@@ -4,6 +4,7 @@
 target 'TripalocalBeta' do
     pod 'FBSDKCoreKit'
     pod 'FBSDKLoginKit'
+    pod 'EDStarRating'
 end
 
 target 'TripalocalBetaTests' do
