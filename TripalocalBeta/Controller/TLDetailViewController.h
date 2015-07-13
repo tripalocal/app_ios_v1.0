@@ -16,5 +16,6 @@
 @property UIImage *hostImage;
 @property BOOL isExpReadMoreOpen;
 @property BOOL isHostReadMoreOpen;
+@property NSString *expPrice;
 
 @end

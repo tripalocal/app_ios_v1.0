@@ -13,7 +13,10 @@
 #import "TLDetailViewController.h"
 #import "JGProgressHUD.h"
 
-@interface TLSearchViewController ()
+@interface TLSearchViewController (){
+    NSString *priceString;
+    NSMutableArray *dynamicPricingArray;
+}
 @property (strong, nonatomic) NSMutableDictionary *cachedImages;
 @end
 
@@ -30,6 +33,7 @@
     self.expList = [self fetchExpData:self.cityName];
     
     [self.tableView reloadData];
+    dynamicPricingArray = [[NSMutableArray alloc]init];
 }
 
 - (void)saveToWishListClicked:(NSInteger)buttonTag {
@@ -143,7 +147,10 @@
     }
     cell.delegate = self;
     cell.wishListButton.tag = indexPath.row;
-    cell.priceLabel.text = [self decimalwithFormat:@"0" floatV:[[[self.expList objectAtIndex:indexPath.row] objectForKey:@"price"] floatValue]];
+    priceString =[self decimalwithFormat:@"0" floatV:[[[self.expList objectAtIndex:indexPath.row] objectForKey:@"price"] floatValue]];
+    cell.priceLabel.text = priceString;
+    [dynamicPricingArray addObject:priceString];
+    
 
     return cell;
 }
@@ -252,6 +259,7 @@
         TLDetailViewController *vc = (TLDetailViewController *) navController.topViewController;
         NSIndexPath *index=[_tableView indexPathForSelectedRow];
         vc.experience_id_string = [[[self.expList objectAtIndex:index.row] objectForKey:@"id"] stringValue];
+        vc.expPrice = [dynamicPricingArray objectAtIndex:index.row];
     }
     
 }
