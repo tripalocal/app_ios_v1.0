@@ -38,8 +38,4 @@
     [super didReceiveMemoryWarning];
 }
 
-- (IBAction)goToMyTrip:(id)sender {
-    [self performSegueWithIdentifier:@"unwind_to_home" sender:self];
-}
-
 @end

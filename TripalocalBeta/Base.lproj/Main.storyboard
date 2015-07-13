@@ -2003,8 +2003,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="goToMyTrip:" destination="Neb-KE-6OB" eventType="touchUpInside" id="dXU-Pj-LYf"/>
-                                    <segue destination="Lj6-ko-4zP" kind="unwind" identifier="unwind_to_home" unwindAction="unwindToHome:" id="YGf-1R-bAE"/>
+                                    <segue destination="Lj6-ko-4zP" kind="unwind" unwindAction="unwindToHome:" id="rRg-7r-k1R"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Payment successful" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="156-Wx-o7X">
@@ -2592,7 +2591,7 @@
                                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
-                                                                <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OUY-hh-D0L">
+                                                                <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OUY-hh-D0L">
                                                                     <rect key="frame" x="194" y="4" width="162" height="34"/>
                                                                     <subviews>
                                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="flash.png" translatesAutoresizingMaskIntoConstraints="NO" id="5gW-Mi-U7H">
@@ -2973,9 +2972,9 @@
         <image name="tripalocal_logo.png" width="287" height="99"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="r1b-Gj-oet"/>
         <segue reference="Mv9-dv-dnM"/>
         <segue reference="hPI-YE-UZz"/>
-        <segue reference="I7p-1k-Jcw"/>
+        <segue reference="olF-su-vgo"/>
+        <segue reference="r1b-Gj-oet"/>
     </inferredMetricsTieBreakers>
 </document>
