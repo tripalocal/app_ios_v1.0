@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="MaF-g6-zXX">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="MaF-g6-zXX">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -2536,32 +2536,44 @@
                                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
-                                                                <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OUY-hh-D0L">
-                                                                    <rect key="frame" x="194" y="4" width="162" height="34"/>
+                                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="adS-Ey-rSW">
+                                                                    <rect key="frame" x="191" y="4" width="144" height="34"/>
                                                                     <subviews>
-                                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="flash.png" translatesAutoresizingMaskIntoConstraints="NO" id="5gW-Mi-U7H">
-                                                                            <rect key="frame" x="10" y="4" width="24" height="22"/>
+                                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="o8W-bv-Alz">
+                                                                            <rect key="frame" x="8" y="4" width="23" height="25"/>
                                                                         </imageView>
-                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UOE-uk-YDB">
-                                                                            <rect key="frame" x="42" y="6" width="120" height="21"/>
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gcv-ZT-JGR">
+                                                                            <rect key="frame" x="39" y="6" width="123" height="21"/>
                                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
                                                                     </subviews>
                                                                     <color key="backgroundColor" red="0.13725490196078433" green="0.32941176470588235" blue="0.32549019607843138" alpha="1" colorSpace="calibratedRGB"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="width" secondItem="adS-Ey-rSW" secondAttribute="height" multiplier="81:17" constant="-18" id="5ZA-S9-391"/>
+                                                                        <constraint firstAttribute="width" constant="144" id="fHq-eG-ZCU"/>
+                                                                    </constraints>
                                                                 </view>
                                                             </subviews>
                                                             <constraints>
-                                                                <constraint firstItem="OUY-hh-D0L" firstAttribute="trailing" secondItem="hp0-ch-BCp" secondAttribute="trailingMargin" id="Agx-sP-C72"/>
+                                                                <constraint firstItem="adS-Ey-rSW" firstAttribute="top" secondItem="hp0-ch-BCp" secondAttribute="topMargin" constant="-4" id="0Hg-Pq-qjx"/>
+                                                                <constraint firstAttribute="trailingMargin" secondItem="adS-Ey-rSW" secondAttribute="trailing" constant="21" id="1NJ-pK-UG6"/>
                                                                 <constraint firstItem="CrS-Fm-xFi" firstAttribute="leading" secondItem="hp0-ch-BCp" secondAttribute="leadingMargin" id="FGp-pM-Dk2"/>
+                                                                <constraint firstItem="adS-Ey-rSW" firstAttribute="trailing" secondItem="hp0-ch-BCp" secondAttribute="trailingMargin" constant="5" id="GpW-1i-Usg"/>
                                                                 <constraint firstItem="CrS-Fm-xFi" firstAttribute="top" secondItem="hp0-ch-BCp" secondAttribute="topMargin" constant="2" id="YHa-cb-xvg"/>
                                                             </constraints>
+                                                            <variation key="default">
+                                                                <mask key="constraints">
+                                                                    <exclude reference="GpW-1i-Usg"/>
+                                                                </mask>
+                                                            </variation>
                                                         </tableViewCellContentView>
                                                         <connections>
                                                             <outlet property="instantDateLabel" destination="CrS-Fm-xFi" id="Qcz-u6-eNf"/>
-                                                            <outlet property="instantTimeLabel" destination="UOE-uk-YDB" id="Xki-l0-o99"/>
-                                                            <outlet property="instantView" destination="OUY-hh-D0L" id="YoU-JF-yld"/>
+                                                            <outlet property="instantTimeLabel" destination="gcv-ZT-JGR" id="X9a-od-YmV"/>
+                                                            <outlet property="tempImage" destination="o8W-bv-Alz" id="5DI-6L-ZaW"/>
+                                                            <outlet property="tempView" destination="adS-Ey-rSW" id="Urq-Tt-BvF"/>
                                                         </connections>
                                                     </tableViewCell>
                                                 </prototypes>
@@ -2909,7 +2921,6 @@
         <image name="creditcard_hori.png" width="324" height="54"/>
         <image name="date.png" width="54" height="54"/>
         <image name="default_profile_image.png" width="200" height="200"/>
-        <image name="flash.png" width="36" height="36"/>
         <image name="heart.png" width="54" height="54"/>
         <image name="meals.png" width="27" height="27"/>
         <image name="tickets.png" width="27" height="27"/>

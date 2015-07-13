@@ -114,6 +114,11 @@
         NSDictionary *result = [NSJSONSerialization JSONObjectWithData:data
                                                                options:0
                                                                  error:nil];
+#if DEBUG
+        NSString *decodedData = [[NSString alloc] initWithData:postData
+                                                      encoding:NSUTF8StringEncoding];
+        NSLog(@"Receiving data = %@", decodedData);
+#endif
         
         if ([httpResponse statusCode] == 200) {
             NSDictionary *allDataDictionary=[NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
@@ -171,11 +176,11 @@
             [alert show];
         }
         
-#if DEBUG
-        NSString *decodedData = [[NSString alloc] initWithData:data
-                                                      encoding:NSUTF8StringEncoding];
-        NSLog(@"Receiving data = %@", decodedData);
-#endif
+//#if DEBUG
+//        NSString *decodedData = [[NSString alloc] initWithData:data
+//                                                      encoding:NSUTF8StringEncoding];
+//        NSLog(@"Receiving data = %@", decodedData);
+//#endif
     } else {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No network connection"
                                                         message:@"You must be connected to the internet."
