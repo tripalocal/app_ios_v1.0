@@ -12,7 +12,10 @@
 @implementation TLDetailTableViewCell1
 
 - (void)awakeFromNib {
-    // Initialization code
+    self.readMoreButton.layer.cornerRadius = 5;
+    self.readMoreButton.layer.masksToBounds = YES;
+    self.readMoreButton.layer.borderColor = [UIColor colorWithRed:0.80f green:0.80f blue:0.80f alpha:1.0f].CGColor;
+    self.readMoreButton.layer.borderWidth = 1.0f;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

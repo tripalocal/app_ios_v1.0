@@ -16,5 +16,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *reviewerName;
 @property (weak, nonatomic) IBOutlet UILabel *commentLabel;
 @property (strong, nonatomic) IBOutlet EDStarRating *reviewStars;
+@property (strong, nonatomic) IBOutlet UIButton *viewAllButton;
 
 @end

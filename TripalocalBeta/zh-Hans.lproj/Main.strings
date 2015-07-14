@@ -1,18 +1,18 @@
 
 /* Class = "UILabel"; text = "Payment successful"; ObjectID = "156-Wx-o7X"; */
-"156-Wx-o7X.text" = "Payment successful";
+"156-Wx-o7X.text" = "付款成功";
 
 /* Class = "UILabel"; text = "/"; ObjectID = "1Gj-HD-gYV"; */
 "1Gj-HD-gYV.text" = "/";
 
 /* Class = "UILabel"; text = "email"; ObjectID = "1u1-1a-TGy"; */
-"1u1-1a-TGy.text" = "email";
+"1u1-1a-TGy.text" = "邮箱";
 
 /* Class = "UIButton"; normalTitle = "Confirm and Pay"; ObjectID = "2w2-8z-grV"; */
-"2w2-8z-grV.normalTitle" = "Confirm and Pay";
+"2w2-8z-grV.normalTitle" = "确认并支付";
 
 /* Class = "UIButton"; normalTitle = "Cancel"; ObjectID = "384-uT-iq4"; */
-"384-uT-iq4.normalTitle" = "Cancel";
+"384-uT-iq4.normalTitle" = "取消";
 
 /* Class = "UILabel"; text = "Label"; ObjectID = "3UK-ph-0dR"; */
 "3UK-ph-0dR.text" = "Label";
@@ -21,19 +21,19 @@
 "5nk-Y1-sU1.text" = "Label";
 
 /* Class = "UITextField"; placeholder = "Password"; ObjectID = "7UK-5Z-rPU"; */
-"7UK-5Z-rPU.placeholder" = "Password";
+"7UK-5Z-rPU.placeholder" = "密码";
 
 /* Class = "UILabel"; text = "Alipay"; ObjectID = "7au-Hj-kjn"; */
-"7au-Hj-kjn.text" = "Alipay";
+"7au-Hj-kjn.text" = "支付宝";
 
 /* Class = "UIButton"; normalTitle = "Read More"; ObjectID = "7d4-Wo-7wT"; */
-"7d4-Wo-7wT.normalTitle" = "Read More";
+"7d4-Wo-7wT.normalTitle" = "展开";
 
 /* Class = "UILabel"; text = "Ticket"; ObjectID = "7my-up-7oQ"; */
-"7my-up-7oQ.text" = "Ticket";
+"7my-up-7oQ.text" = "门票";
 
 /* Class = "UITextField"; placeholder = "Email Address"; ObjectID = "7yQ-ks-VOi"; */
-"7yQ-ks-VOi.placeholder" = "Email Address";
+"7yQ-ks-VOi.placeholder" = "邮箱";
 
 /* Class = "UILabel"; text = "Email Address"; ObjectID = "832-oQ-Hha"; */
 "832-oQ-Hha.text" = "Email Address";
@@ -42,13 +42,13 @@
 "8RO-Nh-7WZ.text" = "x";
 
 /* Class = "UIButton"; normalTitle = "Login"; ObjectID = "96H-G9-Y49"; */
-"96H-G9-Y49.normalTitle" = "Login";
+"96H-G9-Y49.normalTitle" = "登录";
 
 /* Class = "UIButton"; normalTitle = "Sign up"; ObjectID = "AKu-ka-eSr"; */
-"AKu-ka-eSr.normalTitle" = "Sign up";
+"AKu-ka-eSr.normalTitle" = "注册";
 
 /* Class = "UILabel"; text = "Time"; ObjectID = "AQG-g2-o3J"; */
-"AQG-g2-o3J.text" = "Time";
+"AQG-g2-o3J.text" = "时间";
 
 /* Class = "UITextField"; placeholder = "yyyy"; ObjectID = "BvO-bm-EH1"; */
 "BvO-bm-EH1.placeholder" = "yyyy";
@@ -57,13 +57,13 @@
 "CrS-Fm-xFi.text" = "Label";
 
 /* Class = "UIButton"; normalTitle = "Log in"; ObjectID = "Dil-Ca-PYR"; */
-"Dil-Ca-PYR.normalTitle" = "Log in";
+"Dil-Ca-PYR.normalTitle" = "登录";
 
 /* Class = "UILabel"; text = "Guest"; ObjectID = "Dlk-NB-yta"; */
-"Dlk-NB-yta.text" = "Guest";
+"Dlk-NB-yta.text" = "人数";
 
 /* Class = "UITextField"; placeholder = "First Name"; ObjectID = "DwW-xe-85h"; */
-"DwW-xe-85h.placeholder" = "First Name";
+"DwW-xe-85h.placeholder" = "名";
 
 /* Class = "UILabel"; text = "pp"; ObjectID = "F9k-Zi-dsw"; */
 "F9k-Zi-dsw.text" = "pp";
@@ -93,13 +93,13 @@
 "Nru-il-bSL.text" = "Expiry";
 
 /* Class = "UIButton"; normalTitle = "Request to Book"; ObjectID = "Ob8-Wd-umG"; */
-"Ob8-Wd-umG.normalTitle" = "Request to Book";
+"Ob8-Wd-umG.normalTitle" = "预订";
 
 /* Class = "UILabel"; text = "$ 999.99 AUD x 4 pp"; ObjectID = "QMJ-QN-apu"; */
 "QMJ-QN-apu.text" = "$ 999.99 AUD x 4 pp";
 
 /* Class = "UILabel"; text = "Reservation with"; ObjectID = "Qeu-2l-orb"; */
-"Qeu-2l-orb.text" = "Reservation with";
+"Qeu-2l-orb.text" = "和 ";
 
 /* Class = "UILabel"; text = "AUD"; ObjectID = "Rnl-hE-Kwb"; */
 "Rnl-hE-Kwb.text" = "AUD";
@@ -108,16 +108,16 @@
 "RzH-gg-VSj.text" = "asdf asdfafsdf asdf asdf as df asd fa sasdfs afsd f as df asd fa sdf as df as df as df as df as df asd fa s fas d fas df as df asdf a sfd fa asdf asdfafsdf asdf asdf as df asd fa sasdfs afsd f as df asd fa sdf as df as df as df as df as df asd fa s fas d fas df as df asdf a sfd fa asdf asdfafsdf asdf asdf as df asd fa sasdfs afsd f as df asd fa sdf as df as df as df as df as df asd fa s fas d fas df as df asdf a sfd faasdf asdfafsdf asdf asdf as df asd fa sasdfs afsd f as df asd fa sdf as df as df as df as df as df asd fa s fas d fas df as df asdf a sfd fa  ";
 
 /* Class = "UIButton"; normalTitle = "Log out"; ObjectID = "So1-Kc-APW"; */
-"So1-Kc-APW.normalTitle" = "Log out";
+"So1-Kc-APW.normalTitle" = "退出";
 
 /* Class = "UIButton"; normalTitle = "Upcoming"; ObjectID = "T1L-hS-GOM"; */
 "T1L-hS-GOM.normalTitle" = "Upcoming";
 
 /* Class = "UITextField"; placeholder = "Password"; ObjectID = "THH-3M-C7P"; */
-"THH-3M-C7P.placeholder" = "Password";
+"THH-3M-C7P.placeholder" = "密码";
 
 /* Class = "UIButton"; normalTitle = "Sign up"; ObjectID = "TRH-7o-eaW"; */
-"TRH-7o-eaW.normalTitle" = "Sign up";
+"TRH-7o-eaW.normalTitle" = "注册";
 
 /* Class = "UITextView"; text = "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda."; ObjectID = "Tre-a5-gwy"; */
 "Tre-a5-gwy.text" = "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.";
@@ -141,7 +141,7 @@
 "X7U-hD-2cY.text" = "asdf asdfafsdf asdf asdf as df asd fa sasdfs afsd f as df asd fa sdf as df as df as df as df as df asd fa s fas d fas df as df asdf a sfd fa asdf asdfafsdf asdf asdf as df asd fa sasdfs afsd f as df asd fa sdf as df as df as df as df as df asd fa s fas d fas df as df asdf a sfd fa asdf asdfafsdf asdf asdf as df asd fa sasdfs afsd f as df asd fa sdf as df as df as df as df as df asd fa s fas d fas df as df asdf a sfd faasdf asdfafsdf asdf asdf as df asd fa sasdfs afsd f as df asd fa sdf as df as df as df as df as df asd fa s fas d fas df as df asdf a sfd fa  ";
 
 /* Class = "UITextField"; placeholder = "Last Name"; ObjectID = "XMe-5V-ghg"; */
-"XMe-5V-ghg.placeholder" = "Last Name";
+"XMe-5V-ghg.placeholder" = "姓";
 
 /* Class = "UILabel"; text = "Host Name"; ObjectID = "XTL-7H-ibr"; */
 "XTL-7H-ibr.text" = "Host Name";
@@ -162,16 +162,16 @@
 "ZmN-0R-ZMY.text" = "$ 1999.99 AUD";
 
 /* Class = "UILabel"; text = "Price"; ObjectID = "Zw4-tc-m8I"; */
-"Zw4-tc-m8I.text" = "Price";
+"Zw4-tc-m8I.text" = "价格";
 
 /* Class = "UILabel"; text = "from"; ObjectID = "ZzR-aR-8nO"; */
-"ZzR-aR-8nO.text" = "from";
+"ZzR-aR-8nO.text" = "";
 
 /* Class = "UILabel"; text = "About Me"; ObjectID = "ahF-Fk-HqK"; */
 "ahF-Fk-HqK.text" = "About Me";
 
 /* Class = "UILabel"; text = "Food"; ObjectID = "bII-OH-9As"; */
-"bII-OH-9As.text" = "Food";
+"bII-OH-9As.text" = "餐饮";
 
 /* Class = "UILabel"; text = "Phone Number"; ObjectID = "bUK-z6-gAC"; */
 "bUK-z6-gAC.text" = "Phone Number";
@@ -180,7 +180,7 @@
 "bbB-KO-mIb.text" = "phone";
 
 /* Class = "UITextField"; placeholder = "Email Address"; ObjectID = "bvK-Y0-Ggi"; */
-"bvK-Y0-Ggi.placeholder" = "Email Address";
+"bvK-Y0-Ggi.placeholder" = "邮件";
 
 /* Class = "UILabel"; text = "asdf asdfafsdf asdf asdf as df asd fa sasdfs afsd f as df asd fa sdf as df as df as df as df as df asd fa s fas d fas df as df asdf a sfd fa asdf asdfafsdf asdf asdf as df asd fa sasdfs afsd f as df asd fa sdf as df as df as df as df as df asd fa s fas d fas df as df asdf a sfd fa asdf asdfafsdf asdf asdf as df asd fa sasdfs afsd f as df asd fa sdf as df as df as df as df as df asd fa s fas d fas df as df asdf a sfd faasdf asdfafsdf asdf asdf as df asd fa sasdfs afsd f as df asd fa sdf as df as df as df as df as df asd fa s fas d fas df as df asdf a sfd fa  "; ObjectID = "cKm-Rx-QZF"; */
 "cKm-Rx-QZF.text" = "asdf asdfafsdf asdf asdf as df asd fa sasdfs afsd f as df asd fa sdf as df as df as df as df as df asd fa s fas d fas df as df asdf a sfd fa asdf asdfafsdf asdf asdf as df asd fa sasdfs afsd f as df asd fa sdf as df as df as df as df as df asd fa s fas d fas df as df asdf a sfd fa asdf asdfafsdf asdf asdf as df asd fa sasdfs afsd f as df asd fa sdf as df as df as df as df as df asd fa s fas d fas df as df asdf a sfd faasdf asdfafsdf asdf asdf as df asd fa sasdfs afsd f as df asd fa sdf as df as df as df as df as df asd fa s fas d fas df as df asdf a sfd fa  ";
@@ -189,7 +189,7 @@
 "dye-yR-u0D.text" = "$";
 
 /* Class = "UIButton"; normalTitle = "Cancel"; ObjectID = "eYh-3n-yU6"; */
-"eYh-3n-yU6.normalTitle" = "Cancel";
+"eYh-3n-yU6.normalTitle" = "取消";
 
 /* Class = "UILabel"; text = "Email Address"; ObjectID = "eba-5D-yPh"; */
 "eba-5D-yPh.text" = "Email Address";
@@ -201,10 +201,10 @@
 "gUk-Uu-f3z.text" = "sent to Host name";
 
 /* Class = "UIButton"; normalTitle = "View All"; ObjectID = "gWc-Zu-x9b"; */
-"gWc-Zu-x9b.normalTitle" = "View All";
+"gWc-Zu-x9b.normalTitle" = "查看全部";
 
 /* Class = "UILabel"; text = "Don't have an account?"; ObjectID = "gYc-pg-Spy"; */
-"gYc-pg-Spy.text" = "Don't have an account?";
+"gYc-pg-Spy.text" = "没有账户?";
 
 /* Class = "UITabBarItem"; title = "Item"; ObjectID = "hXh-Hz-0f6"; */
 "hXh-Hz-0f6.title" = "Item";
@@ -213,22 +213,22 @@
 "ha7-ei-jNy.text" = "Label";
 
 /* Class = "UILabel"; text = "Date"; ObjectID = "iXH-t5-Usp"; */
-"iXH-t5-Usp.text" = "Date";
+"iXH-t5-Usp.text" = "日期";
 
 /* Class = "UIButton"; normalTitle = "Read More"; ObjectID = "iab-Lb-EH0"; */
-"iab-Lb-EH0.normalTitle" = "Read More";
+"iab-Lb-EH0.normalTitle" = "展开";
 
 /* Class = "UILabel"; text = "n reviews"; ObjectID = "j9a-PA-9Rd"; */
 "j9a-PA-9Rd.text" = "n reviews";
 
 /* Class = "UILabel"; text = "per person"; ObjectID = "jSP-6t-dAh"; */
-"jSP-6t-dAh.text" = "per person";
+"jSP-6t-dAh.text" = "每人起";
 
 /* Class = "UILabel"; text = "Payment failed please call:"; ObjectID = "jZd-K8-egz"; */
-"jZd-K8-egz.text" = "Payment failed please call:";
+"jZd-K8-egz.text" = "付款失败,请拨打：";
 
 /* Class = "UILabel"; text = "Additional Expenses"; ObjectID = "kbJ-5f-vUd"; */
-"kbJ-5f-vUd.text" = "Additional Expenses";
+"kbJ-5f-vUd.text" = "额外开销";
 
 /* Class = "UITabBarItem"; title = "Item"; ObjectID = "kcL-w8-bSH"; */
 "kcL-w8-bSH.title" = "Item";
@@ -240,13 +240,13 @@
 "ku7-gZ-jTi.text" = "Your booking request has been";
 
 /* Class = "UILabel"; text = "Transport"; ObjectID = "l5G-RP-aa1"; */
-"l5G-RP-aa1.text" = "Transport";
+"l5G-RP-aa1.text" = "交通";
 
 /* Class = "UILabel"; text = "Coupon"; ObjectID = "o9Q-uK-FNJ"; */
-"o9Q-uK-FNJ.text" = "Coupon";
+"o9Q-uK-FNJ.text" = "打折码";
 
 /* Class = "UILabel"; text = "Credit Card"; ObjectID = "pdn-CU-hSY"; */
-"pdn-CU-hSY.text" = "Credit Card";
+"pdn-CU-hSY.text" = "信用卡";
 
 /* Class = "UILabel"; text = "$999"; ObjectID = "pfh-OS-Wji"; */
 "pfh-OS-Wji.text" = "$999";
@@ -264,10 +264,10 @@
 "rHU-J1-hcc.text" = "Number";
 
 /* Class = "UIButton"; normalTitle = "Sign in"; ObjectID = "v0N-W1-tcP"; */
-"v0N-W1-tcP.normalTitle" = "Sign in";
+"v0N-W1-tcP.normalTitle" = "登录";
 
 /* Class = "UILabel"; text = "Already an Tripalocal Member?"; ObjectID = "vBF-3u-4F6"; */
-"vBF-3u-4F6.text" = "Already an Tripalocal Member?";
+"vBF-3u-4F6.text" = "已经注册过?";
 
 /* Class = "UILabel"; text = "CCV"; ObjectID = "vMH-F0-EVE"; */
 "vMH-F0-EVE.text" = "CCV";
@@ -276,16 +276,16 @@
 "vQz-gg-Nsz.text" = "About Me";
 
 /* Class = "UIButton"; normalTitle = "Start Exploring"; ObjectID = "yIH-DE-k8J"; */
-"yIH-DE-k8J.normalTitle" = "Start Exploring";
+"yIH-DE-k8J.normalTitle" = "去首页逛逛";
 
 /* Class = "UILabel"; text = "You haven't logged in."; ObjectID = "ybq-CW-b7g"; */
-"ybq-CW-b7g.text" = "You haven't logged in.";
+"ybq-CW-b7g.text" = "请登录";
 
 /* Class = "UIButton"; normalTitle = "View it in My Trip"; ObjectID = "zXQ-T3-Kuf"; */
-"zXQ-T3-Kuf.normalTitle" = "View it in My Trip";
+"zXQ-T3-Kuf.normalTitle" = "去我的体验里查看";
 
 /* Class = "UILabel"; text = "email"; ObjectID = "zcr-fG-WjC"; */
 "zcr-fG-WjC.text" = "email";
 
 /* Class = "UIButton"; normalTitle = "Confirm and Pay"; ObjectID = "zsH-ad-ErN"; */
-"zsH-ad-ErN.normalTitle" = "Confirm and Pay";
+"zsH-ad-ErN.normalTitle" = "确认并支付";

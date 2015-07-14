@@ -7,6 +7,7 @@
 //
 
 #import "ProfileViewController.h"
+#import "Constant.h"
 
 @interface ProfileViewController ()
 @property (strong, nonatomic) IBOutlet UILabel *usernameField;
@@ -23,11 +24,11 @@
 -(void) viewDidLoad {
     [super viewDidLoad];
 
-    UIBarButtonItem *editProfileButton = [[UIBarButtonItem alloc] initWithTitle:@"Edit" style:UIBarButtonItemStylePlain target:self action:@selector(editPrifle)];
+    UIBarButtonItem *editProfileButton = [[UIBarButtonItem alloc] initWithTitle:@"Edit" style:UIBarButtonItemStylePlain target:self action:@selector(editProfile)];
     self.navigationItem.rightBarButtonItem = editProfileButton;
 }
 
-- (void) editPrifle {
+- (void)editProfile {
      [self performSegueWithIdentifier:@"edit_profile" sender:self];
 }
 
@@ -35,7 +36,7 @@
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     NSString *lastName = [userDefaults stringForKey:@"user_last_name"];
     NSString *firstName = [userDefaults stringForKey:@"user_first_name"];
-    
+
     self.usernameField.text = [NSString stringWithFormat:@"%@ %@", firstName, lastName];
     self.phoneField.text = [userDefaults stringForKey:@"user_phone_number"];
     self.bioField.text = [userDefaults stringForKey:@"user_bio"];

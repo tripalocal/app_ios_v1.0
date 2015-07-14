@@ -282,6 +282,7 @@
             
             cell1.parentView = self.myTable;
             cell1.expTitleLabel.text = expTitle;
+            cell1.selectionStyle = UITableViewCellSelectionStyleNone;
             cell1.expDescriptionLabel.text = [expDescription stringByAppendingFormat:@" %@ %@", expActivity, expInteraction];
             if (self.isExpReadMoreOpen) {
                 [cell1.readMoreButton setTitle:@"Read Less" forState:UIControlStateNormal];
@@ -301,6 +302,7 @@
                 cell2=[[TLDetailTableViewCell2 alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier2];
             }
             cell2.parentView = self.myTable;
+            cell2.selectionStyle = UITableViewCellSelectionStyleNone;
             if (self.isHostReadMoreOpen) {
                 [cell2.readMoreButton setTitle:@"Read Less" forState:UIControlStateNormal];
                 cell2.hostBioLabel.lineBreakMode = NSLineBreakByWordWrapping;
@@ -321,7 +323,6 @@
                         cell2.hostImage.image = [[UIImage alloc] initWithData:hostImageData];
                         [self.cachedImages setValue:cell2.hostImage.image forKey:hostImageCachingIdentifier];
                     });
-                    
                 });
             }
             cell2.hostFirstNameLabel.text = [@"About the host, " stringByAppendingString: hostFirstName];
@@ -334,7 +335,7 @@
                 cell3=[[TLDetailTableViewCell3 alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier3];
             }
             
-            
+            cell3.selectionStyle = UITableViewCellSelectionStyleNone;
             cell3.countLabel.text = [NSString stringWithFormat:@"%@ reviews", numOfReviews];
             cell3.reviewStars.rating = [expRate floatValue];
             cell3.reviewerName.text = [NSString stringWithFormat:@"%@ %@", reviewFirst, reviewLast];
@@ -437,7 +438,7 @@
         }
     }
     
-    return [languages componentsJoinedByString:@"/"];
+    return [languages componentsJoinedByString:@" / "];
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
