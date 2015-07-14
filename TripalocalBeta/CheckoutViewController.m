@@ -236,7 +236,9 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     if(instantTimeArray.count == 0)
-        return 1;
+    {
+        _instantTable.hidden = YES;
+    }
     return instantTimeArray.count;
 }
 
@@ -248,15 +250,16 @@
     }
     
     if(instantTimeArray.count == 0){
+        cell.tempView.hidden = YES;
         cell.instantDateLabel.text = @"No instant booking available";
         cell.instantTimeLabel.text = @"";
-        cell.instantView.hidden = YES;
     }
     else{
-        cell.instantView.hidden = NO;
+        cell.tempView.hidden = NO;
         cell.instantDateLabel.text = [instantDateArray objectAtIndex:indexPath.row];
         cell.instantTimeLabel.text = [instantTimeArray objectAtIndex:indexPath.row];
-        cell.selectionStyle = UITableViewCellSelectionStyleBlue;
+//        cell.selectionStyle = UITableViewCellSelectionStyleBlue;
+        cell.tempImage.image = [UIImage imageNamed:@"flash.png"];
     }
     
     return cell;

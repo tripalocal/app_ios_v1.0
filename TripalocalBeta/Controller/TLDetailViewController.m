@@ -23,7 +23,7 @@
 {
     NSString *hostImageURL;
     NSString *expLanguage;
-    NSString *expPrice;
+    NSString *dynamicPriceString;
     NSString *expDuration;
     NSString *expTitle;
     NSString *expDescription;
@@ -113,19 +113,22 @@
         NSDictionary *result = [NSJSONSerialization JSONObjectWithData:data
                                                                options:0
                                                                  error:nil];
+#if DEBUG
+        NSString *decodedData = [[NSString alloc] initWithData:postData
+                                                      encoding:NSUTF8StringEncoding];
+        NSLog(@"Receiving data = %@", decodedData);
+#endif
         
         if ([httpResponse statusCode] == 200) {
             NSDictionary *allDataDictionary=[NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
             @try {
                 hostImageURL = [imageBaseURL stringByAppendingString: [allDataDictionary objectForKey:@"host_image"]];
                 expLanguage = [self transformLanugage:[allDataDictionary objectForKey:@"experience_language"]];
-                NSNumber *expPriceNumber = [allDataDictionary objectForKey:@"experience_price"];
                 NSNumberFormatter *formatter = [[NSNumberFormatter alloc]init];
                 [formatter setNumberStyle:NSNumberFormatterDecimalStyle];
                 [formatter setMaximumFractionDigits:2];
                 
                 [formatter setRoundingMode: NSNumberFormatterRoundUp];
-                expPrice = [self decimalwithFormat:@"0" floatV:[expPriceNumber floatValue]];
                 NSNumber *expDurationNumber = [allDataDictionary objectForKey:@"experience_duration"];
                 expDuration = [expDurationNumber stringValue];
                 expTitle = [allDataDictionary objectForKey:@"experience_title"];
@@ -170,11 +173,11 @@
             [alert show];
         }
         
-#if DEBUG
-        NSString *decodedData = [[NSString alloc] initWithData:data
-                                                      encoding:NSUTF8StringEncoding];
-        NSLog(@"Receiving data = %@", decodedData);
-#endif
+//#if DEBUG
+//        NSString *decodedData = [[NSString alloc] initWithData:data
+//                                                      encoding:NSUTF8StringEncoding];
+//        NSLog(@"Receiving data = %@", decodedData);
+//#endif
     } else {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No network connection"
                                                         message:@"You must be connected to the internet."
@@ -184,7 +187,7 @@
         [alert show];
     }
 
-    NSLog(@"%@,%@,%@,%@",expTitle,expPrice,reviewerImageURL,reviewComment);
+    NSLog(@"%@,%@,%@,%@",expTitle,_expPrice,reviewerImageURL,reviewComment);
     
 }
 
@@ -269,7 +272,7 @@
             cell.reservationLabel.text = [cell.reservationLabel.text stringByAppendingFormat:@" %@", hostFirstName];
             // language
             cell.languageLabel.text = expLanguage;
-            cell.priceLabel.text = [NSString stringWithFormat:@"$%@",expPrice];
+            cell.priceLabel.text = [NSString stringWithFormat:@"$%@",_expPrice];
             cell.durationLabel.text = [NSString stringWithFormat:@"for %@ hours", expDuration];
             
             return cell;
@@ -452,7 +455,7 @@
         vc.expImage = self.coverImage;
         vc.availbleDateArray = availableDateArray;
         vc.expTitleString = expTitle;
-        vc.fixPriceString = expPrice;
+        vc.fixPriceString = _expPrice;
         vc.dynamicPriceArray = dynamicPriceArray;
         vc.languageString = expLanguage;
         vc.durationString = expDuration;
