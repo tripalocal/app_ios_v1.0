@@ -122,9 +122,9 @@
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
             NSString *hostImageURL = [exp objectForKey:@"host_image"];
             
-            NSData *hostImageData = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:[imageServiceURL stringByAppendingString: hostImageURL]]];
+            NSData *hostImageData = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:[NSLocalizedString(imageServiceURL, nil) stringByAppendingString: hostImageURL]]];
             
-            NSString *backgroundImageURL = [NSString stringWithFormat:@"%@thumbnails/experiences/experience%@_1.jpg", imageServiceURL, expIdString];
+            NSString *backgroundImageURL = [NSString stringWithFormat:@"%@thumbnails/experiences/experience%@_1.jpg", NSLocalizedString(imageServiceURL, nil), expIdString];
             
             NSData *experienceImageData = [[NSData alloc]initWithContentsOfURL:[NSURL URLWithString:backgroundImageURL]];
             

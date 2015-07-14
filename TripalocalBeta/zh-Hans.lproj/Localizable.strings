@@ -47,3 +47,11 @@
 "booking_status_confirmed" = "已确定";
 
 "booking_status_cancelled" = "已取消";
+
+"about_the_host" = "关于 ";
+
+"n_reviews" = "%@ 条评论";
+
+"no_reviews" = "没有评论";
+
+"exp_detail_per_person_for" = "约 %@ 小时";

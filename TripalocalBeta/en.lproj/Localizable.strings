@@ -32,7 +32,7 @@
 
 "Saved" = "Saved";
 
-"Hours" = "Hours";
+"Hours" = " hrs";
 
 "reservationPrefix" = "Reservation with";
 
@@ -43,3 +43,11 @@
 "booking_status_confirmed" = "Confirmed";
 
 "booking_status_cancelled" = "Cancelled";
+
+"about_the_host" = "About the host, ";
+
+"n_reviews" = "%@ Reviews";
+
+"no_reviews" = "0 Reviews";
+
+"exp_detail_per_person_for" = "for %@ hours";

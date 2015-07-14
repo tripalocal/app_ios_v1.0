@@ -107,13 +107,13 @@
     NSString *imageURL = [trip objectForKey:@"host_image"];
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        NSData *hostImageData = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString: [imageServiceURL stringByAppendingString: imageURL]]];
+        NSData *hostImageData = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString: [NSLocalizedString(imageServiceURL, nil) stringByAppendingString: imageURL]]];
         dispatch_sync(dispatch_get_main_queue(), ^{
             cell.hostImage.image = [[UIImage alloc] initWithData:hostImageData];
         });
     });
     
-    NSString *absoluteImageURL = [NSString stringWithFormat:@"%@thumbnails/experiences/experience%@_1.jpg", imageServiceURL, [trip objectForKey:@"experience_id"]];
+    NSString *absoluteImageURL = [NSString stringWithFormat:@"%@thumbnails/experiences/experience%@_1.jpg", NSLocalizedString(imageServiceURL, nil), [trip objectForKey:@"experience_id"]];
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         NSData *backgroundImageData = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:absoluteImageURL]];
@@ -213,7 +213,7 @@
 }
 
 - (UIImage *) fetchImage:(NSString *) imageURL {
-    NSString *absoluteImageURL = [NSString stringWithFormat:@"%@%@", imageServiceURL, imageURL];
+    NSString *absoluteImageURL = [NSString stringWithFormat:@"%@%@", NSLocalizedString(imageServiceURL, nil), imageURL];
     NSURL *url = [NSURL URLWithString:absoluteImageURL];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     [request setHTTPMethod:@"GET"];

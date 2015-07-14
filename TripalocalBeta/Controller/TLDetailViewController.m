@@ -92,7 +92,7 @@
     NSString *post = [NSString stringWithFormat:@"{\"experience_id\":\"%@\"}",_experience_id_string];
     
     NSLog(@"(Detail)POST: %@", post);
-    NSData *postData = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
+    NSData *postData = [post dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:YES];
     NSString *postLength = [NSString stringWithFormat:@"%lu", (unsigned long)[postData length]];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
     // move to constant
@@ -114,7 +114,7 @@
                                                                options:0
                                                                  error:nil];
 #if DEBUG
-        NSString *decodedData = [[NSString alloc] initWithData:postData
+        NSString *decodedData = [[NSString alloc] initWithData:data
                                                       encoding:NSUTF8StringEncoding];
         NSLog(@"Receiving data = %@", decodedData);
 #endif
@@ -122,7 +122,7 @@
         if ([httpResponse statusCode] == 200) {
             NSDictionary *allDataDictionary=[NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
             @try {
-                hostImageURL = [imageBaseURL stringByAppendingString: [allDataDictionary objectForKey:@"host_image"]];
+                hostImageURL = [NSLocalizedString(imageBaseURL, nil) stringByAppendingString: [allDataDictionary objectForKey:@"host_image"]];
                 expLanguage = [self transformLanugage:[allDataDictionary objectForKey:@"experience_language"]];
                 NSNumberFormatter *formatter = [[NSNumberFormatter alloc]init];
                 [formatter setNumberStyle:NSNumberFormatterDecimalStyle];
@@ -147,7 +147,7 @@
                 reviewFirst = [reviewDictionary0 objectForKey:@"reviewer_firstname"];
                 reviewLast = [reviewDictionary0 objectForKey:@"reviewer_lastname"];
                 PREreviewerImageURL =[reviewDictionary0 objectForKey:@"reviewer_image"];
-                reviewerImageURL = [imageBaseURL stringByAppendingString: PREreviewerImageURL];
+                reviewerImageURL = [NSLocalizedString(imageBaseURL, nil) stringByAppendingString: PREreviewerImageURL];
                 reviewComment = [reviewDictionary0 objectForKey:@"review_comment"];
                 
                 ticketString = [allDataDictionary objectForKey:@"included_ticket_detail"];
@@ -162,6 +162,7 @@
             @catch (NSException * e) {
                 NSLog(@"Experience/(ID:%@/) Exception: %@", _experience_id_string, e);
             }
+            [HUD dismissAfterDelay:1.5];
         } else {
             NSString *errorMsg = [result objectForKey:@"Server Error"];
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Connection Failed"
@@ -185,7 +186,8 @@
                                               otherButtonTitles:nil];
         [alert show];
     }
-
+    
+    [HUD setHidden:YES];
     NSLog(@"%@,%@,%@,%@",expTitle,_expPrice,reviewerImageURL,reviewComment);
     
 }
@@ -254,7 +256,7 @@
                 });
                 
                 dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                    NSString *coverImageURL = [NSString stringWithFormat:@"%@thumbnails/experiences/experience%@_1.jpg", imageServiceURL, _experience_id_string];
+                    NSString *coverImageURL = [NSString stringWithFormat:@"%@thumbnails/experiences/experience%@_1.jpg", NSLocalizedString(imageServiceURL, nil), _experience_id_string];
                     NSData *coverImageData = [[NSData alloc]initWithContentsOfURL:[NSURL URLWithString:coverImageURL]];
                     dispatch_sync(dispatch_get_main_queue(), ^{
                         
@@ -273,7 +275,7 @@
             // language
             cell.languageLabel.text = expLanguage;
             cell.priceLabel.text = [NSString stringWithFormat:@"$%@",_expPrice];
-            cell.durationLabel.text = [NSString stringWithFormat:@"for %@ hours", expDuration];
+            cell.durationLabel.text = [NSString stringWithFormat:NSLocalizedString(@"exp_detail_per_person_for", nil), expDuration];
             
             return cell;
         
@@ -328,7 +330,7 @@
                     });
                 });
             }
-            cell2.hostFirstNameLabel.text = [@"About the host, " stringByAppendingString: hostFirstName];
+            cell2.hostFirstNameLabel.text = [NSLocalizedString(@"about_the_host", nil) stringByAppendingString: hostFirstName];
             cell2.hostBioLabel.text = hostBio;
             
             return cell2;
@@ -339,7 +341,12 @@
             }
             
             cell3.selectionStyle = UITableViewCellSelectionStyleNone;
-            cell3.countLabel.text = [NSString stringWithFormat:@"%@ reviews", numOfReviews];
+            if (numOfReviews > 0) {
+                cell3.countLabel.text = [NSString stringWithFormat:NSLocalizedString(@"n_reviews", nil), numOfReviews];
+            } else {
+                cell3.countLabel.text = NSLocalizedString(@"no_reviews", nil);
+            }
+            
             cell3.reviewStars.rating = [expRate floatValue];
             cell3.reviewerName.text = [NSString stringWithFormat:@"%@ %@", reviewFirst, reviewLast];
             cell3.commentLabel.text = reviewComment;
@@ -375,7 +382,7 @@
                 cell4.coverImage.image = [self.cachedImages valueForKey:expImageCachingIdentifier];
             } else {
                 dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                    NSString *backgroundImageURL = [NSString stringWithFormat:@"%@thumbnails/experiences/experience%@_1.jpg", imageServiceURL, _experience_id_string];
+                    NSString *backgroundImageURL = [NSString stringWithFormat:@"%@thumbnails/experiences/experience%@_1.jpg", NSLocalizedString(imageServiceURL, nil), _experience_id_string];
                     
                     NSData *experienceImageData = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:backgroundImageURL]];
                     

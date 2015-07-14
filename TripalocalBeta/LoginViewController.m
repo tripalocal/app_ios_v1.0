@@ -24,7 +24,7 @@
 
 - (IBAction)login:(id)sender {
     [self.loginButton setEnabled:NO];
-    NSURL *url = [NSURL URLWithString:loginServiceURL];
+    NSURL *url = [NSURL URLWithString:NSLocalizedString(loginServiceURL, nil)];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
 
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];

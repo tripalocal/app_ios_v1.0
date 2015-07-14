@@ -62,7 +62,7 @@
     NSLog(@"Sending payment request = %@", jsonString);
 #endif
 
-    NSURL *url = [NSURL URLWithString:paymentServiceURL];
+    NSURL *url = [NSURL URLWithString:NSLocalizedString(paymentServiceURL, nil)];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     [request setHTTPMethod:@"POST"];
