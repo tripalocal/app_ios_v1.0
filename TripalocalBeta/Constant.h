@@ -17,5 +17,7 @@ FOUNDATION_EXPORT NSString *const imageServiceURL;
 FOUNDATION_EXPORT NSString *const imageBaseURL;
 FOUNDATION_EXPORT NSString *const paymentServiceURL;
 FOUNDATION_EXPORT NSString *const mytripService;
+FOUNDATION_EXPORT NSString *const serviceSearchURL;
+FOUNDATION_EXPORT NSString *const expDetailServiceURL;
 
 #endif

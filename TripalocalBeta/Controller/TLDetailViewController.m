@@ -96,7 +96,7 @@
     NSString *postLength = [NSString stringWithFormat:@"%lu", (unsigned long)[postData length]];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
     // move to constant
-    [request setURL:[NSURL URLWithString:@"https://www.tripalocal.com/service_experience/"]];
+    [request setURL:[NSURL URLWithString:NSLocalizedString(expDetailServiceURL, nil)]];
     [request setHTTPMethod:@"POST"];
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     [request setValue:postLength forHTTPHeaderField:@"Content-Length"];

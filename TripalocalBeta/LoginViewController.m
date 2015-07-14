@@ -123,7 +123,7 @@
     UIColor *themeColor = [UIColor colorWithRed:0.20f green:0.80f blue:0.80f alpha:1.0f];
 
     [self.forgotPasswordText setLinkTextAttributes:@{NSForegroundColorAttributeName : themeColor}];
-    NSMutableAttributedString *str = [[NSMutableAttributedString alloc] initWithString:@"Forgot password?"];
+    NSMutableAttributedString *str = [[NSMutableAttributedString alloc] initWithString:NSLocalizedString(@"Forgot password?", nil)];
     [str addAttribute:NSLinkAttributeName value:@"https://tripalocal.com/accounts/password/reset/" range:NSMakeRange(0, str.length)];
     [str addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:15] range:NSMakeRange(0, str.length)];
 
