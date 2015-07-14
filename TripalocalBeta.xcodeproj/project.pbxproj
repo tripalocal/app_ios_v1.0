@@ -22,7 +22,6 @@
 		568AE8301B52087500D48DBC /* InstantBookingTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 568AE82F1B52087500D48DBC /* InstantBookingTableViewCell.m */; };
 		7412FDE1EDC10952539BF3C5 /* libPods-TripalocalBeta.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D1136758DFF7CE52CD971824 /* libPods-TripalocalBeta.a */; };
 		870AEB791B53A81D00959465 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 870AEB7B1B53A81D00959465 /* Localizable.strings */; };
-		871196521B4FCE7200BA8672 /* MyTripTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 871196511B4FCE7200BA8672 /* MyTripTableViewCell.xib */; };
 		8711965A1B4FF74300BA8672 /* NeedToLoginView.m in Sources */ = {isa = PBXBuildFile; fileRef = 871196591B4FF74300BA8672 /* NeedToLoginView.m */; };
 		8729E1321B4A0374004C3065 /* MyTripViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8729E1311B4A0374004C3065 /* MyTripViewController.m */; };
 		8729E1361B4A1D7F004C3065 /* UpcommingTripsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8729E1351B4A1D7F004C3065 /* UpcommingTripsViewController.m */; };
@@ -35,6 +34,7 @@
 		87A3C0A11B463C6C009A3B07 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87A3C0A01B463C6C009A3B07 /* HomeViewController.m */; };
 		87E74B631B54BD6C00C41CBF /* NeedToLoginView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87E74B651B54BD6C00C41CBF /* NeedToLoginView.xib */; };
 		87E74B691B54C2AF00C41CBF /* SearchViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87E74B6B1B54C2AF00C41CBF /* SearchViewCell.xib */; };
+		87E74B6E1B54E73B00C41CBF /* MyTripTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87E74B701B54E73B00C41CBF /* MyTripTableViewCell.xib */; };
 		87F356401B439D3B00949F43 /* Constant.m in Sources */ = {isa = PBXBuildFile; fileRef = 87F356391B439D3B00949F43 /* Constant.m */; };
 		87F356411B439D3B00949F43 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87F3563B1B439D3B00949F43 /* LoginViewController.m */; };
 		87F356421B439D3B00949F43 /* PaymentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87F3563D1B439D3B00949F43 /* PaymentViewController.m */; };
@@ -168,7 +168,6 @@
 		870AEB781B53A6B000959465 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		870AEB7A1B53A81D00959465 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		870AEB7C1B53A82900959465 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
-		871196511B4FCE7200BA8672 /* MyTripTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyTripTableViewCell.xib; sourceTree = "<group>"; };
 		871196581B4FF74300BA8672 /* NeedToLoginView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NeedToLoginView.h; sourceTree = "<group>"; };
 		871196591B4FF74300BA8672 /* NeedToLoginView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NeedToLoginView.m; sourceTree = "<group>"; };
 		8729E1301B4A0374004C3065 /* MyTripViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyTripViewController.h; sourceTree = "<group>"; };
@@ -192,6 +191,8 @@
 		87E74B681B54BD7200C41CBF /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/NeedToLoginView.strings"; sourceTree = "<group>"; };
 		87E74B6A1B54C2AF00C41CBF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/SearchViewCell.xib; sourceTree = "<group>"; };
 		87E74B6D1B54C2B100C41CBF /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/SearchViewCell.strings"; sourceTree = "<group>"; };
+		87E74B6F1B54E73B00C41CBF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MyTripTableViewCell.xib; sourceTree = "<group>"; };
+		87E74B721B54E73F00C41CBF /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/MyTripTableViewCell.strings"; sourceTree = "<group>"; };
 		87F356381B439D3B00949F43 /* Constant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constant.h; sourceTree = "<group>"; };
 		87F356391B439D3B00949F43 /* Constant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constant.m; sourceTree = "<group>"; };
 		87F3563A1B439D3B00949F43 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
@@ -647,7 +648,7 @@
 				871196581B4FF74300BA8672 /* NeedToLoginView.h */,
 				871196591B4FF74300BA8672 /* NeedToLoginView.m */,
 				87E74B651B54BD6C00C41CBF /* NeedToLoginView.xib */,
-				871196511B4FCE7200BA8672 /* MyTripTableViewCell.xib */,
+				87E74B701B54E73B00C41CBF /* MyTripTableViewCell.xib */,
 				8EB570EC1B01CF2B0026D419 /* Main.storyboard */,
 				87E74B6B1B54C2AF00C41CBF /* SearchViewCell.xib */,
 			);
@@ -878,7 +879,7 @@
 				8E43713B1B4CBA05003A3C8A /* bus.png in Resources */,
 				8EC86DB71B02350000B0A655 /* mytrip_s.png in Resources */,
 				87FCA4C31B52CB890060AA8B /* heart_sw.png in Resources */,
-				871196521B4FCE7200BA8672 /* MyTripTableViewCell.xib in Resources */,
+				87E74B6E1B54E73B00C41CBF /* MyTripTableViewCell.xib in Resources */,
 				8EB570F01B01CF2B0026D419 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1033,6 +1034,15 @@
 				87E74B6D1B54C2B100C41CBF /* zh-Hans */,
 			);
 			name = SearchViewCell.xib;
+			sourceTree = "<group>";
+		};
+		87E74B701B54E73B00C41CBF /* MyTripTableViewCell.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				87E74B6F1B54E73B00C41CBF /* Base */,
+				87E74B721B54E73F00C41CBF /* zh-Hans */,
+			);
+			name = MyTripTableViewCell.xib;
 			sourceTree = "<group>";
 		};
 		8EB570EC1B01CF2B0026D419 /* Main.storyboard */ = {

@@ -24,7 +24,7 @@
 
 "https://www.tripalocal.com/service_experience/" = "https://www.tripalocal.com/service_experience/";
 
-"{\"start_datetime\":\"2015-05-08\", \"end_datetime\":\"2015-05-08\", \"city\":\"%@\", \"guest_number\":\"2\", \"keywords\":\"Food & wine, Education, History & culture, Architecture, For couples, Photography worthy, Livability research, Kids friendly, Outdoor & nature, Shopping, Sports & leisure, Host with car, Extreme fun, Events, Health & beauty, Private group\"}" = "{\"start_datetime\":\"2015-05-08\", \"end_datetime\":\"2015-05-08\", \"city\":\"%@\", \"guest_number\":\"2\", \"keywords\":\"Food & wine, Education, History & culture, Architecture, For couples, Photography worthy, Livability research, Kids friendly, Outdoor & nature, Shopping, Sports & leisure, Host with car, Extreme fun, Events, Health & beauty, Private group\"}";
+"exp_search_string" = "{\"start_datetime\":\"2015-05-08\", \"end_datetime\":\"2015-05-08\", \"city\":\"%@\", \"guest_number\":\"2\", \"keywords\":\"Food & wine, Education, History & culture, Architecture, For couples, Photography worthy, Livability research, Kids friendly, Outdoor & nature, Shopping, Sports & leisure, Host with car, Extreme fun, Events, Health & beauty, Private group\"}";
 
 "Forgot password?" = "Forgot password?";
 
@@ -33,3 +33,13 @@
 "Saved" = "Saved";
 
 "Hours" = "Hours";
+
+"reservationPrefix" = "Reservation with";
+
+"reservationSuffix" = "";
+
+"booking_status_requested" = "Requested";
+
+"booking_status_confirmed" = "Confirmed";
+
+"booking_status_cancelled" = "Cancelled";

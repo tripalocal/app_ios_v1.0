@@ -204,7 +204,7 @@
     NSMutableArray *expList = [[NSMutableArray alloc] init];
     
     // fixed date?
-    NSString *post = [NSString stringWithFormat:NSLocalizedString(@"{\"start_datetime\":\"2015-05-08\", \"end_datetime\":\"2015-05-08\", \"city\":\"%@\", \"guest_number\":\"2\", \"keywords\":\"Food & wine, Education, History & culture, Architecture, For couples, Photography worthy, Livability research, Kids friendly, Outdoor & nature, Shopping, Sports & leisure, Host with car, Extreme fun, Events, Health & beauty, Private group\"}", nil), cityName];
+    NSString *post = [NSString stringWithFormat:NSLocalizedString(@"exp_search_string", nil), cityName];
 #ifdef DEBUG
     NSLog(@"Sending date = %@",post);
 #endif

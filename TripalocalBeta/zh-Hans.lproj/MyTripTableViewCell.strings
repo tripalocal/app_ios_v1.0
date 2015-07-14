@@ -1,0 +1,33 @@
+
+/* Class = "UIButton"; normalTitle = "Call"; ObjectID = "5W7-EW-cFl"; */
+"5W7-EW-cFl.normalTitle" = "电话";
+
+/* Class = "UILabel"; text = "nguest"; ObjectID = "Arf-9T-nbb"; */
+"Arf-9T-nbb.text" = "nguest";
+
+/* Class = "UITextView"; text = "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda."; ObjectID = "Ktj-CW-97u"; */
+"Ktj-CW-97u.text" = "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.";
+
+/* Class = "UILabel"; text = "Experience Title"; ObjectID = "Mu4-ms-ko4"; */
+"Mu4-ms-ko4.text" = "Experience Title";
+
+/* Class = "UILabel"; text = "Host Name"; ObjectID = "NcW-Cq-Xax"; */
+"NcW-Cq-Xax.text" = "Host Name";
+
+/* Class = "UIButton"; normalTitle = "Message"; ObjectID = "Q9f-kf-8PB"; */
+"Q9f-kf-8PB.normalTitle" = "短信";
+
+/* Class = "UIButton"; normalTitle = "Requested"; ObjectID = "QcJ-ws-pqS"; */
+"QcJ-ws-pqS.normalTitle" = "Requested";
+
+/* Class = "UILabel"; text = "Meet up instruction"; ObjectID = "UTa-gY-UVn"; */
+"UTa-gY-UVn.text" = "会合提示";
+
+/* Class = "UILabel"; text = "Telephone"; ObjectID = "nfw-9T-YBG"; */
+"nfw-9T-YBG.text" = "Telephone";
+
+/* Class = "UILabel"; text = "time"; ObjectID = "p90-eq-6tn"; */
+"p90-eq-6tn.text" = "time";
+
+/* Class = "UILabel"; text = "date"; ObjectID = "tKa-q0-vvk"; */
+"tKa-q0-vvk.text" = "date";

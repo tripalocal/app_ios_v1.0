@@ -111,7 +111,7 @@
 "So1-Kc-APW.normalTitle" = "退出";
 
 /* Class = "UIButton"; normalTitle = "Upcoming"; ObjectID = "T1L-hS-GOM"; */
-"T1L-hS-GOM.normalTitle" = "Upcoming";
+"T1L-hS-GOM.normalTitle" = "已预订";
 
 /* Class = "UITextField"; placeholder = "Password"; ObjectID = "THH-3M-C7P"; */
 "THH-3M-C7P.placeholder" = "密码";
@@ -132,7 +132,7 @@
 "WIV-jZ-czn.text" = "Host Name";
 
 /* Class = "UILabel"; text = "When you book an experience, you will see you itinerary here."; ObjectID = "WIk-Mw-s2t"; */
-"WIk-Mw-s2t.text" = "When you book an experience, you will see you itinerary here.";
+"WIk-Mw-s2t.text" = "您还没有预订过体验。";
 
 /* Class = "UITabBarItem"; title = "Item"; ObjectID = "WZV-Fv-anE"; */
 "WZV-Fv-anE.title" = "Item";
@@ -150,10 +150,10 @@
 "XYv-KE-hvO.text" = "gn";
 
 /* Class = "UIButton"; normalTitle = "Previous"; ObjectID = "YIi-Zy-eI8"; */
-"YIi-Zy-eI8.normalTitle" = "Previous";
+"YIi-Zy-eI8.normalTitle" = "已完成";
 
 /* Class = "UILabel"; text = "My Trips"; ObjectID = "YRi-2m-d7y"; */
-"YRi-2m-d7y.text" = "My Trips";
+"YRi-2m-d7y.text" = "我的体验";
 
 /* Class = "UILabel"; text = "Experience"; ObjectID = "YyL-sl-sa8"; */
 "YyL-sl-sa8.text" = "Experience";

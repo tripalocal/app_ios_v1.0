@@ -26,7 +26,7 @@
 
 "https://www.tripalocal.com/service_experience/" = "https://www.tripalocal.com/cn/service_experience/";
 
-"{\"start_datetime\":\"2015-05-08\", \"end_datetime\":\"2015-05-08\", \"city\":\"%@\", \"guest_number\":\"2\", \"keywords\":\"Food & wine, Education, History & culture, Architecture, For couples, Photography worthy, Livability research, Kids friendly, Outdoor & nature, Shopping, Sports & leisure, Host with car, Extreme fun, Events, Health & beauty, Private group\"}" = "{\"start_datetime\":\"2015-05-08\", \"end_datetime\":\"2015-05-08\", \"city\":\"%@\", \"guest_number\":\"2\", \"keywords\":\"美食美酒,名校游学,历史人文,经典建筑,蜜月旅拍,风光摄影,移民考察,亲子夏令营,户外探险,购物扫货,运动休闲,领路人自驾,刺激享乐,赛事庆典,美容保健\"}";
+"exp_search_string" = "{\"start_datetime\":\"2015-05-08\", \"end_datetime\":\"2015-05-08\", \"city\":\"%@\", \"guest_number\":\"2\", \"keywords\":\"美食美酒,名校游学,历史人文,经典建筑,蜜月旅拍,风光摄影,移民考察,亲子夏令营,户外探险,购物扫货,运动休闲,领路人自驾,刺激享乐,赛事庆典,美容保健\"}";
 
 
 
@@ -37,3 +37,13 @@
 "Saved" = "已保存至兴趣列表";
 
 "Hours" = "小时";
+
+"reservationPrefix" = "和";
+
+"reservationSuffix" = "预定";
+
+"booking_status_requested" = "已申请";
+
+"booking_status_confirmed" = "已确定";
+
+"booking_status_cancelled" = "已取消";

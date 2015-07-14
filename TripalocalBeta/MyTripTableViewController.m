@@ -36,7 +36,7 @@
 }
 
 - (void)fetchMyTrips:(NSString *) token {
-    NSURL *url = [NSURL URLWithString:mytripService];
+    NSURL *url = [NSURL URLWithString:NSLocalizedString(mytripService, nil)];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     [request setHTTPMethod:@"GET"];
     [request addValue:[NSString stringWithFormat:@"Token %@", token] forHTTPHeaderField:@"Authorization"];
@@ -146,10 +146,13 @@
     cell.instructionText.text = [trip objectForKey:@"meetup_spot"];
     NSString *status = [trip objectForKey:@"status"];
     if ([status isEqualToString:@"paid"]) {
-        [cell.statusButton setTitle:@"Requested" forState:UIControlStateNormal];
+        [cell.statusButton setTitle:NSLocalizedString(@"booking_status_requested", nil) forState:UIControlStateNormal];
+        [cell.statusButton setBackgroundColor:[UIColor colorWithRed:0.00f green:0.82f blue:0.82f alpha:1.0f]];
+    } else if ([status isEqualToString:@"rejected"]) {
+        [cell.statusButton setTitle:NSLocalizedString(@"booking_status_cancelled", nil) forState:UIControlStateNormal];
         [cell.statusButton setBackgroundColor:[UIColor colorWithRed:0.00f green:0.82f blue:0.82f alpha:1.0f]];
     } else {
-        [cell.statusButton setTitle:@"Confirmed" forState:UIControlStateNormal];
+        [cell.statusButton setTitle:NSLocalizedString(@"booking_status_confirmed", nil) forState:UIControlStateNormal];
         [cell.statusButton setBackgroundColor:[UIColor colorWithRed:0.51f green:0.82f blue:0.00f alpha:1.0f]];
     }
     

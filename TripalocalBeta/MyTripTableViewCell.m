@@ -26,8 +26,6 @@
     self.messageButton.layer.cornerRadius = 5;
     self.messageButton.layer.masksToBounds = YES;
     
-//    self.statusLabel setConten
-    
     if (!self.hostImage) {
         self.hostImage.image = [UIImage imageNamed: @"default_profile_image.png"];
     }

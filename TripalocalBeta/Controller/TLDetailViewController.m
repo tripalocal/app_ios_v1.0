@@ -162,7 +162,6 @@
             @catch (NSException * e) {
                 NSLog(@"Experience/(ID:%@/) Exception: %@", _experience_id_string, e);
             }
-            [HUD dismissAfterDelay:1.5];
         } else {
             NSString *errorMsg = [result objectForKey:@"Server Error"];
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Connection Failed"
@@ -269,7 +268,8 @@
                 });
                 
             }
-            cell.reservationLabel.text = [cell.reservationLabel.text stringByAppendingFormat:@" %@", hostFirstName];
+            cell.reservationLabel.text = [NSString stringWithFormat:@"%@ %@ %@", NSLocalizedString(@"reservationPrefix", nil), hostFirstName, NSLocalizedString(@"reservationSuffix",nil)];
+            
             // language
             cell.languageLabel.text = expLanguage;
             cell.priceLabel.text = [NSString stringWithFormat:@"$%@",_expPrice];
