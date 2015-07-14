@@ -6,6 +6,20 @@
   Copyright (c) 2015 Tripalocal. All rights reserved.
 */
 
+"Melbourne" = "墨尔本";
+
+"Sydney" = "悉尼";
+
+"Brisbane" = "布里斯班";
+
+"Adelaide" = "阿德莱德";
+
+"Cairns" = "凯恩斯";
+
+"Goldcoast" = "黄金海岸";
+
+"Hobart" = "霍巴特";
+
 "https://www.tripalocal.com/service_search/" = "https://www.tripalocal.com/cn/service_search/";
 
 "https://www.tripalocal.com/service_login/" = "https://www.tripalocal.com/cn/service_login/";

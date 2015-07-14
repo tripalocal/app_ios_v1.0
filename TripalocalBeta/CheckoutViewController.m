@@ -125,6 +125,7 @@
     selectedGuestString = guestPickerData[0];
     
     _durationLangLabel.text = [_durationString stringByAppendingFormat:@"hrs • %@", _languageString];
+    [NSString stringWithFormat:@"%@ • %@", NSLocalizedString(@"Hours", nil), _languageString];
     _expTitleLabel.text = _expTitleString;
     // todo: default value not equal to picker view
     _unitPriceLabel.text = [@"$" stringByAppendingFormat:@" %@ AUD x %@ pp",_fixPriceString,selectedGuestString];

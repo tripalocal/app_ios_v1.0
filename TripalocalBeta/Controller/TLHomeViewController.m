@@ -100,7 +100,7 @@
         });
     }
     
-    cell.homeLocationLabel.text = [locations objectAtIndex:indexPath.row];
+    cell.homeLocationLabel.text = NSLocalizedString([locations objectAtIndex:indexPath.row], nil);
     cell.homeLocationLabel.textAlignment = NSTextAlignmentCenter;
    
     

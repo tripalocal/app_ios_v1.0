@@ -6,6 +6,21 @@
   Copyright (c) 2015 Tripalocal. All rights reserved.
 */
 
+"Melbourne" = "Melbourne";
+
+"Sydney" = "Sydney";
+
+"Brisbane" = "Brisbane";
+
+"Adelaide" = "Adelaide";
+
+"Cairns" = "Cairns";
+
+"Goldcoast" = "Goldcoast";
+
+"Hobart" = "Hobart";
+
+
 "https://www.tripalocal.com/service_login/" = "https://www.tripalocal.com/service_login/";
 
 "https://www.tripalocal.com/service_myprofile/" = "https://www.tripalocal.com/service_myprofile/";
