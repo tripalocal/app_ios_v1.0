@@ -7,6 +7,7 @@
 //
 
 #import "PhoneSIgnupViewController.h"
+#import "SmsVerificationViewController.h"
 
 @interface PhoneSIgnupViewController ()
 @property (strong, nonatomic) IBOutlet UITextField *emailField;
@@ -22,12 +23,15 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    self.signupButton.alpha = 0.5;
+    self.signupButton.alpha = DISABLE_ALPHA;
     [self.signupButton setEnabled:NO];
     self.emailField.delegate = self;
     self.passwordField.delegate = self;
     self.firstnameField.delegate = self;
     self.lastnameField.delegate = self;
+    
+    [self.signupButton.layer setMasksToBounds:YES];
+    [self.signupButton.layer setCornerRadius:5.0f];
     
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
                                    initWithTarget:self
@@ -36,87 +40,98 @@
     [self.view addGestureRecognizer:tap];
     self.passwordField.secureTextEntry = YES;
     self.passwordAgainField.secureTextEntry = YES;
-}
-
-
-- (IBAction)dismissLoginAndSignup:(id)sender {
-    [self.presentingViewController.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+    
+    UIImage * targetImage = [UIImage imageNamed:@"backgroundImage.jpg"];
+    // redraw the image to fit view's size
+    UIGraphicsBeginImageContextWithOptions(self.view.frame.size, NO, 0.f);
+    [targetImage drawInRect:CGRectMake(0.f, 0.f, self.view.frame.size.width, self.view.frame.size.height)];
+    UIImage * resultImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    self.view.backgroundColor = [UIColor colorWithPatternImage:resultImage];
 }
 
 - (IBAction)signup:(id)sender {
-    [self.signupButton setEnabled:NO];
-    self.signupButton.alpha = 0.5;
-    
-    NSURL *url = [NSURL URLWithString:NSLocalizedString(signupServiceURL, nil)];
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
-    
-    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    [request setHTTPMethod:@"POST"];
-    
-    NSDictionary *tmp = [[NSDictionary alloc] initWithObjectsAndKeys:
-                         self.emailField.text, @"email",
-                         self.passwordField.text, @"password",
-                         self.firstnameField.text, @"first_name",
-                         self.lastnameField.text, @"last_name",
-                         nil];
-    
-    NSData *postdata = [NSJSONSerialization dataWithJSONObject:tmp options:0 error:nil];
-    [request setHTTPBody:postdata];
-    
+    if (![self.passwordAgainField.text isEqualToString:self.passwordField.text]) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"mismatch_pwd", nil)
+                                                        message:NSLocalizedString(@"mismatch_pwd_hint", nil)
+                                                       delegate:nil
+                                              cancelButtonTitle:NSLocalizedString(@"ok", nil)
+                                              otherButtonTitles:nil];
+        [alert show];
+    } else {
+        [self.signupButton setEnabled:NO];
+        self.signupButton.alpha = DISABLE_ALPHA;
+        
+        NSURL *url = [NSURL URLWithString:NSLocalizedString(signupServiceURL, nil)];
+        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+        
+        [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+        [request setHTTPMethod:@"POST"];
+        
+        // add telephone number
+        NSDictionary *tmp = [[NSDictionary alloc] initWithObjectsAndKeys:
+                             self.emailField.text, @"email",
+                             self.passwordField.text, @"password",
+                             self.firstnameField.text, @"first_name",
+                             self.lastnameField.text, @"last_name",
+                             nil];
+        
+        NSData *postdata = [NSJSONSerialization dataWithJSONObject:tmp options:0 error:nil];
+        [request setHTTPBody:postdata];
+        
 #if DEBUG
-    NSString * decodedData =[[NSString alloc] initWithData:postdata encoding:NSUTF8StringEncoding];
-    NSLog(@"Sending data = %@", decodedData);
+        NSString * decodedData =[[NSString alloc] initWithData:postdata encoding:NSUTF8StringEncoding];
+        NSLog(@"Sending data = %@", decodedData);
 #endif
-    
-    
-    NSError *connectionError = nil;
-    NSURLResponse *response = nil;
-    
-    NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&connectionError];
-    
-    if (connectionError == nil) {
-        NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *) response;
+        NSError *connectionError = nil;
+        NSURLResponse *response = nil;
         
-        NSDictionary *result = [NSJSONSerialization JSONObjectWithData:data
-                                                               options:0
-                                                                 error:nil];
+        NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&connectionError];
         
-        if ([httpResponse statusCode] == 200) {
-            NSString *token = [result objectForKey:@"token"];
-            [self fetchProfileAndCache: token];
+        if (connectionError == nil) {
+            NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *) response;
             
-            NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-            [userDefaults setObject:token forKey:@"user_token"];
-            [[NSUserDefaults standardUserDefaults] synchronize];
-            
-            [self.presentingViewController.presentingViewController dismissViewControllerAnimated:YES completion:nil];
-            
+            NSDictionary *result = [NSJSONSerialization JSONObjectWithData:data
+                                                                   options:0
+                                                                     error:nil];
+            if ([httpResponse statusCode] == 200) {
+                NSString *token = [result objectForKey:@"token"];
+                [self fetchProfileAndCache: token];
+                
+                NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+                [userDefaults setObject:token forKey:@"user_token"];
+                [[NSUserDefaults standardUserDefaults] synchronize];
+                
+                [self.presentingViewController.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+                
+            } else {
+                NSString *errorMsg = [result objectForKey:@"error"];
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"signup_failed", nil)
+                                                                message:errorMsg
+                                                               delegate:nil
+                                                      cancelButtonTitle:NSLocalizedString(@"ok", nil)
+                                                      otherButtonTitles:nil];
+                [alert show];
+            }
+#if DEBUG
+            NSString *decodedData = [[NSString alloc] initWithData:data
+                                                          encoding:NSUTF8StringEncoding];
+            NSLog(@"Receiving data = %@", decodedData);
+#endif
         } else {
-            NSString *errorMsg = [result objectForKey:@"error"];
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Signup Failed"
-                                                            message:errorMsg
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"no_network", nil)
+                                                            message:NSLocalizedString(@"no_network_msg", nil)
                                                            delegate:nil
-                                                  cancelButtonTitle:@"OK"
+                                                  cancelButtonTitle:NSLocalizedString(@"ok", nil)
                                                   otherButtonTitles:nil];
             [alert show];
         }
         
-#if DEBUG
-        NSString *decodedData = [[NSString alloc] initWithData:data
-                                                      encoding:NSUTF8StringEncoding];
-        NSLog(@"Receiving data = %@", decodedData);
-#endif
-    } else {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No network connection"
-                                                        message:@"You must be connected to the internet."
-                                                       delegate:nil
-                                              cancelButtonTitle:@"OK"
-                                              otherButtonTitles:nil];
-        [alert show];
+        [self.signupButton setEnabled:YES];
+        self.signupButton.alpha = 1;
     }
     
-    [self.signupButton setEnabled:YES];
-    self.signupButton.alpha = 1;
 }
 
 - (IBAction)dismissSignup:(id)sender {
@@ -129,7 +144,7 @@
         self.signupButton.alpha = 1;
     } else {
         [self.signupButton setEnabled:NO];
-        self.signupButton.alpha = 0.5;
+        self.signupButton.alpha = DISABLE_ALPHA;
     }
 }
 
@@ -138,31 +153,18 @@
     [super didReceiveMemoryWarning];
 }
 
-
 -(void)dismissKeyboard {
     [self.view endEditing:YES];
 }
 
-- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
-{
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
     return YES;
 }
 
-
-- (BOOL)textFieldShouldReturn:(UITextField *)textField
-{
+- (BOOL)textFieldShouldReturn:(UITextField *)textField{
     [textField resignFirstResponder];
     return YES;
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

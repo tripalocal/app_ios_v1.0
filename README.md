@@ -17,4 +17,7 @@ In order to use 'Pod', always use the .xcworkspace file to open your project in 
 ### RGB Value
 \#f7f7f7
 
+## Locaolization
+
+Please use `NSLocalizedString` to create support multiple languages.
 

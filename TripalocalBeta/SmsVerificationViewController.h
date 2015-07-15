@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+extern float const DISABLE_ALPHA;
 
 @interface SmsVerificationViewController : UIViewController  <UITextFieldDelegate>
 @property (strong, nonatomic) IBOutlet UITextField *telephoneField;

@@ -7,10 +7,14 @@
 //
 
 #import "SmsVerificationViewController.h"
+#import "PhoneSIgnupViewController.h"
 #include <stdlib.h>
 #import "Constant.h"
 
 NSInteger const VERI_CODE_LENGTH = 5;
+NSInteger const PHONE_NUMBER_LENGTH = 11;
+float const DISABLE_ALPHA = 0.8;
+NSInteger const COUNT_DOWN_SECONDS = 60;
 
 @interface SmsVerificationViewController ()
 // make this field singleton
@@ -20,64 +24,63 @@ NSInteger const VERI_CODE_LENGTH = 5;
 
 @implementation SmsVerificationViewController {
     NSTimer *timer;
+    NSInteger nVeriTrial;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    nVeriTrial = 3;
     self.telephoneField.delegate = self;
-    self.telephoneField.borderStyle = UITextBorderStyleRoundedRect;
     self.verificationCodeField.delegate = self;
-    self.verificationCodeField.borderStyle = UITextBorderStyleRoundedRect;
 
     [self.sendCodeButton setEnabled:NO];
-    self.sendCodeButton.alpha = 0.5;
+    self.sendCodeButton.alpha = DISABLE_ALPHA;
     [self.verificationCodeField setHidden:YES];
     [self.confirmButton setHidden:YES];
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-- (IBAction)dismissSignup:(id)sender {
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
-
-- (IBAction)dismissLoginAndSignup:(id)sender {
-    [self.presentingViewController.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+    
+    [self.sendCodeButton.layer setMasksToBounds:YES];
+    [self.sendCodeButton.layer setCornerRadius:5.0f];
+    [self.confirmButton.layer setMasksToBounds:YES];
+    [self.confirmButton.layer setCornerRadius:5.0f];
+    
+    UIImage *targetImage = [UIImage imageNamed:@"backgroundImage.jpg"];
+    // redraw the image to fit view's size
+    UIGraphicsBeginImageContextWithOptions(self.view.frame.size, NO, 0.f);
+    [targetImage drawInRect:CGRectMake(0.f, 0.f, self.view.frame.size.width, self.view.frame.size.height)];
+    UIImage *resultImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    self.view.backgroundColor = [UIColor colorWithPatternImage:resultImage];
 }
 
 - (IBAction)telephoneFieldChanged:(id)sender {
-    if (self.telephoneField.text && self.telephoneField.text.length == 11) {
+    if (self.telephoneField.text && self.telephoneField.text.length == PHONE_NUMBER_LENGTH) {
         [self.sendCodeButton setEnabled:YES];
         self.sendCodeButton.alpha = 1;
     } else {
         [self.sendCodeButton setEnabled:NO];
-        self.sendCodeButton.alpha = 0.5;
+        self.sendCodeButton.alpha = DISABLE_ALPHA;
     }
 }
 
 - (IBAction)verificationFieldChanged:(id)sender {
-    if (self.verificationCodeField.text && self.verificationCodeField.text.length == 5) {
+    if (self.verificationCodeField.text && self.verificationCodeField.text.length == VERI_CODE_LENGTH) {
         [self.confirmButton setEnabled:YES];
         self.confirmButton.alpha = 1;
     } else {
         [self.confirmButton setEnabled:NO];
-        self.confirmButton.alpha = 0.5;
+        self.confirmButton.alpha = DISABLE_ALPHA;
     }
 }
 
 - (IBAction)sendVerificationRequest:(id)sender {
-    self.i = @(60);
+    self.i = @(COUNT_DOWN_SECONDS);
     [self.telephoneField setEnabled:NO];
     [self.sendCodeButton setEnabled:NO];
-    self.sendCodeButton.alpha = 0.5;
+    self.sendCodeButton.alpha = DISABLE_ALPHA;
     
     [self.verificationCodeField setHidden:NO];
     [self.confirmButton setHidden:NO];
-    [self.confirmButton setEnabled:NO];
-    self.confirmButton.alpha = 0.5;
 
     self.verificationCode = [self generateVerificationCode];
     BOOL result = [self sendVerificationCode:self.verificationCode];
@@ -85,10 +88,10 @@ NSInteger const VERI_CODE_LENGTH = 5;
     if (result == YES) {
         [self startTimer];
     } else {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Telephone number invalid"
-                                                        message:@"Please try again."
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"phone_no_error", nil)
+                                                        message:NSLocalizedString(@"phone_no_error_msg", nil)
                                                        delegate:nil
-                                              cancelButtonTitle:@"OK"
+                                              cancelButtonTitle:NSLocalizedString(@"ok_button", nil)
                                               otherButtonTitles:nil];
         [alert show];
         
@@ -96,27 +99,16 @@ NSInteger const VERI_CODE_LENGTH = 5;
         [self.sendCodeButton setEnabled:YES];
         self.sendCodeButton.alpha = 1;
     }
-
 }
 
--(void)startTimer
-{
+-(void)startTimer {
     timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(aTime) userInfo:nil repeats:YES];
     [[NSRunLoop mainRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
 }
 
--(void)aTime
-{
-    NSInteger temp = [self.i integerValue];
-    [self.sendCodeButton setTitle:[@(temp) stringValue] forState:UIControlStateNormal];
-    
-    if (temp == 0) {
-        [timer invalidate];
-        [self.sendCodeButton setEnabled:YES];
-        [self.telephoneField setEnabled:YES];
-        self.sendCodeButton.alpha = 1;
-        [self.sendCodeButton setTitle:NSLocalizedString(@"send_verification_code", nil) forState:UIControlStateNormal];
-        self.i = @(59);
+-(void)aTime {
+    if ([self.i isEqualToNumber:@(0)]) {
+        [self resetState];
     } else {
         [UIView setAnimationsEnabled:NO];
         [self.sendCodeButton setTitle:[NSString stringWithFormat:NSLocalizedString(@"verification_count_msg", nil), [self.i stringValue]] forState:UIControlStateNormal];
@@ -126,17 +118,36 @@ NSInteger const VERI_CODE_LENGTH = 5;
     self.i = @([self.i intValue] - 1);
 }
 
+- (void)resetState {
+    [self.sendCodeButton setEnabled:YES];
+    [self.telephoneField setEnabled:YES];
+    self.sendCodeButton.alpha = 1;
+    [self.sendCodeButton setTitle:NSLocalizedString(@"verfication_expire", nil) forState:UIControlStateNormal];
+    [self.verificationCodeField setHidden:YES];
+    self.verificationCodeField.text = @"";
+    [self.confirmButton setHidden:YES];
+    [self.confirmButton setEnabled:NO];
+    self.confirmButton.alpha = DISABLE_ALPHA;
+    
+    self.i = @(COUNT_DOWN_SECONDS);
+    nVeriTrial = 3;
+    [timer invalidate];
+}
+
 - (IBAction)confirmCode:(id)sender {
+    nVeriTrial -= 1;
     if ([self.verificationCode isEqualToString:self.verificationCodeField.text]) {
         [self performSegueWithIdentifier:@"telephone_signup" sender:nil];
-    } else {
-        //if times left is 0, change verification code.
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Wrong Verification Code"
-                                                        message:@"You have n times left"
+    } else if (nVeriTrial > 0) {
+        NSString *verificationHint = [NSString stringWithFormat:NSLocalizedString(@"verification_hint", nil), nVeriTrial];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Wrong Verification Code", nil)
+                                                        message:verificationHint
                                                        delegate:nil
-                                              cancelButtonTitle:@"OK"
+                                              cancelButtonTitle:NSLocalizedString(@"ok", nil)
                                               otherButtonTitles:nil];
         [alert show];
+    } else {
+        [self resetState];
     }
 }
 
@@ -146,16 +157,17 @@ NSInteger const VERI_CODE_LENGTH = 5;
         int r = arc4random_uniform(10);
         code = [code stringByAppendingString:[@(r) stringValue]];
     }
-
+#if DEBUG
+    NSLog(@"Verification code generated: %@", code);
+#endif
     return code;
 }
 
 - (BOOL)sendVerificationCode:(NSString *)code {
-    NSString *msgContent = code;
+    NSString *msgContent = [NSString stringWithFormat:NSLocalizedString(@"sms_content", nil), code];
     NSString *urlString = [NSString stringWithFormat:@"%@HttpBatchSendSM?account=%@&pswd=%@&mobile=%@&msg=%@&needstatus=true", phoneRegURL, phoneRegUsername, phoneRegPwd, self.telephoneField.text, msgContent];
-    
     NSURL *url = [NSURL URLWithString:[urlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
-    
+
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     [request setHTTPMethod:@"GET"];
     
@@ -165,9 +177,7 @@ NSInteger const VERI_CODE_LENGTH = 5;
     
     if (connectionError == nil) {
         NSString *dataString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-        
         NSString *firstRowString = [[dataString componentsSeparatedByString: @"\n"] objectAtIndex:0];
-        
         NSString *returnCode = [[firstRowString componentsSeparatedByString:@","] objectAtIndex:1];
         
         if ([returnCode isEqualToString:@"0"]) {
@@ -176,10 +186,10 @@ NSInteger const VERI_CODE_LENGTH = 5;
             return NO;
         }
     } else {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No network connection"
-                                                        message:@"You must be connected to the internet."
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"no_network", nil)
+                                                        message:NSLocalizedString(@"no_network_msg", nil)
                                                        delegate:nil
-                                              cancelButtonTitle:@"OK"
+                                              cancelButtonTitle:NSLocalizedString(@"ok", nil)
                                               otherButtonTitles:nil];
         [alert show];
         return NO;
@@ -188,11 +198,10 @@ NSInteger const VERI_CODE_LENGTH = 5;
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
     NSInteger maxLength = 1;
-    
     if (textField == self.telephoneField) {
-        maxLength = 11;
+        maxLength = PHONE_NUMBER_LENGTH;
     } else if (textField == self.verificationCodeField) {
-        maxLength = 5;
+        maxLength = VERI_CODE_LENGTH;
     }
     
     if (range.length + range.location > textField.text.length) {
@@ -203,32 +212,28 @@ NSInteger const VERI_CODE_LENGTH = 5;
     return newLength <= maxLength;
 }
 
-
 -(void)dismissKeyboard {
     [self.view endEditing:YES];
 }
 
-- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
-{
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
     return YES;
 }
 
-- (BOOL)textFieldShouldReturn:(UITextField *)textField
-{
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
     [textField resignFirstResponder];
     return YES;
 }
 
-
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
 }
-*/
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"telephone_signup"]) {
+        PhoneSIgnupViewController *vc = (PhoneSIgnupViewController *)segue.destinationViewController;
+        vc.phoneNumber = self.telephoneField.text;
+    }
+}
 
 @end
