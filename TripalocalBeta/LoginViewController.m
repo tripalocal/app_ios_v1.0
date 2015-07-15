@@ -61,7 +61,12 @@
             [userDefaults setObject:token forKey:@"user_token"];
             [[NSUserDefaults standardUserDefaults] synchronize];
 
-            [self dismissViewControllerAnimated:YES completion:nil];
+            if ([[[NSProcessInfo processInfo] arguments] containsObject:@"-zhVersion"]) {
+                [self.presentingViewController.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+                
+            } else {
+                [self dismissViewControllerAnimated:YES completion:nil];
+            }
         } else {
             NSString *errorMsg = result[@"error"];
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Login Failed"
@@ -90,8 +95,13 @@
 }
 
 
-- (IBAction)facebookLogin:(id)sender {
-    NSLog(@"facebookloginclicked");
+- (IBAction)changeToSignup:(id)sender {
+    NSLog(@"conditional signup");
+    if([[[NSProcessInfo processInfo] arguments] containsObject:@"-zhVersion"]){
+        [self dismissViewControllerAnimated:YES completion:nil];
+    } else {
+        [self performSegueWithIdentifier:@"normal_signup" sender:nil];
+    }
 }
 
 - (IBAction)inputFieldChanged:(id)sender {

@@ -66,3 +66,7 @@
 "no_reviews" = "0 Reviews";
 
 "exp_detail_per_person_for" = "for %@ hours";
+
+"send_verification_code" = "Send Verification Code";
+
+"verification_count_msg" = "%@ Seconds Left to Resend";

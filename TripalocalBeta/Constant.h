@@ -19,5 +19,7 @@ FOUNDATION_EXPORT NSString *const paymentServiceURL;
 FOUNDATION_EXPORT NSString *const mytripService;
 FOUNDATION_EXPORT NSString *const serviceSearchURL;
 FOUNDATION_EXPORT NSString *const expDetailServiceURL;
-
+FOUNDATION_EXPORT NSString *const phoneRegURL;
+FOUNDATION_EXPORT NSString *const phoneRegUsername;
+FOUNDATION_EXPORT NSString *const phoneRegPwd;
 #endif

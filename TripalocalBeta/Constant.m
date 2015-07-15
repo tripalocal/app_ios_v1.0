@@ -45,6 +45,11 @@ NSString *const serviceSearchURL = @"https://www.tripalocal.com/service_search/"
 
 NSString *const expDetailServiceURL = @"https://www.tripalocal.com/service_experience/";
 
+NSString *const phoneRegURL = @"http://222.73.117.158/msg/";
+
+NSString *const phoneRegUsername = @"bentuke";
+
+NSString *const phoneRegPwd = @"Bentuke123";
 
 
 

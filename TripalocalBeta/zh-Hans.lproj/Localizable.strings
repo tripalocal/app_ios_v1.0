@@ -69,3 +69,7 @@
 "no_reviews" = "没有评论";
 
 "exp_detail_per_person_for" = "约 %@ 小时";
+
+"send_verification_code" = "发送验证码";
+
+"verification_count_msg" = "还有%@秒可以重新发送验证码";
