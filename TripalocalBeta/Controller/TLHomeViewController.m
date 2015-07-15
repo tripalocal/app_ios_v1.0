@@ -100,7 +100,7 @@
         });
     }
     
-    cell.homeLocationLabel.text = [locations objectAtIndex:indexPath.row];
+    cell.homeLocationLabel.text = NSLocalizedString([locations objectAtIndex:indexPath.row], nil);
     cell.homeLocationLabel.textAlignment = NSTextAlignmentCenter;
    
     
@@ -137,7 +137,7 @@
 }
 
 - (IBAction)unwindToHome:(UIStoryboardSegue *)unwindSegue {
-//    [self.navigationController popToRootViewControllerAnimated:YES];
+    [self.tabBarController setSelectedIndex:2];
 }
 
 - (IBAction)myButton:(id)sender {

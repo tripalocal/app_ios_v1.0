@@ -7,6 +7,7 @@
 //
 
 #import "HomeViewController.h"
+#import "SmsVerificationViewController.h"
 
 @interface HomeViewController ()
 
@@ -50,6 +51,23 @@
     tabBarItem4.title = nil;
 
 }
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    NSString *token = [userDefaults stringForKey:@"user_token"];
+    
+    if ([[[NSProcessInfo processInfo] arguments] containsObject:@"-zhVersion"]) {
+        
+        if (token) {
+
+        } else {
+            SmsVerificationViewController *smsVerificationVC = [self.storyboard instantiateViewControllerWithIdentifier:@"smsVerificationViewController"];
+            [self presentViewController:smsVerificationVC animated:YES completion:nil];
+        }
+    }
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

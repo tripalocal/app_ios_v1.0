@@ -7,6 +7,7 @@
 //
 
 #import "PaymentViewController.h"
+#import "Constant.h"
 
 @interface PaymentViewController ()
 @property (strong, nonatomic) IBOutlet UITextField *cardNumberField;
@@ -33,66 +34,62 @@
 
 - (void)postPaymentInfo {
     [self.confirmButton setEnabled:NO];
-    NSDictionary *expInfo = [[NSDictionary alloc] initWithObjectsAndKeys:
-                             self.date, @"date",
-                             [NSNumber numberWithInteger: self.guestNumber], @"guest_number",
-                             self.expId, @"id",
-                             self.timePeriod, @"time",
-                             nil];
+    NSDictionary *expInfo = @{@"date" : self.date,
+            @"guest_number" : @(self.guestNumber),
+            @"id" : self.expId,
+            @"time" : self.timePeriod};
     if ([self.coupon length] == 0) {
         self.coupon = @"";
     }
 
-    NSDictionary *tmp = [[NSDictionary alloc] initWithObjectsAndKeys:
-                         self.cardNumberField.text, @"card_number",
-                         self.coupon, @"coupon",
-                         [NSNumber numberWithInt: self.ccvField.text.intValue], @"cvv",
-                         [NSNumber numberWithInt: self.monthField.text.intValue], @"expiration_month",
-                         [NSNumber numberWithInt: self.yearField.text.intValue], @"expiration_year",
-                         [NSArray arrayWithObject:expInfo], @"itinerary_string",
-                         nil];
-    
+    NSDictionary *tmp = @{@"card_number" : self.cardNumberField.text,
+            @"coupon" : self.coupon,
+            @"cvv" : @(self.ccvField.text.intValue),
+            @"expiration_month" : @(self.monthField.text.intValue),
+            @"expiration_year" : @(self.yearField.text.intValue),
+            @"itinerary_string" : @[expInfo]};
+
     NSData *postdata = [NSJSONSerialization dataWithJSONObject:tmp options:0 error:nil];
-    
+
     NSString *jsonString = [[NSString alloc] initWithData:postdata encoding:NSUTF8StringEncoding];
     // This will be the json string in the preferred format
     jsonString = [jsonString stringByReplacingOccurrencesOfString:@"\\/" withString:@"/"];
-    
+
     // And this will be the json data object
     NSData *processedData = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
-    
+
 #if DEBUG
     NSLog(@"Sending payment request = %@", jsonString);
 #endif
-    
-    NSURL *url = [NSURL URLWithString:paymentServiceURL];
+
+    NSURL *url = [NSURL URLWithString:NSLocalizedString(paymentServiceURL, nil)];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     [request setHTTPMethod:@"POST"];
-    
+
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     NSString *token = [userDefaults stringForKey:@"user_token"];
-    
+
     [request addValue:[NSString stringWithFormat:@"Token %@", token] forHTTPHeaderField:@"Authorization"];
-    
+
     [request setHTTPBody:processedData];
-    
+
     NSError *connectionError = nil;
     NSURLResponse *response = nil;
-    
+
     NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&connectionError];
-    
+
     if (connectionError == nil) {
         NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *) response;
-        
+
         NSDictionary *result = [NSJSONSerialization JSONObjectWithData:data
                                                                options:0
                                                                  error:nil];
-        
+
         if ([httpResponse statusCode] == 200) {
             [self performSegueWithIdentifier:@"paymentSuccess" sender:nil];
         } else {
-            NSString *errorMsg = [result objectForKey:@"error"];
+            NSString *errorMsg = result[@"error"];
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Payment Failed"
                                                             message:errorMsg
                                                            delegate:nil
@@ -100,7 +97,7 @@
                                                   otherButtonTitles:nil];
             [alert show];
         }
-        
+
 #if DEBUG
         NSString *decodedData = [[NSString alloc] initWithData:data
                                                       encoding:NSUTF8StringEncoding];
@@ -115,9 +112,9 @@
         [alert show];
     }
 
-    
+
     [self.confirmButton setEnabled:YES];
-    
+
 }
 
 - (IBAction)confirmAndPay:(id)sender {
@@ -132,11 +129,11 @@
     self.monthField.delegate = self;
     self.yearField.delegate = self;
     self.ccvField.delegate = self;
-    
+
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
                                    initWithTarget:self
                                    action:@selector(dismissKeyboard)];
-    
+
     [self.view addGestureRecognizer:tap];
 
     NSNumberFormatter *fmt = [[NSNumberFormatter alloc] init];
@@ -170,7 +167,7 @@
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
     NSInteger maxLength = 1;
-    
+
     if (textField == self.cardNumberField) {
         maxLength = 16;
     } else if (textField == self.monthField) {
@@ -180,11 +177,11 @@
     } else if (textField == self.ccvField) {
         maxLength = 3;
     }
-    
+
     if (range.length + range.location > textField.text.length) {
         return NO;
     }
-    
+
     NSUInteger newLength = [textField.text length] + [string length] - range.length;
     return newLength <= maxLength;
 }

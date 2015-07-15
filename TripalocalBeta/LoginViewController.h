@@ -7,8 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Constant.h"
-
 #import "RequestController.h"
 
 @interface LoginViewController : RequestController <UITextFieldDelegate>

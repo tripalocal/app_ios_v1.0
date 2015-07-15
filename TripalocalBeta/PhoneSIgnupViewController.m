@@ -1,28 +1,43 @@
 //
-//  SignUpViewController.m
+//  PhoneSIgnupViewController.m
 //  TripalocalBeta
 //
-//  Created by Ye He on 30/06/2015.
+//  Created by Ye He on 15/07/2015.
 //  Copyright (c) 2015 Tripalocal. All rights reserved.
 //
 
-#import "SignUpViewController.h"
+#import "PhoneSIgnupViewController.h"
 
-@interface SignUpViewController ()
-
+@interface PhoneSIgnupViewController ()
 @property (strong, nonatomic) IBOutlet UITextField *emailField;
 @property (strong, nonatomic) IBOutlet UITextField *passwordField;
+@property (strong, nonatomic) IBOutlet UITextField *passwordAgainField;
 @property (strong, nonatomic) IBOutlet UITextField *firstnameField;
 @property (strong, nonatomic) IBOutlet UITextField *lastnameField;
 @property (strong, nonatomic) IBOutlet UIButton *signupButton;
-@property (strong, nonatomic) IBOutlet UITextView *termsTextView;
-
 @end
 
-@implementation SignUpViewController
+@implementation PhoneSIgnupViewController
 
-- (IBAction)facebookSignup:(id)sender {
+- (void)viewDidLoad {
+    [super viewDidLoad];
+
+    self.signupButton.alpha = 0.5;
+    [self.signupButton setEnabled:NO];
+    self.emailField.delegate = self;
+    self.passwordField.delegate = self;
+    self.firstnameField.delegate = self;
+    self.lastnameField.delegate = self;
+    
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
+                                   initWithTarget:self
+                                   action:@selector(dismissKeyboard)];
+    
+    [self.view addGestureRecognizer:tap];
+    self.passwordField.secureTextEntry = YES;
+    self.passwordAgainField.secureTextEntry = YES;
 }
+
 
 - (IBAction)dismissLoginAndSignup:(id)sender {
     [self.presentingViewController.presentingViewController dismissViewControllerAnimated:YES completion:nil];
@@ -53,7 +68,7 @@
     NSLog(@"Sending data = %@", decodedData);
 #endif
     
-
+    
     NSError *connectionError = nil;
     NSURLResponse *response = nil;
     
@@ -109,7 +124,7 @@
 }
 
 - (IBAction)inputFieldChanged:(id)sender {
-    if (self.emailField.text && self.passwordField.text && self.firstnameField.text && self.lastnameField.text && self.emailField.text.length > 0 && self.passwordField.text.length > 0 && self.firstnameField.text.length > 0 && self.lastnameField.text.length > 0) {
+    if (self.emailField.text && self.passwordField.text && self.firstnameField.text && self.lastnameField.text && self.passwordAgainField.text && self.emailField.text.length > 0 && self.passwordField.text.length > 0 && self.firstnameField.text.length > 0 && self.lastnameField.text.length > 0 && self.passwordAgainField.text.length > 0) {
         [self.signupButton setEnabled:YES];
         self.signupButton.alpha = 1;
     } else {
@@ -118,43 +133,6 @@
     }
 }
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    
-    self.signupButton.alpha = 0.5;
-    [self.signupButton setEnabled:NO];
-    self.emailField.delegate = self;
-    self.passwordField.delegate = self;
-    self.firstnameField.delegate = self;
-    self.lastnameField.delegate = self;
-    
-    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
-                                   initWithTarget:self
-                                   action:@selector(dismissKeyboard)];
-    
-    [self.view addGestureRecognizer:tap];
-    
-    self.emailField.borderStyle = UITextBorderStyleRoundedRect;
-    self.passwordField.borderStyle = UITextBorderStyleRoundedRect;
-    self.firstnameField.borderStyle = UITextBorderStyleRoundedRect;
-    self.lastnameField.borderStyle = UITextBorderStyleRoundedRect;
-    self.passwordField.secureTextEntry = YES;
-    
-    UIColor *themeColor = [UIColor colorWithRed:0.20f green:0.80f blue:0.80f alpha:1.0f];
-
-    [self.termsTextView setLinkTextAttributes:@{NSForegroundColorAttributeName:themeColor}];
-    NSMutableAttributedString * str = [[NSMutableAttributedString alloc] initWithString:@"By signing up, I agree to Tripalocal’s Terms of Service, Privacy Policy, and Refund Policy."];
-    [str addAttribute: NSLinkAttributeName value: @"https://tripalocal.com/termsofservice" range: NSMakeRange(39, 16)];
-    
-    [str addAttribute: NSFontAttributeName value:[UIFont systemFontOfSize:12] range:NSMakeRange(0, str.length)];
-    [str addAttribute: NSForegroundColorAttributeName value:[UIColor grayColor] range:NSMakeRange(0, str.length)];
-
-    [str addAttribute: NSLinkAttributeName value: @"https://tripalocal.com/privacypolicy" range: NSMakeRange(57, 14)];
-
-    [str addAttribute: NSLinkAttributeName value: @"https://tripalocal.com/refundpolicy" range: NSMakeRange(77, 13)];
-
-    self.termsTextView.attributedText = str;
-}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

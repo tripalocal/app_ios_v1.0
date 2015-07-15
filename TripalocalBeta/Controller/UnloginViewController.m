@@ -7,6 +7,7 @@
 //
 
 #import "UnloginViewController.h"
+#import "SmsVerificationViewController.h"
 
 @implementation UnloginViewController
 
@@ -24,7 +25,6 @@
     
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     NSString *token = [userDefaults stringForKey:@"user_token"];
-    
     if (token) {
         UIViewController *profileViewController = (UIViewController *)[self.storyboard instantiateViewControllerWithIdentifier:@"menu_controller"];
         
@@ -41,7 +41,14 @@
         
         [self.tabBarController setViewControllers:listOfViewControllers];
     } else {
-    [self.navigationController setNavigationBarHidden:YES animated:animated];
+        if ([[[NSProcessInfo processInfo] arguments] containsObject:@"-zhVersion"]) {
+            
+            SmsVerificationViewController *smsVerificationVC = [self.storyboard instantiateViewControllerWithIdentifier:@"smsVerificationViewController"];
+            [self presentViewController:smsVerificationVC animated:YES completion:nil];
+            
+        } else {
+            [self.navigationController setNavigationBarHidden:YES animated:animated];
+        }
     }
 }
 

@@ -1,0 +1,75 @@
+/* 
+  Localizable.strings
+  TripalocalBeta
+
+  Created by Ye He on 13/07/2015.
+  Copyright (c) 2015 Tripalocal. All rights reserved.
+*/
+
+"Melbourne" = "墨尔本";
+
+"Sydney" = "悉尼";
+
+"Brisbane" = "布里斯班";
+
+"Adelaide" = "阿德莱德";
+
+"Cairns" = "凯恩斯";
+
+"Goldcoast" = "黄金海岸";
+
+"Hobart" = "霍巴特";
+
+"https://www.tripalocal.com/service_search/" = "https://www.tripalocal.com/cn/service_search/";
+
+"https://www.tripalocal.com/service_login/" = "https://www.tripalocal.com/cn/service_login/";
+
+"https://www.tripalocal.com/service_myprofile/" = "https://www.tripalocal.com/cn/service_myprofile/";
+
+"https://www.tripalocal.com/service_logout/" = "https://www.tripalocal.com/cn/service_logout/";
+
+"https://www.tripalocal.com/service_signup/" = "https://www.tripalocal.com/cn/service_signup/";
+
+"https://www.tripalocal.com/images/" = "https://www.tripalocal.com/cn/images/";
+
+"https://www.tripalocal.com/service_booking/" = "https://www.tripalocal.com/cn/service_booking/";
+
+"https://www.tripalocal.com/service_mytrip/" = "https://www.tripalocal.com/cn/service_mytrip/";
+
+"https://www.tripalocal.com/service_search/" = "https://www.tripalocal.com/cn/service_search/";
+
+"https://www.tripalocal.com/service_experience/" = "https://www.tripalocal.com/cn/service_experience/";
+
+"exp_search_string" = "{\"start_datetime\":\"2015-05-08\", \"end_datetime\":\"2015-05-08\", \"city\":\"%@\", \"guest_number\":\"2\", \"keywords\":\"美食美酒,名校游学,历史人文,经典建筑,蜜月旅拍,风光摄影,移民考察,亲子夏令营,户外探险,购物扫货,运动休闲,领路人自驾,刺激享乐,赛事庆典,美容保健\"}";
+
+
+
+"Forgot password?" = "忘记密码?";
+
+"Add to wishlist" = "保存至兴趣列表";
+
+"Saved" = "已保存至兴趣列表";
+
+"Hours" = "小时";
+
+"reservationPrefix" = "和";
+
+"reservationSuffix" = "预定";
+
+"booking_status_requested" = "已申请";
+
+"booking_status_confirmed" = "已确定";
+
+"booking_status_cancelled" = "已取消";
+
+"about_the_host" = "关于 ";
+
+"n_reviews" = "%@ 条评论";
+
+"no_reviews" = "没有评论";
+
+"exp_detail_per_person_for" = "约 %@ 小时";
+
+"send_verification_code" = "发送验证码";
+
+"verification_count_msg" = "还有%@秒可以重新发送验证码";

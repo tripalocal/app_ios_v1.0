@@ -45,7 +45,6 @@
     
     self.image.layer.cornerRadius = self.image.frame.size.height / 2;
     self.image.layer.masksToBounds = YES;
-    self.image.layer.borderWidth = 0;
     self.image.layer.borderColor = [UIColor whiteColor].CGColor;
     self.image.layer.borderWidth = 3.0f;
     
@@ -71,7 +70,7 @@
 }
 
 - (IBAction)logout:(id)sender {
-    NSURL *url = [NSURL URLWithString:logoutServiceURL];
+    NSURL *url = [NSURL URLWithString:NSLocalizedString(logoutServiceURL, nil)];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     [request setHTTPMethod:@"POST"];
     

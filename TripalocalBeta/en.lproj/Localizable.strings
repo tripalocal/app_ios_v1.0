@@ -1,0 +1,72 @@
+/* 
+  Localizable.strings
+  TripalocalBeta
+
+  Created by Ye He on 13/07/2015.
+  Copyright (c) 2015 Tripalocal. All rights reserved.
+*/
+
+"Melbourne" = "Melbourne";
+
+"Sydney" = "Sydney";
+
+"Brisbane" = "Brisbane";
+
+"Adelaide" = "Adelaide";
+
+"Cairns" = "Cairns";
+
+"Goldcoast" = "Goldcoast";
+
+"Hobart" = "Hobart";
+
+
+"https://www.tripalocal.com/service_login/" = "https://www.tripalocal.com/service_login/";
+
+"https://www.tripalocal.com/service_myprofile/" = "https://www.tripalocal.com/service_myprofile/";
+
+"https://www.tripalocal.com/service_logout/" = "https://www.tripalocal.com/service_logout/";
+
+"https://www.tripalocal.com/service_signup/" = "https://www.tripalocal.com/service_signup/";
+
+"https://www.tripalocal.com/images/" = "https://www.tripalocal.com/images/";
+
+"https://www.tripalocal.com/service_booking/" = "https://www.tripalocal.com/service_booking/";
+
+"https://www.tripalocal.com/service_mytrip/" = "https://www.tripalocal.com/service_mytrip/";
+
+"https://www.tripalocal.com/service_search/" = "https://www.tripalocal.com/service_search/";
+
+"https://www.tripalocal.com/service_experience/" = "https://www.tripalocal.com/service_experience/";
+
+"exp_search_string" = "{\"start_datetime\":\"2015-05-08\", \"end_datetime\":\"2015-05-08\", \"city\":\"%@\", \"guest_number\":\"2\", \"keywords\":\"Food & wine, Education, History & culture, Architecture, For couples, Photography worthy, Livability research, Kids friendly, Outdoor & nature, Shopping, Sports & leisure, Host with car, Extreme fun, Events, Health & beauty, Private group\"}";
+
+"Forgot password?" = "Forgot password?";
+
+"Add to wishlist" = "Add to wishlist";
+
+"Saved" = "Saved";
+
+"Hours" = " hrs";
+
+"reservationPrefix" = "Reservation with";
+
+"reservationSuffix" = "";
+
+"booking_status_requested" = "Requested";
+
+"booking_status_confirmed" = "Confirmed";
+
+"booking_status_cancelled" = "Cancelled";
+
+"about_the_host" = "About the host, ";
+
+"n_reviews" = "%@ Reviews";
+
+"no_reviews" = "0 Reviews";
+
+"exp_detail_per_person_for" = "for %@ hours";
+
+"send_verification_code" = "Send Verification Code";
+
+"verification_count_msg" = "%@ Seconds Left to Resend";

@@ -7,12 +7,13 @@
 //
 
 #import "LoginViewController.h"
+#import "Constant.h"
 
 @interface LoginViewController ()
-@property (strong, nonatomic) IBOutlet UITextField *emailField;
-@property (strong, nonatomic) IBOutlet UITextField *passwordField;
-@property (strong, nonatomic) IBOutlet UITextView *forgotPasswordText;
-@property (strong, nonatomic) IBOutlet UIButton *loginButton;
+@property(strong, nonatomic) IBOutlet UITextField *emailField;
+@property(strong, nonatomic) IBOutlet UITextField *passwordField;
+@property(strong, nonatomic) IBOutlet UITextView *forgotPasswordText;
+@property(strong, nonatomic) IBOutlet UIButton *loginButton;
 @end
 
 @implementation LoginViewController
@@ -23,48 +24,51 @@
 
 - (IBAction)login:(id)sender {
     [self.loginButton setEnabled:NO];
-    NSURL *url = [NSURL URLWithString:loginServiceURL];
+    NSURL *url = [NSURL URLWithString:NSLocalizedString(loginServiceURL, nil)];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
-    
+
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     [request setHTTPMethod:@"POST"];
-    
-    NSDictionary *tmp = [[NSDictionary alloc] initWithObjectsAndKeys:
-                         self.emailField.text, @"email",
-                         self.passwordField.text, @"password",
-                         nil];
-    
+
+    NSDictionary *tmp = @{@"email" : self.emailField.text,
+            @"password" : self.passwordField.text};
+
     NSData *postdata = [NSJSONSerialization dataWithJSONObject:tmp options:0 error:nil];
     [request setHTTPBody:postdata];
-    
+
 #if DEBUG
-    NSString * decodedData =[[NSString alloc] initWithData:postdata encoding:NSUTF8StringEncoding];
+    NSString *decodedData = [[NSString alloc] initWithData:postdata encoding:NSUTF8StringEncoding];
     NSLog(@"Sending data = %@", decodedData);
 #endif
-    
+
     NSError *connectionError = nil;
     NSURLResponse *response = nil;
-    
+
     NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&connectionError];
-    
+
     if (connectionError == nil) {
         NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *) response;
-        
+
         NSDictionary *result = [NSJSONSerialization JSONObjectWithData:data
                                                                options:0
                                                                  error:nil];
-        
+
         if ([httpResponse statusCode] == 200) {
-            NSString *token = [result objectForKey:@"token"];
-            [self fetchProfileAndCache: token];
-            
+            NSString *token = result[@"token"];
+            [self fetchProfileAndCache:token];
+
             NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
             [userDefaults setObject:token forKey:@"user_token"];
             [[NSUserDefaults standardUserDefaults] synchronize];
 
-            [self dismissViewControllerAnimated:YES completion:nil];
+            if ([[[NSProcessInfo processInfo] arguments] containsObject:@"-zhVersion"]) {
+                [self.presentingViewController.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+                
+            } else {
+                [self dismissViewControllerAnimated:YES completion:nil];
+            }
         } else {
-            NSString *errorMsg = [result objectForKey:@"error"];
+            NSString *errorMsg = result[@"error"];
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Login Failed"
                                                             message:errorMsg
                                                            delegate:nil
@@ -72,10 +76,10 @@
                                                   otherButtonTitles:nil];
             [alert show];
         }
-        
+
 #if DEBUG
-        NSString *decodedData = [[NSString alloc] initWithData:data
-                                                      encoding:NSUTF8StringEncoding];
+        decodedData = [[NSString alloc] initWithData:data
+                                            encoding:NSUTF8StringEncoding];
         NSLog(@"Receiving data = %@", decodedData);
 #endif
     } else {
@@ -86,14 +90,18 @@
                                               otherButtonTitles:nil];
         [alert show];
     }
-    
-    [self.loginButton setEnabled:YES];
 
+    [self.loginButton setEnabled:YES];
 }
 
 
-- (IBAction)facebookLogin:(id)sender {
-    NSLog(@"facebookloginclicked");
+- (IBAction)changeToSignup:(id)sender {
+    NSLog(@"conditional signup");
+    if([[[NSProcessInfo processInfo] arguments] containsObject:@"-zhVersion"]){
+        [self dismissViewControllerAnimated:YES completion:nil];
+    } else {
+        [self performSegueWithIdentifier:@"normal_signup" sender:nil];
+    }
 }
 
 - (IBAction)inputFieldChanged:(id)sender {
@@ -111,40 +119,36 @@
     self.loginButton.alpha = 0.5;
     self.emailField.delegate = self;
     self.passwordField.delegate = self;
-    
+
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
-                                   initWithTarget:self
-                                   action:@selector(dismissKeyboard)];
-    
+            initWithTarget:self
+                    action:@selector(dismissKeyboard)];
+
     [self.view addGestureRecognizer:tap];
-    
+
     self.emailField.borderStyle = UITextBorderStyleRoundedRect;
     self.passwordField.borderStyle = UITextBorderStyleRoundedRect;
     self.passwordField.secureTextEntry = YES;
-    
+
     UIColor *themeColor = [UIColor colorWithRed:0.20f green:0.80f blue:0.80f alpha:1.0f];
-    
-    [self.forgotPasswordText setLinkTextAttributes:@{NSForegroundColorAttributeName:themeColor}];
-    NSMutableAttributedString * str = [[NSMutableAttributedString alloc] initWithString:@"Forgot password?"];
-    [str addAttribute: NSLinkAttributeName value: @"https://tripalocal.com/accounts/password/reset/" range: NSMakeRange(0, str.length)];
-    [str addAttribute: NSFontAttributeName value:[UIFont systemFontOfSize:15] range:NSMakeRange(0, str.length)];
-    
+
+    [self.forgotPasswordText setLinkTextAttributes:@{NSForegroundColorAttributeName : themeColor}];
+    NSMutableAttributedString *str = [[NSMutableAttributedString alloc] initWithString:NSLocalizedString(@"Forgot password?", nil)];
+    [str addAttribute:NSLinkAttributeName value:@"https://tripalocal.com/accounts/password/reset/" range:NSMakeRange(0, str.length)];
+    [str addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:15] range:NSMakeRange(0, str.length)];
+
     self.forgotPasswordText.attributedText = str;
 }
 
-
--(void)dismissKeyboard {
+- (void)dismissKeyboard {
     [self.view endEditing:YES];
 }
 
-- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
-{
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
     return YES;
 }
 
-
-- (BOOL)textFieldShouldReturn:(UITextField *)textField
-{
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
     [textField resignFirstResponder];
     return YES;
 }
@@ -152,9 +156,5 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
-
-//- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-//     
-//}
 
 @end

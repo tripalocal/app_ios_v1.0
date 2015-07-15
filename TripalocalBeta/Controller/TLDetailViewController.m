@@ -40,7 +40,6 @@
     NSString *reviewerImageURL;
     NSString *reviewComment;
     JGProgressHUD *HUD;
-    int connectionFinished;
     NSData *reviewerImageData;
     NSMutableArray *dynamicPriceArray;
     NSNumber *maxGuestNum;
@@ -77,7 +76,6 @@
     self.cellHeights = [@[@306, @240, @320, @385, @164, @240] mutableCopy];
     _myTable.delegate = self;
     _myTable.dataSource = self;
-    connectionFinished=0;
     
     self.cachedImages = [[NSMutableDictionary alloc]init];
     reviews = [[NSArray alloc] init];
@@ -94,10 +92,11 @@
     NSString *post = [NSString stringWithFormat:@"{\"experience_id\":\"%@\"}",_experience_id_string];
     
     NSLog(@"(Detail)POST: %@", post);
-    NSData *postData = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
+    NSData *postData = [post dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:YES];
     NSString *postLength = [NSString stringWithFormat:@"%lu", (unsigned long)[postData length]];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-    [request setURL:[NSURL URLWithString:@"https://www.tripalocal.com/service_experience/"]];
+    // move to constant
+    [request setURL:[NSURL URLWithString:NSLocalizedString(expDetailServiceURL, nil)]];
     [request setHTTPMethod:@"POST"];
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     [request setValue:postLength forHTTPHeaderField:@"Content-Length"];
@@ -115,7 +114,7 @@
                                                                options:0
                                                                  error:nil];
 #if DEBUG
-        NSString *decodedData = [[NSString alloc] initWithData:postData
+        NSString *decodedData = [[NSString alloc] initWithData:data
                                                       encoding:NSUTF8StringEncoding];
         NSLog(@"Receiving data = %@", decodedData);
 #endif
@@ -123,7 +122,7 @@
         if ([httpResponse statusCode] == 200) {
             NSDictionary *allDataDictionary=[NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
             @try {
-                hostImageURL = [imageBaseURL stringByAppendingString: [allDataDictionary objectForKey:@"host_image"]];
+                hostImageURL = [NSLocalizedString(imageBaseURL, nil) stringByAppendingString: [allDataDictionary objectForKey:@"host_image"]];
                 expLanguage = [self transformLanugage:[allDataDictionary objectForKey:@"experience_language"]];
                 NSNumberFormatter *formatter = [[NSNumberFormatter alloc]init];
                 [formatter setNumberStyle:NSNumberFormatterDecimalStyle];
@@ -148,7 +147,7 @@
                 reviewFirst = [reviewDictionary0 objectForKey:@"reviewer_firstname"];
                 reviewLast = [reviewDictionary0 objectForKey:@"reviewer_lastname"];
                 PREreviewerImageURL =[reviewDictionary0 objectForKey:@"reviewer_image"];
-                reviewerImageURL = [imageBaseURL stringByAppendingString: PREreviewerImageURL];
+                reviewerImageURL = [NSLocalizedString(imageBaseURL, nil) stringByAppendingString: PREreviewerImageURL];
                 reviewComment = [reviewDictionary0 objectForKey:@"review_comment"];
                 
                 ticketString = [allDataDictionary objectForKey:@"included_ticket_detail"];
@@ -187,13 +186,14 @@
                                               otherButtonTitles:nil];
         [alert show];
     }
-
+    
+    [HUD setHidden:YES];
     NSLog(@"%@,%@,%@,%@",expTitle,_expPrice,reviewerImageURL,reviewComment);
     
 }
 
 // todo: move to utility file
-- (NSString *) decimalwithFormat:(NSString *)format  floatV:(float)floatV
+- (NSString *) decimalwithFormat:(NSString *)format floatV:(float)floatV
 {
     NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];
     
@@ -256,7 +256,7 @@
                 });
                 
                 dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                    NSString *coverImageURL = [NSString stringWithFormat:@"%@thumbnails/experiences/experience%@_1.jpg", imageServiceURL, _experience_id_string];
+                    NSString *coverImageURL = [NSString stringWithFormat:@"%@thumbnails/experiences/experience%@_1.jpg", NSLocalizedString(imageServiceURL, nil), _experience_id_string];
                     NSData *coverImageData = [[NSData alloc]initWithContentsOfURL:[NSURL URLWithString:coverImageURL]];
                     dispatch_sync(dispatch_get_main_queue(), ^{
                         
@@ -270,11 +270,12 @@
                 });
                 
             }
-            cell.reservationLabel.text = [cell.reservationLabel.text stringByAppendingFormat:@" %@", hostFirstName];
+            cell.reservationLabel.text = [NSString stringWithFormat:@"%@ %@ %@", NSLocalizedString(@"reservationPrefix", nil), hostFirstName, NSLocalizedString(@"reservationSuffix",nil)];
+            
             // language
             cell.languageLabel.text = expLanguage;
             cell.priceLabel.text = [NSString stringWithFormat:@"$%@",_expPrice];
-            cell.durationLabel.text = [NSString stringWithFormat:@"for %@ hours", expDuration];
+            cell.durationLabel.text = [NSString stringWithFormat:NSLocalizedString(@"exp_detail_per_person_for", nil), expDuration];
             
             return cell;
         
@@ -286,6 +287,7 @@
             
             cell1.parentView = self.myTable;
             cell1.expTitleLabel.text = expTitle;
+            cell1.selectionStyle = UITableViewCellSelectionStyleNone;
             cell1.expDescriptionLabel.text = [expDescription stringByAppendingFormat:@" %@ %@", expActivity, expInteraction];
             if (self.isExpReadMoreOpen) {
                 [cell1.readMoreButton setTitle:@"Read Less" forState:UIControlStateNormal];
@@ -305,6 +307,7 @@
                 cell2=[[TLDetailTableViewCell2 alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier2];
             }
             cell2.parentView = self.myTable;
+            cell2.selectionStyle = UITableViewCellSelectionStyleNone;
             if (self.isHostReadMoreOpen) {
                 [cell2.readMoreButton setTitle:@"Read Less" forState:UIControlStateNormal];
                 cell2.hostBioLabel.lineBreakMode = NSLineBreakByWordWrapping;
@@ -325,10 +328,9 @@
                         cell2.hostImage.image = [[UIImage alloc] initWithData:hostImageData];
                         [self.cachedImages setValue:cell2.hostImage.image forKey:hostImageCachingIdentifier];
                     });
-                    
                 });
             }
-            cell2.hostFirstNameLabel.text = [@"About the host, " stringByAppendingString: hostFirstName];
+            cell2.hostFirstNameLabel.text = [NSLocalizedString(@"about_the_host", nil) stringByAppendingString: hostFirstName];
             cell2.hostBioLabel.text = hostBio;
             
             return cell2;
@@ -338,8 +340,13 @@
                 cell3=[[TLDetailTableViewCell3 alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier3];
             }
             
+            cell3.selectionStyle = UITableViewCellSelectionStyleNone;
+            if (numOfReviews > 0) {
+                cell3.countLabel.text = [NSString stringWithFormat:NSLocalizedString(@"n_reviews", nil), numOfReviews];
+            } else {
+                cell3.countLabel.text = NSLocalizedString(@"no_reviews", nil);
+            }
             
-            cell3.countLabel.text = [NSString stringWithFormat:@"%@ reviews", numOfReviews];
             cell3.reviewStars.rating = [expRate floatValue];
             cell3.reviewerName.text = [NSString stringWithFormat:@"%@ %@", reviewFirst, reviewLast];
             cell3.commentLabel.text = reviewComment;
@@ -375,7 +382,7 @@
                 cell4.coverImage.image = [self.cachedImages valueForKey:expImageCachingIdentifier];
             } else {
                 dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                    NSString *backgroundImageURL = [NSString stringWithFormat:@"%@thumbnails/experiences/experience%@_1.jpg", imageServiceURL, _experience_id_string];
+                    NSString *backgroundImageURL = [NSString stringWithFormat:@"%@thumbnails/experiences/experience%@_1.jpg", NSLocalizedString(imageServiceURL, nil), _experience_id_string];
                     
                     NSData *experienceImageData = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:backgroundImageURL]];
                     
@@ -441,12 +448,7 @@
         }
     }
     
-    return [languages componentsJoinedByString:@"/"];
-}
-
--(void)connectionDidFinishLoading:(NSURLConnection *)connection
-{
-
+    return [languages componentsJoinedByString:@" / "];
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {

@@ -76,7 +76,7 @@
         
         //商品价格
 //        order.amount = [NSString stringWithFormat:@"%.2f",self.totalPrice.floatValue];
-        // set small amount for test
+
         order.amount = [NSString stringWithFormat:@"0.01"];
         
         order.notifyURL =  @"http://notify.msp.hk/notify.htm";
@@ -179,7 +179,7 @@
     NSLog(@"Sending alipay request to our server = %@", jsonString);
 #endif
     
-    NSURL *url = [NSURL URLWithString:paymentServiceURL];
+    NSURL *url = [NSURL URLWithString:NSLocalizedString(paymentServiceURL, nil)];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     [request setHTTPMethod:@"POST"];

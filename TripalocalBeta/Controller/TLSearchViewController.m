@@ -22,6 +22,7 @@
 
 @implementation TLSearchViewController{
     JGProgressHUD *HUD;
+    NSString *currentLanguage;
 }
 
 - (void)viewDidLoad {
@@ -29,11 +30,18 @@
     
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    
+
     self.expList = [self fetchExpData:self.cityName];
     
     [self.tableView reloadData];
+    currentLanguage = [[NSLocale preferredLanguages] objectAtIndex:0];
     dynamicPricingArray = [[NSMutableArray alloc]init];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
 }
 
 - (void)saveToWishListClicked:(NSInteger)buttonTag {
@@ -77,7 +85,7 @@
         }
     }
     
-    return [languages componentsJoinedByString:@"/"];
+    return [languages componentsJoinedByString:@" / "];
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -94,9 +102,10 @@
     NSString *expIdString = [[exp objectForKey:@"id"] stringValue];
     
     NSString *duration = [[exp objectForKey:@"duration"] stringValue];
-    NSString *handledDurationString = [duration stringByAppendingString:@" Hours"];
+    NSString *handledDurationString = [duration stringByAppendingString:NSLocalizedString(@"Hours", nil)];
     cell.durationLabel.text = handledDurationString;
     cell.titleLabel.text = [exp objectForKey:@"title"];
+
     cell.hostImage.image = [UIImage imageNamed:@"default_profile_image.png"];
     cell.languageLabel.text = [self transformLanugage:(NSString *)[exp objectForKey:@"language"]];
     cell.descriptionLabel.text = [exp objectForKey:@"description"];
@@ -113,9 +122,9 @@
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
             NSString *hostImageURL = [exp objectForKey:@"host_image"];
             
-            NSData *hostImageData = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:[imageServiceURL stringByAppendingString: hostImageURL]]];
+            NSData *hostImageData = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:[NSLocalizedString(imageServiceURL, nil) stringByAppendingString: hostImageURL]]];
             
-            NSString *backgroundImageURL = [NSString stringWithFormat:@"%@thumbnails/experiences/experience%@_1.jpg", imageServiceURL, expIdString];
+            NSString *backgroundImageURL = [NSString stringWithFormat:@"%@thumbnails/experiences/experience%@_1.jpg", NSLocalizedString(imageServiceURL, nil), expIdString];
             
             NSData *experienceImageData = [[NSData alloc]initWithContentsOfURL:[NSURL URLWithString:backgroundImageURL]];
             
@@ -139,11 +148,11 @@
     if ([wishList containsObject:expIdString]) {
         [cell.wishListButton setBackgroundImage:[UIImage imageNamed:@"wishlisted.png"] forState:UIControlStateNormal];
         cell.smallWishImage.image = [UIImage imageNamed:@"heart_sr.png"];
-        cell.wishStatus.text = @"Saved";
+        cell.wishStatus.text = NSLocalizedString(@"Saved", nil);;
     } else {
         [cell.wishListButton setBackgroundImage:[UIImage imageNamed:@"unwishlisted.png"] forState:UIControlStateNormal];
         cell.smallWishImage.image = [UIImage imageNamed:@"heart_sw.png"];
-        cell.wishStatus.text = @"Add to wishlist";
+        cell.wishStatus.text = NSLocalizedString(@"Add to wishlist", nil);
     }
     cell.delegate = self;
     cell.wishListButton.tag = indexPath.row;
@@ -195,14 +204,14 @@
     NSMutableArray *expList = [[NSMutableArray alloc] init];
     
     // fixed date?
-    NSString *post = [NSString stringWithFormat:@"{\"start_datetime\":\"2015-05-08\", \"end_datetime\":\"2015-05-9\", \"city\":\"%@\", \"guest_number\":\"2\", \"keywords\":\"Food & wine, Education, History & culture, Architecture, For couples, Photography worthy, Livability research, Kids friendly, Outdoor & nature, Shopping, Sports & leisure, Host with car, Extreme fun, Events, Health & beauty, Private group\"}", cityName];
+    NSString *post = [NSString stringWithFormat:NSLocalizedString(@"exp_search_string", nil), cityName];
 #ifdef DEBUG
     NSLog(@"Sending date = %@",post);
 #endif
-    NSData *postData = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
+    NSData *postData = [post dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:YES];
     NSString *postLength = [NSString stringWithFormat:@"%lu", (unsigned long)[postData length]];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-    [request setURL:[NSURL URLWithString:@"https://www.tripalocal.com/service_search/"]];
+    [request setURL:[NSURL URLWithString:NSLocalizedString(serviceSearchURL, nil)]];
     [request setHTTPMethod:@"POST"];
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     [request setValue:postLength forHTTPHeaderField:@"Content-Length"];

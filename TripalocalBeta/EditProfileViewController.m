@@ -29,7 +29,7 @@
 
 - (void) saveProfile {
     [self.navigationController popViewControllerAnimated:YES];
-    NSURL *url = [NSURL URLWithString:myprofileServiceURL];
+    NSURL *url = [NSURL URLWithString:NSLocalizedString(myprofileServiceURL, nil)];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     [request setHTTPMethod:@"POST"];
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
