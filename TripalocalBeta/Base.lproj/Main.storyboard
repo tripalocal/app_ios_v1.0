@@ -2497,7 +2497,7 @@
                                 </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jac-GY-1hR">
-                                <rect key="frame" x="347" y="379" width="47" height="30"/>
+                                <rect key="frame" x="347" y="324" width="47" height="30"/>
                                 <state key="normal" title="Sign in">
                                     <color key="titleColor" red="0.20000000000000001" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -2523,7 +2523,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Already a member?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iob-l8-pKa">
-                                <rect key="frame" x="198" y="385" width="134" height="18"/>
+                                <rect key="frame" x="198" y="330" width="134" height="18"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
@@ -2550,6 +2550,7 @@
                         <constraints>
                             <constraint firstAttribute="centerX" secondItem="jac-GY-1hR" secondAttribute="leading" constant="-8" id="0rn-og-70y"/>
                             <constraint firstItem="RT8-4F-VGj" firstAttribute="leading" secondItem="YCq-Uy-FI5" secondAttribute="leading" id="1YQ-DM-dkp"/>
+                            <constraint firstItem="jac-GY-1hR" firstAttribute="leading" secondItem="iob-l8-pKa" secondAttribute="trailing" constant="15" id="3ve-91-m7f"/>
                             <constraint firstItem="RT8-4F-VGj" firstAttribute="top" secondItem="YCq-Uy-FI5" secondAttribute="top" constant="25" id="8eV-Dl-ZgS"/>
                             <constraint firstAttribute="centerX" secondItem="YCq-Uy-FI5" secondAttribute="centerX" id="95o-ln-pYz"/>
                             <constraint firstItem="iob-l8-pKa" firstAttribute="top" secondItem="RT8-4F-VGj" secondAttribute="bottom" constant="15" id="Bbu-eu-EKr"/>
@@ -2562,6 +2563,7 @@
                             <constraint firstItem="iob-l8-pKa" firstAttribute="leading" secondItem="YCq-Uy-FI5" secondAttribute="leading" id="QE4-tT-pvC"/>
                             <constraint firstItem="jac-GY-1hR" firstAttribute="leading" secondItem="iob-l8-pKa" secondAttribute="trailing" constant="15" id="cCH-Jx-QKE"/>
                             <constraint firstItem="8pe-uY-L4I" firstAttribute="centerY" secondItem="RT8-4F-VGj" secondAttribute="centerY" id="eNL-du-e2G"/>
+                            <constraint firstItem="iob-l8-pKa" firstAttribute="top" secondItem="YCq-Uy-FI5" secondAttribute="bottom" constant="15" id="fsN-Ym-pTv"/>
                             <constraint firstAttribute="centerX" secondItem="qBc-c6-TZt" secondAttribute="centerX" id="grt-qk-oBX"/>
                             <constraint firstAttribute="centerX" secondItem="IZb-CJ-Avq" secondAttribute="centerX" id="hxu-8h-ukt"/>
                             <constraint firstItem="wQQ-fk-Rmp" firstAttribute="leading" secondItem="qBc-c6-TZt" secondAttribute="trailing" constant="-148" id="ic2-cj-jBa"/>
@@ -2577,15 +2579,20 @@
                             <mask key="constraints">
                                 <exclude reference="ic2-cj-jBa"/>
                                 <exclude reference="8eV-Dl-ZgS"/>
+                                <exclude reference="Bbu-eu-EKr"/>
                                 <exclude reference="QE4-tT-pvC"/>
                                 <exclude reference="jTp-1m-KaG"/>
                                 <exclude reference="0rn-og-70y"/>
                                 <exclude reference="I6e-4Y-slH"/>
+                                <exclude reference="cCH-Jx-QKE"/>
                             </mask>
                         </variation>
                     </view>
                     <connections>
+                        <outlet property="alreadyMember" destination="iob-l8-pKa" id="JUV-WT-UJh"/>
+                        <outlet property="alreadyMemberConstraint" destination="fsN-Ym-pTv" id="ZEb-mJ-Kkj"/>
                         <outlet property="confirmButton" destination="8pe-uY-L4I" id="eic-U5-R8l"/>
+                        <outlet property="gotoLoginButton" destination="jac-GY-1hR" id="VuB-wg-uyr"/>
                         <outlet property="sendCodeButton" destination="YCq-Uy-FI5" id="fiy-5r-yBb"/>
                         <outlet property="telephoneField" destination="wQQ-fk-Rmp" id="7j0-op-eVY"/>
                         <outlet property="verificationCodeField" destination="RT8-4F-VGj" id="riG-1r-z4f"/>

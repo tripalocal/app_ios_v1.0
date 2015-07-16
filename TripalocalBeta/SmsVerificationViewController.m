@@ -94,6 +94,8 @@ NSInteger const COUNT_DOWN_SECONDS = 60;
         [self.verificationCodeField setHidden:NO];
         [self.confirmButton setHidden:NO];
         [self.confirmButton setBackgroundColor:INACTIVE_COLOR];
+        
+        self.alreadyMemberConstraint.constant = 70.0f;
     } else {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"phone_no_error", nil)
                                                         message:NSLocalizedString(@"phone_no_error_msg", nil)
@@ -135,7 +137,7 @@ NSInteger const COUNT_DOWN_SECONDS = 60;
     [self.confirmButton setHidden:YES];
     [self.confirmButton setEnabled:NO];
     [self.confirmButton setBackgroundColor:INACTIVE_COLOR];
-    
+    self.alreadyMemberConstraint.constant = 15.0f;
     self.i = @(COUNT_DOWN_SECONDS);
     nVeriTrial = 3;
     [timer invalidate];
