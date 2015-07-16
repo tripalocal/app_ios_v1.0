@@ -269,6 +269,32 @@
 /* Class = "UILabel"; text = "Already an Tripalocal Member?"; ObjectID = "vBF-3u-4F6"; */
 "vBF-3u-4F6.text" = "已经注册过?";
 
+"iob-l8-pKa.text" = "已有账号?";
+
+"RT8-4F-VGj.placeholder" = "请输入验证码";
+
+"wQQ-fk-Rmp.placeholder" = "手机号码";
+
+"8pe-uY-L4I.normalTitle" = "确认";
+
+"YCq-Uy-FI5.normalTitle" = "发送验证码";
+
+"jac-GY-1hR.normalTitle" = "在此登录";
+
+"KIV-3w-oG1.normalTitle" = "回到上一页";
+
+"B4d-r0-pdX.normalTitle" = "进入本土客";
+
+"5Ek-fR-hNC.placeholder" = "邮箱";
+
+"h0I-LG-43n.placeholder" = "再次输入密码";
+
+"2yq-WL-kJd.placeholder" = "创建密码";
+
+"vhn-HI-BnO.placeholder" = "姓";
+
+"R2J-jw-Gra.placeholder" = "名";
+
 /* Class = "UILabel"; text = "CCV"; ObjectID = "vMH-F0-EVE"; */
 "vMH-F0-EVE.text" = "CCV";
 

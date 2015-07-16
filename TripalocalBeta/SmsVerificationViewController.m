@@ -13,7 +13,7 @@
 
 NSInteger const VERI_CODE_LENGTH = 5;
 NSInteger const PHONE_NUMBER_LENGTH = 11;
-float const DISABLE_ALPHA = 0.8;
+float const DISABLE_ALPHA = 1;
 NSInteger const COUNT_DOWN_SECONDS = 60;
 
 @interface SmsVerificationViewController ()
@@ -25,16 +25,23 @@ NSInteger const COUNT_DOWN_SECONDS = 60;
 @implementation SmsVerificationViewController {
     NSTimer *timer;
     NSInteger nVeriTrial;
+    UIColor *INACTIVE_COLOR;
+    UIColor *THEME_COLOR;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    INACTIVE_COLOR = [UIColor colorWithRed:204.0f/255.0f
+                                     green:204.0f/255.0f
+                                      blue:204.0f/255.0f
+                                     alpha:1.0f];
+    THEME_COLOR = [UIColor colorWithRed:0.20f green:0.80f blue:0.80f alpha:1.0f];
     nVeriTrial = 3;
     self.telephoneField.delegate = self;
     self.verificationCodeField.delegate = self;
 
     [self.sendCodeButton setEnabled:NO];
-    self.sendCodeButton.alpha = DISABLE_ALPHA;
+    [self.sendCodeButton setBackgroundColor:INACTIVE_COLOR];
     [self.verificationCodeField setHidden:YES];
     [self.confirmButton setHidden:YES];
     
@@ -56,20 +63,20 @@ NSInteger const COUNT_DOWN_SECONDS = 60;
 - (IBAction)telephoneFieldChanged:(id)sender {
     if (self.telephoneField.text && self.telephoneField.text.length == PHONE_NUMBER_LENGTH) {
         [self.sendCodeButton setEnabled:YES];
-        self.sendCodeButton.alpha = 1;
+            [self.sendCodeButton setBackgroundColor:THEME_COLOR];
     } else {
         [self.sendCodeButton setEnabled:NO];
-        self.sendCodeButton.alpha = DISABLE_ALPHA;
+        [self.sendCodeButton setBackgroundColor:INACTIVE_COLOR];
     }
 }
 
 - (IBAction)verificationFieldChanged:(id)sender {
     if (self.verificationCodeField.text && self.verificationCodeField.text.length == VERI_CODE_LENGTH) {
         [self.confirmButton setEnabled:YES];
-        self.confirmButton.alpha = 1;
+        [self.confirmButton setBackgroundColor:THEME_COLOR];
     } else {
         [self.confirmButton setEnabled:NO];
-        self.confirmButton.alpha = DISABLE_ALPHA;
+        [self.confirmButton setBackgroundColor:INACTIVE_COLOR];
     }
 }
 
@@ -77,16 +84,16 @@ NSInteger const COUNT_DOWN_SECONDS = 60;
     self.i = @(COUNT_DOWN_SECONDS);
     [self.telephoneField setEnabled:NO];
     [self.sendCodeButton setEnabled:NO];
-    self.sendCodeButton.alpha = DISABLE_ALPHA;
+    [self.sendCodeButton setBackgroundColor:INACTIVE_COLOR];
     
-    [self.verificationCodeField setHidden:NO];
-    [self.confirmButton setHidden:NO];
-
     self.verificationCode = [self generateVerificationCode];
     BOOL result = [self sendVerificationCode:self.verificationCode];
     
     if (result == YES) {
         [self startTimer];
+        [self.verificationCodeField setHidden:NO];
+        [self.confirmButton setHidden:NO];
+        [self.confirmButton setBackgroundColor:INACTIVE_COLOR];
     } else {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"phone_no_error", nil)
                                                         message:NSLocalizedString(@"phone_no_error_msg", nil)
@@ -97,7 +104,7 @@ NSInteger const COUNT_DOWN_SECONDS = 60;
         
         [self.telephoneField setEnabled:YES];
         [self.sendCodeButton setEnabled:YES];
-        self.sendCodeButton.alpha = 1;
+        [self.sendCodeButton setBackgroundColor:THEME_COLOR];
     }
 }
 
@@ -121,13 +128,13 @@ NSInteger const COUNT_DOWN_SECONDS = 60;
 - (void)resetState {
     [self.sendCodeButton setEnabled:YES];
     [self.telephoneField setEnabled:YES];
-    self.sendCodeButton.alpha = 1;
+    [self.sendCodeButton setBackgroundColor:THEME_COLOR];
     [self.sendCodeButton setTitle:NSLocalizedString(@"verfication_expire", nil) forState:UIControlStateNormal];
     [self.verificationCodeField setHidden:YES];
     self.verificationCodeField.text = @"";
     [self.confirmButton setHidden:YES];
     [self.confirmButton setEnabled:NO];
-    self.confirmButton.alpha = DISABLE_ALPHA;
+    [self.confirmButton setBackgroundColor:INACTIVE_COLOR];
     
     self.i = @(COUNT_DOWN_SECONDS);
     nVeriTrial = 3;

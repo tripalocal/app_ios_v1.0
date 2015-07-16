@@ -17,6 +17,13 @@ In order to use 'Pod', always use the .xcworkspace file to open your project in 
 ### RGB Value
 \#f7f7f7
 
+## Inactive Button
+### RGB Value
+\#cccccc
+
+### UIColor
+[UIColor colorWithRed:204.0f/255.0f green:204.0f/255.0f blue:204.0f/255.0f alpha:1.0f];
+
 ## Locaolization
 
 Please use `NSLocalizedString` to create support multiple languages.

@@ -9,6 +9,10 @@
 #import "PhoneSIgnupViewController.h"
 #import "SmsVerificationViewController.h"
 
+NSInteger const NAME_MAX_LENGTH = 10;
+NSInteger const PWD_MAX_LENGTH = 15;
+NSInteger const EMAIL_MAX_LENGTH = 20;
+
 @interface PhoneSIgnupViewController ()
 @property (strong, nonatomic) IBOutlet UITextField *emailField;
 @property (strong, nonatomic) IBOutlet UITextField *passwordField;
@@ -18,13 +22,22 @@
 @property (strong, nonatomic) IBOutlet UIButton *signupButton;
 @end
 
-@implementation PhoneSIgnupViewController
+@implementation PhoneSIgnupViewController {
+    UIColor *INACTIVE_COLOR;
+    UIColor *THEME_COLOR;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    self.signupButton.alpha = DISABLE_ALPHA;
+    INACTIVE_COLOR = [UIColor colorWithRed:204.0f/255.0f
+                                     green:204.0f/255.0f
+                                      blue:204.0f/255.0f
+                                     alpha:1.0f];
+    THEME_COLOR = [UIColor colorWithRed:0.20f green:0.80f blue:0.80f alpha:1.0f];
+    
     [self.signupButton setEnabled:NO];
+    [self.signupButton setBackgroundColor:INACTIVE_COLOR];
     self.emailField.delegate = self;
     self.passwordField.delegate = self;
     self.firstnameField.delegate = self;
@@ -61,7 +74,7 @@
         [alert show];
     } else {
         [self.signupButton setEnabled:NO];
-        self.signupButton.alpha = DISABLE_ALPHA;
+        [self.signupButton setBackgroundColor:INACTIVE_COLOR];
         
         NSURL *url = [NSURL URLWithString:NSLocalizedString(signupServiceURL, nil)];
         NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
@@ -75,6 +88,7 @@
                              self.passwordField.text, @"password",
                              self.firstnameField.text, @"first_name",
                              self.lastnameField.text, @"last_name",
+                             self.phoneNumber, @"phone_number",
                              nil];
         
         NSData *postdata = [NSJSONSerialization dataWithJSONObject:tmp options:0 error:nil];
@@ -129,7 +143,7 @@
         }
         
         [self.signupButton setEnabled:YES];
-        self.signupButton.alpha = 1;
+        [self.signupButton setBackgroundColor:THEME_COLOR];
     }
     
 }
@@ -141,13 +155,34 @@
 - (IBAction)inputFieldChanged:(id)sender {
     if (self.emailField.text && self.passwordField.text && self.firstnameField.text && self.lastnameField.text && self.passwordAgainField.text && self.emailField.text.length > 0 && self.passwordField.text.length > 0 && self.firstnameField.text.length > 0 && self.lastnameField.text.length > 0 && self.passwordAgainField.text.length > 0) {
         [self.signupButton setEnabled:YES];
-        self.signupButton.alpha = 1;
+        [self.signupButton setBackgroundColor:THEME_COLOR];
     } else {
         [self.signupButton setEnabled:NO];
-        self.signupButton.alpha = DISABLE_ALPHA;
+        [self.signupButton setBackgroundColor:INACTIVE_COLOR];
     }
 }
 
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+    NSInteger maxLength = 1;
+    if (textField == self.firstnameField) {
+        maxLength = NAME_MAX_LENGTH;
+    } else if (textField == self.lastnameField) {
+        maxLength = NAME_MAX_LENGTH;
+    } else if (textField == self.passwordField) {
+        maxLength = PWD_MAX_LENGTH;
+    } else if (textField == self.passwordAgainField) {
+        maxLength = PWD_MAX_LENGTH;
+    } else if (textField == self.emailField) {
+        maxLength = EMAIL_MAX_LENGTH;
+    }
+    
+    if (range.length + range.location > textField.text.length) {
+        return NO;
+    }
+    
+    NSUInteger newLength = [textField.text length] + [string length] - range.length;
+    return newLength <= maxLength;
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
