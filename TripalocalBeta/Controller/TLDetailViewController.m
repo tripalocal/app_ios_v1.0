@@ -430,12 +430,6 @@
     return 1;
 }
 
-
--(void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
-{
-    NSLog(@"Error:(Details)Failed with connection error.");
-}
-
 -(NSString *) transformLanugage:(NSString *) languageString {
     NSMutableArray *languages = [[languageString componentsSeparatedByString:@";"] mutableCopy];
     [languages removeLastObject];

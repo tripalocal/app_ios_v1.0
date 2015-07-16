@@ -35,13 +35,8 @@
     homeTable.dataSource=self;
     homeTable.delegate=self;
     
-    [locations addObject:@"Melbourne"];
-    [locations addObject:@"Sydney"];
-    [locations addObject:@"Brisbane"];
-    [locations addObject:@"Adelaide"];
-    [locations addObject:@"Cairns"];
-    [locations addObject:@"Goldcoast"];
-    [locations addObject:@"Hobart"];
+    locations = [@[@"Melbourne", @"Sydney", @"Brisbane", @"Adelaide",
+                   @"Cairns", @"Goldcoast", @"Hobart"] mutableCopy];
     
     [locationsURLString addObject:@"https://www.tripalocal.com/images/mobile/home/Melbourne.jpg"];
     [locationsURLString addObject:@"https://www.tripalocal.com/images/mobile/home/Sydney.jpg"];
@@ -51,12 +46,6 @@
     [locationsURLString addObject:@"https://www.tripalocal.com/images/mobile/home/Goldcoast.jpg"];
     [locationsURLString addObject:@"https://www.tripalocal.com/images/mobile/home/Hobart.jpg"];
 
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-    
 }
 
 - (void)cacheForImage{
@@ -69,8 +58,6 @@
         [self.cachedImages setValue:image forKey:imageCachingIdentifier];
         
     }
-
-
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -108,9 +95,8 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return locations.count;
+    return [locations count];
 }
-
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return 1;
@@ -143,4 +129,9 @@
 - (IBAction)myButton:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+}
+
 @end

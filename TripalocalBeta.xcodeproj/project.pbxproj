@@ -69,6 +69,7 @@
 		87FCA4C41B52CB8A0060AA8B /* heart_sr.png in Resources */ = {isa = PBXBuildFile; fileRef = 87FCA4C21B52CB890060AA8B /* heart_sr.png */; };
 		87FCA4C81B52D8BC0060AA8B /* star_y.png in Resources */ = {isa = PBXBuildFile; fileRef = 87FCA4C61B52D8BC0060AA8B /* star_y.png */; };
 		87FCA4C91B52D8BC0060AA8B /* star_w.png in Resources */ = {isa = PBXBuildFile; fileRef = 87FCA4C71B52D8BC0060AA8B /* star_w.png */; };
+		87FDA51D1B5776C300ACB87A /* MySearchDisplayController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87FDA51C1B5776C300ACB87A /* MySearchDisplayController.m */; };
 		87FFF3D31B4D380100326104 /* EditProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87FFF3D21B4D380100326104 /* EditProfileViewController.m */; };
 		87FFF3D71B4D549C00326104 /* PaymentSuccessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87FFF3D61B4D549C00326104 /* PaymentSuccessViewController.m */; };
 		8E26A6631B0397EF00A5A5CF /* TLHomeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E26A6621B0397EF00A5A5CF /* TLHomeTableViewCell.m */; };
@@ -328,6 +329,8 @@
 		87FCA4C21B52CB890060AA8B /* heart_sr.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = heart_sr.png; sourceTree = "<group>"; };
 		87FCA4C61B52D8BC0060AA8B /* star_y.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = star_y.png; path = Images/star_y.png; sourceTree = "<group>"; };
 		87FCA4C71B52D8BC0060AA8B /* star_w.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = star_w.png; path = Images/star_w.png; sourceTree = "<group>"; };
+		87FDA51B1B5776C300ACB87A /* MySearchDisplayController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MySearchDisplayController.h; sourceTree = "<group>"; };
+		87FDA51C1B5776C300ACB87A /* MySearchDisplayController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MySearchDisplayController.m; sourceTree = "<group>"; };
 		87FFF3D11B4D380100326104 /* EditProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditProfileViewController.h; sourceTree = "<group>"; };
 		87FFF3D21B4D380100326104 /* EditProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditProfileViewController.m; sourceTree = "<group>"; };
 		87FFF3D51B4D549C00326104 /* PaymentSuccessViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaymentSuccessViewController.h; sourceTree = "<group>"; };
@@ -670,6 +673,8 @@
 		8EC86D511B021DDC00B0A655 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				87FDA51B1B5776C300ACB87A /* MySearchDisplayController.h */,
+				87FDA51C1B5776C300ACB87A /* MySearchDisplayController.m */,
 				87E75F741B5638AD00E53741 /* PhoneSIgnupViewController.h */,
 				87E75F751B5638AD00E53741 /* PhoneSIgnupViewController.m */,
 				87E75F701B55EC4C00E53741 /* SmsVerificationViewController.h */,
@@ -977,6 +982,7 @@
 				8EC86D5C1B0229F100B0A655 /* TLHomeViewController.m in Sources */,
 				87FC2DBA1B480ABF0017F30E /* RSADataVerifier.m in Sources */,
 				87FC2DB61B480ABF0017F30E /* MD5DataSigner.m in Sources */,
+				87FDA51D1B5776C300ACB87A /* MySearchDisplayController.m in Sources */,
 				874522AB1B4E3FDF00876EB4 /* WishLishViewController.m in Sources */,
 				87F356421B439D3B00949F43 /* PaymentViewController.m in Sources */,
 				87FC2DB91B480ABF0017F30E /* RSADataSigner.m in Sources */,

@@ -236,6 +236,9 @@
             
         }
         else {
+#ifdef DEBUG
+            NSLog(@"Sending date = %@",[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
+#endif
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Fetching Data Failed"
                                                             message:@"Server Error"
                                                            delegate:nil
