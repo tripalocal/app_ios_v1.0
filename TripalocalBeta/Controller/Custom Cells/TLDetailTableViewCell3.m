@@ -24,11 +24,11 @@
     self.reviewerImage.layer.borderWidth = 3.0f;
     
     
-    CGSize newSize = CGSizeMake(15, 15);
+    CGSize newSize = CGSizeMake(18, 18);
     self.reviewStars.starImage = [self imageWithImage:[UIImage imageNamed:@"star_w.png"] scaledToSize:newSize];
     self.reviewStars.starHighlightedImage = [self imageWithImage:[UIImage imageNamed:@"star_y.png"] scaledToSize:newSize];
     self.reviewStars.maxRating = 5.0;
-    self.reviewStars.horizontalMargin = 12;
+    self.reviewStars.horizontalMargin = 8;
     [self.reviewStars sizeToFit];
     self.reviewStars.editable = NO;
     self.reviewStars.displayMode = EDStarRatingDisplayFull;
