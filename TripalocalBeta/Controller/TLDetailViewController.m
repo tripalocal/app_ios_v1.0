@@ -459,7 +459,9 @@
     if ([segue.identifier isEqualToString:@"checkoutSegue"]) {
         CheckoutViewController *vc=[segue destinationViewController];
         vc.exp_ID_string = _experience_id_string;
-        vc.expImage = self.coverImage;
+        NSString *expImageCachingIdentifier = [NSString stringWithFormat:@"Cell0OfExpImage"];
+        vc.expImage = [self.cachedImages valueForKey:expImageCachingIdentifier];
+
         vc.availbleDateArray = availableDateArray;
         vc.expTitleString = expTitle;
         vc.fixPriceString = _expPrice;

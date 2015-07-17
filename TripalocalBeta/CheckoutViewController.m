@@ -238,6 +238,7 @@
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     if(instantTimeArray.count == 0)
     {
+        _tableVisibleConstrain.constant = 0;
         _instantTable.hidden = YES;
     }
     return instantTimeArray.count;
