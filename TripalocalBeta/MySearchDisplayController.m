@@ -30,9 +30,8 @@
     //localize
     self.searchController.searchBar.placeholder = @"Where are you goning?";
     self.searchController.searchBar.barTintColor = [UIColor whiteColor];
-    [self.searchController.searchBar setImage:nil forSearchBarIcon:UISearchBarIconSearch state:UIControlStateNormal];
+    [self.searchController.searchBar setImage:[UIImage new] forSearchBarIcon:UISearchBarIconSearch state:UIControlStateNormal];
     NSShadow *shadow = [NSShadow new];
-//    [shadow setShadowColor: [UIColor grayColor]];
     
     [[UIBarButtonItem appearanceWhenContainedIn:[UISearchBar class], nil]
      setTitleTextAttributes: @{
@@ -114,7 +113,6 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     NSString *city = (NSString *)sender;
-    
     if ([segue.identifier isEqualToString:@"searchToExpList"]) {
         TLSearchViewController *vc=[segue destinationViewController];
         vc.cityName = city;
@@ -122,11 +120,13 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
+    self.searchController.searchBar.hidden = NO;
     [self.navigationController setNavigationBarHidden:YES animated:animated];
     [super viewWillAppear:animated];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
+    self.searchController.searchBar.hidden = YES;
     [self.navigationController setNavigationBarHidden:NO animated:animated];
     [super viewWillDisappear:animated];
 }
