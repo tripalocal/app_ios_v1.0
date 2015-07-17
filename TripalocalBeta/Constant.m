@@ -41,9 +41,13 @@ NSString *const paymentServiceURL = @"https://www.tripalocal.com/service_booking
 
 NSString *const mytripService = @"https://www.tripalocal.com/service_mytrip/";
 
-NSString *const serviceSearchURL = @"https://www.tripalocal.com/service_search/";
+NSString *const serviceSearchURL = @"https://tripalocal.com/service_search/";
 
-NSString *const expDetailServiceURL = @"https://www.tripalocal.com/service_experience/";
+NSString *const serviceSearchURLCN = @"https://tripalocal.com/cn/service_search/";
+
+NSString *const expDetailServiceURL = @"https://tripalocal.com/service_experience/";
+
+NSString *const expDetailServiceURLCN = @"https://tripalocal.com/cn/service_experience/";
 
 NSString *const phoneRegURL = @"http://222.73.117.158/msg/";
 

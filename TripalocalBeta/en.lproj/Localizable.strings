@@ -35,12 +35,6 @@
 
 "https://www.tripalocal.com/service_mytrip/" = "https://www.tripalocal.com/service_mytrip/";
 
-"https://www.tripalocal.com/service_search/" = "https://www.tripalocal.com/service_search/";
-
-"https://www.tripalocal.com/service_experience/" = "https://www.tripalocal.com/service_experience/";
-
-"exp_search_string" = "{\"start_datetime\":\"2015-05-08\", \"end_datetime\":\"2015-05-08\", \"city\":\"%@\", \"guest_number\":\"2\", \"keywords\":\"Food & wine, Education, History & culture, Architecture, For couples, Photography worthy, Livability research, Kids friendly, Outdoor & nature, Shopping, Sports & leisure, Host with car, Extreme fun, Events, Health & beauty, Private group\"}";
-
 "Forgot password?" = "Forgot password?";
 
 "Add to wishlist" = "Add to wishlist";
@@ -69,4 +63,28 @@
 
 "send_verification_code" = "Send Verification Code";
 
-"verification_count_msg" = "%@ Seconds Left to Resend";
+"verification_count_msg" = "Seconds Remaining: %@";
+
+"phone_no_error" = "Wrong number";
+
+"sms_content" = "客户你好，你的验证码为：%@ 60秒内有效，请完成注册";
+
+"phone_no_error_msg" = "Fail to send msg, check you phone no again";
+
+"ok_button" = "OK";
+
+"verfication_expire" = "Expired, please press again";
+
+"verfication_code_error" = "Wrong code";
+
+"verification_hint" = "You have %d times left";
+
+"no_network" = "No network connection";
+
+"no_network_msg" = "You must be connected to the internet";
+
+"signup_failed" = "Signup Failed";
+
+"mismatch_pwd" = "Please enter password again";
+
+"mismatch_pwd_hint" = "You must enter the same passwords";

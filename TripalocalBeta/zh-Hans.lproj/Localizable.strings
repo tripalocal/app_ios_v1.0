@@ -20,8 +20,6 @@
 
 "Hobart" = "霍巴特";
 
-"https://www.tripalocal.com/service_search/" = "https://www.tripalocal.com/cn/service_search/";
-
 "https://www.tripalocal.com/service_login/" = "https://www.tripalocal.com/cn/service_login/";
 
 "https://www.tripalocal.com/service_myprofile/" = "https://www.tripalocal.com/cn/service_myprofile/";
@@ -35,14 +33,6 @@
 "https://www.tripalocal.com/service_booking/" = "https://www.tripalocal.com/cn/service_booking/";
 
 "https://www.tripalocal.com/service_mytrip/" = "https://www.tripalocal.com/cn/service_mytrip/";
-
-"https://www.tripalocal.com/service_search/" = "https://www.tripalocal.com/cn/service_search/";
-
-"https://www.tripalocal.com/service_experience/" = "https://www.tripalocal.com/cn/service_experience/";
-
-"exp_search_string" = "{\"start_datetime\":\"2015-05-08\", \"end_datetime\":\"2015-05-08\", \"city\":\"%@\", \"guest_number\":\"2\", \"keywords\":\"美食美酒,名校游学,历史人文,经典建筑,蜜月旅拍,风光摄影,移民考察,亲子夏令营,户外探险,购物扫货,运动休闲,领路人自驾,刺激享乐,赛事庆典,美容保健\"}";
-
-
 
 "Forgot password?" = "忘记密码?";
 
@@ -73,3 +63,27 @@
 "send_verification_code" = "发送验证码";
 
 "verification_count_msg" = "还有%@秒可以重新发送验证码";
+
+"phone_no_error" = "错误的电话号码";
+
+"sms_content" = "客户你好，你的验证码为：%@ 60秒内有效，请完成注册";
+
+"phone_no_error_msg" = "发送失败，请检查你的电话号码";
+
+"ok_button" = "确定";
+
+"verfication_expire" = "失效，点击重新发送";
+
+"verfication_code_error" = "验证码错误";
+
+"verification_hint" = "您还有%d次尝试机会";
+
+"no_network" = "没有网络连接";
+
+"no_network_msg" = "你需要连接网络";
+
+"signup_failed" = "注册失败";
+
+"mismatch_pwd" = "再次输入密码";
+
+"mismatch_pwd_hint" = "密码必须保持一致";

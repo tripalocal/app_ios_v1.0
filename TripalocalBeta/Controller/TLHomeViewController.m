@@ -15,14 +15,13 @@
 {
     NSMutableArray *locations;
     NSMutableArray *locationsURLString;
-
+    NSMutableArray *filteredLocations;
 }
 
 @property (strong, nonatomic) NSMutableDictionary *cachedImages;
 @end
 
 @implementation TLHomeViewController
-@synthesize homeTable;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -32,16 +31,13 @@
     locationsURLString = [[NSMutableArray alloc]init];
     self.cachedImages = [[NSMutableDictionary alloc]init];
 
-    homeTable.dataSource=self;
-    homeTable.delegate=self;
+    self.tableView.dataSource=self;
+    self.tableView.delegate=self;
     
-    [locations addObject:@"Melbourne"];
-    [locations addObject:@"Sydney"];
-    [locations addObject:@"Brisbane"];
-    [locations addObject:@"Adelaide"];
-    [locations addObject:@"Cairns"];
-    [locations addObject:@"Goldcoast"];
-    [locations addObject:@"Hobart"];
+    locations = [@[@"Melbourne", @"Sydney", @"Brisbane", @"Adelaide",
+                   @"Cairns", @"Goldcoast", @"Hobart"] mutableCopy];
+    
+    filteredLocations = [locations mutableCopy];
     
     [locationsURLString addObject:@"https://www.tripalocal.com/images/mobile/home/Melbourne.jpg"];
     [locationsURLString addObject:@"https://www.tripalocal.com/images/mobile/home/Sydney.jpg"];
@@ -51,12 +47,26 @@
     [locationsURLString addObject:@"https://www.tripalocal.com/images/mobile/home/Goldcoast.jpg"];
     [locationsURLString addObject:@"https://www.tripalocal.com/images/mobile/home/Hobart.jpg"];
 
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    self.searchController = [[UISearchController alloc] initWithSearchResultsController:nil];
+    self.searchController.searchResultsUpdater = self;
+    self.searchController.dimsBackgroundDuringPresentation = NO;
+    self.searchController.searchBar.scopeButtonTitles = @[];
+    self.searchController.searchBar.delegate = self;
+    self.tableView.tableHeaderView = self.searchController.searchBar;
+    [self.searchController.searchBar sizeToFit];
+    //localize
+    self.searchController.searchBar.placeholder = @"Where are you goning?";
+    self.searchController.searchBar.barTintColor = [UIColor whiteColor];
+    [self.searchController.searchBar setImage:[UIImage new] forSearchBarIcon:UISearchBarIconSearch state:UIControlStateNormal];
+    NSShadow *shadow = [NSShadow new];
     
+    [[UIBarButtonItem appearanceWhenContainedIn:[UISearchBar class], nil]
+     setTitleTextAttributes: @{
+                               NSForegroundColorAttributeName: [UIColor grayColor],
+                               NSShadowAttributeName: shadow }
+     forState:UIControlStateNormal];
+    self.searchController.searchBar.layer.borderWidth = 0.5;
+    self.searchController.searchBar.layer.borderColor = [[UIColor grayColor] CGColor];
 }
 
 - (void)cacheForImage{
@@ -69,48 +79,104 @@
         [self.cachedImages setValue:image forKey:imageCachingIdentifier];
         
     }
-
-
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     static NSString *cellIdentifier=@"homeTableCell";
+    static NSString *cityCell=@"CityCell";
 
     TLHomeTableViewCell *cell=[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    UITableViewCell *cell2 = (UITableViewCell *) [tableView dequeueReusableCellWithIdentifier:cityCell];
     if(!cell)
     {
         cell=[[TLHomeTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
     
-    NSString *imageCachingIdentifier = [NSString stringWithFormat:@"Cell%ld",(long)indexPath.row];
-    
-    if([self.cachedImages objectForKey:imageCachingIdentifier]){
-        cell.homeLocationImage.image = [self.cachedImages objectForKey:imageCachingIdentifier];
-    } else {
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-            NSString *homeLocationImageURLString = [locationsURLString objectAtIndex:indexPath.row];
-
-            NSData *homeLocationImageDate = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:homeLocationImageURLString]];
-            
-            dispatch_sync(dispatch_get_main_queue(), ^{
-                cell.homeLocationImage.image = [[UIImage alloc] initWithData:homeLocationImageDate];
-                [self.cachedImages setObject:cell.homeLocationImage.image forKey:imageCachingIdentifier];
-            });
-            
-        });
+    if(!cell2)
+    {
+        cell2=[[TLHomeTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cityCell];
     }
     
-    cell.homeLocationLabel.text = NSLocalizedString([locations objectAtIndex:indexPath.row], nil);
-    cell.homeLocationLabel.textAlignment = NSTextAlignmentCenter;
-   
+    NSString *imageCachingIdentifier = [NSString stringWithFormat:@"Cell%ld",(long)indexPath.row];
     
-    return cell;
+    if (self.searchController.active) {
+        if (self.searchController.searchBar.text.length == 0) {
+            cell2.textLabel.text = locations[indexPath.row];
+        } else {
+            cell2.textLabel.text = filteredLocations[indexPath.row];
+        }
+        cell2.imageView.image = [UIImage imageNamed:@"location.png"];
+        return cell2;
+    } else {
+        if([self.cachedImages objectForKey:imageCachingIdentifier]){
+            cell.homeLocationImage.image = [self.cachedImages objectForKey:imageCachingIdentifier];
+        } else {
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                NSString *homeLocationImageURLString = [locationsURLString objectAtIndex:indexPath.row];
+                
+                NSData *homeLocationImageDate = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:homeLocationImageURLString]];
+                
+                dispatch_sync(dispatch_get_main_queue(), ^{
+                    cell.homeLocationImage.image = [[UIImage alloc] initWithData:homeLocationImageDate];
+                    [self.cachedImages setObject:cell.homeLocationImage.image forKey:imageCachingIdentifier];
+                });
+                
+            });
+        }
+        
+        cell.homeLocationLabel.text = NSLocalizedString([locations objectAtIndex:indexPath.row], nil);
+        cell.homeLocationLabel.textAlignment = NSTextAlignmentCenter;
+        return cell;
+    }
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (self.searchController.active) {
+        return 44.f;
+    } else {
+        return 308.f;
+    }
+}
+
+
+- (void)updateSearchResultsForSearchController:(UISearchController *)searchController {
+    NSString *searchString = searchController.searchBar.text;
+    [self searchForText:searchString];
+    [self.tableView reloadData];
+}
+
+- (void)searchForText:(NSString *)searchText {
+    NSPredicate *startsWith = [NSPredicate predicateWithFormat:@"SELF beginswith[c] %@", searchText];
+    
+    filteredLocations = [[locations filteredArrayUsingPredicate:startsWith] mutableCopy];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return locations.count;
+    if (self.searchController.active) {
+        if (self.searchController.searchBar.text.length == 0) {
+            return [locations count];
+        } else {
+            return [filteredLocations count];
+        }
+    } else {
+        return [locations count];
+    }
 }
 
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSString *city;
+    if (self.searchController.active) {
+        if (self.searchController.searchBar.text.length == 0) {
+            city = locations[indexPath.row];
+        } else {
+            city = filteredLocations[indexPath.row];
+        }
+    } else {
+        city = locations[indexPath.row];
+    }
+    
+    [self performSegueWithIdentifier:@"searchToExpList" sender:city];
+}
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return 1;
@@ -118,19 +184,21 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [self.navigationController setNavigationBarHidden:YES animated:animated];
+    self.searchController.searchBar.hidden = NO;
     [super viewWillAppear:animated];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
+    self.searchController.searchBar.hidden = YES;
     [self.navigationController setNavigationBarHidden:NO animated:animated];
     [super viewWillDisappear:animated];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([segue.identifier isEqualToString:@"ExpListSegue"]) {
+    if ([segue.identifier isEqualToString:@"searchToExpList"]) {
         TLSearchViewController *vc=[segue destinationViewController];
         
-        NSIndexPath *index=[homeTable indexPathForSelectedRow];
+        NSIndexPath *index=[self.tableView indexPathForSelectedRow];
         NSString *cityName = [locations objectAtIndex:index.row];
         vc.cityName = cityName;
     }
@@ -143,4 +211,9 @@
 - (IBAction)myButton:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+}
+
 @end

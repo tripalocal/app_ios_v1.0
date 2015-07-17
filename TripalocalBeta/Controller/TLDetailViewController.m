@@ -95,8 +95,13 @@
     NSData *postData = [post dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:YES];
     NSString *postLength = [NSString stringWithFormat:@"%lu", (unsigned long)[postData length]];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-    // move to constant
-    [request setURL:[NSURL URLWithString:NSLocalizedString(expDetailServiceURL, nil)]];
+
+    if ([[[NSProcessInfo processInfo] arguments] containsObject:@"-zhVersion"]) {
+        [request setURL:[NSURL URLWithString:expDetailServiceURLCN]];
+    } else {
+        [request setURL:[NSURL URLWithString:expDetailServiceURL]];
+    }
+
     [request setHTTPMethod:@"POST"];
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     [request setValue:postLength forHTTPHeaderField:@"Content-Length"];
@@ -270,6 +275,7 @@
                 });
                 
             }
+            
             cell.reservationLabel.text = [NSString stringWithFormat:@"%@ %@ %@", NSLocalizedString(@"reservationPrefix", nil), hostFirstName, NSLocalizedString(@"reservationSuffix",nil)];
             
             // language
@@ -428,12 +434,6 @@
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return 1;
-}
-
-
--(void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
-{
-    NSLog(@"Error:(Details)Failed with connection error.");
 }
 
 -(NSString *) transformLanugage:(NSString *) languageString {
