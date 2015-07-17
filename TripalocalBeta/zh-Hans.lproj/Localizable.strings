@@ -20,8 +20,6 @@
 
 "Hobart" = "霍巴特";
 
-"https://www.tripalocal.com/service_search/" = "https://www.tripalocal.com/cn/service_search/";
-
 "https://www.tripalocal.com/service_login/" = "https://www.tripalocal.com/cn/service_login/";
 
 "https://www.tripalocal.com/service_myprofile/" = "https://www.tripalocal.com/cn/service_myprofile/";
@@ -35,10 +33,6 @@
 "https://www.tripalocal.com/service_booking/" = "https://www.tripalocal.com/cn/service_booking/";
 
 "https://www.tripalocal.com/service_mytrip/" = "https://www.tripalocal.com/cn/service_mytrip/";
-
-"https://www.tripalocal.com/service_search/" = "https://tripalocal.com/cn/service_search/";
-
-"https://www.tripalocal.com/service_experience/" = "https://tripalocal.com/cn/service_experience/";
 
 "Forgot password?" = "忘记密码?";
 

@@ -26,22 +26,21 @@
     self.searchController.searchBar.scopeButtonTitles = @[];
     self.searchController.searchBar.delegate = self;
     self.tableView.tableHeaderView = self.searchController.searchBar;
-    self.definesPresentationContext = YES;
     [self.searchController.searchBar sizeToFit];
     //localize
     self.searchController.searchBar.placeholder = @"Where are you goning?";
-    self.searchController.searchBar.backgroundColor = [UIColor whiteColor];
-//    self.searchController.searchBar = nil;
-    for (UIView *view in self.searchController.searchBar.subviews) {
-        for (id subview in view.subviews) {
-            if ( [subview isKindOfClass:[UIButton class]] ) {
-                [subview setEnabled:YES];
-                UIButton *cancelButton = (UIButton*)subview;
-                [cancelButton setBackgroundColor:[UIColor grayColor]];
-                return;
-            }
-        }
-    }
+    self.searchController.searchBar.barTintColor = [UIColor whiteColor];
+    [self.searchController.searchBar setImage:nil forSearchBarIcon:UISearchBarIconSearch state:UIControlStateNormal];
+    NSShadow *shadow = [NSShadow new];
+//    [shadow setShadowColor: [UIColor grayColor]];
+    
+    [[UIBarButtonItem appearanceWhenContainedIn:[UISearchBar class], nil]
+     setTitleTextAttributes: @{
+                               NSForegroundColorAttributeName: [UIColor grayColor],
+                               NSShadowAttributeName: shadow }
+     forState:UIControlStateNormal];
+    self.searchController.searchBar.layer.borderWidth = 1;
+    self.searchController.searchBar.layer.borderColor = [[UIColor whiteColor] CGColor];
 }
 
 - (void)updateSearchResultsForSearchController:(UISearchController *)searchController {
