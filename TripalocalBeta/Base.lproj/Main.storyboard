@@ -3146,7 +3146,7 @@
                             </mask>
                         </variation>
                     </view>
-                    <navigationItem key="navigationItem" id="lF3-Rn-48A"/>
+                    <navigationItem key="navigationItem" title="Booking Details" id="lF3-Rn-48A"/>
                     <connections>
                         <outlet property="couponField" destination="K2W-PP-9P3" id="0qc-VL-eMi"/>
                         <outlet property="coverImage" destination="nBu-ZQ-Ifc" id="qB7-46-9bU"/>
