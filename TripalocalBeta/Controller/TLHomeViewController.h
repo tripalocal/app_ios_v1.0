@@ -8,7 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface TLHomeViewController : UIViewController<UITableViewDelegate,UITableViewDataSource>
-@property (strong, nonatomic) IBOutlet UITableView *homeTable;
+@interface TLHomeViewController : UIViewController<UITableViewDelegate,UITableViewDataSource, UISearchResultsUpdating, UISearchBarDelegate>
+@property (strong, nonatomic) IBOutlet UITableView *tableView;
+@property (strong, nonatomic) UISearchController *searchController;
 - (IBAction)myButton:(id)sender;
 @end

@@ -1355,7 +1355,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="308" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="NVF-HZ-jJe">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="NVF-HZ-jJe">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -1390,7 +1390,6 @@
                                         <connections>
                                             <outlet property="homeLocationImage" destination="t6B-ED-uPI" id="O7v-8J-vQk"/>
                                             <outlet property="homeLocationLabel" destination="UWB-M2-STK" id="pAC-zo-Y9G"/>
-                                            <segue destination="Vj1-wG-sag" kind="show" identifier="ExpListSegue" id="r1b-Gj-oet"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -1406,12 +1405,13 @@
                     </view>
                     <navigationItem key="navigationItem" id="MkD-z2-K9A"/>
                     <connections>
-                        <outlet property="homeTable" destination="NVF-HZ-jJe" id="CPY-lC-1wQ"/>
+                        <outlet property="tableView" destination="NVF-HZ-jJe" id="8UB-aP-2N0"/>
+                        <segue destination="Vj1-wG-sag" kind="show" identifier="searchToExpList" id="1ny-n2-okc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kiN-fn-PkQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="905" y="-498"/>
+            <point key="canvasLocation" x="1365" y="-562"/>
         </scene>
         <!--Home View Controller-->
         <scene sceneID="872-be-wZv">
@@ -3406,7 +3406,7 @@
         <image name="tripalocal_logo_zh.png" width="264" height="92"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="r1b-Gj-oet"/>
+        <segue reference="1ny-n2-okc"/>
         <segue reference="Pkv-bo-ySw"/>
         <segue reference="hPI-YE-UZz"/>
         <segue reference="olF-su-vgo"/>
