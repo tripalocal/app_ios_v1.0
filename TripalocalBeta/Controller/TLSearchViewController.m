@@ -202,11 +202,16 @@
 
 - (NSMutableArray *)fetchExpData:(NSString *) cityName {
     NSMutableArray *expList = [[NSMutableArray alloc] init];
+
+    NSString *post = nil;
+    if ([[[NSProcessInfo processInfo] arguments] containsObject:@"-zhVersion"]) {
+        post = [NSString stringWithFormat:@"{\"start_datetime\":\"2015-05-08\", \"end_datetime\":\"2015-05-08\", \"city\":\"%@\", \"guest_number\":\"2\", \"keywords\":\"美食美酒,名校游学,历史人文,经典建筑,蜜月旅拍,风光摄影,移民考察,亲子夏令营,户外探险,购物扫货,运动休闲,领路人自驾,刺激享乐,赛事庆典,美容保健\"}", cityName];
+    } else {
+        post = [NSString stringWithFormat:@"{\"start_datetime\":\"2015-05-08\", \"end_datetime\":\"2015-05-08\", \"city\":\"%@\", \"guest_number\":\"2\", \"keywords\":\"Food & wine, Education, History & culture, Architecture, For couples, Photography worthy, Livability research, Kids friendly, Outdoor & nature, Shopping, Sports & leisure, Host with car, Extreme fun, Events, Health & beauty, Private group\"}", cityName];
+    }
     
-    // fixed date?
-    NSString *post = [NSString stringWithFormat:NSLocalizedString(@"exp_search_string", nil), cityName];
 #ifdef DEBUG
-    NSLog(@"Sending date = %@",post);
+    NSLog(@"Sending data = %@",post);
 #endif
     NSData *postData = [post dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:YES];
     NSString *postLength = [NSString stringWithFormat:@"%lu", (unsigned long)[postData length]];
@@ -237,7 +242,7 @@
         }
         else {
 #ifdef DEBUG
-            NSLog(@"Sending date = %@",[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
+            NSLog(@"Sending data = %@",[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
 #endif
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Fetching Data Failed"
                                                             message:@"Server Error"

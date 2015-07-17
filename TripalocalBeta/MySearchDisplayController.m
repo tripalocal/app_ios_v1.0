@@ -7,6 +7,7 @@
 //
 
 #import "MySearchDisplayController.h"
+#import "TLSearchViewController.h"
 
 @implementation MySearchDisplayController {
     NSArray *locations;
@@ -27,6 +28,20 @@
     self.tableView.tableHeaderView = self.searchController.searchBar;
     self.definesPresentationContext = YES;
     [self.searchController.searchBar sizeToFit];
+    //localize
+    self.searchController.searchBar.placeholder = @"Where are you goning?";
+    self.searchController.searchBar.backgroundColor = [UIColor whiteColor];
+//    self.searchController.searchBar = nil;
+    for (UIView *view in self.searchController.searchBar.subviews) {
+        for (id subview in view.subviews) {
+            if ( [subview isKindOfClass:[UIButton class]] ) {
+                [subview setEnabled:YES];
+                UIButton *cancelButton = (UIButton*)subview;
+                [cancelButton setBackgroundColor:[UIColor grayColor]];
+                return;
+            }
+        }
+    }
 }
 
 - (void)updateSearchResultsForSearchController:(UISearchController *)searchController {
@@ -50,17 +65,26 @@
     }
     
     if (self.searchController.active) {
-        cell.textLabel.text = filteredLocations[indexPath.row];
+        if (self.searchController.searchBar.text.length == 0) {
+            cell.textLabel.text = locations[indexPath.row];
+        } else {
+            cell.textLabel.text = filteredLocations[indexPath.row];
+        }
     } else {
         cell.textLabel.text = locations[indexPath.row];
     }
     
+    cell.imageView.image = [UIImage imageNamed:@"location.png"];
     return cell;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (self.searchController.active) {
-        return [filteredLocations count];
+        if (self.searchController.searchBar.text.length == 0) {
+            return [locations count];
+        } else {
+            return [filteredLocations count];
+        }
     } else {
         return [locations count];
     }
@@ -70,7 +94,41 @@
     return 1;
 }
 
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSString *city;
+    if (self.searchController.active) {
+        if (self.searchController.searchBar.text.length == 0) {
+            city = locations[indexPath.row];
+        } else {
+            city = filteredLocations[indexPath.row];
+        }
+    } else {
+        city = locations[indexPath.row];
+    }
+    
+    [self performSegueWithIdentifier:@"searchToExpList" sender:city];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    NSString *city = (NSString *)sender;
+    
+    if ([segue.identifier isEqualToString:@"searchToExpList"]) {
+        TLSearchViewController *vc=[segue destinationViewController];
+        vc.cityName = city;
+    }
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [self.navigationController setNavigationBarHidden:YES animated:animated];
+    [super viewWillAppear:animated];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [self.navigationController setNavigationBarHidden:NO animated:animated];
+    [super viewWillDisappear:animated];
 }
 @end

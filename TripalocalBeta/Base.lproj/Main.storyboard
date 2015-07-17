@@ -1604,6 +1604,9 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="fst-hU-2B5"/>
+                    <connections>
+                        <segue destination="Vj1-wG-sag" kind="show" identifier="searchToExpList" id="IwG-Oe-bzp"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gHu-1G-Fha" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -3371,7 +3374,7 @@
         <!--Item-->
         <scene sceneID="GUr-ZB-hbm">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="7TN-oO-OpO" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="7TN-oO-OpO" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="Jk5-yy-KXe"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="kfL-wh-Roo">
@@ -3403,6 +3406,7 @@
         <image name="tripalocal_logo_zh.png" width="264" height="92"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="IwG-Oe-bzp"/>
         <segue reference="Pkv-bo-ySw"/>
         <segue reference="olF-su-vgo"/>
         <segue reference="j2S-cS-yrC"/>

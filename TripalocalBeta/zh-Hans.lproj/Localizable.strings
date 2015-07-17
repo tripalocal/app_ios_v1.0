@@ -36,13 +36,9 @@
 
 "https://www.tripalocal.com/service_mytrip/" = "https://www.tripalocal.com/cn/service_mytrip/";
 
-"https://www.tripalocal.com/service_search/" = "https://www.tripalocal.com/cn/service_search/";
+"https://www.tripalocal.com/service_search/" = "https://tripalocal.com/cn/service_search/";
 
-"https://www.tripalocal.com/service_experience/" = "https://www.tripalocal.com/cn/service_experience/";
-
-"exp_search_string" = "{\"start_datetime\":\"2015-05-08\", \"end_datetime\":\"2015-05-08\", \"city\":\"%@\", \"guest_number\":\"2\", \"keywords\":\"美食美酒,名校游学,历史人文,经典建筑,蜜月旅拍,风光摄影,移民考察,亲子夏令营,户外探险,购物扫货,运动休闲,领路人自驾,刺激享乐,赛事庆典,美容保健\"}";
-
-
+"https://www.tripalocal.com/service_experience/" = "https://tripalocal.com/cn/service_experience/";
 
 "Forgot password?" = "忘记密码?";
 

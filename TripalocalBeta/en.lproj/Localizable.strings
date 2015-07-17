@@ -35,11 +35,9 @@
 
 "https://www.tripalocal.com/service_mytrip/" = "https://www.tripalocal.com/service_mytrip/";
 
-"https://www.tripalocal.com/service_search/" = "https://www.tripalocal.com/service_search/";
+"https://www.tripalocal.com/service_search/" = "https://tripalocal.com/service_search/";
 
-"https://www.tripalocal.com/service_experience/" = "https://www.tripalocal.com/service_experience/";
-
-"exp_search_string" = "{\"start_datetime\":\"2015-05-08\", \"end_datetime\":\"2015-05-08\", \"city\":\"%@\", \"guest_number\":\"2\", \"keywords\":\"Food & wine, Education, History & culture, Architecture, For couples, Photography worthy, Livability research, Kids friendly, Outdoor & nature, Shopping, Sports & leisure, Host with car, Extreme fun, Events, Health & beauty, Private group\"}";
+"https://www.tripalocal.com/service_experience/" = "https://tripalocal.com/service_experience/";
 
 "Forgot password?" = "Forgot password?";
 
