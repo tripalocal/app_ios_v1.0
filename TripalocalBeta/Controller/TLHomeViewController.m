@@ -108,19 +108,27 @@
         cell2.imageView.image = [UIImage imageNamed:@"location.png"];
         return cell2;
     } else {
+        cell.homeLocationImage.image = nil;
         if([self.cachedImages objectForKey:imageCachingIdentifier]){
             cell.homeLocationImage.image = [self.cachedImages objectForKey:imageCachingIdentifier];
         } else {
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                NSString *homeLocationImageURLString = [locationsURLString objectAtIndex:indexPath.row];
+                NSString *locImageURLString = [locationsURLString objectAtIndex:indexPath.row];
                 
-                NSData *homeLocationImageDate = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:homeLocationImageURLString]];
+                NSData *locImageData = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:locImageURLString]];
                 
-                dispatch_sync(dispatch_get_main_queue(), ^{
-                    cell.homeLocationImage.image = [[UIImage alloc] initWithData:homeLocationImageDate];
-                    [self.cachedImages setObject:cell.homeLocationImage.image forKey:imageCachingIdentifier];
-                });
-                
+                if (locImageData) {
+                    UIImage *locImage = [UIImage imageWithData:locImageData];
+                    if (locImage) {
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            TLHomeTableViewCell *updateCell = (id)[tableView cellForRowAtIndexPath:indexPath];
+                            if (updateCell) {
+                                updateCell.homeLocationImage.image = locImage;
+                                [self.cachedImages setValue:locImage forKey:imageCachingIdentifier];
+                            }
+                        });
+                    }
+                }
             });
         }
         

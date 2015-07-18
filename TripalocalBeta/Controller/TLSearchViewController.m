@@ -109,7 +109,6 @@
     cell.hostImage.image = [UIImage imageNamed:@"default_profile_image.png"];
     cell.languageLabel.text = [self transformLanugage:(NSString *)[exp objectForKey:@"language"]];
     cell.descriptionLabel.text = [exp objectForKey:@"description"];
-    cell.hostImage.image = [UIImage imageNamed:@"default_profile_image.png"];
     cell.experienceImage.image = nil;
     
     NSString *hostImageCachingIdentifier = [NSString stringWithFormat:@"Cell%ldOfHostImage",(long)indexPath.row];
@@ -124,21 +123,39 @@
             
             NSData *hostImageData = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:[NSLocalizedString(imageServiceURL, nil) stringByAppendingString: hostImageURL]]];
             
+            if (hostImageData) {
+                UIImage *hostImage = [UIImage imageWithData:hostImageData];
+                if (hostImage) {
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        TLSearchTableViewCell *updateCell = (id)[tableView cellForRowAtIndexPath:indexPath];
+                        if (updateCell) {
+                            updateCell.hostImage.image = hostImage;
+                            [self.cachedImages setValue:hostImage forKey:hostImageCachingIdentifier];
+                        }
+                    });
+                }
+            }
+            
             NSString *backgroundImageURL = [NSString stringWithFormat:@"%@thumbnails/experiences/experience%@_1.jpg", NSLocalizedString(imageServiceURL, nil), expIdString];
             
             NSData *experienceImageData = [[NSData alloc]initWithContentsOfURL:[NSURL URLWithString:backgroundImageURL]];
             
-            dispatch_sync(dispatch_get_main_queue(), ^{
-                cell.hostImage.image = [[UIImage alloc] initWithData:hostImageData];
-                
-                UIImage *croppedImg = nil;
-                croppedImg = [self croppIngimageByImageName:[[UIImage alloc] initWithData:experienceImageData] toRect:cell.experienceImage.frame];
-                cell.experienceImage.image = croppedImg;
-                
-                [self.cachedImages setValue:cell.hostImage.image forKey:hostImageCachingIdentifier];
-                [self.cachedImages setValue:cell.experienceImage.image forKey:expImageCachingIdentifier];
-            });
-            
+            if (experienceImageData) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    TLSearchTableViewCell *updateCell = (id)[tableView cellForRowAtIndexPath:indexPath];
+                    if (updateCell) {
+                        UIImage *croppedImg = nil;
+                        croppedImg = [self croppIngimageByImageName:[[UIImage alloc] initWithData:experienceImageData] toRect:cell.experienceImage.frame];
+                        cell.experienceImage.image = croppedImg;
+                        
+                        updateCell.experienceImage.image = croppedImg;
+                        [self.cachedImages setValue:croppedImg forKey:expImageCachingIdentifier];
+                    }
+                    
+                });
+
+            }
+        
         });
     }
     
