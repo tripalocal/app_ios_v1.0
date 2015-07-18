@@ -6,6 +6,12 @@
   Copyright (c) 2015 Tripalocal. All rights reserved.
 */
 
+"slide1" = "slide01.jpg";
+
+"slide2" = "slide02.jpg";
+
+"slide3" = "slide03.jpg";
+
 "Melbourne" = "墨尔本";
 
 "Sydney" = "悉尼";

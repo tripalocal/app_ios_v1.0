@@ -155,6 +155,7 @@
         [cell.statusButton setTitle:NSLocalizedString(@"booking_status_confirmed", nil) forState:UIControlStateNormal];
         [cell.statusButton setBackgroundColor:[UIColor colorWithRed:0.51f green:0.82f blue:0.00f alpha:1.0f]];
     }
+    // tofix "deleted" status
     
     return cell;
 }
