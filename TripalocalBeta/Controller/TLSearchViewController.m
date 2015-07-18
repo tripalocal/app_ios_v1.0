@@ -7,6 +7,7 @@
 //
 
 #import "TLSearchViewController.h"
+#import <SDWebImage/UIImageView+WebCache.h>
 #import "TLSearchTableViewCell.h"
 #import "Spinner.h"
 #import "Constant.h"
@@ -17,7 +18,6 @@
     NSString *priceString;
     NSMutableArray *dynamicPricingArray;
 }
-@property (strong, nonatomic) NSMutableDictionary *cachedImages;
 @end
 
 @implementation TLSearchViewController{
@@ -106,58 +106,27 @@
     cell.durationLabel.text = handledDurationString;
     cell.titleLabel.text = [exp objectForKey:@"title"];
 
-    cell.hostImage.image = [UIImage imageNamed:@"default_profile_image.png"];
     cell.languageLabel.text = [self transformLanugage:(NSString *)[exp objectForKey:@"language"]];
     cell.descriptionLabel.text = [exp objectForKey:@"description"];
-    cell.experienceImage.image = nil;
-    
-    NSString *hostImageCachingIdentifier = [NSString stringWithFormat:@"Cell%ldOfHostImage",(long)indexPath.row];
-    NSString *expImageCachingIdentifier = [NSString stringWithFormat:@"Cell%ldOfExpImage",(long)indexPath.row];
-    
-    if([self.cachedImages objectForKey:hostImageCachingIdentifier]!=nil){
-        cell.hostImage.image = [self.cachedImages valueForKey:hostImageCachingIdentifier];
-        cell.experienceImage.image = [self.cachedImages valueForKey:expImageCachingIdentifier];
-    } else{
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-            NSString *hostImageURL = [exp objectForKey:@"host_image"];
-            
-            NSData *hostImageData = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:[NSLocalizedString(imageServiceURL, nil) stringByAppendingString: hostImageURL]]];
-            
-            if (hostImageData) {
-                UIImage *hostImage = [UIImage imageWithData:hostImageData];
-                if (hostImage) {
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        TLSearchTableViewCell *updateCell = (id)[tableView cellForRowAtIndexPath:indexPath];
-                        if (updateCell) {
-                            updateCell.hostImage.image = hostImage;
-                            [self.cachedImages setValue:hostImage forKey:hostImageCachingIdentifier];
-                        }
-                    });
-                }
-            }
-            
-            NSString *backgroundImageURL = [NSString stringWithFormat:@"%@thumbnails/experiences/experience%@_1.jpg", NSLocalizedString(imageServiceURL, nil), expIdString];
-            
-            NSData *experienceImageData = [[NSData alloc]initWithContentsOfURL:[NSURL URLWithString:backgroundImageURL]];
-            
-            if (experienceImageData) {
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    TLSearchTableViewCell *updateCell = (id)[tableView cellForRowAtIndexPath:indexPath];
-                    if (updateCell) {
-                        UIImage *croppedImg = nil;
-                        croppedImg = [self croppIngimageByImageName:[[UIImage alloc] initWithData:experienceImageData] toRect:cell.experienceImage.frame];
-                        cell.experienceImage.image = croppedImg;
-                        
-                        updateCell.experienceImage.image = croppedImg;
-                        [self.cachedImages setValue:croppedImg forKey:expImageCachingIdentifier];
-                    }
-                    
-                });
 
-            }
-        
-        });
-    }
+    NSString *hostImageRelativeURL = [exp objectForKey:@"host_image"];
+    NSString *hostImageURL = [NSLocalizedString(imageServiceURL, nil) stringByAppendingString: hostImageRelativeURL];
+
+    [cell.hostImage sd_setImageWithURL:[NSURL URLWithString:hostImageURL]
+                      placeholderImage:[UIImage imageNamed:@"default_profile_image.png"]
+                               options:SDWebImageRefreshCached];
+    
+    NSString *backgroundImageURL = [NSString stringWithFormat:@"%@thumbnails/experiences/experience%@_1.jpg", NSLocalizedString(imageServiceURL, nil), expIdString];
+    
+    [cell.experienceImage sd_setImageWithURL:[NSURL URLWithString:backgroundImageURL]
+                            placeholderImage:nil
+                                     options:SDWebImageRefreshCached
+                                   completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+                                       if (image) {
+                                            cell.experienceImage.image = [self croppIngimageByImageName:image toRect:cell.experienceImage.frame];
+                                       }
+                                   }];
+
     
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     NSMutableArray *wishList = [userDefaults objectForKey:@"wish_list"];

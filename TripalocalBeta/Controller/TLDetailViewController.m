@@ -17,6 +17,7 @@
 #import "Constant.h"
 #import "CheckoutViewController.h"
 #import "ReviewTableViewController.h"
+#import <SDWebImage/UIImageView+WebCache.h>
 #import "Constant.h"
 
 @interface TLDetailViewController ()
@@ -177,12 +178,6 @@
                                                   otherButtonTitles:nil];
             [alert show];
         }
-        
-//#if DEBUG
-//        NSString *decodedData = [[NSString alloc] initWithData:data
-//                                                      encoding:NSUTF8StringEncoding];
-//        NSLog(@"Receiving data = %@", decodedData);
-//#endif
     } else {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No network connection"
                                                         message:@"You must be connected to the internet."
@@ -239,42 +234,27 @@
     static NSString *cellIdentifier5=@"cell5";
     TLDetailTableViewCell5 *cell5=(TLDetailTableViewCell5 *) [tableView dequeueReusableCellWithIdentifier:cellIdentifier5];
     
-    NSString *hostImageCachingIdentifier = [NSString stringWithFormat:@"Cell%ldOfHostImage",(long)indexPath.row];
-    NSString *expImageCachingIdentifier = [NSString stringWithFormat:@"Cell%ldOfExpImage",(long)indexPath.row];
     switch (indexPath.row) {
-        case 0:
+        case 0: {
             if (!cell) {
                 cell = [[TLDetailTableViewCell0 alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier0];
             }
             
-            if ([self.cachedImages objectForKey:hostImageCachingIdentifier]) {
-                cell.hostImage.image = [self.cachedImages valueForKey:hostImageCachingIdentifier];
-                cell.coverImage.image = [self.cachedImages valueForKey:expImageCachingIdentifier];
-            } else {
-                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                    NSData *hostImageData = [[NSData alloc]initWithContentsOfURL:[NSURL URLWithString:hostImageURL]];
-                    dispatch_sync(dispatch_get_main_queue(), ^{
-                        cell.hostImage.image = [[UIImage alloc] initWithData:hostImageData];
-                        [self.cachedImages setValue:cell.hostImage.image forKey:hostImageCachingIdentifier];
-                    });
-                    
-                });
-                
-                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                    NSString *coverImageURL = [NSString stringWithFormat:@"%@thumbnails/experiences/experience%@_1.jpg", NSLocalizedString(imageServiceURL, nil), _experience_id_string];
-                    NSData *coverImageData = [[NSData alloc]initWithContentsOfURL:[NSURL URLWithString:coverImageURL]];
-                    dispatch_sync(dispatch_get_main_queue(), ^{
-                        
-                        UIImage *croppedImg = nil;
-                        croppedImg = [self croppIngimageByImageName:[[UIImage alloc] initWithData:coverImageData] toRect:cell.coverImage.frame];
-                        cell.coverImage.image = croppedImg;
-                        
-                        [self.cachedImages setValue:cell.coverImage.image forKey:expImageCachingIdentifier];
-                    });
-                    
-                });
-                
-            }
+            [cell.hostImage sd_setImageWithURL:[NSURL URLWithString:hostImageURL]
+                              placeholderImage:[UIImage imageNamed:@"default_profile_image.png"]
+                                       options:SDWebImageRefreshCached];
+            
+            NSString *coverImageURL = [NSString stringWithFormat:@"%@thumbnails/experiences/experience%@_1.jpg", NSLocalizedString(imageServiceURL, nil), _experience_id_string];
+            
+            [cell.coverImage sd_setImageWithURL:[NSURL URLWithString:coverImageURL]
+                              placeholderImage:nil
+                                        options:SDWebImageRefreshCached
+                                      completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+                                          if (image) {
+                                              cell.coverImage.image = [self croppIngimageByImageName:image toRect:cell.coverImage.frame];
+                                          }
+                                      }];
+
             
             cell.reservationLabel.text = [NSString stringWithFormat:@"%@ %@ %@", NSLocalizedString(@"reservationPrefix", nil), hostFirstName, NSLocalizedString(@"reservationSuffix",nil)];
             
@@ -284,7 +264,7 @@
             cell.durationLabel.text = [NSString stringWithFormat:NSLocalizedString(@"exp_detail_per_person_for", nil), expDuration];
             
             return cell;
-        
+        }
         case 1:
             if(!cell1)
             {
@@ -325,17 +305,10 @@
                 cell2.hostBioLabel.numberOfLines = 5;
             }
             
-            if ([self.cachedImages objectForKey:hostImageCachingIdentifier]) {
-                cell2.hostImage.image = [self.cachedImages valueForKey:hostImageCachingIdentifier];
-            } else {
-                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                    NSData *hostImageData = [[NSData alloc]initWithContentsOfURL:[NSURL URLWithString:hostImageURL]];
-                    dispatch_sync(dispatch_get_main_queue(), ^{
-                        cell2.hostImage.image = [[UIImage alloc] initWithData:hostImageData];
-                        [self.cachedImages setValue:cell2.hostImage.image forKey:hostImageCachingIdentifier];
-                    });
-                });
-            }
+            [cell2.hostImage sd_setImageWithURL:[NSURL URLWithString:hostImageURL]
+                              placeholderImage:[UIImage imageNamed:@"default_profile_image.png"]
+                                       options:SDWebImageRefreshCached];
+
             cell2.hostFirstNameLabel.text = [NSLocalizedString(@"about_the_host", nil) stringByAppendingString: hostFirstName];
             cell2.hostBioLabel.text = hostBio;
             
@@ -356,54 +329,31 @@
             cell3.reviewStars.rating = [expRate floatValue];
             cell3.reviewerName.text = [NSString stringWithFormat:@"%@ %@", reviewFirst, reviewLast];
             cell3.commentLabel.text = reviewComment;
-
-            cell3.reviewerImage.image = [UIImage imageNamed:@"default_profile_image.png"];
             
-            if([self.cachedImages objectForKey:hostImageCachingIdentifier]!=nil){
-                cell3.reviewerImage.image = [self.cachedImages valueForKey:hostImageCachingIdentifier];
-            }
-            else if(PREreviewerImageURL.length <= 0){
-                cell3.reviewerImage.image = [UIImage imageNamed:@"default_profile_image.png"];
-            }
-            else{
-                
-                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                    NSData *hostImageData = [[NSData alloc]initWithContentsOfURL:[NSURL URLWithString:reviewerImageURL]];
-                    dispatch_sync(dispatch_get_main_queue(), ^{
-                        cell3.reviewerImage.image = [[UIImage alloc]initWithData:hostImageData];
-                        [self.cachedImages setValue:cell3.reviewerImage.image forKey:hostImageCachingIdentifier];
-                    });
-                
-                });
-                
-            }
+            [cell3.reviewerImage sd_setImageWithURL:[NSURL URLWithString:reviewerImageURL]
+                              placeholderImage:[UIImage imageNamed:@"default_profile_image.png"]
+                                       options:SDWebImageRefreshCached];
             
             return cell3;
         case 4:
+        {
             if(!cell4) {
                 cell4=[[TLDetailTableViewCell4 alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier4];
             }
             
-            if ([self.cachedImages objectForKey:expImageCachingIdentifier]) {
-                cell4.coverImage.image = [self.cachedImages valueForKey:expImageCachingIdentifier];
-            } else {
-                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                    NSString *backgroundImageURL = [NSString stringWithFormat:@"%@thumbnails/experiences/experience%@_1.jpg", NSLocalizedString(imageServiceURL, nil), _experience_id_string];
-                    
-                    NSData *experienceImageData = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:backgroundImageURL]];
-                    
-                    dispatch_sync(dispatch_get_main_queue(), ^{
-                        
-                        UIImage *croppedImg = nil;
-                        croppedImg = [self croppIngimageByImageName:[[UIImage alloc] initWithData:experienceImageData] toRect:cell.coverImage.frame];
-                        
-                        cell4.coverImage.image = croppedImg;
-                        [self.cachedImages setValue:cell4.coverImage.image forKey:expImageCachingIdentifier];
-                    });
-                });
-            }
+            NSString *coverImageURL = [NSString stringWithFormat:@"%@thumbnails/experiences/experience%@_1.jpg", NSLocalizedString(imageServiceURL, nil), _experience_id_string];
+            
+            [cell4.coverImage sd_setImageWithURL:[NSURL URLWithString:coverImageURL]
+                               placeholderImage:nil
+                                        options:SDWebImageRefreshCached
+                                      completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+                                          if (image) {
+                                              cell4.coverImage.image = [self croppIngimageByImageName:image toRect:cell4.coverImage.frame];
+                                          }
+                                      }];
             
             return cell4;
+        }
         case 5:
             if(!cell5)
             {
