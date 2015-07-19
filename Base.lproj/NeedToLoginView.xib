@@ -7,6 +7,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NeedToLoginView">
             <connections>
                 <outlet property="contentView" destination="iN0-l3-epB" id="LNg-lS-TiU"/>
+                <outlet property="loginButton" destination="Mp7-xz-mJ5" id="NZT-cF-G4k"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>

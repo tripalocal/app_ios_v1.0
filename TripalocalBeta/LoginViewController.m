@@ -120,6 +120,9 @@
     self.loginButton.alpha = 0.5;
     self.emailField.delegate = self;
     self.passwordField.delegate = self;
+    
+    [self.loginButton.layer setMasksToBounds:YES];
+    [self.loginButton.layer setCornerRadius:5.0f];
 
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
             initWithTarget:self

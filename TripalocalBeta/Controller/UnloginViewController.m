@@ -18,6 +18,9 @@
     self.hostImage.layer.borderWidth = 0;
     self.hostImage.layer.borderColor = [UIColor whiteColor].CGColor;
     self.hostImage.layer.borderWidth = 3.0f;
+    
+    [self.loginButton.layer setMasksToBounds:YES];
+    [self.loginButton.layer setCornerRadius:5.0f];
 }
 
 - (void)viewWillAppear:(BOOL)animated {

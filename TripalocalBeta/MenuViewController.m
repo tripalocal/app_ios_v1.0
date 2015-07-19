@@ -23,6 +23,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [self.logoutButton.layer setMasksToBounds:YES];
+    [self.logoutButton.layer setCornerRadius:5.0f];
+    
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     UIImage* image = [UIImage imageWithData:[userDefaults objectForKey:@"user_image"]];
     NSString *origHostName = [userDefaults objectForKey:@"host_name"];

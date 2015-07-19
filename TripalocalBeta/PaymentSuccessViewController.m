@@ -23,6 +23,9 @@
     self.hostImage.layer.borderColor = [UIColor whiteColor].CGColor;
     self.hostImage.layer.borderWidth = 3.0f;
 
+    [self.viewItInMyTripButton.layer setMasksToBounds:YES];
+    [self.viewItInMyTripButton.layer setCornerRadius:5.0f];
+    
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     UIImage* image = [UIImage imageWithData:[userDefaults objectForKey:@"user_image"]];
 

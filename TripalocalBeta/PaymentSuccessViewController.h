@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface PaymentSuccessViewController : UIViewController
+@property (strong, nonatomic) IBOutlet UIButton *viewItInMyTripButton;
 
 @end

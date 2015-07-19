@@ -19,28 +19,37 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
     if (![[NSUserDefaults standardUserDefaults] boolForKey:@"HasLaunchedOnce"])
     {
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"HasLaunchedOnce"];
         [[NSUserDefaults standardUserDefaults] synchronize];
+        
+        self.pageImages = @[NSLocalizedString(@"slide1", nil), NSLocalizedString(@"slide2", nil), NSLocalizedString(@"slide3", nil)];
+        self.pageViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"page_view_controller"];
+        self.pageViewController.dataSource = self;
+        
+        PageContentViewController *startingViewController = [self viewControllerAtIndex:0];
+        NSArray *viewControllers = @[startingViewController];
+        
+        [self.pageViewController setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
+        
+        self.pageViewController.view.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - 45);
+        
+        [self addChildViewController:_pageViewController];
+        [self.view addSubview:_pageViewController.view];
+        [self.pageViewController didMoveToParentViewController:self];
     } else {
+        [self.pageViewController.view removeFromSuperview];
+        [self.pageViewController removeFromParentViewController];
         [self performSegueWithIdentifier:@"goto_home" sender:nil];
     }
-
-    self.pageImages = @[NSLocalizedString(@"slide1", nil), NSLocalizedString(@"slide2", nil), NSLocalizedString(@"slide3", nil)];
-    self.pageViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"page_view_controller"];
-    self.pageViewController.dataSource = self;
     
-    PageContentViewController *startingViewController = [self viewControllerAtIndex:0];
-    NSArray *viewControllers = @[startingViewController];
-    
-    [self.pageViewController setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
-    
-    self.pageViewController.view.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - 45);
-    
-    [self addChildViewController:_pageViewController];
-    [self.view addSubview:_pageViewController.view];
-    [self.pageViewController didMoveToParentViewController:self];
 }
 
 - (NSInteger)presentationCountForPageViewController:(UIPageViewController *)pageViewController

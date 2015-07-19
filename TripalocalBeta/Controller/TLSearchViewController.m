@@ -28,6 +28,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    HUD = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleDark];
+    HUD.HUDView.layer.shadowColor = [UIColor blackColor].CGColor;
+    HUD.HUDView.layer.shadowOffset = CGSizeZero;
+    HUD.HUDView.layer.shadowOpacity = 0.4f;
+    HUD.HUDView.layer.shadowRadius = 8.0f;
+    HUD.textLabel.text = @"Loading";
+    [HUD showInView:self.view];
     
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
@@ -37,6 +44,7 @@
     [self.tableView reloadData];
     currentLanguage = [[NSLocale preferredLanguages] objectAtIndex:0];
     dynamicPricingArray = [[NSMutableArray alloc]init];
+    [HUD dismissAfterDelay:1.0];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -151,6 +159,7 @@
     cell.wishListButton.tag = indexPath.row;
     priceString =[self decimalwithFormat:@"0" floatV:[[[self.expList objectAtIndex:indexPath.row] objectForKey:@"price"] floatValue]];
     cell.priceLabel.text = priceString;
+    //???
     [dynamicPricingArray addObject:priceString];
     
 
@@ -176,8 +185,6 @@
     
     return  [numberFormatter stringFromNumber:[NSNumber numberWithFloat:floatV]];
 }
-
-
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return [self.expList count];

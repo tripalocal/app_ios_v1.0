@@ -83,7 +83,6 @@ NSInteger const EMAIL_MAX_LENGTH = 20;
         [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
         [request setHTTPMethod:@"POST"];
         
-        // add telephone number
         NSDictionary *tmp = [[NSDictionary alloc] initWithObjectsAndKeys:
                              self.emailField.text, @"email",
                              self.passwordField.text, @"password",

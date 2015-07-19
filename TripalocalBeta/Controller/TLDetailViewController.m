@@ -52,7 +52,6 @@
     NSArray *reviews;
 }
 
-@property (strong, nonatomic) NSMutableDictionary *cachedImages;
 @end
 
 @implementation TLDetailViewController
@@ -71,17 +70,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.isExpReadMoreOpen = NO;
-    self.isHostReadMoreOpen = NO;
-
-    self.cellHeights = [@[@306, @240, @320, @385, @164, @240] mutableCopy];
-    _myTable.delegate = self;
-    _myTable.dataSource = self;
-    
-    self.cachedImages = [[NSMutableDictionary alloc]init];
-    reviews = [[NSArray alloc] init];
-    
-    //Indicator
     HUD = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleDark];
     HUD.HUDView.layer.shadowColor = [UIColor blackColor].CGColor;
     HUD.HUDView.layer.shadowOffset = CGSizeZero;
@@ -89,10 +77,20 @@
     HUD.HUDView.layer.shadowRadius = 8.0f;
     HUD.textLabel.text = @"Loading";
     [HUD showInView:self.view];
+
+    self.isExpReadMoreOpen = NO;
+    self.isHostReadMoreOpen = NO;
+
+    self.cellHeights = [@[@306, @240, @320, @385, @164, @240] mutableCopy];
+    _myTable.delegate = self;
+    _myTable.dataSource = self;
+    
+    reviews = [[NSArray alloc] init];
     
     NSString *post = [NSString stringWithFormat:@"{\"experience_id\":\"%@\"}",_experience_id_string];
-    
+#if DEBUG
     NSLog(@"(Detail)POST: %@", post);
+#endif
     NSData *postData = [post dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:YES];
     NSString *postLength = [NSString stringWithFormat:@"%lu", (unsigned long)[postData length]];
     
@@ -143,6 +141,7 @@
                 NSUInteger numberOfReviews = expReviewsArray.count;
                 numOfReviews = [NSString stringWithFormat:@"%lu",(unsigned long)numberOfReviews];
                 NSNumber *rateNumber = [allDataDictionary objectForKey:@"experience_rate"];
+                _expPrice = [self decimalwithFormat:@"0" floatV:[[allDataDictionary objectForKey:@"experience_price"] floatValue]];
                 expRate = [rateNumber stringValue];
                 NSDictionary *reviewDictionary0 = [expReviewsArray objectAtIndex:0];
                 reviews = expReviewsArray;
@@ -164,7 +163,6 @@
             @catch (NSException * e) {
                 NSLog(@"Experience/(ID:%@/) Exception: %@", _experience_id_string, e);
             }
-            [HUD dismissAfterDelay:1.5];
         } else {
             NSString *errorMsg = [result objectForKey:@"Server Error"];
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Connection Failed"
@@ -183,8 +181,10 @@
         [alert show];
     }
     
-    [HUD setHidden:YES];
+    [HUD dismissAfterDelay:1];
+#ifdef DEBUG
     NSLog(@"%@,%@,%@,%@",expTitle,_expPrice,reviewerImageURL,reviewComment);
+#endif
     
 }
 

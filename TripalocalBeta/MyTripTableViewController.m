@@ -156,7 +156,6 @@
         [cell.statusButton setTitle:NSLocalizedString(@"booking_status_confirmed", nil) forState:UIControlStateNormal];
         [cell.statusButton setBackgroundColor:[UIColor colorWithRed:0.51f green:0.82f blue:0.00f alpha:1.0f]];
     }
-    // tofix "deleted" status
     
     return cell;
 }
@@ -195,6 +194,8 @@
     MyTripViewController *mytripController = (MyTripViewController *)self.containerController;
     mytripController.segmentTitleView.hidden = NO;
     [self.navigationController setNavigationBarHidden:YES animated:animated];
+    [self.tabBarController.tabBar setHidden:NO];
+    mytripController.titleViewHeight.constant = 48.f;
     [self.tableView reloadData];
     
     [super viewWillAppear:animated];
@@ -202,9 +203,11 @@
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     [self.navigationController setNavigationBarHidden:NO animated:NO];
+    [self.tabBarController.tabBar setHidden:YES];
     
     MyTripViewController *mytripController = (MyTripViewController *)self.containerController;
     mytripController.segmentTitleView.hidden = YES;
+    mytripController.titleViewHeight.constant = 0.f;
 
     UINavigationController *navController = (UINavigationController *)segue.destinationViewController;
     TLDetailViewController *controller = (TLDetailViewController *)navController.topViewController;
@@ -214,7 +217,7 @@
     controller.experience_id_string = [trip objectForKey:@"experience_id"];
 }
 
-- (UIImage *) fetchImage:(NSString *) imageURL {
+- (UIImage *)fetchImage:(NSString *) imageURL {
     NSString *absoluteImageURL = [NSString stringWithFormat:@"%@%@", [URLConfig imageServiceURLString], imageURL];
     NSURL *url = [NSURL URLWithString:absoluteImageURL];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];

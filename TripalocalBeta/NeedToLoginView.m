@@ -12,7 +12,8 @@
 
 -(void)awakeFromNib {
     [[NSBundle mainBundle] loadNibNamed:@"NeedToLoginView" owner:self options:nil];
-    
+    [self.loginButton.layer setMasksToBounds:YES];
+    [self.loginButton.layer setCornerRadius:5.0f];
     // The following is to make sure content view, extends out all the way to fill whatever our view size is even as our view's size is changed by autolayout
     [self.contentView setTranslatesAutoresizingMaskIntoConstraints:NO];
     [self addSubview: self.contentView];

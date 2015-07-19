@@ -124,6 +124,8 @@
     
     self.signupButton.alpha = 0.5;
     [self.signupButton setEnabled:NO];
+    [self.signupButton.layer setMasksToBounds:YES];
+    [self.signupButton.layer setCornerRadius:5.0f];
     self.emailField.delegate = self;
     self.passwordField.delegate = self;
     self.firstnameField.delegate = self;

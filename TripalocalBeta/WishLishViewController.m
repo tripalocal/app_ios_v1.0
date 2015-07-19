@@ -8,6 +8,7 @@
 
 #import "WishLishViewController.h"
 #import "TLSearchViewController.h"
+#import "URLConfig.h"
 
 @interface WishLishViewController ()
 
@@ -25,11 +26,13 @@
     NSMutableArray *wishList = [userDefaults objectForKey:@"wish_list"];
     for (NSString *expID in wishList) {
         NSString *post = [NSString stringWithFormat:@"{\"experience_id\":\"%@\"}",expID];
+#ifdef DEBUG
         NSLog(@"(Detail)POST: %@", post);
+#endif
         NSData *postData = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
         NSString *postLength = [NSString stringWithFormat:@"%lu", (unsigned long)[postData length]];
         NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-        [request setURL:[NSURL URLWithString:@"https://www.tripalocal.com/service_experience/"]];
+        [request setURL:[NSURL URLWithString:[URLConfig expDetailhServiceURLString]]];
         [request setHTTPMethod:@"POST"];
         [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
         [request setValue:postLength forHTTPHeaderField:@"Content-Length"];
@@ -50,6 +53,7 @@
                 [resultExp setObject:[exp objectForKey:@"experience_title"] forKey:@"title"];
                 [resultExp setObject:[exp objectForKey:@"experience_language"] forKey:@"language"];
                 [resultExp setObject:[exp objectForKey:@"experience_description"] forKey:@"description"];
+                [resultExp setObject:[exp objectForKey:@"experience_price"] forKey:@"price"];
                 [resultExp setObject:[exp objectForKey:@"host_image"]forKey:@"host_image"];
                 [resultExp setObject:[NSNumber numberWithInt:[expID intValue]]forKey:@"id"];
                 [expList addObject:resultExp];

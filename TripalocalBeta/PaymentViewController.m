@@ -130,6 +130,9 @@
     self.monthField.delegate = self;
     self.yearField.delegate = self;
     self.ccvField.delegate = self;
+    
+    [self.confirmButton.layer setMasksToBounds:YES];
+    [self.confirmButton.layer setCornerRadius:5.0f];
 
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
                                    initWithTarget:self
