@@ -10,6 +10,7 @@
 #import "MyTripTableViewCell.h"
 #import "TLDetailViewController.h"
 #import "MyTripViewController.h"
+#import "URLConfig.h"
 #import "Constant.h"
 #import "TLHomeViewController.h"
 
@@ -36,7 +37,7 @@
 }
 
 - (void)fetchMyTrips:(NSString *) token {
-    NSURL *url = [NSURL URLWithString:NSLocalizedString(mytripService, nil)];
+    NSURL *url = [NSURL URLWithString:[URLConfig myTripServiceURLString]];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     [request setHTTPMethod:@"GET"];
     [request addValue:[NSString stringWithFormat:@"Token %@", token] forHTTPHeaderField:@"Authorization"];
@@ -107,13 +108,13 @@
     NSString *imageURL = [trip objectForKey:@"host_image"];
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        NSData *hostImageData = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString: [NSLocalizedString(imageServiceURL, nil) stringByAppendingString: imageURL]]];
+        NSData *hostImageData = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString: [[URLConfig imageServiceURLString] stringByAppendingString: imageURL]]];
         dispatch_sync(dispatch_get_main_queue(), ^{
             cell.hostImage.image = [[UIImage alloc] initWithData:hostImageData];
         });
     });
     
-    NSString *absoluteImageURL = [NSString stringWithFormat:@"%@thumbnails/experiences/experience%@_1.jpg", NSLocalizedString(imageServiceURL, nil), [trip objectForKey:@"experience_id"]];
+    NSString *absoluteImageURL = [NSString stringWithFormat:@"%@thumbnails/experiences/experience%@_1.jpg", [URLConfig imageServiceURLString], [trip objectForKey:@"experience_id"]];
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         NSData *backgroundImageData = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:absoluteImageURL]];
@@ -214,7 +215,7 @@
 }
 
 - (UIImage *) fetchImage:(NSString *) imageURL {
-    NSString *absoluteImageURL = [NSString stringWithFormat:@"%@%@", NSLocalizedString(imageServiceURL, nil), imageURL];
+    NSString *absoluteImageURL = [NSString stringWithFormat:@"%@%@", [URLConfig imageServiceURLString], imageURL];
     NSURL *url = [NSURL URLWithString:absoluteImageURL];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     [request setHTTPMethod:@"GET"];

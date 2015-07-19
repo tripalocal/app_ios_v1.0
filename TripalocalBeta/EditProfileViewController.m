@@ -7,6 +7,7 @@
 //
 
 #import "EditProfileViewController.h"
+#import "URLConfig.h"
 #import "Constant.h"
 
 @interface EditProfileViewController ()
@@ -29,7 +30,7 @@
 
 - (void) saveProfile {
     [self.navigationController popViewControllerAnimated:YES];
-    NSURL *url = [NSURL URLWithString:NSLocalizedString(myprofileServiceURL, nil)];
+    NSURL *url = [NSURL URLWithString:[URLConfig myProfileServiceURLString]];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     [request setHTTPMethod:@"POST"];
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];

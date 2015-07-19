@@ -18,7 +18,7 @@
 #import "CheckoutViewController.h"
 #import "ReviewTableViewController.h"
 #import <SDWebImage/UIImageView+WebCache.h>
-#import "Constant.h"
+#import "URLConfig.h"
 
 @interface TLDetailViewController ()
 {
@@ -95,14 +95,10 @@
     NSLog(@"(Detail)POST: %@", post);
     NSData *postData = [post dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:YES];
     NSString *postLength = [NSString stringWithFormat:@"%lu", (unsigned long)[postData length]];
+    
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-
-    if ([[[NSProcessInfo processInfo] arguments] containsObject:@"-zhVersion"]) {
-        [request setURL:[NSURL URLWithString:expDetailServiceURLCN]];
-    } else {
-        [request setURL:[NSURL URLWithString:expDetailServiceURL]];
-    }
-
+    [request setURL:[NSURL URLWithString:[URLConfig expDetailhServiceURLString]]];
+    
     [request setHTTPMethod:@"POST"];
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     [request setValue:postLength forHTTPHeaderField:@"Content-Length"];
@@ -128,7 +124,7 @@
         if ([httpResponse statusCode] == 200) {
             NSDictionary *allDataDictionary=[NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
             @try {
-                hostImageURL = [NSLocalizedString(imageBaseURL, nil) stringByAppendingString: [allDataDictionary objectForKey:@"host_image"]];
+                hostImageURL = [[URLConfig imageServiceURLString] stringByAppendingString: [allDataDictionary objectForKey:@"host_image"]];
                 expLanguage = [self transformLanugage:[allDataDictionary objectForKey:@"experience_language"]];
                 NSNumberFormatter *formatter = [[NSNumberFormatter alloc]init];
                 [formatter setNumberStyle:NSNumberFormatterDecimalStyle];
@@ -153,9 +149,9 @@
                 reviewFirst = [reviewDictionary0 objectForKey:@"reviewer_firstname"];
                 reviewLast = [reviewDictionary0 objectForKey:@"reviewer_lastname"];
                 PREreviewerImageURL =[reviewDictionary0 objectForKey:@"reviewer_image"];
-                reviewerImageURL = [NSLocalizedString(imageBaseURL, nil) stringByAppendingString: PREreviewerImageURL];
-                reviewComment = [reviewDictionary0 objectForKey:@"review_comment"];
+                reviewerImageURL = [[URLConfig imageServiceURLString] stringByAppendingString: PREreviewerImageURL];
                 
+                reviewComment = [reviewDictionary0 objectForKey:@"review_comment"];
                 ticketString = [allDataDictionary objectForKey:@"included_ticket_detail"];
                 foodString = [allDataDictionary objectForKey:@"included_food_detail"];
                 transportString = [allDataDictionary objectForKey:@"included_transport_detail"];
@@ -244,7 +240,7 @@
                               placeholderImage:[UIImage imageNamed:@"default_profile_image.png"]
                                        options:SDWebImageAvoidAutoSetImage];
             
-            NSString *coverImageURL = [NSString stringWithFormat:@"%@thumbnails/experiences/experience%@_1.jpg", NSLocalizedString(imageServiceURL, nil), _experience_id_string];
+            NSString *coverImageURL = [NSString stringWithFormat:@"%@thumbnails/experiences/experience%@_1.jpg", [URLConfig imageServiceURLString], _experience_id_string];
             
             __block UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
             activityIndicator.center = cell.coverImage.center;
@@ -348,7 +344,7 @@
                 cell4=[[TLDetailTableViewCell4 alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier4];
             }
             
-            NSString *coverImageURL = [NSString stringWithFormat:@"%@thumbnails/experiences/experience%@_1.jpg", NSLocalizedString(imageServiceURL, nil), _experience_id_string];
+            NSString *coverImageURL = [NSString stringWithFormat:@"%@thumbnails/experiences/experience%@_1.jpg", [URLConfig imageServiceURLString], _experience_id_string];
             __block UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
             activityIndicator.center = cell4.coverImage.center;
             activityIndicator.hidesWhenStopped = YES;

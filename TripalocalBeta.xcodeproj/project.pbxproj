@@ -28,6 +28,7 @@
 		8700D0C51B58E327003B6170 /* back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8700D0C31B58E327003B6170 /* back@2x.png */; };
 		8700D0C61B58E327003B6170 /* back.png in Resources */ = {isa = PBXBuildFile; fileRef = 8700D0C41B58E327003B6170 /* back.png */; };
 		870AEB791B53A81D00959465 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 870AEB7B1B53A81D00959465 /* Localizable.strings */; };
+		870F22481B5B6A2100CD1AD2 /* URLConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 870F22471B5B6A2000CD1AD2 /* URLConfig.m */; };
 		8711965A1B4FF74300BA8672 /* NeedToLoginView.m in Sources */ = {isa = PBXBuildFile; fileRef = 871196591B4FF74300BA8672 /* NeedToLoginView.m */; };
 		8711A6521B5A5DD600578BB2 /* slide03.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8711A64C1B5A5DD600578BB2 /* slide03.jpg */; };
 		8711A6531B5A5DD600578BB2 /* slide03_en.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8711A64D1B5A5DD600578BB2 /* slide03_en.jpg */; };
@@ -193,6 +194,8 @@
 		870AEB781B53A6B000959465 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		870AEB7A1B53A81D00959465 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		870AEB7C1B53A82900959465 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		870F22461B5B6A2000CD1AD2 /* URLConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = URLConfig.h; sourceTree = "<group>"; };
+		870F22471B5B6A2000CD1AD2 /* URLConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = URLConfig.m; sourceTree = "<group>"; };
 		871196581B4FF74300BA8672 /* NeedToLoginView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NeedToLoginView.h; sourceTree = "<group>"; };
 		871196591B4FF74300BA8672 /* NeedToLoginView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NeedToLoginView.m; sourceTree = "<group>"; };
 		8711A64C1B5A5DD600578BB2 /* slide03.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = slide03.jpg; path = Images/slide03.jpg; sourceTree = "<group>"; };
@@ -611,6 +614,8 @@
 				8EB570EF1B01CF2B0026D419 /* Images.xcassets */,
 				8EB570F11B01CF2B0026D419 /* LaunchScreen.xib */,
 				8EB570E21B01CF2B0026D419 /* Supporting Files */,
+				870F22461B5B6A2000CD1AD2 /* URLConfig.h */,
+				870F22471B5B6A2000CD1AD2 /* URLConfig.m */,
 			);
 			path = TripalocalBeta;
 			sourceTree = "<group>";
@@ -1032,6 +1037,7 @@
 				5649BD371B3FC40F00465D6C /* TLDetailTableViewCell0.m in Sources */,
 				87E75F761B5638AD00E53741 /* PhoneSIgnupViewController.m in Sources */,
 				8E92CF7A1B3E2B3700D4BB4B /* TLDetailViewController.m in Sources */,
+				870F22481B5B6A2100CD1AD2 /* URLConfig.m in Sources */,
 				87FC2DB71B480ABF0017F30E /* NSDataEx.m in Sources */,
 				87F356411B439D3B00949F43 /* LoginViewController.m in Sources */,
 				8729E1321B4A0374004C3065 /* MyTripViewController.m in Sources */,

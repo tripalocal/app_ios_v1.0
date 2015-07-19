@@ -7,6 +7,7 @@
 //
 
 #import "PaymentViewController.h"
+#import "URLConfig.h"
 #import "Constant.h"
 
 @interface PaymentViewController ()
@@ -62,7 +63,7 @@
     NSLog(@"Sending payment request = %@", jsonString);
 #endif
 
-    NSURL *url = [NSURL URLWithString:NSLocalizedString(paymentServiceURL, nil)];
+    NSURL *url = [NSURL URLWithString:[URLConfig bookingServiceURLString]];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     [request setHTTPMethod:@"POST"];
@@ -139,7 +140,7 @@
     NSNumberFormatter *fmt = [[NSNumberFormatter alloc] init];
     [fmt setPositiveFormat:@"0.##"];
     self.unitPriceLabel.text = [fmt stringFromNumber: self.unitPrice];
-    self.guestNumberLabel.text = [NSString stringWithFormat:@"%lu", self.guestNumber];
+    self.guestNumberLabel.text = [NSString stringWithFormat:@"%lu", (long)self.guestNumber];
     self.totalPriceLabel.text = [@"$" stringByAppendingFormat:@" %@ AUD", [fmt stringFromNumber: self.totalPrice]];
     self.totalPriceLabel.textColor = [UIColor colorWithRed:0.00f green:0.82f blue:0.82f alpha:1.0f];
 

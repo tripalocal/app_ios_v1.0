@@ -10,6 +10,7 @@
 #import "TLDetailTableViewCell3.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "Constant.h"
+#import "URLConfig.h"
 
 @interface ReviewTableViewController ()
 
@@ -45,7 +46,7 @@
     NSString *reviewFirst = [review objectForKey:@"reviewer_firstname"];
     NSString *reviewLast = [review objectForKey:@"reviewer_lastname"];
     NSString *PREreviewerImageURL =[ review objectForKey:@"reviewer_image"];
-    NSString *reviewerImageURL = [NSLocalizedString(imageServiceURL, nil) stringByAppendingString: PREreviewerImageURL];
+    NSString *reviewerImageURL = [[URLConfig imageServiceURLString] stringByAppendingString: PREreviewerImageURL];
     NSString *reviewComment = [review objectForKey:@"review_comment"];
 
     TLDetailTableViewCell3 *cell = [tableView dequeueReusableCellWithIdentifier:@"cell3" forIndexPath:indexPath];

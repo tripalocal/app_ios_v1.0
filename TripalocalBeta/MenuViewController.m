@@ -7,6 +7,7 @@
 //
 
 #import "MenuViewController.h"
+#import "URLConfig.h"
 #import "Constant.h"
 
 @interface MenuViewController ()
@@ -70,7 +71,7 @@
 }
 
 - (IBAction)logout:(id)sender {
-    NSURL *url = [NSURL URLWithString:NSLocalizedString(logoutServiceURL, nil)];
+    NSURL *url = [NSURL URLWithString:[URLConfig logoutServiceURLString]];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     [request setHTTPMethod:@"POST"];
     

@@ -9,6 +9,7 @@
 #import "PaymentOptionViewController.h"
 #import <AlipaySDK/AlipaySDK.h>
 #import "Order.h"
+#import "URLConfig.h"
 #import "DataSigner.h"
 #import "DataVerifier.h"
 
@@ -179,7 +180,7 @@
     NSLog(@"Sending alipay request to our server = %@", jsonString);
 #endif
     
-    NSURL *url = [NSURL URLWithString:NSLocalizedString(paymentServiceURL, nil)];
+    NSURL *url = [NSURL URLWithString:[URLConfig bookingServiceURLString]];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     [request setHTTPMethod:@"POST"];

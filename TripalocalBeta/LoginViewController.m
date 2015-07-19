@@ -7,6 +7,7 @@
 //
 
 #import "LoginViewController.h"
+#import "URLConfig.h"
 #import "Constant.h"
 
 @interface LoginViewController ()
@@ -24,7 +25,7 @@
 
 - (IBAction)login:(id)sender {
     [self.loginButton setEnabled:NO];
-    NSURL *url = [NSURL URLWithString:NSLocalizedString(loginServiceURL, nil)];
+    NSURL *url = [NSURL URLWithString:[URLConfig loginServiceURLString]];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
 
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];

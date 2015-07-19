@@ -11,6 +11,7 @@
 #import "TLSearchTableViewCell.h"
 #import "Spinner.h"
 #import "Constant.h"
+#import "URLConfig.h"
 #import "TLDetailViewController.h"
 #import "JGProgressHUD.h"
 
@@ -110,13 +111,13 @@
     cell.descriptionLabel.text = [exp objectForKey:@"description"];
 
     NSString *hostImageRelativeURL = [exp objectForKey:@"host_image"];
-    NSString *hostImageURL = [NSLocalizedString(imageServiceURL, nil) stringByAppendingString: hostImageRelativeURL];
+    NSString *hostImageURL = [[URLConfig imageServiceURLString] stringByAppendingString: hostImageRelativeURL];
 
     [cell.hostImage sd_setImageWithURL:[NSURL URLWithString:hostImageURL]
                       placeholderImage:[UIImage imageNamed:@"default_profile_image.png"]
                                options:SDWebImageRefreshCached];
     
-    NSString *backgroundImageURL = [NSString stringWithFormat:@"%@thumbnails/experiences/experience%@_1.jpg", NSLocalizedString(imageServiceURL, nil), expIdString];
+    NSString *backgroundImageURL = [NSString stringWithFormat:@"%@thumbnails/experiences/experience%@_1.jpg", [URLConfig imageServiceURLString], expIdString];
     
     __block UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
     activityIndicator.center = cell.experienceImage.center;
@@ -199,10 +200,10 @@
     NSString *post = nil;
     if ([[[NSProcessInfo processInfo] arguments] containsObject:@"-zhVersion"]) {
         post = [NSString stringWithFormat:@"{\"start_datetime\":\"2015-05-08\", \"end_datetime\":\"2015-05-08\", \"city\":\"%@\", \"guest_number\":\"2\", \"keywords\":\"美食美酒,名校游学,历史人文,经典建筑,蜜月旅拍,风光摄影,移民考察,亲子夏令营,户外探险,购物扫货,运动休闲,领路人自驾,刺激享乐,赛事庆典,美容保健\"}", cityName];
-            [request setURL:[NSURL URLWithString:serviceSearchURLCN]];
+            [request setURL:[NSURL URLWithString:[URLConfig searchServiceURLString]]];
     } else {
         post = [NSString stringWithFormat:@"{\"start_datetime\":\"2015-05-08\", \"end_datetime\":\"2015-05-08\", \"city\":\"%@\", \"guest_number\":\"2\", \"keywords\":\"Food & wine, Education, History & culture, Architecture, For couples, Photography worthy, Livability research, Kids friendly, Outdoor & nature, Shopping, Sports & leisure, Host with car, Extreme fun, Events, Health & beauty, Private group\"}", cityName];
-        [request setURL:[NSURL URLWithString:serviceSearchURL]];
+        [request setURL:[NSURL URLWithString:[URLConfig searchServiceURLString]]];
     }
     
 #ifdef DEBUG

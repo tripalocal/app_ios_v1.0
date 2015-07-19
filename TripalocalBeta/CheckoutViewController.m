@@ -6,6 +6,7 @@
 //  Copyright (c) 2015 Tripalocal. All rights reserved.
 //
 
+#import "URLConfig.h"
 #import "CheckoutViewController.h"
 #import "InstantBookingTableViewCell.h"
 
