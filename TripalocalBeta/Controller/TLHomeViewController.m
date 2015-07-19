@@ -92,9 +92,18 @@
         return cell2;
     } else {
         NSString *locImageURLString = [locationsURLString objectAtIndex:indexPath.row];
+        
+        __block UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+        activityIndicator.center = cell.homeLocationImage.center;
+        activityIndicator.hidesWhenStopped = YES;
         [cell.homeLocationImage sd_setImageWithURL:[NSURL URLWithString:locImageURLString]
                                   placeholderImage:nil
-                                           options:SDWebImageRefreshCached];
+                                           options:SDWebImageRefreshCached
+                                         completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+                                             [activityIndicator removeFromSuperview];
+                                         }];
+        [cell.homeLocationImage addSubview:activityIndicator];
+        [activityIndicator startAnimating];
         
         cell.homeLocationLabel.text = NSLocalizedString([locations objectAtIndex:indexPath.row], nil);
         cell.homeLocationLabel.textAlignment = NSTextAlignmentCenter;

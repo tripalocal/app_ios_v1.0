@@ -6,6 +6,7 @@ target 'TripalocalBeta' do
     pod 'FBSDKLoginKit'
     pod 'EDStarRating'
     pod 'SDWebImage', '~>3.7'
+    pod 'UIActivityIndicator-for-SDWebImage'
 end
 
 target 'TripalocalBetaTests' do

@@ -118,15 +118,21 @@
     
     NSString *backgroundImageURL = [NSString stringWithFormat:@"%@thumbnails/experiences/experience%@_1.jpg", NSLocalizedString(imageServiceURL, nil), expIdString];
     
+    __block UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    activityIndicator.center = cell.experienceImage.center;
+    activityIndicator.hidesWhenStopped = YES;
     [cell.experienceImage sd_setImageWithURL:[NSURL URLWithString:backgroundImageURL]
                             placeholderImage:nil
                                      options:SDWebImageRefreshCached
                                    completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+                                       [activityIndicator removeFromSuperview];
                                        if (image) {
                                             cell.experienceImage.image = [self croppIngimageByImageName:image toRect:cell.experienceImage.frame];
                                        }
                                    }];
 
+    [cell.experienceImage addSubview:activityIndicator];
+    [activityIndicator startAnimating];
     
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     NSMutableArray *wishList = [userDefaults objectForKey:@"wish_list"];

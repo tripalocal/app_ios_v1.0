@@ -242,19 +242,26 @@
             
             [cell.hostImage sd_setImageWithURL:[NSURL URLWithString:hostImageURL]
                               placeholderImage:[UIImage imageNamed:@"default_profile_image.png"]
-                                       options:SDWebImageRefreshCached];
+                                       options:SDWebImageAvoidAutoSetImage];
             
             NSString *coverImageURL = [NSString stringWithFormat:@"%@thumbnails/experiences/experience%@_1.jpg", NSLocalizedString(imageServiceURL, nil), _experience_id_string];
             
+            __block UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+            activityIndicator.center = cell.coverImage.center;
+            activityIndicator.hidesWhenStopped = YES;
+
             [cell.coverImage sd_setImageWithURL:[NSURL URLWithString:coverImageURL]
                               placeholderImage:nil
-                                        options:SDWebImageRefreshCached
+                                        options:SDWebImageAvoidAutoSetImage
                                       completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+                                          [activityIndicator removeFromSuperview];
                                           if (image) {
                                               cell.coverImage.image = [self croppIngimageByImageName:image toRect:cell.coverImage.frame];
                                           }
                                       }];
-
+            
+            [cell.coverImage addSubview:activityIndicator];
+            [activityIndicator startAnimating];
             
             cell.reservationLabel.text = [NSString stringWithFormat:@"%@ %@ %@", NSLocalizedString(@"reservationPrefix", nil), hostFirstName, NSLocalizedString(@"reservationSuffix",nil)];
             
@@ -342,15 +349,22 @@
             }
             
             NSString *coverImageURL = [NSString stringWithFormat:@"%@thumbnails/experiences/experience%@_1.jpg", NSLocalizedString(imageServiceURL, nil), _experience_id_string];
+            __block UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+            activityIndicator.center = cell4.coverImage.center;
+            activityIndicator.hidesWhenStopped = YES;
             
             [cell4.coverImage sd_setImageWithURL:[NSURL URLWithString:coverImageURL]
                                placeholderImage:nil
-                                        options:SDWebImageRefreshCached
+                                        options:SDWebImageAvoidAutoSetImage
                                       completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+                                          [activityIndicator removeFromSuperview];
                                           if (image) {
                                               cell4.coverImage.image = [self croppIngimageByImageName:image toRect:cell4.coverImage.frame];
                                           }
                                       }];
+            
+            [cell4.coverImage addSubview:activityIndicator];
+            [activityIndicator startAnimating];
             
             return cell4;
         }
