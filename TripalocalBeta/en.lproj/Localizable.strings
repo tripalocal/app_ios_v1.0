@@ -31,9 +31,19 @@
 
 "Add to wishlist" = "Add to wishlist";
 
+"save_profile_failed" = "Save Profile Failed";
+
 "Saved" = "Saved";
 
+"payment_failed" = "Payment Failed";
+
+"payment_failed_msg" = "Occured an error during payment.";
+
 "Hours" = " hrs";
+
+"server_error" = "Server Error";
+
+"login_failed" = "Login Failed";
 
 "reservationPrefix" = "Reservation with";
 
@@ -65,11 +75,19 @@
 
 "ok_button" = "OK";
 
+"alert" = "Alert";
+
+"alert_call" = "Call facility is not available!!!";
+
+"alert_sms" = "Message facility is not available!!!";
+
 "verfication_expire" = "Expired, please press again";
 
 "verfication_code_error" = "Wrong code";
 
 "verification_hint" = "You have %d times left";
+
+"connection_failed" = "Connection Failed";
 
 "no_network" = "No network connection";
 

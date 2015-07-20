@@ -59,18 +59,18 @@
                 [expList addObject:resultExp];
             }
             else {
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Fetching Data Failed"
-                                                                message:@"Server Error"
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"server_error", nil)
+                                                                message:NSLocalizedString(@"connection_failed", nil)
                                                                delegate:nil
-                                                      cancelButtonTitle:@"OK"
+                                                      cancelButtonTitle:NSLocalizedString(@"ok_button", nil)
                                                       otherButtonTitles:nil];
                 [alert show];
             }
         } else {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No network connection"
-                                                            message:@"You must be connected to the internet."
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"no_network", nil)
+                                                            message:NSLocalizedString(@"no_network_msg", nil)
                                                            delegate:nil
-                                                  cancelButtonTitle:@"OK"
+                                                  cancelButtonTitle:NSLocalizedString(@"ok_button", nil)
                                                   otherButtonTitles:nil];
             [alert show];
         }

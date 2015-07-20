@@ -36,7 +36,7 @@
 "7yQ-ks-VOi.placeholder" = "邮箱";
 
 /* Class = "UILabel"; text = "Email Address"; ObjectID = "832-oQ-Hha"; */
-"832-oQ-Hha.text" = "Email Address";
+"832-oQ-Hha.text" = "邮箱";
 
 /* Class = "UILabel"; text = "x"; ObjectID = "8RO-Nh-7WZ"; */
 "8RO-Nh-7WZ.text" = "x";
@@ -168,13 +168,13 @@
 "ZzR-aR-8nO.text" = "";
 
 /* Class = "UILabel"; text = "About Me"; ObjectID = "ahF-Fk-HqK"; */
-"ahF-Fk-HqK.text" = "About Me";
+"ahF-Fk-HqK.text" = "关于我";
 
 /* Class = "UILabel"; text = "Food"; ObjectID = "bII-OH-9As"; */
 "bII-OH-9As.text" = "餐饮";
 
 /* Class = "UILabel"; text = "Phone Number"; ObjectID = "bUK-z6-gAC"; */
-"bUK-z6-gAC.text" = "Phone Number";
+"bUK-z6-gAC.text" = "电话";
 
 /* Class = "UILabel"; text = "phone"; ObjectID = "bbB-KO-mIb"; */
 "bbB-KO-mIb.text" = "phone";
@@ -192,7 +192,7 @@
 "eYh-3n-yU6.normalTitle" = "取消";
 
 /* Class = "UILabel"; text = "Email Address"; ObjectID = "eba-5D-yPh"; */
-"eba-5D-yPh.text" = "Email Address";
+"eba-5D-yPh.text" = "邮箱";
 
 /* Class = "UILabel"; text = "999.99"; ObjectID = "fdx-cU-svf"; */
 "fdx-cU-svf.text" = "999.99";
@@ -258,7 +258,7 @@
 "qzN-60-yHz.text" = "$ 9999.99 AUD";
 
 /* Class = "UILabel"; text = "Phone Number"; ObjectID = "r5b-1l-hs4"; */
-"r5b-1l-hs4.text" = "Phone Number";
+"r5b-1l-hs4.text" = "电话";
 
 /* Class = "UILabel"; text = "Number"; ObjectID = "rHU-J1-hcc"; */
 "rHU-J1-hcc.text" = "Number";
@@ -316,7 +316,7 @@
 "vMH-F0-EVE.text" = "CCV";
 
 /* Class = "UILabel"; text = "About Me"; ObjectID = "vQz-gg-Nsz"; */
-"vQz-gg-Nsz.text" = "About Me";
+"vQz-gg-Nsz.text" = "关于我";
 
 /* Class = "UIButton"; normalTitle = "Start Exploring"; ObjectID = "yIH-DE-k8J"; */
 "yIH-DE-k8J.normalTitle" = "去首页逛逛";

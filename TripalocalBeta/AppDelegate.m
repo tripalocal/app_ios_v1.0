@@ -98,10 +98,10 @@
                                                      }
                                                  }
                                              } else {
-                                                 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Alipay Failed"
-                                                                                                 message:@"Occured an error during payment."
+                                                 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"payment_failed", nil)
+                                                                                                 message:NSLocalizedString(@"payment_failed_msg", nil)
                                                                                                 delegate:nil
-                                                                                       cancelButtonTitle:@"OK"
+                                                                                       cancelButtonTitle:NSLocalizedString(@"ok_button", nil)
                                                                                        otherButtonTitles:nil];
                                                  [alert show];
                                              }

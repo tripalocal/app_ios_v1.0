@@ -33,11 +33,17 @@
 
 "Saved" = "已保存至兴趣列表";
 
+"save_profile_failed" = "保存失败";
+
 "Hours" = "小时";
+
+"login_failed" = "登录失败";
 
 "reservationPrefix" = "和";
 
 "reservationSuffix" = "预定";
+
+"server_error" = "服务器出错";
 
 "booking_status_requested" = "已申请";
 
@@ -47,11 +53,17 @@
 
 "about_the_host" = "关于 ";
 
+"payment_failed" = "支付失败";
+
+"payment_failed_msg" = "支付过程中遇到问题";
+
 "n_reviews" = "%@ 条评论";
 
 "no_reviews" = "没有评论";
 
 "exp_detail_per_person_for" = "约 %@ 小时";
+
+"connection_failed" = "连接错误";
 
 "send_verification_code" = "发送验证码";
 
@@ -64,6 +76,12 @@
 "phone_no_error_msg" = "发送失败，请检查你的电话号码";
 
 "ok_button" = "确定";
+
+"alert" = "警告";
+
+"alert_call" = "电话功能无法使用";
+
+"alert_sms" = "短信功能无法使用";
 
 "verfication_expire" = "失效，点击重新发送";
 
