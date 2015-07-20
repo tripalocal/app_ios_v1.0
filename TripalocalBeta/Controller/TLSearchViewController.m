@@ -24,10 +24,14 @@
 @implementation TLSearchViewController{
     JGProgressHUD *HUD;
     NSString *currentLanguage;
+    NSDateFormatter *dateFormatter;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-LL-dd"];
     HUD = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleDark];
     HUD.HUDView.layer.shadowColor = [UIColor blackColor].CGColor;
     HUD.HUDView.layer.shadowOffset = CGSizeZero;
@@ -205,11 +209,16 @@
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
 
     NSString *post = nil;
+    NSDate *today = [NSDate date];
+
+    NSString *startDate = [dateFormatter stringFromDate:today];
+    NSString *endDate = [dateFormatter stringFromDate:today];
+    
     if ([[[NSProcessInfo processInfo] arguments] containsObject:@"-zhVersion"]) {
-        post = [NSString stringWithFormat:@"{\"start_datetime\":\"2015-05-08\", \"end_datetime\":\"2015-05-08\", \"city\":\"%@\", \"guest_number\":\"2\", \"keywords\":\"美食美酒,名校游学,历史人文,经典建筑,蜜月旅拍,风光摄影,移民考察,亲子夏令营,户外探险,购物扫货,运动休闲,领路人自驾,刺激享乐,赛事庆典,美容保健\"}", cityName];
-            [request setURL:[NSURL URLWithString:[URLConfig searchServiceURLString]]];
+        post = [NSString stringWithFormat:@"{\"start_datetime\":\"%@\", \"end_datetime\":\"%@\", \"city\":\"%@\", \"guest_number\":\"2\", \"keywords\":\"美食美酒,名校游学,历史人文,经典建筑,蜜月旅拍,风光摄影,移民考察,亲子夏令营,户外探险,购物扫货,运动休闲,领路人自驾,刺激享乐,赛事庆典,美容保健\"}", startDate, endDate ,cityName];
+        [request setURL:[NSURL URLWithString:[URLConfig searchServiceURLString]]];
     } else {
-        post = [NSString stringWithFormat:@"{\"start_datetime\":\"2015-05-08\", \"end_datetime\":\"2015-05-08\", \"city\":\"%@\", \"guest_number\":\"2\", \"keywords\":\"Food & wine, Education, History & culture, Architecture, For couples, Photography worthy, Livability research, Kids friendly, Outdoor & nature, Shopping, Sports & leisure, Host with car, Extreme fun, Events, Health & beauty, Private group\"}", cityName];
+        post = [NSString stringWithFormat:@"{\"start_datetime\":\"%@\", \"end_datetime\":\"%@\", \"city\":\"%@\", \"guest_number\":\"2\", \"keywords\":\"Food & wine, Education, History & culture, Architecture, For couples, Photography worthy, Livability research, Kids friendly, Outdoor & nature, Shopping, Sports & leisure, Host with car, Extreme fun, Events, Health & beauty, Private group\"}", startDate, endDate ,cityName];
         [request setURL:[NSURL URLWithString:[URLConfig searchServiceURLString]]];
     }
     
