@@ -297,6 +297,21 @@
 
 "k6A-h8-fQB.normalTitle" = "开始探索";
 
+"lF3-Rn-48A.title" = "结账";
+
+"91L-YO-hxn.title" = "付款方式";
+
+"wx9-sh-aCf.title" = "信用卡";
+
+"c8D-j2-AmV.title" = "兴趣列表";
+
+"qO2-vR-8Y8.title" = "体验详情";
+
+"Ph3-Ca-yM0.text" = "如果您在少于3个自然日取消预订，您将获得半额退款";
+"FL9-2M-ca7.text" = "如果您提前3至6个自然日取消预订，我们将半额退款";
+"ffg-GU-3pB.text" = "如果您提前至少7个自然日取消预订，我们将全额退款";
+"50J-hc-fwA.text" = "您提交预订后仍可更改";
+
 /* Class = "UILabel"; text = "CCV"; ObjectID = "vMH-F0-EVE"; */
 "vMH-F0-EVE.text" = "CCV";
 

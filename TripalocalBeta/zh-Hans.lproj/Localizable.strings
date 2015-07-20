@@ -5,7 +5,7 @@
   Created by Ye He on 13/07/2015.
   Copyright (c) 2015 Tripalocal. All rights reserved.
 */
-"search_hint" = "Where are you goning?";
+"search_hint" = "想去哪儿?";
 
 "slide1" = "slide01.jpg";
 
@@ -13,19 +13,19 @@
 
 "slide3" = "slide03.jpg";
 
-"Melbourne" = "墨尔本";
+"melbourne" = "墨尔本";
 
-"Sydney" = "悉尼";
+"sydney" = "悉尼";
 
-"Brisbane" = "布里斯班";
+"brisbane" = "布里斯班";
 
-"Adelaide" = "阿德莱德";
+"adelaide" = "阿德莱德";
 
-"Cairns" = "凯恩斯";
+"cairns" = "凯恩斯";
 
-"Goldcoast" = "黄金海岸";
+"goldcoast" = "黄金海岸";
 
-"Hobart" = "霍巴特";
+"hobart" = "霍巴特";
 
 "Forgot password?" = "忘记密码?";
 

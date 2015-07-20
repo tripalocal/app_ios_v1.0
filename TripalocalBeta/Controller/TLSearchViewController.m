@@ -123,11 +123,17 @@
     cell.descriptionLabel.text = [exp objectForKey:@"description"];
 
     NSString *hostImageRelativeURL = [exp objectForKey:@"host_image"];
-    NSString *hostImageURL = [[URLConfig imageServiceURLString] stringByAppendingString: hostImageRelativeURL];
+    if (hostImageRelativeURL.length > 0) {
+        NSString *hostImageURL = [[URLConfig imageServiceURLString] stringByAppendingString: hostImageRelativeURL];
+        
+        [cell.hostImage sd_setImageWithURL:[NSURL URLWithString:hostImageURL]
+                          placeholderImage:[UIImage imageNamed:@"default_profile_image.png"]
+                                   options:SDWebImageRefreshCached];
+    } else {
+        cell.hostImage.image = [UIImage imageNamed:@"default_profile_image.png"];
+    }
 
-    [cell.hostImage sd_setImageWithURL:[NSURL URLWithString:hostImageURL]
-                      placeholderImage:[UIImage imageNamed:@"default_profile_image.png"]
-                               options:SDWebImageRefreshCached];
+
     
     NSString *backgroundImageURL = [NSString stringWithFormat:@"%@thumbnails/experiences/experience%@_1.jpg", [URLConfig imageServiceURLString], expIdString];
     

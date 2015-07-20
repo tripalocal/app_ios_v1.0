@@ -11,6 +11,7 @@
 #import "TLSearchViewController.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "Constant.h"
+#import "Location.h"
 
 @interface TLHomeViewController () {
     NSMutableArray *locations;
@@ -27,14 +28,22 @@
     
     locations = [[NSMutableArray alloc]init];
     locationsURLString = [[NSMutableArray alloc]init];
-
-    self.tableView.dataSource=self;
-    self.tableView.delegate=self;
     
-    locations = [@[@"Melbourne", @"Sydney", @"Brisbane", @"Adelaide",
-                   @"Cairns", @"Goldcoast", @"Hobart"] mutableCopy];
+    [locations addObject:[[Location alloc] initWithLoc:@"Melbourne" andLocName:NSLocalizedString(@"melbourne",  nil)]];
+    [locations addObject:[[Location alloc] initWithLoc:@"Sydney" andLocName:NSLocalizedString(@"sydney",  nil)]];
+    [locations addObject:[[Location alloc] initWithLoc:@"Brisbane" andLocName:NSLocalizedString(@"brisbane",  nil)]];
+    [locations addObject:[[Location alloc] initWithLoc:@"Adelaide" andLocName:NSLocalizedString(@"adelaide",  nil)]];
+    [locations addObject:[[Location alloc] initWithLoc:@"Cairns" andLocName:NSLocalizedString(@"cairns",  nil)]];
+    [locations addObject:[[Location alloc] initWithLoc:@"Goldcoast" andLocName:NSLocalizedString(@"goldcoast",  nil)]];
+    [locations addObject:[[Location alloc] initWithLoc:@"Hobart" andLocName:NSLocalizedString(@"hobart",  nil)]];
     
     filteredLocations = [locations mutableCopy];
+    
+    self.tableView.dataSource=self;
+    self.tableView.delegate=self;
+//    
+//    locations = [@[@"Melbourne", @"Sydney", @"Brisbane", @"Adelaide",
+//                   @"Cairns", @"Goldcoast", @"Hobart"] mutableCopy];
     
     [locationsURLString addObject:@"https://www.tripalocal.com/images/mobile/home/Melbourne.jpg"];
     [locationsURLString addObject:@"https://www.tripalocal.com/images/mobile/home/Sydney.jpg"];
@@ -84,9 +93,11 @@
     
     if (self.searchController.active) {
         if (self.searchController.searchBar.text.length == 0) {
-            cell2.textLabel.text = locations[indexPath.row];
+            Location *loc = (Location *)locations[indexPath.row];
+            cell2.textLabel.text = loc.locationName;
         } else {
-            cell2.textLabel.text = filteredLocations[indexPath.row];
+            Location *loc = (Location *)filteredLocations[indexPath.row];
+            cell2.textLabel.text = loc.locationName;
         }
         cell2.imageView.image = [UIImage imageNamed:@"location.png"];
         return cell2;
@@ -105,7 +116,8 @@
         [cell.homeLocationImage addSubview:activityIndicator];
         [activityIndicator startAnimating];
         
-        cell.homeLocationLabel.text = NSLocalizedString([locations objectAtIndex:indexPath.row], nil);
+        Location *loc = (Location *)locations[indexPath.row];
+        cell.homeLocationLabel.text = loc.locationName;
         cell.homeLocationLabel.textAlignment = NSTextAlignmentCenter;
         return cell;
     }
@@ -119,7 +131,6 @@
     }
 }
 
-
 - (void)updateSearchResultsForSearchController:(UISearchController *)searchController {
     NSString *searchString = searchController.searchBar.text;
     [self searchForText:searchString];
@@ -127,7 +138,7 @@
 }
 
 - (void)searchForText:(NSString *)searchText {
-    NSPredicate *startsWith = [NSPredicate predicateWithFormat:@"SELF beginswith[c] %@", searchText];
+    NSPredicate *startsWith = [NSPredicate predicateWithFormat:@"locationName beginswith[c] %@", searchText];
     
     filteredLocations = [[locations filteredArrayUsingPredicate:startsWith] mutableCopy];
 }
@@ -145,15 +156,19 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     NSString *city;
     if (self.searchController.active) {
         if (self.searchController.searchBar.text.length == 0) {
-            city = locations[indexPath.row];
+            Location *loc = (Location *)locations[indexPath.row];
+            city = loc.location;
         } else {
-            city = filteredLocations[indexPath.row];
+            Location *loc = (Location *)filteredLocations[indexPath.row];
+            city = loc.location;
         }
     } else {
-        city = locations[indexPath.row];
+        Location *loc = (Location *)locations[indexPath.row];
+        city = loc.location;
     }
     
     [self performSegueWithIdentifier:@"searchToExpList" sender:city];
@@ -178,10 +193,7 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"searchToExpList"]) {
         TLSearchViewController *vc=[segue destinationViewController];
-        
-        NSIndexPath *index=[self.tableView indexPathForSelectedRow];
-        NSString *cityName = [locations objectAtIndex:index.row];
-        vc.cityName = cityName;
+        vc.cityName = (NSString *)sender;
     }
 }
 

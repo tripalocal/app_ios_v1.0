@@ -57,6 +57,7 @@
 		87EF8C6D1B5C805500292225 /* Utility.m in Sources */ = {isa = PBXBuildFile; fileRef = 87EF8C6C1B5C805500292225 /* Utility.m */; };
 		87EF8C711B5C8D6200292225 /* slide03@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 87EF8C6F1B5C8D6200292225 /* slide03@2x.jpg */; };
 		87EF8C721B5C8D6200292225 /* slide03_en@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 87EF8C701B5C8D6200292225 /* slide03_en@2x.jpg */; };
+		87EF8C751B5CCD1E00292225 /* Location.m in Sources */ = {isa = PBXBuildFile; fileRef = 87EF8C741B5CCD1E00292225 /* Location.m */; };
 		87F356401B439D3B00949F43 /* Constant.m in Sources */ = {isa = PBXBuildFile; fileRef = 87F356391B439D3B00949F43 /* Constant.m */; };
 		87F356411B439D3B00949F43 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87F3563B1B439D3B00949F43 /* LoginViewController.m */; };
 		87F356421B439D3B00949F43 /* PaymentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87F3563D1B439D3B00949F43 /* PaymentViewController.m */; };
@@ -244,6 +245,8 @@
 		87EF8C6C1B5C805500292225 /* Utility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utility.m; sourceTree = "<group>"; };
 		87EF8C6F1B5C8D6200292225 /* slide03@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "slide03@2x.jpg"; path = "Images/slide03@2x.jpg"; sourceTree = "<group>"; };
 		87EF8C701B5C8D6200292225 /* slide03_en@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "slide03_en@2x.jpg"; path = "Images/slide03_en@2x.jpg"; sourceTree = "<group>"; };
+		87EF8C731B5CCD1E00292225 /* Location.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Location.h; sourceTree = "<group>"; };
+		87EF8C741B5CCD1E00292225 /* Location.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Location.m; sourceTree = "<group>"; };
 		87F356381B439D3B00949F43 /* Constant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constant.h; sourceTree = "<group>"; };
 		87F356391B439D3B00949F43 /* Constant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constant.m; sourceTree = "<group>"; };
 		87F3563A1B439D3B00949F43 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
@@ -705,6 +708,8 @@
 		8EC86D4F1B021DD000B0A655 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				87EF8C731B5CCD1E00292225 /* Location.h */,
+				87EF8C741B5CCD1E00292225 /* Location.m */,
 				87FC2D4A1B4803190017F30E /* Order.h */,
 				87FC2D4B1B4803190017F30E /* Order.m */,
 				8EB570E61B01CF2B0026D419 /* AppDelegate.h */,
@@ -1035,6 +1040,7 @@
 				87FC2D201B476A3B0017F30E /* CheckoutViewController.m in Sources */,
 				87FFF3D71B4D549C00326104 /* PaymentSuccessViewController.m in Sources */,
 				87F356521B43AAD300949F43 /* ProfileViewController.m in Sources */,
+				87EF8C751B5CCD1E00292225 /* Location.m in Sources */,
 				874265871B4D272F00D76C72 /* MenuViewController.m in Sources */,
 				5649BD461B3FD5CA00465D6C /* TLDetailTableViewCell5.m in Sources */,
 				8711965A1B4FF74300BA8672 /* NeedToLoginView.m in Sources */,
