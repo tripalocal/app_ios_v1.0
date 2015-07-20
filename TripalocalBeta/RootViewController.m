@@ -19,7 +19,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -39,11 +38,15 @@
         
         [self.pageViewController setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
         
-        self.pageViewController.view.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - 45);
+        self.pageViewController.view.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height + 37);
         
         [self addChildViewController:_pageViewController];
         [self.view addSubview:_pageViewController.view];
         [self.pageViewController didMoveToParentViewController:self];
+        
+        [self.pageControl setNumberOfPages:[self.pageImages count]];
+        [self.view bringSubviewToFront:self.pageControl];
+//        [self.view bringSubviewToFront:self.btnSkip];
     } else {
         [self.pageViewController.view removeFromSuperview];
         [self.pageViewController removeFromParentViewController];
@@ -71,6 +74,7 @@
     PageContentViewController *pageContentViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"page_content_controller"];
     pageContentViewController.imageFile = self.pageImages[index];
     pageContentViewController.pageIndex = index;
+    pageContentViewController.rootVC = self;
     
     return pageContentViewController;
 }
@@ -80,6 +84,7 @@
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerBeforeViewController:(UIViewController *)viewController
 {
     NSUInteger index = ((PageContentViewController*) viewController).pageIndex;
+    [self.pageControl setCurrentPage:index];
     
     if ((index == 0) || (index == NSNotFound)) {
         return nil;
@@ -92,6 +97,7 @@
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerAfterViewController:(UIViewController *)viewController
 {
     NSUInteger index = ((PageContentViewController*) viewController).pageIndex;
+    [self.pageControl setCurrentPage:index];
     
     if (index == NSNotFound) {
         return nil;
@@ -104,28 +110,14 @@
     return [self viewControllerAtIndex:index];
 }
 
-- (IBAction)startExploring:(id)sender {
+- (void)startExploring {
     [self.pageViewController.view removeFromSuperview];
     [self.pageViewController removeFromParentViewController];
-    
-//    HomeViewController *homeVC = [self.storyboard instantiateViewControllerWithIdentifier:@"home_controller"];
-//    
-//    [self presentViewController:homeVC animated:YES completion:nil];
     [self performSegueWithIdentifier:@"goto_home" sender:self];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

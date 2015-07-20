@@ -1431,15 +1431,33 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="sZT-k1-kOE">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WG1-Vr-AMX">
+                                <rect key="frame" x="220" y="410" width="160" height="40"/>
+                                <color key="backgroundColor" red="0.20000000000000001" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="160" id="NOI-Lf-K6q"/>
+                                    <constraint firstAttribute="height" constant="40" id="tQt-Zn-HnB"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Start Exploring">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="startExploring:" destination="ucv-vV-WLc" eventType="touchUpInside" id="huf-LM-oy5"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="sZT-k1-kOE" firstAttribute="top" secondItem="eZK-yW-IiR" secondAttribute="bottom" id="7Mk-ie-ah7"/>
+                            <constraint firstAttribute="centerX" secondItem="WG1-Vr-AMX" secondAttribute="centerX" id="LaD-B6-0O5"/>
                             <constraint firstItem="sZT-k1-kOE" firstAttribute="top" secondItem="eZK-yW-IiR" secondAttribute="bottom" id="MbE-aL-dXy"/>
                             <constraint firstItem="sZT-k1-kOE" firstAttribute="top" secondItem="T3L-gi-4li" secondAttribute="top" id="N7P-AJ-rW3"/>
                             <constraint firstItem="sZT-k1-kOE" firstAttribute="leading" secondItem="T3L-gi-4li" secondAttribute="leading" id="Ry1-OP-q52"/>
                             <constraint firstAttribute="bottom" secondItem="sZT-k1-kOE" secondAttribute="bottom" id="bRs-CG-kzh"/>
                             <constraint firstAttribute="trailing" secondItem="sZT-k1-kOE" secondAttribute="trailing" id="noy-uc-58B"/>
+                            <constraint firstItem="W6d-AM-5Ot" firstAttribute="top" secondItem="WG1-Vr-AMX" secondAttribute="bottom" constant="150" id="zIL-Jy-3AY"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
@@ -1449,6 +1467,7 @@
                         </variation>
                     </view>
                     <connections>
+                        <outlet property="startExploringButton" destination="WG1-Vr-AMX" id="e5J-Pf-7Ik"/>
                         <outlet property="tutorialImage" destination="sZT-k1-kOE" id="q6Z-P7-0eF"/>
                     </connections>
                 </viewController>
@@ -1468,29 +1487,23 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k6A-h8-fQB">
-                                <rect key="frame" x="0.0" y="555" width="600" height="45"/>
+                            <pageControl contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="bNn-X9-A6x">
+                                <rect key="frame" x="0.0" y="560" width="600" height="40"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="45" id="NLU-kI-z46"/>
+                                    <constraint firstAttribute="height" constant="40" id="rzX-uE-nCe"/>
                                 </constraints>
-                                <state key="normal" title="Start Exploring">
-                                    <color key="titleColor" red="0.20000000000000001" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="startExploring:" destination="eWM-6t-tjw" eventType="touchUpInside" id="ycW-cS-6BP"/>
-                                </connections>
-                            </button>
+                            </pageControl>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="k6A-h8-fQB" secondAttribute="trailing" id="0Uj-gB-MBo"/>
-                            <constraint firstItem="RNS-0M-Ede" firstAttribute="top" secondItem="k6A-h8-fQB" secondAttribute="bottom" id="5a1-Xx-0jQ"/>
-                            <constraint firstItem="k6A-h8-fQB" firstAttribute="leading" secondItem="FeP-LJ-LMd" secondAttribute="leading" id="dGP-Hl-gVU"/>
+                            <constraint firstAttribute="trailing" secondItem="bNn-X9-A6x" secondAttribute="trailing" id="6Sv-j6-gPj"/>
+                            <constraint firstItem="RNS-0M-Ede" firstAttribute="top" secondItem="bNn-X9-A6x" secondAttribute="bottom" id="IfX-8B-L6r"/>
+                            <constraint firstItem="bNn-X9-A6x" firstAttribute="leading" secondItem="FeP-LJ-LMd" secondAttribute="leading" id="l5X-4t-ZjT"/>
                         </constraints>
                     </view>
                     <connections>
-                        <segue destination="MaF-g6-zXX" kind="show" identifier="goto_home" id="UmL-71-rRw"/>
+                        <outlet property="pageControl" destination="bNn-X9-A6x" id="YCr-20-Bd5"/>
+                        <segue destination="MaF-g6-zXX" kind="show" identifier="goto_home" id="Ve4-HV-KvL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tlL-ZQ-eWX" userLabel="First Responder" sceneMemberID="firstResponder"/>

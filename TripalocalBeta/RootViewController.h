@@ -10,5 +10,7 @@
 
 @interface RootViewController : UIViewController <UIPageViewControllerDataSource>
 @property (strong, nonatomic) NSArray *pageImages;
+@property (strong, nonatomic) IBOutlet UIPageControl *pageControl;
 @property (strong, nonatomic) UIPageViewController *pageViewController;
+- (void)startExploring;
 @end

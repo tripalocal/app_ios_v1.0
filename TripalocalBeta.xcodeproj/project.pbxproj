@@ -54,6 +54,9 @@
 		87E75F761B5638AD00E53741 /* PhoneSIgnupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87E75F751B5638AD00E53741 /* PhoneSIgnupViewController.m */; };
 		87E75F781B56724500E53741 /* tripalocal_logo_zh.png in Resources */ = {isa = PBXBuildFile; fileRef = 87E75F771B56724500E53741 /* tripalocal_logo_zh.png */; };
 		87E75F7A1B5672D500E53741 /* backgroundImage.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 87E75F791B5672D500E53741 /* backgroundImage.jpg */; };
+		87EF8C6D1B5C805500292225 /* Utility.m in Sources */ = {isa = PBXBuildFile; fileRef = 87EF8C6C1B5C805500292225 /* Utility.m */; };
+		87EF8C711B5C8D6200292225 /* slide03@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 87EF8C6F1B5C8D6200292225 /* slide03@2x.jpg */; };
+		87EF8C721B5C8D6200292225 /* slide03_en@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 87EF8C701B5C8D6200292225 /* slide03_en@2x.jpg */; };
 		87F356401B439D3B00949F43 /* Constant.m in Sources */ = {isa = PBXBuildFile; fileRef = 87F356391B439D3B00949F43 /* Constant.m */; };
 		87F356411B439D3B00949F43 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87F3563B1B439D3B00949F43 /* LoginViewController.m */; };
 		87F356421B439D3B00949F43 /* PaymentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87F3563D1B439D3B00949F43 /* PaymentViewController.m */; };
@@ -237,6 +240,10 @@
 		87E75F751B5638AD00E53741 /* PhoneSIgnupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhoneSIgnupViewController.m; sourceTree = "<group>"; };
 		87E75F771B56724500E53741 /* tripalocal_logo_zh.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = tripalocal_logo_zh.png; path = Images/tripalocal_logo_zh.png; sourceTree = "<group>"; };
 		87E75F791B5672D500E53741 /* backgroundImage.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = backgroundImage.jpg; path = Images/backgroundImage.jpg; sourceTree = "<group>"; };
+		87EF8C6B1B5C805500292225 /* Utility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utility.h; sourceTree = "<group>"; };
+		87EF8C6C1B5C805500292225 /* Utility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utility.m; sourceTree = "<group>"; };
+		87EF8C6F1B5C8D6200292225 /* slide03@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "slide03@2x.jpg"; path = "Images/slide03@2x.jpg"; sourceTree = "<group>"; };
+		87EF8C701B5C8D6200292225 /* slide03_en@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "slide03_en@2x.jpg"; path = "Images/slide03_en@2x.jpg"; sourceTree = "<group>"; };
 		87F356381B439D3B00949F43 /* Constant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constant.h; sourceTree = "<group>"; };
 		87F356391B439D3B00949F43 /* Constant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constant.m; sourceTree = "<group>"; };
 		87F3563A1B439D3B00949F43 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
@@ -604,6 +611,8 @@
 		8EB570E11B01CF2B0026D419 /* TripalocalBeta */ = {
 			isa = PBXGroup;
 			children = (
+				87EF8C6B1B5C805500292225 /* Utility.h */,
+				87EF8C6C1B5C805500292225 /* Utility.m */,
 				87FC2D551B480ABE0017F30E /* Util */,
 				87FC2D671B480ABE0017F30E /* openssl */,
 				87F356381B439D3B00949F43 /* Constant.h */,
@@ -632,6 +641,8 @@
 				8700D0C01B58C395003B6170 /* star_w@2x.png */,
 				8711A64C1B5A5DD600578BB2 /* slide03.jpg */,
 				8711A64D1B5A5DD600578BB2 /* slide03_en.jpg */,
+				87EF8C6F1B5C8D6200292225 /* slide03@2x.jpg */,
+				87EF8C701B5C8D6200292225 /* slide03_en@2x.jpg */,
 				8711A64E1B5A5DD600578BB2 /* slide02.jpg */,
 				8711A64F1B5A5DD600578BB2 /* slide02_en.jpg */,
 				8711A6501B5A5DD600578BB2 /* slide01.jpg */,
@@ -928,6 +939,7 @@
 				8EC86DBD1B02350000B0A655 /* unwishlisted.png in Resources */,
 				8EC86DB61B02350000B0A655 /* myprofile.png in Resources */,
 				8711A6571B5A5DD600578BB2 /* slide01_en.jpg in Resources */,
+				87EF8C721B5C8D6200292225 /* slide03_en@2x.jpg in Resources */,
 				568AE82C1B52061E00D48DBC /* flash.png in Resources */,
 				87E75F7A1B5672D500E53741 /* backgroundImage.jpg in Resources */,
 				8EB570F31B01CF2B0026D419 /* LaunchScreen.xib in Resources */,
@@ -949,6 +961,7 @@
 				8711A6531B5A5DD600578BB2 /* slide03_en.jpg in Resources */,
 				8788B9D21B48EE570002B4D1 /* alipay.jpg in Resources */,
 				8EC86DBB1B02350000B0A655 /* time.png in Resources */,
+				87EF8C711B5C8D6200292225 /* slide03@2x.jpg in Resources */,
 				8E4371381B4CB9F6003A3C8A /* meals.png in Resources */,
 				8EC86DBA1B02350000B0A655 /* search.png in Resources */,
 				8711A6561B5A5DD600578BB2 /* slide01.jpg in Resources */,
@@ -1029,6 +1042,7 @@
 				5649BD3A1B3FC42600465D6C /* TLDetailTableViewCell1.m in Sources */,
 				8729E13C1B4A6335004C3065 /* MyTripTableViewCell.m in Sources */,
 				87FC2DB41B480ABF0017F30E /* DataSigner.m in Sources */,
+				87EF8C6D1B5C805500292225 /* Utility.m in Sources */,
 				87FC2DB31B480ABF0017F30E /* base64.m in Sources */,
 				87F356431B439D3B00949F43 /* SignUpViewController.m in Sources */,
 				8711A65E1B5A69DA00578BB2 /* RootViewController.m in Sources */,
