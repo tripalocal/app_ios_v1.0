@@ -7,6 +7,8 @@
 //
 
 #import "PaymentViewController.h"
+#import "PaymentSuccessViewController.h"
+#import "URLConfig.h"
 #import "Constant.h"
 
 @interface PaymentViewController ()
@@ -62,7 +64,7 @@
     NSLog(@"Sending payment request = %@", jsonString);
 #endif
 
-    NSURL *url = [NSURL URLWithString:NSLocalizedString(paymentServiceURL, nil)];
+    NSURL *url = [NSURL URLWithString:[URLConfig bookingServiceURLString]];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     [request setHTTPMethod:@"POST"];
@@ -90,10 +92,10 @@
             [self performSegueWithIdentifier:@"paymentSuccess" sender:nil];
         } else {
             NSString *errorMsg = result[@"error"];
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Payment Failed"
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"payment_failed", nil)
                                                             message:errorMsg
                                                            delegate:nil
-                                                  cancelButtonTitle:@"OK"
+                                                  cancelButtonTitle:NSLocalizedString(@"ok_button", nil)
                                                   otherButtonTitles:nil];
             [alert show];
         }
@@ -104,10 +106,10 @@
         NSLog(@"Receiving data = %@", decodedData);
 #endif
     } else {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No network connection"
-                                                        message:@"You must be connected to the internet."
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"no_network", nil)
+                                                        message:NSLocalizedString(@"no_network_msg", nil)
                                                        delegate:nil
-                                              cancelButtonTitle:@"OK"
+                                              cancelButtonTitle:NSLocalizedString(@"ok_button", nil)
                                               otherButtonTitles:nil];
         [alert show];
     }
@@ -121,6 +123,13 @@
     [self postPaymentInfo];
 }
 
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if([segue.identifier isEqualToString:@"paymentSuccess"]){
+        PaymentSuccessViewController *paymentSuccessVC = (PaymentSuccessViewController *)segue.destinationViewController;
+        paymentSuccessVC.hostName = self.hostName;
+    }
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.confirmButton setEnabled:NO];
@@ -129,6 +138,9 @@
     self.monthField.delegate = self;
     self.yearField.delegate = self;
     self.ccvField.delegate = self;
+    
+    [self.confirmButton.layer setMasksToBounds:YES];
+    [self.confirmButton.layer setCornerRadius:5.0f];
 
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
                                    initWithTarget:self
@@ -139,7 +151,7 @@
     NSNumberFormatter *fmt = [[NSNumberFormatter alloc] init];
     [fmt setPositiveFormat:@"0.##"];
     self.unitPriceLabel.text = [fmt stringFromNumber: self.unitPrice];
-    self.guestNumberLabel.text = [NSString stringWithFormat:@"%lu", self.guestNumber];
+    self.guestNumberLabel.text = [NSString stringWithFormat:@"%lu", (long)self.guestNumber];
     self.totalPriceLabel.text = [@"$" stringByAppendingFormat:@" %@ AUD", [fmt stringFromNumber: self.totalPrice]];
     self.totalPriceLabel.textColor = [UIColor colorWithRed:0.00f green:0.82f blue:0.82f alpha:1.0f];
 

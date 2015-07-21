@@ -5,43 +5,45 @@
   Created by Ye He on 13/07/2015.
   Copyright (c) 2015 Tripalocal. All rights reserved.
 */
+"search_hint" = "Where are you goning?";
 
-"Melbourne" = "Melbourne";
+"slide1" = "slide01_en.jpg";
 
-"Sydney" = "Sydney";
+"slide2" = "slide02_en.jpg";
 
-"Brisbane" = "Brisbane";
+"slide3" = "slide03_en.jpg";
 
-"Adelaide" = "Adelaide";
+"melbourne" = "Melbourne";
 
-"Cairns" = "Cairns";
+"sydney" = "Sydney";
 
-"Goldcoast" = "Goldcoast";
+"brisbane" = "Brisbane";
 
-"Hobart" = "Hobart";
+"adelaide" = "Adelaide";
 
+"cairns" = "Cairns";
 
-"https://www.tripalocal.com/service_login/" = "https://www.tripalocal.com/service_login/";
+"goldcoast" = "Goldcoast";
 
-"https://www.tripalocal.com/service_myprofile/" = "https://www.tripalocal.com/service_myprofile/";
-
-"https://www.tripalocal.com/service_logout/" = "https://www.tripalocal.com/service_logout/";
-
-"https://www.tripalocal.com/service_signup/" = "https://www.tripalocal.com/service_signup/";
-
-"https://www.tripalocal.com/images/" = "https://www.tripalocal.com/images/";
-
-"https://www.tripalocal.com/service_booking/" = "https://www.tripalocal.com/service_booking/";
-
-"https://www.tripalocal.com/service_mytrip/" = "https://www.tripalocal.com/service_mytrip/";
+"hobart" = "Hobart";
 
 "Forgot password?" = "Forgot password?";
 
 "Add to wishlist" = "Add to wishlist";
 
+"save_profile_failed" = "Save Profile Failed";
+
 "Saved" = "Saved";
 
+"payment_failed" = "Payment Failed";
+
+"payment_failed_msg" = "Occured an error during payment.";
+
 "Hours" = " hrs";
+
+"server_error" = "Server Error";
+
+"login_failed" = "Login Failed";
 
 "reservationPrefix" = "Reservation with";
 
@@ -73,11 +75,19 @@
 
 "ok_button" = "OK";
 
+"alert" = "Alert";
+
+"alert_call" = "Call facility is not available!!!";
+
+"alert_sms" = "Message facility is not available!!!";
+
 "verfication_expire" = "Expired, please press again";
 
 "verfication_code_error" = "Wrong code";
 
 "verification_hint" = "You have %d times left";
+
+"connection_failed" = "Connection Failed";
 
 "no_network" = "No network connection";
 

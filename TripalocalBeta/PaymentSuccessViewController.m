@@ -23,6 +23,9 @@
     self.hostImage.layer.borderColor = [UIColor whiteColor].CGColor;
     self.hostImage.layer.borderWidth = 3.0f;
 
+    [self.viewItInMyTripButton.layer setMasksToBounds:YES];
+    [self.viewItInMyTripButton.layer setCornerRadius:5.0f];
+    
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     UIImage* image = [UIImage imageWithData:[userDefaults objectForKey:@"user_image"]];
 
@@ -31,7 +34,7 @@
     } else {
         self.hostImage.image = [UIImage imageNamed: @"default_profile_image.png"];
     }
-    
+    self.sentToNameLabel.text = [self.sentToNameLabel.text stringByAppendingString:_hostName];
 }
 
 - (void)didReceiveMemoryWarning {

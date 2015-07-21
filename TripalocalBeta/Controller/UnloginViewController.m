@@ -18,6 +18,9 @@
     self.hostImage.layer.borderWidth = 0;
     self.hostImage.layer.borderColor = [UIColor whiteColor].CGColor;
     self.hostImage.layer.borderWidth = 3.0f;
+    
+    [self.loginButton.layer setMasksToBounds:YES];
+    [self.loginButton.layer setCornerRadius:5.0f];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -41,15 +44,31 @@
         
         [self.tabBarController setViewControllers:listOfViewControllers];
     } else {
-        if ([[[NSProcessInfo processInfo] arguments] containsObject:@"-zhVersion"]) {
+#ifdef CN_VERSION
             
             SmsVerificationViewController *smsVerificationVC = [self.storyboard instantiateViewControllerWithIdentifier:@"smsVerificationViewController"];
             [self presentViewController:smsVerificationVC animated:YES completion:nil];
             
-        } else {
+#else
             [self.navigationController setNavigationBarHidden:YES animated:animated];
-        }
+#endif
     }
 }
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    NSString *token = [userDefaults stringForKey:@"user_token"];
+    
+#ifdef CN_VERSION
+        if (token) {
+            
+        } else {
+            SmsVerificationViewController *smsVerificationVC = [self.storyboard instantiateViewControllerWithIdentifier:@"smsVerificationViewController"];
+            [self presentViewController:smsVerificationVC animated:YES completion:nil];
+        }
+#endif
+}
+
 
 @end

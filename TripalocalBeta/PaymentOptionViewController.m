@@ -7,8 +7,10 @@
 //
 
 #import "PaymentOptionViewController.h"
+#import "PaymentSuccessViewController.h"
 #import <AlipaySDK/AlipaySDK.h>
 #import "Order.h"
+#import "URLConfig.h"
 #import "DataSigner.h"
 #import "DataVerifier.h"
 
@@ -134,11 +136,12 @@
                         }
                     }
                 } else {
-                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Alipay Failed"
-                                                                    message:@"Occured an error during payment."
+                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"payment_failed", nil)
+                                                                    message:NSLocalizedString(@"payment_failed_msg", nil)
                                                                    delegate:nil
-                                                          cancelButtonTitle:@"OK"
+                                                          cancelButtonTitle:NSLocalizedString(@"ok_button", nil)
                                                           otherButtonTitles:nil];
+                    
                     [alert show];
                 }
             }];
@@ -179,7 +182,7 @@
     NSLog(@"Sending alipay request to our server = %@", jsonString);
 #endif
     
-    NSURL *url = [NSURL URLWithString:NSLocalizedString(paymentServiceURL, nil)];
+    NSURL *url = [NSURL URLWithString:[URLConfig bookingServiceURLString]];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     [request setHTTPMethod:@"POST"];
@@ -212,10 +215,10 @@
         NSLog(@"Receiving data = %@", decodedData);
 #endif
     } else {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No network connection"
-                                                        message:@"You must be connected to the internet."
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"no_network", nil)
+                                                        message:NSLocalizedString(@"no_network_msg", nil)
                                                        delegate:nil
-                                              cancelButtonTitle:@"OK"
+                                              cancelButtonTitle:NSLocalizedString(@"ok_button", nil)
                                               otherButtonTitles:nil];
         [alert show];
     }
@@ -244,7 +247,7 @@
     if([segue.identifier isEqualToString:@"payByCreditCard"]){
         UINavigationController *navController = (UINavigationController *)segue.destinationViewController;
         PaymentViewController *controller = (PaymentViewController *)navController.topViewController;
-        
+        controller.hostName = self.hostName;
         controller.expId = self.expId;
         controller.guestNumber = self.guestNumber;
         controller.date = self.date;
@@ -252,6 +255,9 @@
         controller.unitPrice = self.unitPrice;
         controller.totalPrice = self.totalPrice;
         controller.coupon = self.coupon;
+    } else if ([segue.identifier isEqualToString:@"alipaySuccess"]) {
+        PaymentSuccessViewController *paymentSuccessVC = (PaymentSuccessViewController *)segue.destinationViewController;
+        paymentSuccessVC.hostName = self.hostName;
     }
 }
 

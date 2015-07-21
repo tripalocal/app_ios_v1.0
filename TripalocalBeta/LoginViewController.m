@@ -7,6 +7,7 @@
 //
 
 #import "LoginViewController.h"
+#import "URLConfig.h"
 #import "Constant.h"
 
 @interface LoginViewController ()
@@ -24,7 +25,7 @@
 
 - (IBAction)login:(id)sender {
     [self.loginButton setEnabled:NO];
-    NSURL *url = [NSURL URLWithString:NSLocalizedString(loginServiceURL, nil)];
+    NSURL *url = [NSURL URLWithString:[URLConfig loginServiceURLString]];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
 
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
@@ -61,18 +62,17 @@
             [userDefaults setObject:token forKey:@"user_token"];
             [[NSUserDefaults standardUserDefaults] synchronize];
 
-            if ([[[NSProcessInfo processInfo] arguments] containsObject:@"-zhVersion"]) {
+#ifdef CN_VERSION
                 [self.presentingViewController.presentingViewController dismissViewControllerAnimated:YES completion:nil];
-                
-            } else {
+#else
                 [self dismissViewControllerAnimated:YES completion:nil];
-            }
+#endif
         } else {
             NSString *errorMsg = result[@"error"];
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Login Failed"
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"login_failed", nil)
                                                             message:errorMsg
                                                            delegate:nil
-                                                  cancelButtonTitle:@"OK"
+                                                  cancelButtonTitle:NSLocalizedString(@"ok_button", nil)
                                                   otherButtonTitles:nil];
             [alert show];
         }
@@ -83,10 +83,10 @@
         NSLog(@"Receiving data = %@", decodedData);
 #endif
     } else {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No network connection:"
-                                                        message:@"You must be connected to the internet."
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"no_network", nil)
+                                                        message:NSLocalizedString(@"no_network_msg",nil)
                                                        delegate:nil
-                                              cancelButtonTitle:@"OK"
+                                              cancelButtonTitle:NSLocalizedString(@"ok_button", nil)
                                               otherButtonTitles:nil];
         [alert show];
     }
@@ -97,11 +97,11 @@
 
 - (IBAction)changeToSignup:(id)sender {
     NSLog(@"conditional signup");
-    if([[[NSProcessInfo processInfo] arguments] containsObject:@"-zhVersion"]){
+#ifdef CN_VERSION
         [self dismissViewControllerAnimated:YES completion:nil];
-    } else {
+#else
         [self performSegueWithIdentifier:@"normal_signup" sender:nil];
-    }
+#endif
 }
 
 - (IBAction)inputFieldChanged:(id)sender {
@@ -119,6 +119,9 @@
     self.loginButton.alpha = 0.5;
     self.emailField.delegate = self;
     self.passwordField.delegate = self;
+    
+    [self.loginButton.layer setMasksToBounds:YES];
+    [self.loginButton.layer setCornerRadius:5.0f];
 
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
             initWithTarget:self

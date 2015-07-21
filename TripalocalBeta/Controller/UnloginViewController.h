@@ -11,5 +11,6 @@
 
 @interface UnloginViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UIImageView *hostImage;
+@property (strong, nonatomic) IBOutlet UIButton *loginButton;
 
 @end

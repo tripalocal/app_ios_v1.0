@@ -7,6 +7,7 @@
 //
 
 #import "MenuViewController.h"
+#import "URLConfig.h"
 #import "Constant.h"
 
 @interface MenuViewController ()
@@ -21,6 +22,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    [self.logoutButton.layer setMasksToBounds:YES];
+    [self.logoutButton.layer setCornerRadius:5.0f];
     
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     UIImage* image = [UIImage imageWithData:[userDefaults objectForKey:@"user_image"]];
@@ -70,7 +74,7 @@
 }
 
 - (IBAction)logout:(id)sender {
-    NSURL *url = [NSURL URLWithString:NSLocalizedString(logoutServiceURL, nil)];
+    NSURL *url = [NSURL URLWithString:[URLConfig logoutServiceURLString]];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     [request setHTTPMethod:@"POST"];
     
@@ -101,10 +105,10 @@
         NSLog(@"Receiving data = %@", decodedData);
 #endif
     } else {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No network connection"
-                                                        message:@"You must be connected to the internet."
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"no_network", nil)
+                                                        message:NSLocalizedString(@"no_network_msg", nil)
                                                        delegate:nil
-                                              cancelButtonTitle:@"OK"
+                                              cancelButtonTitle:NSLocalizedString(@"ok_button", nil)
                                               otherButtonTitles:nil];
         [alert show];
     }

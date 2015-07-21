@@ -5,34 +5,27 @@
   Created by Ye He on 13/07/2015.
   Copyright (c) 2015 Tripalocal. All rights reserved.
 */
+"search_hint" = "想去哪儿?";
 
-"Melbourne" = "墨尔本";
+"slide1" = "slide01.jpg";
 
-"Sydney" = "悉尼";
+"slide2" = "slide02.jpg";
 
-"Brisbane" = "布里斯班";
+"slide3" = "slide03.jpg";
 
-"Adelaide" = "阿德莱德";
+"melbourne" = "墨尔本";
 
-"Cairns" = "凯恩斯";
+"sydney" = "悉尼";
 
-"Goldcoast" = "黄金海岸";
+"brisbane" = "布里斯班";
 
-"Hobart" = "霍巴特";
+"adelaide" = "阿德莱德";
 
-"https://www.tripalocal.com/service_login/" = "https://www.tripalocal.com/cn/service_login/";
+"cairns" = "凯恩斯";
 
-"https://www.tripalocal.com/service_myprofile/" = "https://www.tripalocal.com/cn/service_myprofile/";
+"goldcoast" = "黄金海岸";
 
-"https://www.tripalocal.com/service_logout/" = "https://www.tripalocal.com/cn/service_logout/";
-
-"https://www.tripalocal.com/service_signup/" = "https://www.tripalocal.com/cn/service_signup/";
-
-"https://www.tripalocal.com/images/" = "https://www.tripalocal.com/cn/images/";
-
-"https://www.tripalocal.com/service_booking/" = "https://www.tripalocal.com/cn/service_booking/";
-
-"https://www.tripalocal.com/service_mytrip/" = "https://www.tripalocal.com/cn/service_mytrip/";
+"hobart" = "霍巴特";
 
 "Forgot password?" = "忘记密码?";
 
@@ -40,11 +33,17 @@
 
 "Saved" = "已保存至兴趣列表";
 
+"save_profile_failed" = "保存失败";
+
 "Hours" = "小时";
+
+"login_failed" = "登录失败";
 
 "reservationPrefix" = "和";
 
 "reservationSuffix" = "预定";
+
+"server_error" = "服务器出错";
 
 "booking_status_requested" = "已申请";
 
@@ -54,11 +53,17 @@
 
 "about_the_host" = "关于 ";
 
+"payment_failed" = "支付失败";
+
+"payment_failed_msg" = "支付过程中遇到问题";
+
 "n_reviews" = "%@ 条评论";
 
 "no_reviews" = "没有评论";
 
 "exp_detail_per_person_for" = "约 %@ 小时";
+
+"connection_failed" = "连接错误";
 
 "send_verification_code" = "发送验证码";
 
@@ -71,6 +76,12 @@
 "phone_no_error_msg" = "发送失败，请检查你的电话号码";
 
 "ok_button" = "确定";
+
+"alert" = "警告";
+
+"alert_call" = "电话功能无法使用";
+
+"alert_sms" = "短信功能无法使用";
 
 "verfication_expire" = "失效，点击重新发送";
 

@@ -8,7 +8,9 @@
 
 #import "ReviewTableViewController.h"
 #import "TLDetailTableViewCell3.h"
+#import <SDWebImage/UIImageView+WebCache.h>
 #import "Constant.h"
+#import "URLConfig.h"
 
 @interface ReviewTableViewController ()
 
@@ -44,7 +46,7 @@
     NSString *reviewFirst = [review objectForKey:@"reviewer_firstname"];
     NSString *reviewLast = [review objectForKey:@"reviewer_lastname"];
     NSString *PREreviewerImageURL =[ review objectForKey:@"reviewer_image"];
-    NSString *reviewerImageURL = [NSLocalizedString(imageServiceURL, nil) stringByAppendingString: PREreviewerImageURL];
+    NSString *reviewerImageURL = [[URLConfig imageServiceURLString] stringByAppendingString: PREreviewerImageURL];
     NSString *reviewComment = [review objectForKey:@"review_comment"];
 
     TLDetailTableViewCell3 *cell = [tableView dequeueReusableCellWithIdentifier:@"cell3" forIndexPath:indexPath];
@@ -56,25 +58,9 @@
     cell.reviewerName.text = [NSString stringWithFormat:@"%@ %@", reviewFirst, reviewLast];
     cell.commentLabel.text = reviewComment;
     
-    UIImage *reviewerImage = (UIImage *)[cachedImages objectForKey:[@(indexPath.row) stringValue]];
-    
-    if(!reviewerImage) {
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-            NSData *hostImageData = [[NSData alloc]initWithContentsOfURL:[NSURL URLWithString:reviewerImageURL]];
-            dispatch_sync(dispatch_get_main_queue(), ^{
-                UIImage *image = [[UIImage alloc] initWithData:hostImageData];
-                if (image) {
-                    [cachedImages setObject:image forKey:[@(indexPath.row) stringValue]];
-                    cell.reviewerImage.image = (UIImage *)[cachedImages objectForKey:[@(indexPath.row) stringValue]];
-                } else {
-                    cell.reviewerImage.image = [UIImage imageNamed:@"default_profile_image.png"];
-                    [cachedImages setObject:cell.reviewerImage.image forKey:[@(indexPath.row) stringValue]];
-                }
-            });
-        });
-    } else {
-        cell.reviewerImage.image = reviewerImage;
-    }
+    [cell.reviewerImage sd_setImageWithURL:[NSURL URLWithString:reviewerImageURL]
+                          placeholderImage:[UIImage imageNamed:@"default_profile_image.png"]
+                                   options:SDWebImageRefreshCached];
 
     return cell;
 }
@@ -83,14 +69,4 @@
     return NO;
 }
 
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 @end

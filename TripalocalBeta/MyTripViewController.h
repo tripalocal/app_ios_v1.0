@@ -10,5 +10,6 @@
 #import "NeedToLoginView.h"
 
 @interface MyTripViewController : UIViewController <NeedToLoginViewDelegate>
+@property (strong, nonatomic) IBOutlet NSLayoutConstraint *titleViewHeight;
 @property (strong, nonatomic) IBOutlet UIView *segmentTitleView;
 @end

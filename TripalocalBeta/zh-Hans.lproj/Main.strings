@@ -36,7 +36,7 @@
 "7yQ-ks-VOi.placeholder" = "邮箱";
 
 /* Class = "UILabel"; text = "Email Address"; ObjectID = "832-oQ-Hha"; */
-"832-oQ-Hha.text" = "Email Address";
+"832-oQ-Hha.text" = "邮箱";
 
 /* Class = "UILabel"; text = "x"; ObjectID = "8RO-Nh-7WZ"; */
 "8RO-Nh-7WZ.text" = "x";
@@ -168,13 +168,13 @@
 "ZzR-aR-8nO.text" = "";
 
 /* Class = "UILabel"; text = "About Me"; ObjectID = "ahF-Fk-HqK"; */
-"ahF-Fk-HqK.text" = "About Me";
+"ahF-Fk-HqK.text" = "关于我";
 
 /* Class = "UILabel"; text = "Food"; ObjectID = "bII-OH-9As"; */
 "bII-OH-9As.text" = "餐饮";
 
 /* Class = "UILabel"; text = "Phone Number"; ObjectID = "bUK-z6-gAC"; */
-"bUK-z6-gAC.text" = "Phone Number";
+"bUK-z6-gAC.text" = "电话";
 
 /* Class = "UILabel"; text = "phone"; ObjectID = "bbB-KO-mIb"; */
 "bbB-KO-mIb.text" = "phone";
@@ -192,7 +192,7 @@
 "eYh-3n-yU6.normalTitle" = "取消";
 
 /* Class = "UILabel"; text = "Email Address"; ObjectID = "eba-5D-yPh"; */
-"eba-5D-yPh.text" = "Email Address";
+"eba-5D-yPh.text" = "邮箱";
 
 /* Class = "UILabel"; text = "999.99"; ObjectID = "fdx-cU-svf"; */
 "fdx-cU-svf.text" = "999.99";
@@ -245,6 +245,8 @@
 /* Class = "UILabel"; text = "Coupon"; ObjectID = "o9Q-uK-FNJ"; */
 "o9Q-uK-FNJ.text" = "打折码";
 
+"ku7-gZ-jTi.text" = "你的预定请求已经成功发送给 ";
+
 /* Class = "UILabel"; text = "Credit Card"; ObjectID = "pdn-CU-hSY"; */
 "pdn-CU-hSY.text" = "信用卡";
 
@@ -258,7 +260,7 @@
 "qzN-60-yHz.text" = "$ 9999.99 AUD";
 
 /* Class = "UILabel"; text = "Phone Number"; ObjectID = "r5b-1l-hs4"; */
-"r5b-1l-hs4.text" = "Phone Number";
+"r5b-1l-hs4.text" = "电话";
 
 /* Class = "UILabel"; text = "Number"; ObjectID = "rHU-J1-hcc"; */
 "rHU-J1-hcc.text" = "Number";
@@ -295,11 +297,30 @@
 
 "R2J-jw-Gra.placeholder" = "名";
 
+"k6A-h8-fQB.normalTitle" = "开始探索";
+
+"lF3-Rn-48A.title" = "结账";
+
+"91L-YO-hxn.title" = "付款方式";
+
+"wx9-sh-aCf.title" = "信用卡";
+
+"c8D-j2-AmV.title" = "兴趣列表";
+
+"qO2-vR-8Y8.title" = "体验详情";
+
+"Ph3-Ca-yM0.text" = "如果您在少于3个自然日取消预订，您将获得半额退款";
+"FL9-2M-ca7.text" = "如果您提前3至6个自然日取消预订，我们将半额退款";
+"ffg-GU-3pB.text" = "如果您提前至少7个自然日取消预订，我们将全额退款";
+"50J-hc-fwA.text" = "您提交预订后仍可更改";
+
 /* Class = "UILabel"; text = "CCV"; ObjectID = "vMH-F0-EVE"; */
 "vMH-F0-EVE.text" = "CCV";
 
 /* Class = "UILabel"; text = "About Me"; ObjectID = "vQz-gg-Nsz"; */
-"vQz-gg-Nsz.text" = "About Me";
+"vQz-gg-Nsz.text" = "关于我";
+
+"WG1-Vr-AMX.normalTitle" = "立即出发";
 
 /* Class = "UIButton"; normalTitle = "Start Exploring"; ObjectID = "yIH-DE-k8J"; */
 "yIH-DE-k8J.normalTitle" = "去首页逛逛";

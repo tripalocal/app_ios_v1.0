@@ -18,6 +18,12 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    
+    UIPageControl *pageControl = [UIPageControl appearance];
+    pageControl.pageIndicatorTintColor = [UIColor lightGrayColor];
+    pageControl.currentPageIndicatorTintColor = [UIColor blackColor];
+    pageControl.backgroundColor = [UIColor clearColor];
+    
     int imageSize = 27; //REPLACE WITH YOUR IMAGE WIDTH
     
     UIImage *barBackBtnImg = [[UIImage imageNamed:@"back.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, imageSize, 0, 0)];
@@ -92,10 +98,10 @@
                                                      }
                                                  }
                                              } else {
-                                                 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Alipay Failed"
-                                                                                                 message:@"Occured an error during payment."
+                                                 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"payment_failed", nil)
+                                                                                                 message:NSLocalizedString(@"payment_failed_msg", nil)
                                                                                                 delegate:nil
-                                                                                       cancelButtonTitle:@"OK"
+                                                                                       cancelButtonTitle:NSLocalizedString(@"ok_button", nil)
                                                                                        otherButtonTitles:nil];
                                                  [alert show];
                                              }

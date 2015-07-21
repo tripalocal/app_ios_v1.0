@@ -10,6 +10,7 @@
 #import "MyTripTableViewCell.h"
 #import "TLDetailViewController.h"
 #import "MyTripViewController.h"
+#import "URLConfig.h"
 #import "Constant.h"
 #import "TLHomeViewController.h"
 
@@ -36,7 +37,7 @@
 }
 
 - (void)fetchMyTrips:(NSString *) token {
-    NSURL *url = [NSURL URLWithString:NSLocalizedString(mytripService, nil)];
+    NSURL *url = [NSURL URLWithString:[URLConfig myTripServiceURLString]];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     [request setHTTPMethod:@"GET"];
     [request addValue:[NSString stringWithFormat:@"Token %@", token] forHTTPHeaderField:@"Authorization"];
@@ -63,10 +64,10 @@
         NSLog(@"Receiving data = %@", decodedData);
 #endif
     } else {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No network connection"
-                                                        message:@"You must be connected to the internet."
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"no_network", nil)
+                                                        message:NSLocalizedString(@"no_network_msg", nil)
                                                        delegate:nil
-                                              cancelButtonTitle:@"OK"
+                                              cancelButtonTitle:NSLocalizedString(@"ok_button", nil)
                                               otherButtonTitles:nil];
         [alert show];
     }
@@ -107,13 +108,13 @@
     NSString *imageURL = [trip objectForKey:@"host_image"];
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        NSData *hostImageData = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString: [NSLocalizedString(imageServiceURL, nil) stringByAppendingString: imageURL]]];
+        NSData *hostImageData = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString: [[URLConfig imageServiceURLString] stringByAppendingString: imageURL]]];
         dispatch_sync(dispatch_get_main_queue(), ^{
             cell.hostImage.image = [[UIImage alloc] initWithData:hostImageData];
         });
     });
     
-    NSString *absoluteImageURL = [NSString stringWithFormat:@"%@thumbnails/experiences/experience%@_1.jpg", NSLocalizedString(imageServiceURL, nil), [trip objectForKey:@"experience_id"]];
+    NSString *absoluteImageURL = [NSString stringWithFormat:@"%@thumbnails/experiences/experience%@_1.jpg", [URLConfig imageServiceURLString], [trip objectForKey:@"experience_id"]];
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         NSData *backgroundImageData = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:absoluteImageURL]];
@@ -193,6 +194,8 @@
     MyTripViewController *mytripController = (MyTripViewController *)self.containerController;
     mytripController.segmentTitleView.hidden = NO;
     [self.navigationController setNavigationBarHidden:YES animated:animated];
+    [self.tabBarController.tabBar setHidden:NO];
+    mytripController.titleViewHeight.constant = 48.f;
     [self.tableView reloadData];
     
     [super viewWillAppear:animated];
@@ -200,9 +203,11 @@
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     [self.navigationController setNavigationBarHidden:NO animated:NO];
+    [self.tabBarController.tabBar setHidden:YES];
     
     MyTripViewController *mytripController = (MyTripViewController *)self.containerController;
     mytripController.segmentTitleView.hidden = YES;
+    mytripController.titleViewHeight.constant = 0.f;
 
     UINavigationController *navController = (UINavigationController *)segue.destinationViewController;
     TLDetailViewController *controller = (TLDetailViewController *)navController.topViewController;
@@ -212,8 +217,8 @@
     controller.experience_id_string = [trip objectForKey:@"experience_id"];
 }
 
-- (UIImage *) fetchImage:(NSString *) imageURL {
-    NSString *absoluteImageURL = [NSString stringWithFormat:@"%@%@", NSLocalizedString(imageServiceURL, nil), imageURL];
+- (UIImage *)fetchImage:(NSString *) imageURL {
+    NSString *absoluteImageURL = [NSString stringWithFormat:@"%@%@", [URLConfig imageServiceURLString], imageURL];
     NSURL *url = [NSURL URLWithString:absoluteImageURL];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     [request setHTTPMethod:@"GET"];
@@ -227,10 +232,10 @@
     if (connectionError == nil) {
         image = [UIImage imageWithData:data];
     } else {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No network connection"
-                                                        message:@"You must be connected to the internet."
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"no_network", nil)
+                                                        message:NSLocalizedString(@"no_network_msg", nil)
                                                        delegate:nil
-                                              cancelButtonTitle:@"OK"
+                                              cancelButtonTitle:NSLocalizedString(@"ok_button", nil)
                                               otherButtonTitles:nil];
         [alert show];
     }

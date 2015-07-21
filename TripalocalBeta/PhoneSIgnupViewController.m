@@ -6,6 +6,7 @@
 //  Copyright (c) 2015 Tripalocal. All rights reserved.
 //
 
+#import "URLConfig.h"
 #import "PhoneSIgnupViewController.h"
 #import "SmsVerificationViewController.h"
 
@@ -76,13 +77,12 @@ NSInteger const EMAIL_MAX_LENGTH = 20;
         [self.signupButton setEnabled:NO];
         [self.signupButton setBackgroundColor:INACTIVE_COLOR];
         
-        NSURL *url = [NSURL URLWithString:NSLocalizedString(signupServiceURL, nil)];
+        NSURL *url = [NSURL URLWithString:[URLConfig signupServiceURLString]];
         NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
         
         [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
         [request setHTTPMethod:@"POST"];
         
-        // add telephone number
         NSDictionary *tmp = [[NSDictionary alloc] initWithObjectsAndKeys:
                              self.emailField.text, @"email",
                              self.passwordField.text, @"password",

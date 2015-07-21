@@ -15,5 +15,6 @@
 
 @interface NeedToLoginView : UIView
 @property (strong, nonatomic) IBOutlet UIView *contentView;
+@property (strong, nonatomic) IBOutlet UIButton *loginButton;
 @property (nonatomic, weak) id <NeedToLoginViewDelegate> delegate;
 @end

@@ -7,6 +7,7 @@
 //
 
 #import "SignUpViewController.h"
+#import "URLConfig.h"
 
 @interface SignUpViewController ()
 
@@ -32,7 +33,7 @@
     [self.signupButton setEnabled:NO];
     self.signupButton.alpha = 0.5;
     
-    NSURL *url = [NSURL URLWithString:NSLocalizedString(signupServiceURL, nil)];
+    NSURL *url = [NSURL URLWithString:[URLConfig signupServiceURLString]];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
@@ -78,10 +79,10 @@
             
         } else {
             NSString *errorMsg = [result objectForKey:@"error"];
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Signup Failed"
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"signup_failed", nil)
                                                             message:errorMsg
                                                            delegate:nil
-                                                  cancelButtonTitle:@"OK"
+                                                  cancelButtonTitle:NSLocalizedString(@"ok", nil)
                                                   otherButtonTitles:nil];
             [alert show];
         }
@@ -92,10 +93,10 @@
         NSLog(@"Receiving data = %@", decodedData);
 #endif
     } else {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No network connection"
-                                                        message:@"You must be connected to the internet."
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"no_network", nil)
+                                                        message:NSLocalizedString(@"no_network_msg", nil)
                                                        delegate:nil
-                                              cancelButtonTitle:@"OK"
+                                              cancelButtonTitle:NSLocalizedString(@"ok_button", nil)
                                               otherButtonTitles:nil];
         [alert show];
     }
@@ -123,6 +124,8 @@
     
     self.signupButton.alpha = 0.5;
     [self.signupButton setEnabled:NO];
+    [self.signupButton.layer setMasksToBounds:YES];
+    [self.signupButton.layer setCornerRadius:5.0f];
     self.emailField.delegate = self;
     self.passwordField.delegate = self;
     self.firstnameField.delegate = self;

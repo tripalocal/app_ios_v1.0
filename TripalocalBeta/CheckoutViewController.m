@@ -6,6 +6,7 @@
 //  Copyright (c) 2015 Tripalocal. All rights reserved.
 //
 
+#import "URLConfig.h"
 #import "CheckoutViewController.h"
 #import "InstantBookingTableViewCell.h"
 #import "JGProgressHUD.h"
@@ -318,7 +319,7 @@
         controller.coupon = self.couponField.text;
         controller.expId = _exp_ID_string ;
         controller.guestNumber = self.guestNumber;
-        
+        controller.hostName = self.hostName;
         
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
         dateFormatter.dateFormat = @"dd/MM/yyyy";

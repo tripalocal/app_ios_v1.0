@@ -7,35 +7,45 @@
 //
 
 #import "TLSearchViewController.h"
+#import <SDWebImage/UIImageView+WebCache.h>
 #import "TLSearchTableViewCell.h"
 #import "Spinner.h"
 #import "Constant.h"
+#import "URLConfig.h"
 #import "TLDetailViewController.h"
 #import "JGProgressHUD.h"
 
 @interface TLSearchViewController (){
-    NSString *priceString;
     NSMutableArray *dynamicPricingArray;
 }
-@property (strong, nonatomic) NSMutableDictionary *cachedImages;
 @end
 
 @implementation TLSearchViewController{
     JGProgressHUD *HUD;
     NSString *currentLanguage;
+    NSDateFormatter *dateFormatter;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.navigationItem.title = NSLocalizedString([self.cityName lowercaseString], nil);
+    dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-LL-dd"];
+    HUD = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleDark];
+    HUD.HUDView.layer.shadowColor = [UIColor blackColor].CGColor;
+    HUD.HUDView.layer.shadowOffset = CGSizeZero;
+    HUD.HUDView.layer.shadowOpacity = 0.4f;
+    HUD.HUDView.layer.shadowRadius = 8.0f;
+    HUD.textLabel.text = @"Loading";
+    [HUD showInView:self.view];
+    
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
 
-    self.expList = [self fetchExpData:self.cityName];
-    
-    [self.tableView reloadData];
     currentLanguage = [[NSLocale preferredLanguages] objectAtIndex:0];
     dynamicPricingArray = [[NSMutableArray alloc]init];
+    [HUD dismissAfterDelay:1.0];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -106,41 +116,39 @@
     cell.durationLabel.text = handledDurationString;
     cell.titleLabel.text = [exp objectForKey:@"title"];
 
-    cell.hostImage.image = [UIImage imageNamed:@"default_profile_image.png"];
     cell.languageLabel.text = [self transformLanugage:(NSString *)[exp objectForKey:@"language"]];
     cell.descriptionLabel.text = [exp objectForKey:@"description"];
-    cell.hostImage.image = [UIImage imageNamed:@"default_profile_image.png"];
-    cell.experienceImage.image = nil;
-    
-    NSString *hostImageCachingIdentifier = [NSString stringWithFormat:@"Cell%ldOfHostImage",(long)indexPath.row];
-    NSString *expImageCachingIdentifier = [NSString stringWithFormat:@"Cell%ldOfExpImage",(long)indexPath.row];
-    
-    if([self.cachedImages objectForKey:hostImageCachingIdentifier]!=nil){
-        cell.hostImage.image = [self.cachedImages valueForKey:hostImageCachingIdentifier];
-        cell.experienceImage.image = [self.cachedImages valueForKey:expImageCachingIdentifier];
-    } else{
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-            NSString *hostImageURL = [exp objectForKey:@"host_image"];
-            
-            NSData *hostImageData = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:[NSLocalizedString(imageServiceURL, nil) stringByAppendingString: hostImageURL]]];
-            
-            NSString *backgroundImageURL = [NSString stringWithFormat:@"%@thumbnails/experiences/experience%@_1.jpg", NSLocalizedString(imageServiceURL, nil), expIdString];
-            
-            NSData *experienceImageData = [[NSData alloc]initWithContentsOfURL:[NSURL URLWithString:backgroundImageURL]];
-            
-            dispatch_sync(dispatch_get_main_queue(), ^{
-                cell.hostImage.image = [[UIImage alloc] initWithData:hostImageData];
-                
-                UIImage *croppedImg = nil;
-                croppedImg = [self croppIngimageByImageName:[[UIImage alloc] initWithData:experienceImageData] toRect:cell.experienceImage.frame];
-                cell.experienceImage.image = croppedImg;
-                
-                [self.cachedImages setValue:cell.hostImage.image forKey:hostImageCachingIdentifier];
-                [self.cachedImages setValue:cell.experienceImage.image forKey:expImageCachingIdentifier];
-            });
-            
-        });
+
+    NSString *hostImageRelativeURL = [exp objectForKey:@"host_image"];
+    if (hostImageRelativeURL != (id)[NSNull null] && hostImageRelativeURL.length > 0) {
+        NSString *hostImageURL = [[URLConfig imageServiceURLString] stringByAppendingString: hostImageRelativeURL];
+        
+        [cell.hostImage sd_setImageWithURL:[NSURL URLWithString:hostImageURL]
+                          placeholderImage:[UIImage imageNamed:@"default_profile_image.png"]
+                                   options:SDWebImageRefreshCached];
+    } else {
+        cell.hostImage.image = [UIImage imageNamed:@"default_profile_image.png"];
     }
+
+
+    
+    NSString *backgroundImageURL = [NSString stringWithFormat:@"%@thumbnails/experiences/experience%@_1.jpg", [URLConfig imageServiceURLString], expIdString];
+    
+    __block UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    activityIndicator.center = cell.experienceImage.center;
+    activityIndicator.hidesWhenStopped = YES;
+    [cell.experienceImage sd_setImageWithURL:[NSURL URLWithString:backgroundImageURL]
+                            placeholderImage:nil
+                                     options:SDWebImageRefreshCached
+                                   completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+                                       [activityIndicator removeFromSuperview];
+                                       if (image) {
+                                            cell.experienceImage.image = [self croppIngimageByImageName:image toRect:cell.experienceImage.frame];
+                                       }
+                                   }];
+
+    [cell.experienceImage addSubview:activityIndicator];
+    [activityIndicator startAnimating];
     
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     NSMutableArray *wishList = [userDefaults objectForKey:@"wish_list"];
@@ -156,8 +164,9 @@
     }
     cell.delegate = self;
     cell.wishListButton.tag = indexPath.row;
-    priceString =[self decimalwithFormat:@"0" floatV:[[[self.expList objectAtIndex:indexPath.row] objectForKey:@"price"] floatValue]];
+    NSString *priceString = [self decimalwithFormat:@"0" floatV:[[[self.expList objectAtIndex:indexPath.row] objectForKey:@"price"] floatValue]];
     cell.priceLabel.text = priceString;
+    //???
     [dynamicPricingArray addObject:priceString];
     
 
@@ -184,8 +193,6 @@
     return  [numberFormatter stringFromNumber:[NSNumber numberWithFloat:floatV]];
 }
 
-
-
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return [self.expList count];
 }
@@ -200,18 +207,32 @@
     [super didReceiveMemoryWarning];
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    if ([self.expList count] == 0) {
+        self.expList = [self fetchExpData:self.cityName];
+        [self.tableView reloadData];
+    }
+}
+
 - (NSMutableArray *)fetchExpData:(NSString *) cityName {
     NSMutableArray *expList = [[NSMutableArray alloc] init];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
 
     NSString *post = nil;
-    if ([[[NSProcessInfo processInfo] arguments] containsObject:@"-zhVersion"]) {
-        post = [NSString stringWithFormat:@"{\"start_datetime\":\"2015-05-08\", \"end_datetime\":\"2015-05-08\", \"city\":\"%@\", \"guest_number\":\"2\", \"keywords\":\"美食美酒,名校游学,历史人文,经典建筑,蜜月旅拍,风光摄影,移民考察,亲子夏令营,户外探险,购物扫货,运动休闲,领路人自驾,刺激享乐,赛事庆典,美容保健\"}", cityName];
-            [request setURL:[NSURL URLWithString:serviceSearchURLCN]];
-    } else {
-        post = [NSString stringWithFormat:@"{\"start_datetime\":\"2015-05-08\", \"end_datetime\":\"2015-05-08\", \"city\":\"%@\", \"guest_number\":\"2\", \"keywords\":\"Food & wine, Education, History & culture, Architecture, For couples, Photography worthy, Livability research, Kids friendly, Outdoor & nature, Shopping, Sports & leisure, Host with car, Extreme fun, Events, Health & beauty, Private group\"}", cityName];
-        [request setURL:[NSURL URLWithString:serviceSearchURL]];
-    }
+    NSDate *today = [NSDate date];
+
+    NSString *startDate = [dateFormatter stringFromDate:today];
+    NSString *endDate = [dateFormatter stringFromDate:today];
+    
+#ifdef CN_VERSION
+        post = [NSString stringWithFormat:@"{\"start_datetime\":\"%@\", \"end_datetime\":\"%@\", \"city\":\"%@\", \"guest_number\":\"2\", \"keywords\":\"美食美酒,名校游学,历史人文,经典建筑,蜜月旅拍,风光摄影,移民考察,亲子夏令营,户外探险,购物扫货,运动休闲,领路人自驾,刺激享乐,赛事庆典,美容保健\"}", startDate, endDate ,cityName];
+        [request setURL:[NSURL URLWithString:[URLConfig searchServiceURLString]]];
+#else
+        post = [NSString stringWithFormat:@"{\"start_datetime\":\"%@\", \"end_datetime\":\"%@\", \"city\":\"%@\", \"guest_number\":\"2\", \"keywords\":\"Food & wine, Education, History & culture, Architecture, For couples, Photography worthy, Livability research, Kids friendly, Outdoor & nature, Shopping, Sports & leisure, Host with car, Extreme fun, Events, Health & beauty, Private group\"}", startDate, endDate ,cityName];
+        [request setURL:[NSURL URLWithString:[URLConfig searchServiceURLString]]];
+#endif
     
 #ifdef DEBUG
     NSLog(@"Sending data = %@",post);
@@ -246,18 +267,18 @@
 #ifdef DEBUG
             NSLog(@"Sending data = %@",[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
 #endif
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Fetching Data Failed"
-                                                            message:@"Server Error"
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"server_error", nil)
+                                                            message:NSLocalizedString(@"connection_failed", nil)
                                                            delegate:nil
-                                                  cancelButtonTitle:@"OK"
+                                                  cancelButtonTitle:NSLocalizedString(@"ok_button", nil)
                                                   otherButtonTitles:nil];
             [alert show];
         }
     } else {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No network connection"
-                                                        message:@"You must be connected to the internet."
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"no_network", nil)
+                                                        message:NSLocalizedString(@"no_network_msg", nil)
                                                        delegate:nil
-                                              cancelButtonTitle:@"OK"
+                                              cancelButtonTitle:NSLocalizedString(@"ok_button", nil)
                                               otherButtonTitles:nil];
         [alert show];
     }
@@ -266,8 +287,9 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    //    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    [self performSegueWithIdentifier:@"SearchResultSegue" sender:self];
+//    dispatch_async(dispatch_get_main_queue(), ^{
+        [self performSegueWithIdentifier:@"SearchResultSegue" sender:self];
+//    });
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -278,7 +300,9 @@
         TLDetailViewController *vc = (TLDetailViewController *) navController.topViewController;
         NSIndexPath *index=[_tableView indexPathForSelectedRow];
         vc.experience_id_string = [[[self.expList objectAtIndex:index.row] objectForKey:@"id"] stringValue];
-        vc.expPrice = [dynamicPricingArray objectAtIndex:index.row];
+        
+//        vc.expPrice = [dynamicPricingArray objectAtIndex:index.row];
+        vc.expPrice = [self decimalwithFormat:@"0" floatV:[[[self.expList objectAtIndex:index.row] objectForKey:@"price"] floatValue]];
     }
     
 }

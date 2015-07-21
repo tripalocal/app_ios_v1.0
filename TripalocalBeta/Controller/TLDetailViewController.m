@@ -17,7 +17,8 @@
 #import "Constant.h"
 #import "CheckoutViewController.h"
 #import "ReviewTableViewController.h"
-#import "Constant.h"
+#import <SDWebImage/UIImageView+WebCache.h>
+#import "URLConfig.h"
 
 @interface TLDetailViewController ()
 {
@@ -31,6 +32,7 @@
     NSString *expInteraction;
     NSMutableArray *expReviewsArray;
     NSString *hostFirstName;
+    NSString *hostLastName;
     NSString *hostBio;
     NSString *numOfReviews;
     NSString *expRate;
@@ -49,14 +51,14 @@
     NSString *transportString;
     NSMutableArray *availableDateArray;
     NSArray *reviews;
+    NSDictionary *expData;
+    UIImage *nextPageCoverImage;
 }
 
-@property (strong, nonatomic) NSMutableDictionary *cachedImages;
 @end
 
 @implementation TLDetailViewController
 
-// Should login in first to access checkout page.
 - (IBAction)checkout:(id)sender {
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     NSString *token = [userDefaults stringForKey:@"user_token"];
@@ -70,17 +72,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.isExpReadMoreOpen = NO;
-    self.isHostReadMoreOpen = NO;
-
-    self.cellHeights = [@[@306, @240, @320, @385, @164, @240] mutableCopy];
-    _myTable.delegate = self;
-    _myTable.dataSource = self;
-    
-    self.cachedImages = [[NSMutableDictionary alloc]init];
-    reviews = [[NSArray alloc] init];
-    
-    //Indicator
     HUD = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleDark];
     HUD.HUDView.layer.shadowColor = [UIColor blackColor].CGColor;
     HUD.HUDView.layer.shadowOffset = CGSizeZero;
@@ -88,20 +79,30 @@
     HUD.HUDView.layer.shadowRadius = 8.0f;
     HUD.textLabel.text = @"Loading";
     [HUD showInView:self.view];
+
+    self.isExpReadMoreOpen = NO;
+    self.isHostReadMoreOpen = NO;
+
+    self.cellHeights = [@[@306, @240, @320, @385, @164, @240] mutableCopy];
+    _myTable.delegate = self;
+    _myTable.dataSource = self;
     
+    reviews = [[NSArray alloc] init];
+    expData = [[NSDictionary alloc] init];
+}
+
+- (void)fetchData
+{
     NSString *post = [NSString stringWithFormat:@"{\"experience_id\":\"%@\"}",_experience_id_string];
-    
+#if DEBUG
     NSLog(@"(Detail)POST: %@", post);
+#endif
     NSData *postData = [post dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:YES];
     NSString *postLength = [NSString stringWithFormat:@"%lu", (unsigned long)[postData length]];
+    
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-
-    if ([[[NSProcessInfo processInfo] arguments] containsObject:@"-zhVersion"]) {
-        [request setURL:[NSURL URLWithString:expDetailServiceURLCN]];
-    } else {
-        [request setURL:[NSURL URLWithString:expDetailServiceURL]];
-    }
-
+    [request setURL:[NSURL URLWithString:[URLConfig expDetailhServiceURLString]]];
+    
     [request setHTTPMethod:@"POST"];
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     [request setValue:postLength forHTTPHeaderField:@"Content-Length"];
@@ -125,77 +126,82 @@
 #endif
         
         if ([httpResponse statusCode] == 200) {
-            NSDictionary *allDataDictionary=[NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+            expData = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
             @try {
-                hostImageURL = [NSLocalizedString(imageBaseURL, nil) stringByAppendingString: [allDataDictionary objectForKey:@"host_image"]];
-                expLanguage = [self transformLanugage:[allDataDictionary objectForKey:@"experience_language"]];
+                hostImageURL = [[URLConfig imageServiceURLString] stringByAppendingString: [expData objectForKey:@"host_image"]];
+                expLanguage = [self transformLanugage:[expData objectForKey:@"experience_language"]];
                 NSNumberFormatter *formatter = [[NSNumberFormatter alloc]init];
                 [formatter setNumberStyle:NSNumberFormatterDecimalStyle];
                 [formatter setMaximumFractionDigits:2];
                 
                 [formatter setRoundingMode: NSNumberFormatterRoundUp];
-                NSNumber *expDurationNumber = [allDataDictionary objectForKey:@"experience_duration"];
+                NSNumber *expDurationNumber = [expData objectForKey:@"experience_duration"];
                 expDuration = [expDurationNumber stringValue];
-                expTitle = [allDataDictionary objectForKey:@"experience_title"];
-                expDescription = [allDataDictionary objectForKey:@"experience_description"];
-                expActivity = [allDataDictionary objectForKey:@"experience_activity"];
-                expInteraction = [allDataDictionary objectForKey:@"experience_interaction"];
-                hostFirstName = [allDataDictionary objectForKey:@"host_firstname"];
-                hostBio = [allDataDictionary objectForKey:@"host_bio"];
-                expReviewsArray = [allDataDictionary objectForKey:@"experience_reviews"];
+                expTitle = [expData objectForKey:@"experience_title"];
+                expDescription = [expData objectForKey:@"experience_description"];
+                expActivity = [expData objectForKey:@"experience_activity"];
+                expInteraction = [expData objectForKey:@"experience_interaction"];
+                hostFirstName = [expData objectForKey:@"host_firstname"];
+                hostLastName = [expData objectForKey:@"host_lastname"];
+                hostBio = [expData objectForKey:@"host_bio"];
+                expReviewsArray = [expData objectForKey:@"experience_reviews"];
                 NSUInteger numberOfReviews = expReviewsArray.count;
                 numOfReviews = [NSString stringWithFormat:@"%lu",(unsigned long)numberOfReviews];
-                NSNumber *rateNumber = [allDataDictionary objectForKey:@"experience_rate"];
+                NSNumber *rateNumber = [expData objectForKey:@"experience_rate"];
                 expRate = [rateNumber stringValue];
-                
-                ticketString = [allDataDictionary objectForKey:@"included_ticket_detail"];
-                foodString = [allDataDictionary objectForKey:@"included_food_detail"];
-                transportString = [allDataDictionary objectForKey:@"included_transport_detail"];
-                availableDateArray = [allDataDictionary objectForKey:@"available_options"];
+                ticketString = [expData objectForKey:@"included_ticket_detail"];
+                foodString = [expData objectForKey:@"included_food_detail"];
+                transportString = [expData objectForKey:@"included_transport_detail"];
+                availableDateArray = [expData objectForKey:@"available_options"];
                 NSLog(@"TEST:%lu DATE DATA",(unsigned long)availableDateArray.count);
-                dynamicPriceArray = [allDataDictionary objectForKey:@"experience_dynamic_price"];
-                maxGuestNum = [allDataDictionary objectForKey:@"experience_guest_number_max"];
-                minGuestNum = [allDataDictionary objectForKey:@"experience_guest_number_min"];
+                dynamicPriceArray = [expData objectForKey:@"experience_dynamic_price"];
+                maxGuestNum = [expData objectForKey:@"experience_guest_number_max"];
+                minGuestNum = [expData objectForKey:@"experience_guest_number_min"];
                 
                 NSDictionary *reviewDictionary0 = [expReviewsArray objectAtIndex:0];
                 reviews = expReviewsArray;
                 reviewFirst = [reviewDictionary0 objectForKey:@"reviewer_firstname"];
                 reviewLast = [reviewDictionary0 objectForKey:@"reviewer_lastname"];
                 PREreviewerImageURL =[reviewDictionary0 objectForKey:@"reviewer_image"];
-                reviewerImageURL = [NSLocalizedString(imageBaseURL, nil) stringByAppendingString: PREreviewerImageURL];
+                reviewerImageURL = [[URLConfig imageServiceURLString] stringByAppendingString: PREreviewerImageURL];
                 reviewComment = [reviewDictionary0 objectForKey:@"review_comment"];
             }
             @catch (NSException * e) {
                 NSLog(@"Experience/(ID:%@/) Exception: %@", _experience_id_string, e);
             }
-            [HUD dismissAfterDelay:1.5];
         } else {
             NSString *errorMsg = [result objectForKey:@"Server Error"];
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Connection Failed"
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"server_error", nil)
                                                             message:errorMsg
                                                            delegate:nil
-                                                  cancelButtonTitle:@"OK"
+                                                  cancelButtonTitle:NSLocalizedString(@"ok_button", nil)
                                                   otherButtonTitles:nil];
             [alert show];
         }
-        
-//#if DEBUG
-//        NSString *decodedData = [[NSString alloc] initWithData:data
-//                                                      encoding:NSUTF8StringEncoding];
-//        NSLog(@"Receiving data = %@", decodedData);
-//#endif
     } else {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No network connection"
-                                                        message:@"You must be connected to the internet."
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"no_network", nil)
+                                                        message:NSLocalizedString(@"no_network_msg", nil)
                                                        delegate:nil
-                                              cancelButtonTitle:@"OK"
+                                              cancelButtonTitle:NSLocalizedString(@"ok_button", nil)
                                               otherButtonTitles:nil];
         [alert show];
     }
     
-    [HUD setHidden:YES];
-    NSLog(@"%@,%@,%@,%@",expTitle,_expPrice,reviewerImageURL,reviewComment);
     
+#ifdef DEBUG
+    NSLog(@"%@,%@,%@,%@",expTitle,_expPrice,reviewerImageURL,reviewComment);
+#endif
+    [_myTable reloadData];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    if ([expData count] == 0) {
+        [self fetchData];
+    }
+
+    [HUD dismissAfterDelay:1];
 }
 
 // todo: move to utility file
@@ -240,42 +246,36 @@
     static NSString *cellIdentifier5=@"cell5";
     TLDetailTableViewCell5 *cell5=(TLDetailTableViewCell5 *) [tableView dequeueReusableCellWithIdentifier:cellIdentifier5];
     
-    NSString *hostImageCachingIdentifier = [NSString stringWithFormat:@"Cell%ldOfHostImage",(long)indexPath.row];
-    NSString *expImageCachingIdentifier = [NSString stringWithFormat:@"Cell%ldOfExpImage",(long)indexPath.row];
     switch (indexPath.row) {
-        case 0:
+        case 0: {
             if (!cell) {
                 cell = [[TLDetailTableViewCell0 alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier0];
             }
             
-            if ([self.cachedImages objectForKey:hostImageCachingIdentifier]) {
-                cell.hostImage.image = [self.cachedImages valueForKey:hostImageCachingIdentifier];
-                cell.coverImage.image = [self.cachedImages valueForKey:expImageCachingIdentifier];
-            } else {
-                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                    NSData *hostImageData = [[NSData alloc]initWithContentsOfURL:[NSURL URLWithString:hostImageURL]];
-                    dispatch_sync(dispatch_get_main_queue(), ^{
-                        cell.hostImage.image = [[UIImage alloc] initWithData:hostImageData];
-                        [self.cachedImages setValue:cell.hostImage.image forKey:hostImageCachingIdentifier];
-                    });
-                    
-                });
-                
-                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                    NSString *coverImageURL = [NSString stringWithFormat:@"%@thumbnails/experiences/experience%@_1.jpg", NSLocalizedString(imageServiceURL, nil), _experience_id_string];
-                    NSData *coverImageData = [[NSData alloc]initWithContentsOfURL:[NSURL URLWithString:coverImageURL]];
-                    dispatch_sync(dispatch_get_main_queue(), ^{
-                        
-                        UIImage *croppedImg = nil;
-                        croppedImg = [self croppIngimageByImageName:[[UIImage alloc] initWithData:coverImageData] toRect:cell.coverImage.frame];
-                        cell.coverImage.image = croppedImg;
-                        
-                        [self.cachedImages setValue:cell.coverImage.image forKey:expImageCachingIdentifier];
-                    });
-                    
-                });
-                
-            }
+            [cell.hostImage sd_setImageWithURL:[NSURL URLWithString:hostImageURL]
+                              placeholderImage:[UIImage imageNamed:@"default_profile_image.png"]
+                                       options:SDWebImageAvoidAutoSetImage];
+            
+            NSString *coverImageURL = [NSString stringWithFormat:@"%@thumbnails/experiences/experience%@_1.jpg", [URLConfig imageServiceURLString], _experience_id_string];
+            
+            __block UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+            activityIndicator.center = cell.coverImage.center;
+            activityIndicator.hidesWhenStopped = YES;
+            
+            [cell.coverImage addSubview:activityIndicator];
+            [activityIndicator startAnimating];
+
+            [cell.coverImage sd_setImageWithURL:[NSURL URLWithString:coverImageURL]
+                              placeholderImage:nil
+                                        options:SDWebImageAvoidAutoSetImage
+                                      completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+                                          [activityIndicator removeFromSuperview];
+                                          if (image) {
+                                              nextPageCoverImage = image;
+                                              cell.coverImage.image = [self croppIngimageByImageName:image toRect:cell.coverImage.frame];
+                                          }
+                                      }];
+            
             
             cell.reservationLabel.text = [NSString stringWithFormat:@"%@ %@ %@", NSLocalizedString(@"reservationPrefix", nil), hostFirstName, NSLocalizedString(@"reservationSuffix",nil)];
             
@@ -285,7 +285,7 @@
             cell.durationLabel.text = [NSString stringWithFormat:NSLocalizedString(@"exp_detail_per_person_for", nil), expDuration];
             
             return cell;
-        
+        }
         case 1:
             if(!cell1)
             {
@@ -326,18 +326,12 @@
                 cell2.hostBioLabel.numberOfLines = 5;
             }
             
-            if ([self.cachedImages objectForKey:hostImageCachingIdentifier]) {
-                cell2.hostImage.image = [self.cachedImages valueForKey:hostImageCachingIdentifier];
-            } else {
-                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                    NSData *hostImageData = [[NSData alloc]initWithContentsOfURL:[NSURL URLWithString:hostImageURL]];
-                    dispatch_sync(dispatch_get_main_queue(), ^{
-                        cell2.hostImage.image = [[UIImage alloc] initWithData:hostImageData];
-                        [self.cachedImages setValue:cell2.hostImage.image forKey:hostImageCachingIdentifier];
-                    });
-                });
+            [cell2.hostImage sd_setImageWithURL:[NSURL URLWithString:hostImageURL]
+                              placeholderImage:[UIImage imageNamed:@"default_profile_image.png"]
+                                       options:SDWebImageRefreshCached];
+            if (hostFirstName) {
+                cell2.hostFirstNameLabel.text = [NSLocalizedString(@"about_the_host", nil) stringByAppendingString: hostFirstName];
             }
-            cell2.hostFirstNameLabel.text = [NSLocalizedString(@"about_the_host", nil) stringByAppendingString: hostFirstName];
             cell2.hostBioLabel.text = hostBio;
             
             return cell2;
@@ -357,54 +351,38 @@
             cell3.reviewStars.rating = [expRate floatValue];
             cell3.reviewerName.text = [NSString stringWithFormat:@"%@ %@", reviewFirst, reviewLast];
             cell3.commentLabel.text = reviewComment;
-
-            cell3.reviewerImage.image = [UIImage imageNamed:@"default_profile_image.png"];
             
-            if([self.cachedImages objectForKey:hostImageCachingIdentifier]!=nil){
-                cell3.reviewerImage.image = [self.cachedImages valueForKey:hostImageCachingIdentifier];
-            }
-            else if(PREreviewerImageURL.length <= 0){
-                cell3.reviewerImage.image = [UIImage imageNamed:@"default_profile_image.png"];
-            }
-            else{
-                
-                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                    NSData *hostImageData = [[NSData alloc]initWithContentsOfURL:[NSURL URLWithString:reviewerImageURL]];
-                    dispatch_sync(dispatch_get_main_queue(), ^{
-                        cell3.reviewerImage.image = [[UIImage alloc]initWithData:hostImageData];
-                        [self.cachedImages setValue:cell3.reviewerImage.image forKey:hostImageCachingIdentifier];
-                    });
-                
-                });
-                
-            }
+            [cell3.reviewerImage sd_setImageWithURL:[NSURL URLWithString:reviewerImageURL]
+                              placeholderImage:[UIImage imageNamed:@"default_profile_image.png"]
+                                       options:SDWebImageRefreshCached];
             
             return cell3;
         case 4:
+        {
             if(!cell4) {
                 cell4=[[TLDetailTableViewCell4 alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier4];
             }
             
-            if ([self.cachedImages objectForKey:expImageCachingIdentifier]) {
-                cell4.coverImage.image = [self.cachedImages valueForKey:expImageCachingIdentifier];
-            } else {
-                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                    NSString *backgroundImageURL = [NSString stringWithFormat:@"%@thumbnails/experiences/experience%@_1.jpg", NSLocalizedString(imageServiceURL, nil), _experience_id_string];
-                    
-                    NSData *experienceImageData = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:backgroundImageURL]];
-                    
-                    dispatch_sync(dispatch_get_main_queue(), ^{
-                        
-                        UIImage *croppedImg = nil;
-                        croppedImg = [self croppIngimageByImageName:[[UIImage alloc] initWithData:experienceImageData] toRect:cell.coverImage.frame];
-                        
-                        cell4.coverImage.image = croppedImg;
-                        [self.cachedImages setValue:cell4.coverImage.image forKey:expImageCachingIdentifier];
-                    });
-                });
-            }
+            NSString *coverImageURL = [NSString stringWithFormat:@"%@thumbnails/experiences/experience%@_1.jpg", [URLConfig imageServiceURLString], _experience_id_string];
+            __block UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+            activityIndicator.center = cell4.coverImage.center;
+            activityIndicator.hidesWhenStopped = YES;
+            
+            [cell4.coverImage sd_setImageWithURL:[NSURL URLWithString:coverImageURL]
+                               placeholderImage:nil
+                                        options:SDWebImageAvoidAutoSetImage
+                                      completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+                                          [activityIndicator removeFromSuperview];
+                                          if (image) {
+                                              cell4.coverImage.image = [self croppIngimageByImageName:image toRect:cell4.coverImage.frame];
+                                          }
+                                      }];
+            
+            [cell4.coverImage addSubview:activityIndicator];
+            [activityIndicator startAnimating];
             
             return cell4;
+        }
         case 5:
             if(!cell5)
             {
@@ -460,8 +438,8 @@
     if ([segue.identifier isEqualToString:@"checkoutSegue"]) {
         CheckoutViewController *vc=[segue destinationViewController];
         vc.exp_ID_string = _experience_id_string;
-        NSString *expImageCachingIdentifier = [NSString stringWithFormat:@"Cell0OfExpImage"];
-        vc.expImage = [self.cachedImages valueForKey:expImageCachingIdentifier];
+//        NSString *expImageCachingIdentifier = [NSString stringWithFormat:@"Cell0OfExpImage"];
+        vc.expImage = nextPageCoverImage;
 
         vc.availbleDateArray = availableDateArray;
         vc.expTitleString = expTitle;
@@ -471,6 +449,13 @@
         vc.durationString = expDuration;
         vc.maxGuestNum = maxGuestNum;
         vc.minGuestNum = minGuestNum;
+        NSString *lastNameInitial = [[hostLastName substringWithRange:NSMakeRange(0, 1)] stringByAppendingString:@"."];
+        if (hostFirstName) {
+            vc.hostName = [[NSArray arrayWithObjects:hostFirstName, lastNameInitial, nil] componentsJoinedByString:@" "];
+        } else {
+            vc.hostName = lastNameInitial;
+        }
+
     } else if ([segue.identifier isEqualToString:@"view_all_reviews"]) {
         ReviewTableViewController *vc=[segue destinationViewController];
         vc.reviews = reviews;
