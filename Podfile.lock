@@ -17,6 +17,7 @@ PODS:
     - FBSDKCoreKit/arc
   - FBSDKLoginKit (4.3.0):
     - FBSDKCoreKit
+  - JGProgressHUD (1.2.7)
   - SDWebImage (3.7.3):
     - SDWebImage/Core (= 3.7.3)
   - SDWebImage/Core (3.7.3)
@@ -27,6 +28,7 @@ DEPENDENCIES:
   - EDStarRating
   - FBSDKCoreKit
   - FBSDKLoginKit
+  - JGProgressHUD
   - SDWebImage (~> 3.7)
   - UIActivityIndicator-for-SDWebImage
 
@@ -35,6 +37,7 @@ SPEC CHECKSUMS:
   EDStarRating: a41a6440a945020745d0e9ff8ada7d1afa952114
   FBSDKCoreKit: a3a60225a84abeace291d0fe71cae29a627382c2
   FBSDKLoginKit: 6bc2f8f2628c3b6d2e346762fff8cb55cfd3a58d
+  JGProgressHUD: a45c1d16adddf7e38092ce3f0d71d3955d2de2ec
   SDWebImage: 1d2b1a1efda1ade1b00b6f8498865f8ddedc8a84
   UIActivityIndicator-for-SDWebImage: 7bf7ebbf0ed1747dedc0d6e949c4603a6d0f9e0c
 

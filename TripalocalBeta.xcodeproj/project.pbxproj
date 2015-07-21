@@ -13,8 +13,6 @@
 		5649BD401B3FD58800465D6C /* TLDetailTableViewCell3.m in Sources */ = {isa = PBXBuildFile; fileRef = 5649BD3F1B3FD58800465D6C /* TLDetailTableViewCell3.m */; };
 		5649BD431B3FD5A400465D6C /* TLDetailTableViewCell4.m in Sources */ = {isa = PBXBuildFile; fileRef = 5649BD421B3FD5A400465D6C /* TLDetailTableViewCell4.m */; };
 		5649BD461B3FD5CA00465D6C /* TLDetailTableViewCell5.m in Sources */ = {isa = PBXBuildFile; fileRef = 5649BD451B3FD5CA00465D6C /* TLDetailTableViewCell5.m */; };
-		5649BDDD1B4387DE00465D6C /* libJGProgressHUD.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5649BDD41B4387C900465D6C /* libJGProgressHUD.a */; };
-		5649BDDE1B4387EA00465D6C /* JGProgressHUD Resources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 5649BDD61B4387C900465D6C /* JGProgressHUD Resources.bundle */; };
 		5649BDF01B46702300465D6C /* (null) in Resources */ = {isa = PBXBuildFile; };
 		5649BDF11B46702300465D6C /* (null) in Resources */ = {isa = PBXBuildFile; };
 		5653A8ED1B48FB8D005CA2A7 /* default_profile_image.png in Resources */ = {isa = PBXBuildFile; fileRef = 5653A8EC1B48FB8D005CA2A7 /* default_profile_image.png */; };
@@ -126,41 +124,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		5649BDD31B4387C900465D6C /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 5649BDCD1B4387C800465D6C /* JGProgressHUD.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 6BC01873197B2AA500DA4C49;
-			remoteInfo = JGProgressHUD;
-		};
-		5649BDD51B4387C900465D6C /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 5649BDCD1B4387C800465D6C /* JGProgressHUD.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 6B60B24019A3B3C500ED1A4E;
-			remoteInfo = "JGProgressHUD Resources";
-		};
-		5649BDD71B4387C900465D6C /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 5649BDCD1B4387C800465D6C /* JGProgressHUD.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 6BF7DC5A1AEFCFD9000A0AE0;
-			remoteInfo = "JGProgressHUD Framework";
-		};
-		5649BDD91B4387D600465D6C /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 5649BDCD1B4387C800465D6C /* JGProgressHUD.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 6BC01872197B2AA500DA4C49;
-			remoteInfo = JGProgressHUD;
-		};
-		5649BDDB1B4387D900465D6C /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 5649BDCD1B4387C800465D6C /* JGProgressHUD.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 6B60B23F19A3B3C500ED1A4E;
-			remoteInfo = "JGProgressHUD Resources";
-		};
 		8EB570F91B01CF2B0026D419 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 8EB570D71B01CF2B0026D419 /* Project object */;
@@ -184,7 +147,6 @@
 		5649BD421B3FD5A400465D6C /* TLDetailTableViewCell4.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TLDetailTableViewCell4.m; path = "Controller/Custom Cells/TLDetailTableViewCell4.m"; sourceTree = "<group>"; };
 		5649BD441B3FD5CA00465D6C /* TLDetailTableViewCell5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TLDetailTableViewCell5.h; path = "Controller/Custom Cells/TLDetailTableViewCell5.h"; sourceTree = "<group>"; };
 		5649BD451B3FD5CA00465D6C /* TLDetailTableViewCell5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TLDetailTableViewCell5.m; path = "Controller/Custom Cells/TLDetailTableViewCell5.m"; sourceTree = "<group>"; };
-		5649BDCD1B4387C800465D6C /* JGProgressHUD.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = JGProgressHUD.xcodeproj; path = "Supported Files/JGProgressHUD/JGProgressHUD.xcodeproj"; sourceTree = "<group>"; };
 		5653A8EC1B48FB8D005CA2A7 /* default_profile_image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = default_profile_image.png; path = Images/default_profile_image.png; sourceTree = "<group>"; };
 		568AE82B1B52061E00D48DBC /* flash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = flash.png; sourceTree = "<group>"; };
 		568AE82E1B52087500D48DBC /* InstantBookingTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InstantBookingTableViewCell.h; path = "Controller/Custom Cells/InstantBookingTableViewCell.h"; sourceTree = "<group>"; };
@@ -230,6 +192,7 @@
 		87A3C09C1B461129009A3B07 /* RequestController.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.objc; path = RequestController.m; sourceTree = "<group>"; tabWidth = 4; usesTabs = 0; wrapsLines = 1; };
 		87A3C09F1B463C6C009A3B07 /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HomeViewController.h; path = Controller/HomeViewController.h; sourceTree = "<group>"; };
 		87A3C0A01B463C6C009A3B07 /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HomeViewController.m; path = Controller/HomeViewController.m; sourceTree = "<group>"; };
+		87E311DB1B5E1DE500069826 /* libPods-TripalocalBeta-JGProgressHUD.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-TripalocalBeta-JGProgressHUD.a"; path = "Pods/../build/Debug-iphoneos/libPods-TripalocalBeta-JGProgressHUD.a"; sourceTree = "<group>"; };
 		87E74B641B54BD6C00C41CBF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/NeedToLoginView.xib; sourceTree = "<group>"; };
 		87E74B681B54BD7200C41CBF /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/NeedToLoginView.strings"; sourceTree = "<group>"; };
 		87E74B6A1B54C2AF00C41CBF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/SearchViewCell.xib; sourceTree = "<group>"; };
@@ -435,7 +398,6 @@
 				87FC2D471B47FAF60017F30E /* libssl.a in Frameworks */,
 				87FC2D431B47FA800017F30E /* AlipaySDK.framework in Frameworks */,
 				87FC2D3C1B47F8390017F30E /* SystemConfiguration.framework in Frameworks */,
-				5649BDDD1B4387DE00465D6C /* libJGProgressHUD.a in Frameworks */,
 				7412FDE1EDC10952539BF3C5 /* libPods-TripalocalBeta.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -475,16 +437,6 @@
 				568AE82F1B52087500D48DBC /* InstantBookingTableViewCell.m */,
 			);
 			name = "Custom Cells";
-			sourceTree = "<group>";
-		};
-		5649BDCE1B4387C800465D6C /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				5649BDD41B4387C900465D6C /* libJGProgressHUD.a */,
-				5649BDD61B4387C900465D6C /* JGProgressHUD Resources.bundle */,
-				5649BDD81B4387C900465D6C /* JGProgressHUD.framework */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		87FC2D551B480ABE0017F30E /* Util */ = {
@@ -665,7 +617,6 @@
 				87FCA4C11B52CB890060AA8B /* heart_sw.png */,
 				87FCA4C21B52CB890060AA8B /* heart_sr.png */,
 				8E43713A1B4CBA05003A3C8A /* bus.png */,
-				5649BDCD1B4387C800465D6C /* JGProgressHUD.xcodeproj */,
 				8EC86D9F1B02350000B0A655 /* date.png */,
 				8EC86DA01B02350000B0A655 /* facebook_bt.png */,
 				568AE82B1B52061E00D48DBC /* flash.png */,
@@ -808,6 +759,7 @@
 		F82D1B26B1D2E61BDB99608C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				87E311DB1B5E1DE500069826 /* libPods-TripalocalBeta-JGProgressHUD.a */,
 				87FC2D441B47FAF60017F30E /* libcrypto.a */,
 				87FC2D451B47FAF60017F30E /* libssl.a */,
 				87FC2D421B47FA800017F30E /* AlipaySDK.framework */,
@@ -833,8 +785,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				5649BDDC1B4387D900465D6C /* PBXTargetDependency */,
-				5649BDDA1B4387D600465D6C /* PBXTargetDependency */,
 			);
 			name = TripalocalBeta;
 			productName = TripalocalBeta;
@@ -890,12 +840,6 @@
 			mainGroup = 8EB570D61B01CF2B0026D419;
 			productRefGroup = 8EB570E01B01CF2B0026D419 /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = 5649BDCE1B4387C800465D6C /* Products */;
-					ProjectRef = 5649BDCD1B4387C800465D6C /* JGProgressHUD.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				8EB570DE1B01CF2B0026D419 /* TripalocalBeta */,
@@ -904,37 +848,12 @@
 		};
 /* End PBXProject section */
 
-/* Begin PBXReferenceProxy section */
-		5649BDD41B4387C900465D6C /* libJGProgressHUD.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libJGProgressHUD.a;
-			remoteRef = 5649BDD31B4387C900465D6C /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		5649BDD61B4387C900465D6C /* JGProgressHUD Resources.bundle */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = "JGProgressHUD Resources.bundle";
-			remoteRef = 5649BDD51B4387C900465D6C /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		5649BDD81B4387C900465D6C /* JGProgressHUD.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = JGProgressHUD.framework;
-			remoteRef = 5649BDD71B4387C900465D6C /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
-
 /* Begin PBXResourcesBuildPhase section */
 		8EB570DD1B01CF2B0026D419 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				87E74B631B54BD6C00C41CBF /* NeedToLoginView.xib in Resources */,
-				5649BDDE1B4387EA00465D6C /* JGProgressHUD Resources.bundle in Resources */,
 				8EC86DB41B02350000B0A655 /* instant_booking.png in Resources */,
 				87FCA4C91B52D8BC0060AA8B /* star_w.png in Resources */,
 				8700D0BB1B588CB4003B6170 /* location.png in Resources */,
@@ -1106,16 +1025,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		5649BDDA1B4387D600465D6C /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = JGProgressHUD;
-			targetProxy = 5649BDD91B4387D600465D6C /* PBXContainerItemProxy */;
-		};
-		5649BDDC1B4387D900465D6C /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "JGProgressHUD Resources";
-			targetProxy = 5649BDDB1B4387D900465D6C /* PBXContainerItemProxy */;
-		};
 		8EB570FA1B01CF2B0026D419 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 8EB570DE1B01CF2B0026D419 /* TripalocalBeta */;
@@ -1220,7 +1129,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				MTL_ENABLE_DEBUG_INFO = YES;
-				ONLY_ACTIVE_ARCH = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -1257,6 +1166,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				ONLY_ACTIVE_ARCH = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -1292,8 +1202,9 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(SRCROOT)",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/build/Debug-iphoneos",
 				);
-				ONLY_ACTIVE_ARCH = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "TripalocalBeta/TripalocalBeta-Bridging-Header.h";
@@ -1332,8 +1243,9 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(SRCROOT)",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/build/Debug-iphoneos",
 				);
-				ONLY_ACTIVE_ARCH = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "TripalocalBeta/TripalocalBeta-Bridging-Header.h";
