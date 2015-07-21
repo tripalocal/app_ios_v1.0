@@ -49,23 +49,33 @@
     tabBarItem4.selectedImage = [[UIImage imageNamed:@"myprofile_s.png"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal ];
     tabBarItem4.image = [[UIImage imageNamed:@"myprofile.png"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal ];
     tabBarItem4.title = nil;
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentSmsVerifiIfNotLoggedIn)
+     
+                                                 name:UIApplicationWillEnterForegroundNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentSmsVerifiIfNotLoggedIn)
+     
+                                                 name:UIApplicationDidBecomeActiveNotification object:nil];
 
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
+    [self presentSmsVerifiIfNotLoggedIn];
+}
+
+- (void)presentSmsVerifiIfNotLoggedIn {
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     NSString *token = [userDefaults stringForKey:@"user_token"];
     
-    if ([[[NSProcessInfo processInfo] arguments] containsObject:@"-zhVersion"]) {
-        
+#ifdef CN_VERSION
         if (token) {
-
+            
         } else {
             SmsVerificationViewController *smsVerificationVC = [self.storyboard instantiateViewControllerWithIdentifier:@"smsVerificationViewController"];
             [self presentViewController:smsVerificationVC animated:YES completion:nil];
         }
-    }
+#endif
 }
 
 

@@ -12,83 +12,83 @@
 
 + (NSString *)myTripServiceURLString
 {
-    if ([[[NSProcessInfo processInfo] arguments] containsObject:@"-zhVersion"]) {
+#ifdef CN_VERSION
         return @"https://www.tripalocal.com/cn/service_mytrip/";
-    } else {
+#else
         return @"https://www.tripalocal.com/service_mytrip/";
-    }
+#endif
 }
 
 + (NSString *)imageServiceURLString
 {
-    if ([[[NSProcessInfo processInfo] arguments] containsObject:@"-zhVersion"]) {
+#ifdef CN_VERSION
         return @"https://www.tripalocal.com/cn/images/";
-    } else {
+#else
         return @"https://www.tripalocal.com/images//";
-    }
+#endif
 }
 
 + (NSString *)loginServiceURLString
 {
-    if ([[[NSProcessInfo processInfo] arguments] containsObject:@"-zhVersion"]) {
+#ifdef CN_VERSION
         return @"https://www.tripalocal.com/cn/service_login/";
-    } else {
+#else
         return @"https://www.tripalocal.com/service_login/";
-    }
+#endif
 }
 
 + (NSString *)myProfileServiceURLString
 {
-    if ([[[NSProcessInfo processInfo] arguments] containsObject:@"-zhVersion"]) {
+#ifdef CN_VERSION
         return @"https://www.tripalocal.com/cn/service_myprofile/";
-    } else {
+#else
         return @"https://www.tripalocal.com/service_myprofile/";
-    }
+#endif
 }
 
 + (NSString *)logoutServiceURLString
 {
-    if ([[[NSProcessInfo processInfo] arguments] containsObject:@"-zhVersion"]) {
+#ifdef CN_VERSION
         return @"https://www.tripalocal.com/cn/service_logout/";
-    } else {
+#else
         return @"https://www.tripalocal.com/service_logout/";
-    }
+#endif
 }
 
 + (NSString *)signupServiceURLString
 {
-    if ([[[NSProcessInfo processInfo] arguments] containsObject:@"-zhVersion"]) {
+#ifdef CN_VERSION
         return @"https://www.tripalocal.com/cn/service_signup/";
-    } else {
+#else
         return @"https://www.tripalocal.com/service_signup/";
-    }
+#endif
 }
 
 + (NSString *)bookingServiceURLString
 {
-    if ([[[NSProcessInfo processInfo] arguments] containsObject:@"-zhVersion"]) {
+#ifdef CN_VERSION
         return @"https://www.tripalocal.com/cn/service_booking/";
-    } else {
+#else
         return @"https://www.tripalocal.com/service_booking/";
-    }
+#endif
 }
 
 + (NSString *)searchServiceURLString
 {
-    if ([[[NSProcessInfo processInfo] arguments] containsObject:@"-zhVersion"]) {
+#ifdef CN_VERSION
         return @"https://tripalocal.com/cn/service_search/";
-    } else {
+#else
         return @"https://tripalocal.com/service_search/";
-    }
+#endif
 }
 
 + (NSString *)expDetailhServiceURLString
 {
-    if ([[[NSProcessInfo processInfo] arguments] containsObject:@"-zhVersion"]) {
+#ifdef CN_VERSION
         return @"https://tripalocal.com/cn/service_experience/";
-    } else {
+#else
         return @"https://tripalocal.com/service_experience/";
-    }
+#endif
 }
 
 @end

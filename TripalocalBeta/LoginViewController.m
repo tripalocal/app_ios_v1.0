@@ -62,12 +62,11 @@
             [userDefaults setObject:token forKey:@"user_token"];
             [[NSUserDefaults standardUserDefaults] synchronize];
 
-            if ([[[NSProcessInfo processInfo] arguments] containsObject:@"-zhVersion"]) {
+#ifdef CN_VERSION
                 [self.presentingViewController.presentingViewController dismissViewControllerAnimated:YES completion:nil];
-                
-            } else {
+#else
                 [self dismissViewControllerAnimated:YES completion:nil];
-            }
+#endif
         } else {
             NSString *errorMsg = result[@"error"];
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"login_failed", nil)
@@ -98,11 +97,11 @@
 
 - (IBAction)changeToSignup:(id)sender {
     NSLog(@"conditional signup");
-    if([[[NSProcessInfo processInfo] arguments] containsObject:@"-zhVersion"]){
+#ifdef CN_VERSION
         [self dismissViewControllerAnimated:YES completion:nil];
-    } else {
+#else
         [self performSegueWithIdentifier:@"normal_signup" sender:nil];
-    }
+#endif
 }
 
 - (IBAction)inputFieldChanged:(id)sender {

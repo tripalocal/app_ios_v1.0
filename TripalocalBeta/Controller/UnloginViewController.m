@@ -44,14 +44,14 @@
         
         [self.tabBarController setViewControllers:listOfViewControllers];
     } else {
-        if ([[[NSProcessInfo processInfo] arguments] containsObject:@"-zhVersion"]) {
+#ifdef CN_VERSION
             
             SmsVerificationViewController *smsVerificationVC = [self.storyboard instantiateViewControllerWithIdentifier:@"smsVerificationViewController"];
             [self presentViewController:smsVerificationVC animated:YES completion:nil];
             
-        } else {
+#else
             [self.navigationController setNavigationBarHidden:YES animated:animated];
-        }
+#endif
     }
 }
 
@@ -60,15 +60,14 @@
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     NSString *token = [userDefaults stringForKey:@"user_token"];
     
-    if ([[[NSProcessInfo processInfo] arguments] containsObject:@"-zhVersion"]) {
-        
+#ifdef CN_VERSION
         if (token) {
             
         } else {
             SmsVerificationViewController *smsVerificationVC = [self.storyboard instantiateViewControllerWithIdentifier:@"smsVerificationViewController"];
             [self presentViewController:smsVerificationVC animated:YES completion:nil];
         }
-    }
+#endif
 }
 
 
