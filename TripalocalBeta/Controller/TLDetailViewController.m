@@ -57,7 +57,6 @@
 
 @implementation TLDetailViewController
 
-// Should login in first to access checkout page.
 - (IBAction)checkout:(id)sender {
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     NSString *token = [userDefaults stringForKey:@"user_token"];
@@ -88,6 +87,13 @@
     
     reviews = [[NSArray alloc] init];
     
+    
+    
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
     NSString *post = [NSString stringWithFormat:@"{\"experience_id\":\"%@\"}",_experience_id_string];
 #if DEBUG
     NSLog(@"(Detail)POST: %@", post);
@@ -186,7 +192,7 @@
 #ifdef DEBUG
     NSLog(@"%@,%@,%@,%@",expTitle,_expPrice,reviewerImageURL,reviewComment);
 #endif
-    
+    [_myTable reloadData];
 }
 
 // todo: move to utility file

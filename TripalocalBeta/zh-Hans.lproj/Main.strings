@@ -320,6 +320,8 @@
 /* Class = "UILabel"; text = "About Me"; ObjectID = "vQz-gg-Nsz"; */
 "vQz-gg-Nsz.text" = "关于我";
 
+"WG1-Vr-AMX.normalTitle" = "立即出发";
+
 /* Class = "UIButton"; normalTitle = "Start Exploring"; ObjectID = "yIH-DE-k8J"; */
 "yIH-DE-k8J.normalTitle" = "去首页逛逛";
 

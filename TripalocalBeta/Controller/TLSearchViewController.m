@@ -29,6 +29,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.navigationItem.title = NSLocalizedString([self.cityName lowercaseString], nil);
     dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"yyyy-LL-dd"];
     HUD = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleDark];
@@ -42,9 +43,6 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
 
-    self.expList = [self fetchExpData:self.cityName];
-    
-    [self.tableView reloadData];
     currentLanguage = [[NSLocale preferredLanguages] objectAtIndex:0];
     dynamicPricingArray = [[NSMutableArray alloc]init];
     [HUD dismissAfterDelay:1.0];
@@ -209,6 +207,13 @@
     [super didReceiveMemoryWarning];
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    self.expList = [self fetchExpData:self.cityName];
+    [self.tableView reloadData];
+}
+
 - (NSMutableArray *)fetchExpData:(NSString *) cityName {
     NSMutableArray *expList = [[NSMutableArray alloc] init];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
@@ -280,8 +285,9 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    //    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    [self performSegueWithIdentifier:@"SearchResultSegue" sender:self];
+//    dispatch_async(dispatch_get_main_queue(), ^{
+        [self performSegueWithIdentifier:@"SearchResultSegue" sender:self];
+//    });
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
