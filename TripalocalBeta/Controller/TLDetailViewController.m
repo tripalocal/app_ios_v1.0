@@ -128,7 +128,13 @@
         if ([httpResponse statusCode] == 200) {
             expData = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
             @try {
-                hostImageURL = [[URLConfig imageServiceURLString] stringByAppendingString: [expData objectForKey:@"host_image"]];
+                NSString *hostImageURLRelative = [expData objectForKey:@"host_image"];
+                if (hostImageURLRelative != (id)[NSNull null]) {
+                    hostImageURL = [[URLConfig imageServiceURLString] stringByAppendingString: hostImageURLRelative];
+                } else {
+                    hostImageURL = nil;
+                }
+
                 expLanguage = [self transformLanugage:[expData objectForKey:@"experience_language"]];
                 NSNumberFormatter *formatter = [[NSNumberFormatter alloc]init];
                 [formatter setNumberStyle:NSNumberFormatterDecimalStyle];
