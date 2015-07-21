@@ -51,6 +51,7 @@
     NSString *transportString;
     NSMutableArray *availableDateArray;
     NSArray *reviews;
+    NSDictionary *expData;
 }
 
 @end
@@ -86,14 +87,11 @@
     _myTable.dataSource = self;
     
     reviews = [[NSArray alloc] init];
-    
-    
-    
+    expData = [[NSDictionary alloc] init];
 }
 
-- (void)viewDidAppear:(BOOL)animated
+- (void)fetchData
 {
-    [super viewDidAppear:animated];
     NSString *post = [NSString stringWithFormat:@"{\"experience_id\":\"%@\"}",_experience_id_string];
 #if DEBUG
     NSLog(@"(Detail)POST: %@", post);
@@ -127,28 +125,28 @@
 #endif
         
         if ([httpResponse statusCode] == 200) {
-            NSDictionary *allDataDictionary=[NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+            expData = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
             @try {
-                hostImageURL = [[URLConfig imageServiceURLString] stringByAppendingString: [allDataDictionary objectForKey:@"host_image"]];
-                expLanguage = [self transformLanugage:[allDataDictionary objectForKey:@"experience_language"]];
+                hostImageURL = [[URLConfig imageServiceURLString] stringByAppendingString: [expData objectForKey:@"host_image"]];
+                expLanguage = [self transformLanugage:[expData objectForKey:@"experience_language"]];
                 NSNumberFormatter *formatter = [[NSNumberFormatter alloc]init];
                 [formatter setNumberStyle:NSNumberFormatterDecimalStyle];
                 [formatter setMaximumFractionDigits:2];
                 
                 [formatter setRoundingMode: NSNumberFormatterRoundUp];
-                NSNumber *expDurationNumber = [allDataDictionary objectForKey:@"experience_duration"];
+                NSNumber *expDurationNumber = [expData objectForKey:@"experience_duration"];
                 expDuration = [expDurationNumber stringValue];
-                expTitle = [allDataDictionary objectForKey:@"experience_title"];
-                expDescription = [allDataDictionary objectForKey:@"experience_description"];
-                expActivity = [allDataDictionary objectForKey:@"experience_activity"];
-                expInteraction = [allDataDictionary objectForKey:@"experience_interaction"];
-                hostFirstName = [allDataDictionary objectForKey:@"host_firstname"];
-                hostLastName = [allDataDictionary objectForKey:@"host_lastname"];
-                hostBio = [allDataDictionary objectForKey:@"host_bio"];
-                expReviewsArray = [allDataDictionary objectForKey:@"experience_reviews"];
+                expTitle = [expData objectForKey:@"experience_title"];
+                expDescription = [expData objectForKey:@"experience_description"];
+                expActivity = [expData objectForKey:@"experience_activity"];
+                expInteraction = [expData objectForKey:@"experience_interaction"];
+                hostFirstName = [expData objectForKey:@"host_firstname"];
+                hostLastName = [expData objectForKey:@"host_lastname"];
+                hostBio = [expData objectForKey:@"host_bio"];
+                expReviewsArray = [expData objectForKey:@"experience_reviews"];
                 NSUInteger numberOfReviews = expReviewsArray.count;
                 numOfReviews = [NSString stringWithFormat:@"%lu",(unsigned long)numberOfReviews];
-                NSNumber *rateNumber = [allDataDictionary objectForKey:@"experience_rate"];
+                NSNumber *rateNumber = [expData objectForKey:@"experience_rate"];
                 expRate = [rateNumber stringValue];
                 NSDictionary *reviewDictionary0 = [expReviewsArray objectAtIndex:0];
                 reviews = expReviewsArray;
@@ -158,14 +156,14 @@
                 reviewerImageURL = [[URLConfig imageServiceURLString] stringByAppendingString: PREreviewerImageURL];
                 
                 reviewComment = [reviewDictionary0 objectForKey:@"review_comment"];
-                ticketString = [allDataDictionary objectForKey:@"included_ticket_detail"];
-                foodString = [allDataDictionary objectForKey:@"included_food_detail"];
-                transportString = [allDataDictionary objectForKey:@"included_transport_detail"];
-                availableDateArray = [allDataDictionary objectForKey:@"available_options"];
+                ticketString = [expData objectForKey:@"included_ticket_detail"];
+                foodString = [expData objectForKey:@"included_food_detail"];
+                transportString = [expData objectForKey:@"included_transport_detail"];
+                availableDateArray = [expData objectForKey:@"available_options"];
                 NSLog(@"TEST:%lu DATE DATA",(unsigned long)availableDateArray.count);
-                dynamicPriceArray = [allDataDictionary objectForKey:@"experience_dynamic_price"];
-                maxGuestNum = [allDataDictionary objectForKey:@"experience_guest_number_max"];
-                minGuestNum = [allDataDictionary objectForKey:@"experience_guest_number_min"];
+                dynamicPriceArray = [expData objectForKey:@"experience_dynamic_price"];
+                maxGuestNum = [expData objectForKey:@"experience_guest_number_max"];
+                minGuestNum = [expData objectForKey:@"experience_guest_number_min"];
             }
             @catch (NSException * e) {
                 NSLog(@"Experience/(ID:%@/) Exception: %@", _experience_id_string, e);
@@ -188,11 +186,21 @@
         [alert show];
     }
     
-    [HUD dismissAfterDelay:1];
+    
 #ifdef DEBUG
     NSLog(@"%@,%@,%@,%@",expTitle,_expPrice,reviewerImageURL,reviewComment);
 #endif
     [_myTable reloadData];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    if ([expData count] == 0) {
+        [self fetchData];
+    }
+
+    [HUD dismissAfterDelay:1];
 }
 
 // todo: move to utility file

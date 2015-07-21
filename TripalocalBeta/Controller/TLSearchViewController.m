@@ -120,7 +120,7 @@
     cell.descriptionLabel.text = [exp objectForKey:@"description"];
 
     NSString *hostImageRelativeURL = [exp objectForKey:@"host_image"];
-    if (hostImageRelativeURL.length > 0) {
+    if (hostImageRelativeURL != (id)[NSNull null] && hostImageRelativeURL.length > 0) {
         NSString *hostImageURL = [[URLConfig imageServiceURLString] stringByAppendingString: hostImageRelativeURL];
         
         [cell.hostImage sd_setImageWithURL:[NSURL URLWithString:hostImageURL]
@@ -210,8 +210,10 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    self.expList = [self fetchExpData:self.cityName];
-    [self.tableView reloadData];
+    if ([self.expList count] == 0) {
+        self.expList = [self fetchExpData:self.cityName];
+        [self.tableView reloadData];
+    }
 }
 
 - (NSMutableArray *)fetchExpData:(NSString *) cityName {
