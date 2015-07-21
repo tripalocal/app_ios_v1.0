@@ -7,6 +7,7 @@
 //
 
 #import "PaymentOptionViewController.h"
+#import "PaymentSuccessViewController.h"
 #import <AlipaySDK/AlipaySDK.h>
 #import "Order.h"
 #import "URLConfig.h"
@@ -246,7 +247,7 @@
     if([segue.identifier isEqualToString:@"payByCreditCard"]){
         UINavigationController *navController = (UINavigationController *)segue.destinationViewController;
         PaymentViewController *controller = (PaymentViewController *)navController.topViewController;
-        
+        controller.hostName = self.hostName;
         controller.expId = self.expId;
         controller.guestNumber = self.guestNumber;
         controller.date = self.date;
@@ -254,6 +255,9 @@
         controller.unitPrice = self.unitPrice;
         controller.totalPrice = self.totalPrice;
         controller.coupon = self.coupon;
+    } else if ([segue.identifier isEqualToString:@"alipaySuccess"]) {
+        PaymentSuccessViewController *paymentSuccessVC = (PaymentSuccessViewController *)segue.destinationViewController;
+        paymentSuccessVC.hostName = self.hostName;
     }
 }
 

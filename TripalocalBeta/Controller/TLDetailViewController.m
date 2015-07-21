@@ -32,6 +32,7 @@
     NSString *expInteraction;
     NSMutableArray *expReviewsArray;
     NSString *hostFirstName;
+    NSString *hostLastName;
     NSString *hostBio;
     NSString *numOfReviews;
     NSString *expRate;
@@ -136,12 +137,12 @@
                 expActivity = [allDataDictionary objectForKey:@"experience_activity"];
                 expInteraction = [allDataDictionary objectForKey:@"experience_interaction"];
                 hostFirstName = [allDataDictionary objectForKey:@"host_firstname"];
+                hostLastName = [allDataDictionary objectForKey:@"host_lastname"];
                 hostBio = [allDataDictionary objectForKey:@"host_bio"];
                 expReviewsArray = [allDataDictionary objectForKey:@"experience_reviews"];
                 NSUInteger numberOfReviews = expReviewsArray.count;
                 numOfReviews = [NSString stringWithFormat:@"%lu",(unsigned long)numberOfReviews];
                 NSNumber *rateNumber = [allDataDictionary objectForKey:@"experience_rate"];
-                _expPrice = [self decimalwithFormat:@"0" floatV:[[allDataDictionary objectForKey:@"experience_price"] floatValue]];
                 expRate = [rateNumber stringValue];
                 NSDictionary *reviewDictionary0 = [expReviewsArray objectAtIndex:0];
                 reviews = expReviewsArray;
@@ -428,6 +429,8 @@
         vc.durationString = expDuration;
         vc.maxGuestNum = maxGuestNum;
         vc.minGuestNum = minGuestNum;
+        NSString *lastNameInitial = [[hostLastName substringWithRange:NSMakeRange(0, 1)] stringByAppendingString:@"."];
+        vc.hostName = [[NSArray arrayWithObjects:hostFirstName, lastNameInitial, nil] componentsJoinedByString:@" "];
     } else if ([segue.identifier isEqualToString:@"view_all_reviews"]) {
         ReviewTableViewController *vc=[segue destinationViewController];
         vc.reviews = reviews;

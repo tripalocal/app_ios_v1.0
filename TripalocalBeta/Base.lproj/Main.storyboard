@@ -1824,7 +1824,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qpm-JT-zMU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6192" y="2250"/>
+            <point key="canvasLocation" x="6052" y="2726"/>
         </scene>
         <!--Credit Card-->
         <scene sceneID="4Vg-eh-K08">
@@ -2153,17 +2153,11 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your booking request has been" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ku7-gZ-jTi">
-                                <rect key="frame" x="185" y="293" width="230" height="20"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your booking request has been sent to " textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ku7-gZ-jTi">
+                                <rect key="frame" x="185" y="293" width="230" height="39"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="230" id="9qf-cv-e82"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="sent to Host name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gUk-Uu-f3z">
-                                <rect key="frame" x="233" y="314" width="134" height="20"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -2179,14 +2173,12 @@
                         <color key="backgroundColor" red="0.96862745098039216" green="0.96862745098039216" blue="0.96862745098039216" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="centerX" secondItem="zXQ-T3-Kuf" secondAttribute="centerX" id="0XC-3N-eUi"/>
-                            <constraint firstItem="gUk-Uu-f3z" firstAttribute="top" secondItem="ku7-gZ-jTi" secondAttribute="bottom" constant="1" id="7bg-Fe-NYt"/>
-                            <constraint firstAttribute="centerX" secondItem="gUk-Uu-f3z" secondAttribute="centerX" id="DAB-pW-eBz"/>
                             <constraint firstItem="Gzz-En-bck" firstAttribute="centerX" secondItem="zXQ-T3-Kuf" secondAttribute="centerX" id="K9G-iw-X3t"/>
                             <constraint firstItem="ku7-gZ-jTi" firstAttribute="top" secondItem="Gzz-En-bck" secondAttribute="bottom" constant="46" id="MVu-K9-xfF"/>
+                            <constraint firstItem="zXQ-T3-Kuf" firstAttribute="top" secondItem="ku7-gZ-jTi" secondAttribute="bottom" constant="39" id="XpX-mM-p7a"/>
                             <constraint firstItem="Gzz-En-bck" firstAttribute="centerX" secondItem="ku7-gZ-jTi" secondAttribute="centerX" id="Z5G-za-uwo"/>
                             <constraint firstItem="zXQ-T3-Kuf" firstAttribute="top" secondItem="ku7-gZ-jTi" secondAttribute="bottom" constant="55" id="ZWd-cz-e6V"/>
                             <constraint firstItem="Gzz-En-bck" firstAttribute="top" secondItem="156-Wx-o7X" secondAttribute="bottom" constant="42" id="cRx-go-MnD"/>
-                            <constraint firstItem="zXQ-T3-Kuf" firstAttribute="top" secondItem="gUk-Uu-f3z" secondAttribute="bottom" constant="37" id="ccz-ve-aVK"/>
                             <constraint firstItem="Gzz-En-bck" firstAttribute="centerX" secondItem="156-Wx-o7X" secondAttribute="centerX" id="fDV-SJ-dLa"/>
                             <constraint firstAttribute="centerY" secondItem="zXQ-T3-Kuf" secondAttribute="centerY" id="onV-oJ-m7j"/>
                             <constraint firstItem="156-Wx-o7X" firstAttribute="top" secondItem="IEV-vh-jcF" secondAttribute="bottom" constant="41" id="xQp-rm-DX0"/>
@@ -2202,7 +2194,7 @@
                     <size key="freeformSize" width="600" height="600"/>
                     <connections>
                         <outlet property="hostImage" destination="Gzz-En-bck" id="eMp-3R-1E9"/>
-                        <outlet property="sentToNameLabel" destination="gUk-Uu-f3z" id="o4q-6N-etI"/>
+                        <outlet property="sentToNameLabel" destination="ku7-gZ-jTi" id="cYZ-pr-jl3"/>
                         <outlet property="viewItInMyTripButton" destination="zXQ-T3-Kuf" id="PNy-tV-Tvj"/>
                     </connections>
                 </viewController>

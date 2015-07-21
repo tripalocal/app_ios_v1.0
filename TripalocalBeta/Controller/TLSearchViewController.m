@@ -16,7 +16,6 @@
 #import "JGProgressHUD.h"
 
 @interface TLSearchViewController (){
-    NSString *priceString;
     NSMutableArray *dynamicPricingArray;
 }
 @end
@@ -167,7 +166,7 @@
     }
     cell.delegate = self;
     cell.wishListButton.tag = indexPath.row;
-    priceString =[self decimalwithFormat:@"0" floatV:[[[self.expList objectAtIndex:indexPath.row] objectForKey:@"price"] floatValue]];
+    NSString *priceString = [self decimalwithFormat:@"0" floatV:[[[self.expList objectAtIndex:indexPath.row] objectForKey:@"price"] floatValue]];
     cell.priceLabel.text = priceString;
     //???
     [dynamicPricingArray addObject:priceString];
@@ -293,7 +292,9 @@
         TLDetailViewController *vc = (TLDetailViewController *) navController.topViewController;
         NSIndexPath *index=[_tableView indexPathForSelectedRow];
         vc.experience_id_string = [[[self.expList objectAtIndex:index.row] objectForKey:@"id"] stringValue];
-        vc.expPrice = [dynamicPricingArray objectAtIndex:index.row];
+        
+//        vc.expPrice = [dynamicPricingArray objectAtIndex:index.row];
+        vc.expPrice = [self decimalwithFormat:@"0" floatV:[[[self.expList objectAtIndex:index.row] objectForKey:@"price"] floatValue]];
     }
     
 }

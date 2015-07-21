@@ -245,6 +245,8 @@
 /* Class = "UILabel"; text = "Coupon"; ObjectID = "o9Q-uK-FNJ"; */
 "o9Q-uK-FNJ.text" = "打折码";
 
+"ku7-gZ-jTi.text" = "你的预定请求已经成功发送给 ";
+
 /* Class = "UILabel"; text = "Credit Card"; ObjectID = "pdn-CU-hSY"; */
 "pdn-CU-hSY.text" = "信用卡";
 

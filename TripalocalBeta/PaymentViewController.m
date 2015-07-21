@@ -7,6 +7,7 @@
 //
 
 #import "PaymentViewController.h"
+#import "PaymentSuccessViewController.h"
 #import "URLConfig.h"
 #import "Constant.h"
 
@@ -120,6 +121,13 @@
 
 - (IBAction)confirmAndPay:(id)sender {
     [self postPaymentInfo];
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if([segue.identifier isEqualToString:@"paymentSuccess"]){
+        PaymentSuccessViewController *paymentSuccessVC = (PaymentSuccessViewController *)segue.destinationViewController;
+        paymentSuccessVC.hostName = self.hostName;
+    }
 }
 
 - (void)viewDidLoad {

@@ -34,7 +34,7 @@
     } else {
         self.hostImage.image = [UIImage imageNamed: @"default_profile_image.png"];
     }
-    
+    self.sentToNameLabel.text = [self.sentToNameLabel.text stringByAppendingString:_hostName];
 }
 
 - (void)didReceiveMemoryWarning {

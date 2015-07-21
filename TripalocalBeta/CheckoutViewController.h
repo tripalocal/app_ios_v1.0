@@ -14,6 +14,7 @@
 @property (nonatomic) NSNumber *unitPrice;
 @property (nonatomic) NSNumber *totalPrice;
 @property (nonatomic) NSInteger hours;
+@property (nonatomic) NSString *hostName;
 
 @property (weak, nonatomic) IBOutlet UIImageView *coverImage;
 @property NSString *exp_ID_string;

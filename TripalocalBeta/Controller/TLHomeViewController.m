@@ -41,10 +41,7 @@
     
     self.tableView.dataSource=self;
     self.tableView.delegate=self;
-//    
-//    locations = [@[@"Melbourne", @"Sydney", @"Brisbane", @"Adelaide",
-//                   @"Cairns", @"Goldcoast", @"Hobart"] mutableCopy];
-    
+
     [locationsURLString addObject:@"https://www.tripalocal.com/images/mobile/home/Melbourne.jpg"];
     [locationsURLString addObject:@"https://www.tripalocal.com/images/mobile/home/Sydney.jpg"];
     [locationsURLString addObject:@"https://www.tripalocal.com/images/mobile/home/Brisbane.jpg"];
@@ -198,7 +195,7 @@
 }
 
 - (IBAction)unwindToHome:(UIStoryboardSegue *)unwindSegue {
-    [self.tabBarController setSelectedIndex:2];
+    [self.tabBarController setSelectedIndex:1];
 }
 
 - (IBAction)myButton:(id)sender {
