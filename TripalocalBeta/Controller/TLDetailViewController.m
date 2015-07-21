@@ -329,8 +329,9 @@
             [cell2.hostImage sd_setImageWithURL:[NSURL URLWithString:hostImageURL]
                               placeholderImage:[UIImage imageNamed:@"default_profile_image.png"]
                                        options:SDWebImageRefreshCached];
-
-            cell2.hostFirstNameLabel.text = [NSLocalizedString(@"about_the_host", nil) stringByAppendingString: hostFirstName];
+            if (hostFirstName) {
+                cell2.hostFirstNameLabel.text = [NSLocalizedString(@"about_the_host", nil) stringByAppendingString: hostFirstName];
+            }
             cell2.hostBioLabel.text = hostBio;
             
             return cell2;
@@ -449,7 +450,12 @@
         vc.maxGuestNum = maxGuestNum;
         vc.minGuestNum = minGuestNum;
         NSString *lastNameInitial = [[hostLastName substringWithRange:NSMakeRange(0, 1)] stringByAppendingString:@"."];
-        vc.hostName = [[NSArray arrayWithObjects:hostFirstName, lastNameInitial, nil] componentsJoinedByString:@" "];
+        if (hostFirstName) {
+            vc.hostName = [[NSArray arrayWithObjects:hostFirstName, lastNameInitial, nil] componentsJoinedByString:@" "];
+        } else {
+            vc.hostName = lastNameInitial;
+        }
+
     } else if ([segue.identifier isEqualToString:@"view_all_reviews"]) {
         ReviewTableViewController *vc=[segue destinationViewController];
         vc.reviews = reviews;
