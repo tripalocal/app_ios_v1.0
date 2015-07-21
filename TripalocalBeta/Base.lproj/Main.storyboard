@@ -3183,6 +3183,7 @@
                                             <constraint firstItem="n8M-p4-HN0" firstAttribute="top" secondItem="vB4-78-tOI" secondAttribute="top" id="RAd-59-OlI"/>
                                             <constraint firstItem="svS-kQ-4ec" firstAttribute="centerX" secondItem="Zw4-tc-m8I" secondAttribute="centerX" id="SnK-yV-uNT"/>
                                             <constraint firstItem="3UK-ph-0dR" firstAttribute="leading" secondItem="ha7-ei-jNy" secondAttribute="leading" id="T5j-RH-C33"/>
+                                            <constraint firstItem="vB4-78-tOI" firstAttribute="top" secondItem="iXH-t5-Usp" secondAttribute="bottom" constant="147" id="TNs-u9-hGk"/>
                                             <constraint firstAttribute="centerX" secondItem="ZA8-bC-Dxm" secondAttribute="centerX" constant="-11" id="TTA-mC-0Vc"/>
                                             <constraint firstItem="tfj-Gx-ZM8" firstAttribute="top" secondItem="r6j-KE-SGE" secondAttribute="top" id="VPs-xN-pw9"/>
                                             <constraint firstAttribute="trailing" secondItem="ha7-ei-jNy" secondAttribute="trailing" constant="16" id="WaF-yd-iKW"/>
@@ -3212,6 +3213,7 @@
                                         </constraints>
                                         <variation key="default">
                                             <mask key="constraints">
+                                                <exclude reference="3SK-D9-iCN"/>
                                                 <exclude reference="e55-Rk-gkF"/>
                                                 <exclude reference="NqH-7R-S6X"/>
                                                 <exclude reference="rpW-k8-1nw"/>
@@ -3269,6 +3271,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Checkout" id="lF3-Rn-48A"/>
                     <connections>
+                        <outlet property="confirmButton" destination="2w2-8z-grV" id="kf2-fF-dm5"/>
                         <outlet property="couponField" destination="K2W-PP-9P3" id="0qc-VL-eMi"/>
                         <outlet property="coverImage" destination="nBu-ZQ-Ifc" id="qB7-46-9bU"/>
                         <outlet property="datePicker" destination="vB4-78-tOI" id="TIQ-he-uZV"/>
@@ -3276,6 +3279,7 @@
                         <outlet property="expTitleLabel" destination="ha7-ei-jNy" id="hFA-Hd-Pgc"/>
                         <outlet property="guestPicker" destination="svS-kQ-4ec" id="6WP-a9-g2v"/>
                         <outlet property="instantTable" destination="ZA8-bC-Dxm" id="K2n-ho-fdX"/>
+                        <outlet property="tableVisibleConstrain" destination="TNs-u9-hGk" id="aSp-uj-frQ"/>
                         <outlet property="timePicker" destination="n8M-p4-HN0" id="NUO-7A-L5X"/>
                         <outlet property="totalPriceLabel" destination="qzN-60-yHz" id="3hB-u0-2Ge"/>
                         <outlet property="unitPriceLabel" destination="QMJ-QN-apu" id="DE0-1G-c6i"/>

@@ -38,5 +38,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *totalPriceLabel;
 
 @property (weak, nonatomic) IBOutlet UITableView *instantTable;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *tableVisibleConstrain;
+@property (weak, nonatomic) IBOutlet UIButton *confirmButton;
 
 @end

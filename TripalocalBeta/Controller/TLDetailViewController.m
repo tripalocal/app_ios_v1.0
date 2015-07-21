@@ -52,6 +52,7 @@
     NSMutableArray *availableDateArray;
     NSArray *reviews;
     NSDictionary *expData;
+    UIImage *nextPageCoverImage;
 }
 
 @end
@@ -260,6 +261,9 @@
             __block UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
             activityIndicator.center = cell.coverImage.center;
             activityIndicator.hidesWhenStopped = YES;
+            
+            [cell.coverImage addSubview:activityIndicator];
+            [activityIndicator startAnimating];
 
             [cell.coverImage sd_setImageWithURL:[NSURL URLWithString:coverImageURL]
                               placeholderImage:nil
@@ -267,12 +271,11 @@
                                       completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
                                           [activityIndicator removeFromSuperview];
                                           if (image) {
+                                              nextPageCoverImage = image;
                                               cell.coverImage.image = [self croppIngimageByImageName:image toRect:cell.coverImage.frame];
                                           }
                                       }];
             
-            [cell.coverImage addSubview:activityIndicator];
-            [activityIndicator startAnimating];
             
             cell.reservationLabel.text = [NSString stringWithFormat:@"%@ %@ %@", NSLocalizedString(@"reservationPrefix", nil), hostFirstName, NSLocalizedString(@"reservationSuffix",nil)];
             
@@ -434,7 +437,9 @@
     if ([segue.identifier isEqualToString:@"checkoutSegue"]) {
         CheckoutViewController *vc=[segue destinationViewController];
         vc.exp_ID_string = _experience_id_string;
-        vc.expImage = self.coverImage;
+//        NSString *expImageCachingIdentifier = [NSString stringWithFormat:@"Cell0OfExpImage"];
+        vc.expImage = nextPageCoverImage;
+
         vc.availbleDateArray = availableDateArray;
         vc.expTitleString = expTitle;
         vc.fixPriceString = _expPrice;

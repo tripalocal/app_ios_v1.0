@@ -25,6 +25,9 @@
     UITabBarItem *tabBarItem3 = [tabBar.items objectAtIndex:1];
     UITabBarItem *tabBarItem4 = [tabBar.items objectAtIndex:2];
     
+//    tabBar.tintColor=[UIColor whiteColor];
+//    tabBar.translucent = NO;
+    
     tabBarItem1.imageInsets = UIEdgeInsetsMake(6, 0, -6, 0);
     tabBarItem1.selectedImage = [[UIImage imageNamed:@"home_s.png"]  imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal ];
     tabBarItem1.image = [[UIImage imageNamed:@"home.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal ];
