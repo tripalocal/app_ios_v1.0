@@ -8,6 +8,7 @@
 
 #import "CheckoutViewController.h"
 #import "InstantBookingTableViewCell.h"
+#import "JGProgressHUD.h"
 
 @interface CheckoutViewController (){
     NSMutableArray *guestPickerData;
@@ -22,6 +23,10 @@
     NSString *selectedTimeString;
     NSString *selectedDateString;
     NSString *selectedGuestString;
+    BOOL isDateChoosed;
+    BOOL isTimeChoosed;
+    BOOL isGuestChoosed;
+
 }
 
 
@@ -69,6 +74,10 @@
     timeArray = [[NSMutableArray alloc]init];
     instantDateArray = [[NSMutableArray alloc]init];
     instantTimeArray = [[NSMutableArray alloc]init];
+    
+    isDateChoosed = NO;
+    isTimeChoosed = NO;
+    isGuestChoosed = NO;
     
     int i = [_minGuestNum intValue];
     int max = [_maxGuestNum intValue];
@@ -137,6 +146,9 @@
     self.totalPrice =@([self.unitPrice floatValue]* self.guestNumber);
     _totalPriceLabel.text = [@"$" stringByAppendingFormat:@" %@ AUD",[self.totalPrice stringValue]];
     _totalPriceLabel.textColor = [UIColor colorWithRed:0.00f green:0.82f blue:0.82f alpha:1.0f];
+    
+    _confirmButton.backgroundColor = [UIColor grayColor];
+    _confirmButton.enabled = NO;
 }
 
 #pragma mark - Picker View
@@ -183,11 +195,19 @@
         [_timePicker selectRow:3 inComponent:0 animated:YES];
         [_timePicker reloadAllComponents];
         selectedDateString = datePickerData[row];
-
+        isDateChoosed = YES;
+        if([self checkChoosed]==YES){
+            _confirmButton.backgroundColor = [UIColor colorWithRed:71/255.0 green:209/255.0 blue:209/255.0 alpha:1];
+            _confirmButton.enabled = YES;
+        }
     }
     if ([pickerView isEqual:_timePicker]) {
         selectedTimeString = dynamicTimeArray[row];
-
+        isTimeChoosed = YES;
+        if([self checkChoosed]==YES){
+            _confirmButton.backgroundColor = [UIColor colorWithRed:71/255.0 green:209/255.0 blue:209/255.0 alpha:1];
+            _confirmButton.enabled = YES;
+        }
     }
     if ([pickerView isEqual:_guestPicker]) {
         selectedGuestString = guestPickerData[row];
@@ -204,11 +224,28 @@
         NSNumberFormatter *fmt = [[NSNumberFormatter alloc] init];
         [fmt setPositiveFormat:@"0.##"];
         self.totalPriceLabel.text = [@"$" stringByAppendingFormat:@" %@ AUD", [fmt stringFromNumber: self.totalPrice]];
+        isGuestChoosed = YES;
+        if([self checkChoosed]==YES){
+            _confirmButton.backgroundColor = [UIColor colorWithRed:71/255.0 green:209/255.0 blue:209/255.0 alpha:1];
+            _confirmButton.enabled = YES;
+        }
     }
     
     NSLog(@"Selected Date:%@ Time:%@ Guest:%@",selectedDateString,selectedTimeString,selectedGuestString);
 }
 
+- (BOOL)checkChoosed{
+    if(isDateChoosed == NO ){
+        return NO;
+    }
+    if(isTimeChoosed == NO){
+        return NO;
+    }
+    if(isGuestChoosed == NO){
+        return NO;
+    }
+    return YES;
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
