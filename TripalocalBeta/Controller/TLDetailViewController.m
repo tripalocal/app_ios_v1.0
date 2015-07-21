@@ -147,13 +147,6 @@
                 numOfReviews = [NSString stringWithFormat:@"%lu",(unsigned long)numberOfReviews];
                 NSNumber *rateNumber = [allDataDictionary objectForKey:@"experience_rate"];
                 expRate = [rateNumber stringValue];
-                NSDictionary *reviewDictionary0 = [expReviewsArray objectAtIndex:0];
-                reviews = expReviewsArray;
-                reviewFirst = [reviewDictionary0 objectForKey:@"reviewer_firstname"];
-                reviewLast = [reviewDictionary0 objectForKey:@"reviewer_lastname"];
-                PREreviewerImageURL =[reviewDictionary0 objectForKey:@"reviewer_image"];
-                reviewerImageURL = [NSLocalizedString(imageBaseURL, nil) stringByAppendingString: PREreviewerImageURL];
-                reviewComment = [reviewDictionary0 objectForKey:@"review_comment"];
                 
                 ticketString = [allDataDictionary objectForKey:@"included_ticket_detail"];
                 foodString = [allDataDictionary objectForKey:@"included_food_detail"];
@@ -163,6 +156,14 @@
                 dynamicPriceArray = [allDataDictionary objectForKey:@"experience_dynamic_price"];
                 maxGuestNum = [allDataDictionary objectForKey:@"experience_guest_number_max"];
                 minGuestNum = [allDataDictionary objectForKey:@"experience_guest_number_min"];
+                
+                NSDictionary *reviewDictionary0 = [expReviewsArray objectAtIndex:0];
+                reviews = expReviewsArray;
+                reviewFirst = [reviewDictionary0 objectForKey:@"reviewer_firstname"];
+                reviewLast = [reviewDictionary0 objectForKey:@"reviewer_lastname"];
+                PREreviewerImageURL =[reviewDictionary0 objectForKey:@"reviewer_image"];
+                reviewerImageURL = [NSLocalizedString(imageBaseURL, nil) stringByAppendingString: PREreviewerImageURL];
+                reviewComment = [reviewDictionary0 objectForKey:@"review_comment"];
             }
             @catch (NSException * e) {
                 NSLog(@"Experience/(ID:%@/) Exception: %@", _experience_id_string, e);
