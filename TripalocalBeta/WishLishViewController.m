@@ -85,6 +85,7 @@
     [self presentViewController:vc animated:YES completion:nil];
 }
 
+
 - (void)viewWillAppear:(BOOL)animated {
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     NSString *token = [userDefaults stringForKey:@"user_token"];
@@ -95,6 +96,15 @@
     } else {
         self.needToLoginView.delegate = self;
         [self.view bringSubviewToFront:self.needToLoginView];
+    }
+    
+    if ([self.expList count] == 0)
+    {
+        [[self view] addSubview:self.noDataLabel];
+    }
+    else
+    {
+        [self.noDataLabel removeFromSuperview];
     }
     
     [super viewWillAppear:animated];

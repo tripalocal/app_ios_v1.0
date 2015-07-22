@@ -3365,11 +3365,20 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You haven't added anything to wishlist yet." textAlignment="center" lineBreakMode="characterWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="knl-vT-AcR" userLabel="noDataLabel">
+                                <rect key="frame" x="180" y="280" width="240" height="41"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="240" id="rZ1-yH-utY"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6o6-Os-fpy" userLabel="neetToLoginView" customClass="NeedToLoginView">
                                 <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="340" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Jhg-L1-puJ">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="340" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Jhg-L1-puJ">
                                 <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </tableView>
@@ -3389,6 +3398,8 @@
                             <constraint firstItem="Jhg-L1-puJ" firstAttribute="top" secondItem="kdf-RK-syM" secondAttribute="bottom" id="TGV-wW-rkE"/>
                             <constraint firstItem="6o6-Os-fpy" firstAttribute="height" secondItem="Jhg-L1-puJ" secondAttribute="height" id="WhZ-tb-fVG"/>
                             <constraint firstItem="8ME-pe-nwD" firstAttribute="top" secondItem="6o6-Os-fpy" secondAttribute="bottom" id="c3B-2h-aQ2"/>
+                            <constraint firstAttribute="centerX" secondItem="knl-vT-AcR" secondAttribute="centerX" id="gjm-NV-2Y1"/>
+                            <constraint firstAttribute="centerY" secondItem="knl-vT-AcR" secondAttribute="centerY" id="l31-nb-gh2"/>
                             <constraint firstItem="Jhg-L1-puJ" firstAttribute="top" secondItem="kdf-RK-syM" secondAttribute="bottom" id="lLA-TO-B4P"/>
                             <constraint firstAttribute="trailing" secondItem="Jhg-L1-puJ" secondAttribute="trailing" id="mDg-kF-nNt"/>
                             <constraint firstItem="6o6-Os-fpy" firstAttribute="top" secondItem="Sym-sH-Nk9" secondAttribute="top" id="oBK-tW-yyt"/>
@@ -3415,6 +3426,7 @@
                     <navigationItem key="navigationItem" title="Wish List" id="c8D-j2-AmV"/>
                     <connections>
                         <outlet property="needToLoginView" destination="6o6-Os-fpy" id="eUE-Ck-ZXd"/>
+                        <outlet property="noDataLabel" destination="knl-vT-AcR" id="mQg-JD-Jag"/>
                         <outlet property="tableView" destination="Jhg-L1-puJ" id="Lcl-13-dwU"/>
                         <segue destination="LMA-mX-Yu6" kind="show" identifier="SearchResultSegue" id="Pkv-bo-ySw"/>
                     </connections>
@@ -3512,8 +3524,8 @@
         <image name="tripalocal_logo_zh.png" width="264" height="92"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Mv9-dv-dnM"/>
-        <segue reference="hPI-YE-UZz"/>
+        <segue reference="Pkv-bo-ySw"/>
         <segue reference="I7p-1k-Jcw"/>
+        <segue reference="chc-HC-F4Z"/>
     </inferredMetricsTieBreakers>
 </document>

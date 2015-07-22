@@ -12,4 +12,5 @@
 
 @interface WishLishViewController : TLSearchViewController <NeedToLoginViewDelegate>
 @property (retain, nonatomic) IBOutlet NeedToLoginView *needToLoginView;
+@property (strong, nonatomic) IBOutlet UILabel *noDataLabel;
 @end
