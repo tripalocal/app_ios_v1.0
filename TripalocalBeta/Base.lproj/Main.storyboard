@@ -1620,18 +1620,31 @@
                                     </mask>
                                 </variation>
                             </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="550" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="CgK-32-han">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="Wa2-33-bQe" id="AKz-JU-FLx"/>
+                                    <outlet property="delegate" destination="Wa2-33-bQe" id="rj0-Se-UCx"/>
+                                </connections>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="hjh-dK-rmF" firstAttribute="leading" secondItem="OnQ-tn-wOe" secondAttribute="leading" id="166-R0-ef6"/>
+                            <constraint firstItem="CgK-32-han" firstAttribute="top" secondItem="OnQ-tn-wOe" secondAttribute="top" id="DlF-Ex-pSL"/>
                             <constraint firstAttribute="trailing" secondItem="hjh-dK-rmF" secondAttribute="trailing" id="Hch-ij-a3Z"/>
                             <constraint firstItem="hjh-dK-rmF" firstAttribute="top" secondItem="yrd-fn-dUx" secondAttribute="bottom" id="gVB-4p-bxl"/>
+                            <constraint firstAttribute="trailing" secondItem="CgK-32-han" secondAttribute="trailing" id="ibp-MS-U6a"/>
+                            <constraint firstItem="fMe-Q5-16w" firstAttribute="top" secondItem="CgK-32-han" secondAttribute="bottom" id="mIX-j1-Iza"/>
                             <constraint firstItem="fMe-Q5-16w" firstAttribute="top" secondItem="hjh-dK-rmF" secondAttribute="bottom" id="y0n-QB-9vP"/>
+                            <constraint firstItem="CgK-32-han" firstAttribute="leading" secondItem="OnQ-tn-wOe" secondAttribute="leading" id="zPJ-I6-Ecq"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="VwS-Ex-Ldh"/>
                     <connections>
                         <outlet property="nomatchesView" destination="hjh-dK-rmF" id="hpS-Ej-1X6"/>
+                        <outlet property="tableView" destination="CgK-32-han" id="Aip-9u-UxN"/>
                         <segue destination="LMA-mX-Yu6" kind="show" identifier="MyTripsToExpList" id="Mv9-dv-dnM"/>
                     </connections>
                 </viewController>

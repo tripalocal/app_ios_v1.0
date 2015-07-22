@@ -1214,6 +1214,7 @@
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
 					"COCOAPODS=1",
+					"CN_VERSION=1",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
