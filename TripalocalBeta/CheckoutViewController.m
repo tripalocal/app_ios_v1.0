@@ -90,7 +90,7 @@
     int i = [_minGuestNum intValue];
     int max = [_maxGuestNum intValue];
     for (; i<= max; i++) {
-        NSNumber *currentIndexNumber = [NSNumber numberWithInt:i];
+        NSNumber *currentIndexNumber = @(i);
         [guestPickerData addObject:currentIndexNumber];
     }
     
@@ -99,9 +99,9 @@
     int lastIndex = 0;
     [timeArray addObject:timePickerData];
     for (int i = 0; i<_availbleDateArray.count; i++) {
-        NSMutableDictionary *currentDic = [_availbleDateArray objectAtIndex:i];
-        NSString *currentDateString = [currentDic objectForKey:@"date_string"];
-        NSString *currentTimeString = [currentDic objectForKey:@"time_string"];
+        NSMutableDictionary *currentDic = _availbleDateArray[i];
+        NSString *currentDateString = currentDic[@"date_string"];
+        NSString *currentTimeString = currentDic[@"time_string"];
         
         if(storedFlag == 0)
         {
@@ -124,14 +124,14 @@
             }
         }
         
-        isInstant = [[currentDic objectForKey:@"instant_booking"]boolValue];
+        isInstant = [currentDic[@"instant_booking"] boolValue];
         if(isInstant){
             [instantDateArray addObject:currentDateString];
             [instantTimeArray addObject:currentTimeString];
         }
     }
     [wholePickerData setValue:timeArray[lastIndex] forKey:datePickerData[lastIndex]];
-    dynamicTimeArray = [wholePickerData objectForKey:[datePickerData objectAtIndex:0]];
+    dynamicTimeArray = wholePickerData[datePickerData[0]];
     
     [_timePicker selectRow:3 inComponent:0 animated:NO];
     [_datePicker selectRow:3 inComponent:0 animated:NO];
@@ -177,7 +177,7 @@
     
     [numberFormatter setPositiveFormat:format];
     
-    return  [numberFormatter stringFromNumber:[NSNumber numberWithFloat:floatV]];
+    return [numberFormatter stringFromNumber:@(floatV)];
 }
 
 #pragma mark - Picker View
@@ -251,7 +251,7 @@
 #pragma mark - Picker Value
 -(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component{
     if ([pickerView isEqual:_datePicker]) {
-        dynamicTimeArray = [wholePickerData objectForKey:[datePickerData objectAtIndex:row]];
+        dynamicTimeArray = wholePickerData[datePickerData[row]];
         [_timePicker selectRow:3 inComponent:0 animated:YES];
         [_timePicker reloadAllComponents];
         selectedDateString = datePickerData[row];
@@ -345,8 +345,8 @@
     }
     else{
         cell.tempView.hidden = NO;
-        cell.instantDateLabel.text = [instantDateArray objectAtIndex:indexPath.row];
-        cell.instantTimeLabel.text = [instantTimeArray objectAtIndex:indexPath.row];
+        cell.instantDateLabel.text = instantDateArray[indexPath.row];
+        cell.instantTimeLabel.text = instantTimeArray[indexPath.row];
 //        cell.selectionStyle = UITableViewCellSelectionStyleBlue;
         cell.tempImage.image = [UIImage imageNamed:@"flash.png"];
     }

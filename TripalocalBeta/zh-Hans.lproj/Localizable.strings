@@ -5,6 +5,8 @@
   Created by Ye He on 13/07/2015.
   Copyright (c) 2015 Tripalocal. All rights reserved.
 */
+"loading" = "加载中";
+
 "search_hint" = "想去哪儿?";
 
 "slide1" = "slide01.jpg";

@@ -116,7 +116,18 @@
     NSString *token = [userDefaults stringForKey:@"user_token"];
     if (token) {
         [self.view sendSubviewToBack:self.needToLoginView];
-        self.expList = [self fetchExpData:self.cityName];
+        NSSet *wishList = [NSSet setWithArray:(NSArray *)[userDefaults objectForKey:@"wish_list"]];
+        NSMutableSet *origWishList = [[NSMutableSet alloc] init];
+        for (int i = 0; i < [self.expList count]; i++)
+        {
+            NSNumber *expId = self.expList[i][@"id"];
+            [origWishList addObject:[expId stringValue]];
+        }
+        if (![wishList isSubsetOfSet:origWishList])
+        {
+            self.expList = [self fetchExpData:self.cityName];
+        }
+
         [self.tableView reloadData];
     } else {
         self.needToLoginView.delegate = self;

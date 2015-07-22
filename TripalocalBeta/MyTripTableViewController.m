@@ -193,7 +193,7 @@
     
     MyTripViewController *mytripController = (MyTripViewController *)self.containerController;
     mytripController.segmentTitleView.hidden = NO;
-    [self.navigationController setNavigationBarHidden:YES animated:animated];
+    [self.navigationController setNavigationBarHidden:YES animated:NO];
     [self.tabBarController.tabBar setHidden:NO];
     mytripController.titleViewHeight.constant = 48.f;
     [self.tableView reloadData];
