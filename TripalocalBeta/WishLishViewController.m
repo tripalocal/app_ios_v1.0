@@ -123,7 +123,7 @@
             NSNumber *expId = self.expList[i][@"id"];
             [origWishList addObject:[expId stringValue]];
         }
-        if (![wishList isSubsetOfSet:origWishList])
+        if (![wishList isEqualToSet:origWishList])
         {
             self.expList = [self fetchExpData:self.cityName];
         }

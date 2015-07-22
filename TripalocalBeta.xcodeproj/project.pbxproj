@@ -71,6 +71,7 @@
 		87F356521B43AAD300949F43 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87F356511B43AAD300949F43 /* ProfileViewController.m */; };
 		87F356561B43C8C300949F43 /* UnloginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87F356551B43C8C300949F43 /* UnloginViewController.m */; };
 		87F6F7661B4B948100A3A6EB /* MyTripTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87F6F7651B4B948100A3A6EB /* MyTripTableViewController.m */; };
+		87FBCD2F1B60623400504C84 /* group@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 87FBCD2E1B60623400504C84 /* group@2x.png */; };
 		87FC2D201B476A3B0017F30E /* CheckoutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87FC2D1F1B476A3B0017F30E /* CheckoutViewController.m */; };
 		87FC2D251B4797CA0017F30E /* PaymentOptionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87FC2D241B4797CA0017F30E /* PaymentOptionViewController.m */; };
 		87FC2D3C1B47F8390017F30E /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87FC2D3B1B47F8390017F30E /* SystemConfiguration.framework */; };
@@ -239,6 +240,7 @@
 		87F356551B43C8C300949F43 /* UnloginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UnloginViewController.m; path = Controller/UnloginViewController.m; sourceTree = "<group>"; };
 		87F6F7641B4B948100A3A6EB /* MyTripTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyTripTableViewController.h; sourceTree = "<group>"; };
 		87F6F7651B4B948100A3A6EB /* MyTripTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyTripTableViewController.m; sourceTree = "<group>"; };
+		87FBCD2E1B60623400504C84 /* group@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "group@2x.png"; path = "Images/group@2x.png"; sourceTree = "<group>"; };
 		87FC2D1E1B476A3B0017F30E /* CheckoutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckoutViewController.h; sourceTree = "<group>"; };
 		87FC2D1F1B476A3B0017F30E /* CheckoutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CheckoutViewController.m; sourceTree = "<group>"; };
 		87FC2D231B4797CA0017F30E /* PaymentOptionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaymentOptionViewController.h; sourceTree = "<group>"; };
@@ -607,6 +609,7 @@
 				87E75F771B56724500E53741 /* tripalocal_logo_zh.png */,
 				8700D0BD1B588E80003B6170 /* location@2x.png */,
 				870D0FB31B5F33AD0052B12A /* date@2x.png */,
+				87FBCD2E1B60623400504C84 /* group@2x.png */,
 				870D0FB41B5F33AD0052B12A /* time@2x.png */,
 				877E96271B5E99D800BD1F33 /* myprofile_s@2x.png */,
 				877E96281B5E99D800BD1F33 /* myprofile@2x.png */,
@@ -915,6 +918,7 @@
 				8E4371381B4CB9F6003A3C8A /* meals.png in Resources */,
 				8EC86DBA1B02350000B0A655 /* search.png in Resources */,
 				870D0FB51B5F33AD0052B12A /* date@2x.png in Resources */,
+				87FBCD2F1B60623400504C84 /* group@2x.png in Resources */,
 				8711A6561B5A5DD600578BB2 /* slide01.jpg in Resources */,
 				87E75F781B56724500E53741 /* tripalocal_logo_zh.png in Resources */,
 				87E74B691B54C2AF00C41CBF /* SearchViewCell.xib in Resources */,
