@@ -47,6 +47,8 @@
         [self cycleFromViewController:self.currentViewController toViewController:[self.allViewControllers objectAtIndex:0]];
     } else {
         self.needToLoginView.delegate = self;
+        self.needToLoginView.needToLoginTitle.text = @"My Trip";
+        self.needToLoginView.needToLoginContent.text = @"Please login to your account to see your itinerary";
         [self.view bringSubviewToFront:self.needToLoginView];
     }
     [super viewWillAppear:animated];

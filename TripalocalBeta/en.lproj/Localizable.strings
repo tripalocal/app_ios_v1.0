@@ -35,6 +35,8 @@
 
 "Saved" = "Saved";
 
+"wishlist_title" = "Wish List";
+
 "payment_failed" = "Payment Failed";
 
 "payment_failed_msg" = "Occured an error during payment.";
@@ -44,6 +46,10 @@
 "server_error" = "Server Error";
 
 "login_failed" = "Login Failed";
+
+"select_time" = "Select Time";
+
+"select_date" = "Select Date";
 
 "reservationPrefix" = "Reservation with";
 

@@ -18,6 +18,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.navigationItem.title = NSLocalizedString(@"wishlist_title", nil);
 }
 
 - (NSMutableArray *)fetchExpData:(NSString *) cityName {

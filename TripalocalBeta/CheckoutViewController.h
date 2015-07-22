@@ -29,9 +29,11 @@
 @property NSNumber *minGuestNum;
 @property (weak, nonatomic) IBOutlet UITextField *couponField;
 
-@property (weak, nonatomic) IBOutlet UIPickerView *datePicker;
-@property (weak, nonatomic) IBOutlet UIPickerView *timePicker;
+@property (retain, nonatomic) UIPickerView *datePicker;
+@property (retain, nonatomic) UIPickerView *timePicker;
 @property (weak, nonatomic) IBOutlet UIPickerView *guestPicker;
+@property (weak, nonatomic) IBOutlet UITextField *dateTextField;
+@property (weak, nonatomic) IBOutlet UITextField *timeTextField;
 @property (weak, nonatomic) IBOutlet UILabel *expTitleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *durationLangLabel;
 @property (weak, nonatomic) IBOutlet UILabel *unitPriceLabel;

@@ -35,11 +35,17 @@
 
 "save_profile_failed" = "保存失败";
 
+"wishlist_title" = "兴趣列表";
+
 "Hours" = "小时";
 
 "login_failed" = "登录失败";
 
 "reservationPrefix" = "和";
+
+"select_time" = "选择时间";
+
+"select_date" = "选择日期";
 
 "reservationSuffix" = "预定";
 

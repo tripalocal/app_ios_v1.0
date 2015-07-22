@@ -27,26 +27,12 @@
     BOOL isDateChoosed;
     BOOL isTimeChoosed;
     BOOL isGuestChoosed;
-
 }
-
-
 
 @end
 
 @implementation CheckoutViewController
 
-//
-
-
-//- (void)updatePriceLabels {
-//    self.unitPriceLabel.text = [self.unitPrice stringValue];
-//    self.totalPriceLabel.text = [self.totalPrice stringValue];
-//}
-
-
-
-//
 - (void)viewDidLoad {
     [super viewDidLoad];
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
@@ -55,7 +41,9 @@
     
     [self.view addGestureRecognizer:tap];
     _coverImage.image = _expImage;
-    
+
+    _datePicker = [[UIPickerView alloc] init];
+    _timePicker = [[UIPickerView alloc] init];
     _guestPicker.delegate = self;
     _guestPicker.dataSource = self;
     _datePicker.delegate = self;
@@ -64,8 +52,16 @@
     _timePicker.dataSource = self;
     _instantTable.dataSource = self;
     _instantTable.delegate = self;
+    self.dateTextField.delegate = self;
+    self.timeTextField.delegate = self;
+    self.dateTextField.text = NSLocalizedString(@"select_date", nil);
+    self.dateTextField.tintColor = [UIColor clearColor];
+    self.timeTextField.tintColor = [UIColor clearColor];
+    self.timeTextField.text = NSLocalizedString(@"select_time", nil);
     [_instantTable allowsSelection];
     [_instantTable setAllowsSelection:YES];
+    self.dateTextField.inputView = self.datePicker;
+    self.timeTextField.inputView = self.timePicker;
     
     //Initialize guest data
     guestPickerData = [[NSMutableArray alloc]init];
@@ -152,6 +148,7 @@
     _confirmButton.enabled = NO;
 }
 
+
 #pragma mark - Picker View
 -(NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView{
     return 1;
@@ -197,10 +194,17 @@
         [_timePicker reloadAllComponents];
         selectedDateString = datePickerData[row];
         isDateChoosed = YES;
+        self.dateTextField.text = selectedDateString;
+        self.timeTextField.text = NSLocalizedString(@"select_time", nil);
+        isTimeChoosed = NO;
         if([self checkChoosed]==YES){
             _confirmButton.backgroundColor = [UIColor colorWithRed:71/255.0 green:209/255.0 blue:209/255.0 alpha:1];
             _confirmButton.enabled = YES;
+        } else {
+            _confirmButton.backgroundColor = [UIColor grayColor];
+            _confirmButton.enabled = NO;
         }
+        [self.dateTextField resignFirstResponder];
     }
     if ([pickerView isEqual:_timePicker]) {
         selectedTimeString = dynamicTimeArray[row];
@@ -209,6 +213,8 @@
             _confirmButton.backgroundColor = [UIColor colorWithRed:71/255.0 green:209/255.0 blue:209/255.0 alpha:1];
             _confirmButton.enabled = YES;
         }
+        self.timeTextField.text = selectedTimeString;
+        [self.timeTextField resignFirstResponder];
     }
     if ([pickerView isEqual:_guestPicker]) {
         selectedGuestString = guestPickerData[row];
@@ -232,7 +238,9 @@
         }
     }
     
+#ifdef DEBUG
     NSLog(@"Selected Date:%@ Time:%@ Guest:%@",selectedDateString,selectedTimeString,selectedGuestString);
+#endif
 }
 
 - (BOOL)checkChoosed{
@@ -305,9 +313,6 @@
     return cell;
 }
 
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    NSLog(@"TABLE SELECTED");
-}
 
 #pragma mark - Navigation
 
