@@ -148,8 +148,16 @@
     NSNumberFormatter *f = [[NSNumberFormatter alloc] init];
     f.numberStyle = NSNumberFormatterDecimalStyle;
     self.guestNumber = [selectedGuestString intValue];
-
-    self.unitPrice = _dynamicPriceArray[self.guestNumber - [_minGuestNum intValue]];
+    
+    if ([_dynamicPriceArray count] == 0)
+    {
+        self.unitPrice = @([_fixPriceString intValue]);
+    }
+    else
+    {
+        self.unitPrice = _dynamicPriceArray[self.guestNumber - [_minGuestNum intValue]];
+    }
+    
     NSString *priceString = [self decimalwithFormat:@"0" floatV:[self.unitPrice floatValue]];
     
     _unitPriceLabel.text = [@"$" stringByAppendingFormat:@" %@ AUD x %@ pp",priceString,selectedGuestString];
@@ -216,7 +224,14 @@
 {
     selectedGuestString = guestPickerData[item];
     self.guestNumber = [selectedGuestString intValue];
-    self.unitPrice = _dynamicPriceArray[self.guestNumber - [_minGuestNum intValue]];
+    if ([_dynamicPriceArray count] == 0)
+    {
+        self.unitPrice = @([_fixPriceString intValue]);
+    }
+    else
+    {
+        self.unitPrice = _dynamicPriceArray[self.guestNumber - [_minGuestNum intValue]];
+    }
     NSString *priceString = [self decimalwithFormat:@"0" floatV:[self.unitPrice floatValue]];
     
     _unitPriceLabel.text = [@"$" stringByAppendingFormat:@" %@ AUD x %@ pp",priceString,selectedGuestString];
