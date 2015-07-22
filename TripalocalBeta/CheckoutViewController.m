@@ -143,13 +143,17 @@
     _durationLangLabel.text = [_durationString stringByAppendingFormat:@"hrs • %@", _languageString];
     [NSString stringWithFormat:@"%@ • %@", NSLocalizedString(@"Hours", nil), _languageString];
     _expTitleLabel.text = _expTitleString;
-    // todo: default value not equal to picker view
-    _unitPriceLabel.text = [@"$" stringByAppendingFormat:@" %@ AUD x %@ pp",_fixPriceString,selectedGuestString];
+
     
     NSNumberFormatter *f = [[NSNumberFormatter alloc] init];
     f.numberStyle = NSNumberFormatterDecimalStyle;
-    self.unitPrice = [f numberFromString:_fixPriceString];
     self.guestNumber = [selectedGuestString intValue];
+
+    self.unitPrice = _dynamicPriceArray[self.guestNumber - [_minGuestNum intValue]];
+    NSString *priceString = [self decimalwithFormat:@"0" floatV:[self.unitPrice floatValue]];
+    
+    _unitPriceLabel.text = [@"$" stringByAppendingFormat:@" %@ AUD x %@ pp",priceString,selectedGuestString];
+    
     self.totalPrice =@([self.unitPrice floatValue]* self.guestNumber);
     _totalPriceLabel.text = [@"$" stringByAppendingFormat:@" %@ AUD",[self.totalPrice stringValue]];
     _totalPriceLabel.textColor = [UIColor colorWithRed:0.00f green:0.82f blue:0.82f alpha:1.0f];
@@ -158,6 +162,15 @@
     _confirmButton.enabled = NO;
 }
 
+
+- (NSString *) decimalwithFormat:(NSString *)format floatV:(float)floatV
+{
+    NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];
+    
+    [numberFormatter setPositiveFormat:format];
+    
+    return  [numberFormatter stringFromNumber:[NSNumber numberWithFloat:floatV]];
+}
 
 #pragma mark - Picker View
 -(NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView{
@@ -202,15 +215,13 @@
 - (void)pickerView:(AKPickerView *)pickerView didSelectItem:(NSInteger)item
 {
     selectedGuestString = guestPickerData[item];
-    
-    NSNumberFormatter *f = [[NSNumberFormatter alloc] init];
-    f.numberStyle = NSNumberFormatterDecimalStyle;
-    self.unitPrice = [f numberFromString:_fixPriceString];
-    
     self.guestNumber = [selectedGuestString intValue];
-    self.totalPrice =@([self.unitPrice floatValue] * self.guestNumber);
+    self.unitPrice = _dynamicPriceArray[self.guestNumber - [_minGuestNum intValue]];
+    NSString *priceString = [self decimalwithFormat:@"0" floatV:[self.unitPrice floatValue]];
     
-    self.unitPriceLabel.text = [@"$" stringByAppendingFormat:@" %@ AUD x %@ pp",_fixPriceString, selectedGuestString];
+    _unitPriceLabel.text = [@"$" stringByAppendingFormat:@" %@ AUD x %@ pp",priceString,selectedGuestString];
+    
+    self.totalPrice =@([self.unitPrice floatValue] * self.guestNumber);
     
     NSNumberFormatter *fmt = [[NSNumberFormatter alloc] init];
     [fmt setPositiveFormat:@"0.##"];
