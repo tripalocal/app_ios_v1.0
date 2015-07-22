@@ -54,7 +54,24 @@
                 [resultExp setObject:[exp objectForKey:@"experience_title"] forKey:@"title"];
                 [resultExp setObject:[exp objectForKey:@"experience_language"] forKey:@"language"];
                 [resultExp setObject:[exp objectForKey:@"experience_description"] forKey:@"description"];
-                [resultExp setObject:[exp objectForKey:@"experience_price"] forKey:@"price"];
+                
+                NSMutableArray *dynamicPriceArray = [exp objectForKey:@"experience_dynamic_price"];
+                NSNumber *maxGuestNum = [exp objectForKey:@"experience_guest_number_max"];
+                NSNumber *minGuestNum = [exp objectForKey:@"experience_guest_number_min"];
+                
+                NSNumber *priceNumber = nil;
+                if ([dynamicPriceArray count] == 0) {
+                    priceNumber = exp[@"experience_price"];
+                } else if ([minGuestNum intValue] <= 4 && [maxGuestNum intValue] >= 4) {
+                    priceNumber = dynamicPriceArray[4 - [minGuestNum intValue]];
+                } else if ([minGuestNum intValue] > 4) {
+                    priceNumber = dynamicPriceArray[0];
+                } else if ([maxGuestNum intValue] < 4) {
+                    priceNumber = [dynamicPriceArray lastObject];
+                }
+
+                [resultExp setObject:[self decimalwithFormat:@"0" floatV:[priceNumber floatValue]] forKey:@"price"];
+
                 [resultExp setObject:[exp objectForKey:@"host_image"]forKey:@"host_image"];
                 [resultExp setObject:[NSNumber numberWithInt:[expID intValue]]forKey:@"id"];
                 [expList addObject:resultExp];
@@ -85,6 +102,14 @@
     [self presentViewController:vc animated:YES completion:nil];
 }
 
+- (NSString *) decimalwithFormat:(NSString *)format floatV:(float)floatV
+{
+    NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];
+    
+    [numberFormatter setPositiveFormat:format];
+    
+    return  [numberFormatter stringFromNumber:[NSNumber numberWithFloat:floatV]];
+}
 
 - (void)viewWillAppear:(BOOL)animated {
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];

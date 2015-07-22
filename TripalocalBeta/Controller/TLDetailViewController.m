@@ -164,6 +164,18 @@
                 maxGuestNum = [expData objectForKey:@"experience_guest_number_max"];
                 minGuestNum = [expData objectForKey:@"experience_guest_number_min"];
                 
+                NSNumber *priceNumber = nil;
+                if ([dynamicPriceArray count] == 0) {
+                    priceNumber = expData[@"experience_price"];
+                } else if ([minGuestNum intValue] <= 4 && [maxGuestNum intValue] >= 4) {
+                    priceNumber = dynamicPriceArray[4 - [minGuestNum intValue]];
+                } else if ([minGuestNum intValue] > 4) {
+                    priceNumber = dynamicPriceArray[0];
+                } else if ([maxGuestNum intValue] < 4) {
+                    priceNumber = [dynamicPriceArray lastObject];
+                }
+                self.expPrice = [self decimalwithFormat:@"0" floatV:[priceNumber floatValue]];
+                
                 NSDictionary *reviewDictionary0 = [expReviewsArray objectAtIndex:0];
                 reviews = expReviewsArray;
                 reviewFirst = [reviewDictionary0 objectForKey:@"reviewer_firstname"];
