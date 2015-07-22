@@ -44,8 +44,19 @@
 
     _datePicker = [[UIPickerView alloc] init];
     _timePicker = [[UIPickerView alloc] init];
-    _guestPicker.delegate = self;
-    _guestPicker.dataSource = self;
+    self.guestPickerView = [[AKPickerView alloc] initWithFrame:CGRectMake(0,0,self.guestView.frame.size.width,self.guestView.frame.size.height)];
+//    [self.guestView removeFromSuperview];
+
+    self.guestPickerView.interitemSpacing = 20.0;
+    self.guestPickerView.fisheyeFactor = 0.001;
+    self.guestPickerView.pickerViewStyle = AKPickerViewStyle3D;
+    self.guestPickerView.maskDisabled = false;
+    
+    self.guestPickerView.delegate = self;
+    self.guestPickerView.dataSource = self;
+    [self.guestView addSubview:self.guestPickerView];
+    [self.guestPickerView reloadData];
+
     _datePicker.delegate = self;
     _datePicker.dataSource = self;
     _timePicker.delegate = self;
@@ -124,7 +135,6 @@
     
     [_timePicker selectRow:3 inComponent:0 animated:NO];
     [_datePicker selectRow:3 inComponent:0 animated:NO];
-    [_guestPicker selectRow:3 inComponent:0 animated:NO];
 
     selectedDateString = datePickerData[0];
     selectedTimeString = dynamicTimeArray[0];
@@ -155,10 +165,6 @@
 }
 
 -(NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component{
-    if ([pickerView isEqual:_guestPicker]) {
-        return guestPickerData.count;
-    }
-    
     if ([pickerView isEqual:_datePicker]) {
         return datePickerData.count;
     }
@@ -171,10 +177,6 @@
 }
 
 -(NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component{
-    if ([pickerView isEqual:_guestPicker]) {
-        return [guestPickerData[row] stringValue];
-    }
-    
     if ([pickerView isEqual:_datePicker]) {
         return datePickerData[row];
     }
@@ -184,6 +186,40 @@
     }
     
     return nil;
+}
+
+#pragma mark - AKPicker
+- (NSString *)pickerView:(AKPickerView *)pickerView titleForItem:(NSInteger)item
+{
+    return [guestPickerData[item] stringValue];
+}
+
+- (NSUInteger)numberOfItemsInPickerView:(AKPickerView *)pickerView
+{
+    return [guestPickerData count];
+}
+
+- (void)pickerView:(AKPickerView *)pickerView didSelectItem:(NSInteger)item
+{
+    selectedGuestString = guestPickerData[item];
+    
+    NSNumberFormatter *f = [[NSNumberFormatter alloc] init];
+    f.numberStyle = NSNumberFormatterDecimalStyle;
+    self.unitPrice = [f numberFromString:_fixPriceString];
+    
+    self.guestNumber = [selectedGuestString intValue];
+    self.totalPrice =@([self.unitPrice floatValue] * self.guestNumber);
+    
+    self.unitPriceLabel.text = [@"$" stringByAppendingFormat:@" %@ AUD x %@ pp",_fixPriceString, selectedGuestString];
+    
+    NSNumberFormatter *fmt = [[NSNumberFormatter alloc] init];
+    [fmt setPositiveFormat:@"0.##"];
+    self.totalPriceLabel.text = [@"$" stringByAppendingFormat:@" %@ AUD", [fmt stringFromNumber: self.totalPrice]];
+    isGuestChoosed = YES;
+    if([self checkChoosed]==YES){
+        _confirmButton.backgroundColor = [UIColor colorWithRed:71/255.0 green:209/255.0 blue:209/255.0 alpha:1];
+        _confirmButton.enabled = YES;
+    }
 }
 
 #pragma mark - Picker Value
@@ -215,27 +251,6 @@
         }
         self.timeTextField.text = selectedTimeString;
         [self.timeTextField resignFirstResponder];
-    }
-    if ([pickerView isEqual:_guestPicker]) {
-        selectedGuestString = guestPickerData[row];
-        
-        NSNumberFormatter *f = [[NSNumberFormatter alloc] init];
-        f.numberStyle = NSNumberFormatterDecimalStyle;
-        self.unitPrice = [f numberFromString:_fixPriceString];
-        
-        self.guestNumber = [selectedGuestString intValue];
-        self.totalPrice =@([self.unitPrice floatValue] * self.guestNumber);
-        
-        self.unitPriceLabel.text = [@"$" stringByAppendingFormat:@" %@ AUD x %@ pp",_fixPriceString, selectedGuestString];
-
-        NSNumberFormatter *fmt = [[NSNumberFormatter alloc] init];
-        [fmt setPositiveFormat:@"0.##"];
-        self.totalPriceLabel.text = [@"$" stringByAppendingFormat:@" %@ AUD", [fmt stringFromNumber: self.totalPrice]];
-        isGuestChoosed = YES;
-        if([self checkChoosed]==YES){
-            _confirmButton.backgroundColor = [UIColor colorWithRed:71/255.0 green:209/255.0 blue:209/255.0 alpha:1];
-            _confirmButton.enabled = YES;
-        }
     }
     
 #ifdef DEBUG
