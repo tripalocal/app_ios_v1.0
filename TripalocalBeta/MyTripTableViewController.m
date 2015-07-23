@@ -179,10 +179,10 @@
     return dateOnly;
 }
 
-- (void)viewWillAppear:(BOOL)animated {
+- (void)viewDidAppear:(BOOL)animated {
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     NSString *token = [userDefaults stringForKey:@"user_token"];
-    if (token) {
+    if (token && self.nomatchesView) {
         [self fetchMyTrips:token];
             if([myTrips count] == 0 ){
                 [self.view bringSubviewToFront:self.nomatchesView];
@@ -193,12 +193,12 @@
     
     MyTripViewController *mytripController = (MyTripViewController *)self.containerController;
     mytripController.segmentTitleView.hidden = NO;
-    [self.navigationController setNavigationBarHidden:YES animated:animated];
+    [self.navigationController setNavigationBarHidden:YES animated:NO];
     [self.tabBarController.tabBar setHidden:NO];
     mytripController.titleViewHeight.constant = 48.f;
     [self.tableView reloadData];
     
-    [super viewWillAppear:animated];
+    [super viewDidAppear:animated];
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {

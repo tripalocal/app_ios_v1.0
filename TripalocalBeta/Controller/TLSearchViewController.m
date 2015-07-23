@@ -137,6 +137,9 @@
     __block UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
     activityIndicator.center = cell.experienceImage.center;
     activityIndicator.hidesWhenStopped = YES;
+    [cell.experienceImage addSubview:activityIndicator];
+    [activityIndicator startAnimating];
+    
     [cell.experienceImage sd_setImageWithURL:[NSURL URLWithString:backgroundImageURL]
                             placeholderImage:nil
                                      options:SDWebImageRefreshCached
@@ -147,9 +150,6 @@
                                        }
                                    }];
 
-    [cell.experienceImage addSubview:activityIndicator];
-    [activityIndicator startAnimating];
-    
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     NSMutableArray *wishList = [userDefaults objectForKey:@"wish_list"];
     

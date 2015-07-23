@@ -8,6 +8,7 @@ target 'TripalocalBeta' do
     pod 'SDWebImage', '~>3.7'
     pod 'UIActivityIndicator-for-SDWebImage'
     pod 'JGProgressHUD'
+    pod 'AKPickerView'
 end
 
 target 'TripalocalBetaTests' do

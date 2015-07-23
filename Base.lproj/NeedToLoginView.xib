@@ -8,28 +8,30 @@
             <connections>
                 <outlet property="contentView" destination="iN0-l3-epB" id="LNg-lS-TiU"/>
                 <outlet property="loginButton" destination="Mp7-xz-mJ5" id="NZT-cF-G4k"/>
+                <outlet property="needToLoginContent" destination="ne3-Hk-juY" id="UEl-Ue-c45"/>
+                <outlet property="needToLoginTitle" destination="Vms-tg-7ei" id="3hV-0Y-Zq8"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB">
-            <rect key="frame" x="0.0" y="0.0" width="306" height="373"/>
+            <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please login first" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vms-tg-7ei">
-                    <rect key="frame" x="90" y="80" width="127" height="21"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <rect key="frame" x="228" y="254" width="145" height="24"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mp7-xz-mJ5">
-                    <rect key="frame" x="43" y="216" width="220" height="40"/>
+                    <rect key="frame" x="190" y="393" width="220" height="40"/>
                     <color key="backgroundColor" red="0.20000000000000001" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="3a7-2T-gpZ"/>
                         <constraint firstAttribute="width" constant="220" id="GYx-F4-hf2"/>
                         <constraint firstAttribute="width" constant="140" id="nwQ-TC-eoF"/>
                     </constraints>
-                    <state key="normal" title="Log in">
+                    <state key="normal" title="Login">
                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
@@ -42,16 +44,33 @@
                         <action selector="login:" destination="-1" eventType="touchUpInside" id="x1L-ZY-YS1"/>
                     </connections>
                 </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Content" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ne3-Hk-juY">
+                    <rect key="frame" x="180" y="308" width="240" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="240" id="f8x-QC-zAg"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" red="0.96862745098039216" green="0.96862745098039216" blue="0.96862745098039216" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstItem="Mp7-xz-mJ5" firstAttribute="top" secondItem="Vms-tg-7ei" secondAttribute="bottom" constant="115" id="3NZ-se-YTi"/>
                 <constraint firstAttribute="centerX" secondItem="Vms-tg-7ei" secondAttribute="centerX" id="E5S-Ak-JXU"/>
                 <constraint firstAttribute="centerX" secondItem="Mp7-xz-mJ5" secondAttribute="centerX" id="ecR-zm-B2Y"/>
-                <constraint firstItem="Vms-tg-7ei" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="80" id="mfC-ni-jOb"/>
+                <constraint firstAttribute="centerX" secondItem="ne3-Hk-juY" secondAttribute="centerX" id="jw7-ZE-aJ7"/>
+                <constraint firstItem="Vms-tg-7ei" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="254" id="mfC-ni-jOb"/>
+                <constraint firstItem="ne3-Hk-juY" firstAttribute="top" secondItem="Vms-tg-7ei" secondAttribute="bottom" constant="30" id="qGO-S1-AW2"/>
+                <constraint firstItem="Mp7-xz-mJ5" firstAttribute="top" relation="greaterThanOrEqual" secondItem="ne3-Hk-juY" secondAttribute="bottom" constant="40" id="vFa-F8-sss"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="vFa-F8-sss"/>
+                </mask>
+            </variation>
             <point key="canvasLocation" x="281" y="324.5"/>
         </view>
     </objects>

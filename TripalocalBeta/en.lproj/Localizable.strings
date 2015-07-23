@@ -5,7 +5,9 @@
   Created by Ye He on 13/07/2015.
   Copyright (c) 2015 Tripalocal. All rights reserved.
 */
-"search_hint" = "Where are you goning?";
+"loading" = "Loading";
+
+"search_hint" = "Where are you gonng?";
 
 "slide1" = "slide01_en.jpg";
 
@@ -35,6 +37,8 @@
 
 "Saved" = "Saved";
 
+"wishlist_title" = "Wish List";
+
 "payment_failed" = "Payment Failed";
 
 "payment_failed_msg" = "Occured an error during payment.";
@@ -44,6 +48,10 @@
 "server_error" = "Server Error";
 
 "login_failed" = "Login Failed";
+
+"select_time" = "Select Time";
+
+"select_date" = "Select Date";
 
 "reservationPrefix" = "Reservation with";
 

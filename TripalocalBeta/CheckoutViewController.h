@@ -7,9 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AKPickerView.h"
 #import "PaymentOptionViewController.h"
 
-@interface CheckoutViewController : UIViewController <UITextFieldDelegate,UIPickerViewDataSource, UIPickerViewDelegate, UITableViewDataSource,UITableViewDelegate>
+@interface CheckoutViewController : UIViewController <UITextFieldDelegate,UIPickerViewDataSource, UIPickerViewDelegate, AKPickerViewDataSource, AKPickerViewDelegate, UITableViewDataSource,UITableViewDelegate>
 @property (nonatomic) NSInteger guestNumber;
 @property (nonatomic) NSNumber *unitPrice;
 @property (nonatomic) NSNumber *totalPrice;
@@ -21,17 +22,20 @@
 @property NSString *expTitleString;
 @property UIImage *expImage;
 @property NSString *fixPriceString;
-@property NSMutableArray *dynamicPriceArray;
-@property NSMutableArray *availbleDateArray;
+@property NSArray *dynamicPriceArray;
+@property NSArray *availbleDateArray;
 @property NSString *durationString;
 @property NSString *languageString;
 @property NSNumber *maxGuestNum;
 @property NSNumber *minGuestNum;
 @property (weak, nonatomic) IBOutlet UITextField *couponField;
 
-@property (weak, nonatomic) IBOutlet UIPickerView *datePicker;
-@property (weak, nonatomic) IBOutlet UIPickerView *timePicker;
-@property (weak, nonatomic) IBOutlet UIPickerView *guestPicker;
+@property (retain, nonatomic) UIPickerView *datePicker;
+@property (retain, nonatomic) UIPickerView *timePicker;
+@property (retain, nonatomic) IBOutlet UIView *guestView;
+@property (retain, nonatomic) AKPickerView *guestPickerView;
+@property (weak, nonatomic) IBOutlet UITextField *dateTextField;
+@property (weak, nonatomic) IBOutlet UITextField *timeTextField;
 @property (weak, nonatomic) IBOutlet UILabel *expTitleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *durationLangLabel;
 @property (weak, nonatomic) IBOutlet UILabel *unitPriceLabel;

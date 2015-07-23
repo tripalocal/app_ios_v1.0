@@ -27,26 +27,12 @@
     BOOL isDateChoosed;
     BOOL isTimeChoosed;
     BOOL isGuestChoosed;
-
 }
-
-
 
 @end
 
 @implementation CheckoutViewController
 
-//
-
-
-//- (void)updatePriceLabels {
-//    self.unitPriceLabel.text = [self.unitPrice stringValue];
-//    self.totalPriceLabel.text = [self.totalPrice stringValue];
-//}
-
-
-
-//
 - (void)viewDidLoad {
     [super viewDidLoad];
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
@@ -55,17 +41,38 @@
     
     [self.view addGestureRecognizer:tap];
     _coverImage.image = _expImage;
+
+    _datePicker = [[UIPickerView alloc] init];
+    _timePicker = [[UIPickerView alloc] init];
+    self.guestPickerView = [[AKPickerView alloc] initWithFrame:CGRectMake(0,0,self.guestView.frame.size.width,self.guestView.frame.size.height)];
+//    [self.guestView removeFromSuperview];
+
+    self.guestPickerView.interitemSpacing = 20.0;
+    self.guestPickerView.fisheyeFactor = 0.001;
+    self.guestPickerView.pickerViewStyle = AKPickerViewStyle3D;
+    self.guestPickerView.maskDisabled = false;
     
-    _guestPicker.delegate = self;
-    _guestPicker.dataSource = self;
+    self.guestPickerView.delegate = self;
+    self.guestPickerView.dataSource = self;
+    [self.guestView addSubview:self.guestPickerView];
+    [self.guestPickerView reloadData];
+
     _datePicker.delegate = self;
     _datePicker.dataSource = self;
     _timePicker.delegate = self;
     _timePicker.dataSource = self;
     _instantTable.dataSource = self;
     _instantTable.delegate = self;
+    self.dateTextField.delegate = self;
+    self.timeTextField.delegate = self;
+    self.dateTextField.text = NSLocalizedString(@"select_date", nil);
+    self.dateTextField.tintColor = [UIColor clearColor];
+    self.timeTextField.tintColor = [UIColor clearColor];
+    self.timeTextField.text = NSLocalizedString(@"select_time", nil);
     [_instantTable allowsSelection];
     [_instantTable setAllowsSelection:YES];
+    self.dateTextField.inputView = self.datePicker;
+    self.timeTextField.inputView = self.timePicker;
     
     //Initialize guest data
     guestPickerData = [[NSMutableArray alloc]init];
@@ -83,7 +90,7 @@
     int i = [_minGuestNum intValue];
     int max = [_maxGuestNum intValue];
     for (; i<= max; i++) {
-        NSNumber *currentIndexNumber = [NSNumber numberWithInt:i];
+        NSNumber *currentIndexNumber = @(i);
         [guestPickerData addObject:currentIndexNumber];
     }
     
@@ -92,9 +99,9 @@
     int lastIndex = 0;
     [timeArray addObject:timePickerData];
     for (int i = 0; i<_availbleDateArray.count; i++) {
-        NSMutableDictionary *currentDic = [_availbleDateArray objectAtIndex:i];
-        NSString *currentDateString = [currentDic objectForKey:@"date_string"];
-        NSString *currentTimeString = [currentDic objectForKey:@"time_string"];
+        NSMutableDictionary *currentDic = _availbleDateArray[i];
+        NSString *currentDateString = currentDic[@"date_string"];
+        NSString *currentTimeString = currentDic[@"time_string"];
         
         if(storedFlag == 0)
         {
@@ -117,18 +124,17 @@
             }
         }
         
-        isInstant = [[currentDic objectForKey:@"instant_booking"]boolValue];
+        isInstant = [currentDic[@"instant_booking"] boolValue];
         if(isInstant){
             [instantDateArray addObject:currentDateString];
             [instantTimeArray addObject:currentTimeString];
         }
     }
     [wholePickerData setValue:timeArray[lastIndex] forKey:datePickerData[lastIndex]];
-    dynamicTimeArray = [wholePickerData objectForKey:[datePickerData objectAtIndex:0]];
+    dynamicTimeArray = wholePickerData[datePickerData[0]];
     
     [_timePicker selectRow:3 inComponent:0 animated:NO];
     [_datePicker selectRow:3 inComponent:0 animated:NO];
-    [_guestPicker selectRow:3 inComponent:0 animated:NO];
 
     selectedDateString = datePickerData[0];
     selectedTimeString = dynamicTimeArray[0];
@@ -137,13 +143,25 @@
     _durationLangLabel.text = [_durationString stringByAppendingFormat:@"hrs • %@", _languageString];
     [NSString stringWithFormat:@"%@ • %@", NSLocalizedString(@"Hours", nil), _languageString];
     _expTitleLabel.text = _expTitleString;
-    // todo: default value not equal to picker view
-    _unitPriceLabel.text = [@"$" stringByAppendingFormat:@" %@ AUD x %@ pp",_fixPriceString,selectedGuestString];
+
     
     NSNumberFormatter *f = [[NSNumberFormatter alloc] init];
     f.numberStyle = NSNumberFormatterDecimalStyle;
-    self.unitPrice = [f numberFromString:_fixPriceString];
     self.guestNumber = [selectedGuestString intValue];
+    
+    if ([_dynamicPriceArray count] == 0)
+    {
+        self.unitPrice = @([_fixPriceString intValue]);
+    }
+    else
+    {
+        self.unitPrice = _dynamicPriceArray[self.guestNumber - [_minGuestNum intValue]];
+    }
+    
+    NSString *priceString = [self decimalwithFormat:@"0" floatV:[self.unitPrice floatValue]];
+    
+    _unitPriceLabel.text = [@"$" stringByAppendingFormat:@" %@ AUD x %@ pp",priceString,selectedGuestString];
+    
     self.totalPrice =@([self.unitPrice floatValue]* self.guestNumber);
     _totalPriceLabel.text = [@"$" stringByAppendingFormat:@" %@ AUD",[self.totalPrice stringValue]];
     _totalPriceLabel.textColor = [UIColor colorWithRed:0.00f green:0.82f blue:0.82f alpha:1.0f];
@@ -152,16 +170,22 @@
     _confirmButton.enabled = NO;
 }
 
+
+- (NSString *) decimalwithFormat:(NSString *)format floatV:(float)floatV
+{
+    NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];
+    
+    [numberFormatter setPositiveFormat:format];
+    
+    return [numberFormatter stringFromNumber:@(floatV)];
+}
+
 #pragma mark - Picker View
 -(NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView{
     return 1;
 }
 
 -(NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component{
-    if ([pickerView isEqual:_guestPicker]) {
-        return guestPickerData.count;
-    }
-    
     if ([pickerView isEqual:_datePicker]) {
         return datePickerData.count;
     }
@@ -174,10 +198,6 @@
 }
 
 -(NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component{
-    if ([pickerView isEqual:_guestPicker]) {
-        return [guestPickerData[row] stringValue];
-    }
-    
     if ([pickerView isEqual:_datePicker]) {
         return datePickerData[row];
     }
@@ -189,18 +209,64 @@
     return nil;
 }
 
+#pragma mark - AKPicker
+- (NSString *)pickerView:(AKPickerView *)pickerView titleForItem:(NSInteger)item
+{
+    return [guestPickerData[item] stringValue];
+}
+
+- (NSUInteger)numberOfItemsInPickerView:(AKPickerView *)pickerView
+{
+    return [guestPickerData count];
+}
+
+- (void)pickerView:(AKPickerView *)pickerView didSelectItem:(NSInteger)item
+{
+    selectedGuestString = guestPickerData[item];
+    self.guestNumber = [selectedGuestString intValue];
+    if ([_dynamicPriceArray count] == 0)
+    {
+        self.unitPrice = @([_fixPriceString intValue]);
+    }
+    else
+    {
+        self.unitPrice = _dynamicPriceArray[self.guestNumber - [_minGuestNum intValue]];
+    }
+    NSString *priceString = [self decimalwithFormat:@"0" floatV:[self.unitPrice floatValue]];
+    
+    _unitPriceLabel.text = [@"$" stringByAppendingFormat:@" %@ AUD x %@ pp",priceString,selectedGuestString];
+    
+    self.totalPrice =@([self.unitPrice floatValue] * self.guestNumber);
+    
+    NSNumberFormatter *fmt = [[NSNumberFormatter alloc] init];
+    [fmt setPositiveFormat:@"0.##"];
+    self.totalPriceLabel.text = [@"$" stringByAppendingFormat:@" %@ AUD", [fmt stringFromNumber: self.totalPrice]];
+    isGuestChoosed = YES;
+    if([self checkChoosed]==YES){
+        _confirmButton.backgroundColor = [UIColor colorWithRed:71/255.0 green:209/255.0 blue:209/255.0 alpha:1];
+        _confirmButton.enabled = YES;
+    }
+}
+
 #pragma mark - Picker Value
 -(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component{
     if ([pickerView isEqual:_datePicker]) {
-        dynamicTimeArray = [wholePickerData objectForKey:[datePickerData objectAtIndex:row]];
+        dynamicTimeArray = wholePickerData[datePickerData[row]];
         [_timePicker selectRow:3 inComponent:0 animated:YES];
         [_timePicker reloadAllComponents];
         selectedDateString = datePickerData[row];
         isDateChoosed = YES;
+        self.dateTextField.text = selectedDateString;
+        self.timeTextField.text = NSLocalizedString(@"select_time", nil);
+        isTimeChoosed = NO;
         if([self checkChoosed]==YES){
             _confirmButton.backgroundColor = [UIColor colorWithRed:71/255.0 green:209/255.0 blue:209/255.0 alpha:1];
             _confirmButton.enabled = YES;
+        } else {
+            _confirmButton.backgroundColor = [UIColor grayColor];
+            _confirmButton.enabled = NO;
         }
+        [self.dateTextField resignFirstResponder];
     }
     if ([pickerView isEqual:_timePicker]) {
         selectedTimeString = dynamicTimeArray[row];
@@ -209,30 +275,13 @@
             _confirmButton.backgroundColor = [UIColor colorWithRed:71/255.0 green:209/255.0 blue:209/255.0 alpha:1];
             _confirmButton.enabled = YES;
         }
-    }
-    if ([pickerView isEqual:_guestPicker]) {
-        selectedGuestString = guestPickerData[row];
-        
-        NSNumberFormatter *f = [[NSNumberFormatter alloc] init];
-        f.numberStyle = NSNumberFormatterDecimalStyle;
-        self.unitPrice = [f numberFromString:_fixPriceString];
-        
-        self.guestNumber = [selectedGuestString intValue];
-        self.totalPrice =@([self.unitPrice floatValue] * self.guestNumber);
-        
-        self.unitPriceLabel.text = [@"$" stringByAppendingFormat:@" %@ AUD x %@ pp",_fixPriceString, selectedGuestString];
-
-        NSNumberFormatter *fmt = [[NSNumberFormatter alloc] init];
-        [fmt setPositiveFormat:@"0.##"];
-        self.totalPriceLabel.text = [@"$" stringByAppendingFormat:@" %@ AUD", [fmt stringFromNumber: self.totalPrice]];
-        isGuestChoosed = YES;
-        if([self checkChoosed]==YES){
-            _confirmButton.backgroundColor = [UIColor colorWithRed:71/255.0 green:209/255.0 blue:209/255.0 alpha:1];
-            _confirmButton.enabled = YES;
-        }
+        self.timeTextField.text = selectedTimeString;
+        [self.timeTextField resignFirstResponder];
     }
     
+#ifdef DEBUG
     NSLog(@"Selected Date:%@ Time:%@ Guest:%@",selectedDateString,selectedTimeString,selectedGuestString);
+#endif
 }
 
 - (BOOL)checkChoosed{
@@ -296,8 +345,8 @@
     }
     else{
         cell.tempView.hidden = NO;
-        cell.instantDateLabel.text = [instantDateArray objectAtIndex:indexPath.row];
-        cell.instantTimeLabel.text = [instantTimeArray objectAtIndex:indexPath.row];
+        cell.instantDateLabel.text = instantDateArray[indexPath.row];
+        cell.instantTimeLabel.text = instantTimeArray[indexPath.row];
 //        cell.selectionStyle = UITableViewCellSelectionStyleBlue;
         cell.tempImage.image = [UIImage imageNamed:@"flash.png"];
     }
@@ -305,9 +354,6 @@
     return cell;
 }
 
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    NSLog(@"TABLE SELECTED");
-}
 
 #pragma mark - Navigation
 

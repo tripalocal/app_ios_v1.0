@@ -23,33 +23,30 @@
 @interface TLDetailViewController ()
 {
     NSString *hostImageURL;
-    NSString *expLanguage;
-    NSString *dynamicPriceString;
-    NSString *expDuration;
-    NSString *expTitle;
-    NSString *expDescription;
-    NSString *expActivity;
-    NSString *expInteraction;
-    NSMutableArray *expReviewsArray;
+    NSString *language;
+    NSString *duration;
+    NSString *title;
+    NSString *description;
+    NSString *activity;
+    NSString *interaction;
     NSString *hostFirstName;
     NSString *hostLastName;
     NSString *hostBio;
-    NSString *numOfReviews;
-    NSString *expRate;
-    NSString *reviewFirst;
-    NSString *reviewLast;
+    NSString *nReviews;
+    NSString *rate;
+    NSString *reviewerFirstName;
+    NSString *reviewerLastName;
     NSString *PREreviewerImageURL;
     NSString *reviewerImageURL;
     NSString *reviewComment;
     JGProgressHUD *HUD;
-    NSData *reviewerImageData;
-    NSMutableArray *dynamicPriceArray;
+    NSArray *dynamicPriceArray;
     NSNumber *maxGuestNum;
     NSNumber *minGuestNum;
     NSString *foodString;
     NSString *ticketString;
     NSString *transportString;
-    NSMutableArray *availableDateArray;
+    NSArray *availableDateArray;
     NSArray *reviews;
     NSDictionary *expData;
     UIImage *nextPageCoverImage;
@@ -77,11 +74,12 @@
     HUD.HUDView.layer.shadowOffset = CGSizeZero;
     HUD.HUDView.layer.shadowOpacity = 0.4f;
     HUD.HUDView.layer.shadowRadius = 8.0f;
-    HUD.textLabel.text = @"Loading";
+    HUD.textLabel.text = NSLocalizedString(@"loading", nil);
     [HUD showInView:self.view];
-
-    self.isExpReadMoreOpen = NO;
-    self.isHostReadMoreOpen = NO;
+    reviewerFirstName = @"";
+    reviewerLastName = @"";
+    reviewComment = @"";
+    reviewerImageURL = @"";
 
     self.cellHeights = [@[@306, @240, @320, @385, @164, @240] mutableCopy];
     _myTable.delegate = self;
@@ -98,14 +96,12 @@
     NSLog(@"(Detail)POST: %@", post);
 #endif
     NSData *postData = [post dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:YES];
-    NSString *postLength = [NSString stringWithFormat:@"%lu", (unsigned long)[postData length]];
     
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
     [request setURL:[NSURL URLWithString:[URLConfig expDetailhServiceURLString]]];
     
     [request setHTTPMethod:@"POST"];
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    [request setValue:postLength forHTTPHeaderField:@"Content-Length"];
     [request setHTTPBody:postData];
     
     NSError *connectionError = nil;
@@ -119,64 +115,61 @@
         NSDictionary *result = [NSJSONSerialization JSONObjectWithData:data
                                                                options:0
                                                                  error:nil];
-#if DEBUG
+#ifdef DEBUG
         NSString *decodedData = [[NSString alloc] initWithData:data
                                                       encoding:NSUTF8StringEncoding];
-        NSLog(@"Receiving data = %@", decodedData);
+        NSLog(@"(Detail)Receiving: %@", decodedData);
 #endif
-        
         if ([httpResponse statusCode] == 200) {
             expData = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
             @try {
-                NSString *hostImageURLRelative = [expData objectForKey:@"host_image"];
+                NSString *hostImageURLRelative = expData[@"host_image"];
+                // improve: why this stupid json lib returns "<null>" for ""
                 if (hostImageURLRelative != (id)[NSNull null]) {
                     hostImageURL = [[URLConfig imageServiceURLString] stringByAppendingString: hostImageURLRelative];
                 } else {
                     hostImageURL = nil;
                 }
 
-                expLanguage = [self transformLanugage:[expData objectForKey:@"experience_language"]];
-                NSNumberFormatter *formatter = [[NSNumberFormatter alloc]init];
-                [formatter setNumberStyle:NSNumberFormatterDecimalStyle];
-                [formatter setMaximumFractionDigits:2];
-                
-                [formatter setRoundingMode: NSNumberFormatterRoundUp];
-                NSNumber *expDurationNumber = [expData objectForKey:@"experience_duration"];
-                expDuration = [expDurationNumber stringValue];
-                expTitle = [expData objectForKey:@"experience_title"];
-                expDescription = [expData objectForKey:@"experience_description"];
-                expActivity = [expData objectForKey:@"experience_activity"];
-                expInteraction = [expData objectForKey:@"experience_interaction"];
-                hostFirstName = [expData objectForKey:@"host_firstname"];
-                hostLastName = [expData objectForKey:@"host_lastname"];
-                hostBio = [expData objectForKey:@"host_bio"];
-                expReviewsArray = [expData objectForKey:@"experience_reviews"];
-                NSUInteger numberOfReviews = expReviewsArray.count;
-                numOfReviews = [NSString stringWithFormat:@"%lu",(unsigned long)numberOfReviews];
-                NSNumber *rateNumber = [expData objectForKey:@"experience_rate"];
-                expRate = [rateNumber stringValue];
-                ticketString = [expData objectForKey:@"included_ticket_detail"];
-                foodString = [expData objectForKey:@"included_food_detail"];
-                transportString = [expData objectForKey:@"included_transport_detail"];
-                availableDateArray = [expData objectForKey:@"available_options"];
-                NSLog(@"TEST:%lu DATE DATA",(unsigned long)availableDateArray.count);
-                dynamicPriceArray = [expData objectForKey:@"experience_dynamic_price"];
-                maxGuestNum = [expData objectForKey:@"experience_guest_number_max"];
-                minGuestNum = [expData objectForKey:@"experience_guest_number_min"];
-                
-                NSDictionary *reviewDictionary0 = [expReviewsArray objectAtIndex:0];
-                reviews = expReviewsArray;
-                reviewFirst = [reviewDictionary0 objectForKey:@"reviewer_firstname"];
-                reviewLast = [reviewDictionary0 objectForKey:@"reviewer_lastname"];
-                PREreviewerImageURL =[reviewDictionary0 objectForKey:@"reviewer_image"];
-                reviewerImageURL = [[URLConfig imageServiceURLString] stringByAppendingString: PREreviewerImageURL];
-                reviewComment = [reviewDictionary0 objectForKey:@"review_comment"];
+                language = [self transformLanugage:expData[@"experience_language"]];
+                duration = [expData[@"experience_duration"] stringValue];
+                title = expData[@"experience_title"];
+                description = expData[@"experience_description"];
+                activity = expData[@"experience_activity"];
+                interaction = expData[@"experience_interaction"];
+                hostFirstName = expData[@"host_firstname"];
+                if (hostFirstName == (id)[NSNull null]) {
+                    hostFirstName = @"";
+                }
+                hostLastName = expData[@"host_lastname"];
+                hostBio = expData[@"host_bio"];
+                reviews = expData[@"experience_reviews"];
+                nReviews = [@([reviews count]) stringValue];
+                rate = [expData[@"experience_rate"] stringValue];
+                ticketString = expData[@"included_ticket_detail"];
+                foodString = expData[@"included_food_detail"];
+                transportString = expData[@"included_transport_detail"];
+                availableDateArray = expData[@"available_options"];
+                dynamicPriceArray = expData[@"experience_dynamic_price"];
+                maxGuestNum = expData[@"experience_guest_number_max"];
+                minGuestNum = expData[@"experience_guest_number_min"];
+
+                [self setMinimalPrice];
+
+                if ([nReviews intValue] > 0) {
+                    NSDictionary *firstReview = reviews[0];
+                    reviewerFirstName = firstReview[@"reviewer_firstname"];
+                    reviewerLastName = firstReview[@"reviewer_lastname"];
+                    PREreviewerImageURL = firstReview[@"reviewer_image"];
+                    reviewerImageURL = [[URLConfig imageServiceURLString] stringByAppendingString: PREreviewerImageURL];
+                    reviewComment = firstReview[@"review_comment"];
+                }
             }
             @catch (NSException * e) {
                 NSLog(@"Experience/(ID:%@/) Exception: %@", _experience_id_string, e);
             }
         } else {
-            NSString *errorMsg = [result objectForKey:@"Server Error"];
+            NSString *errorMsg = result[@"Server Error"];
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"server_error", nil)
                                                             message:errorMsg
                                                            delegate:nil
@@ -195,9 +188,23 @@
     
     
 #ifdef DEBUG
-    NSLog(@"%@,%@,%@,%@",expTitle,_expPrice,reviewerImageURL,reviewComment);
+    NSLog(@"%@,%@,%@,%@", title,_expPrice,reviewerImageURL,reviewComment);
 #endif
     [_myTable reloadData];
+}
+
+- (void)setMinimalPrice {
+    NSNumber *priceNumber = nil;
+    if ([dynamicPriceArray count] == 0) {
+                    priceNumber = expData[@"experience_price"];
+                } else if ([minGuestNum intValue] <= 4 && [maxGuestNum intValue] >= 4) {
+                    priceNumber = dynamicPriceArray[4 - [minGuestNum intValue]];
+                } else if ([minGuestNum intValue] > 4) {
+                    priceNumber = dynamicPriceArray[0];
+                } else if ([maxGuestNum intValue] < 4) {
+                    priceNumber = [dynamicPriceArray lastObject];
+                }
+    self.expPrice = [self decimalwithFormat:@"0" floatV:[priceNumber floatValue]];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -217,7 +224,7 @@
     
     [numberFormatter setPositiveFormat:format];
     
-    return  [numberFormatter stringFromNumber:[NSNumber numberWithFloat:floatV]];
+    return [numberFormatter stringFromNumber:@(floatV)];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -286,9 +293,9 @@
             cell.reservationLabel.text = [NSString stringWithFormat:@"%@ %@ %@", NSLocalizedString(@"reservationPrefix", nil), hostFirstName, NSLocalizedString(@"reservationSuffix",nil)];
             
             // language
-            cell.languageLabel.text = expLanguage;
+            cell.languageLabel.text = language;
             cell.priceLabel.text = [NSString stringWithFormat:@"$%@",_expPrice];
-            cell.durationLabel.text = [NSString stringWithFormat:NSLocalizedString(@"exp_detail_per_person_for", nil), expDuration];
+            cell.durationLabel.text = [NSString stringWithFormat:NSLocalizedString(@"exp_detail_per_person_for", nil), duration];
             
             return cell;
         }
@@ -299,9 +306,9 @@
             }
             
             cell1.parentView = self.myTable;
-            cell1.expTitleLabel.text = expTitle;
+            cell1.expTitleLabel.text = title;
             cell1.selectionStyle = UITableViewCellSelectionStyleNone;
-            cell1.expDescriptionLabel.text = [expDescription stringByAppendingFormat:@" %@ %@", expActivity, expInteraction];
+            cell1.expDescriptionLabel.text = [description stringByAppendingFormat:@" %@ %@", activity, interaction];
             if (self.isExpReadMoreOpen) {
                 [cell1.readMoreButton setTitle:@"Read Less" forState:UIControlStateNormal];
                 cell1.expDescriptionLabel.lineBreakMode = NSLineBreakByWordWrapping;
@@ -348,14 +355,14 @@
             }
             
             cell3.selectionStyle = UITableViewCellSelectionStyleNone;
-            if (numOfReviews > 0) {
-                cell3.countLabel.text = [NSString stringWithFormat:NSLocalizedString(@"n_reviews", nil), numOfReviews];
+            if ([nReviews intValue] > 0) {
+                cell3.countLabel.text = [NSString stringWithFormat:NSLocalizedString(@"n_reviews", nil), nReviews];
             } else {
                 cell3.countLabel.text = NSLocalizedString(@"no_reviews", nil);
             }
             
-            cell3.reviewStars.rating = [expRate floatValue];
-            cell3.reviewerName.text = [NSString stringWithFormat:@"%@ %@", reviewFirst, reviewLast];
+            cell3.reviewStars.rating = [rate floatValue];
+            cell3.reviewerName.text = [NSString stringWithFormat:@"%@ %@", reviewerFirstName, reviewerLastName];
             cell3.commentLabel.text = reviewComment;
             
             [cell3.reviewerImage sd_setImageWithURL:[NSURL URLWithString:reviewerImageURL]
@@ -425,11 +432,11 @@
     NSMutableArray *languages = [[languageString componentsSeparatedByString:@";"] mutableCopy];
     [languages removeLastObject];
     for (NSUInteger i = 0; i < [languages count]; ++i) {
-        NSString * language = [languages objectAtIndex:i];
-        if ([language isEqualToString:@"mandarin"]) {
-            [languages replaceObjectAtIndex:i withObject:@"中文"];
+        NSString * oneLanguage = languages[i];
+        if ([oneLanguage isEqualToString:@"mandarin"]) {
+            languages[i] = @"中文";
         } else {
-            [languages replaceObjectAtIndex:i withObject:[language capitalizedString]];
+            languages[i] = [oneLanguage capitalizedString];
         }
     }
     
@@ -437,33 +444,29 @@
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return [[self.cellHeights objectAtIndex:indexPath.row] floatValue];
+    return [self.cellHeights[indexPath.row] floatValue];
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     if ([segue.identifier isEqualToString:@"checkoutSegue"]) {
         CheckoutViewController *vc=[segue destinationViewController];
         vc.exp_ID_string = _experience_id_string;
-//        NSString *expImageCachingIdentifier = [NSString stringWithFormat:@"Cell0OfExpImage"];
         vc.expImage = nextPageCoverImage;
 
         vc.availbleDateArray = availableDateArray;
-        vc.expTitleString = expTitle;
+        vc.expTitleString = title;
         vc.fixPriceString = _expPrice;
         vc.dynamicPriceArray = dynamicPriceArray;
-        vc.languageString = expLanguage;
-        vc.durationString = expDuration;
+        vc.languageString = language;
+        vc.durationString = duration;
         vc.maxGuestNum = maxGuestNum;
         vc.minGuestNum = minGuestNum;
         NSString *lastNameInitial = [[hostLastName substringWithRange:NSMakeRange(0, 1)] stringByAppendingString:@"."];
-        if (hostFirstName) {
-            vc.hostName = [[NSArray arrayWithObjects:hostFirstName, lastNameInitial, nil] componentsJoinedByString:@" "];
-        } else {
-            vc.hostName = lastNameInitial;
-        }
+        vc.hostName = [@[hostFirstName, lastNameInitial] componentsJoinedByString:@" "];
+
 
     } else if ([segue.identifier isEqualToString:@"view_all_reviews"]) {
-        ReviewTableViewController *vc=[segue destinationViewController];
+        ReviewTableViewController *vc = [segue destinationViewController];
         vc.reviews = reviews;
     }
     

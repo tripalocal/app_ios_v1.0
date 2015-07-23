@@ -18,6 +18,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.navigationItem.title = NSLocalizedString(@"wishlist_title", nil);
 }
 
 - (NSMutableArray *)fetchExpData:(NSString *) cityName {
@@ -53,7 +54,24 @@
                 [resultExp setObject:[exp objectForKey:@"experience_title"] forKey:@"title"];
                 [resultExp setObject:[exp objectForKey:@"experience_language"] forKey:@"language"];
                 [resultExp setObject:[exp objectForKey:@"experience_description"] forKey:@"description"];
-                [resultExp setObject:[exp objectForKey:@"experience_price"] forKey:@"price"];
+                
+                NSMutableArray *dynamicPriceArray = [exp objectForKey:@"experience_dynamic_price"];
+                NSNumber *maxGuestNum = [exp objectForKey:@"experience_guest_number_max"];
+                NSNumber *minGuestNum = [exp objectForKey:@"experience_guest_number_min"];
+                
+                NSNumber *priceNumber = nil;
+                if ([dynamicPriceArray count] == 0) {
+                    priceNumber = exp[@"experience_price"];
+                } else if ([minGuestNum intValue] <= 4 && [maxGuestNum intValue] >= 4) {
+                    priceNumber = dynamicPriceArray[4 - [minGuestNum intValue]];
+                } else if ([minGuestNum intValue] > 4) {
+                    priceNumber = dynamicPriceArray[0];
+                } else if ([maxGuestNum intValue] < 4) {
+                    priceNumber = [dynamicPriceArray lastObject];
+                }
+
+                [resultExp setObject:[self decimalwithFormat:@"0" floatV:[priceNumber floatValue]] forKey:@"price"];
+
                 [resultExp setObject:[exp objectForKey:@"host_image"]forKey:@"host_image"];
                 [resultExp setObject:[NSNumber numberWithInt:[expID intValue]]forKey:@"id"];
                 [expList addObject:resultExp];
@@ -84,16 +102,45 @@
     [self presentViewController:vc animated:YES completion:nil];
 }
 
+- (NSString *) decimalwithFormat:(NSString *)format floatV:(float)floatV
+{
+    NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];
+    
+    [numberFormatter setPositiveFormat:format];
+    
+    return  [numberFormatter stringFromNumber:[NSNumber numberWithFloat:floatV]];
+}
+
 - (void)viewWillAppear:(BOOL)animated {
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     NSString *token = [userDefaults stringForKey:@"user_token"];
     if (token) {
         [self.view sendSubviewToBack:self.needToLoginView];
-        self.expList = [self fetchExpData:self.cityName];
+        NSSet *wishList = [NSSet setWithArray:(NSArray *)[userDefaults objectForKey:@"wish_list"]];
+        NSMutableSet *origWishList = [[NSMutableSet alloc] init];
+        for (int i = 0; i < [self.expList count]; i++)
+        {
+            NSNumber *expId = self.expList[i][@"id"];
+            [origWishList addObject:[expId stringValue]];
+        }
+        if (![wishList isEqualToSet:origWishList])
+        {
+            self.expList = [self fetchExpData:self.cityName];
+        }
+
         [self.tableView reloadData];
     } else {
         self.needToLoginView.delegate = self;
         [self.view bringSubviewToFront:self.needToLoginView];
+    }
+    
+    if ([self.expList count] == 0)
+    {
+        [[self view] addSubview:self.noDataLabel];
+    }
+    else
+    {
+        [self.noDataLabel removeFromSuperview];
     }
     
     [super viewWillAppear:animated];
