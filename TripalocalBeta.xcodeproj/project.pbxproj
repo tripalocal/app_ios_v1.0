@@ -72,6 +72,12 @@
 		87F356561B43C8C300949F43 /* UnloginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87F356551B43C8C300949F43 /* UnloginViewController.m */; };
 		87F6F7661B4B948100A3A6EB /* MyTripTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87F6F7651B4B948100A3A6EB /* MyTripTableViewController.m */; };
 		87FBCD2F1B60623400504C84 /* group@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 87FBCD2E1B60623400504C84 /* group@2x.png */; };
+		87FBCD331B607E2A00504C84 /* bus.png in Resources */ = {isa = PBXBuildFile; fileRef = 87FBCD301B607E2A00504C84 /* bus.png */; };
+		87FBCD341B607E2A00504C84 /* meals.png in Resources */ = {isa = PBXBuildFile; fileRef = 87FBCD311B607E2A00504C84 /* meals.png */; };
+		87FBCD351B607E2A00504C84 /* tickets.png in Resources */ = {isa = PBXBuildFile; fileRef = 87FBCD321B607E2A00504C84 /* tickets.png */; };
+		87FBCD391B607E8800504C84 /* meals@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 87FBCD361B607E8800504C84 /* meals@2x.png */; };
+		87FBCD3A1B607E8800504C84 /* bus@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 87FBCD371B607E8800504C84 /* bus@2x.png */; };
+		87FBCD3B1B607E8800504C84 /* tickets@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 87FBCD381B607E8800504C84 /* tickets@2x.png */; };
 		87FC2D201B476A3B0017F30E /* CheckoutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87FC2D1F1B476A3B0017F30E /* CheckoutViewController.m */; };
 		87FC2D251B4797CA0017F30E /* PaymentOptionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87FC2D241B4797CA0017F30E /* PaymentOptionViewController.m */; };
 		87FC2D3C1B47F8390017F30E /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87FC2D3B1B47F8390017F30E /* SystemConfiguration.framework */; };
@@ -101,9 +107,6 @@
 		8E26A6631B0397EF00A5A5CF /* TLHomeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E26A6621B0397EF00A5A5CF /* TLHomeTableViewCell.m */; };
 		8E26A66C1B080BE300A5A5CF /* TLSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E26A66B1B080BE300A5A5CF /* TLSearchViewController.m */; };
 		8E26A66F1B080BFF00A5A5CF /* TLSearchTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E26A66E1B080BFF00A5A5CF /* TLSearchTableViewCell.m */; };
-		8E4371381B4CB9F6003A3C8A /* meals.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E4371371B4CB9F6003A3C8A /* meals.png */; };
-		8E43713B1B4CBA05003A3C8A /* bus.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E43713A1B4CBA05003A3C8A /* bus.png */; };
-		8E43713D1B4CBA0E003A3C8A /* tickets.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E43713C1B4CBA0E003A3C8A /* tickets.png */; };
 		8E92CF7A1B3E2B3700D4BB4B /* TLDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E92CF791B3E2B3700D4BB4B /* TLDetailViewController.m */; };
 		8EB570E51B01CF2B0026D419 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EB570E41B01CF2B0026D419 /* main.m */; };
 		8EB570E81B01CF2B0026D419 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EB570E71B01CF2B0026D419 /* AppDelegate.m */; };
@@ -241,6 +244,12 @@
 		87F6F7641B4B948100A3A6EB /* MyTripTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyTripTableViewController.h; sourceTree = "<group>"; };
 		87F6F7651B4B948100A3A6EB /* MyTripTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyTripTableViewController.m; sourceTree = "<group>"; };
 		87FBCD2E1B60623400504C84 /* group@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "group@2x.png"; path = "Images/group@2x.png"; sourceTree = "<group>"; };
+		87FBCD301B607E2A00504C84 /* bus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bus.png; path = Images/bus.png; sourceTree = "<group>"; };
+		87FBCD311B607E2A00504C84 /* meals.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = meals.png; path = Images/meals.png; sourceTree = "<group>"; };
+		87FBCD321B607E2A00504C84 /* tickets.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = tickets.png; path = Images/tickets.png; sourceTree = "<group>"; };
+		87FBCD361B607E8800504C84 /* meals@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "meals@2x.png"; path = "Images/meals@2x.png"; sourceTree = "<group>"; };
+		87FBCD371B607E8800504C84 /* bus@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "bus@2x.png"; path = "Images/bus@2x.png"; sourceTree = "<group>"; };
+		87FBCD381B607E8800504C84 /* tickets@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "tickets@2x.png"; path = "Images/tickets@2x.png"; sourceTree = "<group>"; };
 		87FC2D1E1B476A3B0017F30E /* CheckoutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckoutViewController.h; sourceTree = "<group>"; };
 		87FC2D1F1B476A3B0017F30E /* CheckoutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CheckoutViewController.m; sourceTree = "<group>"; };
 		87FC2D231B4797CA0017F30E /* PaymentOptionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaymentOptionViewController.h; sourceTree = "<group>"; };
@@ -364,9 +373,6 @@
 		8E26A66B1B080BE300A5A5CF /* TLSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TLSearchViewController.m; path = Controller/TLSearchViewController.m; sourceTree = "<group>"; };
 		8E26A66D1B080BFF00A5A5CF /* TLSearchTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TLSearchTableViewCell.h; path = Controller/TLSearchTableViewCell.h; sourceTree = "<group>"; };
 		8E26A66E1B080BFF00A5A5CF /* TLSearchTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TLSearchTableViewCell.m; path = Controller/TLSearchTableViewCell.m; sourceTree = "<group>"; };
-		8E4371371B4CB9F6003A3C8A /* meals.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = meals.png; sourceTree = "<group>"; };
-		8E43713A1B4CBA05003A3C8A /* bus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bus.png; sourceTree = "<group>"; };
-		8E43713C1B4CBA0E003A3C8A /* tickets.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tickets.png; sourceTree = "<group>"; };
 		8E92CF781B3E2B3700D4BB4B /* TLDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TLDetailViewController.h; path = Controller/TLDetailViewController.h; sourceTree = "<group>"; };
 		8E92CF791B3E2B3700D4BB4B /* TLDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TLDetailViewController.m; path = Controller/TLDetailViewController.m; sourceTree = "<group>"; };
 		8EB570DF1B01CF2B0026D419 /* TripalocalBeta.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TripalocalBeta.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -632,12 +638,12 @@
 				8700D0C41B58E327003B6170 /* back.png */,
 				87FCA4BD1B5288FA0060AA8B /* creditcard_box.png */,
 				5653A8EC1B48FB8D005CA2A7 /* default_profile_image.png */,
-				8E43713C1B4CBA0E003A3C8A /* tickets.png */,
-				8E4371371B4CB9F6003A3C8A /* meals.png */,
+				87FBCD301B607E2A00504C84 /* bus.png */,
+				87FBCD311B607E2A00504C84 /* meals.png */,
+				87FBCD321B607E2A00504C84 /* tickets.png */,
 				8788B9D01B48EE570002B4D1 /* alipay.jpg */,
 				87FCA4C11B52CB890060AA8B /* heart_sw.png */,
 				87FCA4C21B52CB890060AA8B /* heart_sr.png */,
-				8E43713A1B4CBA05003A3C8A /* bus.png */,
 				8EC86D9F1B02350000B0A655 /* date.png */,
 				8EC86DA01B02350000B0A655 /* facebook_bt.png */,
 				568AE82B1B52061E00D48DBC /* flash.png */,
@@ -648,6 +654,9 @@
 				8EC86DA41B02350000B0A655 /* instant_booking.png */,
 				870D0FB11B5F197A0052B12A /* ben.png */,
 				8EC86DA51B02350000B0A655 /* myprofile_s.png */,
+				87FBCD361B607E8800504C84 /* meals@2x.png */,
+				87FBCD371B607E8800504C84 /* bus@2x.png */,
+				87FBCD381B607E8800504C84 /* tickets@2x.png */,
 				8EC86DA61B02350000B0A655 /* myprofile.png */,
 				8EC86DA71B02350000B0A655 /* mytrip_s.png */,
 				8EC86DA81B02350000B0A655 /* mytrip.png */,
@@ -888,7 +897,9 @@
 				8711A6571B5A5DD600578BB2 /* slide01_en.jpg in Resources */,
 				87EF8C721B5C8D6200292225 /* slide03_en@2x.jpg in Resources */,
 				568AE82C1B52061E00D48DBC /* flash.png in Resources */,
+				87FBCD341B607E2A00504C84 /* meals.png in Resources */,
 				877E962D1B5E99D800BD1F33 /* mytrip_s@2x.png in Resources */,
+				87FBCD331B607E2A00504C84 /* bus.png in Resources */,
 				87E75F7A1B5672D500E53741 /* backgroundImage.jpg in Resources */,
 				8EB570F31B01CF2B0026D419 /* LaunchScreen.xib in Resources */,
 				8711A6551B5A5DD600578BB2 /* slide02_en.jpg in Resources */,
@@ -902,25 +913,26 @@
 				8700D0C61B58E327003B6170 /* back.png in Resources */,
 				877E962B1B5E99D800BD1F33 /* myprofile_s@2x.png in Resources */,
 				877E962E1B5E99D800BD1F33 /* mytrip@2x.png in Resources */,
+				87FBCD391B607E8800504C84 /* meals@2x.png in Resources */,
 				5649BDF01B46702300465D6C /* (null) in Resources */,
 				8711A6541B5A5DD600578BB2 /* slide02.jpg in Resources */,
 				87FCA4BF1B5288FA0060AA8B /* creditcard_box.png in Resources */,
 				8EC86DBC1B02350000B0A655 /* tripalocal_logo.png in Resources */,
 				870AEB791B53A81D00959465 /* Localizable.strings in Resources */,
 				8700D0C51B58E327003B6170 /* back@2x.png in Resources */,
-				8E43713D1B4CBA0E003A3C8A /* tickets.png in Resources */,
 				8EC86DB91B02350000B0A655 /* search_s.png in Resources */,
 				8711A6531B5A5DD600578BB2 /* slide03_en.jpg in Resources */,
 				8788B9D21B48EE570002B4D1 /* alipay.jpg in Resources */,
 				8EC86DBB1B02350000B0A655 /* time.png in Resources */,
 				877E962C1B5E99D800BD1F33 /* myprofile@2x.png in Resources */,
 				87EF8C711B5C8D6200292225 /* slide03@2x.jpg in Resources */,
-				8E4371381B4CB9F6003A3C8A /* meals.png in Resources */,
 				8EC86DBA1B02350000B0A655 /* search.png in Resources */,
 				870D0FB51B5F33AD0052B12A /* date@2x.png in Resources */,
 				87FBCD2F1B60623400504C84 /* group@2x.png in Resources */,
 				8711A6561B5A5DD600578BB2 /* slide01.jpg in Resources */,
 				87E75F781B56724500E53741 /* tripalocal_logo_zh.png in Resources */,
+				87FBCD351B607E2A00504C84 /* tickets.png in Resources */,
+				87FBCD3A1B607E8800504C84 /* bus@2x.png in Resources */,
 				87E74B691B54C2AF00C41CBF /* SearchViewCell.xib in Resources */,
 				8700D0BE1B588E80003B6170 /* location@2x.png in Resources */,
 				8EC86DB01B02350000B0A655 /* facebook_bt.png in Resources */,
@@ -929,10 +941,10 @@
 				87EF8C831B5CE46400292225 /* loading_screen.jpg in Resources */,
 				87FCA4BE1B5288FA0060AA8B /* creditcard_hori.png in Resources */,
 				87FCA4C81B52D8BC0060AA8B /* star_y.png in Resources */,
-				8E43713B1B4CBA05003A3C8A /* bus.png in Resources */,
 				8EC86DB71B02350000B0A655 /* mytrip_s.png in Resources */,
 				87FCA4C31B52CB890060AA8B /* heart_sw.png in Resources */,
 				87E74B6E1B54E73B00C41CBF /* MyTripTableViewCell.xib in Resources */,
+				87FBCD3B1B607E8800504C84 /* tickets@2x.png in Resources */,
 				8700D0C21B58C395003B6170 /* star_w@2x.png in Resources */,
 				8711A6521B5A5DD600578BB2 /* slide03.jpg in Resources */,
 				8EB570F01B01CF2B0026D419 /* Images.xcassets in Resources */,

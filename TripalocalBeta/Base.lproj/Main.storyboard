@@ -455,50 +455,68 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Food" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bII-OH-9As">
-                                                    <rect key="frame" x="93" y="57" width="36" height="18"/>
+                                                    <rect key="frame" x="77" y="56" width="36" height="18"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Ticket" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7my-up-7oQ">
-                                                    <rect key="frame" x="93" y="105" width="42" height="18"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ticket" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7my-up-7oQ">
+                                                    <rect key="frame" x="77" y="95" width="42" height="18"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Transport" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l5G-RP-aa1">
-                                                    <rect key="frame" x="93" y="147" width="65" height="18"/>
+                                                    <rect key="frame" x="77" y="134" width="65" height="18"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tickets.png" translatesAutoresizingMaskIntoConstraints="NO" id="YWa-mZ-a17">
+                                                    <rect key="frame" x="25" y="90" width="27" height="27"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="YWa-mZ-a17" secondAttribute="height" multiplier="1:1" id="S69-dt-FIv"/>
+                                                    </constraints>
+                                                    <variation key="default">
+                                                        <mask key="constraints">
+                                                            <exclude reference="S69-dt-FIv"/>
+                                                        </mask>
+                                                    </variation>
+                                                </imageView>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bus.png" translatesAutoresizingMaskIntoConstraints="NO" id="YAM-Ce-HEN">
+                                                    <rect key="frame" x="25" y="129" width="27" height="27"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="YAM-Ce-HEN" secondAttribute="height" multiplier="1:1" id="kHO-ap-vpI"/>
+                                                    </constraints>
+                                                    <variation key="default">
+                                                        <mask key="constraints">
+                                                            <exclude reference="kHO-ap-vpI"/>
+                                                        </mask>
+                                                    </variation>
+                                                </imageView>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="meals.png" translatesAutoresizingMaskIntoConstraints="NO" id="ubg-g2-lEk">
-                                                    <rect key="frame" x="15" y="51" width="38" height="38"/>
+                                                    <rect key="frame" x="25" y="51" width="27" height="27"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="38" id="EMD-H5-enJ"/>
                                                         <constraint firstAttribute="width" secondItem="ubg-g2-lEk" secondAttribute="height" multiplier="1:1" id="zIi-Ve-1bI"/>
                                                     </constraints>
-                                                </imageView>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tickets.png" translatesAutoresizingMaskIntoConstraints="NO" id="YWa-mZ-a17">
-                                                    <rect key="frame" x="15" y="94" width="38" height="38"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" secondItem="YWa-mZ-a17" secondAttribute="height" multiplier="1:1" id="S69-dt-FIv"/>
-                                                    </constraints>
-                                                </imageView>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bus.png" translatesAutoresizingMaskIntoConstraints="NO" id="YAM-Ce-HEN">
-                                                    <rect key="frame" x="15" y="137" width="38" height="38"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" secondItem="YAM-Ce-HEN" secondAttribute="height" multiplier="1:1" id="kHO-ap-vpI"/>
-                                                    </constraints>
+                                                    <variation key="default">
+                                                        <mask key="constraints">
+                                                            <exclude reference="EMD-H5-enJ"/>
+                                                            <exclude reference="zIi-Ve-1bI"/>
+                                                        </mask>
+                                                    </variation>
                                                 </imageView>
                                             </subviews>
                                             <color key="backgroundColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
+                                                <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="bII-OH-9As" secondAttribute="trailing" constant="20" id="0fK-yV-ilv"/>
                                                 <constraint firstItem="bII-OH-9As" firstAttribute="leading" secondItem="7my-up-7oQ" secondAttribute="leading" id="8Ng-TI-aBd"/>
                                                 <constraint firstItem="YWa-mZ-a17" firstAttribute="leading" secondItem="YAM-Ce-HEN" secondAttribute="leading" id="9ps-pd-7uW"/>
-                                                <constraint firstItem="bII-OH-9As" firstAttribute="centerY" secondItem="ubg-g2-lEk" secondAttribute="centerY" constant="-4.5" id="BVK-kI-eNf"/>
-                                                <constraint firstItem="ubg-g2-lEk" firstAttribute="leading" secondItem="jP8-Ue-ker" secondAttribute="leading" constant="15" id="EAG-15-WvC"/>
-                                                <constraint firstItem="YWa-mZ-a17" firstAttribute="top" secondItem="ubg-g2-lEk" secondAttribute="bottom" constant="5" id="Jy6-Qd-544"/>
+                                                <constraint firstItem="bII-OH-9As" firstAttribute="centerY" secondItem="ubg-g2-lEk" secondAttribute="centerY" id="BVK-kI-eNf"/>
+                                                <constraint firstItem="ubg-g2-lEk" firstAttribute="leading" secondItem="jP8-Ue-ker" secondAttribute="leading" constant="25" id="EAG-15-WvC"/>
+                                                <constraint firstItem="YWa-mZ-a17" firstAttribute="top" secondItem="ubg-g2-lEk" secondAttribute="bottom" constant="12" id="Jy6-Qd-544"/>
+                                                <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="l5G-RP-aa1" secondAttribute="trailing" constant="20" id="K9W-QZ-c5U"/>
                                                 <constraint firstItem="YWa-mZ-a17" firstAttribute="width" secondItem="YAM-Ce-HEN" secondAttribute="width" id="L9f-mN-AqU"/>
                                                 <constraint firstItem="kbJ-5f-vUd" firstAttribute="top" secondItem="jP8-Ue-ker" secondAttribute="top" constant="20" id="PGr-J0-J81"/>
                                                 <constraint firstAttribute="centerX" secondItem="kbJ-5f-vUd" secondAttribute="centerX" id="Q8Q-nk-2Xm"/>
@@ -507,10 +525,11 @@
                                                 <constraint firstItem="l5G-RP-aa1" firstAttribute="leading" secondItem="7my-up-7oQ" secondAttribute="leading" id="TcI-aI-g7F"/>
                                                 <constraint firstItem="ubg-g2-lEk" firstAttribute="width" secondItem="YWa-mZ-a17" secondAttribute="width" id="Tnv-M0-7MW"/>
                                                 <constraint firstItem="l5G-RP-aa1" firstAttribute="centerY" secondItem="YAM-Ce-HEN" secondAttribute="centerY" id="Ur1-dg-HlM"/>
+                                                <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="7my-up-7oQ" secondAttribute="trailing" constant="20" id="VAO-Za-hPJ"/>
                                                 <constraint firstItem="l5G-RP-aa1" firstAttribute="centerX" secondItem="7my-up-7oQ" secondAttribute="centerX" id="ZVf-O9-1jt"/>
                                                 <constraint firstItem="ubg-g2-lEk" firstAttribute="top" secondItem="kbJ-5f-vUd" secondAttribute="bottom" constant="10" id="cFC-Sy-dZn"/>
-                                                <constraint firstItem="YAM-Ce-HEN" firstAttribute="top" secondItem="YWa-mZ-a17" secondAttribute="bottom" constant="5" id="doo-te-AZZ"/>
-                                                <constraint firstItem="bII-OH-9As" firstAttribute="leading" secondItem="ubg-g2-lEk" secondAttribute="trailing" constant="40" id="pOI-CX-UH8"/>
+                                                <constraint firstItem="YAM-Ce-HEN" firstAttribute="top" secondItem="YWa-mZ-a17" secondAttribute="bottom" constant="12" id="doo-te-AZZ"/>
+                                                <constraint firstItem="bII-OH-9As" firstAttribute="leading" secondItem="ubg-g2-lEk" secondAttribute="trailing" constant="25" id="pOI-CX-UH8"/>
                                                 <constraint firstItem="kbJ-5f-vUd" firstAttribute="centerX" secondItem="jP8-Ue-ker" secondAttribute="centerX" id="ptw-zt-hYl"/>
                                             </constraints>
                                             <variation key="default">
