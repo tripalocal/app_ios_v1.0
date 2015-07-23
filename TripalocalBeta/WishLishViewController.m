@@ -14,11 +14,60 @@
 
 @end
 
-@implementation WishLishViewController
+@implementation WishLishViewController {
+    UIRefreshControl *refreshControl;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.title = NSLocalizedString(@"wishlist_title", nil);
+    if (!self.expList)
+    {
+        self.expList = [self fetchExpData:self.cityName];
+    }
+    
+    refreshControl = [[UIRefreshControl alloc] init];
+    refreshControl.backgroundColor = [UIColor colorWithRed:0.20f green:0.80f blue:0.80f alpha:1.0f];
+    refreshControl.tintColor = [UIColor whiteColor];
+    [refreshControl addTarget:self
+                            action:@selector(reloadData)
+                  forControlEvents:UIControlEventValueChanged];
+    [self.tableView addSubview:refreshControl];
+}
+
+- (void)reloadData
+{
+    if (!refreshControl)
+    {
+        return;
+    }
+    
+    if ([self.expList count] != 0) {
+        NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+        NSSet *wishList = [NSSet setWithArray:(NSArray *)[userDefaults objectForKey:@"wish_list"]];
+        NSMutableSet *origWishList = [[NSMutableSet alloc] init];
+        
+        for (int i = 0; i < [self.expList count]; i++)
+        {
+            NSNumber *expId = self.expList[i][@"id"];
+            [origWishList addObject:[expId stringValue]];
+        }
+        if (![wishList isEqualToSet:origWishList])
+        {
+            self.expList = [self fetchExpData:self.cityName];
+        }
+        
+        [self.tableView reloadData];
+    }
+    
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"MMM d, h:mm a"];
+    NSString *title = [NSString stringWithFormat:@"Last update: %@", [formatter stringFromDate:[NSDate date]]];
+    NSDictionary *attrsDictionary = [NSDictionary dictionaryWithObject:[UIColor whiteColor]
+                                                                forKey:NSForegroundColorAttributeName];
+    NSAttributedString *attributedTitle = [[NSAttributedString alloc] initWithString:title attributes:attrsDictionary];
+    refreshControl.attributedTitle = attributedTitle;
+    [refreshControl endRefreshing];
 }
 
 - (NSMutableArray *)fetchExpData:(NSString *) cityName {
@@ -116,18 +165,6 @@
     NSString *token = [userDefaults stringForKey:@"user_token"];
     if (token) {
         [self.view sendSubviewToBack:self.needToLoginView];
-        NSSet *wishList = [NSSet setWithArray:(NSArray *)[userDefaults objectForKey:@"wish_list"]];
-        NSMutableSet *origWishList = [[NSMutableSet alloc] init];
-        for (int i = 0; i < [self.expList count]; i++)
-        {
-            NSNumber *expId = self.expList[i][@"id"];
-            [origWishList addObject:[expId stringValue]];
-        }
-        if (![wishList isEqualToSet:origWishList])
-        {
-            self.expList = [self fetchExpData:self.cityName];
-        }
-
         [self.tableView reloadData];
     } else {
         self.needToLoginView.delegate = self;
