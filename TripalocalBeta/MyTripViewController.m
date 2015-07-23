@@ -36,7 +36,6 @@
     [previousController setContainerController:self];
     
     self.allViewControllers = [[NSArray alloc] initWithObjects:upcommingNav, previousNav, nil];
-
 }
 
 - (void)viewWillAppear:(BOOL)animated {

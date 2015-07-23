@@ -10,6 +10,7 @@
 #import "CheckoutViewController.h"
 #import "InstantBookingTableViewCell.h"
 #import "JGProgressHUD.h"
+#import "Utility.h"
 
 @interface CheckoutViewController (){
     NSMutableArray *guestPickerData;
@@ -158,7 +159,7 @@
         self.unitPrice = _dynamicPriceArray[self.guestNumber - [_minGuestNum intValue]];
     }
     
-    NSString *priceString = [self decimalwithFormat:@"0" floatV:[self.unitPrice floatValue]];
+    NSString *priceString = [Utility decimalwithFormat:@"0" floatV:[self.unitPrice floatValue]];
     
     _unitPriceLabel.text = [@"$" stringByAppendingFormat:@" %@ AUD x %@ pp",priceString,selectedGuestString];
     
@@ -170,15 +171,6 @@
     _confirmButton.enabled = NO;
 }
 
-
-- (NSString *) decimalwithFormat:(NSString *)format floatV:(float)floatV
-{
-    NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];
-    
-    [numberFormatter setPositiveFormat:format];
-    
-    return [numberFormatter stringFromNumber:@(floatV)];
-}
 
 #pragma mark - Picker View
 -(NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView{
@@ -232,7 +224,7 @@
     {
         self.unitPrice = _dynamicPriceArray[self.guestNumber - [_minGuestNum intValue]];
     }
-    NSString *priceString = [self decimalwithFormat:@"0" floatV:[self.unitPrice floatValue]];
+    NSString *priceString = [Utility decimalwithFormat:@"0" floatV:[self.unitPrice floatValue]];
     
     _unitPriceLabel.text = [@"$" stringByAppendingFormat:@" %@ AUD x %@ pp",priceString,selectedGuestString];
     

@@ -26,7 +26,7 @@
 
 - (IBAction)toggleReadMore:(id)sender {
     NSIndexPath *indexPath = [self.parentView indexPathForCell:self];
-    if ([self.readMoreButton.titleLabel.text isEqualToString:@"Read More"]) {
+    if ([self.readMoreButton.titleLabel.text isEqualToString:NSLocalizedString(@"read_more", nil)]) {
 
         CGFloat origHeight = self.expDescriptionLabel.frame.size.height;
 

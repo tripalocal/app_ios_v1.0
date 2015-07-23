@@ -9,6 +9,7 @@
 #import "WishLishViewController.h"
 #import "TLSearchViewController.h"
 #import "URLConfig.h"
+#import "Utility.h"
 
 @interface WishLishViewController ()
 
@@ -119,7 +120,7 @@
                     priceNumber = [dynamicPriceArray lastObject];
                 }
 
-                [resultExp setObject:[self decimalwithFormat:@"0" floatV:[priceNumber floatValue]] forKey:@"price"];
+                [resultExp setObject:[Utility decimalwithFormat:@"0" floatV:[priceNumber floatValue]] forKey:@"price"];
 
                 [resultExp setObject:[exp objectForKey:@"host_image"]forKey:@"host_image"];
                 [resultExp setObject:[NSNumber numberWithInt:[expID intValue]]forKey:@"id"];

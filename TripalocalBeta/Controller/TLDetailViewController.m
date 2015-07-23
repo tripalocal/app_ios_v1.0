@@ -19,6 +19,7 @@
 #import "ReviewTableViewController.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "URLConfig.h"
+#import "Utility.h"
 
 @interface TLDetailViewController ()
 {
@@ -204,7 +205,7 @@
                 } else if ([maxGuestNum intValue] < 4) {
                     priceNumber = [dynamicPriceArray lastObject];
                 }
-    self.expPrice = [self decimalwithFormat:@"0" floatV:[priceNumber floatValue]];
+    self.expPrice = [Utility decimalwithFormat:@"0" floatV:[priceNumber floatValue]];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -217,27 +218,8 @@
     [HUD dismissAfterDelay:1];
 }
 
-// todo: move to utility file
-- (NSString *) decimalwithFormat:(NSString *)format floatV:(float)floatV
-{
-    NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];
-    
-    [numberFormatter setPositiveFormat:format];
-    
-    return [numberFormatter stringFromNumber:@(floatV)];
-}
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-}
-
-- (UIImage *)croppIngimageByImageName:(UIImage *)imageToCrop toRect:(CGRect)rect
-{
-    CGImageRef imageRef = CGImageCreateWithImageInRect([imageToCrop CGImage], rect);
-    UIImage *cropped = [UIImage imageWithCGImage:imageRef];
-    CGImageRelease(imageRef);
-    
-    return cropped;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -267,7 +249,7 @@
             
             [cell.hostImage sd_setImageWithURL:[NSURL URLWithString:hostImageURL]
                               placeholderImage:[UIImage imageNamed:@"default_profile_image.png"]
-                                       options:SDWebImageAvoidAutoSetImage];
+                                       options:SDWebImageRefreshCached];
             
             NSString *coverImageURL = [NSString stringWithFormat:@"%@thumbnails/experiences/experience%@_1.jpg", [URLConfig imageServiceURLString], _experience_id_string];
             
@@ -280,12 +262,11 @@
 
             [cell.coverImage sd_setImageWithURL:[NSURL URLWithString:coverImageURL]
                               placeholderImage:nil
-                                        options:SDWebImageAvoidAutoSetImage
+                                        options:SDWebImageRefreshCached
                                       completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
                                           [activityIndicator removeFromSuperview];
                                           if (image) {
                                               nextPageCoverImage = image;
-                                              cell.coverImage.image = [self croppIngimageByImageName:image toRect:cell.coverImage.frame];
                                           }
                                       }];
             
@@ -310,12 +291,12 @@
             cell1.selectionStyle = UITableViewCellSelectionStyleNone;
             cell1.expDescriptionLabel.text = [description stringByAppendingFormat:@" %@ %@", activity, interaction];
             if (self.isExpReadMoreOpen) {
-                [cell1.readMoreButton setTitle:@"Read Less" forState:UIControlStateNormal];
+                [cell1.readMoreButton setTitle:NSLocalizedString(@"read_less", nil) forState:UIControlStateNormal];
                 cell1.expDescriptionLabel.lineBreakMode = NSLineBreakByWordWrapping;
                 cell1.expDescriptionLabel.numberOfLines = 0;
                 [cell1.expDescriptionLabel sizeToFit];
             } else {
-                [cell1.readMoreButton setTitle:@"Read More" forState:UIControlStateNormal];
+                [cell1.readMoreButton setTitle:NSLocalizedString(@"read_more", nil) forState:UIControlStateNormal];
                 cell1.expDescriptionLabel.lineBreakMode = NSLineBreakByTruncatingTail;
                 cell1.expDescriptionLabel.numberOfLines = 5;
             }
@@ -329,12 +310,12 @@
             cell2.parentView = self.myTable;
             cell2.selectionStyle = UITableViewCellSelectionStyleNone;
             if (self.isHostReadMoreOpen) {
-                [cell2.readMoreButton setTitle:@"Read Less" forState:UIControlStateNormal];
+                [cell2.readMoreButton setTitle:NSLocalizedString(@"read_less", nil) forState:UIControlStateNormal];
                 cell2.hostBioLabel.lineBreakMode = NSLineBreakByWordWrapping;
                 cell2.hostBioLabel.numberOfLines = 0;
                 [cell2.hostBioLabel sizeToFit];
             } else {
-                [cell2.readMoreButton setTitle:@"Read More" forState:UIControlStateNormal];
+                [cell2.readMoreButton setTitle:NSLocalizedString(@"read_more", nil) forState:UIControlStateNormal];
                 cell2.hostBioLabel.lineBreakMode = NSLineBreakByTruncatingTail;
                 cell2.hostBioLabel.numberOfLines = 5;
             }
@@ -383,12 +364,9 @@
             
             [cell4.coverImage sd_setImageWithURL:[NSURL URLWithString:coverImageURL]
                                placeholderImage:nil
-                                        options:SDWebImageAvoidAutoSetImage
+                                        options:SDWebImageRefreshCached
                                       completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
                                           [activityIndicator removeFromSuperview];
-                                          if (image) {
-                                              cell4.coverImage.image = [self croppIngimageByImageName:image toRect:cell4.coverImage.frame];
-                                          }
                                       }];
             
             [cell4.coverImage addSubview:activityIndicator];
@@ -463,7 +441,6 @@
         vc.minGuestNum = minGuestNum;
         NSString *lastNameInitial = [[hostLastName substringWithRange:NSMakeRange(0, 1)] stringByAppendingString:@"."];
         vc.hostName = [@[hostFirstName, lastNameInitial] componentsJoinedByString:@" "];
-
 
     } else if ([segue.identifier isEqualToString:@"view_all_reviews"]) {
         ReviewTableViewController *vc = [segue destinationViewController];
