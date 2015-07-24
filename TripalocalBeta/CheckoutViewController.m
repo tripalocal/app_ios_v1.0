@@ -11,6 +11,7 @@
 #import "InstantBookingTableViewCell.h"
 #import "JGProgressHUD.h"
 #import "Utility.h"
+#import "URLConfig.h"
 
 @interface CheckoutViewController (){
     NSMutableArray *guestPickerData;
@@ -21,7 +22,9 @@
     NSMutableArray *timeArray;
     NSMutableArray *instantDateArray;
     NSMutableArray *instantTimeArray;
+    NSArray *availableDateArray;
     BOOL isInstant;
+    JGProgressHUD *HUD;
     NSString *selectedTimeString;
     NSString *selectedDateString;
     NSString *selectedGuestString;
@@ -36,6 +39,15 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    HUD = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleDark];
+    HUD.HUDView.layer.shadowColor = [UIColor blackColor].CGColor;
+    HUD.HUDView.layer.shadowOffset = CGSizeZero;
+    HUD.HUDView.layer.shadowOpacity = 0.4f;
+    HUD.HUDView.layer.shadowRadius = 8.0f;
+    HUD.textLabel.text = NSLocalizedString(@"loading", nil);
+    [HUD showInView:self.view];
+    [self fetchData];
+    [HUD dismissAfterDelay:1];
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
                                    initWithTarget:self
                                    action:@selector(dismissKeyboard)];
@@ -99,8 +111,8 @@
     int storedFlag = 0;
     int lastIndex = 0;
     [timeArray addObject:timePickerData];
-    for (int i = 0; i<_availbleDateArray.count; i++) {
-        NSMutableDictionary *currentDic = _availbleDateArray[i];
+    for (int i = 0; i<availableDateArray.count; i++) {
+        NSMutableDictionary *currentDic = availableDateArray[i];
         NSString *currentDateString = currentDic[@"date_string"];
         NSString *currentTimeString = currentDic[@"time_string"];
         
@@ -171,6 +183,52 @@
     _confirmButton.enabled = NO;
 }
 
+- (void)fetchData
+{
+    NSString *post = [NSString stringWithFormat:@"{\"experience_id\":\"%@\"}",_exp_ID_string];
+#if DEBUG
+    NSLog(@"(Checkout)POST: %@", post);
+#endif
+    NSData *postData = [post dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:YES];
+    
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+    [request setURL:[NSURL URLWithString:[URLConfig expServiceURLString]]];
+    [request setHTTPMethod:@"POST"];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    [request setHTTPBody:postData];
+    NSError *connectionError = nil;
+    NSURLResponse *response = nil;
+    
+    NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&connectionError];
+    
+    if (connectionError == nil) {
+        NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *) response;
+        
+        NSDictionary *result = [NSJSONSerialization JSONObjectWithData:data
+                                                               options:0
+                                                                 error:nil];
+
+        if ([httpResponse statusCode] == 200) {
+            NSDictionary *expData = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+            availableDateArray = expData[@"available_options"];
+        } else {
+            NSString *errorMsg = result[@"Server Error"];
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"server_error", nil)
+                                                            message:errorMsg
+                                                           delegate:nil
+                                                  cancelButtonTitle:NSLocalizedString(@"ok_button", nil)
+                                                  otherButtonTitles:nil];
+            [alert show];
+        }
+    } else {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"no_network", nil)
+                                                        message:NSLocalizedString(@"no_network_msg", nil)
+                                                       delegate:nil
+                                              cancelButtonTitle:NSLocalizedString(@"ok_button", nil)
+                                              otherButtonTitles:nil];
+        [alert show];
+    }
+}
 
 #pragma mark - Picker View
 -(NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView{

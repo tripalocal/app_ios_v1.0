@@ -82,12 +82,21 @@
 #endif
 }
 
-+ (NSString *)expDetailhServiceURLString
++ (NSString *)expServiceURLString
 {
 #ifdef CN_VERSION
         return @"https://tripalocal.com/cn/service_experience/";
 #else
         return @"https://tripalocal.com/service_experience/";
+#endif
+}
+
++ (NSString *)expDetailServiceURLString
+{
+#ifdef CN_VERSION
+    return @"https://tripalocal.com/cn/service_experiencedetail/";
+#else
+    return @"https://tripalocal.com/service_experiencedetail/";
 #endif
 }
 

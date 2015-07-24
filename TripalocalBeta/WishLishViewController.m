@@ -76,19 +76,12 @@
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     NSMutableArray *wishList = [userDefaults objectForKey:@"wish_list"];
     for (NSString *expID in wishList) {
-        NSString *post = [NSString stringWithFormat:@"{\"experience_id\":\"%@\"}",expID];
-#ifdef DEBUG
-        NSLog(@"(Detail)POST: %@", post);
-#endif
-        NSData *postData = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
-        NSString *postLength = [NSString stringWithFormat:@"%lu", (unsigned long)[postData length]];
-        NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-        [request setURL:[NSURL URLWithString:[URLConfig expDetailhServiceURLString]]];
-        [request setHTTPMethod:@"POST"];
-        [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-        [request setValue:postLength forHTTPHeaderField:@"Content-Length"];
-        [request setHTTPBody:postData];
+        NSString *queryString = [NSString stringWithFormat:@"%@?experience_id=%@",[URLConfig expDetailServiceURLString],expID];
         
+        NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+        [request setURL:[NSURL URLWithString:queryString]];
+        [request setHTTPMethod:@"GET"];
+
         NSError *connectionError = nil;
         NSURLResponse *response = nil;
         

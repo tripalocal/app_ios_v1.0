@@ -47,7 +47,6 @@
     NSString *foodString;
     NSString *ticketString;
     NSString *transportString;
-    NSArray *availableDateArray;
     NSArray *reviews;
     NSDictionary *expData;
     UIImage *nextPageCoverImage;
@@ -92,18 +91,11 @@
 
 - (void)fetchData
 {
-    NSString *post = [NSString stringWithFormat:@"{\"experience_id\":\"%@\"}",_experience_id_string];
-#if DEBUG
-    NSLog(@"(Detail)POST: %@", post);
-#endif
-    NSData *postData = [post dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:YES];
+    NSString *queryString = [NSString stringWithFormat:@"%@?experience_id=%@",[URLConfig expDetailServiceURLString],_experience_id_string];
     
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-    [request setURL:[NSURL URLWithString:[URLConfig expDetailhServiceURLString]]];
-    
-    [request setHTTPMethod:@"POST"];
-    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    [request setHTTPBody:postData];
+    [request setURL:[NSURL URLWithString:queryString]];
+    [request setHTTPMethod:@"GET"];
     
     NSError *connectionError = nil;
     NSURLResponse *response = nil;
@@ -150,7 +142,7 @@
                 ticketString = expData[@"included_ticket_detail"];
                 foodString = expData[@"included_food_detail"];
                 transportString = expData[@"included_transport_detail"];
-                availableDateArray = expData[@"available_options"];
+//                availableDateArray = expData[@"available_options"];
                 dynamicPriceArray = expData[@"experience_dynamic_price"];
                 maxGuestNum = expData[@"experience_guest_number_max"];
                 minGuestNum = expData[@"experience_guest_number_min"];
@@ -431,7 +423,7 @@
         vc.exp_ID_string = _experience_id_string;
         vc.expImage = nextPageCoverImage;
 
-        vc.availbleDateArray = availableDateArray;
+//        vc.availbleDateArray = availableDateArray;
         vc.expTitleString = title;
         vc.fixPriceString = _expPrice;
         vc.dynamicPriceArray = dynamicPriceArray;
