@@ -8,6 +8,7 @@
 
 #import "PaymentOptionViewController.h"
 #import "PaymentSuccessViewController.h"
+#import "AlipayFailedViewController.h"
 #import <AlipaySDK/AlipaySDK.h>
 #import "Order.h"
 #import "URLConfig.h"
@@ -18,7 +19,9 @@
 
 @end
 
-@implementation PaymentOptionViewController
+@implementation PaymentOptionViewController {
+    NSString *orderNumber;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -129,7 +132,7 @@
                         if ([pair count] == 2) {
                             NSString *keyString = (NSString *)[pair objectAtIndex:0];
                             if ([keyString containsString:@"out_trade_no"]) {
-                                NSString *orderNumber = (NSString *)[pair objectAtIndex:1];
+                                orderNumber = (NSString *)[pair objectAtIndex:1];
                                 
                                 [self alipayRequesttoServer: orderNumber];
                             }
@@ -258,6 +261,9 @@
     } else if ([segue.identifier isEqualToString:@"alipaySuccess"]) {
         PaymentSuccessViewController *paymentSuccessVC = (PaymentSuccessViewController *)segue.destinationViewController;
         paymentSuccessVC.hostName = self.hostName;
+    } else if ([segue.identifier isEqualToString:@"alipayFail"]) {
+        AlipayFailedViewController *alipayFailedVC = (AlipayFailedViewController *)segue.destinationViewController;
+        alipayFailedVC.orderNumber = orderNumber;
     }
 }
 

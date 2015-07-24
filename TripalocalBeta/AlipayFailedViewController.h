@@ -9,5 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface AlipayFailedViewController : UIViewController
+@property (strong, nonatomic) IBOutlet UIButton *viewItInMyTrips;
 
+@property (strong, nonatomic) NSString *orderNumber;
 @end

@@ -26,6 +26,7 @@
 		8729E1361B4A1D7F004C3065 /* UpcommingTripsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8729E1351B4A1D7F004C3065 /* UpcommingTripsViewController.m */; };
 		8729E1391B4A1D9B004C3065 /* PreviousTripsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8729E1381B4A1D9B004C3065 /* PreviousTripsViewController.m */; };
 		8729E13C1B4A6335004C3065 /* MyTripTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8729E13B1B4A6335004C3065 /* MyTripTableViewCell.m */; };
+		873C8E6E1B61D1F300CB1D9E /* AlipayFailedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 873C8E6D1B61D1F300CB1D9E /* AlipayFailedViewController.m */; };
 		874265871B4D272F00D76C72 /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 874265861B4D272F00D76C72 /* MenuViewController.m */; };
 		874522AB1B4E3FDF00876EB4 /* WishLishViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 874522AA1B4E3FDF00876EB4 /* WishLishViewController.m */; };
 		87A3C09D1B461129009A3B07 /* RequestController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87A3C09C1B461129009A3B07 /* RequestController.m */; };
@@ -124,6 +125,8 @@
 		8729E1381B4A1D9B004C3065 /* PreviousTripsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreviousTripsViewController.m; sourceTree = "<group>"; };
 		8729E13A1B4A6335004C3065 /* MyTripTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyTripTableViewCell.h; sourceTree = "<group>"; };
 		8729E13B1B4A6335004C3065 /* MyTripTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyTripTableViewCell.m; sourceTree = "<group>"; };
+		873C8E6C1B61D1F300CB1D9E /* AlipayFailedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlipayFailedViewController.h; sourceTree = "<group>"; };
+		873C8E6D1B61D1F300CB1D9E /* AlipayFailedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlipayFailedViewController.m; sourceTree = "<group>"; };
 		874265851B4D272F00D76C72 /* MenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuViewController.h; sourceTree = "<group>"; };
 		874265861B4D272F00D76C72 /* MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuViewController.m; sourceTree = "<group>"; };
 		874522A91B4E3FDF00876EB4 /* WishLishViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WishLishViewController.h; sourceTree = "<group>"; };
@@ -555,6 +558,8 @@
 		8EC86D511B021DDC00B0A655 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				873C8E6C1B61D1F300CB1D9E /* AlipayFailedViewController.h */,
+				873C8E6D1B61D1F300CB1D9E /* AlipayFailedViewController.m */,
 				8711A6591B5A63EE00578BB2 /* PageContentViewController.h */,
 				8711A65A1B5A63EE00578BB2 /* PageContentViewController.m */,
 				8711A65C1B5A69DA00578BB2 /* RootViewController.h */,
@@ -817,6 +822,7 @@
 				87A3C09D1B461129009A3B07 /* RequestController.m in Sources */,
 				87FC2D251B4797CA0017F30E /* PaymentOptionViewController.m in Sources */,
 				8EB982501B2280D800ADE430 /* Spinner.m in Sources */,
+				873C8E6E1B61D1F300CB1D9E /* AlipayFailedViewController.m in Sources */,
 				5649BD3D1B3FD56E00465D6C /* TLDetailTableViewCell2.m in Sources */,
 				568AE8301B52087500D48DBC /* InstantBookingTableViewCell.m in Sources */,
 				87E75F721B55EC4C00E53741 /* SmsVerificationViewController.m in Sources */,
