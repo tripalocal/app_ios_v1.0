@@ -43,7 +43,6 @@
         self.image.image = [UIImage imageNamed: @"default_profile_image.png"];
     }
     
-    self.backgroundView.layer.cornerRadius = 5;
     self.backgroundView.layer.borderColor = [UIColor grayColor].CGColor;
     self.backgroundView.layer.borderWidth = 1;
     

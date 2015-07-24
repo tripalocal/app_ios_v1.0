@@ -3367,7 +3367,7 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="yTy-9Y-lQl">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="face" translatesAutoresizingMaskIntoConstraints="NO" id="yTy-9Y-lQl">
                                 <rect key="frame" x="250" y="215" width="100" height="100"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="2c6-kO-ygH"/>
@@ -3620,6 +3620,7 @@
         <image name="creditcard_hori" width="162" height="27"/>
         <image name="date" width="27" height="27"/>
         <image name="default_profile_image" width="200" height="200"/>
+        <image name="face" width="200" height="200"/>
         <image name="heart_lg" width="27" height="27"/>
         <image name="meals.png" width="27" height="27"/>
         <image name="tickets.png" width="27" height="27"/>
