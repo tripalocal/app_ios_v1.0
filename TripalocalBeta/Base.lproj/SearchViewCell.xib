@@ -192,7 +192,7 @@
                             </mask>
                         </variation>
                     </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="heart_sw.png" translatesAutoresizingMaskIntoConstraints="NO" id="V8s-6W-DgS">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="heart_sw" translatesAutoresizingMaskIntoConstraints="NO" id="V8s-6W-DgS">
                         <rect key="frame" x="10" y="310" width="20" height="20"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="20" id="fmf-nd-1vc"/>
@@ -285,7 +285,7 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="heart_sw.png" width="36" height="36"/>
+        <image name="heart_sw" width="18" height="18"/>
         <image name="unwishlisted.png" width="54" height="54"/>
     </resources>
 </document>

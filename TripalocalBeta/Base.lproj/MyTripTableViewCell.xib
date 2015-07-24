@@ -33,7 +33,7 @@
                             <constraint firstAttribute="height" constant="100" id="vG7-8O-ML8"/>
                         </constraints>
                     </imageView>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="time.png" translatesAutoresizingMaskIntoConstraints="NO" id="KCa-sC-CyO">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="time" translatesAutoresizingMaskIntoConstraints="NO" id="KCa-sC-CyO">
                         <rect key="frame" x="147" y="221" width="27" height="27"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="40" id="0yK-y0-KQv"/>
@@ -46,7 +46,7 @@
                             </mask>
                         </variation>
                     </imageView>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="date.png" translatesAutoresizingMaskIntoConstraints="NO" id="uqc-RW-yRe">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="date" translatesAutoresizingMaskIntoConstraints="NO" id="uqc-RW-yRe">
                         <rect key="frame" x="70" y="221" width="27" height="27"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="40" id="F5T-w5-Y2Q"/>
@@ -170,7 +170,7 @@
                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                         </state>
                     </button>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="group.png" translatesAutoresizingMaskIntoConstraints="NO" id="1Wj-iy-xdr">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="group" translatesAutoresizingMaskIntoConstraints="NO" id="1Wj-iy-xdr">
                         <rect key="frame" x="224" y="221" width="27" height="27"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="1Wj-iy-xdr" secondAttribute="height" multiplier="1:1" id="ho4-zH-Lnd"/>
@@ -251,8 +251,8 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="date.png" width="27" height="27"/>
-        <image name="group.png" width="27" height="27"/>
-        <image name="time.png" width="27" height="27"/>
+        <image name="date" width="27" height="27"/>
+        <image name="group" width="27" height="27"/>
+        <image name="time" width="27" height="27"/>
     </resources>
 </document>

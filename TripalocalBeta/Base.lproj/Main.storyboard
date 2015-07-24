@@ -1246,7 +1246,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gbB-HA-Ql0">
                                 <rect key="frame" x="0.0" y="248" width="600" height="60"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="heart.png" translatesAutoresizingMaskIntoConstraints="NO" id="eXs-vb-CrI">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="heart_lg" translatesAutoresizingMaskIntoConstraints="NO" id="eXs-vb-CrI">
                                         <rect key="frame" x="278" y="8" width="45" height="45"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="45" id="Pwy-VX-Nv4"/>
@@ -1314,7 +1314,7 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="default_profile_image.png" translatesAutoresizingMaskIntoConstraints="NO" id="0MN-RZ-Tsj">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="default_profile_image" translatesAutoresizingMaskIntoConstraints="NO" id="0MN-RZ-Tsj">
                                 <rect key="frame" x="250" y="94" width="100" height="100"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="100" id="66j-Tb-cth"/>
@@ -1740,7 +1740,7 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="tI5-oK-C7L" id="JXm-YE-rQm">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="creditcard_box.png" translatesAutoresizingMaskIntoConstraints="NO" id="PXb-tm-LF9">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="creditcard_box" translatesAutoresizingMaskIntoConstraints="NO" id="PXb-tm-LF9">
                                                     <rect key="frame" x="8" y="7" width="100" height="60"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="60" id="KP4-lo-ZAp"/>
@@ -1782,7 +1782,7 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="OZw-p2-sEq" id="HuA-ok-1Y9">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="alipay.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="Isn-sk-443">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="alipay" translatesAutoresizingMaskIntoConstraints="NO" id="Isn-sk-443">
                                                     <rect key="frame" x="8" y="7" width="100" height="60"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="100" id="iB4-GA-4aw"/>
@@ -1986,7 +1986,7 @@
                                             <action selector="inputFiledChanged:" destination="A7W-5O-Zld" eventType="editingChanged" id="vaY-mi-gsL"/>
                                         </connections>
                                     </textField>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="creditcard_hori.png" translatesAutoresizingMaskIntoConstraints="NO" id="h0g-0O-gwZ">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="creditcard_hori" translatesAutoresizingMaskIntoConstraints="NO" id="h0g-0O-gwZ">
                                         <rect key="frame" x="180" y="15" width="200" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="8xG-zT-ZAo"/>
@@ -2253,7 +2253,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tripalocal_logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="RZk-n3-EJK">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tripalocal_logo_en" translatesAutoresizingMaskIntoConstraints="NO" id="RZk-n3-EJK">
                                 <rect key="frame" x="200" y="50" width="200" height="65"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="65" id="IVU-2G-3wR"/>
@@ -2415,7 +2415,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tripalocal_logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="Gd9-Ew-z9r">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tripalocal_logo_en" translatesAutoresizingMaskIntoConstraints="NO" id="Gd9-Ew-z9r">
                                 <rect key="frame" x="200" y="50" width="200" height="65"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="200" id="gHV-jg-ndC"/>
@@ -2641,14 +2641,14 @@
                                     <action selector="sendVerificationRequest:" destination="ChZ-Mj-ju5" eventType="touchUpInside" id="SOq-0g-DlB"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tripalocal_logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="IZb-CJ-Avq">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tripalocal_logo_en" translatesAutoresizingMaskIntoConstraints="NO" id="IZb-CJ-Avq">
                                 <rect key="frame" x="200" y="50" width="200" height="65"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="65" id="857-9U-Vcm"/>
                                     <constraint firstAttribute="width" constant="200" id="KX7-RW-Ink"/>
                                 </constraints>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tripalocal_logo_zh.png" translatesAutoresizingMaskIntoConstraints="NO" id="qBc-c6-TZt">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tripalocal_logo_zh" translatesAutoresizingMaskIntoConstraints="NO" id="qBc-c6-TZt">
                                 <rect key="frame" x="200" y="125" width="200" height="65"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="65" id="U8K-0m-gdl"/>
@@ -2786,7 +2786,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tripalocal_logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="tLH-bG-5Fr">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tripalocal_logo_en" translatesAutoresizingMaskIntoConstraints="NO" id="tLH-bG-5Fr">
                                 <rect key="frame" x="200" y="50" width="200" height="65"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="200" id="AV7-sJ-d7j"/>
@@ -2845,7 +2845,7 @@
                                     <action selector="signup:" destination="KyJ-Xc-AWY" eventType="touchUpInside" id="6WS-f3-BN5"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tripalocal_logo_zh.png" translatesAutoresizingMaskIntoConstraints="NO" id="bLc-LQ-JFs">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tripalocal_logo_zh" translatesAutoresizingMaskIntoConstraints="NO" id="bLc-LQ-JFs">
                                 <rect key="frame" x="200" y="125" width="200" height="65"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="200" id="2YZ-tP-URb"/>
@@ -3009,7 +3009,7 @@
                                                     </mask>
                                                 </variation>
                                             </imageView>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="date.png" translatesAutoresizingMaskIntoConstraints="NO" id="r6j-KE-SGE">
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="date" translatesAutoresizingMaskIntoConstraints="NO" id="r6j-KE-SGE">
                                                 <rect key="frame" x="144" y="138" width="27" height="27"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="r6j-KE-SGE" secondAttribute="height" multiplier="1:1" id="Ry3-QH-PC1"/>
@@ -3029,7 +3029,7 @@
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="time.png" translatesAutoresizingMaskIntoConstraints="NO" id="tfj-Gx-ZM8">
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="time" translatesAutoresizingMaskIntoConstraints="NO" id="tfj-Gx-ZM8">
                                                 <rect key="frame" x="430" y="138" width="27" height="27"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="tfj-Gx-ZM8" secondAttribute="height" multiplier="1:1" id="j4h-vH-VII"/>
@@ -3614,22 +3614,21 @@
         </scene>
     </scenes>
     <resources>
-        <image name="alipay.jpg" width="162" height="108"/>
+        <image name="alipay" width="81" height="54"/>
         <image name="bus.png" width="27" height="27"/>
-        <image name="creditcard_box.png" width="162" height="108"/>
-        <image name="creditcard_hori.png" width="324" height="54"/>
-        <image name="date.png" width="27" height="27"/>
+        <image name="creditcard_box" width="81" height="54"/>
+        <image name="creditcard_hori" width="162" height="27"/>
+        <image name="date" width="27" height="27"/>
         <image name="default_profile_image" width="200" height="200"/>
-        <image name="default_profile_image.png" width="200" height="200"/>
-        <image name="heart.png" width="54" height="54"/>
+        <image name="heart_lg" width="27" height="27"/>
         <image name="meals.png" width="27" height="27"/>
         <image name="tickets.png" width="27" height="27"/>
-        <image name="time.png" width="27" height="27"/>
-        <image name="tripalocal_logo.png" width="287" height="99"/>
-        <image name="tripalocal_logo_zh.png" width="264" height="92"/>
+        <image name="time" width="27" height="27"/>
+        <image name="tripalocal_logo_en" width="180" height="63"/>
+        <image name="tripalocal_logo_zh" width="132" height="46"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="chc-HC-F4Z"/>
+        <segue reference="j2S-cS-yrC"/>
         <segue reference="yiP-PS-w0n"/>
         <segue reference="I7p-1k-Jcw"/>
     </inferredMetricsTieBreakers>
