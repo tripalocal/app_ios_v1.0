@@ -10,6 +10,7 @@
 #import "UpcommingTripsViewController.h"
 #import "PreviousTripsViewController.h"
 #import "NeedToLoginView.h"
+#import <SecureNSUserDefaults/NSUserDefaults+SecureAdditions.h>
 
 @interface MyTripViewController ()
 @property (nonatomic, copy) NSArray *allViewControllers;
@@ -40,7 +41,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    NSString *token = [userDefaults stringForKey:@"user_token"];
+    NSString *token = [userDefaults secretStringForKey:@"user_token"];
     if (token) {
         [self.view sendSubviewToBack:self.needToLoginView];
         [self cycleFromViewController:self.currentViewController toViewController:[self.allViewControllers objectAtIndex:0]];

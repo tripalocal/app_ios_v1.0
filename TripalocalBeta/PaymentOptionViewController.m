@@ -14,6 +14,7 @@
 #import "URLConfig.h"
 #import "DataSigner.h"
 #import "DataVerifier.h"
+#import <SecureNSUserDefaults/NSUserDefaults+SecureAdditions.h>
 
 @interface PaymentOptionViewController ()
 
@@ -191,7 +192,7 @@
     [request setHTTPMethod:@"POST"];
     
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    NSString *token = [userDefaults stringForKey:@"user_token"];
+    NSString *token = [userDefaults secretStringForKey:@"user_token"];
     
     [request addValue:[NSString stringWithFormat:@"Token %@", token] forHTTPHeaderField:@"Authorization"];
     

@@ -13,6 +13,7 @@
 #import "URLConfig.h"
 #import "Constant.h"
 #import "TLHomeViewController.h"
+#import <SecureNSUserDefaults/NSUserDefaults+SecureAdditions.h>
 
 @interface MyTripTableViewController ()
 
@@ -183,7 +184,7 @@
     [super viewDidAppear:animated];
     
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    NSString *token = [userDefaults stringForKey:@"user_token"];
+    NSString *token = [userDefaults secretStringForKey:@"user_token"];
     if (token && self.nomatchesView) {
         [self fetchMyTrips:token];
             if([myTrips count] == 0 ){

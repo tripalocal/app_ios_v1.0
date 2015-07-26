@@ -10,6 +10,7 @@
 #import "MenuViewController.h"
 #import "UnloginViewController.h"
 #import "SmsVerificationViewController.h"
+#import <SecureNSUserDefaults/NSUserDefaults+SecureAdditions.h>
 
 @interface HomeViewController ()
 @property (nonatomic, strong) UnloginViewController *unloggedinVC;
@@ -88,7 +89,7 @@
 - (void)openPartialMenu
 {
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    NSString *token = [userDefaults stringForKey:@"user_token"];
+    NSString *token = [userDefaults secretStringForKey:@"user_token"];
     if (token) {
         self.menuVC = self.loggedinVC;
     } else {
@@ -137,7 +138,7 @@
 {
 #ifdef CN_VERSION
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    NSString *token = [userDefaults stringForKey:@"user_token"];
+    NSString *token = [userDefaults secretStringForKey:@"user_token"];
     if (token) {
         
     } else {

@@ -7,6 +7,7 @@
 //
 
 #import "SignUpViewController.h"
+#import <SecureNSUserDefaults/NSUserDefaults+SecureAdditions.h>
 #import "URLConfig.h"
 
 @interface SignUpViewController ()
@@ -72,7 +73,7 @@
             [self fetchProfileAndCache: token];
             
             NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-            [userDefaults setObject:token forKey:@"user_token"];
+            [userDefaults setSecretObject:token forKey:@"user_token"];
             [[NSUserDefaults standardUserDefaults] synchronize];
             
             [self.presentingViewController.presentingViewController dismissViewControllerAnimated:YES completion:nil];

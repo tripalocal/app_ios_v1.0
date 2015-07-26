@@ -10,6 +10,7 @@
 #import "TLSearchViewController.h"
 #import "URLConfig.h"
 #import "Utility.h"
+#import <SecureNSUserDefaults/NSUserDefaults+SecureAdditions.h>
 
 @interface WishLishViewController ()
 
@@ -160,7 +161,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    NSString *token = [userDefaults stringForKey:@"user_token"];
+    NSString *token = [userDefaults secretStringForKey:@"user_token"];
     if (token) {
         [self.view sendSubviewToBack:self.needToLoginView];
         [self.tableView reloadData];

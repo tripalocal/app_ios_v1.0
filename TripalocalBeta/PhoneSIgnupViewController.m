@@ -9,6 +9,7 @@
 #import "URLConfig.h"
 #import "PhoneSIgnupViewController.h"
 #import "SmsVerificationViewController.h"
+#import <SecureNSUserDefaults/NSUserDefaults+SecureAdditions.h>
 
 NSInteger const NAME_MAX_LENGTH = 10;
 NSInteger const PWD_MAX_LENGTH = 15;
@@ -114,7 +115,7 @@ NSInteger const EMAIL_MAX_LENGTH = 20;
                 [self fetchProfileAndCache: token];
                 
                 NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-                [userDefaults setObject:token forKey:@"user_token"];
+                [userDefaults setSecretObject:token forKey:@"user_token"];
                 [[NSUserDefaults standardUserDefaults] synchronize];
                 
                 [self.presentingViewController.presentingViewController dismissViewControllerAnimated:YES completion:nil];

@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import <AlipaySDK/AlipaySDK.h>
 #import "Constant.h"
+#import <SecureNSUserDefaults/NSUserDefaults+SecureAdditions.h>
 
 @interface AppDelegate ()
 
@@ -18,6 +19,7 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    [[NSUserDefaults standardUserDefaults] setSecret:@"your_secret_goes_here"];
     
     UIPageControl *pageControl = [UIPageControl appearance];
     pageControl.pageIndicatorTintColor = [UIColor lightGrayColor];

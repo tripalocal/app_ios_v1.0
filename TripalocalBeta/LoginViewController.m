@@ -7,6 +7,7 @@
 //
 
 #import "LoginViewController.h"
+#import <SecureNSUserDefaults/NSUserDefaults+SecureAdditions.h>
 #import "URLConfig.h"
 #import "Constant.h"
 
@@ -59,7 +60,7 @@
             [self fetchProfileAndCache:token];
 
             NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-            [userDefaults setObject:token forKey:@"user_token"];
+            [userDefaults setSecretObject:token forKey:@"user_token"];
             [[NSUserDefaults standardUserDefaults] synchronize];
             [self.unloggedinVC hideUnloggedinView];
 #ifdef CN_VERSION

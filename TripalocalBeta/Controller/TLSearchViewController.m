@@ -8,6 +8,7 @@
 
 #import "TLSearchViewController.h"
 #import <SDWebImage/UIImageView+WebCache.h>
+#import <SecureNSUserDefaults/NSUserDefaults+SecureAdditions.h>
 #import "TLSearchTableViewCell.h"
 #import "Spinner.h"
 #import "Constant.h"
@@ -61,7 +62,7 @@
 
 - (IBAction)toggleWishList:(NSInteger)buttonTag {
    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    NSString *token = [userDefaults stringForKey:@"user_token"];
+    NSString *token = [userDefaults secretStringForKey:@"user_token"];
     NSIndexPath * index = [NSIndexPath indexPathForRow:buttonTag inSection:0];
     
     if (token) {

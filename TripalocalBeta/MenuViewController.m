@@ -7,6 +7,7 @@
 //
 
 #import "MenuViewController.h"
+#import <SecureNSUserDefaults/NSUserDefaults+SecureAdditions.h>
 #import "URLConfig.h"
 #import "Constant.h"
 
@@ -78,7 +79,7 @@
     [request setHTTPMethod:@"POST"];
     
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    NSString *token = [userDefaults stringForKey:@"user_token"];
+    NSString *token = [userDefaults secretStringForKey:@"user_token"];
     
     [request addValue:[NSString stringWithFormat:@"Token %@", token] forHTTPHeaderField:@"Authorization"];
     
@@ -95,7 +96,6 @@
             NSString *appDomain = [[NSBundle mainBundle] bundleIdentifier];
             [[NSUserDefaults standardUserDefaults] removePersistentDomainForName:appDomain];
             
-//            [self swapUnloggedinController];
             [self.parentVC closePartialMenu];
             [self.parentVC presentSmsVerifiIfNotLoggedIn];
         }
@@ -115,23 +115,6 @@
     }
     
 }
-
-//- (void)swapUnloggedinController {
-//    UIViewController *unloggedinViewController = (UIViewController *)[self.storyboard instantiateViewControllerWithIdentifier:@"unloggedin_controller"];
-//    
-//    NSMutableArray *listOfViewControllers = [NSMutableArray arrayWithArray:self.tabBarController.viewControllers];
-//    [listOfViewControllers removeLastObject];
-//    [listOfViewControllers addObject:unloggedinViewController];
-//    
-//    UITabBarItem *myprofileBarItem = [[UITabBarItem alloc] init];
-//    myprofileBarItem.imageInsets = UIEdgeInsetsMake(6, 0, -6, 0);
-//    myprofileBarItem.selectedImage = [[UIImage imageNamed:@"myprofile_s.png"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal ];
-//    myprofileBarItem.image = [[UIImage imageNamed:@"myprofile.png"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal ];
-//    myprofileBarItem.title = nil;
-//    unloggedinViewController.tabBarItem = myprofileBarItem;
-//    
-//    [self.tabBarController setViewControllers:listOfViewControllers];
-//}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

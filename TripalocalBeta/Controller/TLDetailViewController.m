@@ -20,6 +20,7 @@
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "URLConfig.h"
 #import "Utility.h"
+#import <SecureNSUserDefaults/NSUserDefaults+SecureAdditions.h>
 
 @interface TLDetailViewController ()
 {
@@ -58,7 +59,7 @@
 
 - (IBAction)checkout:(id)sender {
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    NSString *token = [userDefaults stringForKey:@"user_token"];
+    NSString *token = [userDefaults secretStringForKey:@"user_token"];
     
     if (!token) {
         [self performSegueWithIdentifier:@"loginSegue" sender:nil];

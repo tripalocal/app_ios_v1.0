@@ -7,6 +7,7 @@
 //
 
 #import "EditProfileViewController.h"
+#import <SecureNSUserDefaults/NSUserDefaults+SecureAdditions.h>
 #import "URLConfig.h"
 #import "Constant.h"
 
@@ -36,7 +37,7 @@
     [request setHTTPMethod:@"POST"];
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    NSString *token = [userDefaults stringForKey:@"user_token"];
+    NSString *token = [userDefaults secretStringForKey:@"user_token"];
     
     [request addValue:[NSString stringWithFormat:@"Token %@", token] forHTTPHeaderField:@"Authorization"];
     NSDictionary *tmp = [[NSDictionary alloc] initWithObjectsAndKeys:
