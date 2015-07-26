@@ -23,8 +23,13 @@
 
 -(void) viewDidLoad {
     [super viewDidLoad];
-
-    UIBarButtonItem *editProfileButton = [[UIBarButtonItem alloc] initWithTitle:@"Edit" style:UIBarButtonItemStylePlain target:self action:@selector(editProfile)];
+    UIBarButtonItem *cancalButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"cancel", nil) style:UIBarButtonItemStylePlain target:self action:@selector(dismissProfile:)];
+    cancalButton.tintColor = [UIColor colorWithRed:0.20f green:0.80f blue:0.80f alpha:1.0f];
+    self.navigationItem.leftBarButtonItem = cancalButton;
+    
+    self.navigationItem.title = NSLocalizedString(@"profile_title", nil);
+    UIBarButtonItem *editProfileButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"edit", nil) style:UIBarButtonItemStylePlain target:self action:@selector(editProfile)];
+    editProfileButton.tintColor = [UIColor colorWithRed:0.20f green:0.80f blue:0.80f alpha:1.0f];
     self.navigationItem.rightBarButtonItem = editProfileButton;
 }
 
@@ -48,6 +53,10 @@
         self.image.image = [UIImage imageNamed: @"default_profile_image.png"];
     }
 
+}
+
+- (IBAction)dismissProfile:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated {

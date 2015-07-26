@@ -7,17 +7,37 @@
 //
 
 #import "HomeViewController.h"
+#import "MenuViewController.h"
+#import "UnloginViewController.h"
 #import "SmsVerificationViewController.h"
 
 @interface HomeViewController ()
-
+@property (nonatomic, strong) UnloginViewController *unloggedinVC;
+@property (nonatomic, strong) MenuViewController *loggedinVC;
+@property (nonatomic, strong) UITapGestureRecognizer *tap;
+@property (nonatomic, strong) UIView *coverView;
 @end
 
 @implementation HomeViewController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
+    
+    self.tap = [[UITapGestureRecognizer alloc]
+                                   initWithTarget:self
+                                   action:@selector(closePartialMenu)];
+    
+    self.loggedinVC = (MenuViewController *)[self.storyboard instantiateViewControllerWithIdentifier:@"menu_controller"];
+    self.unloggedinVC = (UnloginViewController *)[self.storyboard instantiateViewControllerWithIdentifier:@"unloggedin_controller"];
+    self.loggedinVC.parentVC = self;
+    self.unloggedinVC.parentVC = self;
 
+    self.coverView = [[UIView alloc]initWithFrame:self.view.frame];
+    self.coverView.backgroundColor = [UIColor blackColor];
+    self.coverView.alpha = 0;
+    
+    self.delegate = (id)self;
     UITabBar *tabBar = self.tabBar;
     UITabBarItem *tabBarItem1 = [tabBar.items objectAtIndex:0];
     UITabBarItem *tabBarItem2 = [tabBar.items objectAtIndex:1];
@@ -53,22 +73,77 @@
 
 }
 
-- (void)viewDidAppear:(BOOL)animated {
+
+- (BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController
+{
+    
+    if (viewController == self.viewControllers[2]) {
+        [self openPartialMenu];
+        return NO;
+    } else {
+        return YES;
+    }
+}
+
+- (void)openPartialMenu
+{
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    NSString *token = [userDefaults stringForKey:@"user_token"];
+    if (token) {
+        self.menuVC = self.loggedinVC;
+    } else {
+        self.menuVC = self.unloggedinVC;
+    }
+    
+    [self.coverView addGestureRecognizer:self.tap];
+    
+    [self addChildViewController:self.menuVC];
+    CGRect mainFrame = self.view.frame;
+    self.menuVC.view.frame = CGRectMake(mainFrame.size.width, 0, mainFrame.size.width / 3 * 2, mainFrame.size.height);
+    
+    [self.view addSubview:self.coverView];
+    [self.coverView bringSubviewToFront:self.view];
+    
+    [self.view insertSubview:self.menuVC.view aboveSubview:self.coverView];
+    [UIView animateWithDuration:0.4 animations:^{
+        self.coverView.alpha = 0.4;
+        self.menuVC.view.frame = CGRectMake(mainFrame.size.width / 3, 0, mainFrame.size.width / 3 * 2, mainFrame.size.height);;
+    } completion:^(BOOL finished) {
+        [self.menuVC didMoveToParentViewController:self];
+    }];
+}
+
+- (void)closePartialMenu
+{
+    [self.coverView removeGestureRecognizer:self.tap];
+    CGRect mainFrame = self.view.frame;
+    [UIView animateWithDuration:0.4 animations:^{
+        self.coverView.alpha = 0;
+        self.menuVC.view.frame = CGRectMake(mainFrame.size.width, 0, mainFrame.size.width / 3 * 2, mainFrame.size.height);
+    } completion:^(BOOL finished) {
+        [self.coverView removeFromSuperview];
+        [self.menuVC.view removeFromSuperview];
+        [self.menuVC removeFromParentViewController];
+    }];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
     [super viewDidAppear:animated];
     [self presentSmsVerifiIfNotLoggedIn];
 }
 
-- (void)presentSmsVerifiIfNotLoggedIn {
+- (void)presentSmsVerifiIfNotLoggedIn
+{
+#ifdef CN_VERSION
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     NSString *token = [userDefaults stringForKey:@"user_token"];
-    
-#ifdef CN_VERSION
-        if (token) {
-            
-        } else {
-            SmsVerificationViewController *smsVerificationVC = [self.storyboard instantiateViewControllerWithIdentifier:@"smsVerificationViewController"];
-            [self presentViewController:smsVerificationVC animated:YES completion:nil];
-        }
+    if (token) {
+        
+    } else {
+        SmsVerificationViewController *smsVerificationVC = [self.storyboard instantiateViewControllerWithIdentifier:@"smsVerificationViewController"];
+        [self presentViewController:smsVerificationVC animated:YES completion:nil];
+    }
 #endif
 }
 

@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "HomeViewController.h"
 
 @interface MenuViewController : UIViewController
 @property (strong, nonatomic) IBOutlet UIButton *logoutButton;
-
+@property (strong, nonatomic) HomeViewController *parentVC;
 @end

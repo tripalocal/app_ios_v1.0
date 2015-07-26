@@ -10,6 +10,12 @@
 
 "loading" = "加载中";
 
+"edit" = "编辑";
+
+"save" = "保存";
+
+"profile_title" = "个人资料";
+
 "search_hint" = "想去哪儿?";
 
 "slide1" = "slide01.jpg";
@@ -53,6 +59,8 @@
 "select_date" = "选择日期";
 
 "reservationSuffix" = "预定";
+
+"cancel" = "关闭";
 
 "server_error" = "服务器出错";
 

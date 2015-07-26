@@ -61,7 +61,7 @@
             NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
             [userDefaults setObject:token forKey:@"user_token"];
             [[NSUserDefaults standardUserDefaults] synchronize];
-
+            [self.unloggedinVC hideUnloggedinView];
 #ifdef CN_VERSION
                 [self.presentingViewController.presentingViewController dismissViewControllerAnimated:YES completion:nil];
 #else

@@ -7,7 +7,7 @@
 //
 
 #import "UnloginViewController.h"
-#import "SmsVerificationViewController.h"
+#import "LoginViewController.h"
 
 @implementation UnloginViewController
 
@@ -23,52 +23,59 @@
     [self.loginButton.layer setCornerRadius:5.0f];
 }
 
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    NSString *token = [userDefaults stringForKey:@"user_token"];
-    if (token) {
-        UIViewController *profileViewController = (UIViewController *)[self.storyboard instantiateViewControllerWithIdentifier:@"menu_controller"];
-        
-        NSMutableArray *listOfViewControllers = [NSMutableArray arrayWithArray:self.tabBarController.viewControllers];
-        [listOfViewControllers removeLastObject];
-        [listOfViewControllers addObject:profileViewController];
-        
-        UITabBarItem *myprofileBarItem = [[UITabBarItem alloc] init];
-        myprofileBarItem.imageInsets = UIEdgeInsetsMake(6, 0, -6, 0);
-        myprofileBarItem.selectedImage = [[UIImage imageNamed:@"myprofile_s.png"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal ];
-        myprofileBarItem.image = [[UIImage imageNamed:@"myprofile.png"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal ];
-        myprofileBarItem.title = nil;
-        profileViewController.tabBarItem = myprofileBarItem;
-        
-        [self.tabBarController setViewControllers:listOfViewControllers];
-    } else {
-#ifdef CN_VERSION
-            
-            SmsVerificationViewController *smsVerificationVC = [self.storyboard instantiateViewControllerWithIdentifier:@"smsVerificationViewController"];
-            [self presentViewController:smsVerificationVC animated:YES completion:nil];
-            
-#else
-            [self.navigationController setNavigationBarHidden:YES animated:animated];
-#endif
-    }
-}
 
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    NSString *token = [userDefaults stringForKey:@"user_token"];
-    
-#ifdef CN_VERSION
-        if (token) {
-            
-        } else {
-            SmsVerificationViewController *smsVerificationVC = [self.storyboard instantiateViewControllerWithIdentifier:@"smsVerificationViewController"];
-            [self presentViewController:smsVerificationVC animated:YES completion:nil];
-        }
-#endif
-}
 
+- (void)hideUnloggedinView {
+    [self.parentVC closePartialMenu];
+    [self.parentVC presentSmsVerifiIfNotLoggedIn];
+//
+//    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+//    NSString *token = [userDefaults stringForKey:@"user_token"];
+//    if (token) {
+//        UIViewController *profileViewController = (UIViewController *)[self.storyboard instantiateViewControllerWithIdentifier:@"menu_controller"];
+//        
+//        NSMutableArray *listOfViewControllers = [NSMutableArray arrayWithArray:self.tabBarController.viewControllers];
+//        [listOfViewControllers removeLastObject];
+//        [listOfViewControllers addObject:profileViewController];
+//        
+//        UITabBarItem *myprofileBarItem = [[UITabBarItem alloc] init];
+//        myprofileBarItem.imageInsets = UIEdgeInsetsMake(6, 0, -6, 0);
+//        myprofileBarItem.selectedImage = [[UIImage imageNamed:@"myprofile_s.png"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal ];
+//        myprofileBarItem.image = [[UIImage imageNamed:@"myprofile.png"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal ];
+//        myprofileBarItem.title = nil;
+//        profileViewController.tabBarItem = myprofileBarItem;
+//        
+//        [self.tabBarController setViewControllers:listOfViewControllers];
+//    } else {
+//#ifdef CN_VERSION
+//            
+//            SmsVerificationViewController *smsVerificationVC = [self.storyboard instantiateViewControllerWithIdentifier:@"smsVerificationViewController"];
+//            [self presentViewController:smsVerificationVC animated:YES completion:nil];
+//            
+//#else
+//            [self.navigationController setNavigationBarHidden:YES animated:animated];
+//#endif
+//    }
+}
+//
+//- (void)viewDidAppear:(BOOL)animated {
+//    [super viewDidAppear:animated];
+//    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+//    NSString *token = [userDefaults stringForKey:@"user_token"];
+//    
+//#ifdef CN_VERSION
+//        if (token) {
+//            
+//        } else {
+//            SmsVerificationViewController *smsVerificationVC = [self.storyboard instantiateViewControllerWithIdentifier:@"smsVerificationViewController"];
+//            [self presentViewController:smsVerificationVC animated:YES completion:nil];
+//        }
+//#endif
+//}
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    LoginViewController *loginVC = (LoginViewController *)segue.destinationViewController;
+    loginVC.unloggedinVC = self;
+}
 
 @end

@@ -21,6 +21,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    UIBarButtonItem *cancalButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"cancel", nil) style:UIBarButtonItemStylePlain target:self action:@selector(dismissWishList:)];
+    cancalButton.tintColor = [UIColor colorWithRed:0.20f green:0.80f blue:0.80f alpha:1.0f];
+    self.navigationItem.leftBarButtonItem = cancalButton;
+    
     self.navigationItem.title = NSLocalizedString(@"wishlist_title", nil);
     if (!self.expList)
     {
@@ -175,6 +179,10 @@
     }
     
     [super viewWillAppear:animated];
+}
+
+- (IBAction)dismissWishList:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)didReceiveMemoryWarning {

@@ -95,7 +95,9 @@
             NSString *appDomain = [[NSBundle mainBundle] bundleIdentifier];
             [[NSUserDefaults standardUserDefaults] removePersistentDomainForName:appDomain];
             
-            [self swapUnloggedinController];
+//            [self swapUnloggedinController];
+            [self.parentVC closePartialMenu];
+            [self.parentVC presentSmsVerifiIfNotLoggedIn];
         }
         
 #if DEBUG
@@ -114,22 +116,22 @@
     
 }
 
-- (void)swapUnloggedinController {
-    UIViewController *unloggedinViewController = (UIViewController *)[self.storyboard instantiateViewControllerWithIdentifier:@"unloggedin_controller"];
-    
-    NSMutableArray *listOfViewControllers = [NSMutableArray arrayWithArray:self.tabBarController.viewControllers];
-    [listOfViewControllers removeLastObject];
-    [listOfViewControllers addObject:unloggedinViewController];
-    
-    UITabBarItem *myprofileBarItem = [[UITabBarItem alloc] init];
-    myprofileBarItem.imageInsets = UIEdgeInsetsMake(6, 0, -6, 0);
-    myprofileBarItem.selectedImage = [[UIImage imageNamed:@"myprofile_s.png"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal ];
-    myprofileBarItem.image = [[UIImage imageNamed:@"myprofile.png"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal ];
-    myprofileBarItem.title = nil;
-    unloggedinViewController.tabBarItem = myprofileBarItem;
-    
-    [self.tabBarController setViewControllers:listOfViewControllers];
-}
+//- (void)swapUnloggedinController {
+//    UIViewController *unloggedinViewController = (UIViewController *)[self.storyboard instantiateViewControllerWithIdentifier:@"unloggedin_controller"];
+//    
+//    NSMutableArray *listOfViewControllers = [NSMutableArray arrayWithArray:self.tabBarController.viewControllers];
+//    [listOfViewControllers removeLastObject];
+//    [listOfViewControllers addObject:unloggedinViewController];
+//    
+//    UITabBarItem *myprofileBarItem = [[UITabBarItem alloc] init];
+//    myprofileBarItem.imageInsets = UIEdgeInsetsMake(6, 0, -6, 0);
+//    myprofileBarItem.selectedImage = [[UIImage imageNamed:@"myprofile_s.png"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal ];
+//    myprofileBarItem.image = [[UIImage imageNamed:@"myprofile.png"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal ];
+//    myprofileBarItem.title = nil;
+//    unloggedinViewController.tabBarItem = myprofileBarItem;
+//    
+//    [self.tabBarController setViewControllers:listOfViewControllers];
+//}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
