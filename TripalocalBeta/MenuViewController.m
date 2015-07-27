@@ -44,8 +44,20 @@
         self.image.image = [UIImage imageNamed: @"default_profile_image.png"];
     }
     
-    self.backgroundView.layer.borderColor = [UIColor grayColor].CGColor;
-    self.backgroundView.layer.borderWidth = 1;
+//    CGFloat borderWidth = 1.0f;
+    CALayer *bottomBorder = [CALayer layer];
+    CALayer *topBorder = [CALayer layer];
+    bottomBorder.frame = CGRectMake(0, 0, self.backgroundView.frame.size.width, 1.0f);
+    topBorder.frame = CGRectMake(0, self.backgroundView.frame.size.height, self.backgroundView.frame.size.width, 1.0f);
+    
+    bottomBorder.backgroundColor = [UIColor grayColor].CGColor;
+    topBorder.backgroundColor = [UIColor grayColor].CGColor;
+    [self.backgroundView.layer addSublayer:bottomBorder];
+    [self.backgroundView.layer addSublayer:topBorder];
+    
+//    self.backgroundView.frame = CGRectInset(self.backgroundView.frame, -borderWidth, -borderWidth);
+//    self.backgroundView.layer.borderColor = [UIColor grayColor].CGColor;
+//    self.backgroundView.layer.borderWidth = borderWidth;
     
     self.image.layer.cornerRadius = self.image.frame.size.height / 2;
     self.image.layer.masksToBounds = YES;

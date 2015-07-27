@@ -11,4 +11,5 @@
 @interface Utility : NSObject
 + (UIImage *)croppIngimageByImageName:(UIImage *)imageToCrop toRect:(CGRect)rect;
 + (NSString *) decimalwithFormat:(NSString *)format floatV:(float)floatV;
++ (NSNumber *) numberWithFormat:(NSString *)format floatV:(float)floatV;
 @end

@@ -24,7 +24,7 @@
 "n8b-jk-X4D.text" = "999";
 
 /* Class = "UILabel"; text = "Add to wishlist"; ObjectID = "vbT-Pi-N42"; */
-"vbT-Pi-N42.text" = "Add to wishlist";
+"vbT-Pi-N42.text" = "保存至兴趣列表";
 
 /* Class = "UILabel"; text = "Label"; ObjectID = "yPu-mj-PYq"; */
 "yPu-mj-PYq.text" = "Label";

@@ -42,7 +42,7 @@
 
 "Forgot password?" = "Forgot password?";
 
-"Add to wishlist" = "Add to wishlist";
+"add_to_wishlist" = "Add to Wishlist";
 
 "save_profile_failed" = "Save Profile Failed";
 
@@ -76,9 +76,9 @@
 
 "about_the_host" = "About the host, ";
 
-"n_reviews" = "%@ Reviews";
+"n_reviews" = "%@ Review(s)";
 
-"no_reviews" = "0 Reviews";
+"no_reviews" = "0 Review";
 
 "exp_detail_per_person_for" = "for %@ hours";
 
@@ -90,7 +90,7 @@
 
 "sms_content" = "客户你好，你的验证码为：%@ 60秒内有效，请完成注册";
 
-"phone_no_error_msg" = "Fail to send msg, check you phone no again";
+"phone_no_error_msg" = "Failed to send message, please check your phone number again";
 
 "ok_button" = "OK";
 

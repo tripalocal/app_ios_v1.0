@@ -171,12 +171,11 @@
         self.unitPrice = _dynamicPriceArray[self.guestNumber - [_minGuestNum intValue]];
     }
     
-    NSString *priceString = [Utility decimalwithFormat:@"0" floatV:[self.unitPrice floatValue]];
-    
-    _unitPriceLabel.text = [@"$" stringByAppendingFormat:@" %@ AUD x %@ pp",priceString,selectedGuestString];
+    self.unitPrice = [Utility numberWithFormat:@"0" floatV:[self.unitPrice floatValue]];
+    _unitPriceLabel.text = [@"$" stringByAppendingFormat:@" %@ AUD x %@ pp",[self.unitPrice stringValue],selectedGuestString];
     
     self.totalPrice =@([self.unitPrice floatValue]* self.guestNumber);
-    _totalPriceLabel.text = [@"$" stringByAppendingFormat:@" %@ AUD",[self.totalPrice stringValue]];
+    _totalPriceLabel.text = [@"$" stringByAppendingFormat:@" %@ AUD", [self.totalPrice stringValue]];
     _totalPriceLabel.textColor = [UIColor colorWithRed:0.00f green:0.82f blue:0.82f alpha:1.0f];
     
     _confirmButton.backgroundColor = [UIColor grayColor];
@@ -282,15 +281,14 @@
     {
         self.unitPrice = _dynamicPriceArray[self.guestNumber - [_minGuestNum intValue]];
     }
-    NSString *priceString = [Utility decimalwithFormat:@"0" floatV:[self.unitPrice floatValue]];
     
-    _unitPriceLabel.text = [@"$" stringByAppendingFormat:@" %@ AUD x %@ pp",priceString,selectedGuestString];
+    self.unitPrice = [Utility numberWithFormat:@"0" floatV:[self.unitPrice floatValue]];
+    
+    _unitPriceLabel.text = [@"$" stringByAppendingFormat:@" %@ AUD x %@ pp", [self.unitPrice stringValue], selectedGuestString];
     
     self.totalPrice =@([self.unitPrice floatValue] * self.guestNumber);
+    _totalPriceLabel.text = [@"$" stringByAppendingFormat:@" %@ AUD", [self.totalPrice stringValue]];
     
-    NSNumberFormatter *fmt = [[NSNumberFormatter alloc] init];
-    [fmt setPositiveFormat:@"0.##"];
-    self.totalPriceLabel.text = [@"$" stringByAppendingFormat:@" %@ AUD", [fmt stringFromNumber: self.totalPrice]];
     isGuestChoosed = YES;
     if([self checkChoosed]==YES){
         _confirmButton.backgroundColor = [UIColor colorWithRed:71/255.0 green:209/255.0 blue:209/255.0 alpha:1];

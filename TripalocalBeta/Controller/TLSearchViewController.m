@@ -159,7 +159,7 @@
     } else {
         [cell.wishListButton setBackgroundImage:[UIImage imageNamed:@"unwishlisted.png"] forState:UIControlStateNormal];
         cell.smallWishImage.image = [UIImage imageNamed:@"heart_sw.png"];
-        cell.wishStatus.text = NSLocalizedString(@"Add to wishlist", nil);
+        cell.wishStatus.text = NSLocalizedString(@"add_to_wishlist", nil);
     }
     cell.delegate = self;
     cell.wishListButton.tag = indexPath.row;
