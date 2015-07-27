@@ -9,6 +9,7 @@
 #import "EditProfileViewController.h"
 #import <SecureNSUserDefaults/NSUserDefaults+SecureAdditions.h>
 #import "URLConfig.h"
+#import "Utility.h"
 #import "Constant.h"
 
 @interface EditProfileViewController ()
@@ -26,7 +27,7 @@
 
     [self setUserProfile];
     UIBarButtonItem *saveProfileButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"save", nil) style:UIBarButtonItemStylePlain target:self action:@selector(saveProfile)];
-    saveProfileButton.tintColor = [UIColor colorWithRed:0.20f green:0.80f blue:0.80f alpha:1.0f];
+    saveProfileButton.tintColor = [Utility themeColor];
     self.navigationItem.rightBarButtonItem = saveProfileButton;
 }
 

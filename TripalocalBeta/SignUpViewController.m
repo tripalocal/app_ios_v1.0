@@ -8,6 +8,7 @@
 
 #import "SignUpViewController.h"
 #import <SecureNSUserDefaults/NSUserDefaults+SecureAdditions.h>
+#import "Utility.h"
 #import "URLConfig.h"
 
 @interface SignUpViewController ()
@@ -143,10 +144,8 @@
     self.firstnameField.borderStyle = UITextBorderStyleRoundedRect;
     self.lastnameField.borderStyle = UITextBorderStyleRoundedRect;
     self.passwordField.secureTextEntry = YES;
-    
-    UIColor *themeColor = [UIColor colorWithRed:0.20f green:0.80f blue:0.80f alpha:1.0f];
 
-    [self.termsTextView setLinkTextAttributes:@{NSForegroundColorAttributeName:themeColor}];
+    [self.termsTextView setLinkTextAttributes:@{NSForegroundColorAttributeName:[Utility themeColor]}];
     NSMutableAttributedString * str = [[NSMutableAttributedString alloc] initWithString:@"By signing up, I agree to Tripalocal’s Terms of Service, Privacy Policy, and Refund Policy."];
     [str addAttribute: NSLinkAttributeName value: @"https://tripalocal.com/termsofservice" range: NSMakeRange(39, 16)];
     

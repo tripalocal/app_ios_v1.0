@@ -23,7 +23,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     UIBarButtonItem *cancalButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"cancel", nil) style:UIBarButtonItemStylePlain target:self action:@selector(dismissWishList:)];
-    cancalButton.tintColor = [UIColor colorWithRed:0.20f green:0.80f blue:0.80f alpha:1.0f];
+    cancalButton.tintColor = [Utility themeColor];
     self.navigationItem.leftBarButtonItem = cancalButton;
     
     self.navigationItem.title = NSLocalizedString(@"wishlist_title", nil);
@@ -33,7 +33,7 @@
     }
     
     refreshControl = [[UIRefreshControl alloc] init];
-    refreshControl.backgroundColor = [UIColor colorWithRed:0.20f green:0.80f blue:0.80f alpha:1.0f];
+    refreshControl.backgroundColor = [Utility themeColor];
     refreshControl.tintColor = [UIColor whiteColor];
     [refreshControl addTarget:self
                             action:@selector(reloadData)

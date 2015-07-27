@@ -9,6 +9,7 @@
 #import "SmsVerificationViewController.h"
 #import "PhoneSIgnupViewController.h"
 #include <stdlib.h>
+#import "Utility.h"
 #import "Constant.h"
 
 NSInteger const VERI_CODE_LENGTH = 5;
@@ -26,7 +27,6 @@ NSInteger const COUNT_DOWN_SECONDS = 60;
     NSTimer *timer;
     NSInteger nVeriTrial;
     UIColor *INACTIVE_COLOR;
-    UIColor *THEME_COLOR;
 }
 
 - (void)viewDidLoad {
@@ -35,7 +35,6 @@ NSInteger const COUNT_DOWN_SECONDS = 60;
                                      green:204.0f/255.0f
                                       blue:204.0f/255.0f
                                      alpha:1.0f];
-    THEME_COLOR = [UIColor colorWithRed:0.20f green:0.80f blue:0.80f alpha:1.0f];
     nVeriTrial = 3;
     self.telephoneField.delegate = self;
     self.verificationCodeField.delegate = self;
@@ -63,7 +62,7 @@ NSInteger const COUNT_DOWN_SECONDS = 60;
 - (IBAction)telephoneFieldChanged:(id)sender {
     if (self.telephoneField.text && self.telephoneField.text.length == PHONE_NUMBER_LENGTH) {
         [self.sendCodeButton setEnabled:YES];
-            [self.sendCodeButton setBackgroundColor:THEME_COLOR];
+            [self.sendCodeButton setBackgroundColor:[Utility themeColor]];
     } else {
         [self.sendCodeButton setEnabled:NO];
         [self.sendCodeButton setBackgroundColor:INACTIVE_COLOR];
@@ -73,7 +72,7 @@ NSInteger const COUNT_DOWN_SECONDS = 60;
 - (IBAction)verificationFieldChanged:(id)sender {
     if (self.verificationCodeField.text && self.verificationCodeField.text.length == VERI_CODE_LENGTH) {
         [self.confirmButton setEnabled:YES];
-        [self.confirmButton setBackgroundColor:THEME_COLOR];
+        [self.confirmButton setBackgroundColor:[Utility themeColor]];
     } else {
         [self.confirmButton setEnabled:NO];
         [self.confirmButton setBackgroundColor:INACTIVE_COLOR];
@@ -106,7 +105,7 @@ NSInteger const COUNT_DOWN_SECONDS = 60;
         
         [self.telephoneField setEnabled:YES];
         [self.sendCodeButton setEnabled:YES];
-        [self.sendCodeButton setBackgroundColor:THEME_COLOR];
+        [self.sendCodeButton setBackgroundColor:[Utility themeColor]];
     }
 }
 
@@ -130,7 +129,7 @@ NSInteger const COUNT_DOWN_SECONDS = 60;
 - (void)resetState {
     [self.sendCodeButton setEnabled:YES];
     [self.telephoneField setEnabled:YES];
-    [self.sendCodeButton setBackgroundColor:THEME_COLOR];
+    [self.sendCodeButton setBackgroundColor:[Utility themeColor]];
     [self.sendCodeButton setTitle:NSLocalizedString(@"verfication_expire", nil) forState:UIControlStateNormal];
     [self.verificationCodeField setHidden:YES];
     self.verificationCodeField.text = @"";
