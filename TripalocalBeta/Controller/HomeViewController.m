@@ -106,7 +106,7 @@
     [self.coverView bringSubviewToFront:self.view];
     
     [self.view insertSubview:self.menuVC.view aboveSubview:self.coverView];
-    [UIView animateWithDuration:0.4 animations:^{
+    [UIView animateWithDuration:0.3 animations:^{
         self.coverView.alpha = 0.4;
         self.menuVC.view.frame = CGRectMake(mainFrame.size.width / 3, 0, mainFrame.size.width / 3 * 2, mainFrame.size.height);;
     } completion:^(BOOL finished) {
@@ -118,7 +118,7 @@
 {
     [self.coverView removeGestureRecognizer:self.tap];
     CGRect mainFrame = self.view.frame;
-    [UIView animateWithDuration:0.4 animations:^{
+    [UIView animateWithDuration:0.3 animations:^{
         self.coverView.alpha = 0;
         self.menuVC.view.frame = CGRectMake(mainFrame.size.width, 0, mainFrame.size.width / 3 * 2, mainFrame.size.height);
     } completion:^(BOOL finished) {

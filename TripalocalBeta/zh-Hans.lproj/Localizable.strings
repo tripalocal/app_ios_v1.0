@@ -8,6 +8,12 @@
 "read_more" = "展开";
 "read_less" = "折叠";
 
+"contact_details" = "请发送邮件至enquiries@tripalocal.com ，附上您喜欢的体验，日期以及时间，我们会在48小时内回复您，为您定制符合您要求的体验。";
+
+"alert_email" = "邮件程序无法打开";
+
+"contact_details_email_start" = "6";
+
 "loading" = "加载中";
 
 "edit" = "编辑";

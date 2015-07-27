@@ -11,5 +11,6 @@
 
 @interface MenuViewController : UIViewController
 @property (strong, nonatomic) IBOutlet UIButton *logoutButton;
+@property (strong, nonatomic) IBOutlet UITextView *contactTextView;
 @property (strong, nonatomic) HomeViewController *parentVC;
 @end

@@ -37,22 +37,11 @@
 
 }
 
-//- (void)setHighlighted:(BOOL)highlighted animated:(BOOL)animated
-//{
-//    [super setHighlighted:highlighted animated:animated];
-//    [self applyLabelDropShadow:!highlighted];
-//}
-//
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {
     [super setSelected:selected animated:animated];
-//    [self applyLabelDropShadow:!selected];
 }
-//
-//- (void)applyLabelDropShadow:(BOOL)applyDropShadow
-//{
-//    self.textLabel.shadowColor = applyDropShadow ? [UIColor whiteColor] : nil;
-//}
+
 
 - (IBAction)callHost:(id)sender {
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:self.callButton.tag inSection:0];

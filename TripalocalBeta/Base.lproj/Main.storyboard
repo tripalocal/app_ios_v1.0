@@ -1223,7 +1223,7 @@
                                 </variation>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="So1-Kc-APW">
-                                <rect key="frame" x="20" y="460" width="560" height="40"/>
+                                <rect key="frame" x="20" y="500" width="560" height="40"/>
                                 <color key="backgroundColor" red="0.20000000000000001" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="CcR-3A-9Ij"/>
@@ -1272,25 +1272,54 @@
                                     </mask>
                                 </variation>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Can't find the experience you want?" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AiR-zE-P4p">
+                                <rect key="frame" x="20" y="307" width="560" height="16"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" usesAttributedText="YES" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0E1-5m-yxl">
+                                <rect key="frame" x="15" y="335" width="570" height="135"/>
+                                <color key="backgroundColor" red="0.96862745098039216" green="0.96862745098039216" blue="0.96862745098039216" alpha="1" colorSpace="calibratedRGB"/>
+                                <attributedString key="attributedText">
+                                    <fragment>
+                                        <string key="content">Email us at enquiries@tripalocal.com with the preferred experience, the dates and times and we will get back to you within 48 hours with a customised experience just for you!</string>
+                                        <attributes>
+                                            <font key="NSFont" size="11" name="HelveticaNeue"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="So1-Kc-APW" firstAttribute="leading" secondItem="e09-WZ-KO9" secondAttribute="leading" constant="20" id="3Fw-hf-9wm"/>
                             <constraint firstAttribute="centerX" secondItem="So1-Kc-APW" secondAttribute="centerX" id="3OS-LP-j94"/>
                             <constraint firstItem="gbB-HA-Ql0" firstAttribute="top" secondItem="WIV-jZ-czn" secondAttribute="bottom" constant="25" id="H01-Ij-GGZ"/>
+                            <constraint firstAttribute="trailing" secondItem="0E1-5m-yxl" secondAttribute="trailing" constant="15" id="Hgr-IT-l7v"/>
                             <constraint firstItem="WIV-jZ-czn" firstAttribute="top" secondItem="iDB-hB-AXx" secondAttribute="bottom" constant="8" id="JAv-1E-aP1"/>
+                            <constraint firstItem="So1-Kc-APW" firstAttribute="top" secondItem="0E1-5m-yxl" secondAttribute="bottom" constant="30" id="M03-Cy-SZI"/>
+                            <constraint firstAttribute="centerX" secondItem="AiR-zE-P4p" secondAttribute="centerX" id="Mtx-75-Ynr"/>
                             <constraint firstAttribute="width" secondItem="gbB-HA-Ql0" secondAttribute="width" id="NtW-Hg-b1n"/>
-                            <constraint firstItem="IFn-a3-9vr" firstAttribute="top" secondItem="So1-Kc-APW" secondAttribute="bottom" constant="100" id="Zw0-yB-bTJ"/>
+                            <constraint firstItem="IFn-a3-9vr" firstAttribute="top" secondItem="So1-Kc-APW" secondAttribute="bottom" constant="60" id="Zw0-yB-bTJ"/>
                             <constraint firstAttribute="trailing" secondItem="So1-Kc-APW" secondAttribute="trailing" constant="20" id="dU6-EF-HHZ"/>
+                            <constraint firstItem="0E1-5m-yxl" firstAttribute="leading" secondItem="e09-WZ-KO9" secondAttribute="leading" constant="15" id="fub-BB-DNA"/>
                             <constraint firstAttribute="centerX" secondItem="iDB-hB-AXx" secondAttribute="centerX" id="gPr-t9-nrt"/>
+                            <constraint firstItem="AiR-zE-P4p" firstAttribute="leading" secondItem="e09-WZ-KO9" secondAttribute="leading" constant="20" id="jU7-CH-Hgs"/>
                             <constraint firstItem="iDB-hB-AXx" firstAttribute="top" secondItem="dFg-HN-2sc" secondAttribute="bottom" constant="30" id="oF9-aA-CcH"/>
                             <constraint firstAttribute="centerX" secondItem="gbB-HA-Ql0" secondAttribute="centerX" id="oKV-Cb-XQq"/>
                             <constraint firstAttribute="centerX" secondItem="WIV-jZ-czn" secondAttribute="centerX" id="qoU-rZ-9NT"/>
+                            <constraint firstItem="AiR-zE-P4p" firstAttribute="top" secondItem="gbB-HA-Ql0" secondAttribute="bottom" constant="43" id="uBp-fj-n5Q"/>
+                            <constraint firstAttribute="trailing" secondItem="AiR-zE-P4p" secondAttribute="trailing" constant="20" id="yr2-E5-fM9"/>
+                            <constraint firstItem="0E1-5m-yxl" firstAttribute="top" secondItem="AiR-zE-P4p" secondAttribute="bottom" constant="12" id="znQ-xu-8ck"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="pAL-LB-tME"/>
                     <connections>
                         <outlet property="backgroundView" destination="gbB-HA-Ql0" id="2Wv-5V-05G"/>
+                        <outlet property="contactTextView" destination="0E1-5m-yxl" id="Md7-7l-0wx"/>
                         <outlet property="hostName" destination="WIV-jZ-czn" id="q1m-Uo-CGe"/>
                         <outlet property="image" destination="iDB-hB-AXx" id="vEw-Eg-hlT"/>
                         <outlet property="logoutButton" destination="So1-Kc-APW" id="G52-Bm-fcp"/>
@@ -3696,6 +3725,6 @@
     <inferredMetricsTieBreakers>
         <segue reference="Pkv-bo-ySw"/>
         <segue reference="hPI-YE-UZz"/>
-        <segue reference="I7p-1k-Jcw"/>
+        <segue reference="olF-su-vgo"/>
     </inferredMetricsTieBreakers>
 </document>

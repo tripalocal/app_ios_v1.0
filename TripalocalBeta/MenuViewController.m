@@ -9,6 +9,7 @@
 #import "MenuViewController.h"
 #import <SecureNSUserDefaults/NSUserDefaults+SecureAdditions.h>
 #import "URLConfig.h"
+#import "Utility.h"
 #import "Constant.h"
 
 @interface MenuViewController ()
@@ -44,7 +45,6 @@
         self.image.image = [UIImage imageNamed: @"default_profile_image.png"];
     }
     
-//    CGFloat borderWidth = 1.0f;
     CALayer *bottomBorder = [CALayer layer];
     CALayer *topBorder = [CALayer layer];
     bottomBorder.frame = CGRectMake(0, 0, self.backgroundView.frame.size.width, 1.0f);
@@ -54,10 +54,6 @@
     topBorder.backgroundColor = [UIColor grayColor].CGColor;
     [self.backgroundView.layer addSublayer:bottomBorder];
     [self.backgroundView.layer addSublayer:topBorder];
-    
-//    self.backgroundView.frame = CGRectInset(self.backgroundView.frame, -borderWidth, -borderWidth);
-//    self.backgroundView.layer.borderColor = [UIColor grayColor].CGColor;
-//    self.backgroundView.layer.borderWidth = borderWidth;
     
     self.image.layer.cornerRadius = self.image.frame.size.height / 2;
     self.image.layer.masksToBounds = YES;
@@ -73,8 +69,47 @@
     wishListSingleTap.numberOfTapsRequired = 1;
     [self.wishLIstImage setUserInteractionEnabled:YES];
     [self.wishLIstImage addGestureRecognizer:wishListSingleTap];
+    
+    NSMutableAttributedString * str = [[NSMutableAttributedString alloc] initWithString:NSLocalizedString(@"contact_details", nil)];
+    [str addAttribute: NSForegroundColorAttributeName value:[Utility themeColor] range:NSMakeRange([NSLocalizedString(@"contact_details_email_start", nil) integerValue], enqueryEmail.length)];
+    
+    self.contactTextView.attributedText = str;
+    UITapGestureRecognizer *contactEmailTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(textTapped:)];
+    contactEmailTap.numberOfTapsRequired = 1;
+    [self.contactTextView addGestureRecognizer:contactEmailTap];
 }
 
+- (void)textTapped:(UITapGestureRecognizer *)recognizer
+{
+    // Location of the tap in text-container coordinates
+    NSLayoutManager *layoutManager = self.contactTextView.layoutManager;
+    CGPoint location = [recognizer locationInView:self.contactTextView];
+    location.x -= self.contactTextView.textContainerInset.left;
+    location.y -= self.contactTextView.textContainerInset.top;
+    
+    // Find the character that's been tapped on
+    NSUInteger characterIndex;
+    characterIndex = [layoutManager characterIndexForPoint:location
+                                           inTextContainer:self.contactTextView.textContainer
+                  fractionOfDistanceBetweenInsertionPoints:NULL];
+    
+    NSInteger emailStart = [NSLocalizedString(@"contact_details_email_start", nil) integerValue];
+    NSInteger emailEnd = emailStart + enqueryEmail.length;
+    if (characterIndex >= emailStart && characterIndex <= emailEnd) {
+        [self emailUs];
+    }
+}
+
+- (void)emailUs {
+    NSURL *emailURL = [NSURL URLWithString:[NSString  stringWithFormat:@"mailto:%@", enqueryEmail]];
+    
+    if ([[UIApplication sharedApplication] canOpenURL:emailURL]) {
+        [[UIApplication sharedApplication] openURL:emailURL];
+    } else {
+        UIAlertView * alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"alert", nil) message:NSLocalizedString(@"alert_email", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"ok_button", nil) otherButtonTitles:nil];
+        [alert show];
+    }
+}
 
 -(void)wishListTapped{
     [self performSegueWithIdentifier:@"show_wishlist" sender:self];

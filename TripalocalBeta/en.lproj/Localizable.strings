@@ -8,6 +8,12 @@
 "read_more" = "Read More";
 "read_less" = "Read Less";
 
+"contact_details" = "Email us at enquiries@tripalocal.com with the preferred experience, the dates and times and we will get back to you within 48 hours with a customised experience just for you!";
+
+"alert_email" = "Email app unavailable";
+
+"contact_details_email_start" = "12";
+
 "cancel" = "Cancel";
 
 "edit" = "Edit";

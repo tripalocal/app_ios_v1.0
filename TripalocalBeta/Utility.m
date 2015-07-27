@@ -36,4 +36,9 @@
     return [f numberFromString:decimalString];
 }
 
++ (UIColor *) themeColor
+{
+    return [UIColor colorWithRed:0.20f green:0.80f blue:0.80f alpha:1.0f];
+}
+
 @end
