@@ -9,6 +9,7 @@
 #import "TLHomeViewController.h"
 #import "TLHomeTableViewCell.h"
 #import "TLSearchViewController.h"
+#import "TLBannerTableViewCell.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "Constant.h"
 #import "Location.h"
@@ -75,8 +76,10 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     static NSString *cellIdentifier=@"homeTableCell";
     static NSString *cityCell=@"CityCell";
+    static NSString *bannerCellID=@"BannerCell";
 
-    TLHomeTableViewCell *cell=[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    TLHomeTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    TLBannerTableViewCell *bannerCell = [tableView dequeueReusableCellWithIdentifier:bannerCellID];
     UITableViewCell *cell2 = (UITableViewCell *) [tableView dequeueReusableCellWithIdentifier:cityCell];
     if(!cell)
     {
@@ -86,6 +89,12 @@
     if(!cell2)
     {
         cell2=[[TLHomeTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cityCell];
+    }
+    
+    if (!bannerCell)
+    {
+        [tableView registerNib:[UINib nibWithNibName:@"TLBannerTableViewCell" bundle:nil] forCellReuseIdentifier:bannerCellID];
+        bannerCell = [tableView dequeueReusableCellWithIdentifier:bannerCellID];
     }
     
     if (self.searchController.active) {
@@ -99,6 +108,10 @@
         cell2.imageView.image = [UIImage imageNamed:@"location.png"];
         return cell2;
     } else {
+        if (indexPath.row == [locations count]) {
+            return bannerCell;
+        }
+        
         NSString *locImageURLString = [locationsURLString objectAtIndex:indexPath.row];
         
         __block UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
@@ -123,6 +136,8 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (self.searchController.active) {
         return 44.f;
+    } else if (indexPath.row == [locations count]) {
+        return 220.f;
     } else {
         return 308.f;
     }
@@ -148,7 +163,7 @@
             return [filteredLocations count];
         }
     } else {
-        return [locations count];
+        return [locations count] + 1;
     }
 }
 
@@ -164,6 +179,9 @@
             city = loc.location;
         }
     } else {
+        if (indexPath.row == [locations count]) {
+            return;
+        }
         Location *loc = (Location *)locations[indexPath.row];
         city = loc.location;
     }

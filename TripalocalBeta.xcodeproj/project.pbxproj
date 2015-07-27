@@ -17,6 +17,8 @@
 		5649BDF11B46702300465D6C /* (null) in Resources */ = {isa = PBXBuildFile; };
 		568AE8301B52087500D48DBC /* InstantBookingTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 568AE82F1B52087500D48DBC /* InstantBookingTableViewCell.m */; };
 		7412FDE1EDC10952539BF3C5 /* libPods-TripalocalBeta.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D1136758DFF7CE52CD971824 /* libPods-TripalocalBeta.a */; };
+		87046A8A1B6606C40084E2E3 /* TLBannerTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 87046A881B6606C40084E2E3 /* TLBannerTableViewCell.m */; };
+		87046A8C1B660D590084E2E3 /* TLBannerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87046A8E1B660D590084E2E3 /* TLBannerTableViewCell.xib */; };
 		870AEB791B53A81D00959465 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 870AEB7B1B53A81D00959465 /* Localizable.strings */; };
 		870F22481B5B6A2100CD1AD2 /* URLConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 870F22471B5B6A2000CD1AD2 /* URLConfig.m */; };
 		8711965A1B4FF74300BA8672 /* NeedToLoginView.m in Sources */ = {isa = PBXBuildFile; fileRef = 871196591B4FF74300BA8672 /* NeedToLoginView.m */; };
@@ -105,6 +107,10 @@
 		5649BD451B3FD5CA00465D6C /* TLDetailTableViewCell5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TLDetailTableViewCell5.m; path = "Controller/Custom Cells/TLDetailTableViewCell5.m"; sourceTree = "<group>"; };
 		568AE82E1B52087500D48DBC /* InstantBookingTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InstantBookingTableViewCell.h; path = "Controller/Custom Cells/InstantBookingTableViewCell.h"; sourceTree = "<group>"; };
 		568AE82F1B52087500D48DBC /* InstantBookingTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InstantBookingTableViewCell.m; path = "Controller/Custom Cells/InstantBookingTableViewCell.m"; sourceTree = "<group>"; };
+		87046A871B6606C40084E2E3 /* TLBannerTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLBannerTableViewCell.h; sourceTree = "<group>"; };
+		87046A881B6606C40084E2E3 /* TLBannerTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLBannerTableViewCell.m; sourceTree = "<group>"; };
+		87046A8D1B660D590084E2E3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/TLBannerTableViewCell.xib; sourceTree = "<group>"; };
+		87046A901B660D5E0084E2E3 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/TLBannerTableViewCell.strings"; sourceTree = "<group>"; };
 		870AEB771B53A6B000959465 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
 		870AEB781B53A6B000959465 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		870AEB7A1B53A81D00959465 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -328,6 +334,8 @@
 		5649BD311B3FC32800465D6C /* Custom Cells */ = {
 			isa = PBXGroup;
 			children = (
+				87046A871B6606C40084E2E3 /* TLBannerTableViewCell.h */,
+				87046A881B6606C40084E2E3 /* TLBannerTableViewCell.m */,
 				8729E13A1B4A6335004C3065 /* MyTripTableViewCell.h */,
 				8729E13B1B4A6335004C3065 /* MyTripTableViewCell.m */,
 				8E26A6611B0397EF00A5A5CF /* TLHomeTableViewCell.h */,
@@ -547,6 +555,7 @@
 			children = (
 				871196581B4FF74300BA8672 /* NeedToLoginView.h */,
 				871196591B4FF74300BA8672 /* NeedToLoginView.m */,
+				87046A8E1B660D590084E2E3 /* TLBannerTableViewCell.xib */,
 				87E74B651B54BD6C00C41CBF /* NeedToLoginView.xib */,
 				87E74B701B54E73B00C41CBF /* MyTripTableViewCell.xib */,
 				8EB570EC1B01CF2B0026D419 /* Main.storyboard */,
@@ -732,6 +741,7 @@
 				87E74B691B54C2AF00C41CBF /* SearchViewCell.xib in Resources */,
 				87EF8C831B5CE46400292225 /* loading_screen.jpg in Resources */,
 				87E74B6E1B54E73B00C41CBF /* MyTripTableViewCell.xib in Resources */,
+				87046A8C1B660D590084E2E3 /* TLBannerTableViewCell.xib in Resources */,
 				8EB570F01B01CF2B0026D419 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -792,6 +802,7 @@
 				874265871B4D272F00D76C72 /* MenuViewController.m in Sources */,
 				5649BD461B3FD5CA00465D6C /* TLDetailTableViewCell5.m in Sources */,
 				8711965A1B4FF74300BA8672 /* NeedToLoginView.m in Sources */,
+				87046A8A1B6606C40084E2E3 /* TLBannerTableViewCell.m in Sources */,
 				5649BD431B3FD5A400465D6C /* TLDetailTableViewCell4.m in Sources */,
 				5649BD3A1B3FC42600465D6C /* TLDetailTableViewCell1.m in Sources */,
 				8729E13C1B4A6335004C3065 /* MyTripTableViewCell.m in Sources */,
@@ -859,6 +870,15 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		87046A8E1B660D590084E2E3 /* TLBannerTableViewCell.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				87046A8D1B660D590084E2E3 /* Base */,
+				87046A901B660D5E0084E2E3 /* zh-Hans */,
+			);
+			name = TLBannerTableViewCell.xib;
+			sourceTree = "<group>";
+		};
 		870AEB7B1B53A81D00959465 /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
