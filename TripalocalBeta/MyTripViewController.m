@@ -55,7 +55,7 @@
 }
 
 - (void)loginClicked {
-    [self.tabBarController setSelectedIndex:2];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"openPartialMenu" object:nil];
 }
 
 - (IBAction)changeToPreviousView:(id)sender {
