@@ -12,6 +12,10 @@
 
 "alert_email" = "Email app unavailable";
 
+"custom_itinerary" = "customItinerary_en";
+
+"wechat_banner" = "wechat_en";
+
 "alert_wechat" = "Wechat unavailable";
 
 "contact_details_email_start" = "12";

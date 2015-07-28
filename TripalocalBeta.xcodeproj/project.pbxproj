@@ -110,7 +110,6 @@
 		87046A871B6606C40084E2E3 /* TLBannerTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLBannerTableViewCell.h; sourceTree = "<group>"; };
 		87046A881B6606C40084E2E3 /* TLBannerTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLBannerTableViewCell.m; sourceTree = "<group>"; };
 		87046A8D1B660D590084E2E3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/TLBannerTableViewCell.xib; sourceTree = "<group>"; };
-		87046A901B660D5E0084E2E3 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/TLBannerTableViewCell.strings"; sourceTree = "<group>"; };
 		870AEB771B53A6B000959465 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
 		870AEB781B53A6B000959465 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		870AEB7A1B53A81D00959465 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -489,6 +488,7 @@
 		8EB570E11B01CF2B0026D419 /* TripalocalBeta */ = {
 			isa = PBXGroup;
 			children = (
+				5649BD311B3FC32800465D6C /* Custom Cells */,
 				87EF8C6B1B5C805500292225 /* Utility.h */,
 				87EF8C6C1B5C805500292225 /* Utility.m */,
 				87FC2D551B480ABE0017F30E /* Util */,
@@ -615,7 +615,6 @@
 				87F3563D1B439D3B00949F43 /* PaymentViewController.m */,
 				87F3563E1B439D3B00949F43 /* SignUpViewController.h */,
 				87F3563F1B439D3B00949F43 /* SignUpViewController.m */,
-				5649BD311B3FC32800465D6C /* Custom Cells */,
 				8EC86D5A1B0229F100B0A655 /* TLHomeViewController.h */,
 				8EC86D5B1B0229F100B0A655 /* TLHomeViewController.m */,
 				8E26A66A1B080BE300A5A5CF /* TLSearchViewController.h */,
@@ -874,7 +873,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				87046A8D1B660D590084E2E3 /* Base */,
-				87046A901B660D5E0084E2E3 /* zh-Hans */,
 			);
 			name = TLBannerTableViewCell.xib;
 			sourceTree = "<group>";

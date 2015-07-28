@@ -2,7 +2,6 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -14,42 +13,20 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2G6-sv-8Kf">
-                        <rect key="frame" x="38" y="136" width="218" height="30"/>
-                        <state key="normal" title="Email: enquiries@tripalocal.com">
-                            <color key="titleColor" red="0.0" green="0.81568627449999997" blue="0.81568627449999997" alpha="1" colorSpace="calibratedRGB"/>
-                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                        </state>
-                        <connections>
-                            <action selector="emailClicked:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="i5i-aL-gSC"/>
-                        </connections>
-                    </button>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Contact Us" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G8m-7C-cbe">
-                        <rect key="frame" x="117" y="33" width="87" height="21"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EJ5-VV-Sb0">
-                        <rect key="frame" x="38" y="79" width="171" height="30"/>
-                        <state key="normal" title="Wechat: 本土客Tripalocal">
-                            <color key="titleColor" red="0.0" green="0.81568627449999997" blue="0.81568627449999997" alpha="1" colorSpace="calibratedRGB"/>
-                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                        </state>
-                        <connections>
-                            <action selector="wechatClicked:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="gWz-8x-bqz"/>
-                        </connections>
-                    </button>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="G2g-0P-flY">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="219"/>
+                    </imageView>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="2G6-sv-8Kf" firstAttribute="top" secondItem="EJ5-VV-Sb0" secondAttribute="bottom" constant="27" id="2V9-Ux-KIY"/>
-                    <constraint firstItem="2G6-sv-8Kf" firstAttribute="leading" secondItem="EJ5-VV-Sb0" secondAttribute="leading" id="MaS-vd-odA"/>
-                    <constraint firstItem="EJ5-VV-Sb0" firstAttribute="top" secondItem="G8m-7C-cbe" secondAttribute="bottom" constant="25" id="Qao-q0-dST"/>
-                    <constraint firstItem="EJ5-VV-Sb0" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="30" id="bJs-Eh-prJ"/>
-                    <constraint firstAttribute="centerX" secondItem="G8m-7C-cbe" secondAttribute="centerX" id="kUH-YL-fMw"/>
-                    <constraint firstItem="G8m-7C-cbe" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="25" id="tp2-PW-yOH"/>
+                    <constraint firstAttribute="trailing" secondItem="G2g-0P-flY" secondAttribute="trailing" id="ROt-RA-toW"/>
+                    <constraint firstItem="G2g-0P-flY" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="Tjn-Nw-laj"/>
+                    <constraint firstItem="G2g-0P-flY" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="fHo-CX-nYL"/>
+                    <constraint firstAttribute="bottom" secondItem="G2g-0P-flY" secondAttribute="bottom" id="kbu-OL-equ"/>
                 </constraints>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="bannerImage" destination="G2g-0P-flY" id="KiY-8h-DJl"/>
+            </connections>
             <point key="canvasLocation" x="414" y="231"/>
         </tableViewCell>
     </objects>

@@ -14,6 +14,10 @@
 
 "alert_wechat" = "微信无法打开";
 
+"custom_itinerary" = "customItinerary_cn";
+
+"wechat_banner" = "wechat_cn";
+
 "contact_details_email_start" = "6";
 
 "loading" = "加载中";

@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface TLBannerTableViewCell : UITableViewCell
+@property (strong, nonatomic) IBOutlet UIImageView *bannerImage;
 
 @end

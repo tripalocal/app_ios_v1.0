@@ -12,7 +12,11 @@
 #import "TLBannerTableViewCell.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "Constant.h"
+#import "Utility.h"
 #import "Location.h"
+
+NSInteger const CustomItineraryPos = 2;
+NSInteger const WeChatCellPos = 6;
 
 @interface TLHomeViewController () {
     NSMutableArray *locations;
@@ -108,11 +112,23 @@
         cell2.imageView.image = [UIImage imageNamed:@"location.png"];
         return cell2;
     } else {
-        if (indexPath.row == [locations count]) {
+        NSInteger iLocation;
+        if (indexPath.row == CustomItineraryPos) {
+            bannerCell.bannerImage.image = [UIImage imageNamed:NSLocalizedString(@"custom_itinerary", nil)];
             return bannerCell;
+        } else if (indexPath.row == WeChatCellPos) {
+            bannerCell.bannerImage.image = [UIImage imageNamed:NSLocalizedString(@"wechat_banner", nil)];
+            bannerCell.backgroundColor = [Utility themeColor];
+            return bannerCell;
+        } else if (indexPath.row > CustomItineraryPos && indexPath.row < WeChatCellPos) {
+            iLocation = indexPath.row - 1;
+        } else if (indexPath.row > CustomItineraryPos && indexPath.row > WeChatCellPos){
+            iLocation = indexPath.row - 2;
+        } else {
+            iLocation = indexPath.row;
         }
         
-        NSString *locImageURLString = [locationsURLString objectAtIndex:indexPath.row];
+        NSString *locImageURLString = [locationsURLString objectAtIndex:iLocation];
         
         __block UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
         activityIndicator.center = cell.homeLocationImage.center;
@@ -126,7 +142,7 @@
         [cell.homeLocationImage addSubview:activityIndicator];
         [activityIndicator startAnimating];
         
-        Location *loc = (Location *)locations[indexPath.row];
+        Location *loc = (Location *)locations[iLocation];
         cell.homeLocationLabel.text = loc.locationName;
         cell.homeLocationLabel.textAlignment = NSTextAlignmentCenter;
         return cell;
@@ -136,7 +152,7 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (self.searchController.active) {
         return 44.f;
-    } else if (indexPath.row == [locations count]) {
+    } else if (indexPath.row == CustomItineraryPos || indexPath.row == WeChatCellPos) {
         return 220.f;
     } else {
         return 308.f;
@@ -163,7 +179,7 @@
             return [filteredLocations count];
         }
     } else {
-        return [locations count] + 1;
+        return [locations count] + 2;
     }
 }
 
@@ -179,14 +195,48 @@
             city = loc.location;
         }
     } else {
-        if (indexPath.row == [locations count]) {
+        NSInteger iLocation;
+        if (indexPath.row == CustomItineraryPos) {
+            [self emailUs];
             return;
+        } else if (indexPath.row == WeChatCellPos) {
+            [self openWeChat];
+            return;
+        } else if (indexPath.row > CustomItineraryPos && indexPath.row < WeChatCellPos) {
+            iLocation = indexPath.row - 1;
+        } else if (indexPath.row > CustomItineraryPos && indexPath.row > WeChatCellPos){
+            iLocation = indexPath.row - 2;
+        } else {
+            iLocation = indexPath.row;
         }
-        Location *loc = (Location *)locations[indexPath.row];
+        
+        Location *loc = (Location *)locations[iLocation];
         city = loc.location;
     }
     
     [self performSegueWithIdentifier:@"searchToExpList" sender:city];
+}
+
+- (void)openWeChat {
+    NSURL *wechatURL = [NSURL URLWithString:@"weixin://"];
+    
+    if ([[UIApplication sharedApplication] canOpenURL:wechatURL]) {
+        [[UIApplication sharedApplication] openURL:wechatURL];
+    } else {
+        UIAlertView * alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"alert", nil) message:NSLocalizedString(@"alert_wechat", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"ok_button", nil) otherButtonTitles:nil];
+        [alert show];
+    }
+}
+
+- (void)emailUs {
+    NSURL *emailURL = [NSURL URLWithString:[NSString  stringWithFormat:@"mailto:%@", enqueryEmail]];
+    
+    if ([[UIApplication sharedApplication] canOpenURL:emailURL]) {
+        [[UIApplication sharedApplication] openURL:emailURL];
+    } else {
+        UIAlertView * alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"alert", nil) message:NSLocalizedString(@"alert_email", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"ok_button", nil) otherButtonTitles:nil];
+        [alert show];
+    }
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
