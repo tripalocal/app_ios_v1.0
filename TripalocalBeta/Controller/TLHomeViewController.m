@@ -115,6 +115,7 @@ NSInteger const WeChatCellPos = 6;
         NSInteger iLocation;
         if (indexPath.row == CustomItineraryPos) {
             bannerCell.bannerImage.image = [UIImage imageNamed:NSLocalizedString(@"custom_itinerary", nil)];
+            bannerCell.backgroundColor = [UIColor whiteColor];
             return bannerCell;
         } else if (indexPath.row == WeChatCellPos) {
             bannerCell.bannerImage.image = [UIImage imageNamed:NSLocalizedString(@"wechat_banner", nil)];
@@ -131,6 +132,7 @@ NSInteger const WeChatCellPos = 6;
         NSString *locImageURLString = [locationsURLString objectAtIndex:iLocation];
         
         __block UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+        [cell.homeLocationImage setClipsToBounds:YES];
         activityIndicator.center = cell.homeLocationImage.center;
         activityIndicator.hidesWhenStopped = YES;
         [cell.homeLocationImage sd_setImageWithURL:[NSURL URLWithString:locImageURLString]

@@ -318,10 +318,10 @@
 "qO2-vR-8Y8.title" = "体验详情";
 
 "esU-2p-rzV.text" = "不和陌生人拼团，零操心，何必自助，贴身管家，有问必答，独家资源，高性价比";
-"zQs-1e-Hxf.text" = "如果您：";
-"Ph3-Ca-yM0.text" = "－提前少于3个自然日取消预订，我们不会退款";
-"FL9-2M-ca7.text" = "－提前3至6个自然日（包括）取消预订，我们将半额退款";
-"ffg-GU-3pB.text" = "－提前至少7个自然日（包括）取消预订，我们将全额退款";
+"zQs-1e-Hxf.text" = "若因任何原因取消服务：";
+"Ph3-Ca-yM0.text" = "－ 少于3个自然日取消服务，恕不退款";
+"FL9-2M-ca7.text" = "－ 提前3至6个自然日取消服务，半额退款";
+"ffg-GU-3pB.text" = "－ 提前至少7个自然日取消服务，全额退款";
 "50J-hc-fwA.text" = "您提交预订后仍可更改";
 "G34-Gw-cSs.normalTitle" = "帮我定制行程";
 /* Class = "UILabel"; text = "CCV"; ObjectID = "vMH-F0-EVE"; */

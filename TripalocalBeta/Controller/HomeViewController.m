@@ -100,7 +100,7 @@
     
     [self addChildViewController:self.menuVC];
     CGRect mainFrame = self.view.frame;
-    self.menuVC.view.frame = CGRectMake(mainFrame.size.width, 0, mainFrame.size.width / 3 * 2, mainFrame.size.height);
+    self.menuVC.view.frame = CGRectMake(mainFrame.size.width, 0, mainFrame.size.width / 6 * 5, mainFrame.size.height);
     
     [self.view addSubview:self.coverView];
     [self.coverView bringSubviewToFront:self.view];
@@ -108,7 +108,7 @@
     [self.view insertSubview:self.menuVC.view aboveSubview:self.coverView];
     [UIView animateWithDuration:0.3 animations:^{
         self.coverView.alpha = 0.4;
-        self.menuVC.view.frame = CGRectMake(mainFrame.size.width / 3, 0, mainFrame.size.width / 3 * 2, mainFrame.size.height);;
+        self.menuVC.view.frame = CGRectMake(mainFrame.size.width / 6, 0, mainFrame.size.width / 6 * 5, mainFrame.size.height);;
     } completion:^(BOOL finished) {
         [self.menuVC didMoveToParentViewController:self];
     }];
@@ -120,7 +120,7 @@
     CGRect mainFrame = self.view.frame;
     [UIView animateWithDuration:0.3 animations:^{
         self.coverView.alpha = 0;
-        self.menuVC.view.frame = CGRectMake(mainFrame.size.width, 0, mainFrame.size.width / 3 * 2, mainFrame.size.height);
+        self.menuVC.view.frame = CGRectMake(mainFrame.size.width, 0, mainFrame.size.width / 6 * 5, mainFrame.size.height);
     } completion:^(BOOL finished) {
         [self.coverView removeFromSuperview];
         [self.menuVC.view removeFromSuperview];
