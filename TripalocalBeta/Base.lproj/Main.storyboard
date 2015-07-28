@@ -1222,19 +1222,19 @@
                                     </mask>
                                 </variation>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="So1-Kc-APW">
-                                <rect key="frame" x="20" y="500" width="560" height="40"/>
-                                <color key="backgroundColor" red="0.20000000000000001" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
+                            <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="So1-Kc-APW">
+                                <rect key="frame" x="274" y="555" width="53" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="CcR-3A-9Ij"/>
                                     <constraint firstAttribute="width" constant="220" id="cGT-B4-B5z"/>
                                 </constraints>
                                 <state key="normal" title="Log out">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <variation key="default">
                                     <mask key="constraints">
+                                        <exclude reference="CcR-3A-9Ij"/>
                                         <exclude reference="cGT-B4-B5z"/>
                                     </mask>
                                 </variation>
@@ -1272,57 +1272,101 @@
                                     </mask>
                                 </variation>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Can't find the experience you want?" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AiR-zE-P4p">
-                                <rect key="frame" x="20" y="307" width="560" height="16"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                            <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G34-Gw-cSs">
+                                <rect key="frame" x="20" y="510" width="560" height="40"/>
+                                <color key="backgroundColor" red="0.20000000000000001" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="KM3-eH-q5F"/>
+                                    <constraint firstAttribute="width" constant="220" id="kJW-cC-a7n"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Request a trip">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="kJW-cC-a7n"/>
+                                    </mask>
+                                </variation>
+                                <connections>
+                                    <action selector="emailUs:" destination="O30-Mt-92B" eventType="touchUpInside" id="vFv-V1-8cu"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Save time and effort and let us build your dream trip!" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="esU-2p-rzV">
+                                <rect key="frame" x="20" y="454" width="560" height="17"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="235" id="dNN-3c-zBp"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="dNN-3c-zBp"/>
+                                    </mask>
+                                </variation>
                             </label>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" usesAttributedText="YES" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0E1-5m-yxl">
-                                <rect key="frame" x="15" y="335" width="570" height="135"/>
-                                <color key="backgroundColor" red="0.96862745098039216" green="0.96862745098039216" blue="0.96862745098039216" alpha="1" colorSpace="calibratedRGB"/>
-                                <attributedString key="attributedText">
-                                    <fragment>
-                                        <string key="content">Email us at enquiries@tripalocal.com with the preferred experience, the dates and times and we will get back to you within 48 hours with a customised experience just for you!</string>
-                                        <attributes>
-                                            <font key="NSFont" size="11" name="HelveticaNeue"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
-                                        </attributes>
-                                    </fragment>
-                                </attributedString>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" image="profile_customitinerary_cn" translatesAutoresizingMaskIntoConstraints="NO" id="yJ0-Sx-Zlx">
+                                <rect key="frame" x="0.0" y="254" width="600" height="200"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="2Ij-wt-AcD"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="2Ij-wt-AcD"/>
+                                    </mask>
+                                </variation>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="G34-Gw-cSs" secondAttribute="trailing" constant="20" id="0tY-81-cVX"/>
                             <constraint firstItem="So1-Kc-APW" firstAttribute="leading" secondItem="e09-WZ-KO9" secondAttribute="leading" constant="20" id="3Fw-hf-9wm"/>
                             <constraint firstAttribute="centerX" secondItem="So1-Kc-APW" secondAttribute="centerX" id="3OS-LP-j94"/>
+                            <constraint firstAttribute="centerX" secondItem="esU-2p-rzV" secondAttribute="centerX" id="55Z-dA-MV7"/>
+                            <constraint firstItem="esU-2p-rzV" firstAttribute="leading" secondItem="e09-WZ-KO9" secondAttribute="leading" constant="20" id="7DV-0V-Zmg"/>
+                            <constraint firstItem="esU-2p-rzV" firstAttribute="top" secondItem="yJ0-Sx-Zlx" secondAttribute="bottom" constant="20" id="DlV-Bt-FZh"/>
+                            <constraint firstAttribute="trailing" secondItem="esU-2p-rzV" secondAttribute="trailing" constant="20" id="Edz-tz-Zsw"/>
+                            <constraint firstItem="G34-Gw-cSs" firstAttribute="top" relation="greaterThanOrEqual" secondItem="esU-2p-rzV" secondAttribute="bottom" constant="10" id="Fb3-7m-kYm"/>
                             <constraint firstItem="gbB-HA-Ql0" firstAttribute="top" secondItem="WIV-jZ-czn" secondAttribute="bottom" constant="25" id="H01-Ij-GGZ"/>
-                            <constraint firstAttribute="trailing" secondItem="0E1-5m-yxl" secondAttribute="trailing" constant="15" id="Hgr-IT-l7v"/>
                             <constraint firstItem="WIV-jZ-czn" firstAttribute="top" secondItem="iDB-hB-AXx" secondAttribute="bottom" constant="8" id="JAv-1E-aP1"/>
-                            <constraint firstItem="So1-Kc-APW" firstAttribute="top" secondItem="0E1-5m-yxl" secondAttribute="bottom" constant="30" id="M03-Cy-SZI"/>
-                            <constraint firstAttribute="centerX" secondItem="AiR-zE-P4p" secondAttribute="centerX" id="Mtx-75-Ynr"/>
+                            <constraint firstAttribute="centerX" secondItem="G34-Gw-cSs" secondAttribute="centerX" id="K5C-bT-LaN"/>
+                            <constraint firstAttribute="trailing" secondItem="yJ0-Sx-Zlx" secondAttribute="trailing" id="LCj-0p-5Nw"/>
                             <constraint firstAttribute="width" secondItem="gbB-HA-Ql0" secondAttribute="width" id="NtW-Hg-b1n"/>
-                            <constraint firstItem="IFn-a3-9vr" firstAttribute="top" secondItem="So1-Kc-APW" secondAttribute="bottom" constant="60" id="Zw0-yB-bTJ"/>
+                            <constraint firstItem="esU-2p-rzV" firstAttribute="top" secondItem="yJ0-Sx-Zlx" secondAttribute="bottom" id="TZ6-RR-3vD"/>
+                            <constraint firstItem="yJ0-Sx-Zlx" firstAttribute="top" secondItem="gbB-HA-Ql0" secondAttribute="bottom" constant="-10" id="Xol-DK-gi6"/>
+                            <constraint firstItem="yJ0-Sx-Zlx" firstAttribute="leading" secondItem="e09-WZ-KO9" secondAttribute="leading" id="ZL3-z7-WJ2"/>
+                            <constraint firstItem="IFn-a3-9vr" firstAttribute="top" secondItem="So1-Kc-APW" secondAttribute="bottom" constant="15" id="Zw0-yB-bTJ"/>
+                            <constraint firstAttribute="centerX" secondItem="yJ0-Sx-Zlx" secondAttribute="centerX" id="ao9-83-Vku"/>
+                            <constraint firstItem="G34-Gw-cSs" firstAttribute="leading" secondItem="e09-WZ-KO9" secondAttribute="leading" constant="20" id="bXS-JT-9y9"/>
+                            <constraint firstItem="esU-2p-rzV" firstAttribute="top" secondItem="yJ0-Sx-Zlx" secondAttribute="bottom" constant="5" id="bXf-ek-hyY"/>
+                            <constraint firstItem="So1-Kc-APW" firstAttribute="top" secondItem="G34-Gw-cSs" secondAttribute="bottom" constant="5" id="bjM-We-ere"/>
                             <constraint firstAttribute="trailing" secondItem="So1-Kc-APW" secondAttribute="trailing" constant="20" id="dU6-EF-HHZ"/>
-                            <constraint firstItem="0E1-5m-yxl" firstAttribute="leading" secondItem="e09-WZ-KO9" secondAttribute="leading" constant="15" id="fub-BB-DNA"/>
                             <constraint firstAttribute="centerX" secondItem="iDB-hB-AXx" secondAttribute="centerX" id="gPr-t9-nrt"/>
-                            <constraint firstItem="AiR-zE-P4p" firstAttribute="leading" secondItem="e09-WZ-KO9" secondAttribute="leading" constant="20" id="jU7-CH-Hgs"/>
+                            <constraint firstItem="G34-Gw-cSs" firstAttribute="top" secondItem="esU-2p-rzV" secondAttribute="bottom" constant="15" id="ki8-fg-yGk"/>
                             <constraint firstItem="iDB-hB-AXx" firstAttribute="top" secondItem="dFg-HN-2sc" secondAttribute="bottom" constant="30" id="oF9-aA-CcH"/>
                             <constraint firstAttribute="centerX" secondItem="gbB-HA-Ql0" secondAttribute="centerX" id="oKV-Cb-XQq"/>
                             <constraint firstAttribute="centerX" secondItem="WIV-jZ-czn" secondAttribute="centerX" id="qoU-rZ-9NT"/>
-                            <constraint firstItem="AiR-zE-P4p" firstAttribute="top" secondItem="gbB-HA-Ql0" secondAttribute="bottom" constant="43" id="uBp-fj-n5Q"/>
-                            <constraint firstAttribute="trailing" secondItem="AiR-zE-P4p" secondAttribute="trailing" constant="20" id="yr2-E5-fM9"/>
-                            <constraint firstItem="0E1-5m-yxl" firstAttribute="top" secondItem="AiR-zE-P4p" secondAttribute="bottom" constant="12" id="znQ-xu-8ck"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="DlV-Bt-FZh"/>
+                                <exclude reference="bXf-ek-hyY"/>
+                                <exclude reference="ki8-fg-yGk"/>
+                                <exclude reference="3Fw-hf-9wm"/>
+                                <exclude reference="dU6-EF-HHZ"/>
+                            </mask>
+                        </variation>
                     </view>
                     <navigationItem key="navigationItem" id="pAL-LB-tME"/>
                     <connections>
                         <outlet property="backgroundView" destination="gbB-HA-Ql0" id="2Wv-5V-05G"/>
-                        <outlet property="contactTextView" destination="0E1-5m-yxl" id="Md7-7l-0wx"/>
+                        <outlet property="bannerImage" destination="yJ0-Sx-Zlx" id="0E4-Ss-vuY"/>
                         <outlet property="hostName" destination="WIV-jZ-czn" id="q1m-Uo-CGe"/>
                         <outlet property="image" destination="iDB-hB-AXx" id="vEw-Eg-hlT"/>
                         <outlet property="logoutButton" destination="So1-Kc-APW" id="G52-Bm-fcp"/>
+                        <outlet property="requestTripButton" destination="G34-Gw-cSs" id="boI-0V-Q9V"/>
                         <outlet property="wishLIstImage" destination="gbB-HA-Ql0" id="l4C-n6-gvD"/>
                         <segue destination="Guo-g9-rqw" kind="show" identifier="show_my_profile" id="kuN-Ok-J3Y"/>
                         <segue destination="hSD-j1-UpZ" kind="presentation" identifier="show_wishlist" id="c1T-gp-dzR"/>
@@ -3723,6 +3767,7 @@
         <image name="face" width="105" height="105"/>
         <image name="heart_lg" width="27" height="27"/>
         <image name="meals" width="27" height="27"/>
+        <image name="profile_customitinerary_cn" width="470" height="200"/>
         <image name="tickets" width="27" height="27"/>
         <image name="time" width="27" height="27"/>
         <image name="tripalocal_logo_en" width="180" height="63"/>

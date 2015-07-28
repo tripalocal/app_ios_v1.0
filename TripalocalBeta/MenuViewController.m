@@ -25,8 +25,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self.logoutButton.layer setMasksToBounds:YES];
-    [self.logoutButton.layer setCornerRadius:5.0f];
+    [self.requestTripButton.layer setMasksToBounds:YES];
+    [self.requestTripButton.layer setCornerRadius:5.0f];
+    [self.bannerImage setClipsToBounds:YES];
+    self.bannerImage.image = [UIImage imageNamed:NSLocalizedString(@"profile_banner", nil)];
     
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     UIImage* image = [UIImage imageWithData:[userDefaults objectForKey:@"user_image"]];
@@ -69,38 +71,9 @@
     wishListSingleTap.numberOfTapsRequired = 1;
     [self.wishLIstImage setUserInteractionEnabled:YES];
     [self.wishLIstImage addGestureRecognizer:wishListSingleTap];
-    
-    NSMutableAttributedString * str = [[NSMutableAttributedString alloc] initWithString:NSLocalizedString(@"contact_details", nil)];
-    [str addAttribute: NSForegroundColorAttributeName value:[Utility themeColor] range:NSMakeRange([NSLocalizedString(@"contact_details_email_start", nil) integerValue], enqueryEmail.length)];
-    
-    self.contactTextView.attributedText = str;
-    UITapGestureRecognizer *contactEmailTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(textTapped:)];
-    contactEmailTap.numberOfTapsRequired = 1;
-    [self.contactTextView addGestureRecognizer:contactEmailTap];
 }
 
-- (void)textTapped:(UITapGestureRecognizer *)recognizer
-{
-    // Location of the tap in text-container coordinates
-    NSLayoutManager *layoutManager = self.contactTextView.layoutManager;
-    CGPoint location = [recognizer locationInView:self.contactTextView];
-    location.x -= self.contactTextView.textContainerInset.left;
-    location.y -= self.contactTextView.textContainerInset.top;
-    
-    // Find the character that's been tapped on
-    NSUInteger characterIndex;
-    characterIndex = [layoutManager characterIndexForPoint:location
-                                           inTextContainer:self.contactTextView.textContainer
-                  fractionOfDistanceBetweenInsertionPoints:NULL];
-    
-    NSInteger emailStart = [NSLocalizedString(@"contact_details_email_start", nil) integerValue];
-    NSInteger emailEnd = emailStart + enqueryEmail.length;
-    if (characterIndex >= emailStart && characterIndex <= emailEnd) {
-        [self emailUs];
-    }
-}
-
-- (void)emailUs {
+- (IBAction)emailUs:(id)sender {
     NSURL *emailURL = [NSURL URLWithString:[NSString  stringWithFormat:@"mailto:%@", enqueryEmail]];
     
     if ([[UIApplication sharedApplication] canOpenURL:emailURL]) {
