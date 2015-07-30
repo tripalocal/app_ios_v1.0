@@ -8,7 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "RequestController.h"
+#import "UnloginViewController.h"
 
 @interface LoginViewController : RequestController <UITextFieldDelegate>
-
+@property (nonatomic, strong) UnloginViewController *unloggedinVC;
 @end

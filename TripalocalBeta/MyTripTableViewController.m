@@ -13,6 +13,7 @@
 #import "URLConfig.h"
 #import "Constant.h"
 #import "TLHomeViewController.h"
+#import <SecureNSUserDefaults/NSUserDefaults+SecureAdditions.h>
 
 @interface MyTripTableViewController ()
 
@@ -180,8 +181,10 @@
 }
 
 - (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    NSString *token = [userDefaults stringForKey:@"user_token"];
+    NSString *token = [userDefaults secretStringForKey:@"user_token"];
     if (token && self.nomatchesView) {
         [self fetchMyTrips:token];
             if([myTrips count] == 0 ){
@@ -190,16 +193,14 @@
                 [self.view sendSubviewToBack:self.nomatchesView];
             }
     }
-    
     MyTripViewController *mytripController = (MyTripViewController *)self.containerController;
+    mytripController.titleViewHeight.constant = 48.f;
     mytripController.segmentTitleView.hidden = NO;
     [self.navigationController setNavigationBarHidden:YES animated:NO];
     [self.tabBarController.tabBar setHidden:NO];
-    mytripController.titleViewHeight.constant = 48.f;
     [self.tableView reloadData];
-    
-    [super viewDidAppear:animated];
 }
+
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     [self.navigationController setNavigationBarHidden:NO animated:NO];

@@ -12,4 +12,5 @@
 FOUNDATION_EXPORT NSString *const phoneRegURL;
 FOUNDATION_EXPORT NSString *const phoneRegUsername;
 FOUNDATION_EXPORT NSString *const phoneRegPwd;
+FOUNDATION_EXPORT NSString *const enqueryEmail;
 #endif

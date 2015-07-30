@@ -7,6 +7,7 @@
 //
 
 #import "ProfileViewController.h"
+#import "Utility.h"
 #import "Constant.h"
 
 @interface ProfileViewController ()
@@ -23,8 +24,13 @@
 
 -(void) viewDidLoad {
     [super viewDidLoad];
-
-    UIBarButtonItem *editProfileButton = [[UIBarButtonItem alloc] initWithTitle:@"Edit" style:UIBarButtonItemStylePlain target:self action:@selector(editProfile)];
+    UIBarButtonItem *cancalButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"cancel", nil) style:UIBarButtonItemStylePlain target:self action:@selector(dismissProfile:)];
+    cancalButton.tintColor = [Utility themeColor];
+    self.navigationItem.leftBarButtonItem = cancalButton;
+    
+    self.navigationItem.title = NSLocalizedString(@"profile_title", nil);
+    UIBarButtonItem *editProfileButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"edit", nil) style:UIBarButtonItemStylePlain target:self action:@selector(editProfile)];
+    editProfileButton.tintColor = [Utility themeColor];
     self.navigationItem.rightBarButtonItem = editProfileButton;
 }
 
@@ -48,6 +54,10 @@
         self.image.image = [UIImage imageNamed: @"default_profile_image.png"];
     }
 
+}
+
+- (IBAction)dismissProfile:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated {

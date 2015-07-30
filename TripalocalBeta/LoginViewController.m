@@ -7,7 +7,9 @@
 //
 
 #import "LoginViewController.h"
+#import <SecureNSUserDefaults/NSUserDefaults+SecureAdditions.h>
 #import "URLConfig.h"
+#import "Utility.h"
 #import "Constant.h"
 
 @interface LoginViewController ()
@@ -59,9 +61,9 @@
             [self fetchProfileAndCache:token];
 
             NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-            [userDefaults setObject:token forKey:@"user_token"];
+            [userDefaults setSecretObject:token forKey:@"user_token"];
             [[NSUserDefaults standardUserDefaults] synchronize];
-
+            [self.unloggedinVC hideUnloggedinView];
 #ifdef CN_VERSION
                 [self.presentingViewController.presentingViewController dismissViewControllerAnimated:YES completion:nil];
 #else
@@ -133,9 +135,7 @@
     self.passwordField.borderStyle = UITextBorderStyleRoundedRect;
     self.passwordField.secureTextEntry = YES;
 
-    UIColor *themeColor = [UIColor colorWithRed:0.20f green:0.80f blue:0.80f alpha:1.0f];
-
-    [self.forgotPasswordText setLinkTextAttributes:@{NSForegroundColorAttributeName : themeColor}];
+    [self.forgotPasswordText setLinkTextAttributes:@{NSForegroundColorAttributeName : [Utility themeColor]}];
     NSMutableAttributedString *str = [[NSMutableAttributedString alloc] initWithString:NSLocalizedString(@"Forgot password?", nil)];
     [str addAttribute:NSLinkAttributeName value:@"https://tripalocal.com/accounts/password/reset/" range:NSMakeRange(0, str.length)];
     [str addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:15] range:NSMakeRange(0, str.length)];

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="220" id="KGk-i7-Jjw" customClass="TLBannerTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="220"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="G2g-0P-flY">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="219"/>
+                    </imageView>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="G2g-0P-flY" secondAttribute="trailing" id="ROt-RA-toW"/>
+                    <constraint firstItem="G2g-0P-flY" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="Tjn-Nw-laj"/>
+                    <constraint firstItem="G2g-0P-flY" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="fHo-CX-nYL"/>
+                    <constraint firstAttribute="bottom" secondItem="G2g-0P-flY" secondAttribute="bottom" id="kbu-OL-equ"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="bannerImage" destination="G2g-0P-flY" id="KiY-8h-DJl"/>
+            </connections>
+            <point key="canvasLocation" x="414" y="231"/>
+        </tableViewCell>
+    </objects>
+</document>

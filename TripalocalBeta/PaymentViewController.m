@@ -10,6 +10,7 @@
 #import "PaymentSuccessViewController.h"
 #import "URLConfig.h"
 #import "Constant.h"
+#import <SecureNSUserDefaults/NSUserDefaults+SecureAdditions.h>
 
 @interface PaymentViewController ()
 @property (strong, nonatomic) IBOutlet UITextField *cardNumberField;
@@ -70,7 +71,7 @@
     [request setHTTPMethod:@"POST"];
 
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    NSString *token = [userDefaults stringForKey:@"user_token"];
+    NSString *token = [userDefaults secretStringForKey:@"user_token"];
 
     [request addValue:[NSString stringWithFormat:@"Token %@", token] forHTTPHeaderField:@"Authorization"];
 

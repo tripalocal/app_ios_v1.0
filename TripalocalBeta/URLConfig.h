@@ -25,6 +25,8 @@
 
 + (NSString *)searchServiceURLString;
 
-+ (NSString *)expDetailhServiceURLString;
++ (NSString *)expServiceURLString;
+
++ (NSString *)expDetailServiceURLString;
 
 @end

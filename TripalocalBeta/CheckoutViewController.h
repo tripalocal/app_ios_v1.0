@@ -23,7 +23,6 @@
 @property UIImage *expImage;
 @property NSString *fixPriceString;
 @property NSArray *dynamicPriceArray;
-@property NSArray *availbleDateArray;
 @property NSString *durationString;
 @property NSString *languageString;
 @property NSNumber *maxGuestNum;

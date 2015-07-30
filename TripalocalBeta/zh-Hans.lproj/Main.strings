@@ -68,6 +68,12 @@
 /* Class = "UILabel"; text = "pp"; ObjectID = "F9k-Zi-dsw"; */
 "F9k-Zi-dsw.text" = "pp";
 
+"Mm7-fl-E8p.text" = "支付宝付款成功！";
+
+"7KL-a5-Mg0.text" = "可惜发送订单过程中出现了问题，请联系";
+
+"los-ac-Jm5.text" = "查看我的订单";
+
 /* Class = "UILabel"; text = "asdf asdfafsdf asdf asdf as df asd fa sasdfs afsd f as df asd fa sdf as df as df as df as df as df asd fa s fas d fas df as df asdf a sfd fa asdf asdfafsdf asdf asdf as df asd fa sasdfs afsd f as df asd fa sdf as df as df as df as df as df asd fa s fas d fas df as df asdf a sfd fa asdf asdfafsdf asdf asdf as df asd fa sasdfs afsd f as df asd fa sdf as df as df as df as df as df asd fa s fas d fas df as df asdf a sfd faasdf asdfafsdf asdf asdf as df asd fa sasdfs afsd f as df asd fa sdf as df as df as df as df as df asd fa s fas d fas df as df asdf a sfd fa  "; ObjectID = "Goy-LF-yJU"; */
 "Goy-LF-yJU.text" = "asdf asdfafsdf asdf asdf as df asd fa sasdfs afsd f as df asd fa sdf as df as df as df as df as df asd fa s fas d fas df as df asdf a sfd fa asdf asdfafsdf asdf asdf as df asd fa sasdfs afsd f as df asd fa sdf as df as df as df as df as df asd fa s fas d fas df as df asdf a sfd fa asdf asdfafsdf asdf asdf as df asd fa sasdfs afsd f as df asd fa sdf as df as df as df as df as df asd fa s fas d fas df as df asdf a sfd faasdf asdfafsdf asdf asdf as df asd fa sasdfs afsd f as df asd fa sdf as df as df as df as df as df asd fa s fas d fas df as df asdf a sfd fa  ";
 
@@ -219,7 +225,7 @@
 "iab-Lb-EH0.normalTitle" = "展开";
 
 /* Class = "UILabel"; text = "n reviews"; ObjectID = "j9a-PA-9Rd"; */
-"j9a-PA-9Rd.text" = "n reviews";
+"j9a-PA-9Rd.text" = "n review(s)";
 
 /* Class = "UILabel"; text = "per person"; ObjectID = "jSP-6t-dAh"; */
 "jSP-6t-dAh.text" = "每人起";
@@ -306,16 +312,18 @@
 "wx9-sh-aCf.title" = "信用卡";
 
 "c8D-j2-AmV.title" = "兴趣列表";
-
+"AiR-zE-P4p.text" = "找不到您心仪的体验之旅？";
 "knl-vT-AcR.text" = "您还没有添加任何东西到兴趣列表。";
 
 "qO2-vR-8Y8.title" = "体验详情";
 
-"Ph3-Ca-yM0.text" = "如果您在少于3个自然日取消预订，您将获得半额退款";
-"FL9-2M-ca7.text" = "如果您提前3至6个自然日取消预订，我们将半额退款";
-"ffg-GU-3pB.text" = "如果您提前至少7个自然日取消预订，我们将全额退款";
+"esU-2p-rzV.text" = "不和陌生人拼团，零操心，何必自助，贴身管家，有问必答，独家资源，高性价比";
+"zQs-1e-Hxf.text" = "若因任何原因取消服务：";
+"Ph3-Ca-yM0.text" = "－ 少于3个自然日取消服务，恕不退款";
+"FL9-2M-ca7.text" = "－ 提前3至6个自然日取消服务，半额退款";
+"ffg-GU-3pB.text" = "－ 提前至少7个自然日取消服务，全额退款";
 "50J-hc-fwA.text" = "您提交预订后仍可更改";
-
+"G34-Gw-cSs.normalTitle" = "帮我定制行程";
 /* Class = "UILabel"; text = "CCV"; ObjectID = "vMH-F0-EVE"; */
 "vMH-F0-EVE.text" = "CCV";
 

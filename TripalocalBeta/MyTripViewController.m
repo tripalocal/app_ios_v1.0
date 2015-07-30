@@ -10,6 +10,7 @@
 #import "UpcommingTripsViewController.h"
 #import "PreviousTripsViewController.h"
 #import "NeedToLoginView.h"
+#import <SecureNSUserDefaults/NSUserDefaults+SecureAdditions.h>
 
 @interface MyTripViewController ()
 @property (nonatomic, copy) NSArray *allViewControllers;
@@ -36,12 +37,11 @@
     [previousController setContainerController:self];
     
     self.allViewControllers = [[NSArray alloc] initWithObjects:upcommingNav, previousNav, nil];
-
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    NSString *token = [userDefaults stringForKey:@"user_token"];
+    NSString *token = [userDefaults secretStringForKey:@"user_token"];
     if (token) {
         [self.view sendSubviewToBack:self.needToLoginView];
         [self cycleFromViewController:self.currentViewController toViewController:[self.allViewControllers objectAtIndex:0]];
@@ -55,7 +55,7 @@
 }
 
 - (void)loginClicked {
-    [self.tabBarController setSelectedIndex:2];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"openPartialMenu" object:nil];
 }
 
 - (IBAction)changeToPreviousView:(id)sender {

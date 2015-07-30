@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Constant.h"
+#import "HomeViewController.h"
 
 @interface UnloginViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UIImageView *hostImage;
 @property (strong, nonatomic) IBOutlet UIButton *loginButton;
-
+@property (strong, nonatomic) HomeViewController *parentVC;
+- (void)hideUnloggedinView;
 @end

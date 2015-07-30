@@ -8,10 +8,12 @@
 
 #import "TLSearchViewController.h"
 #import <SDWebImage/UIImageView+WebCache.h>
+#import <SecureNSUserDefaults/NSUserDefaults+SecureAdditions.h>
 #import "TLSearchTableViewCell.h"
 #import "Spinner.h"
 #import "Constant.h"
 #import "URLConfig.h"
+#import "Utility.h"
 #import "TLDetailViewController.h"
 #import "JGProgressHUD.h"
 
@@ -37,7 +39,7 @@
     HUD.HUDView.layer.shadowOffset = CGSizeZero;
     HUD.HUDView.layer.shadowOpacity = 0.4f;
     HUD.HUDView.layer.shadowRadius = 8.0f;
-    HUD.textLabel.text = @"Loading";
+    HUD.textLabel.text = NSLocalizedString(@"loading", nil);
     [HUD showInView:self.view];
     
     self.tableView.delegate = self;
@@ -60,7 +62,7 @@
 
 - (IBAction)toggleWishList:(NSInteger)buttonTag {
    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    NSString *token = [userDefaults stringForKey:@"user_token"];
+    NSString *token = [userDefaults secretStringForKey:@"user_token"];
     NSIndexPath * index = [NSIndexPath indexPathForRow:buttonTag inSection:0];
     
     if (token) {
@@ -142,12 +144,9 @@
     
     [cell.experienceImage sd_setImageWithURL:[NSURL URLWithString:backgroundImageURL]
                             placeholderImage:nil
-                                     options:SDWebImageRefreshCached
+                                     options:0
                                    completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
                                        [activityIndicator removeFromSuperview];
-                                       if (image) {
-                                            cell.experienceImage.image = [self croppIngimageByImageName:image toRect:cell.experienceImage.frame];
-                                       }
                                    }];
 
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
@@ -160,28 +159,17 @@
     } else {
         [cell.wishListButton setBackgroundImage:[UIImage imageNamed:@"unwishlisted.png"] forState:UIControlStateNormal];
         cell.smallWishImage.image = [UIImage imageNamed:@"heart_sw.png"];
-        cell.wishStatus.text = NSLocalizedString(@"Add to wishlist", nil);
+        cell.wishStatus.text = NSLocalizedString(@"add_to_wishlist", nil);
     }
     cell.delegate = self;
     cell.wishListButton.tag = indexPath.row;
-    NSString *priceString = [self decimalwithFormat:@"0" floatV:[[[self.expList objectAtIndex:indexPath.row] objectForKey:@"price"] floatValue]];
+    NSString *priceString = [Utility decimalwithFormat:@"0" floatV:[[[self.expList objectAtIndex:indexPath.row] objectForKey:@"price"] floatValue]];
     cell.priceLabel.text = priceString;
     //???
     [dynamicPricingArray addObject:priceString];
     
 
     return cell;
-}
-
-
-// todo: move to utility file
-- (UIImage *)croppIngimageByImageName:(UIImage *)imageToCrop toRect:(CGRect)rect
-{
-    CGImageRef imageRef = CGImageCreateWithImageInRect([imageToCrop CGImage], rect);
-    UIImage *cropped = [UIImage imageWithCGImage:imageRef];
-    CGImageRelease(imageRef);
-    
-    return cropped;
 }
 
 - (NSString *) decimalwithFormat:(NSString *)format  floatV:(float)floatV
@@ -302,7 +290,7 @@
         vc.experience_id_string = [[[self.expList objectAtIndex:index.row] objectForKey:@"id"] stringValue];
         
 //        vc.expPrice = [dynamicPricingArray objectAtIndex:index.row];
-        vc.expPrice = [self decimalwithFormat:@"0" floatV:[[[self.expList objectAtIndex:index.row] objectForKey:@"price"] floatValue]];
+        vc.expPrice = [Utility decimalwithFormat:@"0" floatV:[[[self.expList objectAtIndex:index.row] objectForKey:@"price"] floatValue]];
     }
     
 }

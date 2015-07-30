@@ -24,13 +24,17 @@
     } else {
         [self.startExploringButton setHidden:YES];
     }
-//    [self.startExploringButton bringSubviewToFront:self.view];
-    self.tutorialImage.image = [Utility croppIngimageByImageName:[UIImage imageNamed:self.imageFile] toRect:self.tutorialImage.frame];
+}
+
+- (void)viewDidLayoutSubviews {
+    [self.tutorialImage setClipsToBounds:YES];
+    self.tutorialImage.image = [UIImage imageNamed:self.imageFile];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
+
 - (IBAction)startExploring:(id)sender {
     [self.rootVC startExploring];
 }

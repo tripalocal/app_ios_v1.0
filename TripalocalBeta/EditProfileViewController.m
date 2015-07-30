@@ -7,7 +7,9 @@
 //
 
 #import "EditProfileViewController.h"
+#import <SecureNSUserDefaults/NSUserDefaults+SecureAdditions.h>
 #import "URLConfig.h"
+#import "Utility.h"
 #import "Constant.h"
 
 @interface EditProfileViewController ()
@@ -24,7 +26,8 @@
     [super viewDidLoad];
 
     [self setUserProfile];
-    UIBarButtonItem *saveProfileButton = [[UIBarButtonItem alloc] initWithTitle:@"Save" style:UIBarButtonItemStylePlain target:self action:@selector(saveProfile)];
+    UIBarButtonItem *saveProfileButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"save", nil) style:UIBarButtonItemStylePlain target:self action:@selector(saveProfile)];
+    saveProfileButton.tintColor = [Utility themeColor];
     self.navigationItem.rightBarButtonItem = saveProfileButton;
 }
 
@@ -35,7 +38,7 @@
     [request setHTTPMethod:@"POST"];
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    NSString *token = [userDefaults stringForKey:@"user_token"];
+    NSString *token = [userDefaults secretStringForKey:@"user_token"];
     
     [request addValue:[NSString stringWithFormat:@"Token %@", token] forHTTPHeaderField:@"Authorization"];
     NSDictionary *tmp = [[NSDictionary alloc] initWithObjectsAndKeys:

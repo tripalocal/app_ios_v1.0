@@ -24,6 +24,7 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+    
     if (![[NSUserDefaults standardUserDefaults] boolForKey:@"HasLaunchedOnce"])
     {
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"HasLaunchedOnce"];
@@ -36,7 +37,7 @@
         PageContentViewController *startingViewController = [self viewControllerAtIndex:0];
         NSArray *viewControllers = @[startingViewController];
         
-        [self.pageViewController setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
+        [self.pageViewController setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:nil];
         
         self.pageViewController.view.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height + 37);
         
@@ -45,8 +46,8 @@
         [self.pageViewController didMoveToParentViewController:self];
         
         [self.pageControl setNumberOfPages:[self.pageImages count]];
+        [self.pageControl setCurrentPageIndicatorTintColor:[UIColor whiteColor]];
         [self.view bringSubviewToFront:self.pageControl];
-//        [self.view bringSubviewToFront:self.btnSkip];
     } else {
         [self.pageViewController.view removeFromSuperview];
         [self.pageViewController removeFromParentViewController];

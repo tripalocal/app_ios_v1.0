@@ -9,5 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface HomeViewController : UITabBarController
-
+@property (nonatomic, strong) UIViewController *menuVC;
+- (void)openPartialMenu;
+- (void)closePartialMenu;
+- (void)presentSmsVerifiIfNotLoggedIn;
 @end

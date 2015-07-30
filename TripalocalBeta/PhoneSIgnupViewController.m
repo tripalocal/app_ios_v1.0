@@ -7,8 +7,10 @@
 //
 
 #import "URLConfig.h"
+#import "Utility.h"
 #import "PhoneSIgnupViewController.h"
 #import "SmsVerificationViewController.h"
+#import <SecureNSUserDefaults/NSUserDefaults+SecureAdditions.h>
 
 NSInteger const NAME_MAX_LENGTH = 10;
 NSInteger const PWD_MAX_LENGTH = 15;
@@ -25,7 +27,6 @@ NSInteger const EMAIL_MAX_LENGTH = 20;
 
 @implementation PhoneSIgnupViewController {
     UIColor *INACTIVE_COLOR;
-    UIColor *THEME_COLOR;
 }
 
 - (void)viewDidLoad {
@@ -35,7 +36,6 @@ NSInteger const EMAIL_MAX_LENGTH = 20;
                                      green:204.0f/255.0f
                                       blue:204.0f/255.0f
                                      alpha:1.0f];
-    THEME_COLOR = [UIColor colorWithRed:0.20f green:0.80f blue:0.80f alpha:1.0f];
     
     [self.signupButton setEnabled:NO];
     [self.signupButton setBackgroundColor:INACTIVE_COLOR];
@@ -114,7 +114,7 @@ NSInteger const EMAIL_MAX_LENGTH = 20;
                 [self fetchProfileAndCache: token];
                 
                 NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-                [userDefaults setObject:token forKey:@"user_token"];
+                [userDefaults setSecretObject:token forKey:@"user_token"];
                 [[NSUserDefaults standardUserDefaults] synchronize];
                 
                 [self.presentingViewController.presentingViewController dismissViewControllerAnimated:YES completion:nil];
@@ -143,7 +143,7 @@ NSInteger const EMAIL_MAX_LENGTH = 20;
         }
         
         [self.signupButton setEnabled:YES];
-        [self.signupButton setBackgroundColor:THEME_COLOR];
+        [self.signupButton setBackgroundColor:[Utility themeColor]];
     }
     
 }
@@ -155,7 +155,7 @@ NSInteger const EMAIL_MAX_LENGTH = 20;
 - (IBAction)inputFieldChanged:(id)sender {
     if (self.emailField.text && self.passwordField.text && self.firstnameField.text && self.lastnameField.text && self.passwordAgainField.text && self.emailField.text.length > 0 && self.passwordField.text.length > 0 && self.firstnameField.text.length > 0 && self.lastnameField.text.length > 0 && self.passwordAgainField.text.length > 0) {
         [self.signupButton setEnabled:YES];
-        [self.signupButton setBackgroundColor:THEME_COLOR];
+        [self.signupButton setBackgroundColor:[Utility themeColor]];
     } else {
         [self.signupButton setEnabled:NO];
         [self.signupButton setBackgroundColor:INACTIVE_COLOR];

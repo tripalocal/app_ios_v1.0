@@ -7,7 +7,9 @@
 //
 
 #import "MenuViewController.h"
+#import <SecureNSUserDefaults/NSUserDefaults+SecureAdditions.h>
 #import "URLConfig.h"
+#import "Utility.h"
 #import "Constant.h"
 
 @interface MenuViewController ()
@@ -23,8 +25,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self.logoutButton.layer setMasksToBounds:YES];
-    [self.logoutButton.layer setCornerRadius:5.0f];
+    [self.requestTripButton.layer setMasksToBounds:YES];
+    [self.requestTripButton.layer setCornerRadius:5.0f];
+    [self.bannerImage setClipsToBounds:YES];
+    self.bannerImage.image = [UIImage imageNamed:NSLocalizedString(@"profile_banner", nil)];
     
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     UIImage* image = [UIImage imageWithData:[userDefaults objectForKey:@"user_image"]];
@@ -43,9 +47,15 @@
         self.image.image = [UIImage imageNamed: @"default_profile_image.png"];
     }
     
-    self.backgroundView.layer.cornerRadius = 5;
-    self.backgroundView.layer.borderColor = [UIColor grayColor].CGColor;
-    self.backgroundView.layer.borderWidth = 1;
+    CALayer *bottomBorder = [CALayer layer];
+    CALayer *topBorder = [CALayer layer];
+    bottomBorder.frame = CGRectMake(0, 0, self.backgroundView.frame.size.width, 1.0f);
+    topBorder.frame = CGRectMake(0, self.backgroundView.frame.size.height, self.backgroundView.frame.size.width, 1.0f);
+    
+    bottomBorder.backgroundColor = [UIColor grayColor].CGColor;
+    topBorder.backgroundColor = [UIColor grayColor].CGColor;
+    [self.backgroundView.layer addSublayer:bottomBorder];
+    [self.backgroundView.layer addSublayer:topBorder];
     
     self.image.layer.cornerRadius = self.image.frame.size.height / 2;
     self.image.layer.masksToBounds = YES;
@@ -63,6 +73,16 @@
     [self.wishLIstImage addGestureRecognizer:wishListSingleTap];
 }
 
+- (IBAction)emailUs:(id)sender {
+    NSURL *emailURL = [NSURL URLWithString:[NSString  stringWithFormat:@"mailto:%@", enqueryEmail]];
+    
+    if ([[UIApplication sharedApplication] canOpenURL:emailURL]) {
+        [[UIApplication sharedApplication] openURL:emailURL];
+    } else {
+        UIAlertView * alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"alert", nil) message:NSLocalizedString(@"alert_email", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"ok_button", nil) otherButtonTitles:nil];
+        [alert show];
+    }
+}
 
 -(void)wishListTapped{
     [self performSegueWithIdentifier:@"show_wishlist" sender:self];
@@ -79,7 +99,7 @@
     [request setHTTPMethod:@"POST"];
     
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    NSString *token = [userDefaults stringForKey:@"user_token"];
+    NSString *token = [userDefaults secretStringForKey:@"user_token"];
     
     [request addValue:[NSString stringWithFormat:@"Token %@", token] forHTTPHeaderField:@"Authorization"];
     
@@ -96,7 +116,8 @@
             NSString *appDomain = [[NSBundle mainBundle] bundleIdentifier];
             [[NSUserDefaults standardUserDefaults] removePersistentDomainForName:appDomain];
             
-            [self swapUnloggedinController];
+            [self.parentVC closePartialMenu];
+            [self.parentVC presentSmsVerifiIfNotLoggedIn];
         }
         
 #if DEBUG
@@ -113,23 +134,6 @@
         [alert show];
     }
     
-}
-
-- (void)swapUnloggedinController {
-    UIViewController *unloggedinViewController = (UIViewController *)[self.storyboard instantiateViewControllerWithIdentifier:@"unloggedin_controller"];
-    
-    NSMutableArray *listOfViewControllers = [NSMutableArray arrayWithArray:self.tabBarController.viewControllers];
-    [listOfViewControllers removeLastObject];
-    [listOfViewControllers addObject:unloggedinViewController];
-    
-    UITabBarItem *myprofileBarItem = [[UITabBarItem alloc] init];
-    myprofileBarItem.imageInsets = UIEdgeInsetsMake(6, 0, -6, 0);
-    myprofileBarItem.selectedImage = [[UIImage imageNamed:@"myprofile_s.png"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal ];
-    myprofileBarItem.image = [[UIImage imageNamed:@"myprofile.png"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal ];
-    myprofileBarItem.title = nil;
-    unloggedinViewController.tabBarItem = myprofileBarItem;
-    
-    [self.tabBarController setViewControllers:listOfViewControllers];
 }
 
 - (void)didReceiveMemoryWarning {

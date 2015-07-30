@@ -19,6 +19,8 @@
 #import "ReviewTableViewController.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "URLConfig.h"
+#import "Utility.h"
+#import <SecureNSUserDefaults/NSUserDefaults+SecureAdditions.h>
 
 @interface TLDetailViewController ()
 {
@@ -46,7 +48,6 @@
     NSString *foodString;
     NSString *ticketString;
     NSString *transportString;
-    NSArray *availableDateArray;
     NSArray *reviews;
     NSDictionary *expData;
     UIImage *nextPageCoverImage;
@@ -58,7 +59,7 @@
 
 - (IBAction)checkout:(id)sender {
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    NSString *token = [userDefaults stringForKey:@"user_token"];
+    NSString *token = [userDefaults secretStringForKey:@"user_token"];
     
     if (!token) {
         [self performSegueWithIdentifier:@"loginSegue" sender:nil];
@@ -91,18 +92,11 @@
 
 - (void)fetchData
 {
-    NSString *post = [NSString stringWithFormat:@"{\"experience_id\":\"%@\"}",_experience_id_string];
-#if DEBUG
-    NSLog(@"(Detail)POST: %@", post);
-#endif
-    NSData *postData = [post dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:YES];
+    NSString *queryString = [NSString stringWithFormat:@"%@?experience_id=%@",[URLConfig expDetailServiceURLString],_experience_id_string];
     
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-    [request setURL:[NSURL URLWithString:[URLConfig expDetailhServiceURLString]]];
-    
-    [request setHTTPMethod:@"POST"];
-    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    [request setHTTPBody:postData];
+    [request setURL:[NSURL URLWithString:queryString]];
+    [request setHTTPMethod:@"GET"];
     
     NSError *connectionError = nil;
     NSURLResponse *response = nil;
@@ -149,7 +143,7 @@
                 ticketString = expData[@"included_ticket_detail"];
                 foodString = expData[@"included_food_detail"];
                 transportString = expData[@"included_transport_detail"];
-                availableDateArray = expData[@"available_options"];
+//                availableDateArray = expData[@"available_options"];
                 dynamicPriceArray = expData[@"experience_dynamic_price"];
                 maxGuestNum = expData[@"experience_guest_number_max"];
                 minGuestNum = expData[@"experience_guest_number_min"];
@@ -204,7 +198,7 @@
                 } else if ([maxGuestNum intValue] < 4) {
                     priceNumber = [dynamicPriceArray lastObject];
                 }
-    self.expPrice = [self decimalwithFormat:@"0" floatV:[priceNumber floatValue]];
+    self.expPrice = [Utility decimalwithFormat:@"0" floatV:[priceNumber floatValue]];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -217,27 +211,8 @@
     [HUD dismissAfterDelay:1];
 }
 
-// todo: move to utility file
-- (NSString *) decimalwithFormat:(NSString *)format floatV:(float)floatV
-{
-    NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];
-    
-    [numberFormatter setPositiveFormat:format];
-    
-    return [numberFormatter stringFromNumber:@(floatV)];
-}
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-}
-
-- (UIImage *)croppIngimageByImageName:(UIImage *)imageToCrop toRect:(CGRect)rect
-{
-    CGImageRef imageRef = CGImageCreateWithImageInRect([imageToCrop CGImage], rect);
-    UIImage *cropped = [UIImage imageWithCGImage:imageRef];
-    CGImageRelease(imageRef);
-    
-    return cropped;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -267,7 +242,7 @@
             
             [cell.hostImage sd_setImageWithURL:[NSURL URLWithString:hostImageURL]
                               placeholderImage:[UIImage imageNamed:@"default_profile_image.png"]
-                                       options:SDWebImageAvoidAutoSetImage];
+                                       options:SDWebImageRefreshCached];
             
             NSString *coverImageURL = [NSString stringWithFormat:@"%@thumbnails/experiences/experience%@_1.jpg", [URLConfig imageServiceURLString], _experience_id_string];
             
@@ -280,12 +255,11 @@
 
             [cell.coverImage sd_setImageWithURL:[NSURL URLWithString:coverImageURL]
                               placeholderImage:nil
-                                        options:SDWebImageAvoidAutoSetImage
+                                        options:SDWebImageRefreshCached
                                       completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
                                           [activityIndicator removeFromSuperview];
                                           if (image) {
                                               nextPageCoverImage = image;
-                                              cell.coverImage.image = [self croppIngimageByImageName:image toRect:cell.coverImage.frame];
                                           }
                                       }];
             
@@ -310,12 +284,12 @@
             cell1.selectionStyle = UITableViewCellSelectionStyleNone;
             cell1.expDescriptionLabel.text = [description stringByAppendingFormat:@" %@ %@", activity, interaction];
             if (self.isExpReadMoreOpen) {
-                [cell1.readMoreButton setTitle:@"Read Less" forState:UIControlStateNormal];
+                [cell1.readMoreButton setTitle:NSLocalizedString(@"read_less", nil) forState:UIControlStateNormal];
                 cell1.expDescriptionLabel.lineBreakMode = NSLineBreakByWordWrapping;
                 cell1.expDescriptionLabel.numberOfLines = 0;
                 [cell1.expDescriptionLabel sizeToFit];
             } else {
-                [cell1.readMoreButton setTitle:@"Read More" forState:UIControlStateNormal];
+                [cell1.readMoreButton setTitle:NSLocalizedString(@"read_more", nil) forState:UIControlStateNormal];
                 cell1.expDescriptionLabel.lineBreakMode = NSLineBreakByTruncatingTail;
                 cell1.expDescriptionLabel.numberOfLines = 5;
             }
@@ -329,12 +303,12 @@
             cell2.parentView = self.myTable;
             cell2.selectionStyle = UITableViewCellSelectionStyleNone;
             if (self.isHostReadMoreOpen) {
-                [cell2.readMoreButton setTitle:@"Read Less" forState:UIControlStateNormal];
+                [cell2.readMoreButton setTitle:NSLocalizedString(@"read_less", nil) forState:UIControlStateNormal];
                 cell2.hostBioLabel.lineBreakMode = NSLineBreakByWordWrapping;
                 cell2.hostBioLabel.numberOfLines = 0;
                 [cell2.hostBioLabel sizeToFit];
             } else {
-                [cell2.readMoreButton setTitle:@"Read More" forState:UIControlStateNormal];
+                [cell2.readMoreButton setTitle:NSLocalizedString(@"read_more", nil) forState:UIControlStateNormal];
                 cell2.hostBioLabel.lineBreakMode = NSLineBreakByTruncatingTail;
                 cell2.hostBioLabel.numberOfLines = 5;
             }
@@ -383,12 +357,9 @@
             
             [cell4.coverImage sd_setImageWithURL:[NSURL URLWithString:coverImageURL]
                                placeholderImage:nil
-                                        options:SDWebImageAvoidAutoSetImage
+                                        options:SDWebImageRefreshCached
                                       completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
                                           [activityIndicator removeFromSuperview];
-                                          if (image) {
-                                              cell4.coverImage.image = [self croppIngimageByImageName:image toRect:cell4.coverImage.frame];
-                                          }
                                       }];
             
             [cell4.coverImage addSubview:activityIndicator];
@@ -453,7 +424,7 @@
         vc.exp_ID_string = _experience_id_string;
         vc.expImage = nextPageCoverImage;
 
-        vc.availbleDateArray = availableDateArray;
+//        vc.availbleDateArray = availableDateArray;
         vc.expTitleString = title;
         vc.fixPriceString = _expPrice;
         vc.dynamicPriceArray = dynamicPriceArray;
@@ -463,7 +434,6 @@
         vc.minGuestNum = minGuestNum;
         NSString *lastNameInitial = [[hostLastName substringWithRange:NSMakeRange(0, 1)] stringByAppendingString:@"."];
         vc.hostName = [@[hostFirstName, lastNameInitial] componentsJoinedByString:@" "];
-
 
     } else if ([segue.identifier isEqualToString:@"view_all_reviews"]) {
         ReviewTableViewController *vc = [segue destinationViewController];

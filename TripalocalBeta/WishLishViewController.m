@@ -9,16 +9,71 @@
 #import "WishLishViewController.h"
 #import "TLSearchViewController.h"
 #import "URLConfig.h"
+#import "Utility.h"
+#import <SecureNSUserDefaults/NSUserDefaults+SecureAdditions.h>
 
 @interface WishLishViewController ()
 
 @end
 
-@implementation WishLishViewController
+@implementation WishLishViewController {
+    UIRefreshControl *refreshControl;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    UIBarButtonItem *cancalButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"cancel", nil) style:UIBarButtonItemStylePlain target:self action:@selector(dismissWishList:)];
+    cancalButton.tintColor = [Utility themeColor];
+    self.navigationItem.leftBarButtonItem = cancalButton;
+    
     self.navigationItem.title = NSLocalizedString(@"wishlist_title", nil);
+    if (!self.expList)
+    {
+        self.expList = [self fetchExpData:self.cityName];
+    }
+    
+    refreshControl = [[UIRefreshControl alloc] init];
+    refreshControl.backgroundColor = [Utility themeColor];
+    refreshControl.tintColor = [UIColor whiteColor];
+    [refreshControl addTarget:self
+                            action:@selector(reloadData)
+                  forControlEvents:UIControlEventValueChanged];
+    [self.tableView addSubview:refreshControl];
+}
+
+- (void)reloadData
+{
+    if (!refreshControl)
+    {
+        return;
+    }
+    
+    if ([self.expList count] != 0) {
+        NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+        NSSet *wishList = [NSSet setWithArray:(NSArray *)[userDefaults objectForKey:@"wish_list"]];
+        NSMutableSet *origWishList = [[NSMutableSet alloc] init];
+        
+        for (int i = 0; i < [self.expList count]; i++)
+        {
+            NSNumber *expId = self.expList[i][@"id"];
+            [origWishList addObject:[expId stringValue]];
+        }
+        if (![wishList isEqualToSet:origWishList])
+        {
+            self.expList = [self fetchExpData:self.cityName];
+        }
+        
+        [self.tableView reloadData];
+    }
+    
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"MMM d, h:mm a"];
+    NSString *title = [NSString stringWithFormat:@"Last update: %@", [formatter stringFromDate:[NSDate date]]];
+    NSDictionary *attrsDictionary = [NSDictionary dictionaryWithObject:[UIColor whiteColor]
+                                                                forKey:NSForegroundColorAttributeName];
+    NSAttributedString *attributedTitle = [[NSAttributedString alloc] initWithString:title attributes:attrsDictionary];
+    refreshControl.attributedTitle = attributedTitle;
+    [refreshControl endRefreshing];
 }
 
 - (NSMutableArray *)fetchExpData:(NSString *) cityName {
@@ -26,19 +81,12 @@
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     NSMutableArray *wishList = [userDefaults objectForKey:@"wish_list"];
     for (NSString *expID in wishList) {
-        NSString *post = [NSString stringWithFormat:@"{\"experience_id\":\"%@\"}",expID];
-#ifdef DEBUG
-        NSLog(@"(Detail)POST: %@", post);
-#endif
-        NSData *postData = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
-        NSString *postLength = [NSString stringWithFormat:@"%lu", (unsigned long)[postData length]];
-        NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-        [request setURL:[NSURL URLWithString:[URLConfig expDetailhServiceURLString]]];
-        [request setHTTPMethod:@"POST"];
-        [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-        [request setValue:postLength forHTTPHeaderField:@"Content-Length"];
-        [request setHTTPBody:postData];
+        NSString *queryString = [NSString stringWithFormat:@"%@?experience_id=%@",[URLConfig expDetailServiceURLString],expID];
         
+        NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+        [request setURL:[NSURL URLWithString:queryString]];
+        [request setHTTPMethod:@"GET"];
+
         NSError *connectionError = nil;
         NSURLResponse *response = nil;
         
@@ -70,7 +118,7 @@
                     priceNumber = [dynamicPriceArray lastObject];
                 }
 
-                [resultExp setObject:[self decimalwithFormat:@"0" floatV:[priceNumber floatValue]] forKey:@"price"];
+                [resultExp setObject:[Utility decimalwithFormat:@"0" floatV:[priceNumber floatValue]] forKey:@"price"];
 
                 [resultExp setObject:[exp objectForKey:@"host_image"]forKey:@"host_image"];
                 [resultExp setObject:[NSNumber numberWithInt:[expID intValue]]forKey:@"id"];
@@ -113,21 +161,9 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    NSString *token = [userDefaults stringForKey:@"user_token"];
+    NSString *token = [userDefaults secretStringForKey:@"user_token"];
     if (token) {
         [self.view sendSubviewToBack:self.needToLoginView];
-        NSSet *wishList = [NSSet setWithArray:(NSArray *)[userDefaults objectForKey:@"wish_list"]];
-        NSMutableSet *origWishList = [[NSMutableSet alloc] init];
-        for (int i = 0; i < [self.expList count]; i++)
-        {
-            NSNumber *expId = self.expList[i][@"id"];
-            [origWishList addObject:[expId stringValue]];
-        }
-        if (![wishList isEqualToSet:origWishList])
-        {
-            self.expList = [self fetchExpData:self.cityName];
-        }
-
         [self.tableView reloadData];
     } else {
         self.needToLoginView.delegate = self;
@@ -144,6 +180,10 @@
     }
     
     [super viewWillAppear:animated];
+}
+
+- (IBAction)dismissWishList:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)didReceiveMemoryWarning {

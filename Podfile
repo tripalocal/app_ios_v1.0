@@ -9,6 +9,7 @@ target 'TripalocalBeta' do
     pod 'UIActivityIndicator-for-SDWebImage'
     pod 'JGProgressHUD'
     pod 'AKPickerView'
+    pod 'SecureNSUserDefaults', '~> 1.0.0'
 end
 
 target 'TripalocalBetaTests' do

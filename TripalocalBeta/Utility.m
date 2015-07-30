@@ -12,12 +12,33 @@
 
 + (UIImage *)croppIngimageByImageName:(UIImage *)imageToCrop toRect:(CGRect)rect
 {
-    CGRect newRect = CGRectMake(rect.origin.x + 45, rect.origin.y + 50, rect.size.width - 65, rect.size.height * 2 -50);
+    CGRect newRect = rect;
     CGImageRef imageRef = CGImageCreateWithImageInRect([imageToCrop CGImage], newRect);
     UIImage *cropped = [UIImage imageWithCGImage:imageRef];
     CGImageRelease(imageRef);
     
     return cropped;
+}
+
+
++ (NSString *) decimalwithFormat:(NSString *)format floatV:(float)floatV
+{
+    NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];
+    [numberFormatter setPositiveFormat:format];
+    return [numberFormatter stringFromNumber:@(floatV)];
+}
+
++ (NSNumber *) numberWithFormat:(NSString *)format floatV:(float)floatV
+{
+    NSNumberFormatter *f = [[NSNumberFormatter alloc] init];
+    f.numberStyle = NSNumberFormatterDecimalStyle;
+    NSString * decimalString = [self decimalwithFormat:format floatV:floatV];
+    return [f numberFromString:decimalString];
+}
+
++ (UIColor *) themeColor
+{
+    return [UIColor colorWithRed:0.20f green:0.80f blue:0.80f alpha:1.0f];
 }
 
 @end

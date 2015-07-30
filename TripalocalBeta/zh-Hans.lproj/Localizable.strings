@@ -5,7 +5,30 @@
   Created by Ye He on 13/07/2015.
   Copyright (c) 2015 Tripalocal. All rights reserved.
 */
+"read_more" = "展开";
+"read_less" = "折叠";
+
+"contact_details" = "请发送邮件至enquiries@tripalocal.com ，附上您喜欢的体验，日期以及时间，我们会在48小时内回复您，为您定制符合您要求的体验。";
+
+"alert_email" = "邮件程序无法打开";
+
+"alert_wechat" = "微信无法打开";
+
+"profile_banner" = "profile_customitinerary_cn";
+
+"custom_itinerary" = "customItinerary_cn";
+
+"wechat_banner" = "wechat_cn";
+
+"contact_details_email_start" = "6";
+
 "loading" = "加载中";
+
+"edit" = "编辑";
+
+"save" = "保存";
+
+"profile_title" = "个人资料";
 
 "search_hint" = "想去哪儿?";
 
@@ -31,7 +54,7 @@
 
 "Forgot password?" = "忘记密码?";
 
-"Add to wishlist" = "保存至兴趣列表";
+"add_to_wishlist" = "保存至兴趣列表";
 
 "Saved" = "已保存至兴趣列表";
 
@@ -50,6 +73,8 @@
 "select_date" = "选择日期";
 
 "reservationSuffix" = "预定";
+
+"cancel" = "关闭";
 
 "server_error" = "服务器出错";
 
