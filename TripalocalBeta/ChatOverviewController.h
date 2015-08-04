@@ -7,10 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "TLSearchViewController.h"
-#import "NeedToLoginView.h"
+#import "ChatOverviewTableViewCell.h"
 
 @interface ChatOverviewController : UIViewController
-
 @property (strong, nonatomic) IBOutlet UILabel *noDataLabel;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (nonatomic, retain) IBOutlet NSMutableArray *nameList;
+@property (nonatomic, retain) IBOutlet NSMutableArray *messageList;
+@property (nonatomic, retain) IBOutlet NSMutableArray *timeList;
 @end

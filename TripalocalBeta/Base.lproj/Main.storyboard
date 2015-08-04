@@ -1281,7 +1281,7 @@
         <!--Chat Detail View Controller-->
         <scene sceneID="smf-AL-an9">
             <objects>
-                <viewController id="1Bf-3Z-jUX" userLabel="Chat Detail View Controller" sceneMemberID="viewController">
+                <viewController id="1Bf-3Z-jUX" userLabel="Chat Detail View Controller" customClass="ChatDetailViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Hxm-CB-pHP"/>
                         <viewControllerLayoutGuide type="bottom" id="C78-dY-cF8"/>
@@ -1581,7 +1581,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cVi-UG-mt1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1415" y="1323"/>
+            <point key="canvasLocation" x="-1351" y="1195"/>
         </scene>
         <!--Unlogin View Controller-->
         <scene sceneID="E0L-Im-XHT">

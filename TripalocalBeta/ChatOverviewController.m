@@ -7,7 +7,7 @@
 //
 
 #import "ChatOverviewController.h"
-#import "TLSearchViewController.h"
+#import "ChatOverviewTableViewCell.h"
 #import "URLConfig.h"
 #import "Utility.h"
 #import <SecureNSUserDefaults/NSUserDefaults+SecureAdditions.h>
@@ -17,7 +17,7 @@
 @end
 
 @implementation ChatOverviewController {
-	UIRefreshControl *refreshControl;
+	
 }
 
 - (void)viewDidLoad {
@@ -25,6 +25,9 @@
     UIBarButtonItem *closeButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Close", nil) style:UIBarButtonItemStylePlain target:self action:@selector(dismissChatOverview:)];
     closeButton.tintColor = [Utility themeColor];
     self.navigationItem.leftBarButtonItem = closeButton;
+    
+    //loading the message data in here
+    //	:load three arraies
 }
 
 - (IBAction)dismissChatOverview:(id)sender {
@@ -35,14 +38,12 @@
     
     static NSString *cellIdentifier = @"ChatOverviewCell";
     
-    TLSearchTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"SearchCell"];
+    ChatOverviewTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ChatOverviewCell"];
     if(!cell) {
-        [tableView registerNib:[UINib nibWithNibName:@"SearchViewCell" bundle:nil] forCellReuseIdentifier:cellIdentifier];
+        [tableView registerNib:[UINib nibWithNibName:@"ChatOverviewViewCell" bundle:nil] forCellReuseIdentifier:cellIdentifier];
         cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     }
-    
-    
-    
+
     return cell;
 }
 

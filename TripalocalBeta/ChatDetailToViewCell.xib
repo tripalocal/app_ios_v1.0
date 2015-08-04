@@ -13,10 +13,28 @@
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Lcg-8n-S0a" id="PoG-pN-NtG">
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="LG8-Uv-28e">
+                        <rect key="frame" x="262" y="64" width="45" height="45"/>
+                        <animations/>
+                        <constraints>
+                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="45" id="7Z2-B3-ycF"/>
+                            <constraint firstAttribute="height" constant="45" id="GHs-s5-rh7"/>
+                            <constraint firstAttribute="width" constant="45" id="aaY-OK-3sv"/>
+                            <constraint firstAttribute="height" constant="45" id="boP-Mo-u7d"/>
+                            <constraint firstAttribute="width" constant="45" id="dZT-NC-WZB"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="7Z2-B3-ycF"/>
+                                <exclude reference="boP-Mo-u7d"/>
+                                <exclude reference="dZT-NC-WZB"/>
+                            </mask>
+                        </variation>
+                    </imageView>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0cq-pT-lFM">
                         <rect key="frame" x="21" y="23" width="250" height="86"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Messages" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y1B-jV-60i">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Messages" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y1B-jV-60i">
                                 <rect key="frame" x="20" y="10" width="78" height="20.5"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -41,24 +59,6 @@
                             <constraint firstAttribute="bottom" secondItem="XQK-Bd-sg1" secondAttribute="bottom" constant="10" id="z84-x3-gNe"/>
                         </constraints>
                     </view>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="LG8-Uv-28e">
-                        <rect key="frame" x="262" y="64.5" width="45" height="45"/>
-                        <animations/>
-                        <constraints>
-                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="45" id="7Z2-B3-ycF"/>
-                            <constraint firstAttribute="height" constant="45" id="GHs-s5-rh7"/>
-                            <constraint firstAttribute="width" constant="45" id="aaY-OK-3sv"/>
-                            <constraint firstAttribute="height" constant="45" id="boP-Mo-u7d"/>
-                            <constraint firstAttribute="width" constant="45" id="dZT-NC-WZB"/>
-                        </constraints>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="7Z2-B3-ycF"/>
-                                <exclude reference="boP-Mo-u7d"/>
-                                <exclude reference="dZT-NC-WZB"/>
-                            </mask>
-                        </variation>
-                    </imageView>
                 </subviews>
                 <animations/>
                 <constraints>

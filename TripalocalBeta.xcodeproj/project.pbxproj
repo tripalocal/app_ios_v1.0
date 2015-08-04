@@ -86,6 +86,7 @@
 		BCDF1E4A1B708E3F004A79A3 /* ChatOverviewTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BCDF1E491B708E3F004A79A3 /* ChatOverviewTableViewCell.m */; };
 		BCDF1E4D1B709267004A79A3 /* ChatDetailFromTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BCDF1E4C1B709267004A79A3 /* ChatDetailFromTableViewCell.m */; };
 		BCDF1E501B7092F0004A79A3 /* ChatDetailToTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BCDF1E4F1B7092F0004A79A3 /* ChatDetailToTableViewCell.m */; };
+		BCDF1E531B709D4A004A79A3 /* ChatDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BCDF1E521B709D4A004A79A3 /* ChatDetailViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -321,6 +322,8 @@
 		BCDF1E4C1B709267004A79A3 /* ChatDetailFromTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatDetailFromTableViewCell.m; sourceTree = "<group>"; };
 		BCDF1E4E1B7092F0004A79A3 /* ChatDetailToTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatDetailToTableViewCell.h; sourceTree = "<group>"; };
 		BCDF1E4F1B7092F0004A79A3 /* ChatDetailToTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatDetailToTableViewCell.m; sourceTree = "<group>"; };
+		BCDF1E511B709D4A004A79A3 /* ChatDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatDetailViewController.h; sourceTree = "<group>"; };
+		BCDF1E521B709D4A004A79A3 /* ChatDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatDetailViewController.m; sourceTree = "<group>"; };
 		CB095F374C2B9151DA4B6FA4 /* Pods-TripalocalBeta.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TripalocalBeta.release.xcconfig"; path = "Pods/Target Support Files/Pods-TripalocalBeta/Pods-TripalocalBeta.release.xcconfig"; sourceTree = "<group>"; };
 		D1136758DFF7CE52CD971824 /* libPods-TripalocalBeta.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TripalocalBeta.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -650,6 +653,8 @@
 				8E92CF791B3E2B3700D4BB4B /* TLDetailViewController.m */,
 				BCDF1E3D1B704E40004A79A3 /* ChatOverviewController.h */,
 				BCDF1E401B7051D6004A79A3 /* ChatOverviewController.m */,
+				BCDF1E511B709D4A004A79A3 /* ChatDetailViewController.h */,
+				BCDF1E521B709D4A004A79A3 /* ChatDetailViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -827,6 +832,7 @@
 				8E26A66F1B080BFF00A5A5CF /* TLSearchTableViewCell.m in Sources */,
 				8729E1361B4A1D7F004C3065 /* UpcommingTripsViewController.m in Sources */,
 				87FC2D201B476A3B0017F30E /* CheckoutViewController.m in Sources */,
+				BCDF1E531B709D4A004A79A3 /* ChatDetailViewController.m in Sources */,
 				87FFF3D71B4D549C00326104 /* PaymentSuccessViewController.m in Sources */,
 				87F356521B43AAD300949F43 /* ProfileViewController.m in Sources */,
 				87EF8C751B5CCD1E00292225 /* Location.m in Sources */,
