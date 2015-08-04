@@ -16,6 +16,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *image;
 @property (weak, nonatomic) IBOutlet UILabel *hostName;
 @property (strong, nonatomic) IBOutlet UIView *wishLIstImage;
+@property (strong, nonatomic) IBOutlet UIView *messageImage;
 @property (strong, nonatomic) IBOutlet UIView *backgroundView;
 
 @end
@@ -61,16 +62,16 @@
     self.image.layer.masksToBounds = YES;
     self.image.layer.borderColor = [UIColor whiteColor].CGColor;
     self.image.layer.borderWidth = 3.0f;
-    
+// 	host img tap
     UITapGestureRecognizer *hostImageSingleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapHostImage)];
     hostImageSingleTap.numberOfTapsRequired = 1;
     [self.image setUserInteractionEnabled:YES];
     [self.image addGestureRecognizer:hostImageSingleTap];
-    
-    UITapGestureRecognizer *wishListSingleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(wishListTapped)];
-    wishListSingleTap.numberOfTapsRequired = 1;
-    [self.wishLIstImage setUserInteractionEnabled:YES];
-    [self.wishLIstImage addGestureRecognizer:wishListSingleTap];
+//    wishlist tap
+//    UITapGestureRecognizer *wishListSingleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(wishListTapped)];
+//    wishListSingleTap.numberOfTapsRequired = 1;
+//    [self.wishLIstImage setUserInteractionEnabled:YES];
+//    [self.wishLIstImage addGestureRecognizer:wishListSingleTap];
 }
 
 - (IBAction)emailUs:(id)sender {
