@@ -12,6 +12,7 @@
 @interface ChatOverviewController : UIViewController
 @property (strong, nonatomic) IBOutlet UILabel *noDataLabel;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (nonatomic, retain) IBOutlet NSMutableArray *imgList;
 @property (nonatomic, retain) IBOutlet NSMutableArray *nameList;
 @property (nonatomic, retain) IBOutlet NSMutableArray *messageList;
 @property (nonatomic, retain) IBOutlet NSMutableArray *timeList;

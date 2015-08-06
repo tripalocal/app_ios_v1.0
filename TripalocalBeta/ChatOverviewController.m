@@ -38,12 +38,17 @@
     
     static NSString *cellIdentifier = @"ChatOverviewCell";
     
-    ChatOverviewTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ChatOverviewCell"];
+    ChatOverviewTableViewCell *cell = (ChatOverviewTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"ChatOverviewCell"];
     if(!cell) {
         [tableView registerNib:[UINib nibWithNibName:@"ChatOverviewViewCell" bundle:nil] forCellReuseIdentifier:cellIdentifier];
         cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     }
-
+    //load data
+    cell.userImage.image = [UIImage imageNamed: [imgList objectAtIndex: indexPath.row]];
+    cell.userName.text = [nameList objectAtIndex: indexPath.row];
+    cell.messageContent.text = [messageList objectAtIndex: indexPath.row];
+    cell.messageTime.text = [timeList objectAtIndex: indexPath.row];
+    
     return cell;
 }
 
