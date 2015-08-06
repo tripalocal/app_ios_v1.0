@@ -30,22 +30,7 @@
     [self.bannerImage setClipsToBounds:YES];
     self.bannerImage.image = [UIImage imageNamed:NSLocalizedString(@"profile_banner", nil)];
     
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    UIImage* image = [UIImage imageWithData:[userDefaults objectForKey:@"user_image"]];
-    NSString *origHostName = [userDefaults objectForKey:@"host_name"];
-    NSArray *array = [origHostName componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-    array = [array filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"SELF != ''"]];
-    NSString *firstName = [array objectAtIndex:1];
-    NSString *lastName = [array objectAtIndex:0];
-    NSString *lastNameInitial = [[lastName substringWithRange:NSMakeRange(0, 1)] stringByAppendingString:@"."];
-    
-    self.hostName.text = [[NSArray arrayWithObjects:firstName, lastNameInitial, nil] componentsJoinedByString:@" "];
-    
-    if (image) {
-        self.image.image = image;
-    } else {
-        self.image.image = [UIImage imageNamed: @"default_profile_image.png"];
-    }
+    [self setupUserProfile];
     
     CALayer *bottomBorder = [CALayer layer];
     CALayer *topBorder = [CALayer layer];
@@ -134,6 +119,31 @@
         [alert show];
     }
     
+}
+
+- (void)setupUserProfile {
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    NSString *token = [userDefaults secretStringForKey:@"user_token"];
+    if (!token)
+    {
+        return;
+    }
+    
+    UIImage* image = [UIImage imageWithData:[userDefaults objectForKey:@"user_image"]];
+    NSString *origHostName = [userDefaults objectForKey:@"host_name"];
+    NSArray *array = [origHostName componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    array = [array filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"SELF != ''"]];
+    NSString *firstName = [array objectAtIndex:1];
+    NSString *lastName = [array objectAtIndex:0];
+    NSString *lastNameInitial = [[lastName substringWithRange:NSMakeRange(0, 1)] stringByAppendingString:@"."];
+    
+    self.hostName.text = [[NSArray arrayWithObjects:firstName, lastNameInitial, nil] componentsJoinedByString:@" "];
+    
+    if (image) {
+        self.image.image = image;
+    } else {
+        self.image.image = [UIImage imageNamed: @"default_profile_image.png"];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
