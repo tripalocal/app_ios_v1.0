@@ -91,6 +91,8 @@
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     NSString *token = [userDefaults secretStringForKey:@"user_token"];
     if (token) {
+        self.loggedinVC = [self.storyboard instantiateViewControllerWithIdentifier:@"menu_controller"];
+        self.loggedinVC.parentVC = self;
         self.menuVC = self.loggedinVC;
     } else {
         self.menuVC = self.unloggedinVC;
