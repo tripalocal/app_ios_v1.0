@@ -67,6 +67,8 @@
     hostImageSingleTap.numberOfTapsRequired = 1;
     [self.image setUserInteractionEnabled:YES];
     [self.image addGestureRecognizer:hostImageSingleTap];
+    UITapGestureRecognizer *chatSingleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapChatOverview)];
+    chatSingleTap.numberOfTapsRequired = 1;
 //    wishlist tap
 //    UITapGestureRecognizer *wishListSingleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(wishListTapped)];
 //    wishListSingleTap.numberOfTapsRequired = 1;
@@ -94,6 +96,9 @@
     [self performSegueWithIdentifier:@"show_my_profile" sender:self];
 }
 
+-(void)tapChatOverview{
+    [self performSegueWithIdentifier:@"show_chat_overview" sender:self];
+}
 - (IBAction)logout:(id)sender {
     NSURL *url = [NSURL URLWithString:[URLConfig logoutServiceURLString]];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];

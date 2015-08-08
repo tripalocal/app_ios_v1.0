@@ -7,6 +7,9 @@
 //
 
 #import "ChatDetailViewController.h"
+#import "Utility.h"
+#import "ChatDetailFromTableViewCell.h"
+#import "ChatDetailToTableViewCell.h"
 
 @interface ChatDetailViewController ()
 
@@ -17,8 +20,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-}
+    UIBarButtonItem *closeButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Close", nil) style:UIBarButtonItemStylePlain target:self action:@selector(dismissChatDetail:)];
+    closeButton.tintColor = [Utility themeColor];
+    self.navigationItem.leftBarButtonItem = closeButton;
 
+}
+- (IBAction)dismissChatDetail:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
