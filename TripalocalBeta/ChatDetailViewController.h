@@ -9,9 +9,10 @@
 #import <UIKit/UIKit.h>
 
 @interface ChatDetailViewController : UIViewController
-@property (nonatomic, weak) IBOutlet NSMutableArray *messageListFrom;
-@property (nonatomic, weak) IBOutlet NSMutableArray *messageListTo;
-@property (nonatomic, weak) IBOutlet NSMutableArray *timeListFrom;
-@property (nonatomic, weak) IBOutlet NSMutableArray *timeListTo;
+@property (nonatomic, weak) NSMutableArray *messageListFrom;
+@property (nonatomic, weak) NSMutableArray *messageListTo;
+@property (nonatomic, weak) NSMutableArray *timeListFrom;
+@property (nonatomic, weak) NSMutableArray *timeListTo;
+@property (weak, nonatomic) IBOutlet UITextView *textField;
 
 @end
