@@ -13,6 +13,13 @@
 @property (nonatomic, weak) NSMutableArray *messageListTo;
 @property (nonatomic, weak) NSMutableArray *timeListFrom;
 @property (nonatomic, weak) NSMutableArray *timeListTo;
-@property (weak, nonatomic) IBOutlet UITextView *textField;
+@property (strong, nonatomic) IBOutlet UIScrollView *detailScrollView;
+@property (weak, nonatomic) IBOutlet UITextField *textField;
+@property (weak, nonatomic) IBOutlet UIButton *sendButton;
+@property (weak, nonatomic) IBOutlet UITableView *detailTableView;
+
+
+
+
 
 @end
