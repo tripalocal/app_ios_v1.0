@@ -13,6 +13,17 @@
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="WPX-8I-ksh" id="k48-sf-dkf">
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3YA-sf-tR6">
+                        <rect key="frame" x="240" y="25" width="60" height="20"/>
+                        <animations/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="60" id="1nW-Kr-JFJ"/>
+                            <constraint firstAttribute="height" constant="20" id="3ix-at-SNk"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="973-yK-IFD">
                         <rect key="frame" x="13" y="27" width="45" height="45"/>
                         <animations/>
@@ -21,34 +32,24 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Content" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KEq-Wd-uBI">
-                        <rect key="frame" x="83" y="50" width="62" height="20"/>
+                        <rect key="frame" x="83" y="50" width="61.5" height="20"/>
                         <animations/>
                         <constraints>
                             <constraint firstAttribute="height" constant="20" id="iGq-Og-Jhl"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3YA-sf-tR6">
-                        <rect key="frame" x="220" y="25" width="80" height="20"/>
-                        <animations/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="80" id="1nW-Kr-JFJ"/>
-                            <constraint firstAttribute="height" constant="20" id="3ix-at-SNk"/>
-                        </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xuw-I8-KZo">
-                        <rect key="frame" x="83" y="25" width="46" height="20"/>
+                        <rect key="frame" x="83" y="25" width="100" height="20"/>
                         <animations/>
                         <constraints>
                             <constraint firstAttribute="height" constant="20" id="8vX-2G-3pH"/>
+                            <constraint firstAttribute="width" constant="100" id="UaM-fz-cNu"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
@@ -69,7 +70,7 @@
             <animations/>
             <connections>
                 <outlet property="messageContent" destination="KEq-Wd-uBI" id="8kr-JG-mDd"/>
-                <outlet property="messageTime" destination="3YA-sf-tR6" id="S8p-MB-GS5"/>
+                <outlet property="messageTime" destination="3YA-sf-tR6" id="iPP-me-B7N"/>
                 <outlet property="userImage" destination="973-yK-IFD" id="61K-fj-bt2"/>
                 <outlet property="userName" destination="xuw-I8-KZo" id="OSh-W9-v5f"/>
             </connections>

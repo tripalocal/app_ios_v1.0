@@ -8,8 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ChatDetailFromTableViewCell : UITableViewCell
-@property (strong, nonatomic) IBOutlet UIImageView *otherUserImage;
-@property (strong, nonatomic) IBOutlet UILabel *messageContent;
-@property (strong, nonatomic) IBOutlet UILabel *messageTime;
+@interface ChatDetailFromTableViewCell : UITableViewCell{
+    UIImageView *otherUserImage;
+    UILabel *messageContent;
+    UILabel *messageTime;
+}
+@property (nonatomic, retain) IBOutlet UIImageView *otherUserImage;
+@property (nonatomic, retain) IBOutlet UILabel *messageContent;
+@property (nonatomic, retain) IBOutlet UILabel *messageTime;
 @end

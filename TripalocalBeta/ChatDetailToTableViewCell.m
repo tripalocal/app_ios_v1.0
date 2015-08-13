@@ -9,6 +9,7 @@
 #import "ChatDetailToTableViewCell.h"
 
 @implementation ChatDetailToTableViewCell
+@synthesize userImage, messageTime, messageContent;
 
 - (void)awakeFromNib {
     // Initialization code

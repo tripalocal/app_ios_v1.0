@@ -457,6 +457,8 @@
 		BCC276691B79B62200147E82 /* libxml2.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.2.dylib; path = usr/lib/libxml2.2.dylib; sourceTree = SDKROOT; };
 		BCC2766B1B79B62E00147E82 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		BCC2766D1B79B63D00147E82 /* libresolv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libresolv.dylib; path = usr/lib/libresolv.dylib; sourceTree = SDKROOT; };
+		BCDA9DEB1B7C4E0E00761C11 /* SMChatDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SMChatDelegate.h; sourceTree = "<group>"; };
+		BCDA9DEC1B7C4E2700761C11 /* SMMessageDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SMMessageDelegate.h; sourceTree = "<group>"; };
 		BCDF1E3D1B704E40004A79A3 /* ChatOverviewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChatOverviewController.h; sourceTree = "<group>"; };
 		BCDF1E401B7051D6004A79A3 /* ChatOverviewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatOverviewController.m; sourceTree = "<group>"; };
 		BCDF1E421B706FE9004A79A3 /* ChatOverviewViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChatOverviewViewCell.xib; sourceTree = "<group>"; };
@@ -725,6 +727,8 @@
 				8EB570E71B01CF2B0026D419 /* AppDelegate.m */,
 				8EB9824E1B2280D800ADE430 /* Spinner.h */,
 				8EB9824F1B2280D800ADE430 /* Spinner.m */,
+				BCDA9DEB1B7C4E0E00761C11 /* SMChatDelegate.h */,
+				BCDA9DEC1B7C4E2700761C11 /* SMMessageDelegate.h */,
 			);
 			name = Model;
 			sourceTree = "<group>";

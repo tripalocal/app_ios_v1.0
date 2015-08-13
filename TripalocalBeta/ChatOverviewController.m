@@ -11,6 +11,8 @@
 #import "URLConfig.h"
 #import "Utility.h"
 #import <SecureNSUserDefaults/NSUserDefaults+SecureAdditions.h>
+#import "XMPP.h"
+
 
 @interface ChatOverviewController()
 
@@ -23,39 +25,36 @@
 //    NSMutableArray *_timeList;
 }
 
+//- (AppDelegate *)appDelegate {
+//    return (AppDelegate *)[[UIApplication sharedApplication] delegate];
+//}
+
+//- (XMPPStream *)xmppStream {
+//    return [[self appDelegate] xmppStream];
+//}
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
     UIBarButtonItem *closeButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Close", nil) style:UIBarButtonItemStylePlain target:self action:@selector(dismissChatOverview:)];
     closeButton.tintColor = [Utility themeColor];
     self.navigationItem.leftBarButtonItem = closeButton;
-    
+    //initial the information arraies
+    imgList = [[NSMutableArray alloc] init];
+    nameList = [[NSMutableArray alloc] init];
+    messageList = [[NSMutableArray alloc] init];
+    timeList = [[NSMutableArray alloc] init];
     //loading the message data in here
     //	:load three arraies
-//    NSMutableArray *_imgList = [[NSMutableArray alloc] init];
-//    NSMutableArray *_nameList = [[NSMutableArray alloc] init];
-//    NSMutableArray *_messageList = [[NSMutableArray alloc] init];
-//    NSMutableArray *_timeList = [[NSMutableArray alloc] init];
-    [self.imgList addObject: @"flash.png"];
-    [self.imgList addObject: @"heart_lg.png"];
-    
-    [self.nameList addObject: @"Frank"];
-    [self.nameList addObject: @"Felix"];
-    
-    [self.messageList addObject: @"Welcome to Tripalocal."];
-    [self.messageList addObject: @"Welcome to Tripalocal."];
-   
-    [self.timeList addObject: @"3 mins"];
-    [self.timeList addObject: @"2 mins"];
+
 }
 
 - (IBAction)dismissChatOverview:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
--(NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-//    return [self.imgList count];
-    return 1;
-}
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return 80;
@@ -70,20 +69,30 @@
         cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     }
     //load data
-    
     cell.userImage.image = [UIImage imageNamed:@"flash.png"];
     cell.userName.text = @"FRANK";
     cell.messageContent.text = @"welcome to tripalocal.";
     cell.messageTime.text = @"3 mins";
-//    cell.userImage.image = [UIImage imageNamed: [self.imgList objectAtIndex: indexPath.row]];
-//    cell.userName.text = [self.nameList objectAtIndex: indexPath.row];
-//    cell.messageContent.text = [self.messageList objectAtIndex: indexPath.row];
-//    cell.messageTime.text = [self.timeList objectAtIndex: indexPath.row];
     
+//    cell.userImage.image = [imgList objectAtIndex:indexPath.row];
+//    cell.userName.text = [nameList objectAtIndex:indexPath.row];
+//    cell.messageContent.text = [messageList objectAtIndex:indexPath.row];
+//    cell.messageTime.text = [messageList objectAtIndex:indexPath.row];
     
     return cell;
 }
+
+-(NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    //    return [self.imgList count];
+    return 1;
+    //return [nameList count];
+}
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    return 1;
+}
+
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    //start a chat
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     [self performSegueWithIdentifier:@"showDetail" sender: self];
 }

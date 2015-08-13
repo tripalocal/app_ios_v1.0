@@ -1286,88 +1286,6 @@
             </objects>
             <point key="canvasLocation" x="28" y="4014"/>
         </scene>
-        <!--Chat backup View Controller-->
-        <scene sceneID="smf-AL-an9">
-            <objects>
-                <viewController id="1Bf-3Z-jUX" userLabel="Chat backup View Controller" customClass="ChatDetailViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="Hxm-CB-pHP"/>
-                        <viewControllerLayoutGuide type="bottom" id="C78-dY-cF8"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="fDg-b6-nTT">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kCt-97-LSy">
-                                <rect key="frame" x="0.0" y="542" width="600" height="58"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZZ6-Bs-Knb">
-                                        <rect key="frame" x="534" y="13" width="36" height="30"/>
-                                        <animations/>
-                                        <state key="normal" title="Send">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                    </button>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="J9U-7N-3xs">
-                                        <rect key="frame" x="15" y="8" width="500" height="40"/>
-                                        <animations/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="500" id="1TV-mA-Vwh"/>
-                                            <constraint firstAttribute="height" constant="40" id="pYY-jc-ghy"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
-                                </subviews>
-                                <animations/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="ZZ6-Bs-Knb" secondAttribute="bottom" constant="15" id="7Iw-P9-APK"/>
-                                    <constraint firstItem="ZZ6-Bs-Knb" firstAttribute="leading" secondItem="J9U-7N-3xs" secondAttribute="trailing" constant="19" id="NfT-C1-AV3"/>
-                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="ZZ6-Bs-Knb" secondAttribute="trailing" constant="30" id="uH0-2u-4BM"/>
-                                    <constraint firstAttribute="bottom" secondItem="J9U-7N-3xs" secondAttribute="bottom" constant="10" id="wT6-Q6-r9T"/>
-                                    <constraint firstItem="J9U-7N-3xs" firstAttribute="leading" secondItem="kCt-97-LSy" secondAttribute="leading" constant="15" id="xpD-BB-qDa"/>
-                                </constraints>
-                            </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="rrl-2D-ksb">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="534"/>
-                                <animations/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </tableView>
-                        </subviews>
-                        <animations/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="kCt-97-LSy" firstAttribute="top" secondItem="fDg-b6-nTT" secondAttribute="top" constant="542" id="9cJ-Pt-tjs"/>
-                            <constraint firstAttribute="trailing" secondItem="kCt-97-LSy" secondAttribute="trailing" id="Da1-ep-0pe"/>
-                            <constraint firstItem="kCt-97-LSy" firstAttribute="top" secondItem="rrl-2D-ksb" secondAttribute="bottom" constant="8" id="Ixr-tj-kK6"/>
-                            <constraint firstItem="kCt-97-LSy" firstAttribute="top" secondItem="rrl-2D-ksb" secondAttribute="bottom" constant="8" symbolic="YES" id="LFK-jB-jpA"/>
-                            <constraint firstItem="kCt-97-LSy" firstAttribute="leading" secondItem="fDg-b6-nTT" secondAttribute="leading" id="PL9-Xj-Uvd"/>
-                            <constraint firstItem="kCt-97-LSy" firstAttribute="leading" secondItem="rrl-2D-ksb" secondAttribute="leading" id="aS6-mW-wYB"/>
-                            <constraint firstItem="rrl-2D-ksb" firstAttribute="top" secondItem="fDg-b6-nTT" secondAttribute="top" id="bn8-CW-U8t"/>
-                            <constraint firstItem="kCt-97-LSy" firstAttribute="trailing" secondItem="rrl-2D-ksb" secondAttribute="trailing" id="ohw-i4-UU5"/>
-                            <constraint firstItem="kCt-97-LSy" firstAttribute="bottom" secondItem="C78-dY-cF8" secondAttribute="top" id="sqm-jE-maZ"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" title="ChatDetail" id="Wuj-3T-E5v">
-                        <barButtonItem key="leftBarButtonItem" style="plain" id="8Ut-0w-3zl">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="crO-oR-k1Y">
-                                <rect key="frame" x="16" y="-1" width="46" height="45"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <animations/>
-                                <state key="normal" title="Close">
-                                    <color key="titleColor" red="0.29411764709999999" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
-                            <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                        </barButtonItem>
-                    </navigationItem>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="mG8-nY-ifw" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-2411" y="4196"/>
-        </scene>
         <!--Navigation Controller-->
         <scene sceneID="7py-9z-D61">
             <objects>
@@ -1470,6 +1388,9 @@
                                         <state key="normal" title="Send">
                                             <color key="titleColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="sendMessage:" destination="Zo4-sk-EI3" eventType="touchUpInside" id="cAU-8D-VfM"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <animations/>
@@ -2957,7 +2878,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0yY-Ri-ooe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2365" y="3496"/>
+            <point key="canvasLocation" x="2724" y="3340"/>
         </scene>
         <!--Sign Up View Controller-->
         <scene sceneID="UB0-6I-hOI">
@@ -3173,7 +3094,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3WZ-gb-Vi4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2645" y="3805"/>
+            <point key="canvasLocation" x="2895" y="4155"/>
         </scene>
         <!--Sms Verification View Controller-->
         <scene sceneID="9Nd-p4-xlG">
@@ -4321,8 +4242,8 @@
         <image name="tripalocal_logo_zh" width="132" height="46"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="chc-HC-F4Z"/>
         <segue reference="yiP-PS-w0n"/>
         <segue reference="olF-su-vgo"/>
+        <segue reference="84E-Wr-GXn"/>
     </inferredMetricsTieBreakers>
 </document>

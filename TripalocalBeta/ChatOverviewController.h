@@ -9,11 +9,14 @@
 #import <UIKit/UIKit.h>
 #import "ChatOverviewTableViewCell.h"
 
-@interface ChatOverviewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
-@property (strong, nonatomic) IBOutlet UILabel *noDataLabel;
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (nonatomic, retain) NSMutableArray *imgList;
-@property (nonatomic, retain) NSMutableArray *nameList;
-@property (nonatomic, retain) NSMutableArray *messageList;
-@property (nonatomic, retain) NSMutableArray *timeList;
+@interface ChatOverviewController : UIViewController <UITableViewDataSource, UITableViewDelegate>{
+    UITableView *tableview;
+    NSMutableArray *imgList;
+    NSMutableArray *nameList;
+    NSMutableArray *messageList;
+	NSMutableArray *timeList;
+}
+
+@property (retain, nonatomic) IBOutlet UITableView *tableView;
+
 @end

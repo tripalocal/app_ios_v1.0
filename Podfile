@@ -10,6 +10,7 @@ target 'TripalocalBeta' do
     pod 'JGProgressHUD'
     pod 'AKPickerView'
     pod 'SecureNSUserDefaults', '~> 1.0.0'
+    pod 'XMPPFramework', '~> 3.6'
 end
 
 target 'TripalocalBetaTests' do

@@ -37,7 +37,14 @@
             @"password" : self.passwordField.text};
 
     NSData *postdata = [NSJSONSerialization dataWithJSONObject:tmp options:0 error:nil];
-    [request setHTTPBody:postdata];
+	[request setHTTPBody:postdata];
+    
+//login to the openfire server
+//#if accountExist
+//    xmppStream.myJID = [XMPP jidWithString:@" "];
+//#else
+//    //register an openfire account
+//#endif
 
 #if DEBUG
     NSString *decodedData = [[NSString alloc] initWithData:postdata encoding:NSUTF8StringEncoding];

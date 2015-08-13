@@ -12,11 +12,13 @@
 #import <SecureNSUserDefaults/NSUserDefaults+SecureAdditions.h>
 
 @interface AppDelegate ()
-
+-(void)setupStream;
+-(void)goOnline;
+-(void)goOffline;
 @end
 
 @implementation AppDelegate
-
+@synthesize xmppStream, viewController, _chatDelegate, _messageDelegate;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [[NSUserDefaults standardUserDefaults] setSecret:@"your_secret_goes_here"];
@@ -43,6 +45,7 @@
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
     // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
+    [self connect];
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
@@ -56,6 +59,7 @@
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+    [self connect];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
@@ -124,5 +128,75 @@
     
     return NO;
 }
+
+-(void)setupStream {
+    xmppStream = [[XMPPStream alloc] init];
+    [xmppStream addDelegate:self delegateQueue:dispatch_get_main_queue()];
+}
+-(void)goOnline {
+    XMPPPresence *presence = [XMPPPresence presence];
+    [[self xmppStream] sendElement:presence];
+}
+-(void)goOffline {
+    XMPPPresence *presence = [XMPPPresence presenceWithType:@"Unavailabel"];
+    [[self xmppStream] sendElement:presence];
+}
+-(BOOL)connect {
+    [self setupStream];
+    NSString *jabberID = [[NSUserDefaults standardUserDefaults] stringForKey:@"UserID"];
+    NSString *myPassword = [[NSUserDefaults standardUserDefaults] stringForKey:@"UserPassword"];
+    if (![xmppStream isDisconnected]) {
+        return YES;
+    }
+    
+    if (jabberID == nil || myPassword == nil) {
+        return NO;
+    }
+    
+    [xmppStream setMyJID:[XMPPJID jidWithString:jabberID]];
+    password = myPassword;
+//    NSError *error = nil;
+//    if (![xmppStream isConnected])
+//    {
+//        return NO;
+//    }
+
+}
+-(void)disconnect{
+    [self goOffline];
+    [xmppStream disconnect];
+    [_chatDelegate didDisconnect];
+}
+-(void)xmppStreamDidConnect:(XMPPStream *)sender{
+    isOpen = YES;
+    NSError *error = nil;
+    [[self xmppStream] authenticateWithPassword:password error:&error];
+}
+-(void)xmppStreamDidAuthenticate:(XMPPStream *)sneder{
+    [self goOnline];
+}
+-(void)xmppStream:(XMPPStream *)sender didReceiveMessage:(XMPPMessage *)message{
+    NSString *msg = [[message elementForName:@"body"] stringValue];
+    NSString *from = [[message attributeForName:@"from"] stringValue];
+    
+    NSMutableDictionary *m = [[NSMutableDictionary alloc] init];
+    [m setObject:msg forKey:@"msg"];
+    [m setObject:from forKey:@"sender"];
+    [_messageDelegate newMessageReceived:m];
+}
+-(void)xmppStream:(XMPPStream *)sender didReceivePresence:(XMPPPresence *)presence{
+    NSString *presenceType = [presence type]; //online or offline
+    NSString *myUserName = [[sender myJID] user];
+    NSString *presenceFromUser = [[presence from] user];
+    
+    if (![presenceFromUser isEqualToString:myUserName]) {
+        if ([presenceType isEqualToString:@"available"]) {
+            [_chatDelegate newPeopleOnline:[NSString stringWithFormat:@"%@@%@", presenceFromUser, @"YOURSERVER"]];
+        } else if ([presenceType isEqualToString:@"Unavailable"]) {
+            [_chatDelegate peopleWentOffline:[NSString stringWithFormat:@"%@@%@", presenceFromUser, @"YOURSERVER"]];
+        }
+    }
+}
+
 
 @end

@@ -11,6 +11,7 @@
 #import "ChatDetailFromTableViewCell.h"
 #import "ChatDetailToTableViewCell.h"
 #import <QuartzCore/QuartzCore.h>
+#import "XMPP.h"
 #define kOFFSET_FOR_KEYBOARD 215.0
 
 @interface ChatDetailViewController ()
@@ -18,7 +19,7 @@
 @end
 
 @implementation ChatDetailViewController
-
+@synthesize textField,detailTableView,sendButton;
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -27,12 +28,12 @@
     self.navigationItem.leftBarButtonItem = closeButton;
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)];
     [self.view addGestureRecognizer:tap];
-    _textField.layer.borderWidth = 1.0f;
-    _textField.layer.borderColor = [[UIColor grayColor] CGColor];
-    _textField.layer.cornerRadius = 5.0f;
+    textField.layer.borderWidth = 1.0f;
+    textField.layer.borderColor = [[UIColor grayColor] CGColor];
+    textField.layer.cornerRadius = 5.0f;
 }
 -(void)dismissKeyboard {
-    [_textField resignFirstResponder];
+    [textField resignFirstResponder];
 }
 - (IBAction)dismissChatDetail:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
@@ -64,7 +65,7 @@
 }
 -(void)textFieldDidBeginEditing:(UITextField *)sender
 {
-    if ([sender isEqual:_textField])
+    if ([sender isEqual:textField])
     {
         //move the main view, so that the keyboard does not hide it.
         if  (self.view.frame.origin.y >= 0)
@@ -133,5 +134,61 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+- (IBAction)sendMessage:(id)sender {
+    //get the message string from textfield
+    NSString *messageStr = self.textField.text;
+    if([messageStr length] > 0){
+        //send the message through XMPP
+        
+        //set the textField to blank after hit the send button
+        self.textField.text = @"";
+        //create a new string with sneding format
+        //@"you" might need to be changed to senderID
+        NSString *m = [NSString stringWithFormat:@"@%:@%",messageStr,@"you"];
+        //create a dictionary to contain all the necessary information of sending messages
+        NSMutableDictionary *msgDic = [[NSMutableDictionary alloc] init];
+        [msgDic setObject:messageStr forKey:@"msg"];
+        [msgDic setObject:@"you" forKey:@"sender"];
+        //add sending message to the msgListTo
+        [messageListTo addObject:msgDic];
+        [self.detailTableView reloadData];
+    	}
+    
+    }
+//introducing the custom cell
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    static NSString *cellFromIdentifier = @"ChatDetailFromCell";
+    static NSString *cellToIdentifier = @"ChatDetailToCell";
+    ChatDetailFromTableViewCell *cellFrom = (ChatDetailFromTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"ChatDetailFromCell"];
+    ChatDetailToTableViewCell *cellTo = (ChatDetailToTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"ChatDetailToCell"];
+    if (!cellFrom) {
+        [tableView registerNib:[UINib nibWithNibName:cellFromIdentifier bundle:nil] forCellReuseIdentifier:cellFromIdentifier];
+    }
+    if (!cellTo) {
+        [tableView registerNib:[UINib nibWithNibName:cellToIdentifier bundle:nil] forCellReuseIdentifier:cellToIdentifier];
+    }
+    //test data
+    cellFrom.otherUserImage.image = [UIImage imageNamed:@"flash.png"];
+    cellFrom.messageContent.text = @"hello!";
+    cellFrom.messageTime.text = @"1 mins";
+    cellTo.userImage.image = [UIImage imageNamed:@"flash.png"];
+    cellTo.messageContent.text = @"Hi, there.";
+    cellTo.messageTime.text = @"Just now";
+    //read data from array
+//    cellFrom.otherUserImage.image = [fix img];
+//    cellFrom.messageContent.text = [messageListFrom objectAtIndex:indexPath.row];
+//    cellFrom.messageTime.text = [timeListFrom objectAtIndex:indexPath.row];
+//    cellTo.userImage.image = [fix img];
+//    cellTo.messageContent.text = [messageListTo objectAtIndex:indexPath.row];
+//    cellTo.messageTime.text = [timeListTo objectAtIndex:indexPath.row];
+    
+    return cellFrom;
+    return cellTo;
+}
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return [messageListFrom count] + [messageListTo count];
+}
 
 @end

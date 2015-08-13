@@ -9,10 +9,10 @@
 #import "ChatOverviewTableViewCell.h"
 
 @implementation ChatOverviewTableViewCell
-@synthesize userImage = _userImage;
-@synthesize userName = _userName;
-@synthesize messageContent = _messageContent;
-@synthesize messageTime = _messageTime;
+@synthesize userImage;
+@synthesize userName;
+@synthesize messageContent;
+@synthesize messageTime;
 
 - (void)awakeFromNib {
     // Initialization code

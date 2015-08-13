@@ -8,15 +8,21 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ChatDetailViewController : UIViewController
-@property (nonatomic, weak) NSMutableArray *messageListFrom;
-@property (nonatomic, weak) NSMutableArray *messageListTo;
-@property (nonatomic, weak) NSMutableArray *timeListFrom;
-@property (nonatomic, weak) NSMutableArray *timeListTo;
+@interface ChatDetailViewController : UIViewController{
+    UITextField *textField;
+    UITableView *detailTableView;
+    NSString *message;
+    NSMutableArray *messageListFrom;
+    NSMutableArray *messageListTo;
+    NSMutableArray *timeListFrom;
+    NSMutableArray *timeListTo;
+}
+
 @property (strong, nonatomic) IBOutlet UIScrollView *detailScrollView;
-@property (weak, nonatomic) IBOutlet UITextField *textField;
-@property (weak, nonatomic) IBOutlet UIButton *sendButton;
-@property (weak, nonatomic) IBOutlet UITableView *detailTableView;
+@property (nonatomic,retain) IBOutlet UITextField *textField;
+@property (nonatomic,weak) IBOutlet UIButton *sendButton;
+@property (nonatomic,retain) IBOutlet UITableView *detailTableView;
+- (IBAction)sendMessage:(id)sender;
 
 
 
