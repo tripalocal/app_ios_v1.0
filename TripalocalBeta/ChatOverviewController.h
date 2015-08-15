@@ -8,7 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "ChatOverviewTableViewCell.h"
-
+#import "AppDelegate.h"
+#import "UnloginViewController.h"
+#import "ChatDetailViewController.h"
 @interface ChatOverviewController : UIViewController <UITableViewDataSource, UITableViewDelegate>{
     UITableView *tableview;
     NSMutableArray *imgList;

@@ -155,12 +155,12 @@
     
     [xmppStream setMyJID:[XMPPJID jidWithString:jabberID]];
     password = myPassword;
-//    NSError *error = nil;
-//    if (![xmppStream isConnected])
-//    {
-//        return NO;
-//    }
-
+    NSError *error = nil;
+    if (![xmppStream isConnected])
+    {
+        return NO;
+    }
+    return YES;
 }
 -(void)disconnect{
     [self goOffline];

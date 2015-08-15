@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface ChatDetailViewController : UIViewController{
+#import "SMMessageDelegate.h"
+#import "AppDelegate.h"
+@interface ChatDetailViewController : UIViewController<SMMessageDelegate>{
     UITextField *textField;
     UITableView *detailTableView;
     NSString *message;
@@ -16,13 +17,16 @@
     NSMutableArray *messageListTo;
     NSMutableArray *timeListFrom;
     NSMutableArray *timeListTo;
+    NSString *chatWithUser;
 }
 
 @property (strong, nonatomic) IBOutlet UIScrollView *detailScrollView;
 @property (nonatomic,retain) IBOutlet UITextField *textField;
 @property (nonatomic,weak) IBOutlet UIButton *sendButton;
 @property (nonatomic,retain) IBOutlet UITableView *detailTableView;
+@property (nonatomic,retain) NSString *chatWithUser;
 - (IBAction)sendMessage:(id)sender;
+- (id) initWithUser:(NSString *) userName;
 
 
 

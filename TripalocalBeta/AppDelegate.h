@@ -21,8 +21,8 @@
     
     NSString *password;
     BOOL isOpen;
-    __weak NSObject <SMChatDelegate> *_chatDelegate;
-    __weak NSObject <SMMessageDelegate> *_messageDelegate;
+    __unsafe_unretained NSObject <SMChatDelegate> *_chatDelegate;
+    __unsafe_unretained NSObject <SMMessageDelegate> *_messageDelegate;
 }
 
 @property (strong, nonatomic) UIWindow *window;

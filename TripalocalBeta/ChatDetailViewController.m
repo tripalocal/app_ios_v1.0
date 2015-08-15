@@ -19,7 +19,20 @@
 @end
 
 @implementation ChatDetailViewController
-@synthesize textField,detailTableView,sendButton;
+@synthesize textField,detailTableView,sendButton,chatWithUser;
+
+-(AppDelegate *)appDelegate {
+    return (AppDelegate *)[[UIApplication sharedApplication] delegate];
+}
+-(XMPPStream *)xmppStream {
+    return [[self appDelegate] xmppStream];
+}
+-(id) initWithUser:(NSString *) userName {
+    if (self = [super init]) {
+        chatWithUser = userName;
+    }
+    return self;
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -31,6 +44,9 @@
     textField.layer.borderWidth = 1.0f;
     textField.layer.borderColor = [[UIColor grayColor] CGColor];
     textField.layer.cornerRadius = 5.0f;
+    AppDelegate *del = [self appDelegate];
+    del._messageDelegate = self;
+    [self.textField becomeFirstResponder];
 }
 -(void)dismissKeyboard {
     [textField resignFirstResponder];
@@ -140,6 +156,11 @@
     NSString *messageStr = self.textField.text;
     if([messageStr length] > 0){
         //send the message through XMPP
+        NSXMLElement *message = [NSXMLElement elementWithName:@"message"];
+        [message addAttributeWithName:@"type" stringValue:@"chat"];
+        [message addAttributeWithName:@"to" stringValue:chatWithUser];
+        [message addChild:body];
+        [self.xmppStream sendElement:message];
         
         //set the textField to blank after hit the send button
         self.textField.text = @"";
