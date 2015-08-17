@@ -156,6 +156,8 @@
     NSString *messageStr = self.textField.text;
     if([messageStr length] > 0){
         //send the message through XMPP
+        NSXMLElement *body = [NSXMLElement elementWithName:@"body"];
+        [body setStringValue:messageStr];
         NSXMLElement *message = [NSXMLElement elementWithName:@"message"];
         [message addAttributeWithName:@"type" stringValue:@"chat"];
         [message addAttributeWithName:@"to" stringValue:chatWithUser];
