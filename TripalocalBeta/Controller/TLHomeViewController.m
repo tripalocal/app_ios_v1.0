@@ -233,6 +233,7 @@ NSInteger const WeChatCellPos = 6;
         city = loc.location;
     }
     
+    [self.searchController setActive:FALSE];
     [self performSegueWithIdentifier:@"searchToExpList" sender:city];
 }
 
