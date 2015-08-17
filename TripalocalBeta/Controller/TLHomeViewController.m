@@ -14,6 +14,7 @@
 #import "Constant.h"
 #import "Utility.h"
 #import "Location.h"
+#import "URLConfig.h"
 
 NSInteger const CustomItineraryPos = 2;
 NSInteger const WeChatCellPos = 6;
@@ -46,14 +47,30 @@ NSInteger const WeChatCellPos = 6;
     
     self.tableView.dataSource=self;
     self.tableView.delegate=self;
-
-    [locationsURLString addObject:@"https://www.tripalocal.com/images/mobile/home/Melbourne.jpg"];
-    [locationsURLString addObject:@"https://www.tripalocal.com/images/mobile/home/Sydney.jpg"];
-    [locationsURLString addObject:@"https://www.tripalocal.com/images/mobile/home/Brisbane.jpg"];
-    [locationsURLString addObject:@"https://www.tripalocal.com/images/mobile/home/Adelaide.jpg"];
-    [locationsURLString addObject:@"https://www.tripalocal.com/images/mobile/home/Cairns.jpg"];
-    [locationsURLString addObject:@"https://www.tripalocal.com/images/mobile/home/Goldcoast.jpg"];
-    [locationsURLString addObject:@"https://www.tripalocal.com/images/mobile/home/Hobart.jpg"];
+    
+    NSString *home_Melbourne_Pic_URL = [NSString stringWithFormat:@"%@%@",[URLConfig imageServiceURLString], @"mobile/home/Melbourne.jpg"];
+    NSString *home_Sydney_Pic_URL = [NSString stringWithFormat:@"%@%@", [URLConfig imageServiceURLString], @"mobile/home/Sydney.jpg"];
+    NSString *home_Brisbane_Pic_URL = [NSString stringWithFormat:@"%@%@", [URLConfig imageServiceURLString], @"mobile/home/Brisbane.jpg"];
+    NSString *home_Adelaide_Pic_URL = [NSString stringWithFormat:@"%@%@", [URLConfig imageServiceURLString], @"mobile/home/Adelaide.jpg"];
+    NSString *home_Cairns_Pic_URL = [NSString stringWithFormat:@"%@%@", [URLConfig imageServiceURLString], @"mobile/home/Cairns.jpg"];
+    NSString *home_GoldCoast_Pic_URL = [NSString stringWithFormat:@"%@%@", [URLConfig imageServiceURLString], @"mobile/home/Goldcoast.jpg"];
+    NSString *home_Hobart_Pic_URL = [NSString stringWithFormat:@"%@%@", [URLConfig imageServiceURLString], @"mobile/home/Hobart.jpg"];
+    
+    [locationsURLString addObject: home_Melbourne_Pic_URL];
+    [locationsURLString addObject: home_Sydney_Pic_URL];
+    [locationsURLString addObject: home_Brisbane_Pic_URL];
+    [locationsURLString addObject: home_Adelaide_Pic_URL];
+    [locationsURLString addObject: home_Cairns_Pic_URL];
+    [locationsURLString addObject: home_GoldCoast_Pic_URL];
+    [locationsURLString addObject: home_Hobart_Pic_URL];
+    
+//    [locationsURLString addObject:@"https://www.tripalocal.com/images/mobile/home/Melbourne.jpg"];
+//    [locationsURLString addObject:@"https://www.tripalocal.com/images/mobile/home/Sydney.jpg"];
+//    [locationsURLString addObject:@"https://www.tripalocal.com/images/mobile/home/Brisbane.jpg"];
+//    [locationsURLString addObject:@"https://www.tripalocal.com/images/mobile/home/Adelaide.jpg"];
+//    [locationsURLString addObject:@"https://www.tripalocal.com/images/mobile/home/Cairns.jpg"];
+//    [locationsURLString addObject:@"https://www.tripalocal.com/images/mobile/home/Goldcoast.jpg"];
+//    [locationsURLString addObject:@"https://www.tripalocal.com/images/mobile/home/Hobart.jpg"];
 
     self.searchController = [[UISearchController alloc] initWithSearchResultsController:nil];
     self.searchController.searchResultsUpdater = self;
