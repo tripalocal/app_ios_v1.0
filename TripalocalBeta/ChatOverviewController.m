@@ -52,12 +52,14 @@
     //set view controller as a delegate for the chat protocol
     AppDelegate *del = [self appDelegate];
     del._chatDelegate = self;
-	
+
 }
 -(void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
+    
     NSString *login = [[NSUserDefaults standardUserDefaults] objectForKey:@"userID"];
     if(login) {
+        NSLog(@"test flag view2");
         if ([[self appDelegate] connect]) {
             NSLog(@"show chat list");
         }
@@ -103,12 +105,12 @@
 //    cell.userName.text = @"FRANK";
 //    cell.messageContent.text = @"welcome to tripalocal.";
 //    cell.messageTime.text = @"3 mins";
-    
-    cell.userImage.image = [imgList objectAtIndex:indexPath.row];
-    cell.userName.text = [nameList objectAtIndex:indexPath.row];
-    cell.messageContent.text = [messageList objectAtIndex:indexPath.row];
-    cell.messageTime.text = [messageList objectAtIndex:indexPath.row];
-    
+    if ([nameList count]!=0) {
+        cell.userImage.image = [imgList objectAtIndex:indexPath.row];
+        cell.userName.text = [nameList objectAtIndex:indexPath.row];
+        cell.messageContent.text = [messageList objectAtIndex:indexPath.row];
+        cell.messageTime.text = [messageList objectAtIndex:indexPath.row];
+    }
     return cell;
 }
 
