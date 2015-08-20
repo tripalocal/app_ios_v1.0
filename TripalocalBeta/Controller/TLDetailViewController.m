@@ -324,6 +324,7 @@
             
             return cell2;
         case 3:
+        {
             if(!cell3)
             {
                 cell3=[[TLDetailTableViewCell3 alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier3];
@@ -332,19 +333,18 @@
             cell3.selectionStyle = UITableViewCellSelectionStyleNone;
             if ([nReviews intValue] > 0) {
                 cell3.countLabel.text = [NSString stringWithFormat:NSLocalizedString(@"n_reviews", nil), nReviews];
-            } else {
-                cell3.countLabel.text = NSLocalizedString(@"no_reviews", nil);
+                cell3.reviewStars.rating = [rate floatValue];
+                cell3.reviewerName.text = [NSString stringWithFormat:@"%@ %@", reviewerFirstName, reviewerLastName];
+                cell3.commentLabel.text = reviewComment;
+                
+                [cell3.reviewerImage sd_setImageWithURL:[NSURL URLWithString:reviewerImageURL]
+                                       placeholderImage:[UIImage imageNamed:@"default_profile_image.png"]
+                                                options:SDWebImageRefreshCached];
+            }else{
+                cell3.hidden = YES;
             }
-            
-            cell3.reviewStars.rating = [rate floatValue];
-            cell3.reviewerName.text = [NSString stringWithFormat:@"%@ %@", reviewerFirstName, reviewerLastName];
-            cell3.commentLabel.text = reviewComment;
-            
-            [cell3.reviewerImage sd_setImageWithURL:[NSURL URLWithString:reviewerImageURL]
-                              placeholderImage:[UIImage imageNamed:@"default_profile_image.png"]
-                                       options:SDWebImageRefreshCached];
-            
             return cell3;
+        }
         case 4:
         {
             if(!cell4) {
@@ -416,7 +416,17 @@
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return [self.cellHeights[indexPath.row] floatValue];
+    
+    switch (indexPath.row){
+        case 3:
+            if ([nReviews intValue] <= 0) {
+                return 0.0;
+            }
+        default:
+            return [self.cellHeights[indexPath.row] floatValue];
+    }
+    
+
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
@@ -442,5 +452,6 @@
     }
     
 }
+
 
 @end
