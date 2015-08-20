@@ -11,6 +11,7 @@ target 'TripalocalBeta' do
     pod 'AKPickerView'
     pod 'SecureNSUserDefaults', '~> 1.0.0'
     pod 'Mixpanel'
+    pod 'UMengAnalytics'
 end
 
 target 'TripalocalBetaTests' do

@@ -26,6 +26,19 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+- (void)mpTrackSignin:(NSUserDefaults *)userDefaults token:(NSString *)token {
+    Mixpanel *mixpanel = [Mixpanel sharedInstance];
+    NSString *language = [[NSLocale preferredLanguages] objectAtIndex:0];
+    
+    if (token) {
+        NSString * userEmail = [userDefaults stringForKey:@"user_email"];
+        [mixpanel identify:userEmail];
+        [mixpanel.people set:@{}];
+    }
+    
+    [mixpanel track:mpTrackSignin properties:@{@"language":language}];
+}
+
 - (IBAction)login:(id)sender {
     [self.loginButton setEnabled:NO];
     NSURL *url = [NSURL URLWithString:[URLConfig loginServiceURLString]];
@@ -65,18 +78,9 @@
             [userDefaults setSecretObject:token forKey:@"user_token"];
             [[NSUserDefaults standardUserDefaults] synchronize];
             [self.unloggedinVC hideUnloggedinView];
-#ifndef DEBUG
-            Mixpanel *mixpanel = [Mixpanel sharedInstance];
-            NSString *language = [[NSLocale preferredLanguages] objectAtIndex:0];
-            
-            if (token) {
-                NSString * userEmail = [userDefaults stringForKey:@"user_email"];
-                [mixpanel identify:userEmail];
-                [mixpanel.people set:@{}];
-            }
-            
-            [mixpanel track:mpTrackSignin properties:@{@"language":language}];
-#endif
+
+            [self mpTrackSignin:userDefaults token:token];
+
             
 #ifdef CN_VERSION
                 [self.presentingViewController.presentingViewController dismissViewControllerAnimated:YES completion:nil];

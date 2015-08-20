@@ -69,6 +69,22 @@
     }
 }
 
+- (void)mpTrackViewExperience {
+    Mixpanel *mixpanel = [Mixpanel sharedInstance];
+    NSString *language = [[NSLocale preferredLanguages] objectAtIndex:0];
+    
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    NSString *token = [userDefaults secretStringForKey:@"user_token"];
+    
+    if (token) {
+        NSString * userEmail = [userDefaults stringForKey:@"user_email"];
+        [mixpanel identify:userEmail];
+        [mixpanel.people set:@{}];
+    }
+    
+    [mixpanel track:mpTrackViewExperience properties:@{@"language":language}];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     HUD = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleDark];
@@ -90,21 +106,8 @@
     reviews = [[NSArray alloc] init];
     expData = [[NSDictionary alloc] init];
     
-#ifndef DEBUG
-    Mixpanel *mixpanel = [Mixpanel sharedInstance];
-    NSString *language = [[NSLocale preferredLanguages] objectAtIndex:0];
-    
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    NSString *token = [userDefaults secretStringForKey:@"user_token"];
-    
-    if (token) {
-        NSString * userEmail = [userDefaults stringForKey:@"user_email"];
-        [mixpanel identify:userEmail];
-        [mixpanel.people set:@{}];
-    }
-    
-    [mixpanel track:mpTrackViewExperience properties:@{@"language":language}];
-#endif
+    [self mpTrackViewExperience];
+
 }
 
 - (void)fetchData
@@ -160,7 +163,6 @@
                 ticketString = expData[@"included_ticket_detail"];
                 foodString = expData[@"included_food_detail"];
                 transportString = expData[@"included_transport_detail"];
-//                availableDateArray = expData[@"available_options"];
                 dynamicPriceArray = expData[@"experience_dynamic_price"];
                 maxGuestNum = expData[@"experience_guest_number_max"];
                 minGuestNum = expData[@"experience_guest_number_min"];

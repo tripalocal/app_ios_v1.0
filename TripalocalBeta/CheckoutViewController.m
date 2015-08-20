@@ -39,6 +39,22 @@
 
 @implementation CheckoutViewController
 
+- (void)mpTrackViewCheckout {
+    Mixpanel *mixpanel = [Mixpanel sharedInstance];
+    NSString *language = [[NSLocale preferredLanguages] objectAtIndex:0];
+    
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    NSString *token = [userDefaults secretStringForKey:@"user_token"];
+    
+    if (token) {
+        NSString * userEmail = [userDefaults stringForKey:@"user_email"];
+        [mixpanel identify:userEmail];
+        [mixpanel.people set:@{}];
+    }
+    
+    [mixpanel track:mpTrackViewCheckout properties:@{@"language":language}];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     HUD = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleDark];
@@ -182,21 +198,7 @@
     _confirmButton.backgroundColor = [UIColor grayColor];
     _confirmButton.enabled = NO;
     
-#ifndef DEBUG
-    Mixpanel *mixpanel = [Mixpanel sharedInstance];
-    NSString *language = [[NSLocale preferredLanguages] objectAtIndex:0];
-    
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    NSString *token = [userDefaults secretStringForKey:@"user_token"];
-    
-    if (token) {
-        NSString * userEmail = [userDefaults stringForKey:@"user_email"];
-        [mixpanel identify:userEmail];
-        [mixpanel.people set:@{}];
-    }
-    
-    [mixpanel track:mpTrackViewCheckout properties:@{@"language":language}];
-#endif
+    [self mpTrackViewCheckout];
 }
 
 - (void)fetchData
@@ -286,10 +288,8 @@
     return [guestPickerData count];
 }
 
-- (void)pickerView:(AKPickerView *)pickerView didSelectItem:(NSInteger)item
+- (void)mpTrackNumberOfPeople
 {
-    selectedGuestString = guestPickerData[item];
-#ifndef DEBUG
     Mixpanel *mixpanel = [Mixpanel sharedInstance];
     NSString *language = [[NSLocale preferredLanguages] objectAtIndex:0];
     
@@ -303,7 +303,14 @@
     }
     
     [mixpanel track:mpTrackNumberOfPeople properties:@{@"language":language}];
-#endif
+}
+
+- (void)pickerView:(AKPickerView *)pickerView didSelectItem:(NSInteger)item
+{
+    selectedGuestString = guestPickerData[item];
+
+    [self mpTrackNumberOfPeople];
+
     self.guestNumber = [selectedGuestString intValue];
     if ([_dynamicPriceArray count] == 0)
     {

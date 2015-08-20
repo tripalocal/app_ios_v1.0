@@ -33,6 +33,19 @@
     [self.presentingViewController.presentingViewController dismissViewControllerAnimated:YES completion:nil];
 }
 
+- (void)mpTrackSignup:(NSUserDefaults *)userDefaults token:(NSString *)token {
+    Mixpanel *mixpanel = [Mixpanel sharedInstance];
+    NSString *language = [[NSLocale preferredLanguages] objectAtIndex:0];
+    
+    if (token) {
+        NSString * userEmail = [userDefaults stringForKey:@"user_email"];
+        [mixpanel identify:userEmail];
+        [mixpanel.people set:@{}];
+    }
+    
+    [mixpanel track:mpTrackSignup properties:@{@"language":language}];
+}
+
 - (IBAction)signup:(id)sender {
     [self.signupButton setEnabled:NO];
     self.signupButton.alpha = 0.5;
@@ -78,18 +91,9 @@
             NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
             [userDefaults setSecretObject:token forKey:@"user_token"];
             [[NSUserDefaults standardUserDefaults] synchronize];
-#ifndef DEBUG
-            Mixpanel *mixpanel = [Mixpanel sharedInstance];
-            NSString *language = [[NSLocale preferredLanguages] objectAtIndex:0];
-            
-            if (token) {
-                NSString * userEmail = [userDefaults stringForKey:@"user_email"];
-                [mixpanel identify:userEmail];
-                [mixpanel.people set:@{}];
-            }
-            
-            [mixpanel track:mpTrackSignup properties:@{@"language":language}];
-#endif
+
+            [self mpTrackSignup:userDefaults token:token];
+
             [self.presentingViewController.presentingViewController dismissViewControllerAnimated:YES completion:nil];
             
         } else {

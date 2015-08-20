@@ -25,8 +25,23 @@
 
 @implementation TLSearchViewController{
     JGProgressHUD *HUD;
-    NSString *currentLanguage;
     NSDateFormatter *dateFormatter;
+}
+
+- (void)mpTrackViewSearchPage {
+    Mixpanel *mixpanel = [Mixpanel sharedInstance];
+    NSString *language = [[NSLocale preferredLanguages] objectAtIndex:0];
+    
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    NSString *token = [userDefaults secretStringForKey:@"user_token"];
+    
+    if (token) {
+        NSString * userEmail = [userDefaults stringForKey:@"user_email"];
+        [mixpanel identify:userEmail];
+        [mixpanel.people set:@{}];
+    }
+    
+    [mixpanel track:mpTrackViewSearchPage properties:@{@"language":language}];
 }
 
 - (void)viewDidLoad {
@@ -46,25 +61,10 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
 
-    currentLanguage = [[NSLocale preferredLanguages] objectAtIndex:0];
     dynamicPricingArray = [[NSMutableArray alloc]init];
     [HUD dismissAfterDelay:1.0];
     
-#ifndef DEBUG
-    Mixpanel *mixpanel = [Mixpanel sharedInstance];
-    NSString *language = [[NSLocale preferredLanguages] objectAtIndex:0];
-    
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    NSString *token = [userDefaults secretStringForKey:@"user_token"];
-    
-    if (token) {
-        NSString * userEmail = [userDefaults stringForKey:@"user_email"];
-        [mixpanel identify:userEmail];
-        [mixpanel.people set:@{}];
-    }
-    
-    [mixpanel track:mpTrackViewSearchPage properties:@{@"language":language}];
-#endif
+    [self mpTrackViewSearchPage];
 }
 
 - (void)viewWillAppear:(BOOL)animated
