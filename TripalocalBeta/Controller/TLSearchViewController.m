@@ -60,6 +60,7 @@
     if (token) {
         NSString * userEmail = [userDefaults stringForKey:@"user_email"];
         [mixpanel identify:userEmail];
+        [mixpanel.people set:@{}];
     }
     
     [mixpanel track:mpTrackViewSearchPage properties:@{@"language":language}];

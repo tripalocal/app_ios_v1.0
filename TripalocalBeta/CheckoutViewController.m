@@ -192,6 +192,7 @@
     if (token) {
         NSString * userEmail = [userDefaults stringForKey:@"user_email"];
         [mixpanel identify:userEmail];
+        [mixpanel.people set:@{}];
     }
     
     [mixpanel track:mpTrackViewCheckout properties:@{@"language":language}];
@@ -298,6 +299,7 @@
     if (token) {
         NSString * userEmail = [userDefaults stringForKey:@"user_email"];
         [mixpanel identify:userEmail];
+        [mixpanel.people set:@{}];
     }
     
     [mixpanel track:mpTrackNumberOfPeople properties:@{@"language":language}];
