@@ -139,7 +139,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="$999" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pfh-OS-Wji">
-                                                    <rect key="frame" x="265" y="224" width="71" height="39"/>
+                                                    <rect key="frame" x="265" y="224" width="71" height="44"/>
                                                     <animations/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="115" id="FDd-lP-WjG"/>
@@ -147,7 +147,7 @@
                                                         <constraint firstAttribute="height" constant="45" id="lTW-Rt-aVk"/>
                                                         <constraint firstAttribute="width" constant="75" id="ldZ-AQ-LHW"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="32"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="35"/>
                                                     <color key="textColor" red="0.14901960780000001" green="0.14901960780000001" blue="0.14901960780000001" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                     <variation key="default">
@@ -179,6 +179,7 @@
                                                 <constraint firstItem="K4a-U4-pQM" firstAttribute="bottom" secondItem="pfh-OS-Wji" secondAttribute="bottom" id="YvV-7g-kAy"/>
                                                 <constraint firstItem="KIl-ZR-VVU" firstAttribute="top" secondItem="Qeu-2l-orb" secondAttribute="bottom" constant="8" symbolic="YES" id="ZQA-cu-1LG"/>
                                                 <constraint firstItem="JGX-d6-HBd" firstAttribute="centerX" secondItem="Qeu-2l-orb" secondAttribute="centerX" id="bG9-hl-b1C"/>
+                                                <constraint firstItem="ZzR-aR-8nO" firstAttribute="top" secondItem="jSP-6t-dAh" secondAttribute="top" id="hAO-bb-jHM"/>
                                                 <constraint firstItem="JGX-d6-HBd" firstAttribute="top" secondItem="iCx-eM-MjF" secondAttribute="topMargin" constant="88" id="hhN-r3-nEh"/>
                                                 <constraint firstAttribute="centerX" secondItem="pfh-OS-Wji" secondAttribute="centerX" id="iuD-Va-YDZ"/>
                                                 <constraint firstItem="jSP-6t-dAh" firstAttribute="leading" secondItem="pfh-OS-Wji" secondAttribute="trailing" constant="30" id="mas-0d-RfG"/>
@@ -4139,7 +4140,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="yiP-PS-w0n"/>
+        <segue reference="hPI-YE-UZz"/>
         <segue reference="olF-su-vgo"/>
-        <segue reference="84E-Wr-GXn"/>
     </inferredMetricsTieBreakers>
 </document>

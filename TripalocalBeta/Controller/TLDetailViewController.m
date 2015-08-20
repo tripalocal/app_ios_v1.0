@@ -82,7 +82,7 @@
     reviewComment = @"";
     reviewerImageURL = @"";
 
-    self.cellHeights = [@[@306, @240, @320, @385, @164, @320] mutableCopy];
+    self.cellHeights = [@[@320, @240, @320, @385, @164, @320] mutableCopy];
     _myTable.delegate = self;
     _myTable.dataSource = self;
     
