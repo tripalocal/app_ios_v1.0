@@ -51,7 +51,7 @@
 #ifdef CN_VERSION
         return @"https://www.tripalocal.com.cn/service_logout/";
 #else
-        return @"https://www.tripalocal.com.service_logout/";
+        return @"https://www.tripalocal.com/service_logout/";
 #endif
 }
 
