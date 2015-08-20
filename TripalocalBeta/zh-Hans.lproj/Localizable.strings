@@ -68,6 +68,10 @@
 
 "reservationPrefix" = "和";
 
+"expTitlePrefix" = "和";
+
+"expTitleSuffix" = "同行";
+
 "select_time" = "选择时间";
 
 "select_date" = "选择日期";

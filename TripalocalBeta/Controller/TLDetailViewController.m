@@ -281,7 +281,7 @@
             }
             
             cell1.parentView = self.myTable;
-            cell1.expTitleLabel.text = title;
+            cell1.expTitleLabel.text = [NSString stringWithFormat:@"%@ %@ %@ %@",title, NSLocalizedString(@"expTitlePrefix", nil), hostFirstName, NSLocalizedString(@"expTitleSuffix", nil)];
             cell1.selectionStyle = UITableViewCellSelectionStyleNone;
             cell1.expDescriptionLabel.text = [description stringByAppendingFormat:@" %@ %@", activity, interaction];
             if (self.isExpReadMoreOpen) {
