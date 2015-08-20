@@ -7,6 +7,9 @@
 //
 
 #import "PaymentSuccessViewController.h"
+#import <SecureNSUserDefaults/NSUserDefaults+SecureAdditions.h>
+#import "Mixpanel.h"
+#import "Constant.h"
 
 @interface PaymentSuccessViewController ()
 @property (weak, nonatomic) IBOutlet UIImageView *hostImage;
@@ -35,6 +38,20 @@
         self.hostImage.image = [UIImage imageNamed: @"default_profile_image.png"];
     }
     self.sentToNameLabel.text = [self.sentToNameLabel.text stringByAppendingString:_hostName];
+    
+#ifndef DEBUG
+    Mixpanel *mixpanel = [Mixpanel sharedInstance];
+    NSString *language = [[NSLocale preferredLanguages] objectAtIndex:0];
+    
+    NSString *token = [userDefaults secretStringForKey:@"user_token"];
+    
+    if (token) {
+        NSString * userEmail = [userDefaults stringForKey:@"user_email"];
+        [mixpanel identify:userEmail];
+    }
+    
+    [mixpanel track:mpTrackCompletedPayment properties:@{@"language":language}];
+#endif
 }
 
 - (void)didReceiveMemoryWarning {

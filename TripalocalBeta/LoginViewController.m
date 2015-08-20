@@ -11,6 +11,7 @@
 #import "URLConfig.h"
 #import "Utility.h"
 #import "Constant.h"
+#import "Mixpanel.h"
 
 @interface LoginViewController ()
 @property(strong, nonatomic) IBOutlet UITextField *emailField;
@@ -64,6 +65,18 @@
             [userDefaults setSecretObject:token forKey:@"user_token"];
             [[NSUserDefaults standardUserDefaults] synchronize];
             [self.unloggedinVC hideUnloggedinView];
+#ifndef DEBUG
+            Mixpanel *mixpanel = [Mixpanel sharedInstance];
+            NSString *language = [[NSLocale preferredLanguages] objectAtIndex:0];
+            
+            if (token) {
+                NSString * userEmail = [userDefaults stringForKey:@"user_email"];
+                [mixpanel identify:userEmail];
+            }
+            
+            [mixpanel track:mpTrackSignin properties:@{@"language":language}];
+#endif
+            
 #ifdef CN_VERSION
                 [self.presentingViewController.presentingViewController dismissViewControllerAnimated:YES completion:nil];
 #else

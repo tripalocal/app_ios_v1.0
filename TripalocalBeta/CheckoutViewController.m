@@ -9,9 +9,11 @@
 #import "URLConfig.h"
 #import "CheckoutViewController.h"
 #import "InstantBookingTableViewCell.h"
+#import <SecureNSUserDefaults/NSUserDefaults+SecureAdditions.h>
 #import "JGProgressHUD.h"
 #import "Utility.h"
-#import "URLConfig.h"
+#import "Mixpanel.h"
+#import "Constant.h"
 
 @interface CheckoutViewController (){
     NSMutableArray *guestPickerData;
@@ -58,7 +60,6 @@
     _datePicker = [[UIPickerView alloc] init];
     _timePicker = [[UIPickerView alloc] init];
     self.guestPickerView = [[AKPickerView alloc] initWithFrame:CGRectMake(0,0,self.guestView.frame.size.width,self.guestView.frame.size.height)];
-//    [self.guestView removeFromSuperview];
 
     self.guestPickerView.interitemSpacing = 20.0;
     self.guestPickerView.fisheyeFactor = 0.001;
@@ -180,6 +181,21 @@
     
     _confirmButton.backgroundColor = [UIColor grayColor];
     _confirmButton.enabled = NO;
+    
+#ifndef DEBUG
+    Mixpanel *mixpanel = [Mixpanel sharedInstance];
+    NSString *language = [[NSLocale preferredLanguages] objectAtIndex:0];
+    
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    NSString *token = [userDefaults secretStringForKey:@"user_token"];
+    
+    if (token) {
+        NSString * userEmail = [userDefaults stringForKey:@"user_email"];
+        [mixpanel identify:userEmail];
+    }
+    
+    [mixpanel track:mpTrackViewCheckout properties:@{@"language":language}];
+#endif
 }
 
 - (void)fetchData
@@ -272,6 +288,20 @@
 - (void)pickerView:(AKPickerView *)pickerView didSelectItem:(NSInteger)item
 {
     selectedGuestString = guestPickerData[item];
+#ifndef DEBUG
+    Mixpanel *mixpanel = [Mixpanel sharedInstance];
+    NSString *language = [[NSLocale preferredLanguages] objectAtIndex:0];
+    
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    NSString *token = [userDefaults secretStringForKey:@"user_token"];
+    
+    if (token) {
+        NSString * userEmail = [userDefaults stringForKey:@"user_email"];
+        [mixpanel identify:userEmail];
+    }
+    
+    [mixpanel track:mpTrackNumberOfPeople properties:@{@"language":language}];
+#endif
     self.guestNumber = [selectedGuestString intValue];
     if ([_dynamicPriceArray count] == 0)
     {

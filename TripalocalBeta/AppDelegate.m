@@ -10,6 +10,9 @@
 #import <AlipaySDK/AlipaySDK.h>
 #import "Constant.h"
 #import <SecureNSUserDefaults/NSUserDefaults+SecureAdditions.h>
+#import "Mixpanel.h"
+
+#define MIXPANEL_TOKEN @"f94e94414c9de0cc38874706d853c400"
 
 @interface AppDelegate ()
 
@@ -36,6 +39,8 @@
     
     [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment:UIOffsetMake(0, -60)
                                                          forBarMetrics:UIBarMetricsDefault];
+    
+    [Mixpanel sharedInstanceWithToken:MIXPANEL_TOKEN];
     
     return YES;
 }

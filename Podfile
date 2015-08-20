@@ -10,6 +10,7 @@ target 'TripalocalBeta' do
     pod 'JGProgressHUD'
     pod 'AKPickerView'
     pod 'SecureNSUserDefaults', '~> 1.0.0'
+    pod 'Mixpanel'
 end
 
 target 'TripalocalBetaTests' do

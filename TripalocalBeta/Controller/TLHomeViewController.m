@@ -64,13 +64,6 @@ NSInteger const WeChatCellPos = 6;
     [locationsURLString addObject: home_GoldCoast_Pic_URL];
     [locationsURLString addObject: home_Hobart_Pic_URL];
     
-//    [locationsURLString addObject:@"https://www.tripalocal.com/images/mobile/home/Melbourne.jpg"];
-//    [locationsURLString addObject:@"https://www.tripalocal.com/images/mobile/home/Sydney.jpg"];
-//    [locationsURLString addObject:@"https://www.tripalocal.com/images/mobile/home/Brisbane.jpg"];
-//    [locationsURLString addObject:@"https://www.tripalocal.com/images/mobile/home/Adelaide.jpg"];
-//    [locationsURLString addObject:@"https://www.tripalocal.com/images/mobile/home/Cairns.jpg"];
-//    [locationsURLString addObject:@"https://www.tripalocal.com/images/mobile/home/Goldcoast.jpg"];
-//    [locationsURLString addObject:@"https://www.tripalocal.com/images/mobile/home/Hobart.jpg"];
 
     self.searchController = [[UISearchController alloc] initWithSearchResultsController:nil];
     self.searchController.searchResultsUpdater = self;
@@ -92,6 +85,7 @@ NSInteger const WeChatCellPos = 6;
      forState:UIControlStateNormal];
     self.searchController.searchBar.layer.borderWidth = 0.5;
     self.searchController.searchBar.layer.borderColor = [[UIColor grayColor] CGColor];
+    
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{

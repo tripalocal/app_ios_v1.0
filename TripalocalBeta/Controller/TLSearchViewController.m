@@ -15,6 +15,7 @@
 #import "URLConfig.h"
 #import "Utility.h"
 #import "TLDetailViewController.h"
+#import "Mixpanel.h"
 #import "JGProgressHUD.h"
 
 @interface TLSearchViewController (){
@@ -48,6 +49,21 @@
     currentLanguage = [[NSLocale preferredLanguages] objectAtIndex:0];
     dynamicPricingArray = [[NSMutableArray alloc]init];
     [HUD dismissAfterDelay:1.0];
+    
+#ifndef DEBUG
+    Mixpanel *mixpanel = [Mixpanel sharedInstance];
+    NSString *language = [[NSLocale preferredLanguages] objectAtIndex:0];
+    
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    NSString *token = [userDefaults secretStringForKey:@"user_token"];
+    
+    if (token) {
+        NSString * userEmail = [userDefaults stringForKey:@"user_email"];
+        [mixpanel identify:userEmail];
+    }
+    
+    [mixpanel track:mpTrackViewSearchPage properties:@{@"language":language}];
+#endif
 }
 
 - (void)viewWillAppear:(BOOL)animated

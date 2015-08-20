@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5583C9EC037148077A28E04E /* libPods-TripalocalBeta.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D1136758DFF7CE52CD971824 /* libPods-TripalocalBeta.a */; };
 		5649BD371B3FC40F00465D6C /* TLDetailTableViewCell0.m in Sources */ = {isa = PBXBuildFile; fileRef = 5649BD361B3FC40F00465D6C /* TLDetailTableViewCell0.m */; };
 		5649BD3A1B3FC42600465D6C /* TLDetailTableViewCell1.m in Sources */ = {isa = PBXBuildFile; fileRef = 5649BD391B3FC42600465D6C /* TLDetailTableViewCell1.m */; };
 		5649BD3D1B3FD56E00465D6C /* TLDetailTableViewCell2.m in Sources */ = {isa = PBXBuildFile; fileRef = 5649BD3C1B3FD56E00465D6C /* TLDetailTableViewCell2.m */; };
@@ -16,7 +17,6 @@
 		5649BDF01B46702300465D6C /* (null) in Resources */ = {isa = PBXBuildFile; };
 		5649BDF11B46702300465D6C /* (null) in Resources */ = {isa = PBXBuildFile; };
 		568AE8301B52087500D48DBC /* InstantBookingTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 568AE82F1B52087500D48DBC /* InstantBookingTableViewCell.m */; };
-		7412FDE1EDC10952539BF3C5 /* libPods-TripalocalBeta.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D1136758DFF7CE52CD971824 /* libPods-TripalocalBeta.a */; };
 		87046A8A1B6606C40084E2E3 /* TLBannerTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 87046A881B6606C40084E2E3 /* TLBannerTableViewCell.m */; };
 		87046A8C1B660D590084E2E3 /* TLBannerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87046A8E1B660D590084E2E3 /* TLBannerTableViewCell.xib */; };
 		870AEB791B53A81D00959465 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 870AEB7B1B53A81D00959465 /* Localizable.strings */; };
@@ -316,7 +316,7 @@
 				87FC2D471B47FAF60017F30E /* libssl.a in Frameworks */,
 				87FC2D431B47FA800017F30E /* AlipaySDK.framework in Frameworks */,
 				87FC2D3C1B47F8390017F30E /* SystemConfiguration.framework in Frameworks */,
-				7412FDE1EDC10952539BF3C5 /* libPods-TripalocalBeta.a in Frameworks */,
+				5583C9EC037148077A28E04E /* libPods-TripalocalBeta.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1015,7 +1015,6 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(SRCROOT)",
 					"$(PROJECT_DIR)",
-					"$(PROJECT_DIR)/build/Debug-iphoneos",
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1120,7 +1119,6 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(SRCROOT)",
 					"$(PROJECT_DIR)",
-					"$(PROJECT_DIR)/build/Debug-iphoneos",
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1262,7 +1260,6 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(SRCROOT)",
 					"$(PROJECT_DIR)",
-					"$(PROJECT_DIR)/build/Debug-iphoneos",
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1309,7 +1306,6 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(SRCROOT)",
 					"$(PROJECT_DIR)",
-					"$(PROJECT_DIR)/build/Debug-iphoneos",
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
