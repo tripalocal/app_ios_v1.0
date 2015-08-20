@@ -163,6 +163,7 @@
                                             <animations/>
                                             <constraints>
                                                 <constraint firstItem="pfh-OS-Wji" firstAttribute="top" secondItem="ZzR-aR-8nO" secondAttribute="top" id="3IZ-2k-7ih"/>
+                                                <constraint firstItem="JGX-d6-HBd" firstAttribute="top" secondItem="iCx-eM-MjF" secondAttribute="topMargin" constant="85" id="6DD-du-f2p"/>
                                                 <constraint firstItem="pfh-OS-Wji" firstAttribute="top" secondItem="jSP-6t-dAh" secondAttribute="top" id="86b-wL-fBB"/>
                                                 <constraint firstItem="pfh-OS-Wji" firstAttribute="top" secondItem="KIl-ZR-VVU" secondAttribute="bottom" constant="3" id="AEs-fx-64s"/>
                                                 <constraint firstItem="pfh-OS-Wji" firstAttribute="leading" secondItem="ZzR-aR-8nO" secondAttribute="trailing" constant="10" id="DXm-nR-ivF"/>
@@ -172,7 +173,7 @@
                                                 <constraint firstItem="hbz-Sb-etl" firstAttribute="leading" secondItem="iCx-eM-MjF" secondAttribute="leading" id="MDk-Zc-r7g"/>
                                                 <constraint firstItem="K4a-U4-pQM" firstAttribute="leading" secondItem="pfh-OS-Wji" secondAttribute="trailing" constant="10" id="QiZ-a6-18o"/>
                                                 <constraint firstItem="jSP-6t-dAh" firstAttribute="leading" secondItem="pfh-OS-Wji" secondAttribute="trailing" constant="5" id="SRr-Z9-ubQ"/>
-                                                <constraint firstItem="Qeu-2l-orb" firstAttribute="top" secondItem="JGX-d6-HBd" secondAttribute="bottom" constant="8" symbolic="YES" id="SYp-Gr-zT0"/>
+                                                <constraint firstItem="Qeu-2l-orb" firstAttribute="top" secondItem="JGX-d6-HBd" secondAttribute="bottom" constant="7" id="SYp-Gr-zT0"/>
                                                 <constraint firstItem="Qeu-2l-orb" firstAttribute="centerX" secondItem="KIl-ZR-VVU" secondAttribute="centerX" id="VeU-Ry-PMa"/>
                                                 <constraint firstItem="ZzR-aR-8nO" firstAttribute="leading" secondItem="iCx-eM-MjF" secondAttribute="leadingMargin" constant="103" id="X86-za-ZHG"/>
                                                 <constraint firstItem="K4a-U4-pQM" firstAttribute="bottom" secondItem="pfh-OS-Wji" secondAttribute="bottom" id="YvV-7g-kAy"/>
@@ -181,12 +182,15 @@
                                                 <constraint firstItem="JGX-d6-HBd" firstAttribute="top" secondItem="iCx-eM-MjF" secondAttribute="topMargin" constant="88" id="hhN-r3-nEh"/>
                                                 <constraint firstAttribute="centerX" secondItem="pfh-OS-Wji" secondAttribute="centerX" id="iuD-Va-YDZ"/>
                                                 <constraint firstItem="jSP-6t-dAh" firstAttribute="leading" secondItem="pfh-OS-Wji" secondAttribute="trailing" constant="30" id="mas-0d-RfG"/>
+                                                <constraint firstItem="JGX-d6-HBd" firstAttribute="top" secondItem="hbz-Sb-etl" secondAttribute="bottom" constant="-70" id="otG-rZ-z50"/>
                                                 <constraint firstAttribute="trailing" secondItem="hbz-Sb-etl" secondAttribute="trailing" id="xOE-FD-MtC"/>
                                                 <constraint firstItem="Qeu-2l-orb" firstAttribute="centerX" secondItem="hbz-Sb-etl" secondAttribute="centerX" id="yyj-5a-OsI"/>
                                             </constraints>
                                             <variation key="default">
                                                 <mask key="constraints">
+                                                    <exclude reference="6DD-du-f2p"/>
                                                     <exclude reference="hhN-r3-nEh"/>
+                                                    <exclude reference="Ije-5I-W3m"/>
                                                     <exclude reference="X86-za-ZHG"/>
                                                     <exclude reference="mas-0d-RfG"/>
                                                     <exclude reference="QiZ-a6-18o"/>
