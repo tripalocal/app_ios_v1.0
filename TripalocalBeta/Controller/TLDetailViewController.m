@@ -99,13 +99,14 @@
     reviewComment = @"";
     reviewerImageURL = @"";
 
-    self.cellHeights = [@[@306, @240, @320, @385, @164, @240] mutableCopy];
+    self.cellHeights = [@[@320, @240, @320, @385, @164, @320] mutableCopy];
     _myTable.delegate = self;
     _myTable.dataSource = self;
     
     reviews = [[NSArray alloc] init];
     expData = [[NSDictionary alloc] init];
-    
+    [_myTable setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+
     [self mpTrackViewExperience];
 
 }
@@ -299,7 +300,7 @@
             }
             
             cell1.parentView = self.myTable;
-            cell1.expTitleLabel.text = title;
+            cell1.expTitleLabel.text = [NSString stringWithFormat:@"%@ %@ %@ %@",title, NSLocalizedString(@"expTitlePrefix", nil), hostFirstName, NSLocalizedString(@"expTitleSuffix", nil)];
             cell1.selectionStyle = UITableViewCellSelectionStyleNone;
             cell1.expDescriptionLabel.text = [description stringByAppendingFormat:@" %@ %@", activity, interaction];
             if (self.isExpReadMoreOpen) {
@@ -342,6 +343,7 @@
             
             return cell2;
         case 3:
+        {
             if(!cell3)
             {
                 cell3=[[TLDetailTableViewCell3 alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier3];
@@ -350,19 +352,18 @@
             cell3.selectionStyle = UITableViewCellSelectionStyleNone;
             if ([nReviews intValue] > 0) {
                 cell3.countLabel.text = [NSString stringWithFormat:NSLocalizedString(@"n_reviews", nil), nReviews];
-            } else {
-                cell3.countLabel.text = NSLocalizedString(@"no_reviews", nil);
+                cell3.reviewStars.rating = [rate floatValue];
+                cell3.reviewerName.text = [NSString stringWithFormat:@"%@ %@", reviewerFirstName, reviewerLastName];
+                cell3.commentLabel.text = reviewComment;
+                
+                [cell3.reviewerImage sd_setImageWithURL:[NSURL URLWithString:reviewerImageURL]
+                                       placeholderImage:[UIImage imageNamed:@"default_profile_image.png"]
+                                                options:SDWebImageRefreshCached];
+            }else{
+                cell3.hidden = YES;
             }
-            
-            cell3.reviewStars.rating = [rate floatValue];
-            cell3.reviewerName.text = [NSString stringWithFormat:@"%@ %@", reviewerFirstName, reviewerLastName];
-            cell3.commentLabel.text = reviewComment;
-            
-            [cell3.reviewerImage sd_setImageWithURL:[NSURL URLWithString:reviewerImageURL]
-                              placeholderImage:[UIImage imageNamed:@"default_profile_image.png"]
-                                       options:SDWebImageRefreshCached];
-            
             return cell3;
+        }
         case 4:
         {
             if(!cell4) {
@@ -434,7 +435,17 @@
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return [self.cellHeights[indexPath.row] floatValue];
+    
+    switch (indexPath.row){
+        case 3:
+            if ([nReviews intValue] <= 0) {
+                return 0.0;
+            }
+        default:
+            return [self.cellHeights[indexPath.row] floatValue];
+    }
+    
+
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
@@ -460,5 +471,6 @@
     }
     
 }
+
 
 @end

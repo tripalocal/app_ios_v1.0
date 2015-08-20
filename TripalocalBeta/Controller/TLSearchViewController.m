@@ -63,7 +63,8 @@
 
     dynamicPricingArray = [[NSMutableArray alloc]init];
     [HUD dismissAfterDelay:1.0];
-    
+    [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+
     [self mpTrackViewSearchPage];
 }
 

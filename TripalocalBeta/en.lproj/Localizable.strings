@@ -82,6 +82,10 @@
 
 "reservationSuffix" = "";
 
+"expTitlePrefix" = "with";
+
+"expTitleSuffix" = "";
+
 "booking_status_requested" = "Requested";
 
 "booking_status_confirmed" = "Confirmed";
