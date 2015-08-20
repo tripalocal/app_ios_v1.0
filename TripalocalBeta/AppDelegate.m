@@ -45,7 +45,6 @@
 #else
     [Mixpanel sharedInstanceWithToken:MIXPANEL_TOKEN];
 #endif
-//    [MobClick startWithAppkey:@"xxxxxxxxxxxxxxx" reportPolicy:BATCH   channelId:@"Web"];
     
     return YES;
 }
