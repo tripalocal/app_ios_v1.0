@@ -48,6 +48,8 @@
     currentLanguage = [[NSLocale preferredLanguages] objectAtIndex:0];
     dynamicPricingArray = [[NSMutableArray alloc]init];
     [HUD dismissAfterDelay:1.0];
+    [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+
 }
 
 - (void)viewWillAppear:(BOOL)animated

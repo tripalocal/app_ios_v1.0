@@ -88,6 +88,7 @@
     
     reviews = [[NSArray alloc] init];
     expData = [[NSDictionary alloc] init];
+    [_myTable setSeparatorStyle:UITableViewCellSeparatorStyleNone];
 }
 
 - (void)fetchData
