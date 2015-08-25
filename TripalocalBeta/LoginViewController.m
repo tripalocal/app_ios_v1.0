@@ -65,10 +65,11 @@
 
         if ([httpResponse statusCode] == 200) {
             NSString *token = result[@"token"];
+            NSString *user_id = result[@"user_id"];
             [self fetchProfileAndCache:token];
-
             NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
             [userDefaults setSecretObject:token forKey:@"user_token"];
+            [userDefaults setObject:user_id forKey:@"user_id"];
             [[NSUserDefaults standardUserDefaults] synchronize];
             [self.unloggedinVC hideUnloggedinView];
 #ifdef CN_VERSION

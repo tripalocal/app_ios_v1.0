@@ -143,8 +143,8 @@
 }
 -(BOOL)connect {
     [self setupStream];
-    NSString *jabberID = [[NSUserDefaults standardUserDefaults] stringForKey:@"UserID"];
-    NSString *myPassword = [[NSUserDefaults standardUserDefaults] stringForKey:@"UserPassword"];
+    NSString *jabberID = [NSString stringWithFormat:@"%@",[[NSUserDefaults standardUserDefaults] objectForKey:@"user_id"]];
+    NSString *myPassword = jabberID;
     if (![xmppStream isDisconnected]) {
         return YES;
     }
@@ -172,7 +172,7 @@
     NSError *error = nil;
     [[self xmppStream] authenticateWithPassword:password error:&error];
 }
--(void)xmppStreamDidAuthenticate:(XMPPStream *)sneder{
+-(void)xmppStreamDidAuthenticate:(XMPPStream *)sender{
     [self goOnline];
 }
 -(void)xmppStream:(XMPPStream *)sender didReceiveMessage:(XMPPMessage *)message{

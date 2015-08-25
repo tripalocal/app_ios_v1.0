@@ -23,6 +23,7 @@
 //    NSMutableArray *_nameLIst;
 //    NSMutableArray *_messageList;
 //    NSMutableArray *_timeList;
+    
 }
 
 -(AppDelegate *)appDelegate {
@@ -52,18 +53,24 @@
     //set view controller as a delegate for the chat protocol
     AppDelegate *del = [self appDelegate];
     del._chatDelegate = self;
-
+	//get the user info
+   
 }
 -(void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
     
-    NSString *login = [[NSUserDefaults standardUserDefaults] objectForKey:@"userID"];
-    if(login) {
+    [super viewDidAppear:animated];
+    // how to get the user id
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    NSString *token = [userDefaults secretObjectForKey:@"user_token"];
+    NSString *user_id = [userDefaults objectForKey:@"user_id"];
+
+    if(user_id >= 0) {
         NSLog(@"test flag view2");
         if ([[self appDelegate] connect]) {
             NSLog(@"show chat list");
         }
     }else {
+        NSLog(@"show sign in");
         [self showLogin];
     }
 }
@@ -101,15 +108,18 @@
         cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     }
     //load data
-//    cell.userImage.image = [UIImage imageNamed:@"flash.png"];
-//    cell.userName.text = @"FRANK";
-//    cell.messageContent.text = @"welcome to tripalocal.";
-//    cell.messageTime.text = @"3 mins";
     if ([nameList count]!=0) {
         cell.userImage.image = [imgList objectAtIndex:indexPath.row];
         cell.userName.text = [nameList objectAtIndex:indexPath.row];
         cell.messageContent.text = [messageList objectAtIndex:indexPath.row];
         cell.messageTime.text = [messageList objectAtIndex:indexPath.row];
+    }
+    else{
+        cell.userImage.image = [UIImage imageNamed:@"flash.png"];
+        cell.userName.text = @"FRANK";
+        cell.messageContent.text = @"welcome to tripalocal.";
+        cell.messageTime.text = @"3 mins";
+
     }
     return cell;
 }
