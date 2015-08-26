@@ -190,7 +190,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 -(void)disconnect{
     [self goOffline];
     [xmppStream disconnect];
-    [_chatDelegate didDisconnect];
+//    [_chatDelegate didDisconnect];
 }
 -(void)goOnline {
     XMPPPresence *presence = [XMPPPresence presence];
