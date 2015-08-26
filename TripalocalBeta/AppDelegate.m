@@ -11,6 +11,15 @@
 #import "Constant.h"
 #import <SecureNSUserDefaults/NSUserDefaults+SecureAdditions.h>
 
+#import "DDLog.h"
+#import "DDTTYLogger.h"
+
+#if DEBUG
+static const int ddLogLevel = LOG_LEVEL_VERBOSE;
+#else
+static const int ddLogLevel = LOG_LEVEL_INFO;
+#endif
+
 @interface AppDelegate ()
 -(void)setupStream;
 -(void)goOnline;
@@ -45,7 +54,7 @@
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
     // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
-    [self connect];
+    [self disconnect];
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
@@ -130,36 +139,52 @@
 }
 
 -(void)setupStream {
+    NSLog(@"Setting up the Stream!>");
     xmppStream = [[XMPPStream alloc] init];
     [xmppStream addDelegate:self delegateQueue:dispatch_get_main_queue()];
-}
--(void)goOnline {
-    XMPPPresence *presence = [XMPPPresence presence];
-    [[self xmppStream] sendElement:presence];
-}
--(void)goOffline {
-    XMPPPresence *presence = [XMPPPresence presenceWithType:@"Unavailabel"];
-    [[self xmppStream] sendElement:presence];
+    [xmppStream disconnect];
+//    NSLog(@"xmpp Strean is connect? ==== %d", [xmppStream isDisconnected]);
+//    self.xmppStream.hostName = @"54.149.42.196";
+//    self.xmppStream.hostPort = 9090;
+//    NSLog(@"xmpp Strean is connect? ==== %d", [xmppStream isDisconnected]);
 }
 -(BOOL)connect {
     [self setupStream];
-    NSString *jabberID = [NSString stringWithFormat:@"%@",[[NSUserDefaults standardUserDefaults] objectForKey:@"user_id"]];
+    //setting up the jabber id and password
+
+    NSString *jabberID = [NSString stringWithFormat:@"%@%@",[[NSUserDefaults standardUserDefaults] objectForKey:@"user_id"], @"@tripalocal.com"];
     NSString *myPassword = jabberID;
+#if DEBUG
+    NSLog(@"Using JABBERID:%@, PASSWORD:%@", jabberID, myPassword);
+#endif
+    
     if (![xmppStream isDisconnected]) {
+        NSLog(@"connected: %d", [self.xmppStream isConnected]);
         return YES;
     }
-    
+    NSLog(@"DISCONNECT YES!!");
     if (jabberID == nil || myPassword == nil) {
         return NO;
     }
+#if DEBUG
+    NSLog(@"Connecting to openfire server, using: %@",jabberID);
+#endif
     
     [xmppStream setMyJID:[XMPPJID jidWithString:jabberID]];
     password = myPassword;
+
     NSError *error = nil;
-    if (![xmppStream isConnected])
+    if (![xmppStream connectWithTimeout:XMPPStreamTimeoutNone error:&error])
     {
-        return NO;
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error connecting"
+                                                            message:@"See console for error details."
+                                                           delegate:nil
+                                                  cancelButtonTitle:@"Ok"
+                                                  otherButtonTitles:nil];
+        [alertView show];
+    	return NO;
     }
+    NSLog(@"Is connected: %d", [self.xmppStream isConnected]);
     return YES;
 }
 -(void)disconnect{
@@ -167,12 +192,82 @@
     [xmppStream disconnect];
     [_chatDelegate didDisconnect];
 }
+-(void)goOnline {
+    XMPPPresence *presence = [XMPPPresence presence];
+    NSXMLElement *priority = [NSXMLElement elementWithName:@"Priority" stringValue:@"24"];
+    [presence addChild:priority];
+#if DEBUG
+    NSLog(@"XS Sending:%@",priority);
+#endif
+    [[self xmppStream] sendElement:presence];
+}
+-(void)goOffline {
+    XMPPPresence *presence = [XMPPPresence presenceWithType:@"Unavailable"];
+    [[self xmppStream] sendElement:presence];
+}
+- (void)xmppStream:(XMPPStream *)sender socketDidConnect:(GCDAsyncSocket *)socket
+{
+    NSLog(@"SOCKET DID CONNECT$$$$$$$$$$$$$$$$$$$");
+    DDLogVerbose(@"%@: %@", THIS_FILE, THIS_METHOD);
+}
+- (void)xmppStream:(XMPPStream *)sender willSecureWithSettings:(NSMutableDictionary *)settings
+{
+//    DDLogVerbose(@"%@: %@", THIS_FILE, THIS_METHOD);
+    
+    NSString *expectedCertName = [xmppStream.myJID domain];
+    NSLog(@"Domain Name: %@", expectedCertName);
+    NSLog(@"willSecureWithSettings #####################");
+    NSLog(@"Is connected: %d", [self.xmppStream isConnected]);
+    if (expectedCertName)
+    {
+        settings[(NSString *) kCFStreamSSLPeerName] = expectedCertName;
+    }
+    
+//    if (customCertEvaluation)
+//    {
+//        settings[GCDAsyncSocketManuallyEvaluateTrust] = @(YES);
+//    }
+}
+
+- (void)xmppStream:(XMPPStream *)sender didReceiveTrust:(SecTrustRef)trust
+ completionHandler:(void (^)(BOOL shouldTrustPeer))completionHandler
+{
+//    DDLogVerbose(@"%@: %@", THIS_FILE, THIS_METHOD);
+    
+    // The delegate method should likely have code similar to this,
+    // but will presumably perform some extra security code stuff.
+    // For example, allowing a specific self-signed certificate that is known to the app.
+    
+    dispatch_queue_t bgQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    dispatch_async(bgQueue, ^{
+        
+        SecTrustResultType result = kSecTrustResultDeny;
+        OSStatus status = SecTrustEvaluate(trust, &result);
+        NSLog(@"DID RECEIVE TRUST *********************");
+        if (status == noErr && (result == kSecTrustResultProceed || result == kSecTrustResultUnspecified)) {
+            completionHandler(YES);
+        }
+        else {
+            completionHandler(NO);
+        }
+    });
+}
+- (void)xmppStreamDidSecure:(XMPPStream *)sender
+{
+    NSLog(@"DID SECURE ^^^^^^^^^^^^^^^^^^^^^^");
+//    DDLogVerbose(@"%@: %@", THIS_FILE, THIS_METHOD);
+}
+
 -(void)xmppStreamDidConnect:(XMPPStream *)sender{
+    NSLog(@"User Connected");
     isOpen = YES;
     NSError *error = nil;
-    [[self xmppStream] authenticateWithPassword:password error:&error];
+    [[self xmppStream] authenticateWithPassword:password error:nil];
+    [self.xmppStream sendElement:[XMPPPresence presence]];
+    
 }
 -(void)xmppStreamDidAuthenticate:(XMPPStream *)sender{
+    NSLog(@"Authenticate!");
     [self goOnline];
 }
 -(void)xmppStream:(XMPPStream *)sender didReceiveMessage:(XMPPMessage *)message{
@@ -183,6 +278,7 @@
     [m setObject:msg forKey:@"msg"];
     [m setObject:from forKey:@"sender"];
     [_messageDelegate newMessageReceived:m];
+    
 }
 -(void)xmppStream:(XMPPStream *)sender didReceivePresence:(XMPPPresence *)presence{
     NSString *presenceType = [presence type]; //online or offline
@@ -197,6 +293,12 @@
         }
     }
 }
-
+-(BOOL)xmppStream:(XMPPStream *)sender didReceiveIQ:(XMPPIQ *)iq{
+    return NO;
+}
+-(void)dealloc {
+    [xmppStream removeDelegate:self];
+    [xmppStream disconnect];
+}
 
 @end

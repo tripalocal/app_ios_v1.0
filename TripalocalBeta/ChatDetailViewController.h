@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "SMMessageDelegate.h"
 #import "AppDelegate.h"
+
 @interface ChatDetailViewController : UIViewController<SMMessageDelegate>{
     UITextField *textField;
     UITableView *detailTableView;

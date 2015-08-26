@@ -12,6 +12,8 @@
 #import "Utility.h"
 #import <SecureNSUserDefaults/NSUserDefaults+SecureAdditions.h>
 #import "XMPP.h"
+#import "UnloginViewController.h"
+
 
 
 @interface ChatOverviewController()
@@ -23,7 +25,7 @@
 //    NSMutableArray *_nameLIst;
 //    NSMutableArray *_messageList;
 //    NSMutableArray *_timeList;
-    
+
 }
 
 -(AppDelegate *)appDelegate {
@@ -57,7 +59,7 @@
    
 }
 -(void)viewDidAppear:(BOOL)animated {
-    
+    [[self appDelegate] disconnect];
     [super viewDidAppear:animated];
     // how to get the user id
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
@@ -68,6 +70,7 @@
         NSLog(@"test flag view2");
         if ([[self appDelegate] connect]) {
             NSLog(@"show chat list");
+           
         }
     }else {
         NSLog(@"show sign in");
