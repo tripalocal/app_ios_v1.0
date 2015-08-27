@@ -13,7 +13,7 @@
 #import <SecureNSUserDefaults/NSUserDefaults+SecureAdditions.h>
 #import "XMPP.h"
 #import "UnloginViewController.h"
-
+#import "JGProgressHUD.h"
 
 
 @interface ChatOverviewController()
@@ -21,7 +21,7 @@
 @end
 
 @implementation ChatOverviewController  {
-
+	JGProgressHUD *HUD;
 
 }
 
@@ -36,8 +36,15 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    HUD = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleDark];
+    HUD.HUDView.layer.shadowColor = [UIColor blackColor].CGColor;
+    HUD.HUDView.layer.shadowOffset = CGSizeZero;
+    HUD.HUDView.layer.shadowOpacity = 0.4f;
+    HUD.HUDView.layer.shadowRadius = 8.0f;
+    HUD.textLabel.text = NSLocalizedString(@"loading", nil);
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
+    
     UIBarButtonItem *closeButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Close", nil) style:UIBarButtonItemStylePlain target:self action:@selector(dismissChatOverview:)];
     closeButton.tintColor = [Utility themeColor];
     self.navigationItem.leftBarButtonItem = closeButton;
@@ -53,10 +60,9 @@
     AppDelegate *del = [self appDelegate];
     del._chatDelegate = self;
 	//get the user info
-    NSLog(@"show chat list");
-    [self showChatList];
-    NSLog(@"chat list shown");
-   
+    [HUD showInView:self.view];
+    [HUD dismissAfterDelay:1.0];
+    
 }
 -(void)viewDidAppear:(BOOL)animated {
     [[self appDelegate] disconnect];
@@ -64,13 +70,18 @@
     // how to get the user id
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     NSString *user_id = [userDefaults objectForKey:@"user_id"];
-	if ([[self appDelegate] connect]) {
-            
-        
-    }else {
-        NSLog(@"show sign in");
-        [self showLogin];
-    }
+    NSLog(@"show chat list");
+    
+    [self showChatList];
+    NSLog(@"chat list shown");
+    [self.tableView reloadData];
+//	if ([[self appDelegate] connect]) {
+//            
+//        
+//    }else {
+//        NSLog(@"show sign in");
+//        [self showLogin];
+//    }
 }
 -(IBAction)showLogin {
     UnloginViewController *unLoginController = [[UnloginViewController alloc] init];
@@ -125,7 +136,6 @@
         	}
         }
     }
-    [tableview reloadData];
 #if DEBUG
     NSString *decodedData = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     NSLog(@"Receiving data = %@", decodedData);
@@ -151,9 +161,8 @@
     }
     //load data
     NSLog(@"Loading cell data!");
-
     
-    [self showChatList];
+//    [self showChatList];
     if ([nameList count]!=0) {
         cell.userImage.image = [imgList objectAtIndex:indexPath.row];
         cell.userName.text = [nameList objectAtIndex:indexPath.row];
@@ -165,7 +174,6 @@
         cell.userName.text = @"FRANK";
         cell.messageContent.text = @"welcome to tripalocal.";
         cell.messageTime.text = @"3 mins";
-
     }
     return cell;
 }

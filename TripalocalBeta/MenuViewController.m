@@ -12,6 +12,7 @@
 #import "Utility.h"
 #import "Constant.h"
 
+
 @interface MenuViewController ()
 @property (weak, nonatomic) IBOutlet UIImageView *image;
 @property (weak, nonatomic) IBOutlet UILabel *hostName;
@@ -21,10 +22,13 @@
 
 @end
 
-@implementation MenuViewController
+@implementation MenuViewController{
+
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     
     [self.requestTripButton.layer setMasksToBounds:YES];
     [self.requestTripButton.layer setCornerRadius:5.0f];
@@ -67,7 +71,8 @@
     hostImageSingleTap.numberOfTapsRequired = 1;
     [self.image setUserInteractionEnabled:YES];
     [self.image addGestureRecognizer:hostImageSingleTap];
-    UITapGestureRecognizer *chatSingleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapChatOverview)];
+
+    UITapGestureRecognizer *chatSingleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapChatOverview)]; 
     chatSingleTap.numberOfTapsRequired = 1;
 //    wishlist tap
 //    UITapGestureRecognizer *wishListSingleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(wishListTapped)];
