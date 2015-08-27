@@ -46,7 +46,7 @@
     textField.layer.cornerRadius = 5.0f;
     AppDelegate *del = [self appDelegate];
     del._messageDelegate = self;
-    [self.textField becomeFirstResponder];
+    [self.textField resignFirstResponder];
 }
 -(void)dismissKeyboard {
     [textField resignFirstResponder];

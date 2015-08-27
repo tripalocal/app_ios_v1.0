@@ -36,6 +36,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    NSLog(@"View loading.");
     HUD = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleDark];
     HUD.HUDView.layer.shadowColor = [UIColor blackColor].CGColor;
     HUD.HUDView.layer.shadowOffset = CGSizeZero;
@@ -123,16 +124,17 @@
                 NSString *sender_name = [message_info valueForKey:@"sender_name"];
                 NSLog(@"messageName loaded...");
                 NSLog(@"content: %@, date: %@, image: %@, name: %@", messageContent, messageDate,senderImageURL, sender_name);
-                
-                if (image){
-                    [imgList addObject:image];
-                } else {
-                    [imgList addObject:[UIImage imageNamed:@"default_profile_image.png"]];
+                if (![messageList containsObject:messageContent]) {
+                    if (image){
+                        [imgList addObject:image];
+                    } else {
+                        [imgList addObject:[UIImage imageNamed:@"default_profile_image.png"]];
+                    }
+                    
+                    [nameList addObject:sender_name];
+                    [messageList addObject:messageContent];
+                    [timeList addObject:diff];
                 }
-                
-                [nameList addObject:sender_name];
-                [messageList addObject:messageContent];
-                [timeList addObject:diff];
         	}
         }
     }
