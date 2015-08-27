@@ -79,6 +79,8 @@
 		8EB570FF1B01CF2B0026D419 /* TripalocalBetaTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EB570FE1B01CF2B0026D419 /* TripalocalBetaTests.m */; };
 		8EB982501B2280D800ADE430 /* Spinner.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EB9824F1B2280D800ADE430 /* Spinner.m */; };
 		8EC86D5C1B0229F100B0A655 /* TLHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EC86D5B1B0229F100B0A655 /* TLHomeViewController.m */; };
+		BC837DE61B8F34C800862FF8 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BC837DE51B8F34C800862FF8 /* libsqlite3.dylib */; };
+		BC837DEB1B8F35CD00862FF8 /* DBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BC837DEA1B8F35CD00862FF8 /* DBManager.m */; };
 		BCC275DC1B79B3EE00147E82 /* XMPPConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = BCC275C91B79B3EE00147E82 /* XMPPConstants.m */; };
 		BCC275DD1B79B3EE00147E82 /* XMPPElement.m in Sources */ = {isa = PBXBuildFile; fileRef = BCC275CB1B79B3EE00147E82 /* XMPPElement.m */; };
 		BCC275DE1B79B3EE00147E82 /* XMPPIQ.m in Sources */ = {isa = PBXBuildFile; fileRef = BCC275CE1B79B3EE00147E82 /* XMPPIQ.m */; };
@@ -358,6 +360,9 @@
 		8EB9824F1B2280D800ADE430 /* Spinner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Spinner.m; path = Model/Spinner.m; sourceTree = "<group>"; };
 		8EC86D5A1B0229F100B0A655 /* TLHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TLHomeViewController.h; path = Controller/TLHomeViewController.h; sourceTree = "<group>"; };
 		8EC86D5B1B0229F100B0A655 /* TLHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TLHomeViewController.m; path = Controller/TLHomeViewController.m; sourceTree = "<group>"; };
+		BC837DE51B8F34C800862FF8 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		BC837DEA1B8F35CD00862FF8 /* DBManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DBManager.m; path = Database/DBManager.m; sourceTree = "<group>"; };
+		BC837DEC1B8F364100862FF8 /* DBManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DBManager.h; path = Database/DBManager.h; sourceTree = "<group>"; };
 		BCC275C71B79B3EE00147E82 /* XMPP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMPP.h; sourceTree = "<group>"; };
 		BCC275C81B79B3EE00147E82 /* XMPPConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMPPConstants.h; sourceTree = "<group>"; };
 		BCC275C91B79B3EE00147E82 /* XMPPConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMPPConstants.m; sourceTree = "<group>"; };
@@ -481,6 +486,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BC837DE61B8F34C800862FF8 /* libsqlite3.dylib in Frameworks */,
 				BCC2766E1B79B63D00147E82 /* libresolv.dylib in Frameworks */,
 				BCC2766C1B79B62E00147E82 /* libxml2.dylib in Frameworks */,
 				BCC276681B79B61400147E82 /* Security.framework in Frameworks */,
@@ -669,6 +675,7 @@
 		8EB570E11B01CF2B0026D419 /* TripalocalBeta */ = {
 			isa = PBXGroup;
 			children = (
+				BC837DE71B8F350700862FF8 /* Database */,
 				5649BD311B3FC32800465D6C /* Custom Cells */,
 				87EF8C6B1B5C805500292225 /* Utility.h */,
 				87EF8C6C1B5C805500292225 /* Utility.m */,
@@ -813,6 +820,15 @@
 				BCDF1E521B709D4A004A79A3 /* ChatDetailViewController.m */,
 			);
 			name = Controller;
+			sourceTree = "<group>";
+		};
+		BC837DE71B8F350700862FF8 /* Database */ = {
+			isa = PBXGroup;
+			children = (
+				BC837DEA1B8F35CD00862FF8 /* DBManager.m */,
+				BC837DEC1B8F364100862FF8 /* DBManager.h */,
+			);
+			name = Database;
 			sourceTree = "<group>";
 		};
 		BCC275C61B79B3EE00147E82 /* Core */ = {
@@ -1084,6 +1100,7 @@
 		F82D1B26B1D2E61BDB99608C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				BC837DE51B8F34C800862FF8 /* libsqlite3.dylib */,
 				BCC2766D1B79B63D00147E82 /* libresolv.dylib */,
 				BCC2766B1B79B62E00147E82 /* libxml2.dylib */,
 				BCC276691B79B62200147E82 /* libxml2.2.dylib */,
@@ -1283,6 +1300,7 @@
 				BCC2764E1B79B41D00147E82 /* RFImageToDataTransformer.m in Sources */,
 				8711A65E1B5A69DA00578BB2 /* RootViewController.m in Sources */,
 				BCC276411B79B41D00147E82 /* XMPPAnonymousAuthentication.m in Sources */,
+				BC837DEB1B8F35CD00862FF8 /* DBManager.m in Sources */,
 				BCC276511B79B41D00147E82 /* XMPPStringPrep.m in Sources */,
 				87FFF3D31B4D380100326104 /* EditProfileViewController.m in Sources */,
 				BCC2765D1B79B41D00147E82 /* NSString+DDXML.m in Sources */,
