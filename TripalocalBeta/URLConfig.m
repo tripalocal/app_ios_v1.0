@@ -100,7 +100,7 @@
 #endif
 }
 
-+ (NSString *)serviceMessageList
++ (NSString *)serviceMessageListURLString
 {
 #ifdef CN_VERSION
     return @"https://tripalocal.com.cn/service_message_list/";
@@ -109,7 +109,7 @@
 #endif
 }
 
-+ (NSString *)serviceMessage
++ (NSString *)serviceMessageURLString
 {
 #ifdef CN_VERSION
     return @"https://tripalocal.com.cn/service_message/";

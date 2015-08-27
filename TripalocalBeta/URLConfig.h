@@ -29,4 +29,8 @@
 
 + (NSString *)expDetailServiceURLString;
 
++ (NSString *)serviceMessageListURLString;
+
++ (NSString *)serviceMessageURLString;
+
 @end

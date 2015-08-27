@@ -24,6 +24,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 -(void)setupStream;
 -(void)goOnline;
 -(void)goOffline;
+-(BOOL)isConnected;
 @end
 
 @implementation AppDelegate
@@ -153,7 +154,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     //setting up the jabber id and password
 
     NSString *jabberID = [NSString stringWithFormat:@"%@%@",[[NSUserDefaults standardUserDefaults] objectForKey:@"user_id"], @"@tripalocal.com"];
-    NSString *myPassword = jabberID;
+    NSString *myPassword = [[NSUserDefaults standardUserDefaults] objectForKey:@"user_id"];
 #if DEBUG
     NSLog(@"Using JABBERID:%@, PASSWORD:%@", jabberID, myPassword);
 #endif
@@ -295,6 +296,9 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 }
 -(BOOL)xmppStream:(XMPPStream *)sender didReceiveIQ:(XMPPIQ *)iq{
     return NO;
+}
+-(BOOL)isConnected{
+    return [self.xmppStream isConnected];
 }
 -(void)dealloc {
     [xmppStream removeDelegate:self];

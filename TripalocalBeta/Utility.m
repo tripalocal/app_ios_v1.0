@@ -41,4 +41,87 @@
     return [UIColor colorWithRed:0.20f green:0.80f blue:0.80f alpha:1.0f];
 }
 
++ (NSString *)showTimeDifference:(NSString *)previousTime
+{
+    NSDate *currentTime = [NSDate date];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
+    dateFormatter.dateFormat = @"YYYY/MM/dd";
+    NSString *dateString = [dateFormatter stringFromDate: currentTime];
+   
+    NSDateFormatter *timeFormatter = [[NSDateFormatter alloc]init];
+    timeFormatter.dateFormat = @"HH/mm/ss";
+    NSString *timeString = [timeFormatter stringFromDate: currentTime];
+    NSString *previousDateString = [previousTime substringWithRange:NSMakeRange(0, 10)];
+    NSString *previousTimeString = [previousTime substringWithRange:NSMakeRange(11, 8)];
+    NSLog(@"%@ && %@" ,dateString,previousDateString);
+    NSLog(@"%@ && %@" ,timeString,previousTimeString);
+    if ([previousDateString isEqualToString:dateString]) {
+        if ([previousTimeString isEqualToString:timeString]) {
+            return @"Now";
+        }
+        else{
+            NSString *currentHour = [timeString substringWithRange:NSMakeRange(0, 2)];
+            
+            NSString *previousHour = [previousTimeString substringWithRange:NSMakeRange(0, 2)];
+            NSString *previousMinute = [previousTimeString substringWithRange:NSMakeRange(3, 2)];
+            NSString *previousSecond = [previousTimeString substringWithRange:NSMakeRange(6, 2)];
+            NSString *currentMinute = [timeString substringWithRange:NSMakeRange(3, 2)];
+            NSString *currentSecond = [timeString substringWithRange:NSMakeRange(6, 2)];
+            if ([currentHour isEqualToString:previousHour]) {
+                if ([currentMinute isEqualToString:previousMinute]) {
+                    NSInteger pSecond = [previousSecond integerValue];
+                    NSInteger cSecond = [currentSecond integerValue];
+                    NSInteger delta = cSecond - pSecond;
+                    NSString *returnSecondDelta = [NSString stringWithFormat:@"%ld %s",delta,"sec ago"];
+                    return returnSecondDelta;
+                }
+                else{
+                    NSInteger pMinute = [previousMinute integerValue];
+                    NSInteger cMinute = [currentMinute integerValue];
+                    NSInteger delta = cMinute - pMinute;
+                    NSString *returnMinuteDelta = [NSString stringWithFormat:@"%ld %s",delta,"min ago"];
+                    return returnMinuteDelta;
+
+                }
+            }else{
+                NSInteger pHour = [previousHour integerValue];
+                NSInteger cHour = [currentHour integerValue];
+                NSInteger delta = cHour - pHour;
+                NSString *returnHourDelta = [NSString stringWithFormat:@"%ld %s",delta,"hour ago"];
+                return returnHourDelta;
+
+            }
+            
+           
+        }
+    } else {
+        NSString *currentYear = [dateString substringWithRange:NSMakeRange(0, 4)];
+        NSString *previousYear = [previousDateString substringWithRange:NSMakeRange(0, 4)];
+        NSString *previousMonth = [previousDateString substringWithRange:NSMakeRange(5, 2)];
+        NSString *currentMonth = [dateString substringWithRange:NSMakeRange(5, 2)];
+        NSString *previousDay = [previousDateString substringWithRange:NSMakeRange(8, 2)];
+        NSString *currentDay = [dateString substringWithRange:NSMakeRange(8, 2)];
+        if ([currentYear isEqualToString:previousYear]) {
+            if ([currentMonth isEqualToString:previousMonth]) {
+                NSInteger pDay = [previousDay integerValue];
+                NSInteger cDay = [currentDay integerValue];
+                NSInteger delta = cDay - pDay;
+                NSString *returnDayDelta = [NSString stringWithFormat:@"%ld %s",delta,"day ago"];
+                return returnDayDelta;
+            } else{
+                NSInteger pMonth = [previousMonth integerValue];
+                NSInteger cMonth = [currentMonth integerValue];
+                NSInteger delta = cMonth - pMonth;
+                NSString *returnMonthDelta = [NSString stringWithFormat:@"%ld %s",delta,"month ago"];
+                return returnMonthDelta;
+            }
+        }else{
+            NSInteger pYear = [previousYear integerValue];
+            NSInteger cYear = [currentYear integerValue];
+            NSInteger delta = cYear - pYear;
+            NSString *returnYearDelta = [NSString stringWithFormat:@"%ld %s",delta,"year ago"];
+            return returnYearDelta;
+        }
+    }
+}
 @end

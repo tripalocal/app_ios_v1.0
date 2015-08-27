@@ -21,10 +21,7 @@
 @end
 
 @implementation ChatOverviewController  {
-//    NSMutableArray *_imgList;
-//    NSMutableArray *_nameLIst;
-//    NSMutableArray *_messageList;
-//    NSMutableArray *_timeList;
+
 
 }
 
@@ -56,6 +53,9 @@
     AppDelegate *del = [self appDelegate];
     del._chatDelegate = self;
 	//get the user info
+    NSLog(@"show chat list");
+    [self showChatList];
+    NSLog(@"chat list shown");
    
 }
 -(void)viewDidAppear:(BOOL)animated {
@@ -63,15 +63,10 @@
     [super viewDidAppear:animated];
     // how to get the user id
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    NSString *token = [userDefaults secretObjectForKey:@"user_token"];
     NSString *user_id = [userDefaults objectForKey:@"user_id"];
-
-    if(user_id >= 0) {
-        NSLog(@"test flag view2");
-        if ([[self appDelegate] connect]) {
-            NSLog(@"show chat list");
-           
-        }
+	if ([[self appDelegate] connect]) {
+            
+        
     }else {
         NSLog(@"show sign in");
         [self showLogin];
@@ -82,15 +77,59 @@
     [self presentViewController:unLoginController animated:YES completion:nil];
 }
 
--(void)showChatList:(NSString *)img
-                   :(NSString *)senderName
-                   :(NSString *)msgContent
-                   :(NSString *)msgTime {
-    [imgList addObject:img];
-    [nameList addObject:senderName];
-    [messageList addObject:msgContent];
-    [timeList addObject:msgTime];
-    [self.tableView reloadData];
+-(void)showChatList {
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    NSString *token = [userDefaults secretObjectForKey:@"user_token"];
+    
+    NSURL *url = [NSURL URLWithString:[URLConfig serviceMessageListURLString]];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    
+    [request setHTTPMethod:@"GET"];
+    [request addValue:[NSString stringWithFormat:@"Token %@", token] forHTTPHeaderField:@"Authorization"];
+    
+    NSError *connectionError = nil;
+    NSURLResponse *response = nil;
+    
+    NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&connectionError];
+    
+    if (connectionError == nil) {
+        NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *) response;
+        NSDictionary *messageDetail = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+        if ([httpResponse statusCode] == 200) {
+            for (id message_info in messageDetail) {
+                
+    //            NSInteger sender_id = [[NSString stringWithFormat: @"%@", [messageInfo valueForKeyPath: @"sender_id" ] ] integerValue ];
+                NSLog(@"messageInfo loading...");
+                NSString *messageContent = [message_info objectForKey:@"msg_content"];
+                NSLog(@"messageContent loaded...");
+                NSString *messageDate = [message_info objectForKey:@"msg_date"];
+                NSString *diff = [Utility showTimeDifference:messageDate];
+                NSLog(@"messageDate loaded... Diff: %@",diff);
+                NSString *senderImageURL = [message_info objectForKey:@"sender_image"];
+                UIImage *image = [self fetchImage:token :senderImageURL];
+                NSLog(@"messageImageURL loaded...");
+    //            NSInteger global_id = [[NSString stringWithFormat: @"%@", [messageInfo valueForKeyPath: @"id" ] ] integerValue ];
+                NSString *sender_name = [message_info valueForKey:@"sender_name"];
+                NSLog(@"messageName loaded...");
+                NSLog(@"content: %@, date: %@, image: %@, name: %@", messageContent, messageDate,senderImageURL, sender_name);
+                
+                if (image){
+                    [imgList addObject:image];
+                } else {
+                    [imgList addObject:[UIImage imageNamed:@"default_profile_image.png"]];
+                }
+                
+                [nameList addObject:sender_name];
+                [messageList addObject:messageContent];
+                [timeList addObject:diff];
+        	}
+        }
+    }
+    [tableview reloadData];
+#if DEBUG
+    NSString *decodedData = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    NSLog(@"Receiving data = %@", decodedData);
+#endif
     
 }
 - (IBAction)dismissChatOverview:(id)sender {
@@ -111,11 +150,15 @@
         cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     }
     //load data
+    NSLog(@"Loading cell data!");
+
+    
+    [self showChatList];
     if ([nameList count]!=0) {
         cell.userImage.image = [imgList objectAtIndex:indexPath.row];
         cell.userName.text = [nameList objectAtIndex:indexPath.row];
         cell.messageContent.text = [messageList objectAtIndex:indexPath.row];
-        cell.messageTime.text = [messageList objectAtIndex:indexPath.row];
+        cell.messageTime.text = [timeList objectAtIndex:indexPath.row];
     }
     else{
         cell.userImage.image = [UIImage imageNamed:@"flash.png"];
@@ -129,8 +172,8 @@
 
 -(NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     //    return [self.imgList count];
-    return 1;
-    //return [nameList count];
+    //return 2;
+    return [nameList count];
 }
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return 1;
@@ -150,6 +193,33 @@
 //        
 //    }
 //}
+
+- (UIImage *) fetchImage:(NSString *) token :(NSString *) imageURL {
+    NSString *absoluteImageURL = [NSString stringWithFormat:@"%@%@", [URLConfig imageServiceURLString], imageURL];
+    NSURL *url = [NSURL URLWithString:absoluteImageURL];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    [request setHTTPMethod:@"GET"];
+    
+    NSError *connectionError = nil;
+    NSURLResponse *response = nil;
+    UIImage *image = nil;
+    
+    NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&connectionError];
+    
+    if (connectionError == nil) {
+        image = [UIImage imageWithData:data];
+    } else {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"no_network", nil)
+                                                        message:NSLocalizedString(@"no_network_msg", nil)
+                                                       delegate:nil
+                                              cancelButtonTitle:NSLocalizedString(@"ok_button", nil)
+                                              otherButtonTitles:nil];
+        [alert show];
+    }
+    
+    return image;
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
