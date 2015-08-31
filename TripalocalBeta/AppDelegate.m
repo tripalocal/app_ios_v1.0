@@ -272,13 +272,24 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     [self goOnline];
 }
 -(void)xmppStream:(XMPPStream *)sender didReceiveMessage:(XMPPMessage *)message{
+#if DEBUG
+    NSLog(@"Message received: %@",message);
+#endif
     NSString *msg = [[message elementForName:@"body"] stringValue];
+    if (msg == (id)[NSNull null] || msg.length == 0)  {
+        msg = @"";
+    }
     NSString *from = [[message attributeForName:@"from"] stringValue];
-    
+#if DEBUG
+    NSLog(@"Message: %@; from: %@",msg,from);
+#endif
     NSMutableDictionary *m = [[NSMutableDictionary alloc] init];
     [m setObject:msg forKey:@"msg"];
     [m setObject:from forKey:@"sender"];
     [_messageDelegate newMessageReceived:m];
+#if DEBUG
+    NSLog(@"Message received: %@",m);
+#endif
     
 }
 -(void)xmppStream:(XMPPStream *)sender didReceivePresence:(XMPPPresence *)presence{

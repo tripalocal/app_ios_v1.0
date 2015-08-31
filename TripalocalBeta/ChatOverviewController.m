@@ -66,7 +66,7 @@
     
 }
 -(void)viewDidAppear:(BOOL)animated {
-    [[self appDelegate] disconnect];
+//    [[self appDelegate] connect];
     [super viewDidAppear:animated];
     // how to get the user id
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];

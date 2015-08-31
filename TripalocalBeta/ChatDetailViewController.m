@@ -12,9 +12,12 @@
 #import "ChatDetailToTableViewCell.h"
 #import <QuartzCore/QuartzCore.h>
 #import "XMPP.h"
+#import "DBManager.h"
 #define kOFFSET_FOR_KEYBOARD 215.0
 
 @interface ChatDetailViewController ()
+
+@property (nonatomic, strong) DBManager *dbManager;
 
 @end
 
@@ -29,12 +32,15 @@
 }
 -(id) initWithUser:(NSString *) userName {
     if (self = [super init]) {
-        chatWithUser = userName;
+        chatWithUser = @"677@tripalocal.com";
     }
     return self;
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
+    //Init database object
+    self.dbManager = [[DBManager alloc] initWithDatabaseFileName:@"message.sql"];
+    
     // Do any additional setup after loading the view.
     UIBarButtonItem *closeButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Close", nil) style:UIBarButtonItemStylePlain target:self action:@selector(dismissChatDetail:)];
     closeButton.tintColor = [Utility themeColor];
@@ -152,6 +158,7 @@
 */
 
 - (IBAction)sendMessage:(id)sender {
+    [self initWithUser:@"677@tripalocal.com"];
     //get the message string from textfield
     NSString *messageStr = self.textField.text;
     if([messageStr length] > 0){
@@ -162,21 +169,40 @@
         [message addAttributeWithName:@"type" stringValue:@"chat"];
         [message addAttributeWithName:@"to" stringValue:chatWithUser];
         [message addChild:body];
+#if DEBUG
+        NSLog(@"Sending message: %@",message);
+#endif
         [self.xmppStream sendElement:message];
         
         //set the textField to blank after hit the send button
         self.textField.text = @"";
         //create a new string with sneding format
         //@"you" might need to be changed to senderID
-        NSString *m = [NSString stringWithFormat:@"@%:@%",messageStr,@"you"];
+        NSString *m = [NSString stringWithFormat:@"@%:@%",messageStr,@"142@tripalocal.com"];
         //create a dictionary to contain all the necessary information of sending messages
         NSMutableDictionary *msgDic = [[NSMutableDictionary alloc] init];
         [msgDic setObject:messageStr forKey:@"msg"];
-        [msgDic setObject:@"you" forKey:@"sender"];
+        [msgDic setObject:@"142@tripalocal.com" forKey:@"sender"];
         //add sending message to the msgListTo
         [messageListTo addObject:msgDic];
         [self.detailTableView reloadData];
     	}
+    // Prepare the query string.
+    //NSString *query = [NSString stringWithFormat:@"insert into peopleInfo values(null, '%@', '%@', %d)", self.txtFirstname.text, self.txtLastname.text, [self.txtAge.text intValue]];
+    
+    // Execute the query.
+    //[self.dbManager executeQuery:query];
+    
+    // If the query was successfully executed then pop the view controller.
+    if (self.dbManager.affectedRows != 0) {
+        NSLog(@"Query was executed successfully. Affected rows = %d", self.dbManager.affectedRows);
+        
+        // Pop the view controller.
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+    else{
+        NSLog(@"Could not execute the query.");
+    }
     
     }
 //introducing the custom cell
