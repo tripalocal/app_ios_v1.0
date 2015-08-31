@@ -22,7 +22,7 @@
 @end
 
 @implementation ChatDetailViewController
-@synthesize textField,detailTableView,sendButton,chatWithUser;
+@synthesize textField,detailTableView,sendButton,chatWithUser, sendBarView;
 
 -(AppDelegate *)appDelegate {
     return (AppDelegate *)[[UIApplication sharedApplication] delegate];
@@ -31,16 +31,20 @@
     return [[self appDelegate] xmppStream];
 }
 -(id) initWithUser:(NSString *) userName {
-    if (self = [super init]) {
-        chatWithUser = @"677@tripalocal.com";
-    }
+//    if (self = [super init]) {
+//        chatWithUser = userName;
+//    }
     return self;
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
     //Init database object
     self.dbManager = [[DBManager alloc] initWithDatabaseFileName:@"message.sql"];
-    
+    //set the top border
+    CALayer *topBorder = [CALayer layer];
+    topBorder.frame = CGRectMake(0, self.sendBarView.frame.size.height, self.sendBarView.frame.size.width, 1.0f);
+    topBorder.backgroundColor = [UIColor grayColor].CGColor;
+    [self.sendBarView.layer addSublayer:topBorder];
     // Do any additional setup after loading the view.
     UIBarButtonItem *closeButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Close", nil) style:UIBarButtonItemStylePlain target:self action:@selector(dismissChatDetail:)];
     closeButton.tintColor = [Utility themeColor];
@@ -158,8 +162,11 @@
 */
 
 - (IBAction)sendMessage:(id)sender {
-    [self initWithUser:@"677@tripalocal.com"];
+//    [self initWithUser:@"677@tripalocal.com"];
     //get the message string from textfield
+#if DEBUG
+    NSLog(@"Send msg to: %@", chatWithUser);
+#endif
     NSString *messageStr = self.textField.text;
     if([messageStr length] > 0){
         //send the message through XMPP

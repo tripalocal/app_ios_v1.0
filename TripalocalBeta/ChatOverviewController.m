@@ -8,6 +8,7 @@
 
 #import "ChatOverviewController.h"
 #import "ChatOverviewTableViewCell.h"
+#import "ChatDetailViewController.h"
 #import "URLConfig.h"
 #import "Utility.h"
 #import <SecureNSUserDefaults/NSUserDefaults+SecureAdditions.h>
@@ -17,13 +18,14 @@
 
 
 @interface ChatOverviewController()
-
+	
 @end
 
 @implementation ChatOverviewController  {
 	JGProgressHUD *HUD;
-
+    NSInteger _clickedRow;
 }
+
 
 -(AppDelegate *)appDelegate {
     return (AppDelegate *)[[UIApplication sharedApplication] delegate];
@@ -54,6 +56,7 @@
     nameList = [[NSMutableArray alloc] init];
     messageList = [[NSMutableArray alloc] init];
     timeList = [[NSMutableArray alloc] init];
+    sender_id_list = [[NSMutableArray alloc] init];
     //loading the message data in here
     //	:load three arraies
     
@@ -110,8 +113,10 @@
         if ([httpResponse statusCode] == 200) {
             for (id message_info in messageDetail) {
                 
-    //            NSInteger sender_id = [[NSString stringWithFormat: @"%@", [messageInfo valueForKeyPath: @"sender_id" ] ] integerValue ];
+                
                 NSLog(@"messageInfo loading...");
+                NSString *sender_id = [message_info objectForKey:@"sender_id"];
+                NSLog(@"sender_id loaded...");
                 NSString *messageContent = [message_info objectForKey:@"msg_content"];
                 NSLog(@"messageContent loaded...");
                 NSString *messageDate = [message_info objectForKey:@"msg_date"];
@@ -123,14 +128,14 @@
     //            NSInteger global_id = [[NSString stringWithFormat: @"%@", [messageInfo valueForKeyPath: @"id" ] ] integerValue ];
                 NSString *sender_name = [message_info valueForKey:@"sender_name"];
                 NSLog(@"messageName loaded...");
-                NSLog(@"content: %@, date: %@, image: %@, name: %@", messageContent, messageDate,senderImageURL, sender_name);
+                NSLog(@"content: %@, date: %@, image: %@, name: %@, sender_id: %@", messageContent, messageDate,senderImageURL, sender_name, sender_id);
                 if (![messageList containsObject:messageContent]) {
                     if (image){
                         [imgList addObject:image];
                     } else {
                         [imgList addObject:[UIImage imageNamed:@"default_profile_image.png"]];
                     }
-                    
+                    [sender_id_list addObject:sender_id];
                     [nameList addObject:sender_name];
                     [messageList addObject:messageContent];
                     [timeList addObject:diff];
@@ -192,17 +197,27 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     //start a chat
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    [self performSegueWithIdentifier:@"showDetail" sender: self];
+	[self performSegueWithIdentifier:@"showDetail" sender: indexPath];
+    _clickedRow = indexPath.row;
+#if DEBUG
+    NSLog(@"Selected row: %ld", (long)_clickedRow);
+#endif
 }
 //USE WHEN NEED PASS DATA THROUGH SEGUE
-//-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-//    if([segue.identifier isEqualToString:@"showDetail"]){
-//        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-//        ChatDetailViewController *destViewController = segue.destinationViewController;
-//        
-//        
-//    }
-//}
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    
+    if([segue.identifier isEqualToString:@"showDetail"]){
+        NSIndexPath *indexPath = (NSIndexPath *)sender;
+        UINavigationController *navController = segue.destinationViewController;
+        ChatDetailViewController *destViewController = navController.topViewController;
+        
+#if DEBUG
+        NSLog(@"passing string: %@",[sender_id_list objectAtIndex:indexPath.row]);
+        
+#endif
+        destViewController.chatWithUser = [sender_id_list objectAtIndex:indexPath.row];
+    }
+}
 
 - (UIImage *) fetchImage:(NSString *) token :(NSString *) imageURL {
     NSString *absoluteImageURL = [NSString stringWithFormat:@"%@%@", [URLConfig imageServiceURLString], imageURL];

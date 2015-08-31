@@ -18,14 +18,15 @@
     NSMutableArray *messageListTo;
     NSMutableArray *timeListFrom;
     NSMutableArray *timeListTo;
-    NSString *chatWithUser;
+
 }
 
+@property (weak, nonatomic) IBOutlet UIView *sendBarView;
 @property (strong, nonatomic) IBOutlet UIScrollView *detailScrollView;
 @property (nonatomic,retain) IBOutlet UITextField *textField;
 @property (nonatomic,weak) IBOutlet UIButton *sendButton;
 @property (nonatomic,retain) IBOutlet UITableView *detailTableView;
-@property (nonatomic,retain) NSString *chatWithUser;
+@property (nonatomic,strong) NSString *chatWithUser;
 - (IBAction)sendMessage:(id)sender;
 - (id) initWithUser:(NSString *) userName;
 
