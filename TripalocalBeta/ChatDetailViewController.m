@@ -30,22 +30,22 @@
 -(XMPPStream *)xmppStream {
     return [[self appDelegate] xmppStream];
 }
--(id) initWithUser:(NSString *) userName {
+//-(id) initWithUser:(NSString *) userName {
 //    if (self = [super init]) {
 //        chatWithUser = userName;
 //    }
-    return self;
-}
+//    return self;
+//}
 - (void)viewDidLoad {
     [super viewDidLoad];
     //Init database object
     self.dbManager = [[DBManager alloc] initWithDatabaseFileName:@"message.sql"];
     //set the top border
-    CALayer *topBorder = [CALayer layer];
-    topBorder.frame = CGRectMake(0, self.sendBarView.frame.size.height, self.sendBarView.frame.size.width, 1.0f);
-    topBorder.backgroundColor = [UIColor grayColor].CGColor;
-    [self.sendBarView.layer addSublayer:topBorder];
-    // Do any additional setup after loading the view.
+    UIView *topBorder = [UIView new];
+    topBorder.backgroundColor = [UIColor grayColor];
+    topBorder.frame = CGRectMake(0, 0, sendBarView.frame.size.width, 1.0f);
+    [sendBarView addSubview:topBorder];
+    
     UIBarButtonItem *closeButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Close", nil) style:UIBarButtonItemStylePlain target:self action:@selector(dismissChatDetail:)];
     closeButton.tintColor = [Utility themeColor];
     self.navigationItem.leftBarButtonItem = closeButton;
@@ -164,17 +164,19 @@
 - (IBAction)sendMessage:(id)sender {
 //    [self initWithUser:@"677@tripalocal.com"];
     //get the message string from textfield
-#if DEBUG
-    NSLog(@"Send msg to: %@", chatWithUser);
-#endif
+
     NSString *messageStr = self.textField.text;
+    NSString *receiver_address = [NSString stringWithFormat:@"%@@tripalocal.com",chatWithUser];
+#if DEBUG
+    NSLog(@"Send msg to: %@", receiver_address);
+#endif
     if([messageStr length] > 0){
         //send the message through XMPP
         NSXMLElement *body = [NSXMLElement elementWithName:@"body"];
         [body setStringValue:messageStr];
         NSXMLElement *message = [NSXMLElement elementWithName:@"message"];
         [message addAttributeWithName:@"type" stringValue:@"chat"];
-        [message addAttributeWithName:@"to" stringValue:chatWithUser];
+        [message addAttributeWithName:@"to" stringValue:receiver_address];
         [message addChild:body];
 #if DEBUG
         NSLog(@"Sending message: %@",message);
