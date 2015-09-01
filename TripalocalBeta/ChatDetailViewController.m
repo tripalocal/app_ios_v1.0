@@ -41,6 +41,8 @@
 //}
 - (void)viewDidLoad {
     [super viewDidLoad];
+    //set localized string for send button
+    sendButton.titleLabel.text = NSLocalizedString(@"send_button", nil);
     //Init database object
     self.dbManager = [[DBManager alloc] initWithDatabaseFileName:@"message.sql"];
     //set the top border

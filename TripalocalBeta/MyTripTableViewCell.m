@@ -25,6 +25,7 @@
     
     self.messageButton.layer.cornerRadius = 5;
     self.messageButton.layer.masksToBounds = YES;
+    self.messageButton.titleLabel.text = NSLocalizedString(@"send_message", nil);
     
     if (!self.hostImage) {
         self.hostImage.image = [UIImage imageNamed: @"default_profile_image.png"];

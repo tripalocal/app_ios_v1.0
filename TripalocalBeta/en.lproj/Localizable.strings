@@ -131,3 +131,7 @@
 "mismatch_pwd" = "Please enter password again";
 
 "mismatch_pwd_hint" = "You must enter the same passwords";
+
+"send_message" = "Send Message";
+
+"send_button" = "Send";
