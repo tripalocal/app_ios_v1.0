@@ -23,6 +23,9 @@
 
 @implementation ChatDetailViewController
 @synthesize textField,detailTableView,sendButton,chatWithUser, sendBarView;
+@synthesize managedObjectContext = _managedObjectContext;
+@synthesize managedObjectModel = _managedObjectModel;
+@synthesize persistentStoreCoordinator = _persistentStoreCoordinator;
 
 -(AppDelegate *)appDelegate {
     return (AppDelegate *)[[UIApplication sharedApplication] delegate];
@@ -58,6 +61,9 @@
     del._messageDelegate = self;
     [self.textField resignFirstResponder];
 }
+
+#pragma mark - dismiss keyboard (buggy)
+
 -(void)dismissKeyboard {
     [textField resignFirstResponder];
 }
@@ -160,6 +166,25 @@
     // Pass the selected object to the new view controller.
 }
 */
+#pragma mark - core data
+- (NSManagedObjectContext *)managedObjectContext {
+    // Returns the managed object context for the application (which is already bound to the persistent store coordinator for the application.)
+    if (_managedObjectContext != nil) {
+        return _managedObjectContext;
+    }
+    
+    NSPersistentStoreCoordinator *coordinator = [self persistentStoreCoordinator];
+    if (!coordinator) {
+        return nil;
+    }
+    _managedObjectContext = [[NSManagedObjectContext alloc] init];
+    [_managedObjectContext setPersistentStoreCoordinator:coordinator];
+    return _managedObjectContext;
+}
+
+
+
+#pragma mark - send message function
 
 - (IBAction)sendMessage:(id)sender {
 	//get the user_id
@@ -204,23 +229,44 @@
         //add sending message to the msgListTo
         [messageListTo addObject:msgDic];
         [self.detailTableView reloadData];
+    
         
-        //prepare the sql
-        self.dbManager = [[DBManager alloc] initWithDatabaseFileName:@"message.sql"];
-        //execute the sql command
-        NSString *query = [NSString stringWithFormat:@"INSERT INTO message VALUES(null, '%d', '%d', NULL,'%@', '%@')",[chatWithUser intValue],[sender_id intValue],[msgDic objectForKey:@"msg"],timeStamp];
-        [self.dbManager executeQuery:query];
+        //core data
+        AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
+        NSManagedObjectContext *context = [appDelegate managedObjectContext];
         
-        // If the query was successfully executed then pop the view controller.
-        if (self.dbManager.affectedRows != 0) {
-            NSLog(@"Query was executed successfully. Affected rows = %d", self.dbManager.affectedRows);
-            
-            // Pop the view controller.
-            [self.navigationController popViewControllerAnimated:YES];
+        // Create a new managed object
+        NSManagedObject *newMessage = [NSEntityDescription
+                                       insertNewObjectForEntityForName:@"Message" inManagedObjectContext:context];
+        NSManagedObjectID *local_id = [newMessage objectID];
+        [newMessage setValue:[NSString stringWithFormat:@"%@",local_id] forKey:@"local_id"];
+        [newMessage setValue:[NSString stringWithFormat:@"%@",chatWithUser] forKey:@"receiver_id"];
+        [newMessage setValue:[NSString stringWithFormat:@"%@", sender_id] forKey:@"sender_id"];
+        [newMessage setValue:nil forKey:@"global_id"];
+        [newMessage setValue:[msgDic objectForKey:@"msg"] forKey:@"message_content"];
+        [newMessage setValue:timeStamp forKey:@"message_time"];
+        NSError *error = nil;
+        // Save the object to persistent store
+        if (![context save:&error]) {
+            NSLog(@"Can't Save! %@ %@", error, [error localizedDescription]);
         }
-        else{
-            NSLog(@"Could not execute the query.");
-        }
+
+//        //prepare the sql
+//        self.dbManager = [[DBManager alloc] initWithDatabaseFileName:@"message.sql"];
+//        //execute the sql command
+//        NSString *query = [NSString stringWithFormat:@"INSERT INTO message VALUES(null, '%d', '%d', NULL,'%@', '%@')",[chatWithUser intValue],[sender_id intValue],[msgDic objectForKey:@"msg"],timeStamp];
+//        [self.dbManager executeQuery:query];
+//        
+//        // If the query was successfully executed then pop the view controller.
+//        if (self.dbManager.affectedRows != 0) {
+//            NSLog(@"Query was executed successfully. Affected rows = %d", self.dbManager.affectedRows);
+//            
+//            // Pop the view controller.
+//            [self.navigationController popViewControllerAnimated:YES];
+//        }
+//        else{
+//            NSLog(@"Could not execute the query.");
+//        }
 
     	}
     

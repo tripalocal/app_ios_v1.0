@@ -79,7 +79,9 @@
 		8EB570FF1B01CF2B0026D419 /* TripalocalBetaTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EB570FE1B01CF2B0026D419 /* TripalocalBetaTests.m */; };
 		8EB982501B2280D800ADE430 /* Spinner.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EB9824F1B2280D800ADE430 /* Spinner.m */; };
 		8EC86D5C1B0229F100B0A655 /* TLHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EC86D5B1B0229F100B0A655 /* TLHomeViewController.m */; };
-		BC484AF01B95356300303CBD /* message.sql in Resources */ = {isa = PBXBuildFile; fileRef = BC484AEF1B95356300303CBD /* message.sql */; };
+		BC2B61941B95507F00934EA0 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC2B61931B95507F00934EA0 /* CoreData.framework */; };
+		BC2B61CC1B95527200934EA0 /* Tripalocal.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BC2B61CA1B95527200934EA0 /* Tripalocal.xcdatamodeld */; };
+		BC2B61CF1B95569800934EA0 /* Message.m in Sources */ = {isa = PBXBuildFile; fileRef = BC2B61CE1B95569800934EA0 /* Message.m */; };
 		BC837DE61B8F34C800862FF8 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BC837DE51B8F34C800862FF8 /* libsqlite3.dylib */; };
 		BC837DEB1B8F35CD00862FF8 /* DBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BC837DEA1B8F35CD00862FF8 /* DBManager.m */; };
 		BCC275DC1B79B3EE00147E82 /* XMPPConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = BCC275C91B79B3EE00147E82 /* XMPPConstants.m */; };
@@ -361,7 +363,10 @@
 		8EB9824F1B2280D800ADE430 /* Spinner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Spinner.m; path = Model/Spinner.m; sourceTree = "<group>"; };
 		8EC86D5A1B0229F100B0A655 /* TLHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TLHomeViewController.h; path = Controller/TLHomeViewController.h; sourceTree = "<group>"; };
 		8EC86D5B1B0229F100B0A655 /* TLHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TLHomeViewController.m; path = Controller/TLHomeViewController.m; sourceTree = "<group>"; };
-		BC484AEF1B95356300303CBD /* message.sql */ = {isa = PBXFileReference; lastKnownFileType = file; path = message.sql; sourceTree = SOURCE_ROOT; };
+		BC2B61931B95507F00934EA0 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		BC2B61CB1B95527200934EA0 /* Tripalocal.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Tripalocal.xcdatamodel; sourceTree = "<group>"; };
+		BC2B61CD1B95569800934EA0 /* Message.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Message.h; path = Model/Message.h; sourceTree = "<group>"; };
+		BC2B61CE1B95569800934EA0 /* Message.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Message.m; path = Model/Message.m; sourceTree = "<group>"; };
 		BC837DE51B8F34C800862FF8 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		BC837DEA1B8F35CD00862FF8 /* DBManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DBManager.m; path = Database/DBManager.m; sourceTree = "<group>"; };
 		BC837DEC1B8F364100862FF8 /* DBManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DBManager.h; path = Database/DBManager.h; sourceTree = "<group>"; };
@@ -488,6 +493,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BC2B61941B95507F00934EA0 /* CoreData.framework in Frameworks */,
 				BC837DE61B8F34C800862FF8 /* libsqlite3.dylib in Frameworks */,
 				BCC2766E1B79B63D00147E82 /* libresolv.dylib in Frameworks */,
 				BCC2766C1B79B62E00147E82 /* libxml2.dylib in Frameworks */,
@@ -728,6 +734,8 @@
 		8EC86D4F1B021DD000B0A655 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				BC2B61CD1B95569800934EA0 /* Message.h */,
+				BC2B61CE1B95569800934EA0 /* Message.m */,
 				87EF8C731B5CCD1E00292225 /* Location.h */,
 				87EF8C741B5CCD1E00292225 /* Location.m */,
 				87FC2D4A1B4803190017F30E /* Order.h */,
@@ -827,9 +835,9 @@
 		BC837DE71B8F350700862FF8 /* Database */ = {
 			isa = PBXGroup;
 			children = (
-				BC484AEF1B95356300303CBD /* message.sql */,
 				BC837DEA1B8F35CD00862FF8 /* DBManager.m */,
 				BC837DEC1B8F364100862FF8 /* DBManager.h */,
+				BC2B61CA1B95527200934EA0 /* Tripalocal.xcdatamodeld */,
 			);
 			name = Database;
 			sourceTree = "<group>";
@@ -1103,6 +1111,7 @@
 		F82D1B26B1D2E61BDB99608C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				BC2B61931B95507F00934EA0 /* CoreData.framework */,
 				BC837DE51B8F34C800862FF8 /* libsqlite3.dylib */,
 				BCC2766D1B79B63D00147E82 /* libresolv.dylib */,
 				BCC2766B1B79B62E00147E82 /* libxml2.dylib */,
@@ -1218,7 +1227,6 @@
 				87EF8C831B5CE46400292225 /* loading_screen.jpg in Resources */,
 				87E74B6E1B54E73B00C41CBF /* MyTripTableViewCell.xib in Resources */,
 				87046A8C1B660D590084E2E3 /* TLBannerTableViewCell.xib in Resources */,
-				BC484AF01B95356300303CBD /* message.sql in Resources */,
 				8EB570F01B01CF2B0026D419 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1279,6 +1287,7 @@
 				87FC2D201B476A3B0017F30E /* CheckoutViewController.m in Sources */,
 				BCC2765A1B79B41D00147E82 /* DDDispatchQueueLogFormatter.m in Sources */,
 				BCC2764C1B79B41D00147E82 /* DDList.m in Sources */,
+				BC2B61CC1B95527200934EA0 /* Tripalocal.xcdatamodeld in Sources */,
 				BCDF1E531B709D4A004A79A3 /* ChatDetailViewController.m in Sources */,
 				87FFF3D71B4D549C00326104 /* PaymentSuccessViewController.m in Sources */,
 				87F356521B43AAD300949F43 /* ProfileViewController.m in Sources */,
@@ -1335,6 +1344,7 @@
 				BCC276601B79B41D00147E82 /* DDXMLNode.m in Sources */,
 				874522AB1B4E3FDF00876EB4 /* WishLishViewController.m in Sources */,
 				BCC276501B79B41D00147E82 /* XMPPSRVResolver.m in Sources */,
+				BC2B61CF1B95569800934EA0 /* Message.m in Sources */,
 				BCC276541B79B41D00147E82 /* DDAbstractDatabaseLogger.m in Sources */,
 				87F356421B439D3B00949F43 /* PaymentViewController.m in Sources */,
 				87FC2DB91B480ABF0017F30E /* RSADataSigner.m in Sources */,
@@ -2098,6 +2108,20 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		BC2B61CA1B95527200934EA0 /* Tripalocal.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				BC2B61CB1B95527200934EA0 /* Tripalocal.xcdatamodel */,
+			);
+			currentVersion = BC2B61CB1B95527200934EA0 /* Tripalocal.xcdatamodel */;
+			name = Tripalocal.xcdatamodeld;
+			path = Database/Tripalocal.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 8EB570D71B01CF2B0026D419 /* Project object */;
 }

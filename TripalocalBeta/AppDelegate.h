@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import <CoreData/CoreData.h>
 #import "XMPP.h"
 #import "SMChatDelegate.h"
 #import "SMMessageDelegate.h"
+
 
 @class ChatOverviewController;
 
@@ -35,6 +36,12 @@
 -(void)disconnect;
 -(BOOL)isConnected;
 
+@property (readonly, strong, nonatomic) NSManagedObjectContext *managedObjectContext;
+@property (readonly, strong, nonatomic) NSManagedObjectModel *managedObjectModel;
+@property (readonly, strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
+
+- (void)saveContext;
+- (NSURL *)applicationDocumentsDirectory;
 
 @end
 
