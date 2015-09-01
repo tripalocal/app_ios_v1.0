@@ -47,7 +47,7 @@
     //now set the timeZone and set the Date format to this date as you want.
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     NSTimeZone *timeZone = [NSTimeZone timeZoneWithName:@"UTC"];
-    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    [dateFormatter setDateFormat:@"yyyy/MM/dd/HH/mm/ss"];
     [dateFormatter setTimeZone:timeZone];
     NSString *timeStamp = [dateFormatter stringFromDate:currentDate];
     // here you have new Date with desired format and TimeZone.
@@ -56,14 +56,9 @@
 
 + (NSString *)showTimeDifference:(NSString *)previousTime
 {
-    NSDate *currentTime = [NSDate date];
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
-    dateFormatter.dateFormat = @"YYYY/MM/dd";
-    NSString *dateString = [dateFormatter stringFromDate: currentTime];
-   
-    NSDateFormatter *timeFormatter = [[NSDateFormatter alloc]init];
-    timeFormatter.dateFormat = @"HH/mm/ss";
-    NSString *timeString = [timeFormatter stringFromDate: currentTime];
+    NSString *currentTime = [Utility getCurrentUTCTime];
+    NSString *dateString = [currentTime substringWithRange:NSMakeRange(0,10)];
+    NSString *timeString = [currentTime substringWithRange:NSMakeRange(11, 8)];
     NSString *previousDateString = [previousTime substringWithRange:NSMakeRange(0, 10)];
     NSString *previousTimeString = [previousTime substringWithRange:NSMakeRange(11, 8)];
     NSLog(@"%@ && %@" ,dateString,previousDateString);
