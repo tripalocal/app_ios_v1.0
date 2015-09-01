@@ -10,9 +10,10 @@
 #import <AlipaySDK/AlipaySDK.h>
 #import "Constant.h"
 #import <SecureNSUserDefaults/NSUserDefaults+SecureAdditions.h>
-
+#import "DBManager.h"
 #import "DDLog.h"
 #import "DDTTYLogger.h"
+#import "Utility.h"
 
 #if DEBUG
 static const int ddLogLevel = LOG_LEVEL_VERBOSE;
@@ -25,6 +26,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 -(void)goOnline;
 -(void)goOffline;
 -(BOOL)isConnected;
+@property (nonatomic,strong) DBManager *dbManager;
 @end
 
 @implementation AppDelegate
@@ -272,6 +274,12 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     [self goOnline];
 }
 -(void)xmppStream:(XMPPStream *)sender didReceiveMessage:(XMPPMessage *)message{
+    //get the user_id
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    NSString *receiver_id = [userDefaults objectForKey:@"user_id"];
+    //get current time in UTC
+    NSString *timeStamp = [Utility getCurrentUTCTime];
+    // here you have new Date with desired format and TimeZone.
 #if DEBUG
     NSLog(@"Message received: %@",message);
 #endif
@@ -279,7 +287,9 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     if (msg == (id)[NSNull null] || msg.length == 0)  {
         msg = @"";
     }
-    NSString *from = [[message attributeForName:@"from"] stringValue];
+    
+    NSString *fromWithDeviceID = [[message attributeForName:@"from"] stringValue];
+    NSString *from = [[fromWithDeviceID	componentsSeparatedByString:@"@"] objectAtIndex:0];
 #if DEBUG
     NSLog(@"Message: %@; from: %@",msg,from);
 #endif
@@ -290,6 +300,21 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 #if DEBUG
     NSLog(@"Message received: %@",m);
 #endif
+    //init database object
+    self.dbManager = [[DBManager alloc] initWithDatabaseFileName:@"message.sql"];
+    //execute the sql command
+    NSString *query = [NSString stringWithFormat:@"INSERT INTO message VALUES(null, '%d', '%d', NULL,'%@', '%@')",[receiver_id intValue],[[m objectForKey:@"sender"] intValue],[m objectForKey:@"msg"],timeStamp];
+    
+    // Execute the query.
+    [self.dbManager executeQuery:query];
+    
+    // If the query was successfully executed
+    if (self.dbManager.affectedRows != 0) {
+        NSLog(@"Query was executed successfully. Affected rows = %d", self.dbManager.affectedRows);
+    }
+    else{
+        NSLog(@"Could not execute the query.");
+    }
     
 }
 -(void)xmppStream:(XMPPStream *)sender didReceivePresence:(XMPPPresence *)presence{

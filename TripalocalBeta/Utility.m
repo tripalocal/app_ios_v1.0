@@ -40,6 +40,19 @@
 {
     return [UIColor colorWithRed:0.20f green:0.80f blue:0.80f alpha:1.0f];
 }
++ (NSString *)getCurrentUTCTime
+{
+    //get current time in UTC
+    NSDate *currentDate = [NSDate date];//here it returns current date of device.
+    //now set the timeZone and set the Date format to this date as you want.
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    NSTimeZone *timeZone = [NSTimeZone timeZoneWithName:@"UTC"];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    [dateFormatter setTimeZone:timeZone];
+    NSString *timeStamp = [dateFormatter stringFromDate:currentDate];
+    // here you have new Date with desired format and TimeZone.
+    return timeStamp;
+}
 
 + (NSString *)showTimeDifference:(NSString *)previousTime
 {

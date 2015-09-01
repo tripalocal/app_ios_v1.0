@@ -14,4 +14,5 @@
 + (NSNumber *) 	numberWithFormat:(NSString *)format floatV:(float)floatV;
 + (UIColor *) 	themeColor;
 + (NSString *)	showTimeDifference:(NSString *)previousTime;
++ (NSString *)  getCurrentUTCTime;
 @end

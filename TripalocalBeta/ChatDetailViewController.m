@@ -162,7 +162,16 @@
 */
 
 - (IBAction)sendMessage:(id)sender {
-//    [self initWithUser:@"677@tripalocal.com"];
+	//get the user_id
+    NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
+    NSString *sender_id = [userDefault objectForKey:@"user_id"];
+    NSString *sender_address = [NSString stringWithFormat:@"%@@tripalocal.com",sender_id];
+    
+    //get current time in UTC
+       NSString *timeStamp = [Utility getCurrentUTCTime];
+    // here you have new Date with desired format and TimeZone.
+
+    
     //get the message string from textfield
 
     NSString *messageStr = self.textField.text;
@@ -187,31 +196,33 @@
         self.textField.text = @"";
         //create a new string with sneding format
         //@"you" might need to be changed to senderID
-        NSString *m = [NSString stringWithFormat:@"@%:@%",messageStr,@"142@tripalocal.com"];
+        NSString *m = [NSString stringWithFormat:@"@%:@%",messageStr,sender_address];
         //create a dictionary to contain all the necessary information of sending messages
         NSMutableDictionary *msgDic = [[NSMutableDictionary alloc] init];
         [msgDic setObject:messageStr forKey:@"msg"];
-        [msgDic setObject:@"142@tripalocal.com" forKey:@"sender"];
+        [msgDic setObject:sender_address forKey:@"sender"];
         //add sending message to the msgListTo
         [messageListTo addObject:msgDic];
         [self.detailTableView reloadData];
-    	}
-    // Prepare the query string.
-    //NSString *query = [NSString stringWithFormat:@"insert into peopleInfo values(null, '%@', '%@', %d)", self.txtFirstname.text, self.txtLastname.text, [self.txtAge.text intValue]];
-    
-    // Execute the query.
-    //[self.dbManager executeQuery:query];
-    
-    // If the query was successfully executed then pop the view controller.
-    if (self.dbManager.affectedRows != 0) {
-        NSLog(@"Query was executed successfully. Affected rows = %d", self.dbManager.affectedRows);
         
-        // Pop the view controller.
-        [self.navigationController popViewControllerAnimated:YES];
-    }
-    else{
-        NSLog(@"Could not execute the query.");
-    }
+        //prepare the sql
+        self.dbManager = [[DBManager alloc] initWithDatabaseFileName:@"message.sql"];
+        //execute the sql command
+        NSString *query = [NSString stringWithFormat:@"INSERT INTO message VALUES(null, '%d', '%d', NULL,'%@', '%@')",[chatWithUser intValue],[sender_id intValue],[msgDic objectForKey:@"msg"],timeStamp];
+        [self.dbManager executeQuery:query];
+        
+        // If the query was successfully executed then pop the view controller.
+        if (self.dbManager.affectedRows != 0) {
+            NSLog(@"Query was executed successfully. Affected rows = %d", self.dbManager.affectedRows);
+            
+            // Pop the view controller.
+            [self.navigationController popViewControllerAnimated:YES];
+        }
+        else{
+            NSLog(@"Could not execute the query.");
+        }
+
+    	}
     
     }
 //introducing the custom cell

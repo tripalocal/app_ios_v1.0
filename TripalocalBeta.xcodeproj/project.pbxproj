@@ -79,7 +79,7 @@
 		8EB570FF1B01CF2B0026D419 /* TripalocalBetaTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EB570FE1B01CF2B0026D419 /* TripalocalBetaTests.m */; };
 		8EB982501B2280D800ADE430 /* Spinner.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EB9824F1B2280D800ADE430 /* Spinner.m */; };
 		8EC86D5C1B0229F100B0A655 /* TLHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EC86D5B1B0229F100B0A655 /* TLHomeViewController.m */; };
-		BC80F1B11B94118C003DBD6A /* message.sql in Resources */ = {isa = PBXBuildFile; fileRef = BC80F1B01B94118C003DBD6A /* message.sql */; settings = {ASSET_TAGS = (); }; };
+		BC484AF01B95356300303CBD /* message.sql in Resources */ = {isa = PBXBuildFile; fileRef = BC484AEF1B95356300303CBD /* message.sql */; };
 		BC837DE61B8F34C800862FF8 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BC837DE51B8F34C800862FF8 /* libsqlite3.dylib */; };
 		BC837DEB1B8F35CD00862FF8 /* DBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BC837DEA1B8F35CD00862FF8 /* DBManager.m */; };
 		BCC275DC1B79B3EE00147E82 /* XMPPConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = BCC275C91B79B3EE00147E82 /* XMPPConstants.m */; };
@@ -361,7 +361,7 @@
 		8EB9824F1B2280D800ADE430 /* Spinner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Spinner.m; path = Model/Spinner.m; sourceTree = "<group>"; };
 		8EC86D5A1B0229F100B0A655 /* TLHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TLHomeViewController.h; path = Controller/TLHomeViewController.h; sourceTree = "<group>"; };
 		8EC86D5B1B0229F100B0A655 /* TLHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TLHomeViewController.m; path = Controller/TLHomeViewController.m; sourceTree = "<group>"; };
-		BC80F1B01B94118C003DBD6A /* message.sql */ = {isa = PBXFileReference; lastKnownFileType = file; path = message.sql; sourceTree = "<group>"; };
+		BC484AEF1B95356300303CBD /* message.sql */ = {isa = PBXFileReference; lastKnownFileType = file; path = message.sql; sourceTree = SOURCE_ROOT; };
 		BC837DE51B8F34C800862FF8 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		BC837DEA1B8F35CD00862FF8 /* DBManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DBManager.m; path = Database/DBManager.m; sourceTree = "<group>"; };
 		BC837DEC1B8F364100862FF8 /* DBManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DBManager.h; path = Database/DBManager.h; sourceTree = "<group>"; };
@@ -827,7 +827,7 @@
 		BC837DE71B8F350700862FF8 /* Database */ = {
 			isa = PBXGroup;
 			children = (
-				BC80F1B01B94118C003DBD6A /* message.sql */,
+				BC484AEF1B95356300303CBD /* message.sql */,
 				BC837DEA1B8F35CD00862FF8 /* DBManager.m */,
 				BC837DEC1B8F364100862FF8 /* DBManager.h */,
 			);
@@ -1218,7 +1218,7 @@
 				87EF8C831B5CE46400292225 /* loading_screen.jpg in Resources */,
 				87E74B6E1B54E73B00C41CBF /* MyTripTableViewCell.xib in Resources */,
 				87046A8C1B660D590084E2E3 /* TLBannerTableViewCell.xib in Resources */,
-				BC80F1B11B94118C003DBD6A /* message.sql in Resources */,
+				BC484AF01B95356300303CBD /* message.sql in Resources */,
 				8EB570F01B01CF2B0026D419 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
