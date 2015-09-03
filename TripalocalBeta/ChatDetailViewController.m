@@ -183,25 +183,25 @@
 }
 */
 #pragma mark - core data
-- (NSManagedObjectContext *)managedObjectContext {
-    // Returns the managed object context for the application (which is already bound to the persistent store coordinator for the application.)
-    if (_managedObjectContext != nil) {
-        return _managedObjectContext;
-    }
-    
-    NSPersistentStoreCoordinator *coordinator = [self persistentStoreCoordinator];
-    if (!coordinator) {
-        return nil;
-    }
-    _managedObjectContext = [[NSManagedObjectContext alloc] init];
-    [_managedObjectContext setPersistentStoreCoordinator:coordinator];
-    id delegate = [[UIApplication sharedApplication] delegate];
-    if ([delegate performSelector:@selector(managedObjectContext)]) {
-        _managedObjectContext = [delegate managedObjectContext];
-    }
-
-    return _managedObjectContext;
-}
+//- (NSManagedObjectContext *)managedObjectContext {
+//    // Returns the managed object context for the application (which is already bound to the persistent store coordinator for the application.)
+//    if (_managedObjectContext != nil) {
+//        return _managedObjectContext;
+//    }
+//    
+//    NSPersistentStoreCoordinator *coordinator = [self persistentStoreCoordinator];
+//    if (!coordinator) {
+//        return nil;
+//    }
+//    _managedObjectContext = [[NSManagedObjectContext alloc] init];
+//    [_managedObjectContext setPersistentStoreCoordinator:coordinator];
+//    id delegate = [[UIApplication sharedApplication] delegate];
+//    if ([delegate performSelector:@selector(managedObjectContext)]) {
+//        _managedObjectContext = [delegate managedObjectContext];
+//    }
+//
+//    return _managedObjectContext;
+//}
 
 
 #pragma mark - send message function
@@ -256,7 +256,7 @@
         
         //core data
         AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
-        NSManagedObjectContext *context = [appDelegate managedObjectContext];
+        NSManagedObjectContext *context = appDelegate.managedObjectContext;   //return nil BUG!`
         
         // Create a new managed object
         NSManagedObject *newMessage = [NSEntityDescription
@@ -347,6 +347,27 @@
     }else{
         return 1;
     }
+}
+
+- (void)saveContext {
+    NSManagedObjectContext *managedObjectContext = self.managedObjectContext;
+    if (managedObjectContext != nil) {
+        NSError *error = nil;
+        if ([managedObjectContext hasChanges] && ![managedObjectContext save:&error]) {
+            // Replace this implementation with code to handle the error appropriately.
+            // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+            NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+            abort();
+        }
+    }
+}
+- (NSManagedObjectContext *)managedObjectContext {
+    NSManagedObjectContext *context = nil;
+    id delegate = [[UIApplication sharedApplication] delegate];
+    if ([delegate performSelector:@selector(managedObjectContext)]) {
+        context = [delegate managedObjectContext];
+    }
+    return context;
 }
 
 @end
