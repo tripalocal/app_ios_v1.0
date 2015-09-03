@@ -7,6 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MyTripTableViewController.h"
+
+@protocol MyTripViewCellDelegate <NSObject>
+-(void) sendClicked;
+@end
 
 @interface MyTripTableViewCell : UITableViewCell
 @property (strong, nonatomic) IBOutlet UIImageView *backgroudImage;
@@ -24,5 +29,7 @@
 @property (strong, nonatomic) IBOutlet UIButton *callButton;
 @property (strong, nonatomic) UITableView* parentView;
 @property (strong, nonatomic) IBOutlet UIButton *messageButton;
-
+@property (nonatomic, weak) id <MyTripViewCellDelegate> delegate;
 @end
+
+

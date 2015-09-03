@@ -8,8 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "NeedToLoginView.h"
+#import "MyTripTableViewCell.h"
 
-@interface MyTripViewController : UIViewController <NeedToLoginViewDelegate>
+@interface MyTripViewController : UIViewController <NeedToLoginViewDelegate,MyTripViewCellDelegate>
+
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *titleViewHeight;
 @property (strong, nonatomic) IBOutlet UIView *segmentTitleView;
 @end

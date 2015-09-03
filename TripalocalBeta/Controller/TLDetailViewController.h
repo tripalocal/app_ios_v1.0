@@ -17,5 +17,6 @@
 @property BOOL isExpReadMoreOpen;
 @property BOOL isHostReadMoreOpen;
 @property NSString *expPrice;
+@property NSString *host_id;
 
 @end

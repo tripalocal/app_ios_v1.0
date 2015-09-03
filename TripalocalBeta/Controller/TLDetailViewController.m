@@ -16,6 +16,7 @@
 #import "JGProgressHUD.h"
 #import "Constant.h"
 #import "CheckoutViewController.h"
+#import "ChatDetailViewController.h"
 #import "ReviewTableViewController.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "URLConfig.h"
@@ -34,6 +35,7 @@
     NSString *hostFirstName;
     NSString *hostLastName;
     NSString *hostBio;
+    NSString *host_id;
     NSString *nReviews;
     NSString *rate;
     NSString *reviewerFirstName;
@@ -56,6 +58,7 @@
 @end
 
 @implementation TLDetailViewController
+@synthesize host_id;
 
 - (IBAction)checkout:(id)sender {
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
@@ -65,6 +68,18 @@
         [self performSegueWithIdentifier:@"loginSegue" sender:nil];
     } else {
         [self performSegueWithIdentifier:@"checkoutSegue" sender:nil];
+    }
+}
+
+- (IBAction)send_message:(id)sender {
+    //get the host id
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    NSString *token = [userDefaults secretStringForKey:@"user_token"];
+    
+    if (!token) {
+        [self performSegueWithIdentifier:@"loginSegue" sender:nil];
+    } else {
+        [self performSegueWithIdentifier:@"expDetailToChat" sender:nil];
     }
 }
 
@@ -147,7 +162,11 @@
                 dynamicPriceArray = expData[@"experience_dynamic_price"];
                 maxGuestNum = expData[@"experience_guest_number_max"];
                 minGuestNum = expData[@"experience_guest_number_min"];
-
+                
+                host_id	= expData[@"host_id"];
+#if DEBUG
+                NSLog(@"Host id: %@",host_id);
+#endif
                 [self setMinimalPrice];
 
                 if ([nReviews intValue] > 0) {
@@ -438,6 +457,11 @@
     } else if ([segue.identifier isEqualToString:@"view_all_reviews"]) {
         ReviewTableViewController *vc = [segue destinationViewController];
         vc.reviews = reviews;
+    }
+    
+    else if ([segue.identifier isEqualToString:@"expDetailToChat"]) {
+    	ChatDetailViewController *chatDetailVC = [segue destinationViewController];
+        chatDetailVC.chatWithUser = host_id;
     }
     
 }

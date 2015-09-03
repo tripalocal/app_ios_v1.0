@@ -13,9 +13,10 @@
 #import "URLConfig.h"
 #import "Constant.h"
 #import "TLHomeViewController.h"
+#import "ChatDetailViewController.h"
 #import <SecureNSUserDefaults/NSUserDefaults+SecureAdditions.h>
 
-@interface MyTripTableViewController ()
+@interface MyTripTableViewController () 
 
 @end
 
@@ -24,6 +25,7 @@
     NSDateFormatter *dateFormatter;
     NSDateFormatter *timeFormatter;
 }
+@synthesize host_id;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -55,6 +57,12 @@
             NSArray *allTrips = [NSJSONSerialization JSONObjectWithData:data
                                                                 options:0
                                                                   error:nil];
+            NSDictionary *my_trip = allTrips[0];
+            NSLog(@"Array: %@", my_trip[@"host_id"]);
+            if ([allTrips count]>0) {
+                host_id = my_trip[@"host_id"];
+                NSLog(@"Getting host id: %@",host_id);
+            }
             myTrips = [self abstractTripsFilter:allTrips];
             
         }
@@ -96,8 +104,11 @@
     [self performSegueWithIdentifier:@"MyTripsToExpList" sender:self];
 }
 
+
+
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *) indexPath {
     MyTripTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MyTripTableViewCell"];
+    
     if(!cell) {
         [tableView registerNib:[UINib nibWithNibName:@"MyTripTableViewCell" bundle:nil] forCellReuseIdentifier:@"MyTripTableViewCell"];
         cell = [tableView dequeueReusableCellWithIdentifier:@"MyTripTableViewCell"];
@@ -216,6 +227,12 @@
     NSDictionary *trip = [myTrips objectAtIndex:index.row];
     
     controller.experience_id_string = [trip objectForKey:@"experience_id"];
+    if ([segue.identifier isEqualToString:@"myTripToChat"]){
+        ChatDetailViewController *chatDetail = [segue destinationViewController];
+        chatDetail.chatWithUser = host_id;
+        NSLog(@"Passing the host id: %@",host_id);
+    }
+
 }
 
 - (UIImage *)fetchImage:(NSString *) imageURL {
@@ -248,5 +265,8 @@
     [first performSelector:@selector(popToRootViewControllerAnimated:) withObject:nil];
     [self.tabBarController setSelectedIndex:0];
 }
+
+
+
 
 @end

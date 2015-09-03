@@ -7,6 +7,9 @@
 //
 
 #import "MyTripTableViewCell.h"
+#import "ChatDetailViewController.h"
+#import "MyTripTableViewController.h"
+#import <SecureNSUserDefaults/NSUserDefaults+SecureAdditions.h>
 
 @interface MyTripTableViewCell()
 
@@ -59,19 +62,25 @@
     }
 }
 
-- (IBAction)messageHost:(id)sender {
-    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:self.callButton.tag inSection:0];
-    
-    MyTripTableViewCell *cell = (MyTripTableViewCell *)[self.parentView cellForRowAtIndexPath:indexPath];
-    
-    NSURL *phoneUrl = [NSURL URLWithString:[NSString  stringWithFormat:@"sms://%@",  cell.telephoneLabel.text]];
-    
-    if ([[UIApplication sharedApplication] canOpenURL:phoneUrl]) {
-        [[UIApplication sharedApplication] openURL:phoneUrl];
-    } else {
-        UIAlertView * alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"alert", nil) message:NSLocalizedString(@"alert_sms", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"ok_button", nil) otherButtonTitles:nil];
-        [alert show];
-    }
+
+- (IBAction)send_message:(id)sender {
+    //get the host id
+    [self.delegate sendClicked];
+    NSLog(@"Send message button clicked.");
 }
+//- (IBAction)messageHost:(id)sender {
+//    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:self.callButton.tag inSection:0];
+//    
+//    MyTripTableViewCell *cell = (MyTripTableViewCell *)[self.parentView cellForRowAtIndexPath:indexPath];
+//    
+//    NSURL *phoneUrl = [NSURL URLWithString:[NSString  stringWithFormat:@"sms://%@",  cell.telephoneLabel.text]];
+//    
+//    if ([[UIApplication sharedApplication] canOpenURL:phoneUrl]) {
+//        [[UIApplication sharedApplication] openURL:phoneUrl];
+//    } else {
+//        UIAlertView * alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"alert", nil) message:NSLocalizedString(@"alert_sms", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"ok_button", nil) otherButtonTitles:nil];
+//        [alert show];
+//    }
+//}
 
 @end
