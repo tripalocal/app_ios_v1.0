@@ -296,7 +296,8 @@
     NSLog(@"From Cell loading!!!");
     
     if ([self.allMessage count]!=0) {
-        if ([[message valueForKey:@"sender_id"] isEqualToString:sender_id]) {
+        if ([[message valueForKey:@"sender_id"] intValue] == [sender_id intValue]) {
+            NSLog(@"TO: message Sender: %@ , userid: %@", [message valueForKey:@"sender_id"], sender_id);
             ChatDetailToTableViewCell *cellTo = (ChatDetailToTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"ChatDetailToCell"];
             if (!cellTo) {
                 [tableView registerNib:[UINib nibWithNibName:@"ChatDetailToViewCell" bundle:nil] forCellReuseIdentifier:cellToIdentifier];
@@ -309,6 +310,7 @@
             
             return cellTo;
         }else{
+            NSLog(@"FROM: message Sender: %d , userid: %d, equal: %d", [[message valueForKey:@"sender_id"] intValue], [sender_id intValue],[[message valueForKey:@"sender_id"] intValue] == [sender_id intValue]  );
             ChatDetailFromTableViewCell *cellFrom = (ChatDetailFromTableViewCell *)[tableView dequeueReusableCellWithIdentifier:cellFromIdentifier];
             if (!cellFrom) {
                 [tableView registerNib:[UINib nibWithNibName:@"ChatDetailFromViewCell" bundle:nil] forCellReuseIdentifier:cellFromIdentifier];
@@ -348,6 +350,11 @@
         return 1;
     }
 }
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 100;
+}
+
 
 - (void)saveContext {
     NSManagedObjectContext *managedObjectContext = self.managedObjectContext;
