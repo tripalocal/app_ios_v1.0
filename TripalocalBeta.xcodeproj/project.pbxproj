@@ -82,6 +82,8 @@
 		BC2B61941B95507F00934EA0 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC2B61931B95507F00934EA0 /* CoreData.framework */; };
 		BC2B61CC1B95527200934EA0 /* Tripalocal.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BC2B61CA1B95527200934EA0 /* Tripalocal.xcdatamodeld */; };
 		BC2B61CF1B95569800934EA0 /* Message.m in Sources */ = {isa = PBXBuildFile; fileRef = BC2B61CE1B95569800934EA0 /* Message.m */; };
+		BC2B61D01B9816E800934EA0 /* ChatDetailToViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BCDF1E461B707C7A004A79A3 /* ChatDetailToViewCell.xib */; };
+		BC2B61D11B9816EC00934EA0 /* ChatDetailFromViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BCDF1E441B707818004A79A3 /* ChatDetailFromViewCell.xib */; };
 		BC837DE61B8F34C800862FF8 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BC837DE51B8F34C800862FF8 /* libsqlite3.dylib */; };
 		BC837DEB1B8F35CD00862FF8 /* DBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BC837DEA1B8F35CD00862FF8 /* DBManager.m */; };
 		BCC275DC1B79B3EE00147E82 /* XMPPConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = BCC275C91B79B3EE00147E82 /* XMPPConstants.m */; };
@@ -133,8 +135,6 @@
 		BCC2766E1B79B63D00147E82 /* libresolv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BCC2766D1B79B63D00147E82 /* libresolv.dylib */; };
 		BCDF1E411B7051D6004A79A3 /* ChatOverviewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BCDF1E401B7051D6004A79A3 /* ChatOverviewController.m */; };
 		BCDF1E431B706FE9004A79A3 /* ChatOverviewViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BCDF1E421B706FE9004A79A3 /* ChatOverviewViewCell.xib */; };
-		BCDF1E451B707818004A79A3 /* ChatDetailFromViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BCDF1E441B707818004A79A3 /* ChatDetailFromViewCell.xib */; };
-		BCDF1E471B707C7A004A79A3 /* ChatDetailToViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BCDF1E461B707C7A004A79A3 /* ChatDetailToViewCell.xib */; };
 		BCDF1E4A1B708E3F004A79A3 /* ChatOverviewTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BCDF1E491B708E3F004A79A3 /* ChatOverviewTableViewCell.m */; };
 		BCDF1E4D1B709267004A79A3 /* ChatDetailFromTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BCDF1E4C1B709267004A79A3 /* ChatDetailFromTableViewCell.m */; };
 		BCDF1E501B7092F0004A79A3 /* ChatDetailToTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BCDF1E4F1B7092F0004A79A3 /* ChatDetailToTableViewCell.m */; };
@@ -1217,15 +1217,15 @@
 				5649BDF11B46702300465D6C /* (null) in Resources */,
 				8EB570F31B01CF2B0026D419 /* LaunchScreen.xib in Resources */,
 				BCC2765C1B79B41D00147E82 /* README.txt in Resources */,
-				BCDF1E471B707C7A004A79A3 /* ChatDetailToViewCell.xib in Resources */,
-				BCDF1E451B707818004A79A3 /* ChatDetailFromViewCell.xib in Resources */,
 				BCC276611B79B41D00147E82 /* build-libidn.sh in Resources */,
 				5649BDF01B46702300465D6C /* (null) in Resources */,
 				870AEB791B53A81D00959465 /* Localizable.strings in Resources */,
 				87E74B691B54C2AF00C41CBF /* SearchViewCell.xib in Resources */,
+				BC2B61D01B9816E800934EA0 /* ChatDetailToViewCell.xib in Resources */,
 				BCDF1E431B706FE9004A79A3 /* ChatOverviewViewCell.xib in Resources */,
 				87EF8C831B5CE46400292225 /* loading_screen.jpg in Resources */,
 				87E74B6E1B54E73B00C41CBF /* MyTripTableViewCell.xib in Resources */,
+				BC2B61D11B9816EC00934EA0 /* ChatDetailFromViewCell.xib in Resources */,
 				87046A8C1B660D590084E2E3 /* TLBannerTableViewCell.xib in Resources */,
 				8EB570F01B01CF2B0026D419 /* Images.xcassets in Resources */,
 			);

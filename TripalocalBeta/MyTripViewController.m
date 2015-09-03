@@ -61,7 +61,6 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:@"openPartialMenu" object:nil];
 }
 
-#pragma mark perform segue
 - (void)sendClicked{
     NSLog(@"CHECK");
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
@@ -71,7 +70,8 @@
         [self performSegueWithIdentifier:@"loginSegue" sender:nil];
     } else {
         NSLog(@"CHECK");
-        [self presentViewController:vc animated:YES completion:nil];    }
+        [self presentViewController:vc animated:YES completion:nil];
+    }
 }
 
 - (IBAction)changeToPreviousView:(id)sender {

@@ -22,7 +22,7 @@
 @end
 
 @implementation ChatDetailViewController
-@synthesize textField,detailTableView,sendButton,chatWithUser, sendBarView;
+@synthesize textField,sendButton,chatWithUser, sendBarView, allMessage;
 @synthesize managedObjectContext = _managedObjectContext;
 @synthesize managedObjectModel = _managedObjectModel;
 @synthesize persistentStoreCoordinator = _persistentStoreCoordinator;
@@ -43,9 +43,6 @@
     [super viewDidLoad];
     //set localized string for send button
     sendButton.titleLabel.text = NSLocalizedString(@"send_button", nil);
-    //Init database object
-    self.dbManager = [[DBManager alloc] initWithDatabaseFileName:@"message.sql"];
-    //set the top border
     UIView *topBorder = [UIView new];
     topBorder.backgroundColor = [UIColor grayColor];
     topBorder.frame = CGRectMake(0, 0, sendBarView.frame.size.width, 1.0f);
@@ -62,6 +59,23 @@
     AppDelegate *del = [self appDelegate];
     del._messageDelegate = self;
     [self.textField resignFirstResponder];
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+    [self.tableView reloadData];
+    
+  }
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    // Fetch the devices from persistent data store
+    NSManagedObjectContext *managedObjectContext = [self managedObjectContext];
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Message"];
+    self.allMessage = [[managedObjectContext executeFetchRequest:fetchRequest error:nil] mutableCopy];
+#if DEBUG
+    NSLog(@"all messages: %@",self.allMessage);
+#endif
+    [self.tableView reloadData];
 }
 
 #pragma mark - dismiss keyboard (buggy)
@@ -181,9 +195,13 @@
     }
     _managedObjectContext = [[NSManagedObjectContext alloc] init];
     [_managedObjectContext setPersistentStoreCoordinator:coordinator];
+    id delegate = [[UIApplication sharedApplication] delegate];
+    if ([delegate performSelector:@selector(managedObjectContext)]) {
+        _managedObjectContext = [delegate managedObjectContext];
+    }
+
     return _managedObjectContext;
 }
-
 
 
 #pragma mark - send message function
@@ -223,14 +241,17 @@
         self.textField.text = @"";
         //create a new string with sneding format
         //@"you" might need to be changed to senderID
-        NSString *m = [NSString stringWithFormat:@"@%:@%",messageStr,sender_address];
+        NSString *m = [NSString stringWithFormat:@"%@:%@",messageStr,sender_address];
+#if DEBUG
+        NSLog(@"Message with sender address: %@",m);
+#endif
         //create a dictionary to contain all the necessary information of sending messages
         NSMutableDictionary *msgDic = [[NSMutableDictionary alloc] init];
         [msgDic setObject:messageStr forKey:@"msg"];
         [msgDic setObject:sender_address forKey:@"sender"];
         //add sending message to the msgListTo
         [messageListTo addObject:msgDic];
-        [self.detailTableView reloadData];
+        
     
         
         //core data
@@ -240,72 +261,92 @@
         // Create a new managed object
         NSManagedObject *newMessage = [NSEntityDescription
                                        insertNewObjectForEntityForName:@"Message" inManagedObjectContext:context];
-        NSManagedObjectID *local_id = [newMessage objectID];
+        NSManagedObjectID *local_id = nil;
         [newMessage setValue:[NSString stringWithFormat:@"%@",local_id] forKey:@"local_id"];
         [newMessage setValue:[NSString stringWithFormat:@"%@",chatWithUser] forKey:@"receiver_id"];
         [newMessage setValue:[NSString stringWithFormat:@"%@", sender_id] forKey:@"sender_id"];
         [newMessage setValue:nil forKey:@"global_id"];
         [newMessage setValue:[msgDic objectForKey:@"msg"] forKey:@"message_content"];
         [newMessage setValue:timeStamp forKey:@"message_time"];
+#if DEBUG
+        NSLog(@"new message: %@", newMessage);
+#endif
         NSError *error = nil;
         // Save the object to persistent store
         if (![context save:&error]) {
             NSLog(@"Can't Save! %@ %@", error, [error localizedDescription]);
         }
-
-//        //prepare the sql
-//        self.dbManager = [[DBManager alloc] initWithDatabaseFileName:@"message.sql"];
-//        //execute the sql command
-//        NSString *query = [NSString stringWithFormat:@"INSERT INTO message VALUES(null, '%d', '%d', NULL,'%@', '%@')",[chatWithUser intValue],[sender_id intValue],[msgDic objectForKey:@"msg"],timeStamp];
-//        [self.dbManager executeQuery:query];
-//        
-//        // If the query was successfully executed then pop the view controller.
-//        if (self.dbManager.affectedRows != 0) {
-//            NSLog(@"Query was executed successfully. Affected rows = %d", self.dbManager.affectedRows);
-//            
-//            // Pop the view controller.
-//            [self.navigationController popViewControllerAnimated:YES];
-//        }
-//        else{
-//            NSLog(@"Could not execute the query.");
-//        }
+		
 
     	}
-    
+    	[self.tableView reloadData];
     }
 //introducing the custom cell
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
+    NSString *sender_id = [userDefault objectForKey:@"user_id"];
+
     static NSString *cellFromIdentifier = @"ChatDetailFromCell";
+    NSLog(@"Cell enter.");
     static NSString *cellToIdentifier = @"ChatDetailToCell";
-    ChatDetailFromTableViewCell *cellFrom = (ChatDetailFromTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"ChatDetailFromCell"];
-    ChatDetailToTableViewCell *cellTo = (ChatDetailToTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"ChatDetailToCell"];
-    if (!cellFrom) {
-        [tableView registerNib:[UINib nibWithNibName:cellFromIdentifier bundle:nil] forCellReuseIdentifier:cellFromIdentifier];
-    }
-    if (!cellTo) {
-        [tableView registerNib:[UINib nibWithNibName:cellToIdentifier bundle:nil] forCellReuseIdentifier:cellToIdentifier];
-    }
+   
     //test data
+    NSManagedObject *message = [self.allMessage objectAtIndex:indexPath.row];
+    
+    NSLog(@"From Cell loading!!!");
+    
+    if ([self.allMessage count]!=0) {
+        if ([[message valueForKey:@"sender_id"] isEqualToString:sender_id]) {
+            ChatDetailToTableViewCell *cellTo = (ChatDetailToTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"ChatDetailToCell"];
+            if (!cellTo) {
+                [tableView registerNib:[UINib nibWithNibName:@"ChatDetailToViewCell" bundle:nil] forCellReuseIdentifier:cellToIdentifier];
+                cellTo = [tableView dequeueReusableCellWithIdentifier:cellToIdentifier];
+
+            }
+            cellTo.messageContent.text = [message valueForKey:@"message_content"];
+            cellTo.messageTime.text = [message valueForKey:@"message_time"];
+            cellTo.userImage.image = [UIImage imageNamed:@"default_profile_image.png"];
+            
+            return cellTo;
+        }else{
+            ChatDetailFromTableViewCell *cellFrom = (ChatDetailFromTableViewCell *)[tableView dequeueReusableCellWithIdentifier:cellFromIdentifier];
+            if (!cellFrom) {
+                [tableView registerNib:[UINib nibWithNibName:@"ChatDetailFromViewCell" bundle:nil] forCellReuseIdentifier:cellFromIdentifier];
+                cellFrom = [tableView dequeueReusableCellWithIdentifier:cellFromIdentifier];
+            }
+            cellFrom.messageContent.text = [message valueForKey:@"message_content"];
+            cellFrom.messageTime.text = [message valueForKey:@"message_time"];
+            cellFrom.otherUserImage.image = [UIImage imageNamed:@"default_profile_image.png"];
+            
+            return cellFrom;
+        }
+    }
+    else{
+        NSLog(@"message list empty, sample data.");
+        
+    }
+    ChatDetailFromTableViewCell *cellFrom = (ChatDetailFromTableViewCell *)[tableView dequeueReusableCellWithIdentifier:cellFromIdentifier];
+    if (!cellFrom) {
+        [tableView registerNib:[UINib nibWithNibName:@"ChatDetailFromViewCell" bundle:nil] forCellReuseIdentifier:cellFromIdentifier];
+        cellFrom = [tableView dequeueReusableCellWithIdentifier:cellFromIdentifier];
+    }
     cellFrom.otherUserImage.image = [UIImage imageNamed:@"flash.png"];
     cellFrom.messageContent.text = @"hello!";
     cellFrom.messageTime.text = @"1 mins";
-    cellTo.userImage.image = [UIImage imageNamed:@"flash.png"];
-    cellTo.messageContent.text = @"Hi, there.";
-    cellTo.messageTime.text = @"Just now";
-    //read data from array
-//    cellFrom.otherUserImage.image = [fix img];
-//    cellFrom.messageContent.text = [messageListFrom objectAtIndex:indexPath.row];
-//    cellFrom.messageTime.text = [timeListFrom objectAtIndex:indexPath.row];
-//    cellTo.userImage.image = [fix img];
-//    cellTo.messageContent.text = [messageListTo objectAtIndex:indexPath.row];
-//    cellTo.messageTime.text = [timeListTo objectAtIndex:indexPath.row];
-    
     return cellFrom;
-    return cellTo;
+    
+}
+
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    return 1;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return [messageListFrom count] + [messageListTo count];
+    if ([self.allMessage count]>=1) {
+        return [self.allMessage count];
+    }else{
+        return 1;
+    }
 }
 
 @end

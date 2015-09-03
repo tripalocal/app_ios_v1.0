@@ -1559,9 +1559,9 @@
                     <navigationItem key="navigationItem" title="ChatDetail" id="Hae-Eg-qJK"/>
                     <connections>
                         <outlet property="detailScrollView" destination="a5K-kR-kwG" id="8Ve-w9-Viz"/>
-                        <outlet property="detailTableView" destination="4cc-9Y-7uy" id="Xq0-Ts-nWH"/>
                         <outlet property="sendBarView" destination="s55-Yz-l5S" id="2HV-31-Zdb"/>
                         <outlet property="sendButton" destination="nYf-ei-fit" id="EvI-1k-MM7"/>
+                        <outlet property="tableView" destination="4cc-9Y-7uy" id="lYU-H1-9fA"/>
                         <outlet property="textField" destination="kSS-hM-fsN" id="HAI-yt-u9d"/>
                     </connections>
                 </viewController>

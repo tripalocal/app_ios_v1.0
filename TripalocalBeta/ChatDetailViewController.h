@@ -11,10 +11,10 @@
 #import "SMMessageDelegate.h"
 #import "AppDelegate.h"
 
-@interface ChatDetailViewController : UIViewController<SMMessageDelegate>{
+@interface ChatDetailViewController : UIViewController<SMMessageDelegate, UITableViewDelegate, UITableViewDataSource>{
     UITextField *textField;
-    UITableView *detailTableView;
-    NSString *message;
+    UITableView *tableview;
+    NSString *messageContent;
     NSMutableArray *messageListFrom;
     NSMutableArray *messageListTo;
     NSMutableArray *timeListFrom;
@@ -26,18 +26,16 @@
 @property (strong, nonatomic) IBOutlet UIScrollView *detailScrollView;
 @property (nonatomic,retain) IBOutlet UITextField *textField;
 @property (nonatomic,weak) IBOutlet UIButton *sendButton;
-@property (nonatomic,retain) IBOutlet UITableView *detailTableView;
+@property (nonatomic,retain) IBOutlet UITableView *tableView;
 @property (nonatomic,strong) NSString *chatWithUser;
 - (IBAction)sendMessage:(id)sender;
-- (id) initWithUser:(NSString *) userName;
+@property (strong) NSMutableArray *allMessage;
 
 
 @property (readonly, strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (readonly, strong, nonatomic) NSManagedObjectModel *managedObjectModel;
 @property (readonly, strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
 
-- (void)saveContext;
-- (NSURL *)applicationDocumentsDirectory;
 
 
 
