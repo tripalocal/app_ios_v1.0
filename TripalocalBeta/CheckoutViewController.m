@@ -205,7 +205,7 @@
 }
 
 
-}
+
 - (void)fetchData
 {
     NSString *post = [NSString stringWithFormat:@"{\"experience_id\":\"%@\"}",_exp_ID_string];
