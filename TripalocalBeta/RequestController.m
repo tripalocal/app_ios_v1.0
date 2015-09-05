@@ -79,6 +79,7 @@
             [userDefaults setObject:email forKey:@"user_email"];
             [userDefaults setObject:bio forKey:@"user_bio"];
             [userDefaults setObject:phoneNumber forKey:@"user_phone_number"];
+
             NSMutableArray *wishList = [[NSMutableArray alloc] init];
             [userDefaults setObject:wishList forKey:@"wish_list"];
             
