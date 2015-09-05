@@ -305,7 +305,7 @@
 
             }
             cellTo.messageContent.text = [message valueForKey:@"message_content"];
-            cellTo.messageTime.text = [message valueForKey:@"message_time"];
+            cellTo.messageTime.text = [Utility showTimeDifference:[message valueForKey:@"message_time"]];
             cellTo.userImage.image = [UIImage imageNamed:@"default_profile_image.png"];
             
             return cellTo;
@@ -317,7 +317,7 @@
                 cellFrom = [tableView dequeueReusableCellWithIdentifier:cellFromIdentifier];
             }
             cellFrom.messageContent.text = [message valueForKey:@"message_content"];
-            cellFrom.messageTime.text = [message valueForKey:@"message_time"];
+            cellFrom.messageTime.text = [Utility showTimeDifference:[message valueForKey:@"message_time"]];
             cellFrom.otherUserImage.image = [UIImage imageNamed:@"default_profile_image.png"];
             
             return cellFrom;
