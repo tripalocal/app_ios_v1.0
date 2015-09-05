@@ -46,7 +46,6 @@
     HUD.HUDView.layer.shadowRadius = 8.0f;
     HUD.textLabel.text = NSLocalizedString(@"loading", nil);
     [HUD showInView:self.view];
-    [self fetchData];
     [HUD dismissAfterDelay:1];
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
                                    initWithTarget:self
@@ -107,7 +106,11 @@
         [guestPickerData addObject:currentIndexNumber];
     }
     
+}
+
+-(void)viewDidAppear:(BOOL)animated{
     //Resolve
+    [self fetchData];
     int storedFlag = 0;
     int lastIndex = 0;
     [timeArray addObject:timePickerData];
@@ -148,7 +151,7 @@
     
     [_timePicker selectRow:3 inComponent:0 animated:NO];
     [_datePicker selectRow:3 inComponent:0 animated:NO];
-
+    
     selectedDateString = datePickerData[0];
     selectedTimeString = dynamicTimeArray[0];
     selectedGuestString = guestPickerData[0];
@@ -156,7 +159,7 @@
     _durationLangLabel.text = [_durationString stringByAppendingFormat:@"hrs • %@", _languageString];
     [NSString stringWithFormat:@"%@ • %@", NSLocalizedString(@"Hours", nil), _languageString];
     _expTitleLabel.text = _expTitleString;
-
+    
     
     NSNumberFormatter *f = [[NSNumberFormatter alloc] init];
     f.numberStyle = NSNumberFormatterDecimalStyle;
@@ -180,8 +183,8 @@
     
     _confirmButton.backgroundColor = [UIColor grayColor];
     _confirmButton.enabled = NO;
-}
 
+}
 - (void)fetchData
 {
     NSString *post = [NSString stringWithFormat:@"{\"experience_id\":\"%@\"}",_exp_ID_string];
