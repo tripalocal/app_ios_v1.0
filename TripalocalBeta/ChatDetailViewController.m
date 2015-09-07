@@ -11,6 +11,7 @@
 #import "ChatDetailFromTableViewCell.h"
 #import "ChatDetailToTableViewCell.h"
 #import <QuartzCore/QuartzCore.h>
+#import <SDWebImage/UIImageView+WebCache.h>
 #import "XMPP.h"
 #import "DBManager.h"
 #define kOFFSET_FOR_KEYBOARD 215.0
@@ -22,7 +23,7 @@
 @end
 
 @implementation ChatDetailViewController
-@synthesize textField,sendButton,chatWithUser, sendBarView, allMessage;
+@synthesize textField,sendButton,chatWithUser, sendBarView, allMessage, userImage, otherUserImageURL;
 @synthesize managedObjectContext = _managedObjectContext;
 @synthesize managedObjectModel = _managedObjectModel;
 @synthesize persistentStoreCoordinator = _persistentStoreCoordinator;
@@ -67,7 +68,11 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    
+    //get the user avatar
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    userImage = [UIImage imageWithData:[userDefaults objectForKey:@"user_image"]];
+    //get the other users_img
+	
     // Fetch the devices from persistent data store
     NSManagedObjectContext *managedObjectContext = [self managedObjectContext];
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Message"];
@@ -276,15 +281,21 @@
         if (![context save:&error]) {
             NSLog(@"Can't Save! %@ %@", error, [error localizedDescription]);
         }
-		
-
-    	}
-    	[self.tableView reloadData];
     }
+    NSManagedObjectContext *managedObjectContext = [self managedObjectContext];
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Message"];
+    self.allMessage = [[managedObjectContext executeFetchRequest:fetchRequest error:nil] mutableCopy];
+#if DEBUG
+    NSLog(@"all messages: %@",self.allMessage);
+#endif
+
+    [self.tableView reloadData];
+}
 //introducing the custom cell
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
     NSString *sender_id = [userDefault objectForKey:@"user_id"];
+    
 
     static NSString *cellFromIdentifier = @"ChatDetailFromCell";
     NSLog(@"Cell enter.");
@@ -296,7 +307,7 @@
     NSLog(@"From Cell loading!!!");
     
     if ([self.allMessage count]!=0) {
-        if ([[message valueForKey:@"sender_id"] intValue] == [sender_id intValue]) {
+        if ([[message valueForKey:@"sender_id"] intValue] == [sender_id intValue] && [[message valueForKey:@"receiver_id"] intValue] == [chatWithUser intValue]) {
             NSLog(@"TO: message Sender: %@ , userid: %@", [message valueForKey:@"sender_id"], sender_id);
             ChatDetailToTableViewCell *cellTo = (ChatDetailToTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"ChatDetailToCell"];
             if (!cellTo) {
@@ -306,10 +317,10 @@
             }
             cellTo.messageContent.text = [message valueForKey:@"message_content"];
             cellTo.messageTime.text = [Utility showTimeDifference:[message valueForKey:@"message_time"]];
-            cellTo.userImage.image = [UIImage imageNamed:@"default_profile_image.png"];
-            
+            cellTo.userImage.image = userImage;
             return cellTo;
-        }else{
+        }else if ([[message valueForKey:@"receiver_id"] intValue] == [sender_id intValue] && [[message valueForKey:@"sender_id"] intValue] == [chatWithUser intValue])
+        {
             NSLog(@"FROM: message Sender: %d , userid: %d, equal: %d", [[message valueForKey:@"sender_id"] intValue], [sender_id intValue],[[message valueForKey:@"sender_id"] intValue] == [sender_id intValue]  );
             ChatDetailFromTableViewCell *cellFrom = (ChatDetailFromTableViewCell *)[tableView dequeueReusableCellWithIdentifier:cellFromIdentifier];
             if (!cellFrom) {
@@ -318,7 +329,9 @@
             }
             cellFrom.messageContent.text = [message valueForKey:@"message_content"];
             cellFrom.messageTime.text = [Utility showTimeDifference:[message valueForKey:@"message_time"]];
-            cellFrom.otherUserImage.image = [UIImage imageNamed:@"default_profile_image.png"];
+            [cellFrom.otherUserImage sd_setImageWithURL:[NSURL URLWithString:otherUserImageURL]
+                              placeholderImage:[UIImage imageNamed:@"default_profile_image.png"]
+                                       options:SDWebImageRefreshCached];
             
             return cellFrom;
         }

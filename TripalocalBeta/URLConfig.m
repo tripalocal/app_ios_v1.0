@@ -24,7 +24,7 @@
 #ifdef CN_VERSION
         return @"https://www.tripalocal.com.cn/images/";
 #else
-        return @"https://www.tripalocal.com/images//";
+        return @"https://www.tripalocal.com/images/";
 #endif
 }
 

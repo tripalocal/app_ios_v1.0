@@ -460,8 +460,11 @@
     }
     
     else if ([segue.identifier isEqualToString:@"expDetailToChat"]) {
+
     	ChatDetailViewController *chatDetailVC = [segue destinationViewController];
         chatDetailVC.chatWithUser = host_id;
+        chatDetailVC.otherUserImageURL = hostImageURL;
+        
     }
     
 }

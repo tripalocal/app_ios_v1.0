@@ -30,7 +30,8 @@
 @property (nonatomic,strong) NSString *chatWithUser;
 - (IBAction)sendMessage:(id)sender;
 @property (strong) NSMutableArray *allMessage;
-
+@property (strong) UIImage *userImage;
+@property (strong) NSString *otherUserImageURL;
 
 @property (readonly, strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (readonly, strong, nonatomic) NSManagedObjectModel *managedObjectModel;
