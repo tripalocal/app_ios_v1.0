@@ -300,12 +300,8 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     NSMutableDictionary *m = [[NSMutableDictionary alloc] init];
     [m setObject:msg forKey:@"msg"];
     [m setObject:from forKey:@"sender"];
-    [_messageDelegate newMessageReceived:m];
-#if DEBUG
-    NSLog(@"Message received: %@",m);
-#endif
     
-//  save data in core data
+    //  save data in core data
     NSManagedObjectContext *context = [self managedObjectContext];
     
     // Create a new managed object
@@ -322,6 +318,13 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     if (![context save:&error]) {
         NSLog(@"Can't Save! %@ %@", error, [error localizedDescription]);
     }
+//load message in chat detail view
+    [_messageDelegate newMessageReceived:m];
+#if DEBUG
+    NSLog(@"Message received: %@",m);
+#endif
+    
+    
     
 //    //init database object
 //    self.dbManager = [[DBManager alloc] initWithDatabaseFileName:@"message.sql"];

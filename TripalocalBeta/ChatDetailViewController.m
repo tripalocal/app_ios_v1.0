@@ -24,6 +24,7 @@
 
 @implementation ChatDetailViewController
 @synthesize textField,sendButton,chatWithUser, sendBarView, allMessage, userImage, otherUserImageURL;
+@synthesize _messageDelegate;
 @synthesize managedObjectContext = _managedObjectContext;
 @synthesize managedObjectModel = _managedObjectModel;
 @synthesize persistentStoreCoordinator = _persistentStoreCoordinator;
@@ -63,6 +64,7 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     [self.tableView reloadData];
+    _shouldScrollToLastRow = YES;
     
   }
 - (void)viewDidAppear:(BOOL)animated
@@ -78,9 +80,21 @@
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Message"];
     self.allMessage = [[managedObjectContext executeFetchRequest:fetchRequest error:nil] mutableCopy];
 #if DEBUG
-    NSLog(@"all messages: %@",self.allMessage);
+    //NSLog(@"all messages: %@",self.allMessage);
 #endif
     [self.tableView reloadData];
+}
+
+- (void)viewDidLayoutSubviews
+{
+    [super viewDidLayoutSubviews];
+    
+    // Scroll table view to the last row
+    if (_shouldScrollToLastRow)
+    {
+        _shouldScrollToLastRow = NO;
+        [self.tableView setContentOffset:CGPointMake(0, CGFLOAT_MAX)];
+    }
 }
 
 #pragma mark - dismiss keyboard (buggy)
@@ -286,10 +300,12 @@
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Message"];
     self.allMessage = [[managedObjectContext executeFetchRequest:fetchRequest error:nil] mutableCopy];
 #if DEBUG
-    NSLog(@"all messages: %@",self.allMessage);
+    //NSLog(@"all messages: %@",self.allMessage);
 #endif
 
     [self.tableView reloadData];
+    CGPoint offset = CGPointMake(0, self.tableView.contentSize.height - self.tableView.frame.size.height);
+    [self.tableView setContentOffset:offset animated:YES];
 }
 //introducing the custom cell
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -304,11 +320,11 @@
     //test data
     NSManagedObject *message = [self.allMessage objectAtIndex:indexPath.row];
     
-    NSLog(@"From Cell loading!!!");
+    //NSLog(@"From Cell loading!!!");
     
     if ([self.allMessage count]!=0) {
         if ([[message valueForKey:@"sender_id"] intValue] == [sender_id intValue] && [[message valueForKey:@"receiver_id"] intValue] == [chatWithUser intValue]) {
-            NSLog(@"TO: message Sender: %@ , userid: %@", [message valueForKey:@"sender_id"], sender_id);
+            //NSLog(@"TO: message Sender: %@ , userid: %@", [message valueForKey:@"sender_id"], sender_id);
             ChatDetailToTableViewCell *cellTo = (ChatDetailToTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"ChatDetailToCell"];
             if (!cellTo) {
                 [tableView registerNib:[UINib nibWithNibName:@"ChatDetailToViewCell" bundle:nil] forCellReuseIdentifier:cellToIdentifier];
@@ -317,11 +333,17 @@
             }
             cellTo.messageContent.text = [message valueForKey:@"message_content"];
             cellTo.messageTime.text = [Utility showTimeDifference:[message valueForKey:@"message_time"]];
-            cellTo.userImage.image = userImage;
+            if (userImage) {
+                cellTo.userImage.image = userImage;
+            } else {
+                cellTo.userImage.image = [UIImage imageNamed: @"default_profile_image.png"];
+            }
+
+            
             return cellTo;
         }else if ([[message valueForKey:@"receiver_id"] intValue] == [sender_id intValue] && [[message valueForKey:@"sender_id"] intValue] == [chatWithUser intValue])
         {
-            NSLog(@"FROM: message Sender: %d , userid: %d, equal: %d", [[message valueForKey:@"sender_id"] intValue], [sender_id intValue],[[message valueForKey:@"sender_id"] intValue] == [sender_id intValue]  );
+            //NSLog(@"FROM: message Sender: %d , userid: %d, equal: %d", [[message valueForKey:@"sender_id"] intValue], [sender_id intValue],[[message valueForKey:@"sender_id"] intValue] == [sender_id intValue]  );
             ChatDetailFromTableViewCell *cellFrom = (ChatDetailFromTableViewCell *)[tableView dequeueReusableCellWithIdentifier:cellFromIdentifier];
             if (!cellFrom) {
                 [tableView registerNib:[UINib nibWithNibName:@"ChatDetailFromViewCell" bundle:nil] forCellReuseIdentifier:cellFromIdentifier];
@@ -363,9 +385,27 @@
         return 1;
     }
 }
+
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return 100;
+}
+
+#pragma mark Message received
+- (void)newMessageReceived:(NSDictionary *)messageContent {
+    
+    // Fetch the devices from persistent data store
+    NSManagedObjectContext *managedObjectContext = [self managedObjectContext];
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Message"];
+    self.allMessage = [[managedObjectContext executeFetchRequest:fetchRequest error:nil] mutableCopy];
+#if DEBUG
+    NSLog(@"received in chatview!!");
+#endif
+    [self.tableView reloadData];
+    
+    CGPoint offset = CGPointMake(0, self.tableView.contentSize.height - self.tableView.frame.size.height);
+    [self.tableView setContentOffset:offset animated:YES];
+
 }
 
 

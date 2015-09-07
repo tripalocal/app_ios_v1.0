@@ -19,9 +19,11 @@
     NSMutableArray *messageListTo;
     NSMutableArray *timeListFrom;
     NSMutableArray *timeListTo;
+    __unsafe_unretained NSObject <SMChatDelegate> *_chatDelegate;
+    __unsafe_unretained NSObject <SMMessageDelegate> *_messageDelegate;
 
 }
-
+@property (nonatomic, assign) id _messageDelegate;
 @property (weak, nonatomic) IBOutlet UIView *sendBarView;
 @property (strong, nonatomic) IBOutlet UIScrollView *detailScrollView;
 @property (nonatomic,retain) IBOutlet UITextField *textField;
@@ -36,6 +38,7 @@
 @property (readonly, strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (readonly, strong, nonatomic) NSManagedObjectModel *managedObjectModel;
 @property (readonly, strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
+@property (nonatomic, assign) BOOL shouldScrollToLastRow;
 
 - (void)saveContext;
 - (NSURL *)applicationDocumentsDirectory;
