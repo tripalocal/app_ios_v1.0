@@ -18,7 +18,7 @@
                         <rect key="frame" x="42" y="8" width="264" height="101"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Messages" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ytI-2L-VOe">
-                                <rect key="frame" x="40" y="29" width="204" height="20.5"/>
+                                <rect key="frame" x="40" y="20" width="204" height="20.5"/>
                                 <animations/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="fAn-dw-0Wi"/>
@@ -47,6 +47,7 @@
                             <constraint firstItem="ytI-2L-VOe" firstAttribute="leading" secondItem="5ni-HI-Ylv" secondAttribute="leading" constant="40" id="Bo4-RL-9Ka"/>
                             <constraint firstItem="ytI-2L-VOe" firstAttribute="trailing" secondItem="DSo-pL-qJ5" secondAttribute="trailing" id="QBZ-rw-4ih"/>
                             <constraint firstAttribute="trailing" secondItem="ytI-2L-VOe" secondAttribute="trailing" constant="20" id="Ssy-cp-X9K"/>
+                            <constraint firstItem="ytI-2L-VOe" firstAttribute="top" secondItem="5ni-HI-Ylv" secondAttribute="top" constant="20" id="bX0-2i-obu"/>
                             <constraint firstItem="ytI-2L-VOe" firstAttribute="centerX" secondItem="5ni-HI-Ylv" secondAttribute="centerX" id="f5k-lc-CnC"/>
                             <constraint firstAttribute="bottom" secondItem="DSo-pL-qJ5" secondAttribute="bottom" constant="15" id="nRk-A4-7VY"/>
                             <constraint firstItem="DSo-pL-qJ5" firstAttribute="top" secondItem="ytI-2L-VOe" secondAttribute="bottom" constant="20" id="sJo-oa-7hP"/>
@@ -56,6 +57,7 @@
                                 <exclude reference="Bo4-RL-9Ka"/>
                                 <exclude reference="QBZ-rw-4ih"/>
                                 <exclude reference="f5k-lc-CnC"/>
+                                <exclude reference="sJo-oa-7hP"/>
                             </mask>
                         </variation>
                     </view>
@@ -80,10 +82,11 @@
                 </constraints>
             </tableViewCellContentView>
             <animations/>
-            <color key="backgroundColor" red="0.92549019607843142" green="0.92549019607843142" blue="0.92549019607843142" alpha="1" colorSpace="calibratedRGB"/>
+            <color key="backgroundColor" red="0.94117647058823528" green="0.94117647058823528" blue="0.94117647058823528" alpha="1" colorSpace="calibratedRGB"/>
             <connections>
                 <outlet property="messageContent" destination="ytI-2L-VOe" id="8x5-RY-EvB"/>
                 <outlet property="messageTime" destination="DSo-pL-qJ5" id="fV1-RT-vud"/>
+                <outlet property="msgView" destination="5ni-HI-Ylv" id="BfQ-lo-p4A"/>
                 <outlet property="otherUserImage" destination="jQW-cI-kfl" id="xuu-1m-4Hw"/>
             </connections>
             <point key="canvasLocation" x="330" y="264"/>

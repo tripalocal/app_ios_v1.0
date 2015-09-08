@@ -18,7 +18,7 @@
                         <rect key="frame" x="14" y="8" width="264" height="101"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Messages" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y1B-jV-60i">
-                                <rect key="frame" x="20" y="29.5" width="204" height="20.5"/>
+                                <rect key="frame" x="20" y="20" width="204" height="20.5"/>
                                 <animations/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="iZ3-De-aRE"/>
@@ -45,9 +45,15 @@
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="XQK-Bd-sg1" secondAttribute="bottom" constant="15" id="G7U-yM-jUa"/>
                             <constraint firstItem="Y1B-jV-60i" firstAttribute="leading" secondItem="0cq-pT-lFM" secondAttribute="leading" constant="20" id="WcF-VE-IUL"/>
+                            <constraint firstItem="Y1B-jV-60i" firstAttribute="top" secondItem="0cq-pT-lFM" secondAttribute="top" constant="20" id="cgy-6N-OHj"/>
                             <constraint firstItem="XQK-Bd-sg1" firstAttribute="top" secondItem="Y1B-jV-60i" secondAttribute="bottom" constant="20" id="iu6-pl-S58"/>
                             <constraint firstAttribute="trailing" secondItem="Y1B-jV-60i" secondAttribute="trailing" constant="40" id="l9F-Xj-KLF"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="iu6-pl-S58"/>
+                            </mask>
+                        </variation>
                     </view>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="LG8-Uv-28e">
                         <rect key="frame" x="257" y="67" width="45" height="45"/>
@@ -70,10 +76,11 @@
                 </constraints>
             </tableViewCellContentView>
             <animations/>
-            <color key="backgroundColor" red="0.92549019607843142" green="0.92549019607843142" blue="0.92549019607843142" alpha="1" colorSpace="calibratedRGB"/>
+            <color key="backgroundColor" red="0.94509803921568625" green="0.94509803921568625" blue="0.94509803921568625" alpha="1" colorSpace="calibratedRGB"/>
             <connections>
                 <outlet property="messageContent" destination="Y1B-jV-60i" id="gfs-FY-ls6"/>
                 <outlet property="messageTime" destination="XQK-Bd-sg1" id="hOY-1U-O82"/>
+                <outlet property="msgView" destination="0cq-pT-lFM" id="iov-SS-fzP"/>
                 <outlet property="userImage" destination="LG8-Uv-28e" id="1Cy-By-JNC"/>
             </connections>
             <point key="canvasLocation" x="360" y="286"/>

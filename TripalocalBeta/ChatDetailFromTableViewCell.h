@@ -15,5 +15,6 @@
 }
 @property (nonatomic, retain) IBOutlet UIImageView *otherUserImage;
 @property (nonatomic, retain) IBOutlet UILabel *messageContent;
+@property (weak, nonatomic) IBOutlet UIView *msgView;
 @property (nonatomic, retain) IBOutlet UILabel *messageTime;
 @end
