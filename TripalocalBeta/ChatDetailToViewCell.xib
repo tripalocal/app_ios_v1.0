@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8187.4" systemVersion="15A278b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="15A278b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8151.3"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
@@ -16,78 +15,68 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0cq-pT-lFM">
-                        <rect key="frame" x="21" y="23" width="250" height="86"/>
+                        <rect key="frame" x="14" y="8" width="264" height="101"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Messages" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y1B-jV-60i">
-                                <rect key="frame" x="20" y="10" width="78" height="21"/>
+                                <rect key="frame" x="20" y="29.5" width="204" height="20.5"/>
                                 <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="iZ3-De-aRE"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="iZ3-De-aRE"/>
+                                    </mask>
+                                </variation>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XQK-Bd-sg1">
-                                <rect key="frame" x="20" y="55" width="38" height="21"/>
+                                <rect key="frame" x="198" y="70" width="29.5" height="16"/>
                                 <animations/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <animations/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.72156862745098038" green="0.90196078431372551" blue="0.89803921568627454" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="250" id="FUp-gY-Pcr"/>
-                            <constraint firstItem="XQK-Bd-sg1" firstAttribute="leading" secondItem="0cq-pT-lFM" secondAttribute="leading" constant="20" id="G6e-7N-aIs"/>
-                            <constraint firstItem="Y1B-jV-60i" firstAttribute="leading" secondItem="0cq-pT-lFM" secondAttribute="leading" constant="20" id="WXc-2f-5ye"/>
-                            <constraint firstItem="Y1B-jV-60i" firstAttribute="top" secondItem="0cq-pT-lFM" secondAttribute="top" constant="10" id="wMT-U5-oQI"/>
-                            <constraint firstAttribute="bottom" secondItem="XQK-Bd-sg1" secondAttribute="bottom" constant="10" id="z84-x3-gNe"/>
+                            <constraint firstAttribute="bottom" secondItem="XQK-Bd-sg1" secondAttribute="bottom" constant="15" id="G7U-yM-jUa"/>
+                            <constraint firstItem="Y1B-jV-60i" firstAttribute="leading" secondItem="0cq-pT-lFM" secondAttribute="leading" constant="20" id="WcF-VE-IUL"/>
+                            <constraint firstItem="XQK-Bd-sg1" firstAttribute="top" secondItem="Y1B-jV-60i" secondAttribute="bottom" constant="20" id="iu6-pl-S58"/>
+                            <constraint firstAttribute="trailing" secondItem="Y1B-jV-60i" secondAttribute="trailing" constant="40" id="l9F-Xj-KLF"/>
                         </constraints>
                     </view>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="LG8-Uv-28e">
-                        <rect key="frame" x="262" y="64" width="45" height="45"/>
+                        <rect key="frame" x="257" y="67" width="45" height="45"/>
                         <animations/>
                         <constraints>
-                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="45" id="7Z2-B3-ycF"/>
-                            <constraint firstAttribute="height" constant="45" id="GHs-s5-rh7"/>
-                            <constraint firstAttribute="width" constant="45" id="aaY-OK-3sv"/>
-                            <constraint firstAttribute="height" constant="45" id="boP-Mo-u7d"/>
-                            <constraint firstAttribute="width" constant="45" id="dZT-NC-WZB"/>
+                            <constraint firstAttribute="width" constant="45" id="Zf1-E1-xnh"/>
+                            <constraint firstAttribute="height" constant="45" id="vAq-ex-wcH"/>
                         </constraints>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="7Z2-B3-ycF"/>
-                                <exclude reference="boP-Mo-u7d"/>
-                                <exclude reference="dZT-NC-WZB"/>
-                            </mask>
-                        </variation>
                     </imageView>
                 </subviews>
                 <animations/>
                 <constraints>
-                    <constraint firstAttribute="bottomMargin" secondItem="LG8-Uv-28e" secondAttribute="bottom" constant="20" id="4aV-My-r8m"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="LG8-Uv-28e" secondAttribute="trailing" constant="5" id="Kug-o1-b8L"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="0cq-pT-lFM" secondAttribute="trailing" constant="41" id="N8G-eE-mNx"/>
-                    <constraint firstAttribute="bottomMargin" secondItem="0cq-pT-lFM" secondAttribute="bottom" constant="12.5" id="Nw8-8Z-v78"/>
-                    <constraint firstItem="LG8-Uv-28e" firstAttribute="top" secondItem="PoG-pN-NtG" secondAttribute="topMargin" constant="61" id="TUw-ap-xbd"/>
-                    <constraint firstItem="0cq-pT-lFM" firstAttribute="top" secondItem="PoG-pN-NtG" secondAttribute="topMargin" constant="15" id="XLR-if-X4H"/>
-                    <constraint firstItem="0cq-pT-lFM" firstAttribute="leading" secondItem="PoG-pN-NtG" secondAttribute="leadingMargin" constant="13" id="aTh-lB-w3X"/>
-                    <constraint firstAttribute="bottomMargin" secondItem="LG8-Uv-28e" secondAttribute="bottom" constant="12" id="aXV-Wj-2IX"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="LG8-Uv-28e" secondAttribute="trailing" constant="5" id="vfB-L3-dhG"/>
+                    <constraint firstItem="0cq-pT-lFM" firstAttribute="top" secondItem="PoG-pN-NtG" secondAttribute="topMargin" id="GnT-pm-u9K"/>
+                    <constraint firstItem="LG8-Uv-28e" firstAttribute="leading" secondItem="XQK-Bd-sg1" secondAttribute="trailing" constant="15" id="KHv-Vj-nZ0"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="LG8-Uv-28e" secondAttribute="trailing" constant="10" id="Kss-Iv-o7d"/>
+                    <constraint firstItem="0cq-pT-lFM" firstAttribute="leading" secondItem="PoG-pN-NtG" secondAttribute="leadingMargin" constant="6" id="kRM-0q-1Of"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="0cq-pT-lFM" secondAttribute="bottom" constant="12.5" id="lmz-oq-j60"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="LG8-Uv-28e" secondAttribute="bottom" constant="10" id="md7-Ev-qiT"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="0cq-pT-lFM" secondAttribute="trailing" constant="34" id="sf9-e3-LIP"/>
                 </constraints>
-                <variation key="default">
-                    <mask key="constraints">
-                        <exclude reference="4aV-My-r8m"/>
-                        <exclude reference="TUw-ap-xbd"/>
-                        <exclude reference="vfB-L3-dhG"/>
-                    </mask>
-                </variation>
             </tableViewCellContentView>
             <animations/>
+            <color key="backgroundColor" red="0.92549019607843142" green="0.92549019607843142" blue="0.92549019607843142" alpha="1" colorSpace="calibratedRGB"/>
             <connections>
                 <outlet property="messageContent" destination="Y1B-jV-60i" id="gfs-FY-ls6"/>
                 <outlet property="messageTime" destination="XQK-Bd-sg1" id="hOY-1U-O82"/>
                 <outlet property="userImage" destination="LG8-Uv-28e" id="1Cy-By-JNC"/>
             </connections>
+            <point key="canvasLocation" x="360" y="286"/>
         </tableViewCell>
     </objects>
 </document>

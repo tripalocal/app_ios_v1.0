@@ -63,6 +63,8 @@
     [self.textField resignFirstResponder];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
+    self.tableView.estimatedRowHeight = 200.0;
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
     [self.tableView reloadData];
     _shouldScrollToLastRow = YES;
     
@@ -84,7 +86,6 @@
 #endif
     [self.tableView reloadData];
 }
-
 - (void)viewDidLayoutSubviews
 {
     [super viewDidLayoutSubviews];
@@ -178,6 +179,8 @@
                                              selector:@selector(keyboardWillHide)
                                                  name:UIKeyboardWillHideNotification
                                                object:nil];
+    [super viewWillAppear:animated];
+    
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -269,7 +272,7 @@
         [msgDic setObject:messageStr forKey:@"msg"];
         [msgDic setObject:sender_address forKey:@"sender"];
         //add sending message to the msgListTo
-        [messageListTo addObject:msgDic];
+
         
     
         
@@ -325,6 +328,7 @@
     if ([self.allMessage count]!=0) {
         if ([[message valueForKey:@"sender_id"] intValue] == [sender_id intValue] && [[message valueForKey:@"receiver_id"] intValue] == [chatWithUser intValue]) {
             //NSLog(@"TO: message Sender: %@ , userid: %@", [message valueForKey:@"sender_id"], sender_id);
+            [messageListTo addObject:message];
             ChatDetailToTableViewCell *cellTo = (ChatDetailToTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"ChatDetailToCell"];
             if (!cellTo) {
                 [tableView registerNib:[UINib nibWithNibName:@"ChatDetailToViewCell" bundle:nil] forCellReuseIdentifier:cellToIdentifier];
@@ -344,6 +348,7 @@
         }else if ([[message valueForKey:@"receiver_id"] intValue] == [sender_id intValue] && [[message valueForKey:@"sender_id"] intValue] == [chatWithUser intValue])
         {
             //NSLog(@"FROM: message Sender: %d , userid: %d, equal: %d", [[message valueForKey:@"sender_id"] intValue], [sender_id intValue],[[message valueForKey:@"sender_id"] intValue] == [sender_id intValue]  );
+            [messageListFrom addObject:message];
             ChatDetailFromTableViewCell *cellFrom = (ChatDetailFromTableViewCell *)[tableView dequeueReusableCellWithIdentifier:cellFromIdentifier];
             if (!cellFrom) {
                 [tableView registerNib:[UINib nibWithNibName:@"ChatDetailFromViewCell" bundle:nil] forCellReuseIdentifier:cellFromIdentifier];
@@ -379,13 +384,19 @@
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    if ([self.allMessage count]>=1) {
-        return [self.allMessage count];
-    }else{
-        return 1;
-    }
+//    if ([messageListFrom count] != 0 || [messageListTo count] != 0) {
+//        return [messageListFrom count] + [messageListTo count];
+//    }else{
+//        return 10;
+//    }
+    return [allMessage count];
 }
-
+//
+//- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//     return self.tableView.rowHeight;
+//
+//}
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return 100;

@@ -11,6 +11,7 @@
 #import "URLConfig.h"
 #import "Utility.h"
 #import "Constant.h"
+#import "AppDelegate.h"
 
 
 @interface MenuViewController ()
@@ -105,6 +106,7 @@
     [self performSegueWithIdentifier:@"show_chat_overview" sender:self];
 }
 - (IBAction)logout:(id)sender {
+    
     NSURL *url = [NSURL URLWithString:[URLConfig logoutServiceURLString]];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     [request setHTTPMethod:@"POST"];
@@ -144,6 +146,8 @@
                                               otherButtonTitles:nil];
         [alert show];
     }
+    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
+    [appDelegate disconnect];
     
 }
 

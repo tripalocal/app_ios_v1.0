@@ -80,7 +80,7 @@
                     NSInteger pSecond = [previousSecond integerValue];
                     NSInteger cSecond = [currentSecond integerValue];
                     NSInteger delta = cSecond - pSecond;
-                    NSString *returnSecondDelta = [NSString stringWithFormat:@"%ld %s",delta,"sec ago"];
+                    NSString *returnSecondDelta = [NSString stringWithFormat:@"Just now"];
                     return returnSecondDelta;
                 }
                 else{

@@ -1519,13 +1519,15 @@
                                     </mask>
                                 </variation>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="4cc-9Y-7uy">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="100" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="4cc-9Y-7uy">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="542"/>
                                 <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="sectionIndexBackgroundColor" red="0.92549019607843142" green="0.92549019607843142" blue="0.92549019607843142" alpha="1" colorSpace="calibratedRGB"/>
                             </tableView>
                         </subviews>
                         <animations/>
+                        <color key="backgroundColor" red="0.92549019607843142" green="0.92549019607843142" blue="0.92549019607843142" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="4cc-9Y-7uy" firstAttribute="top" secondItem="a5K-kR-kwG" secondAttribute="top" id="1VE-7N-0h1"/>
                             <constraint firstItem="s55-Yz-l5S" firstAttribute="leading" secondItem="4cc-9Y-7uy" secondAttribute="leading" id="2qf-JN-OKv"/>
