@@ -10,6 +10,15 @@
 
 @implementation URLConfig
 
++ (NSString *)homePageCityImageURLString
+{
+#ifdef CN_VERSION
+    return @"https://www.tripalocal.com.cn/images/mobile/home/";
+#else
+    return @"https://www.tripalocal.com/images/mobile/home/";
+#endif
+
+}
 + (NSString *)myTripServiceURLString
 {
 #ifdef CN_VERSION
