@@ -233,10 +233,10 @@
     NSString *endDate = [dateFormatter stringFromDate:today];
     
 #ifdef CN_VERSION
-        post = [NSString stringWithFormat:@"{\"start_datetime\":\"%@\", \"end_datetime\":\"%@\", \"city\":\"%@\", \"guest_number\":\"2\", \"keywords\":\"美食美酒,名校游学,历史人文,经典建筑,蜜月旅拍,风光摄影,移民考察,亲子夏令营,户外探险,购物扫货,运动休闲,领路人自驾,刺激享乐,赛事庆典,美容保健\"}", startDate, endDate ,cityName];
+        post = [NSString stringWithFormat:@"{\"start_datetime\":\"%@\", \"end_datetime\":\"%@\", \"city\":\"%@\", \"guest_number\":\"2\", \"keywords\":\"\"}", startDate, endDate ,[cityName stringByReplacingOccurrencesOfString:@" " withString:@"" ]];
         [request setURL:[NSURL URLWithString:[URLConfig searchServiceURLString]]];
 #else
-        post = [NSString stringWithFormat:@"{\"start_datetime\":\"%@\", \"end_datetime\":\"%@\", \"city\":\"%@\", \"guest_number\":\"2\", \"keywords\":\"Food & wine, Education, History & culture, Architecture, For couples, Photography worthy, Livability research, Kids friendly, Outdoor & nature, Shopping, Sports & leisure, Host with car, Extreme fun, Events, Health & beauty, Private group\"}", startDate, endDate ,cityName];
+        post = [NSString stringWithFormat:@"{\"start_datetime\":\"%@\", \"end_datetime\":\"%@\", \"city\":\"%@\", \"guest_number\":\"2\", \"keywords\":\"\"}", startDate, endDate ,[cityName stringByReplacingOccurrencesOfString:@" " withString:@"" ]];
         [request setURL:[NSURL URLWithString:[URLConfig searchServiceURLString]]];
 #endif
     
