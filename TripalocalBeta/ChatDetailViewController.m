@@ -278,20 +278,20 @@
         
         //core data
         AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
-        NSManagedObjectContext *context = appDelegate.managedObjectContext;   //return nil BUG!`
+        NSManagedObjectContext *context = appDelegate.managedObjectContext;
         
         // Create a new managed object
         NSManagedObject *newMessage = [NSEntityDescription
                                        insertNewObjectForEntityForName:@"Message" inManagedObjectContext:context];
-        NSManagedObjectID *local_id = nil;
-        [newMessage setValue:[NSString stringWithFormat:@"%@",local_id] forKey:@"local_id"];
+    	long long local_id = (long long)([[NSDate date] timeIntervalSince1970] * 1000.0);
+        [newMessage setValue:[NSString stringWithFormat:@"%lld",local_id] forKey:@"local_id"];
         [newMessage setValue:[NSString stringWithFormat:@"%@",chatWithUser] forKey:@"receiver_id"];
         [newMessage setValue:[NSString stringWithFormat:@"%@", sender_id] forKey:@"sender_id"];
         [newMessage setValue:nil forKey:@"global_id"];
         [newMessage setValue:[msgDic objectForKey:@"msg"] forKey:@"message_content"];
         [newMessage setValue:timeStamp forKey:@"message_time"];
 #if DEBUG
-        NSLog(@"new message: %@", newMessage);
+        NSLog(@"new message: %@ \n local_id : %lld", newMessage, local_id);
 #endif
         NSError *error = nil;
         // Save the object to persistent store

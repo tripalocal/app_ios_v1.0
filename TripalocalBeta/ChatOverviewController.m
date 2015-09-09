@@ -87,6 +87,15 @@
 //        [self showLogin];
 //    }
 }
+
+-(void)viewDidDisappear:(BOOL)animated{
+    currentFlag = (long long)([[NSDate date] timeIntervalSince1970] * 1000.0);
+    NSManagedObjectContext *managedObjectContext = [self managedObjectContext];
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Message"];
+    allMessage = [[managedObjectContext executeFetchRequest:fetchRequest error:nil] mutableCopy];
+    
+
+}
 -(IBAction)showLogin {
     UnloginViewController *unLoginController = [[UnloginViewController alloc] init];
     [self presentViewController:unLoginController animated:YES completion:nil];
@@ -249,4 +258,27 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+#pragma mark CORE DATA
+- (void)saveContext {
+    NSManagedObjectContext *managedObjectContext = self.managedObjectContext;
+    if (managedObjectContext != nil) {
+        NSError *error = nil;
+        if ([managedObjectContext hasChanges] && ![managedObjectContext save:&error]) {
+            // Replace this implementation with code to handle the error appropriately.
+            // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+            NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+            abort();
+        }
+    }
+}
+- (NSManagedObjectContext *)managedObjectContext {
+    NSManagedObjectContext *context = nil;
+    id delegate = [[UIApplication sharedApplication] delegate];
+    if ([delegate performSelector:@selector(managedObjectContext)]) {
+        context = [delegate managedObjectContext];
+    }
+    return context;
+}
+
 @end

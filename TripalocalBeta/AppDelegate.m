@@ -306,8 +306,8 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     
     // Create a new managed object
     NSManagedObject *newMessage = [NSEntityDescription insertNewObjectForEntityForName:@"Message" inManagedObjectContext:context];
-    NSManagedObjectID *local_id = [newMessage objectID];
-    [newMessage setValue:[NSString stringWithFormat:@"%@", local_id] forKey:@"local_id"];
+    long long local_id = (long long)([[NSDate date] timeIntervalSince1970] * 1000.0);
+    [newMessage setValue:[NSString stringWithFormat:@"%lld", local_id] forKey:@"local_id"];
     [newMessage setValue:[NSString stringWithFormat:@"%@", receiver_id] forKey:@"receiver_id"];
     [newMessage setValue:[m objectForKey:@"sender"] forKey:@"sender_id"];
     [newMessage setValue:nil forKey:@"global_id"];
