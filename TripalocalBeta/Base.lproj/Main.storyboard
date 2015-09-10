@@ -1501,7 +1501,7 @@
                                     </button>
                                 </subviews>
                                 <animations/>
-                                <color key="backgroundColor" red="0.92941176470588238" green="0.92941176470588238" blue="0.92941176470588238" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="BmI-8l-Uok" secondAttribute="trailing" constant="15" id="0vb-Ct-9Xu"/>
                                     <constraint firstAttribute="bottom" secondItem="BmI-8l-Uok" secondAttribute="bottom" constant="15" id="1Aa-CJ-ysk"/>
