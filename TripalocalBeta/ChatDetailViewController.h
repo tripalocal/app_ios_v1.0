@@ -40,6 +40,7 @@
 - (IBAction)sendMessage:(id)sender;
 @property (strong) NSMutableArray *allMessage;
 @property (strong) UIImage *userImage;
+@property (strong) UIImage *otherUserImage;
 @property (strong) NSString *otherUserImageURL;
 @property (nonatomic, strong) UITableViewCell *prototypeCell;
 @property (readonly, strong, nonatomic) NSManagedObjectContext *managedObjectContext;

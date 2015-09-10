@@ -118,4 +118,12 @@
 #endif
 }
 
++ (NSString *)servicePublicProfileURLString
+{
+#ifdef CN_VERSION
+    return @"https://tripalocal.com.cn/service_publicprofile/";
+#else
+    return @"https://tripalocal.com/service_publicprofile/";
+#endif
+}
 @end

@@ -16,6 +16,7 @@
 #import "XMPP.h"
 #import "DBManager.h"
 #import "URLConfig.h"
+#import "JGProgressHUD.h"
 #define kOFFSET_FOR_KEYBOARD 215.0
 
 @interface ChatDetailViewController ()
@@ -24,30 +25,15 @@
 
 @end
 
-@implementation ChatDetailViewController
-@synthesize sendButton,chatWithUser, sendBarView, allMessage, userImage, otherUserImageURL;
+@implementation ChatDetailViewController{
+    JGProgressHUD *HUD;
+}
+@synthesize sendButton,chatWithUser, sendBarView, allMessage, userImage, otherUserImageURL, otherUserImage;
 @synthesize _messageDelegate;
 @synthesize managedObjectContext = _managedObjectContext;
 @synthesize managedObjectModel = _managedObjectModel;
 @synthesize persistentStoreCoordinator = _persistentStoreCoordinator;
 
--(id)init
-{
-    self = [super init];
-    if(self){
-        [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(keyboardWillShow:)
-                                                     name:UIKeyboardWillShowNotification
-                                                   object:nil];
-        
-        [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(keyboardWillHide:)
-                                                     name:UIKeyboardWillHideNotification 
-                                                   object:nil];		
-    }
-    
-    return self;
-}
 
 -(AppDelegate *)appDelegate {
     return (AppDelegate *)[[UIApplication sharedApplication] delegate];
@@ -63,6 +49,13 @@
 //}
 - (void)viewDidLoad {
     [super viewDidLoad];
+    HUD = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleDark];
+    HUD.HUDView.layer.shadowColor = [UIColor blackColor].CGColor;
+    HUD.HUDView.layer.shadowOffset = CGSizeZero;
+    HUD.HUDView.layer.shadowOpacity = 0.4f;
+    HUD.HUDView.layer.shadowRadius = 8.0f;
+    HUD.textLabel.text = NSLocalizedString(@"loading", nil);
+
     //set localized string for send button
     sendButton.titleLabel.text = NSLocalizedString(@"send_button", nil);
     UIView *topBorder = [UIView new];
@@ -113,18 +106,22 @@
                                                                              attribute:NSLayoutAttributeBottom
                                                                             multiplier:1.0
                                                                               constant:-12.0];
-    NSLayoutConstraint *topSpaceConstraint = [NSLayoutConstraint constraintWithItem:self.tableView
-                                                                             attribute:NSLayoutAttributeBottom
-                                                                             relatedBy:0
-                                                                                toItem:self.sendBarView
-                                                                             attribute:NSLayoutAttributeTop
-                                                                            multiplier:1.0
-                                                                              constant:0.0];
+//    NSLayoutConstraint *topSpaceConstraint = [NSLayoutConstraint constraintWithItem:self.tableView
+//                                                                             attribute:NSLayoutAttributeBottom
+//                                                                             relatedBy:0
+//                                                                                toItem:self.sendBarView
+//                                                                             attribute:NSLayoutAttributeTop
+//                                                                            multiplier:1.0
+//                                                                              constant:0.0];
 
     [self.sendBarView addConstraint:bottomSpaceConstraint];
-    [self.view addConstraint:topSpaceConstraint];
+//    [self.view addConstraint:topSpaceConstraint];
     [textView resignFirstResponder];
 	sendBarView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
+    
+    [HUD showInView:self.view];
+    [HUD dismissAfterDelay:1.0];
+    
 }
 - (void)viewDidAppear:(BOOL)animated
 {
@@ -133,7 +130,49 @@
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     userImage = [UIImage imageWithData:[userDefaults objectForKey:@"user_image"]];
     //get the other users_img
-	
+    NSString *url_with_id = [NSString stringWithFormat:@"%@%@%@",[URLConfig servicePublicProfileURLString],@"?user_id=",chatWithUser];
+    NSURL *url = [NSURL URLWithString:url_with_id];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    [request setHTTPMethod:@"GET"];
+    NSString *token = [[NSUserDefaults standardUserDefaults] secretObjectForKey:@"user_token"];
+    [request setValue:[NSString stringWithFormat:@"token %@",token] forHTTPHeaderField:@"Authorization"];
+    NSError *connectionError = nil;
+    NSURLResponse *response = nil;
+    
+    NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&connectionError];
+    
+    if (connectionError == nil) {
+        NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *) response;
+        
+        NSDictionary *result = [NSJSONSerialization JSONObjectWithData:data
+            										options:0
+                                                    error:nil];
+        
+        if ([httpResponse statusCode] == 200) {
+            otherUserImageURL = [result objectForKey:@"image"];
+            if (otherUserImageURL.length != 0) {
+                 otherUserImage = [self fetchImage:token :otherUserImageURL];
+            }else{
+                otherUserImage = [UIImage imageNamed:@"default_profile_image.png"];
+            }
+           
+        }
+#if DEBUG
+        NSString *decodedData = [[NSString alloc] initWithData:data
+                                                      encoding:NSUTF8StringEncoding];
+        NSLog(@"Receiving data = %@", decodedData);
+#endif
+    	
+    } else {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"no_network", nil)
+                                                        message:NSLocalizedString(@"no_network_msg", nil)
+                                                       delegate:nil
+                                              cancelButtonTitle:NSLocalizedString(@"ok_button", nil)
+                                              otherButtonTitles:nil];
+        [alert show];
+    }
+
     // Fetch the devices from persistent data store
     NSManagedObjectContext *managedObjectContext = [self managedObjectContext];
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Message"];
@@ -180,24 +219,24 @@
 -(void)keyboardWillHide {
     if (self.view.frame.origin.y >= 0)
     {
-        [self setViewMovedUp:YES];
+        [self setViewMovedUp:NO];
     }
     else if (self.view.frame.origin.y < 0)
     {
         [self setViewMovedUp:NO];
     }
 }
-//-(void)textFieldDidBeginEditing:(UITextField *)sender
-//{
-//    if ([sender isEqual:textView])
-//    {
-//        //move the main view, so that the keyboard does not hide it.
-//        if  (self.view.frame.origin.y >= 0)
-//        {
-//            [self setViewMovedUp:YES];
-//        }
-//    }
-//}
+-(void)textFieldDidBeginEditing:(UITextField *)sender
+{
+    if ([sender isEqual:textView])
+    {
+        //move the main view, so that the keyboard does not hide it.
+        if  (self.view.frame.origin.y >= 0)
+        {
+            [self setViewMovedUp:YES];
+        }
+    }
+}
 //method to move the view up/down whenever the keyboard is shown/dismissed
 -(void)setViewMovedUp:(BOOL)movedUp
 {
@@ -415,9 +454,7 @@
             }
             cellFrom.messageContent.text = [message valueForKey:@"message_content"];
             cellFrom.messageTime.text = [Utility showTimeDifference:[message valueForKey:@"message_time"]];
-            [cellFrom.otherUserImage sd_setImageWithURL:[NSURL URLWithString:otherUserImageURL]
-                              placeholderImage:[UIImage imageNamed:@"default_profile_image.png"]
-                                       options:SDWebImageRefreshCached];
+            cellFrom.otherUserImage.image = otherUserImage;
             
             return cellFrom;
         }
@@ -606,4 +643,33 @@
 {
     return YES;
 }
+
+
+#pragma mark Fetch image
+- (UIImage *) fetchImage:(NSString *) token :(NSString *) imageURL {
+    NSString *absoluteImageURL = [NSString stringWithFormat:@"%@%@", [URLConfig imageServiceURLString], imageURL];
+    NSURL *url = [NSURL URLWithString:absoluteImageURL];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    [request setHTTPMethod:@"GET"];
+    
+    NSError *connectionError = nil;
+    NSURLResponse *response = nil;
+    UIImage *image = nil;
+    
+    NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&connectionError];
+    
+    if (connectionError == nil) {
+        image = [UIImage imageWithData:data];
+    } else {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"no_network", nil)
+                                                        message:NSLocalizedString(@"no_network_msg", nil)
+                                                       delegate:nil
+                                              cancelButtonTitle:NSLocalizedString(@"ok_button", nil)
+                                              otherButtonTitles:nil];
+        [alert show];
+    }
+    
+    return image;
+}
+
 @end

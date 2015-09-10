@@ -33,4 +33,5 @@
 
 + (NSString *)serviceMessageURLString;
 
++ (NSString *)servicePublicProfileURLString;
 @end
