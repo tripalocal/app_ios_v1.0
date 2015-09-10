@@ -61,8 +61,8 @@
     NSString *timeString = [currentTime substringWithRange:NSMakeRange(11, 8)];
     NSString *previousDateString = [previousTime substringWithRange:NSMakeRange(0, 10)];
     NSString *previousTimeString = [previousTime substringWithRange:NSMakeRange(11, 8)];
-    NSLog(@"%@ && %@" ,dateString,previousDateString);
-    NSLog(@"%@ && %@" ,timeString,previousTimeString);
+    //NSLog(@"%@ && %@" ,dateString,previousDateString);
+    //NSLog(@"%@ && %@" ,timeString,previousTimeString);
     if ([previousDateString isEqualToString:dateString]) {
         if ([previousTimeString isEqualToString:timeString]) {
             return @"Now";

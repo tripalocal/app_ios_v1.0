@@ -12,8 +12,10 @@
 #import "ChatDetailToTableViewCell.h"
 #import <QuartzCore/QuartzCore.h>
 #import <SDWebImage/UIImageView+WebCache.h>
+#import <SecureNSUserDefaults/NSUserDefaults+SecureAdditions.h>
 #import "XMPP.h"
 #import "DBManager.h"
+#import "URLConfig.h"
 #define kOFFSET_FOR_KEYBOARD 215.0
 
 @interface ChatDetailViewController ()
@@ -49,7 +51,14 @@
     topBorder.backgroundColor = [UIColor grayColor];
     topBorder.frame = CGRectMake(0, 0, sendBarView.frame.size.width, 1.0f);
     [sendBarView addSubview:topBorder];
-    
+    //get the time
+    currentFlag = (long long)([[NSDate date] timeIntervalSince1970] * 1000.0);
+    //allocate a new update array
+    updateMessage = [[NSMutableArray alloc] init];
+#if DEBUG
+    NSLog(@"Current time when entering this view: %lld",currentFlag);
+#endif
+    //close button
     UIBarButtonItem *closeButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Close", nil) style:UIBarButtonItemStylePlain target:self action:@selector(dismissChatDetail:)];
     closeButton.tintColor = [Utility themeColor];
     self.navigationItem.leftBarButtonItem = closeButton;
@@ -235,9 +244,11 @@
     NSString *sender_address = [NSString stringWithFormat:@"%@@tripalocal.com",sender_id];
     
     //get current time in UTC
-       NSString *timeStamp = [Utility getCurrentUTCTime];
+       NSString *timeStamp = [NSString stringWithFormat:@"%@%@",[[Utility getCurrentUTCTime] stringByReplacingOccurrencesOfString:@"\\" withString:@""],@"/000000"];
     // here you have new Date with desired format and TimeZone.
-
+#if DEBUG
+    NSLog(@"Timestamp: %@", timeStamp);
+#endif
     
     //get the message string from textfield
 
@@ -284,6 +295,9 @@
         NSManagedObject *newMessage = [NSEntityDescription
                                        insertNewObjectForEntityForName:@"Message" inManagedObjectContext:context];
     	long long local_id = (long long)([[NSDate date] timeIntervalSince1970] * 1000.0);
+#if DEBUG
+        NSLog(@"Current time when entering this view: %lld",local_id);
+#endif
         [newMessage setValue:[NSString stringWithFormat:@"%lld",local_id] forKey:@"local_id"];
         [newMessage setValue:[NSString stringWithFormat:@"%@",chatWithUser] forKey:@"receiver_id"];
         [newMessage setValue:[NSString stringWithFormat:@"%@", sender_id] forKey:@"sender_id"];
@@ -439,6 +453,82 @@
         context = [delegate managedObjectContext];
     }
     return context;
+}
+
+#pragma mark uploading API
+-(void)viewDidDisappear:(BOOL)animated{
+    NSManagedObjectContext *managedObjectContext = [self managedObjectContext];
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Message"];
+    allMessage = [[managedObjectContext executeFetchRequest:fetchRequest error:nil] mutableCopy];
+    
+    for (id message in allMessage)
+    {
+        if ([[message valueForKey:@"local_id"] longLongValue] > currentFlag) {
+            NSLog(@"New Message!");
+            NSDictionary *tmp = [[NSDictionary alloc] initWithObjectsAndKeys:
+                                 [NSNumber numberWithInt:[[message valueForKey:@"receiver_id"] intValue]], @"receiver_id",
+                                 [message valueForKey:@"message_content"], @"msg_content",
+                                 [message valueForKey:@"message_time"], @"msg_date",
+                                 [NSNumber numberWithLongLong:[[message valueForKey:@"local_id"] longLongValue]], @"local_id",
+                                 nil];
+            
+            [updateMessage addObject:tmp];
+
+        }
+    }
+    updateDict = [[NSDictionary alloc] initWithObjectsAndKeys:updateMessage, @"messages", nil];
+#if DEBUG
+    NSLog(@"updated dict: %@",updateDict);
+#endif
+    //config the api url
+    NSURL *url = [NSURL URLWithString:[URLConfig serviceMessageURLString]];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    [request setHTTPMethod:@"POST"];
+    NSString *token = [[NSUserDefaults standardUserDefaults] secretObjectForKey:@"user_token"];
+#if DEBUG
+    NSLog(@"token; %@", token);
+#endif
+    [request addValue:[NSString stringWithFormat:@"token %@",token]  forHTTPHeaderField:@"Authorization"];
+    if (updateMessage != nil) {
+        NSData *postdata = [NSJSONSerialization dataWithJSONObject:updateDict options:0 error:nil];
+        [request setHTTPBody:postdata];
+        
+    #if DEBUG
+        NSString * decodedData =[[NSString alloc] initWithData:postdata encoding:NSUTF8StringEncoding];
+        NSLog(@"Sending data = %@", decodedData);
+    #endif
+        NSError *connectionError = nil;
+        NSURLResponse *response = nil;
+        
+        NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&connectionError];
+        
+        if (connectionError == nil) {
+            NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *) response;
+            
+            NSMutableArray *result = [NSJSONSerialization JSONObjectWithData:data
+                                                                   options:0
+                                                                     error:nil];
+            
+            if ([httpResponse statusCode] == 200) {
+    //update the global_id in core data
+                
+            }
+    #if DEBUG
+            NSString *decodedData = [[NSString alloc] initWithData:data
+                                                          encoding:NSUTF8StringEncoding];
+            NSLog(@"Receiving data = %@", decodedData);
+    #endif
+        } else {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"no_network", nil)
+                                                            message:NSLocalizedString(@"no_network_msg", nil)
+                                                           delegate:nil
+                                                  cancelButtonTitle:NSLocalizedString(@"ok_button", nil)
+                                                  otherButtonTitles:nil];
+            [alert show];
+        }
+	}
+
 }
 
 @end

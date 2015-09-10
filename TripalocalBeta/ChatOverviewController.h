@@ -18,15 +18,11 @@
     NSMutableArray *messageList;
 	NSMutableArray *timeList;
     NSMutableArray *sender_id_list;
-    long long currentFlag;
+
     NSMutableArray *allMessage;
+   
 }
 
 @property (retain, nonatomic) IBOutlet UITableView *tableView;
-@property (readonly, strong, nonatomic) NSManagedObjectContext *managedObjectContext;
-@property (readonly, strong, nonatomic) NSManagedObjectModel *managedObjectModel;
-@property (readonly, strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
 
-- (void)saveContext;
-- (NSURL *)applicationDocumentsDirectory;
 @end

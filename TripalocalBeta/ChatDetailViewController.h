@@ -19,6 +19,9 @@
     NSMutableArray *messageListTo;
     CGFloat cellTextWidth;
     CGFloat cellHeightExceptText;
+    long long currentFlag;
+    NSMutableArray *updateMessage;
+    NSDictionary *updateDict;
     __unsafe_unretained NSObject <SMChatDelegate> *_chatDelegate;
     __unsafe_unretained NSObject <SMMessageDelegate> *_messageDelegate;
 
