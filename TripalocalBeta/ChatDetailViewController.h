@@ -10,9 +10,11 @@
 #import <CoreData/CoreData.h>
 #import "SMMessageDelegate.h"
 #import "AppDelegate.h"
+#import "HPGrowingTextView.h"
 
 @interface ChatDetailViewController : UIViewController<SMMessageDelegate, UITableViewDelegate, UITableViewDataSource>{
-    UITextView *textField;
+//    UITextView *textField;
+	HPGrowingTextView *textView;
     UITableView *tableview;
     NSString *messageContent;
     NSMutableArray *messageListFrom;
@@ -30,8 +32,8 @@
 //@property (strong) NSMutableArray *messageListTo;
 @property (nonatomic, assign) id _messageDelegate;
 @property (weak, nonatomic) IBOutlet UIView *sendBarView;
-@property (strong, nonatomic) IBOutlet UIScrollView *detailScrollView;
-@property (nonatomic,retain) IBOutlet UITextView *textField;
+//@property (strong, nonatomic) IBOutlet UIScrollView *detailScrollView;
+//@property (nonatomic,retain) IBOutlet UITextView *textField;
 @property (nonatomic,weak) IBOutlet UIButton *sendButton;
 @property (nonatomic,retain) IBOutlet UITableView *tableView;
 @property (nonatomic,strong) NSString *chatWithUser;

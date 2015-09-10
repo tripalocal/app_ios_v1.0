@@ -25,11 +25,29 @@
 @end
 
 @implementation ChatDetailViewController
-@synthesize textField,sendButton,chatWithUser, sendBarView, allMessage, userImage, otherUserImageURL;
+@synthesize sendButton,chatWithUser, sendBarView, allMessage, userImage, otherUserImageURL;
 @synthesize _messageDelegate;
 @synthesize managedObjectContext = _managedObjectContext;
 @synthesize managedObjectModel = _managedObjectModel;
 @synthesize persistentStoreCoordinator = _persistentStoreCoordinator;
+
+-(id)init
+{
+    self = [super init];
+    if(self){
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(keyboardWillShow:)
+                                                     name:UIKeyboardWillShowNotification
+                                                   object:nil];
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(keyboardWillHide:)
+                                                     name:UIKeyboardWillHideNotification 
+                                                   object:nil];		
+    }
+    
+    return self;
+}
 
 -(AppDelegate *)appDelegate {
     return (AppDelegate *)[[UIApplication sharedApplication] delegate];
@@ -49,7 +67,7 @@
     sendButton.titleLabel.text = NSLocalizedString(@"send_button", nil);
     UIView *topBorder = [UIView new];
     topBorder.backgroundColor = [UIColor grayColor];
-    topBorder.frame = CGRectMake(0, 0, sendBarView.frame.size.width, 1.0f);
+    topBorder.frame = CGRectMake(-17, 0, sendBarView.frame.size.width, 1.0f);
     [sendBarView addSubview:topBorder];
     //get the time
     currentFlag = (long long)([[NSDate date] timeIntervalSince1970] * 1000.0);
@@ -65,20 +83,49 @@
     self.navigationItem.leftBarButtonItem = closeButton;
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)];
     [self.view addGestureRecognizer:tap];
-    textField.layer.borderWidth = 1.0f;
-    textField.layer.borderColor = [[UIColor grayColor] CGColor];
-    textField.layer.cornerRadius = 5.0f;
-    AppDelegate *del = [self appDelegate];
+        AppDelegate *del = [self appDelegate];
     del._messageDelegate = self;
-    [self.textField resignFirstResponder];
+    
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.estimatedRowHeight = 200.0;
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     [self.tableView reloadData];
     _shouldScrollToLastRow = YES;
+    //growing textView
+    textView = [[HPGrowingTextView alloc] initWithFrame:CGRectMake(10, 15, 260, 40)];
+    textView.isScrollable = NO;
+    textView.contentInset = UIEdgeInsetsMake(0, 5, 0, 5);
     
-  }
+    textView.minNumberOfLines = 1;
+    textView.maxNumberOfLines = 3;
+    // you can also set the maximum height in points with maxHeight
+//    textView.maxHeight = 60.0f;
+    textView.returnKeyType = UIReturnKeyGo; //just as an example
+    textView.layer.borderWidth = 1.0f;
+    textView.layer.borderColor = [[UIColor grayColor] CGColor];
+    textView.layer.cornerRadius = 5.0f;
+    [sendBarView addSubview:textView];
+    NSLayoutConstraint *bottomSpaceConstraint = [NSLayoutConstraint constraintWithItem:textView
+                                                                             attribute:NSLayoutAttributeBottom
+                                                                             relatedBy:0
+                                                                                toItem:self.sendBarView
+                                                                             attribute:NSLayoutAttributeBottom
+                                                                            multiplier:1.0
+                                                                              constant:-12.0];
+    NSLayoutConstraint *topSpaceConstraint = [NSLayoutConstraint constraintWithItem:self.tableView
+                                                                             attribute:NSLayoutAttributeBottom
+                                                                             relatedBy:0
+                                                                                toItem:self.sendBarView
+                                                                             attribute:NSLayoutAttributeTop
+                                                                            multiplier:1.0
+                                                                              constant:0.0];
+
+    [self.sendBarView addConstraint:bottomSpaceConstraint];
+    [self.view addConstraint:topSpaceConstraint];
+    [textView resignFirstResponder];
+	sendBarView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
+}
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
@@ -110,7 +157,7 @@
 #pragma mark - dismiss keyboard (buggy)
 
 -(void)dismissKeyboard {
-    [textField resignFirstResponder];
+    [textView resignFirstResponder];
 }
 - (IBAction)dismissChatDetail:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
@@ -140,17 +187,17 @@
         [self setViewMovedUp:NO];
     }
 }
--(void)textFieldDidBeginEditing:(UITextField *)sender
-{
-    if ([sender isEqual:textField])
-    {
-        //move the main view, so that the keyboard does not hide it.
-        if  (self.view.frame.origin.y >= 0)
-        {
-            [self setViewMovedUp:YES];
-        }
-    }
-}
+//-(void)textFieldDidBeginEditing:(UITextField *)sender
+//{
+//    if ([sender isEqual:textView])
+//    {
+//        //move the main view, so that the keyboard does not hide it.
+//        if  (self.view.frame.origin.y >= 0)
+//        {
+//            [self setViewMovedUp:YES];
+//        }
+//    }
+//}
 //method to move the view up/down whenever the keyboard is shown/dismissed
 -(void)setViewMovedUp:(BOOL)movedUp
 {
@@ -252,7 +299,7 @@
     
     //get the message string from textfield
 
-    NSString *messageStr = self.textField.text;
+    NSString *messageStr = textView.text;
     NSString *receiver_address = [NSString stringWithFormat:@"%@@tripalocal.com",chatWithUser];
 #if DEBUG
     NSLog(@"Send msg to: %@", receiver_address);
@@ -271,7 +318,7 @@
         [self.xmppStream sendElement:message];
         
         //set the textField to blank after hit the send button
-        self.textField.text = @"";
+        textView.text = @"";
         //create a new string with sneding format
         //@"you" might need to be changed to senderID
         NSString *m = [NSString stringWithFormat:@"%@:%@",messageStr,sender_address];
@@ -543,4 +590,20 @@
 
 }
 
+#pragma mark HPGrowTextVIEW
+
+- (void)growingTextView:(HPGrowingTextView *)growingTextView willChangeHeight:(float)height
+{
+    float diff = (growingTextView.frame.size.height - height);
+    
+    CGRect r = sendBarView.frame;
+    r.size.height -= diff;
+    r.origin.y += diff;
+    sendBarView.frame = r;
+}
+
+-(BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
+{
+    return YES;
+}
 @end
