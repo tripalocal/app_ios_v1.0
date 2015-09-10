@@ -90,9 +90,8 @@
     NSManagedObjectContext *managedObjectContext = [self managedObjectContext];
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Message"];
     self.allMessage = [[managedObjectContext executeFetchRequest:fetchRequest error:nil] mutableCopy];
-#if DEBUG
-    //NSLog(@"all messages: %@",self.allMessage);
-#endif
+
+    
     [self.tableView reloadData];
 }
 - (void)viewDidLayoutSubviews
@@ -316,9 +315,7 @@
     NSManagedObjectContext *managedObjectContext = [self managedObjectContext];
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Message"];
     self.allMessage = [[managedObjectContext executeFetchRequest:fetchRequest error:nil] mutableCopy];
-#if DEBUG
-    //NSLog(@"all messages: %@",self.allMessage);
-#endif
+
 
     [self.tableView reloadData];
     CGPoint offset = CGPointMake(0, self.tableView.contentSize.height - self.tableView.frame.size.height);
@@ -490,7 +487,7 @@
     NSLog(@"token; %@", token);
 #endif
     [request addValue:[NSString stringWithFormat:@"token %@",token]  forHTTPHeaderField:@"Authorization"];
-    if (updateMessage != nil) {
+    if ([updateMessage count] != 0) {
         NSData *postdata = [NSJSONSerialization dataWithJSONObject:updateDict options:0 error:nil];
         [request setHTTPBody:postdata];
         
@@ -512,7 +509,21 @@
             
             if ([httpResponse statusCode] == 200) {
     //update the global_id in core data
-                
+                NSString *old_local_id = nil;
+                NSString *new_global_id = nil;
+                for (NSDictionary *m in result){
+                    old_local_id = [NSString stringWithFormat:@"%@",[m objectForKey:@"local_id"]];
+                    new_global_id = [NSString stringWithFormat:@"%@",[m objectForKey:@"global_id"]];
+                    NSManagedObjectContext *managedObjectContext = [self managedObjectContext];
+                    NSFetchRequest * desFetctRequest = [NSFetchRequest fetchRequestWithEntityName:@"Message"];
+                    NSPredicate *local_id_Predicate = [NSPredicate predicateWithFormat:@"local_id = %@", old_local_id];
+                    [desFetctRequest setPredicate:local_id_Predicate];
+                    NSError *error = nil;
+                    NSArray *selectedMsgs = [managedObjectContext executeFetchRequest:desFetctRequest error:&error];
+                    NSManagedObject* rightMsg = [selectedMsgs objectAtIndex:0];
+                    [rightMsg setValue:new_global_id forKey:@"global_id"];
+                    NSLog(@"GLOBAL ID: %@",[rightMsg valueForKey:@"global_id"]);
+                  }
             }
     #if DEBUG
             NSString *decodedData = [[NSString alloc] initWithData:data
