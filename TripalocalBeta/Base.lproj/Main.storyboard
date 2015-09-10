@@ -1483,12 +1483,13 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="s55-Yz-l5S">
                                 <rect key="frame" x="0.0" y="542" width="600" height="60"/>
                                 <subviews>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kSS-hM-fsN">
-                                        <rect key="frame" x="15" y="15" width="495" height="30"/>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" keyboardDismissMode="onDrag" translatesAutoresizingMaskIntoConstraints="NO" id="u45-II-q4Q">
+                                        <rect key="frame" x="15" y="15" width="495" height="33"/>
                                         <animations/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nYf-ei-fit">
                                         <rect key="frame" x="540" y="15" width="36" height="30"/>
                                         <animations/>
@@ -1504,17 +1505,16 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="nYf-ei-fit" secondAttribute="bottom" constant="15" id="0Qn-Ul-G5X"/>
-                                    <constraint firstItem="kSS-hM-fsN" firstAttribute="leading" secondItem="s55-Yz-l5S" secondAttribute="leading" constant="15" id="9NP-B3-FLW"/>
+                                    <constraint firstAttribute="bottom" secondItem="u45-II-q4Q" secondAttribute="bottom" constant="12" id="3py-4c-Agj"/>
+                                    <constraint firstItem="nYf-ei-fit" firstAttribute="leading" secondItem="u45-II-q4Q" secondAttribute="trailing" constant="30" id="MS0-3s-L0l"/>
                                     <constraint firstAttribute="trailing" secondItem="nYf-ei-fit" secondAttribute="trailing" constant="376" id="MqR-cK-0zA"/>
-                                    <constraint firstItem="kSS-hM-fsN" firstAttribute="top" secondItem="nYf-ei-fit" secondAttribute="top" id="WI0-mN-onr"/>
+                                    <constraint firstItem="u45-II-q4Q" firstAttribute="leading" secondItem="s55-Yz-l5S" secondAttribute="leading" constant="15" id="Wq2-pH-cC9"/>
                                     <constraint firstAttribute="trailing" secondItem="nYf-ei-fit" secondAttribute="trailing" constant="24" id="adn-uL-BER"/>
-                                    <constraint firstItem="kSS-hM-fsN" firstAttribute="leading" secondItem="s55-Yz-l5S" secondAttribute="leading" constant="133" id="agP-HL-d6Y"/>
                                     <constraint firstAttribute="height" constant="60" id="hIh-GP-BLv"/>
-                                    <constraint firstItem="nYf-ei-fit" firstAttribute="leading" secondItem="kSS-hM-fsN" secondAttribute="trailing" constant="30" id="iTm-vK-vuZ"/>
+                                    <constraint firstItem="nYf-ei-fit" firstAttribute="top" secondItem="u45-II-q4Q" secondAttribute="top" id="igc-v0-vwp"/>
                                 </constraints>
                                 <variation key="default">
                                     <mask key="constraints">
-                                        <exclude reference="agP-HL-d6Y"/>
                                         <exclude reference="MqR-cK-0zA"/>
                                     </mask>
                                 </variation>
@@ -1564,7 +1564,7 @@
                         <outlet property="sendBarView" destination="s55-Yz-l5S" id="2HV-31-Zdb"/>
                         <outlet property="sendButton" destination="nYf-ei-fit" id="EvI-1k-MM7"/>
                         <outlet property="tableView" destination="4cc-9Y-7uy" id="lYU-H1-9fA"/>
-                        <outlet property="textField" destination="kSS-hM-fsN" id="HAI-yt-u9d"/>
+                        <outlet property="textField" destination="u45-II-q4Q" id="6qi-2M-uOu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8mp-zp-YtE" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -12,7 +12,7 @@
 #import "AppDelegate.h"
 
 @interface ChatDetailViewController : UIViewController<SMMessageDelegate, UITableViewDelegate, UITableViewDataSource>{
-    UITextField *textField;
+    UITextView *textField;
     UITableView *tableview;
     NSString *messageContent;
     NSMutableArray *messageListFrom;
@@ -31,7 +31,7 @@
 @property (nonatomic, assign) id _messageDelegate;
 @property (weak, nonatomic) IBOutlet UIView *sendBarView;
 @property (strong, nonatomic) IBOutlet UIScrollView *detailScrollView;
-@property (nonatomic,retain) IBOutlet UITextField *textField;
+@property (nonatomic,retain) IBOutlet UITextView *textField;
 @property (nonatomic,weak) IBOutlet UIButton *sendButton;
 @property (nonatomic,retain) IBOutlet UITableView *tableView;
 @property (nonatomic,strong) NSString *chatWithUser;

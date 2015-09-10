@@ -19,12 +19,14 @@ PODS:
     - FBSDKCoreKit/arc
   - FBSDKLoginKit (4.3.0):
     - FBSDKCoreKit
+  - HPGrowingTextView (1.1)
   - JGProgressHUD (1.2.7)
   - SDWebImage (3.7.3):
     - SDWebImage/Core (= 3.7.3)
   - SDWebImage/Core (3.7.3)
   - SecureNSUserDefaults (1.0.0):
     - CocoaSecurity (~> 1.2.1)
+  - TPKeyboardAvoiding (1.2.9)
   - UIActivityIndicator-for-SDWebImage (1.2):
     - SDWebImage (~> 3.7)
 
@@ -33,9 +35,11 @@ DEPENDENCIES:
   - EDStarRating
   - FBSDKCoreKit
   - FBSDKLoginKit
+  - HPGrowingTextView (~> 1.1)
   - JGProgressHUD
   - SDWebImage (~> 3.7)
   - SecureNSUserDefaults (~> 1.0.0)
+  - TPKeyboardAvoiding (~> 1.2)
   - UIActivityIndicator-for-SDWebImage
 
 SPEC CHECKSUMS:
@@ -45,9 +49,11 @@ SPEC CHECKSUMS:
   EDStarRating: a41a6440a945020745d0e9ff8ada7d1afa952114
   FBSDKCoreKit: a3a60225a84abeace291d0fe71cae29a627382c2
   FBSDKLoginKit: 6bc2f8f2628c3b6d2e346762fff8cb55cfd3a58d
+  HPGrowingTextView: 88a716d97fb853bcb08a4a08e4727da17efc9b19
   JGProgressHUD: a45c1d16adddf7e38092ce3f0d71d3955d2de2ec
   SDWebImage: 1d2b1a1efda1ade1b00b6f8498865f8ddedc8a84
   SecureNSUserDefaults: 60a27d6e7fd2cad47448fef5dea22803e098433a
+  TPKeyboardAvoiding: ff1ee4e5a5a0c119b965552af8f183868ea20207
   UIActivityIndicator-for-SDWebImage: 7bf7ebbf0ed1747dedc0d6e949c4603a6d0f9e0c
 
 COCOAPODS: 0.38.2

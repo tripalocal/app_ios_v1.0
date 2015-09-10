@@ -58,6 +58,7 @@
 #if DEBUG
     NSLog(@"Current time when entering this view: %lld",currentFlag);
 #endif
+
     //close button
     UIBarButtonItem *closeButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Close", nil) style:UIBarButtonItemStylePlain target:self action:@selector(dismissChatDetail:)];
     closeButton.tintColor = [Utility themeColor];
