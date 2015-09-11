@@ -30,4 +30,9 @@
     // Configure the view for the selected state
 }
 
+- (CGFloat)getCellHeight:(NSIndexPath *)indexPath{
+    CGFloat labelHeight = self.messageContent.frame.size.height;
+    return labelHeight;
+}
+
 @end

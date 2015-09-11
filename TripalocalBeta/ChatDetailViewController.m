@@ -177,6 +177,19 @@
     NSManagedObjectContext *managedObjectContext = [self managedObjectContext];
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Message"];
     self.allMessage = [[managedObjectContext executeFetchRequest:fetchRequest error:nil] mutableCopy];
+    allRelevantMessage = [[NSMutableArray alloc] init];
+    NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
+    NSString *sender_id = [userDefault objectForKey:@"user_id"];
+    for (NSManagedObject *message in allMessage){
+        
+        if ([[message valueForKey:@"sender_id"] intValue] == [sender_id intValue] && [[message valueForKey:@"receiver_id"] intValue] == [chatWithUser intValue]) {
+            
+            [allRelevantMessage addObject:message];
+        } else if ([[message valueForKey:@"receiver_id"] intValue] == [sender_id intValue] && [[message valueForKey:@"sender_id"] intValue] == [chatWithUser intValue]){
+    
+            [allRelevantMessage addObject:message];
+        }
+    }
 
     
     [self.tableView reloadData];
@@ -401,7 +414,7 @@
     }
     NSManagedObjectContext *managedObjectContext = [self managedObjectContext];
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Message"];
-    self.allMessage = [[managedObjectContext executeFetchRequest:fetchRequest error:nil] mutableCopy];
+    allRelevantMessage = [[managedObjectContext executeFetchRequest:fetchRequest error:nil] mutableCopy];
 
 
     [self.tableView reloadData];
@@ -419,14 +432,14 @@
     static NSString *cellToIdentifier = @"ChatDetailToCell";
    
     //test data
-    NSManagedObject *message = [self.allMessage objectAtIndex:indexPath.row];
+    NSManagedObject *message = [allRelevantMessage objectAtIndex:indexPath.row];
     
     //NSLog(@"From Cell loading!!!");
     
-    if ([self.allMessage count]!=0) {
+    if ([allRelevantMessage count]!=0) {
         if ([[message valueForKey:@"sender_id"] intValue] == [sender_id intValue] && [[message valueForKey:@"receiver_id"] intValue] == [chatWithUser intValue]) {
             //NSLog(@"TO: message Sender: %@ , userid: %@", [message valueForKey:@"sender_id"], sender_id);
-            [messageListTo addObject:message];
+            //[messageListTo addObject:message];
             ChatDetailToTableViewCell *cellTo = (ChatDetailToTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"ChatDetailToCell"];
             if (!cellTo) {
                 [tableView registerNib:[UINib nibWithNibName:@"ChatDetailToViewCell" bundle:nil] forCellReuseIdentifier:cellToIdentifier];
@@ -446,7 +459,7 @@
         }else if ([[message valueForKey:@"receiver_id"] intValue] == [sender_id intValue] && [[message valueForKey:@"sender_id"] intValue] == [chatWithUser intValue])
         {
             //NSLog(@"FROM: message Sender: %d , userid: %d, equal: %d", [[message valueForKey:@"sender_id"] intValue], [sender_id intValue],[[message valueForKey:@"sender_id"] intValue] == [sender_id intValue]  );
-            [messageListFrom addObject:message];
+            //[messageListFrom addObject:message];
             ChatDetailFromTableViewCell *cellFrom = (ChatDetailFromTableViewCell *)[tableView dequeueReusableCellWithIdentifier:cellFromIdentifier];
             if (!cellFrom) {
                 [tableView registerNib:[UINib nibWithNibName:@"ChatDetailFromViewCell" bundle:nil] forCellReuseIdentifier:cellFromIdentifier];
@@ -458,21 +471,19 @@
             
             return cellFrom;
         }
-    }
-    else{
+    }else{
         NSLog(@"message list empty, sample data.");
-        
     }
     ChatDetailFromTableViewCell *cellFrom = (ChatDetailFromTableViewCell *)[tableView dequeueReusableCellWithIdentifier:cellFromIdentifier];
     if (!cellFrom) {
         [tableView registerNib:[UINib nibWithNibName:@"ChatDetailFromViewCell" bundle:nil] forCellReuseIdentifier:cellFromIdentifier];
         cellFrom = [tableView dequeueReusableCellWithIdentifier:cellFromIdentifier];
     }
-    cellFrom.otherUserImage.image = [UIImage imageNamed:@"flash.png"];
-    cellFrom.messageContent.text = @"hello!";
-    cellFrom.messageTime.text = @"1 mins";
+    cellFrom.otherUserImage.image = nil;
+    cellFrom.messageContent.text = @"";
+    cellFrom.messageTime.text = @"";
     return cellFrom;
-    
+
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
@@ -485,7 +496,7 @@
 //    }else{
 //        return 10;
 //    }
-    return [allMessage count];
+    return [allRelevantMessage count];
 }
 //
 //- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -543,7 +554,7 @@
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Message"];
     allMessage = [[managedObjectContext executeFetchRequest:fetchRequest error:nil] mutableCopy];
     
-    for (id message in allMessage)
+    for (id message in allRelevantMessage)
     {
         if ([[message valueForKey:@"local_id"] longLongValue] > currentFlag) {
             NSLog(@"New Message!");

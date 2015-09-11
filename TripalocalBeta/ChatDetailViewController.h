@@ -24,6 +24,7 @@
     long long currentFlag;
     NSMutableArray *updateMessage;
     NSDictionary *updateDict;
+    NSMutableArray *allRelevantMessage;
     __unsafe_unretained NSObject <SMChatDelegate> *_chatDelegate;
     __unsafe_unretained NSObject <SMMessageDelegate> *_messageDelegate;
 
