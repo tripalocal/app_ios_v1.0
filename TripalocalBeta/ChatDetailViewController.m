@@ -204,74 +204,71 @@
     //get the message from web service if they are missing
     NSManagedObject *lastObject = [sortedArray lastObject];
     NSString *lastGolablID = [lastObject valueForKey:@"global_id"];
-    if (lastGolablID.length == 0) {
-        lastGolablID = @"1";
-    }
+    if (lastGolablID.length != 0) {
+        NSString *url_with_id_msg = [NSString stringWithFormat:@"%@%@%@%@%@",[URLConfig serviceMessageURLString],@"?last_update_id=",lastGolablID,@"&sender_id=",chatWithUser];
+        NSURL *url_msg = [NSURL URLWithString:url_with_id_msg];
+        NSMutableURLRequest *request_msg = [NSMutableURLRequest requestWithURL:url_msg];
+        [request_msg setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+        [request_msg setHTTPMethod:@"GET"];
+        [request_msg setValue:[NSString stringWithFormat:@"token %@",token] forHTTPHeaderField:@"Authorization"];
+        NSData *data_msg = [NSURLConnection sendSynchronousRequest:request_msg returningResponse:&response error:&connectionError];
+    #if DEBUG
+        NSString * decodedData =[[NSString alloc] initWithData:data_msg encoding:NSUTF8StringEncoding];
+        NSLog(@"Sending data = %@", decodedData);
+    #endif
+        if (connectionError == nil) {
+            NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *) response;
+            
+            NSArray *result_msg = [NSJSONSerialization JSONObjectWithData:data_msg
+                                                                   options:0
+                                                                     error:nil];
+            
+            if ([httpResponse statusCode] == 200) {
+                if ([result_msg count] != 0) {
+                    for (NSDictionary *message_info in result_msg){
+                        NSNumber *global_id = [message_info objectForKey:@"id"];
+                        NSNumber *receiver_id = [message_info objectForKey:@"receiver_id"];
+                        NSString *msg_content = [message_info objectForKey:@"msg_content"];
+                        NSNumber *sender_id = [message_info objectForKey:@"sender_id"];
+                        NSString *msg_date = [message_info objectForKey:@"msg_date"];
+                        //save the new data
+                        //core data
+                        AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
+                        NSManagedObjectContext *context = appDelegate.managedObjectContext;
+                        
+                        // Create a new managed object
+                        NSManagedObject *newMessage = [NSEntityDescription
+                                                       insertNewObjectForEntityForName:@"Message" inManagedObjectContext:context];
+                        long long local_id = (long long)([[NSDate date] timeIntervalSince1970] * 1000.0);
+    #if DEBUG
+                        NSLog(@"Current time when entering this view: %lld",local_id);
+    #endif
+                        [newMessage setValue:[NSString stringWithFormat:@"%lld",local_id] forKey:@"local_id"];
+                        [newMessage setValue:[NSString stringWithFormat:@"%@",receiver_id] forKey:@"receiver_id"];
+                        [newMessage setValue:[NSString stringWithFormat:@"%@",sender_id] forKey:@"sender_id"];
+                        [newMessage setValue:[NSString stringWithFormat:@"%@",global_id] forKey:@"global_id"];
+                        [newMessage setValue:msg_content forKey:@"message_content"];
+                        [newMessage setValue:msg_date forKey:@"message_time"];
+    #if DEBUG
+                        NSLog(@"new message: %@ \n local_id : %lld", newMessage, local_id);
+    #endif
+                        NSError *error = nil;
+                        // Save the object to persistent store
+                        if (![context save:&error]) {
+                            NSLog(@"Can't Save! %@ %@", error, [error localizedDescription]);
+                        }
 
-    NSString *url_with_id_msg = [NSString stringWithFormat:@"%@%@%@%@%@",[URLConfig serviceMessageURLString],@"?last_update_id=",lastGolablID,@"&sender_id=",chatWithUser];
-    NSURL *url_msg = [NSURL URLWithString:url_with_id_msg];
-    NSMutableURLRequest *request_msg = [NSMutableURLRequest requestWithURL:url_msg];
-    [request_msg setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    [request_msg setHTTPMethod:@"GET"];
-    [request_msg setValue:[NSString stringWithFormat:@"token %@",token] forHTTPHeaderField:@"Authorization"];
-    NSData *data_msg = [NSURLConnection sendSynchronousRequest:request_msg returningResponse:&response error:&connectionError];
-#if DEBUG
-    NSString * decodedData =[[NSString alloc] initWithData:data_msg encoding:NSUTF8StringEncoding];
-    NSLog(@"Sending data = %@", decodedData);
-#endif
-    if (connectionError == nil) {
-        NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *) response;
-        
-        NSArray *result_msg = [NSJSONSerialization JSONObjectWithData:data_msg
-                                                               options:0
-                                                                 error:nil];
-        
-        if ([httpResponse statusCode] == 200) {
-            if ([result_msg count] != 0) {
-                for (NSDictionary *message_info in result_msg){
-                    NSString *global_id = [message_info objectForKey:@"id"];
-                    NSString *receiver_id = [message_info objectForKey:@"receiver_id"];
-                    NSString *msg_content = [message_info objectForKey:@"msg_content"];
-                    NSString *sender_id = [message_info objectForKey:@"sender_id"];
-                    NSString *msg_date = [message_info objectForKey:@"msg_date"];
-                    //save the new data
-                    //core data
-                    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
-                    NSManagedObjectContext *context = appDelegate.managedObjectContext;
-                    
-                    // Create a new managed object
-                    NSManagedObject *newMessage = [NSEntityDescription
-                                                   insertNewObjectForEntityForName:@"Message" inManagedObjectContext:context];
-                    long long local_id = (long long)([[NSDate date] timeIntervalSince1970] * 1000.0);
-#if DEBUG
-                    NSLog(@"Current time when entering this view: %lld",local_id);
-#endif
-                    [newMessage setValue:[NSString stringWithFormat:@"%lld",local_id] forKey:@"local_id"];
-                    [newMessage setValue:receiver_id forKey:@"receiver_id"];
-                    [newMessage setValue:sender_id forKey:@"sender_id"];
-                    [newMessage setValue:global_id forKey:@"global_id"];
-                    [newMessage setValue:msg_content forKey:@"message_content"];
-                    [newMessage setValue:msg_date forKey:@"message_time"];
-#if DEBUG
-                    NSLog(@"new message: %@ \n local_id : %lld", newMessage, local_id);
-#endif
-                    NSError *error = nil;
-                    // Save the object to persistent store
-                    if (![context save:&error]) {
-                        NSLog(@"Can't Save! %@ %@", error, [error localizedDescription]);
                     }
-
                 }
             }
+    #if DEBUG
+            NSString *decodedData = [[NSString alloc] initWithData:data_msg
+                                                          encoding:NSUTF8StringEncoding];
+            NSLog(@"Receiving data = %@", decodedData);
+    #endif
+            
         }
-#if DEBUG
-        NSString *decodedData = [[NSString alloc] initWithData:data_msg
-                                                      encoding:NSUTF8StringEncoding];
-        NSLog(@"Receiving data = %@", decodedData);
-#endif
-        
     }
-    
     [self.tableView reloadData];
 }
 -(void)viewWillAppear:(BOOL)animated {
