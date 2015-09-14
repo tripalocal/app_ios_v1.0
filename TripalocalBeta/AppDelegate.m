@@ -14,7 +14,7 @@
 #import "DDLog.h"
 #import "DDTTYLogger.h"
 #import "Utility.h"
-
+#import "IQKeyboardManager.h"
 #if DEBUG
 static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 #else
@@ -55,6 +55,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment:UIOffsetMake(0, -60)
                                                          forBarMetrics:UIBarMetricsDefault];
     
+    [[IQKeyboardManager sharedManager] setEnable:NO];
     return YES;
 }
 

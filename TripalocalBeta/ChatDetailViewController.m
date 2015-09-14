@@ -120,6 +120,7 @@
 	sendBarView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
     self.tableView.estimatedRowHeight = 100.0;
     self.tableView.rowHeight = UITableViewAutomaticDimension;
+    
     [HUD showInView:self.view];
     [HUD dismissAfterDelay:1.0];
     
@@ -273,16 +274,16 @@
 }
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    // register for keyboard notifications
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(keyboardWillShow)
-                                                 name:UIKeyboardWillShowNotification
-                                               object:nil];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(keyboardWillHide)
-                                                 name:UIKeyboardWillHideNotification
-                                               object:nil];
+//    // register for keyboard notifications
+//    [[NSNotificationCenter defaultCenter] addObserver:self
+//                                             selector:@selector(keyboardWillShow)
+//                                                 name:UIKeyboardWillShowNotification
+//                                               object:nil];
+//    
+//    [[NSNotificationCenter defaultCenter] addObserver:self
+//                                             selector:@selector(keyboardWillHide)
+//                                                 name:UIKeyboardWillHideNotification
+//                                               object:nil];
 
     [self.tableView reloadData];
     NSIndexPath* ip = [NSIndexPath indexPathForRow:[self.tableView numberOfRowsInSection:0] - 1 inSection:0];
@@ -302,7 +303,6 @@
     }
 }
 
-#pragma mark - dismiss keyboard (buggy)
 
 -(void)dismissKeyboard {
     [textView resignFirstResponder];
@@ -314,62 +314,7 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
--(void)keyboardWillShow {
-    // Animate the current view out of the way
-    if (self.view.frame.origin.y >= 0)
-    {
-        [self setViewMovedUp:YES];
-    }
-    else if (self.view.frame.origin.y < 0)
-    {
-        [self setViewMovedUp:NO];
-    }
-}
--(void)keyboardWillHide {
-    if (self.view.frame.origin.y >= 0)
-    {
-        [self setViewMovedUp:NO];
-    }
-    else if (self.view.frame.origin.y < 0)
-    {
-        [self setViewMovedUp:NO];
-    }
-}
--(void)textFieldDidBeginEditing:(UITextField *)sender
-{
-    if ([sender isEqual:textView])
-    {
-        //move the main view, so that the keyboard does not hide it.
-        if  (self.view.frame.origin.y >= 0)
-        {
-            [self setViewMovedUp:YES];
-        }
-    }
-}
-//method to move the view up/down whenever the keyboard is shown/dismissed
--(void)setViewMovedUp:(BOOL)movedUp
-{
-    [UIView beginAnimations:nil context:NULL];
-    [UIView setAnimationDuration:0.3]; // if you want to slide up the view
-    
-    CGRect rect = self.view.frame;
-    if (movedUp)
-    {
-        // 1. move the view's origin up so that the text field that will be hidden come above the keyboard
-        // 2. increase the size of the view so that the area behind the keyboard is covered up.
-        rect.origin.y -= kOFFSET_FOR_KEYBOARD;
-        rect.size.height += kOFFSET_FOR_KEYBOARD;
-    }
-    else
-    {
-        // revert back to the normal state.
-        rect.origin.y += kOFFSET_FOR_KEYBOARD;
-        rect.size.height -= kOFFSET_FOR_KEYBOARD;
-    }
-    self.view.frame = rect;
-    
-    [UIView commitAnimations];
-}
+
 
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -384,35 +329,6 @@
                                                     name:UIKeyboardWillHideNotification
                                                   object:nil];
 }
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
-#pragma mark - core data
-//- (NSManagedObjectContext *)managedObjectContext {
-//    // Returns the managed object context for the application (which is already bound to the persistent store coordinator for the application.)
-//    if (_managedObjectContext != nil) {
-//        return _managedObjectContext;
-//    }
-//    
-//    NSPersistentStoreCoordinator *coordinator = [self persistentStoreCoordinator];
-//    if (!coordinator) {
-//        return nil;
-//    }
-//    _managedObjectContext = [[NSManagedObjectContext alloc] init];
-//    [_managedObjectContext setPersistentStoreCoordinator:coordinator];
-//    id delegate = [[UIApplication sharedApplication] delegate];
-//    if ([delegate performSelector:@selector(managedObjectContext)]) {
-//        _managedObjectContext = [delegate managedObjectContext];
-//    }
-//
-//    return _managedObjectContext;
-//}
 
 
 #pragma mark - send message function
@@ -464,8 +380,6 @@
         [msgDic setObject:sender_address forKey:@"sender"];
         //add sending message to the msgListTo
 
-        
-    
         
         //core data
         AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];

@@ -20,6 +20,7 @@ PODS:
   - FBSDKLoginKit (4.3.0):
     - FBSDKCoreKit
   - HPGrowingTextView (1.1)
+  - IQKeyboardManager (3.3.1)
   - JGProgressHUD (1.2.7)
   - SDWebImage (3.7.3):
     - SDWebImage/Core (= 3.7.3)
@@ -36,6 +37,7 @@ DEPENDENCIES:
   - FBSDKCoreKit
   - FBSDKLoginKit
   - HPGrowingTextView (~> 1.1)
+  - IQKeyboardManager (~> 3.3)
   - JGProgressHUD
   - SDWebImage (~> 3.7)
   - SecureNSUserDefaults (~> 1.0.0)
@@ -50,6 +52,7 @@ SPEC CHECKSUMS:
   FBSDKCoreKit: a3a60225a84abeace291d0fe71cae29a627382c2
   FBSDKLoginKit: 6bc2f8f2628c3b6d2e346762fff8cb55cfd3a58d
   HPGrowingTextView: 88a716d97fb853bcb08a4a08e4727da17efc9b19
+  IQKeyboardManager: 860a5b9df32cc1435a3e967a08ed87de3e59c12e
   JGProgressHUD: a45c1d16adddf7e38092ce3f0d71d3955d2de2ec
   SDWebImage: 1d2b1a1efda1ade1b00b6f8498865f8ddedc8a84
   SecureNSUserDefaults: 60a27d6e7fd2cad47448fef5dea22803e098433a

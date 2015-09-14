@@ -12,6 +12,7 @@ target 'TripalocalBeta' do
     pod 'SecureNSUserDefaults', '~> 1.0.0'
     pod 'HPGrowingTextView', '~> 1.1'
     pod 'TPKeyboardAvoiding', '~> 1.2'
+    pod 'IQKeyboardManager', '~> 3.3'
 #    pod 'XMPPFramework', '~> 3.6'
 end
 
