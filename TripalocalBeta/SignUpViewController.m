@@ -71,11 +71,33 @@
         
         if ([httpResponse statusCode] == 200) {
             NSString *token = [result objectForKey:@"token"];
+            NSString *user_id = [result objectForKey:@"user_id"];
+            
             [self fetchProfileAndCache: token];
             
             NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
             [userDefaults setSecretObject:token forKey:@"user_token"];
             [[NSUserDefaults standardUserDefaults] synchronize];
+            //sign up the openfire account
+            NSString *username = [NSString stringWithFormat:@"%@%@",user_id,@"@tripalocal.com"];
+            NSString *password = user_id;
+            
+            AppDelegate *del = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+            
+            del.xmppStream.myJID = [XMPPJID jidWithString:username];
+            
+            NSLog(@"Does supports registration");
+            NSLog(@"Attempting registration for username %@",del.xmppStream.myJID.bare);
+            
+            if (del.xmppStream.supportsInBandRegistration) {
+                NSError *error = nil;
+                if (![del.xmppStream registerWithPassword:password error:&error])
+                {
+                    NSLog(@"Oops, I forgot something: %@", error);
+                }else{
+                    NSLog(@"No Error");
+                }
+            }
             
             [self.presentingViewController.presentingViewController dismissViewControllerAnimated:YES completion:nil];
             
