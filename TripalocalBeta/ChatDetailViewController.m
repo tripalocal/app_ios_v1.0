@@ -191,9 +191,36 @@
             [allRelevantMessage addObject:message];
         }
     }
+    NSSortDescriptor *sortDescriptor;
+    sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"local_id"
+                                                 ascending:YES];
+    NSMutableArray *sortDescriptors = [NSMutableArray arrayWithObject:sortDescriptor];
+    NSArray *sortedArray = [[NSArray alloc]init];
+    sortedMessage = [[NSMutableArray alloc]init];
+    sortedArray = [allRelevantMessage sortedArrayUsingDescriptors:sortDescriptors];
+    [sortedMessage addObjectsFromArray:sortedArray];
 
     
     [self.tableView reloadData];
+}
+-(void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    // register for keyboard notifications
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillShow)
+                                                 name:UIKeyboardWillShowNotification
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillHide)
+                                                 name:UIKeyboardWillHideNotification
+                                               object:nil];
+
+    [self.tableView reloadData];
+    NSIndexPath* ip = [NSIndexPath indexPathForRow:[self.tableView numberOfRowsInSection:0] - 1 inSection:0];
+    CGFloat height = self.tableView.contentSize.height - self.tableView.bounds.size.height;
+    [self.tableView setContentOffset:CGPointMake(0, height) animated:YES];
+    //[self.tableView scrollToRowAtIndexPath:ip atScrollPosition:UITableViewScrollPositionTop animated:NO];
 }
 - (void)viewDidLayoutSubviews
 {
@@ -203,7 +230,7 @@
     if (_shouldScrollToLastRow)
     {
         _shouldScrollToLastRow = NO;
-        [self.tableView setContentOffset:CGPointMake(0, CGFLOAT_MAX)];
+        [self.tableView setContentOffset:CGPointMake(0, CGFLOAT_MAX + self.tableView.frame.size.height)];
     }
 }
 
@@ -275,22 +302,7 @@
     
     [UIView commitAnimations];
 }
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    // register for keyboard notifications
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(keyboardWillShow)
-                                                 name:UIKeyboardWillShowNotification
-                                               object:nil];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(keyboardWillHide)
-                                                 name:UIKeyboardWillHideNotification
-                                               object:nil];
-    [super viewWillAppear:animated];
-    
-}
+
 
 - (void)viewWillDisappear:(BOOL)animated
 {
@@ -416,7 +428,14 @@
     NSManagedObjectContext *managedObjectContext = [self managedObjectContext];
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Message"];
     allRelevantMessage = [[managedObjectContext executeFetchRequest:fetchRequest error:nil] mutableCopy];
-
+    NSSortDescriptor *sortDescriptor;
+    sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"local_id"
+                                                 ascending:YES];
+    NSMutableArray *sortDescriptors = [NSMutableArray arrayWithObject:sortDescriptor];
+    NSArray *sortedArray = [[NSArray alloc]init];
+    sortedMessage = [[NSMutableArray alloc]init];
+    sortedArray = [allRelevantMessage sortedArrayUsingDescriptors:sortDescriptors];
+    [sortedMessage addObjectsFromArray:sortedArray];
 
     [self.tableView reloadData];
     CGPoint offset = CGPointMake(0, self.tableView.contentSize.height - self.tableView.frame.size.height);
@@ -433,7 +452,7 @@
     static NSString *cellToIdentifier = @"ChatDetailToCell";
    
     //test data
-    NSManagedObject *message = [allRelevantMessage objectAtIndex:indexPath.row];
+    NSManagedObject *message = [sortedMessage objectAtIndex:indexPath.row];
     
     //NSLog(@"From Cell loading!!!");
     
@@ -521,7 +540,6 @@
     NSLog(@"received in chatview!!");
 #endif
     [self.tableView reloadData];
-    
     CGPoint offset = CGPointMake(0, self.tableView.contentSize.height - self.tableView.frame.size.height);
     [self.tableView setContentOffset:offset animated:YES];
 
@@ -683,15 +701,5 @@
     
     return image;
 }
-
-#pragma mark Autosize label
-- (CGFloat)getHeightForText:(NSString *)strText
-{
-    CGSize constraintSize = CGSizeMake(250.0, MAXFLOAT);
-    CGSize labelSize = [strText sizeWithFont:nil constrainedToSize:constraintSize lineBreakMode:NSLineBreakByWordWrapping];
-    NSLog(@"labelSize.height = %f",labelSize.height);
-    return labelSize.height;
-}
-
 
 @end
