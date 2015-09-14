@@ -179,10 +179,10 @@
         cell.messageTime.text = [timeList objectAtIndex:indexPath.row];
     }
     else{
-        cell.userImage.image = [UIImage imageNamed:@"flash.png"];
-        cell.userName.text = @"FRANK";
-        cell.messageContent.text = @"welcome to tripalocal.";
-        cell.messageTime.text = @"3 mins";
+        cell.userImage.image = nil;
+        cell.userName.text = @"";
+        cell.messageContent.text = @"";
+        cell.messageTime.text = @"";
     }
     return cell;
 }
