@@ -55,7 +55,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment:UIOffsetMake(0, -60)
                                                          forBarMetrics:UIBarMetricsDefault];
     
-    [[IQKeyboardManager sharedManager] setEnable:NO];
+    [[IQKeyboardManager sharedManager] setEnableAutoToolbar :NO];
     return YES;
 }
 
