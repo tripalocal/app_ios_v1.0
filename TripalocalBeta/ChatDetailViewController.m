@@ -118,7 +118,8 @@
 //    [self.view addConstraint:topSpaceConstraint];
     [textView resignFirstResponder];
 	sendBarView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
-    
+    self.tableView.estimatedRowHeight = 100.0;
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
     [HUD showInView:self.view];
     [HUD dismissAfterDelay:1.0];
     
@@ -504,10 +505,10 @@
 //     return self.tableView.rowHeight;
 //
 //}
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return 200;
-}
+//- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    return 200;
+//}
 
 #pragma mark Message received
 - (void)newMessageReceived:(NSDictionary *)messageContent {
@@ -682,5 +683,15 @@
     
     return image;
 }
+
+#pragma mark Autosize label
+- (CGFloat)getHeightForText:(NSString *)strText
+{
+    CGSize constraintSize = CGSizeMake(250.0, MAXFLOAT);
+    CGSize labelSize = [strText sizeWithFont:nil constrainedToSize:constraintSize lineBreakMode:NSLineBreakByWordWrapping];
+    NSLog(@"labelSize.height = %f",labelSize.height);
+    return labelSize.height;
+}
+
 
 @end

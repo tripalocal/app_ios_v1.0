@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="15A278b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="15A282b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -43,6 +43,7 @@
                         <animations/>
                         <color key="backgroundColor" red="0.72156862745098038" green="0.90196078431372551" blue="0.89803921568627454" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstItem="XQK-Bd-sg1" firstAttribute="top" secondItem="Y1B-jV-60i" secondAttribute="bottom" constant="29.5" id="21L-w1-xUt"/>
                             <constraint firstAttribute="bottom" secondItem="XQK-Bd-sg1" secondAttribute="bottom" constant="15" id="G7U-yM-jUa"/>
                             <constraint firstItem="Y1B-jV-60i" firstAttribute="leading" secondItem="0cq-pT-lFM" secondAttribute="leading" constant="20" id="WcF-VE-IUL"/>
                             <constraint firstItem="Y1B-jV-60i" firstAttribute="top" secondItem="0cq-pT-lFM" secondAttribute="top" constant="20" id="cgy-6N-OHj"/>
