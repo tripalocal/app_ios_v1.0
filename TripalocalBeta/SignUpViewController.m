@@ -144,6 +144,7 @@
     [self.signupButton setEnabled:YES];
     self.signupButton.alpha = 1;
 }
+}
 
 - (IBAction)dismissSignup:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];

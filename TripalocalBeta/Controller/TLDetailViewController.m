@@ -82,6 +82,7 @@
     } else {
         [self performSegueWithIdentifier:@"expDetailToChat" sender:nil];
     }
+}
 
 - (void)mpTrackViewExperience {
     Mixpanel *mixpanel = [Mixpanel sharedInstance];
@@ -497,6 +498,7 @@
     }
     
 }
+
 
 
 @end

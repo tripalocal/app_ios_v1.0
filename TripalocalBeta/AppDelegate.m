@@ -220,7 +220,6 @@
 - (void)xmppStream:(XMPPStream *)sender socketDidConnect:(GCDAsyncSocket *)socket
 {
     NSLog(@"SOCKET DID CONNECT$$$$$$$$$$$$$$$$$$$");
-    DDLogVerbose(@"%@: %@", THIS_FILE, THIS_METHOD);
 }
 - (void)xmppStream:(XMPPStream *)sender willSecureWithSettings:(NSMutableDictionary *)settings
 {
