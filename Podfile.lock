@@ -33,7 +33,6 @@ PODS:
   - TPKeyboardAvoiding (1.2.9)
   - UIActivityIndicator-for-SDWebImage (1.2):
     - SDWebImage (~> 3.7)
-  - UMengAnalytics (3.5.10)
 
 DEPENDENCIES:
   - AKPickerView
@@ -48,7 +47,6 @@ DEPENDENCIES:
   - SecureNSUserDefaults (~> 1.0.0)
   - TPKeyboardAvoiding (~> 1.2)
   - UIActivityIndicator-for-SDWebImage
-  - UMengAnalytics
 
 SPEC CHECKSUMS:
   AKPickerView: e31dcb9572c04d8439512315798862d9eb84b18f
@@ -65,6 +63,5 @@ SPEC CHECKSUMS:
   SecureNSUserDefaults: 60a27d6e7fd2cad47448fef5dea22803e098433a
   TPKeyboardAvoiding: ff1ee4e5a5a0c119b965552af8f183868ea20207
   UIActivityIndicator-for-SDWebImage: 7bf7ebbf0ed1747dedc0d6e949c4603a6d0f9e0c
-  UMengAnalytics: 092c24aef47b6ac3c76ad51543f91156a8d7b645
 
 COCOAPODS: 0.38.2
