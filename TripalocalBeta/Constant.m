@@ -17,4 +17,18 @@ NSString *const phoneRegPwd = @"Bentuke123";
 
 NSString *const enqueryEmail = @"enquiries@tripalocal.com";
 
+NSString *const mpTrackViewHomepage = @"viewed homepage";
 
+NSString *const mpTrackViewSearchPage = @"viewed search page";
+
+NSString *const mpTrackViewExperience = @"viewed an experience";
+
+NSString *const mpTrackViewCheckout = @"checkout";
+
+NSString *const mpTrackCompletedPayment = @"completed payment";
+
+NSString *const mpTrackNumberOfPeople = @"changed number of people";
+
+NSString *const mpTrackSignup = @"signed up via iPhone app";
+
+NSString *const mpTrackSignin = @"signed in via iPhone app";

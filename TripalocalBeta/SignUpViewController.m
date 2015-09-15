@@ -10,6 +10,8 @@
 #import <SecureNSUserDefaults/NSUserDefaults+SecureAdditions.h>
 #import "Utility.h"
 #import "URLConfig.h"
+#import "Mixpanel.h"
+#import "Constant.h"
 
 @interface SignUpViewController ()
 
@@ -29,6 +31,19 @@
 
 - (IBAction)dismissLoginAndSignup:(id)sender {
     [self.presentingViewController.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)mpTrackSignup:(NSUserDefaults *)userDefaults token:(NSString *)token {
+    Mixpanel *mixpanel = [Mixpanel sharedInstance];
+    NSString *language = [[NSLocale preferredLanguages] objectAtIndex:0];
+    
+    if (token) {
+        NSString * userEmail = [userDefaults stringForKey:@"user_email"];
+        [mixpanel identify:userEmail];
+        [mixpanel.people set:@{}];
+    }
+    
+    [mixpanel track:mpTrackSignup properties:@{@"language":language}];
 }
 
 - (IBAction)signup:(id)sender {
@@ -97,8 +112,9 @@
                 }else{
                     NSLog(@"No Error");
                 }
-            }
-            
+
+            [self mpTrackSignup:userDefaults token:token];
+
             [self.presentingViewController.presentingViewController dismissViewControllerAnimated:YES completion:nil];
             
         } else {

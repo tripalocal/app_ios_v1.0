@@ -54,6 +54,18 @@
 
 "hobart" = "Hobart";
 
+"darwin" = "Darwin";
+
+"alicesprings" = "Alice Springs";
+
+"christchurch" = "Christchurch";
+
+"queenstown" = "Queenstown";
+
+"auckland" = "Auckland";
+
+"wellington" = "Wellington";
+
 "Forgot password?" = "Forgot password?";
 
 "add_to_wishlist" = "Add to Wishlist";
@@ -81,6 +93,10 @@
 "reservationPrefix" = "Reservation with";
 
 "reservationSuffix" = "";
+
+"expTitlePrefix" = "with";
+
+"expTitleSuffix" = "";
 
 "booking_status_requested" = "Requested";
 

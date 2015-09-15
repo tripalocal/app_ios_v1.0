@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 
 @interface URLConfig : NSObject
++ (NSString *)homePageCityImageURLString;
+
 + (NSString *)myTripServiceURLString;
 
 + (NSString *)imageServiceURLString;

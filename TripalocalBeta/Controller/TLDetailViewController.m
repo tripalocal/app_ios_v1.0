@@ -21,6 +21,7 @@
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "URLConfig.h"
 #import "Utility.h"
+#import "Mixpanel.h"
 #import <SecureNSUserDefaults/NSUserDefaults+SecureAdditions.h>
 
 @interface TLDetailViewController ()
@@ -81,6 +82,21 @@
     } else {
         [self performSegueWithIdentifier:@"expDetailToChat" sender:nil];
     }
+
+- (void)mpTrackViewExperience {
+    Mixpanel *mixpanel = [Mixpanel sharedInstance];
+    NSString *language = [[NSLocale preferredLanguages] objectAtIndex:0];
+    
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    NSString *token = [userDefaults secretStringForKey:@"user_token"];
+    
+    if (token) {
+        NSString * userEmail = [userDefaults stringForKey:@"user_email"];
+        [mixpanel identify:userEmail];
+        [mixpanel.people set:@{}];
+    }
+    
+    [mixpanel track:mpTrackViewExperience properties:@{@"language":language}];
 }
 
 - (void)viewDidLoad {
@@ -97,12 +113,16 @@
     reviewComment = @"";
     reviewerImageURL = @"";
 
-    self.cellHeights = [@[@306, @240, @320, @385, @164, @240] mutableCopy];
+    self.cellHeights = [@[@320, @240, @320, @385, @164, @320] mutableCopy];
     _myTable.delegate = self;
     _myTable.dataSource = self;
     
     reviews = [[NSArray alloc] init];
     expData = [[NSDictionary alloc] init];
+    [_myTable setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+
+    [self mpTrackViewExperience];
+
 }
 
 - (void)fetchData
@@ -158,7 +178,6 @@
                 ticketString = expData[@"included_ticket_detail"];
                 foodString = expData[@"included_food_detail"];
                 transportString = expData[@"included_transport_detail"];
-//                availableDateArray = expData[@"available_options"];
                 dynamicPriceArray = expData[@"experience_dynamic_price"];
                 maxGuestNum = expData[@"experience_guest_number_max"];
                 minGuestNum = expData[@"experience_guest_number_min"];
@@ -299,7 +318,7 @@
             }
             
             cell1.parentView = self.myTable;
-            cell1.expTitleLabel.text = title;
+            cell1.expTitleLabel.text = [NSString stringWithFormat:@"%@ %@ %@ %@",title, NSLocalizedString(@"expTitlePrefix", nil), hostFirstName, NSLocalizedString(@"expTitleSuffix", nil)];
             cell1.selectionStyle = UITableViewCellSelectionStyleNone;
             cell1.expDescriptionLabel.text = [description stringByAppendingFormat:@" %@ %@", activity, interaction];
             if (self.isExpReadMoreOpen) {
@@ -342,6 +361,7 @@
             
             return cell2;
         case 3:
+        {
             if(!cell3)
             {
                 cell3=[[TLDetailTableViewCell3 alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier3];
@@ -350,19 +370,18 @@
             cell3.selectionStyle = UITableViewCellSelectionStyleNone;
             if ([nReviews intValue] > 0) {
                 cell3.countLabel.text = [NSString stringWithFormat:NSLocalizedString(@"n_reviews", nil), nReviews];
-            } else {
-                cell3.countLabel.text = NSLocalizedString(@"no_reviews", nil);
+                cell3.reviewStars.rating = [rate floatValue];
+                cell3.reviewerName.text = [NSString stringWithFormat:@"%@ %@", reviewerFirstName, reviewerLastName];
+                cell3.commentLabel.text = reviewComment;
+                
+                [cell3.reviewerImage sd_setImageWithURL:[NSURL URLWithString:reviewerImageURL]
+                                       placeholderImage:[UIImage imageNamed:@"default_profile_image.png"]
+                                                options:SDWebImageRefreshCached];
+            }else{
+                cell3.hidden = YES;
             }
-            
-            cell3.reviewStars.rating = [rate floatValue];
-            cell3.reviewerName.text = [NSString stringWithFormat:@"%@ %@", reviewerFirstName, reviewerLastName];
-            cell3.commentLabel.text = reviewComment;
-            
-            [cell3.reviewerImage sd_setImageWithURL:[NSURL URLWithString:reviewerImageURL]
-                              placeholderImage:[UIImage imageNamed:@"default_profile_image.png"]
-                                       options:SDWebImageRefreshCached];
-            
             return cell3;
+        }
         case 4:
         {
             if(!cell4) {
@@ -434,7 +453,17 @@
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return [self.cellHeights[indexPath.row] floatValue];
+    
+    switch (indexPath.row){
+        case 3:
+            if ([nReviews intValue] <= 0) {
+                return 0.0;
+            }
+        default:
+            return [self.cellHeights[indexPath.row] floatValue];
+    }
+    
+
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
@@ -468,5 +497,6 @@
     }
     
 }
+
 
 @end

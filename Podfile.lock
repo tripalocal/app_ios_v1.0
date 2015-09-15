@@ -22,6 +22,9 @@ PODS:
   - HPGrowingTextView (1.1)
   - IQKeyboardManager (3.3.1)
   - JGProgressHUD (1.2.7)
+  - Mixpanel (2.8.2):
+    - Mixpanel/Mixpanel (= 2.8.2)
+  - Mixpanel/Mixpanel (2.8.2)
   - SDWebImage (3.7.3):
     - SDWebImage/Core (= 3.7.3)
   - SDWebImage/Core (3.7.3)
@@ -30,6 +33,7 @@ PODS:
   - TPKeyboardAvoiding (1.2.9)
   - UIActivityIndicator-for-SDWebImage (1.2):
     - SDWebImage (~> 3.7)
+  - UMengAnalytics (3.5.10)
 
 DEPENDENCIES:
   - AKPickerView
@@ -39,10 +43,12 @@ DEPENDENCIES:
   - HPGrowingTextView (~> 1.1)
   - IQKeyboardManager (~> 3.3)
   - JGProgressHUD
+  - Mixpanel
   - SDWebImage (~> 3.7)
   - SecureNSUserDefaults (~> 1.0.0)
   - TPKeyboardAvoiding (~> 1.2)
   - UIActivityIndicator-for-SDWebImage
+  - UMengAnalytics
 
 SPEC CHECKSUMS:
   AKPickerView: e31dcb9572c04d8439512315798862d9eb84b18f
@@ -54,9 +60,11 @@ SPEC CHECKSUMS:
   HPGrowingTextView: 88a716d97fb853bcb08a4a08e4727da17efc9b19
   IQKeyboardManager: 860a5b9df32cc1435a3e967a08ed87de3e59c12e
   JGProgressHUD: a45c1d16adddf7e38092ce3f0d71d3955d2de2ec
+  Mixpanel: f4d71ac2a306e7cda6ad03d4a2be249a0fd7a967
   SDWebImage: 1d2b1a1efda1ade1b00b6f8498865f8ddedc8a84
   SecureNSUserDefaults: 60a27d6e7fd2cad47448fef5dea22803e098433a
   TPKeyboardAvoiding: ff1ee4e5a5a0c119b965552af8f183868ea20207
   UIActivityIndicator-for-SDWebImage: 7bf7ebbf0ed1747dedc0d6e949c4603a6d0f9e0c
+  UMengAnalytics: 092c24aef47b6ac3c76ad51543f91156a8d7b645
 
 COCOAPODS: 0.38.2

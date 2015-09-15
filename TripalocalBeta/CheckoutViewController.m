@@ -9,9 +9,11 @@
 #import "URLConfig.h"
 #import "CheckoutViewController.h"
 #import "InstantBookingTableViewCell.h"
+#import <SecureNSUserDefaults/NSUserDefaults+SecureAdditions.h>
 #import "JGProgressHUD.h"
 #import "Utility.h"
-#import "URLConfig.h"
+#import "Mixpanel.h"
+#import "Constant.h"
 
 @interface CheckoutViewController (){
     NSMutableArray *guestPickerData;
@@ -37,6 +39,22 @@
 
 @implementation CheckoutViewController
 
+- (void)mpTrackViewCheckout {
+    Mixpanel *mixpanel = [Mixpanel sharedInstance];
+    NSString *language = [[NSLocale preferredLanguages] objectAtIndex:0];
+    
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    NSString *token = [userDefaults secretStringForKey:@"user_token"];
+    
+    if (token) {
+        NSString * userEmail = [userDefaults stringForKey:@"user_email"];
+        [mixpanel identify:userEmail];
+        [mixpanel.people set:@{}];
+    }
+    
+    [mixpanel track:mpTrackViewCheckout properties:@{@"language":language}];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     HUD = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleDark];
@@ -46,7 +64,6 @@
     HUD.HUDView.layer.shadowRadius = 8.0f;
     HUD.textLabel.text = NSLocalizedString(@"loading", nil);
     [HUD showInView:self.view];
-    [self fetchData];
     [HUD dismissAfterDelay:1];
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
                                    initWithTarget:self
@@ -58,7 +75,6 @@
     _datePicker = [[UIPickerView alloc] init];
     _timePicker = [[UIPickerView alloc] init];
     self.guestPickerView = [[AKPickerView alloc] initWithFrame:CGRectMake(0,0,self.guestView.frame.size.width,self.guestView.frame.size.height)];
-//    [self.guestView removeFromSuperview];
 
     self.guestPickerView.interitemSpacing = 20.0;
     self.guestPickerView.fisheyeFactor = 0.001;
@@ -107,7 +123,11 @@
         [guestPickerData addObject:currentIndexNumber];
     }
     
+}
+
+-(void)viewDidAppear:(BOOL)animated{
     //Resolve
+    [self fetchData];
     int storedFlag = 0;
     int lastIndex = 0;
     [timeArray addObject:timePickerData];
@@ -148,7 +168,7 @@
     
     [_timePicker selectRow:3 inComponent:0 animated:NO];
     [_datePicker selectRow:3 inComponent:0 animated:NO];
-
+    
     selectedDateString = datePickerData[0];
     selectedTimeString = dynamicTimeArray[0];
     selectedGuestString = guestPickerData[0];
@@ -156,7 +176,7 @@
     _durationLangLabel.text = [_durationString stringByAppendingFormat:@"hrs • %@", _languageString];
     [NSString stringWithFormat:@"%@ • %@", NSLocalizedString(@"Hours", nil), _languageString];
     _expTitleLabel.text = _expTitleString;
-
+    
     
     NSNumberFormatter *f = [[NSNumberFormatter alloc] init];
     f.numberStyle = NSNumberFormatterDecimalStyle;
@@ -180,7 +200,11 @@
     
     _confirmButton.backgroundColor = [UIColor grayColor];
     _confirmButton.enabled = NO;
+    
+    [self mpTrackViewCheckout];
 }
+
+
 
 - (void)fetchData
 {
@@ -269,9 +293,29 @@
     return [guestPickerData count];
 }
 
+- (void)mpTrackNumberOfPeople
+{
+    Mixpanel *mixpanel = [Mixpanel sharedInstance];
+    NSString *language = [[NSLocale preferredLanguages] objectAtIndex:0];
+    
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    NSString *token = [userDefaults secretStringForKey:@"user_token"];
+    
+    if (token) {
+        NSString * userEmail = [userDefaults stringForKey:@"user_email"];
+        [mixpanel identify:userEmail];
+        [mixpanel.people set:@{}];
+    }
+    
+    [mixpanel track:mpTrackNumberOfPeople properties:@{@"language":language}];
+}
+
 - (void)pickerView:(AKPickerView *)pickerView didSelectItem:(NSInteger)item
 {
     selectedGuestString = guestPickerData[item];
+
+    [self mpTrackNumberOfPeople];
+
     self.guestNumber = [selectedGuestString intValue];
     if ([_dynamicPriceArray count] == 0)
     {

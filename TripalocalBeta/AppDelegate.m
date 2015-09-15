@@ -15,11 +15,10 @@
 #import "DDTTYLogger.h"
 #import "Utility.h"
 #import "IQKeyboardManager.h"
-#if DEBUG
-static const int ddLogLevel = LOG_LEVEL_VERBOSE;
-#else
-static const int ddLogLevel = LOG_LEVEL_INFO;
-#endif
+#import "Mixpanel.h"
+
+#define MIXPANEL_TOKEN @"f94e94414c9de0cc38874706d853c400"
+#define MIXPANEL_TOKEN_DEV @"c2510512c6cb4c34b4b32bd32a0cf866"
 
 @interface AppDelegate ()
 -(void)setupStream;
@@ -54,6 +53,11 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     
     [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment:UIOffsetMake(0, -60)
                                                          forBarMetrics:UIBarMetricsDefault];
+#ifdef DEBUG
+    [Mixpanel sharedInstanceWithToken:MIXPANEL_TOKEN_DEV];
+#else
+    [Mixpanel sharedInstanceWithToken:MIXPANEL_TOKEN];
+#endif
     
     [[IQKeyboardManager sharedManager] setEnableAutoToolbar :NO];
     return YES;

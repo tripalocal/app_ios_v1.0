@@ -79,8 +79,10 @@
             [userDefaults setObject:firstName forKey:@"user_first_name"];
             [userDefaults setObject:email forKey:@"user_email"];
             [userDefaults setObject:bio forKey:@"user_bio"];
+
            	[userDefaults setObject:phoneNumber forKey:@"user_phone_number"];
             [userDefaults setObject:user_id forKey:@"user_id"];
+
             NSMutableArray *wishList = [[NSMutableArray alloc] init];
             [userDefaults setObject:wishList forKey:@"wish_list"];
             [userDefaults setObject:UIImagePNGRepresentation(image) forKey:@"user_image"];
