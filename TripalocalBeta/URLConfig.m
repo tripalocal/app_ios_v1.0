@@ -10,6 +10,15 @@
 
 @implementation URLConfig
 
++ (NSString *)homePageCityImageURLString
+{
+#ifdef CN_VERSION
+    return @"https://www.tripalocal.com.cn/images/mobile/home/";
+#else
+    return @"https://www.tripalocal.com/images/mobile/home/";
+#endif
+
+}
 + (NSString *)myTripServiceURLString
 {
 #ifdef CN_VERSION
@@ -51,7 +60,7 @@
 #ifdef CN_VERSION
         return @"https://www.tripalocal.com.cn/service_logout/";
 #else
-        return @"https://www.tripalocal.com.service_logout/";
+        return @"https://www.tripalocal.com/service_logout/";
 #endif
 }
 

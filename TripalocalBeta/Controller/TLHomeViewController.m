@@ -42,36 +42,33 @@ NSInteger const WeChatCellPos = 6;
     [locations addObject:[[Location alloc] initWithLoc:@"Cairns" andLocName:NSLocalizedString(@"cairns",  nil)]];
     [locations addObject:[[Location alloc] initWithLoc:@"Goldcoast" andLocName:NSLocalizedString(@"goldcoast",  nil)]];
     [locations addObject:[[Location alloc] initWithLoc:@"Hobart" andLocName:NSLocalizedString(@"hobart",  nil)]];
-    
+    [locations addObject:[[Location alloc] initWithLoc:@"Darwin" andLocName:NSLocalizedString(@"darwin", nil)]];
+    [locations addObject:[[Location alloc] initWithLoc:@"Alice Springs" andLocName:NSLocalizedString(@"alicesprings", nil)]];
+    [locations addObject:[[Location alloc] initWithLoc:@"Christchurch" andLocName:NSLocalizedString(@"christchurch",  nil)]];
+    [locations addObject:[[Location alloc] initWithLoc:@"Queenstown" andLocName:NSLocalizedString(@"queenstown",  nil)]];
+    [locations addObject:[[Location alloc] initWithLoc:@"Auckland" andLocName:NSLocalizedString(@"auckland", nil)]];
+    [locations addObject:[[Location alloc] initWithLoc:@"Wellington" andLocName:NSLocalizedString(@"wellington", nil)]];
+
     filteredLocations = [locations mutableCopy];
     
     self.tableView.dataSource=self;
     self.tableView.delegate=self;
     
-    NSString *home_Melbourne_Pic_URL = [NSString stringWithFormat:@"%@%@",[URLConfig imageServiceURLString], @"mobile/home/Melbourne.jpg"];
-    NSString *home_Sydney_Pic_URL = [NSString stringWithFormat:@"%@%@", [URLConfig imageServiceURLString], @"mobile/home/Sydney.jpg"];
-    NSString *home_Brisbane_Pic_URL = [NSString stringWithFormat:@"%@%@", [URLConfig imageServiceURLString], @"mobile/home/Brisbane.jpg"];
-    NSString *home_Adelaide_Pic_URL = [NSString stringWithFormat:@"%@%@", [URLConfig imageServiceURLString], @"mobile/home/Adelaide.jpg"];
-    NSString *home_Cairns_Pic_URL = [NSString stringWithFormat:@"%@%@", [URLConfig imageServiceURLString], @"mobile/home/Cairns.jpg"];
-    NSString *home_GoldCoast_Pic_URL = [NSString stringWithFormat:@"%@%@", [URLConfig imageServiceURLString], @"mobile/home/Goldcoast.jpg"];
-    NSString *home_Hobart_Pic_URL = [NSString stringWithFormat:@"%@%@", [URLConfig imageServiceURLString], @"mobile/home/Hobart.jpg"];
     
-    [locationsURLString addObject: home_Melbourne_Pic_URL];
-    [locationsURLString addObject: home_Sydney_Pic_URL];
-    [locationsURLString addObject: home_Brisbane_Pic_URL];
-    [locationsURLString addObject: home_Adelaide_Pic_URL];
-    [locationsURLString addObject: home_Cairns_Pic_URL];
-    [locationsURLString addObject: home_GoldCoast_Pic_URL];
-    [locationsURLString addObject: home_Hobart_Pic_URL];
+    [locationsURLString addObject: [NSString stringWithFormat:@"%@%@", [URLConfig homePageCityImageURLString], @"Melbourne.jpg"]];
+    [locationsURLString addObject: [NSString stringWithFormat:@"%@%@", [URLConfig homePageCityImageURLString], @"Sydney.jpg"]];
+    [locationsURLString addObject: [NSString stringWithFormat:@"%@%@", [URLConfig homePageCityImageURLString], @"Brisbane.jpg"]];
+    [locationsURLString addObject: [NSString stringWithFormat:@"%@%@", [URLConfig homePageCityImageURLString], @"Adelaide.jpg"]];
+    [locationsURLString addObject: [NSString stringWithFormat:@"%@%@", [URLConfig homePageCityImageURLString], @"Cairns.jpg"]];
+    [locationsURLString addObject: [NSString stringWithFormat:@"%@%@", [URLConfig homePageCityImageURLString], @"Goldcoast.jpg"]];
+    [locationsURLString addObject: [NSString stringWithFormat:@"%@%@", [URLConfig homePageCityImageURLString], @"Hobart.jpg"]];
+    [locationsURLString addObject: [NSString stringWithFormat:@"%@%@", [URLConfig homePageCityImageURLString], @"Darwin.jpg"]];
+    [locationsURLString addObject: [NSString stringWithFormat:@"%@%@", [URLConfig homePageCityImageURLString], @"Alicesprings.jpg"]];
+    [locationsURLString addObject: [NSString stringWithFormat:@"%@%@", [URLConfig homePageCityImageURLString], @"Christchurch.jpg"]];
+    [locationsURLString addObject: [NSString stringWithFormat:@"%@%@", [URLConfig homePageCityImageURLString], @"Queenstown.jpg"]];
+    [locationsURLString addObject: [NSString stringWithFormat:@"%@%@", [URLConfig homePageCityImageURLString], @"Auckland.jpg"]];
+    [locationsURLString addObject: [NSString stringWithFormat:@"%@%@", [URLConfig homePageCityImageURLString], @"Wellington.jpg"]];
     
-//    [locationsURLString addObject:@"https://www.tripalocal.com/images/mobile/home/Melbourne.jpg"];
-//    [locationsURLString addObject:@"https://www.tripalocal.com/images/mobile/home/Sydney.jpg"];
-//    [locationsURLString addObject:@"https://www.tripalocal.com/images/mobile/home/Brisbane.jpg"];
-//    [locationsURLString addObject:@"https://www.tripalocal.com/images/mobile/home/Adelaide.jpg"];
-//    [locationsURLString addObject:@"https://www.tripalocal.com/images/mobile/home/Cairns.jpg"];
-//    [locationsURLString addObject:@"https://www.tripalocal.com/images/mobile/home/Goldcoast.jpg"];
-//    [locationsURLString addObject:@"https://www.tripalocal.com/images/mobile/home/Hobart.jpg"];
-
     self.searchController = [[UISearchController alloc] initWithSearchResultsController:nil];
     self.searchController.searchResultsUpdater = self;
     self.searchController.dimsBackgroundDuringPresentation = NO;
@@ -92,6 +89,7 @@ NSInteger const WeChatCellPos = 6;
      forState:UIControlStateNormal];
     self.searchController.searchBar.layer.borderWidth = 0.5;
     self.searchController.searchBar.layer.borderColor = [[UIColor grayColor] CGColor];
+    
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -233,6 +231,7 @@ NSInteger const WeChatCellPos = 6;
         city = loc.location;
     }
     
+    [self.searchController setActive:FALSE];
     [self performSegueWithIdentifier:@"searchToExpList" sender:city];
 }
 

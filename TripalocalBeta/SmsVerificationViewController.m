@@ -57,7 +57,13 @@ NSInteger const COUNT_DOWN_SECONDS = 60;
     UIGraphicsEndImageContext();
     
     self.view.backgroundColor = [UIColor colorWithPatternImage:resultImage];
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
+                                   initWithTarget:self
+                                   action:@selector(dismissKeyboard)];
+    
+    [self.view addGestureRecognizer:tap];
 }
+
 
 - (IBAction)telephoneFieldChanged:(id)sender {
     if (self.telephoneField.text && self.telephoneField.text.length == PHONE_NUMBER_LENGTH) {
@@ -107,6 +113,8 @@ NSInteger const COUNT_DOWN_SECONDS = 60;
         [self.sendCodeButton setEnabled:YES];
         [self.sendCodeButton setBackgroundColor:[Utility themeColor]];
     }
+    
+    [self.view endEditing:YES];
 }
 
 -(void)startTimer {
@@ -222,6 +230,7 @@ NSInteger const COUNT_DOWN_SECONDS = 60;
 
 -(void)dismissKeyboard {
     [self.view endEditing:YES];
+    [self.telephoneField resignFirstResponder];
 }
 
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {

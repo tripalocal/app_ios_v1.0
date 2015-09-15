@@ -11,6 +11,8 @@
 #import "UnloginViewController.h"
 #import "SmsVerificationViewController.h"
 #import <SecureNSUserDefaults/NSUserDefaults+SecureAdditions.h>
+#import "Mixpanel.h"
+#import "Constant.h"
 
 @interface HomeViewController ()
 @property (nonatomic, strong) UnloginViewController *unloggedinVC;
@@ -20,6 +22,23 @@
 @end
 
 @implementation HomeViewController
+
+- (void)mpTrackViewHomepage
+{
+    Mixpanel *mixpanel = [Mixpanel sharedInstance];
+    NSString *language = [[NSLocale preferredLanguages] objectAtIndex:0];
+    
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    NSString *token = [userDefaults secretStringForKey:@"user_token"];
+    
+    if (token) {
+        NSString * userEmail = [userDefaults stringForKey:@"user_email"];
+        [mixpanel identify:userEmail];
+        [mixpanel.people set:@{}];
+    }
+    
+    [mixpanel track:mpTrackViewHomepage properties:@{@"language":language}];
+}
 
 - (void)viewDidLoad
 {
@@ -72,6 +91,7 @@
      
                                                  name:UIApplicationDidBecomeActiveNotification object:nil];
 
+    [self mpTrackViewHomepage];
 }
 
 
