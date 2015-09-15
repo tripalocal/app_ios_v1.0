@@ -3565,7 +3565,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="1600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Kc2-SR-fKy">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kc2-SR-fKy">
                                 <rect key="frame" x="0.0" y="64" width="600" height="1536"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DvV-aY-zzz" userLabel="Content View">
@@ -4093,19 +4093,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="550" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="RHf-wN-xuq">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                                <animations/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <connections>
-                                    <outlet property="dataSource" destination="sEb-Oa-qaX" id="Xvl-o3-iAZ"/>
-                                    <outlet property="delegate" destination="sEb-Oa-qaX" id="lau-oJ-ieJ"/>
-                                </connections>
-                            </tableView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tUh-Mx-CsE" userLabel="nomatchView">
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tUh-Mx-CsE" userLabel="nomatchView">
                                 <rect key="frame" x="0.0" y="32" width="600" height="536"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="My Trips" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7DT-hW-ewA">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="My Trips" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7DT-hW-ewA">
                                         <rect key="frame" x="263" y="194" width="75" height="24"/>
                                         <animations/>
                                         <constraints>
@@ -4115,7 +4106,7 @@
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="When you book an experience, you will see you itinerary here." lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aUB-i3-3Go" userLabel="Label">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="When you book an experience, you will see you itinerary here." lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aUB-i3-3Go" userLabel="Label">
                                         <rect key="frame" x="180" y="248" width="240" height="41"/>
                                         <animations/>
                                         <constraints>
@@ -4125,7 +4116,7 @@
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yt7-Vf-k6J">
+                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yt7-Vf-k6J">
                                         <rect key="frame" x="170" y="349" width="260" height="40"/>
                                         <animations/>
                                         <color key="backgroundColor" red="0.20000000000000001" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
@@ -4178,6 +4169,15 @@
                                     </mask>
                                 </variation>
                             </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="550" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="RHf-wN-xuq">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <animations/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="sEb-Oa-qaX" id="Xvl-o3-iAZ"/>
+                                    <outlet property="delegate" destination="sEb-Oa-qaX" id="lau-oJ-ieJ"/>
+                                </connections>
+                            </tableView>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -4192,9 +4192,11 @@
                             <constraint firstItem="tUh-Mx-CsE" firstAttribute="trailing" secondItem="RHf-wN-xuq" secondAttribute="trailing" id="wDt-2y-DRC"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="KHD-8N-t2y"/>
                     <connections>
                         <outlet property="nomatchesView" destination="tUh-Mx-CsE" id="vIr-uZ-NrU"/>
                         <outlet property="tableView" destination="RHf-wN-xuq" id="57h-vE-KnZ"/>
+                        <segue destination="LMA-mX-Yu6" kind="show" identifier="MyTripsToExpList" id="lKQ-4L-bz5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2Tn-Wk-0PZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -4310,6 +4312,9 @@
                         <animations/>
                     </navigationBar>
                     <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="sEb-Oa-qaX" kind="relationship" relationship="rootViewController" id="zZj-KH-M3b"/>
+                    </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hT2-vA-r2M" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -4431,7 +4436,7 @@
         <image name="tripalocal_logo_zh" width="132" height="46"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Pkv-bo-ySw"/>
+        <segue reference="lKQ-4L-bz5"/>
         <segue reference="hPI-YE-UZz"/>
         <segue reference="Djk-3f-9m4"/>
         <segue reference="olF-su-vgo"/>
