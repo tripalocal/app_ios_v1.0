@@ -206,7 +206,7 @@
 }
 -(void)goOnline {
     XMPPPresence *presence = [XMPPPresence presence];
-    NSXMLElement *priority = [NSXMLElement elementWithName:@"Priority" stringValue:@"24"];
+    NSXMLElement *priority = [NSXMLElement elementWithName:@"Priority" stringValue:@"0"];
     [presence addChild:priority];
 #if DEBUG
     NSLog(@"XS Sending:%@",priority);

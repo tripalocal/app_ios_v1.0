@@ -491,7 +491,8 @@
     
     else if ([segue.identifier isEqualToString:@"expDetailToChat"]) {
 
-    	ChatDetailViewController *chatDetailVC = [segue destinationViewController];
+        UINavigationController *navController = segue.destinationViewController;
+        ChatDetailViewController *chatDetailVC = navController.topViewController;
         chatDetailVC.chatWithUser = host_id;
         chatDetailVC.otherUserImageURL = hostImageURL;
         
