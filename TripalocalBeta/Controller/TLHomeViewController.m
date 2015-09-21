@@ -9,6 +9,7 @@
 #import "TLHomeViewController.h"
 #import "TLHomeTableViewCell.h"
 #import "TLSearchViewController.h"
+#import "TLMultiDaySearchViewController.h"
 #import "TLBannerTableViewCell.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "Constant.h"
@@ -247,14 +248,8 @@ NSInteger const WeChatCellPos = 6;
 }
 
 - (void)emailUs {
-    NSURL *emailURL = [NSURL URLWithString:[NSString  stringWithFormat:@"mailto:%@", enqueryEmail]];
-    
-    if ([[UIApplication sharedApplication] canOpenURL:emailURL]) {
-        [[UIApplication sharedApplication] openURL:emailURL];
-    } else {
-        UIAlertView * alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"alert", nil) message:NSLocalizedString(@"alert_email", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"ok_button", nil) otherButtonTitles:nil];
-        [alert show];
-    }
+    [self.searchController setActive:FALSE];
+    [self performSegueWithIdentifier:@"searchToMultiExpList" sender:@"Melbourne"];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
@@ -276,6 +271,9 @@ NSInteger const WeChatCellPos = 6;
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"searchToExpList"]) {
         TLSearchViewController *vc=[segue destinationViewController];
+        vc.cityName = (NSString *)sender;
+    } else if ([segue.identifier isEqualToString:@"searchToMultiExpList"]){
+        TLMultiDaySearchViewController *vc = [segue destinationViewController];
         vc.cityName = (NSString *)sender;
     }
 }

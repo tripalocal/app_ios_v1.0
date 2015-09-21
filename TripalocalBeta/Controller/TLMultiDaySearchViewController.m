@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 Tripalocal. All rights reserved.
 //
 
-#import "TLSearchViewController.h"
+#import "TLMultiDaySearchViewController.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 #import <SecureNSUserDefaults/NSUserDefaults+SecureAdditions.h>
 #import "TLSearchTableViewCell.h"
@@ -18,12 +18,12 @@
 #import "Mixpanel.h"
 #import "JGProgressHUD.h"
 
-@interface TLSearchViewController (){
+@interface TLMultiDaySearchViewController (){
     NSMutableArray *dynamicPricingArray;
 }
 @end
 
-@implementation TLSearchViewController{
+@implementation TLMultiDaySearchViewController{
     JGProgressHUD *HUD;
     NSDateFormatter *dateFormatter;
 }
@@ -265,7 +265,7 @@
             NSMutableArray *expListCopy = [indexOfExperience objectForKey:@"experiences"];
             for (NSDictionary *exp in expListCopy){
                 NSString *expType = [exp objectForKey:@"type"];
-                if ([expType isEqualToString:@"PRIVATE"]) {
+                if ([expType isEqualToString:@"Multi-hosts"]) {
                     [expList addObject:exp];
                 }
             }
@@ -299,13 +299,13 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 //    dispatch_async(dispatch_get_main_queue(), ^{
-        [self performSegueWithIdentifier:@"SearchResultSegue" sender:self];
+        [self performSegueWithIdentifier:@"MultiSearchResultSegue" sender:self];
 //    });
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if ([segue.identifier isEqualToString:@"SearchResultSegue"]) {
+    if ([segue.identifier isEqualToString:@"MultiSearchResultSegue"]) {
         UINavigationController *navController = (UINavigationController *)segue.destinationViewController;
         navController.hidesBottomBarWhenPushed = YES;
         TLDetailViewController *vc = (TLDetailViewController *) navController.topViewController;

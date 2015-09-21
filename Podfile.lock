@@ -30,7 +30,6 @@ PODS:
     - CocoaSecurity (~> 1.2.1)
   - UIActivityIndicator-for-SDWebImage (1.2):
     - SDWebImage (~> 3.7)
-  - UMengAnalytics (3.5.10)
 
 DEPENDENCIES:
   - AKPickerView
@@ -42,7 +41,6 @@ DEPENDENCIES:
   - SDWebImage (~> 3.7)
   - SecureNSUserDefaults (~> 1.0.0)
   - UIActivityIndicator-for-SDWebImage
-  - UMengAnalytics
 
 SPEC CHECKSUMS:
   AKPickerView: e31dcb9572c04d8439512315798862d9eb84b18f
@@ -56,6 +54,5 @@ SPEC CHECKSUMS:
   SDWebImage: 1d2b1a1efda1ade1b00b6f8498865f8ddedc8a84
   SecureNSUserDefaults: 60a27d6e7fd2cad47448fef5dea22803e098433a
   UIActivityIndicator-for-SDWebImage: 7bf7ebbf0ed1747dedc0d6e949c4603a6d0f9e0c
-  UMengAnalytics: 092c24aef47b6ac3c76ad51543f91156a8d7b645
 
-COCOAPODS: 0.37.2
+COCOAPODS: 0.38.2
