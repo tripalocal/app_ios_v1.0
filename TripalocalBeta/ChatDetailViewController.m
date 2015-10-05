@@ -272,6 +272,9 @@
         }
     }
     [self.tableView reloadData];
+    NSIndexPath* ip = [NSIndexPath indexPathForRow:[self.tableView numberOfRowsInSection:0] - 1 inSection:0];
+    [self.tableView scrollToRowAtIndexPath:ip atScrollPosition:UITableViewScrollPositionTop animated:NO];
+
 }
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
@@ -286,10 +289,16 @@
 //                                                 name:UIKeyboardWillHideNotification
 //                                               object:nil];
 
-    [self.tableView reloadData];
-    NSIndexPath* ip = [NSIndexPath indexPathForRow:[self.tableView numberOfRowsInSection:0] - 1 inSection:0];
-    CGFloat height = self.tableView.contentSize.height - self.tableView.bounds.size.height;
-    [self.tableView setContentOffset:CGPointMake(0, height) animated:YES];
+//    [self.tableView reloadData];
+//    NSIndexPath* ip = [NSIndexPath indexPathForRow:[self.tableView numberOfRowsInSection:0] - 1 inSection:0];
+//    CGFloat height = self.tableView.contentSize.height - self.tableView.bounds.size.height;
+//    [self.tableView setContentOffset:CGPointMake(0, CGFLOAT_MAX) animated:YES];
+//    NSIndexPath* ip = [NSIndexPath indexPathForRow:[self.tableView numberOfRowsInSection:0] - 1 inSection:0];
+//    CGFloat height = self.tableView.contentSize.height - self.tableView.bounds.size.height;
+// 	  [self.tableView setContentOffset:CGPointMake(0, CGFLOAT_MAX+50.0) animated:YES];
+//    [self.tableView reloadData];
+//    NSIndexPath* ip = [NSIndexPath indexPathForRow:[self.tableView numberOfRowsInSection:0] - 1 inSection:0];
+//    [self.tableView scrollToRowAtIndexPath:ip atScrollPosition:UITableViewScrollPositionTop animated:NO];
     //[self.tableView scrollToRowAtIndexPath:ip atScrollPosition:UITableViewScrollPositionTop animated:NO];
 }
 - (void)viewDidLayoutSubviews

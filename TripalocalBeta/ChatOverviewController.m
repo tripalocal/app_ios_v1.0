@@ -143,6 +143,7 @@
                     [timeList addObject:diff];
                 }
         	}
+            [self.tableView reloadData];
         }
     }
 #if DEBUG
