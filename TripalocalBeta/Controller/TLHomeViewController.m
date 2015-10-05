@@ -89,6 +89,7 @@ NSInteger const WeChatCellPos = 6;
      forState:UIControlStateNormal];
     self.searchController.searchBar.layer.borderWidth = 0.5;
     self.searchController.searchBar.layer.borderColor = [[UIColor grayColor] CGColor];
+    self.searchTime = 1;
     
 }
 
@@ -117,6 +118,10 @@ NSInteger const WeChatCellPos = 6;
     }
     
     if (self.searchController.active) {
+        if (self.searchTime == 1) {
+            [self.searchController.searchBar resignFirstResponder];
+            self.searchTime++;
+        }
         if (self.searchController.searchBar.text.length == 0) {
             Location *loc = (Location *)locations[indexPath.row];
             cell2.textLabel.text = loc.locationName;
@@ -277,6 +282,7 @@ NSInteger const WeChatCellPos = 6;
     if ([segue.identifier isEqualToString:@"searchToExpList"]) {
         TLSearchViewController *vc=[segue destinationViewController];
         vc.cityName = (NSString *)sender;
+        self.searchTime = 1;
     }
 }
 
