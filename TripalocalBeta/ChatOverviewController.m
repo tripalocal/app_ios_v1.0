@@ -131,7 +131,7 @@
                 NSString *sender_name = [message_info valueForKey:@"sender_name"];
                 NSLog(@"messageName loaded...");
                 NSLog(@"content: %@, date: %@, image: %@, name: %@, sender_id: %@", messageContent, messageDate,senderImageURL, sender_name, sender_id);
-                if (![messageList containsObject:messageContent]) {
+                if (!([messageList containsObject:messageContent] && [sender_id_list containsObject:sender_id])) {
                     if (image){
                         [imgList addObject:image];
                     } else {
