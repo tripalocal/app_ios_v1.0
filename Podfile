@@ -16,6 +16,7 @@ target 'TripalocalBeta' do
     pod 'IQKeyboardManager', '~> 3.3'
 #    pod 'XMPPFramework', '~> 3.6'
     pod 'Mixpanel'
+    pod 'MBProgressHUD', '~> 0.9.1'
 end
 
 target 'TripalocalBetaTests' do
