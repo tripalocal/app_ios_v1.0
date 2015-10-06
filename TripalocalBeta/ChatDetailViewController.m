@@ -123,7 +123,7 @@
     
     [HUD showInView:self.view];
     [HUD dismissAfterDelay:1.0];
-    
+
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -271,13 +271,18 @@
             
         }
     }
+    
     [self.tableView reloadData];
-    NSIndexPath* ip = [NSIndexPath indexPathForRow:[self.tableView numberOfRowsInSection:0] - 1 inSection:0];
-    [self.tableView scrollToRowAtIndexPath:ip atScrollPosition:UITableViewScrollPositionTop animated:NO];
+    if ([self.tableView numberOfRowsInSection:0] != 0) {
+        NSIndexPath* ip = [NSIndexPath indexPathForRow:[self.tableView numberOfRowsInSection:0] - 1 inSection:0];
+        [self.tableView scrollToRowAtIndexPath:ip atScrollPosition:UITableViewScrollPositionTop animated:NO];
 
+    }
+    
 }
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    
 //    // register for keyboard notifications
 //    [[NSNotificationCenter defaultCenter] addObserver:self
 //                                             selector:@selector(keyboardWillShow)
