@@ -86,6 +86,7 @@
 		BC2B61D11B9816EC00934EA0 /* ChatDetailFromViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BCDF1E441B707818004A79A3 /* ChatDetailFromViewCell.xib */; };
 		BC837DE61B8F34C800862FF8 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BC837DE51B8F34C800862FF8 /* libsqlite3.dylib */; };
 		BC837DEB1B8F35CD00862FF8 /* DBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BC837DEA1B8F35CD00862FF8 /* DBManager.m */; };
+		BC9603D01BC34886003F37BF /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC9603CF1BC34886003F37BF /* NotificationController.swift */; settings = {ASSET_TAGS = (); }; };
 		BCC275DC1B79B3EE00147E82 /* XMPPConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = BCC275C91B79B3EE00147E82 /* XMPPConstants.m */; };
 		BCC275DD1B79B3EE00147E82 /* XMPPElement.m in Sources */ = {isa = PBXBuildFile; fileRef = BCC275CB1B79B3EE00147E82 /* XMPPElement.m */; };
 		BCC275DE1B79B3EE00147E82 /* XMPPIQ.m in Sources */ = {isa = PBXBuildFile; fileRef = BCC275CE1B79B3EE00147E82 /* XMPPIQ.m */; };
@@ -370,6 +371,7 @@
 		BC837DE51B8F34C800862FF8 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		BC837DEA1B8F35CD00862FF8 /* DBManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DBManager.m; path = Database/DBManager.m; sourceTree = "<group>"; };
 		BC837DEC1B8F364100862FF8 /* DBManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DBManager.h; path = Database/DBManager.h; sourceTree = "<group>"; };
+		BC9603CF1BC34886003F37BF /* NotificationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationController.swift; sourceTree = "<group>"; };
 		BCC275C71B79B3EE00147E82 /* XMPP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMPP.h; sourceTree = "<group>"; };
 		BCC275C81B79B3EE00147E82 /* XMPPConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMPPConstants.h; sourceTree = "<group>"; };
 		BCC275C91B79B3EE00147E82 /* XMPPConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMPPConstants.m; sourceTree = "<group>"; };
@@ -828,6 +830,7 @@
 				BCDF1E401B7051D6004A79A3 /* ChatOverviewController.m */,
 				BCDF1E511B709D4A004A79A3 /* ChatDetailViewController.h */,
 				BCDF1E521B709D4A004A79A3 /* ChatDetailViewController.m */,
+				BC9603CF1BC34886003F37BF /* NotificationController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -1352,6 +1355,7 @@
 				BCC275E01B79B3EE00147E82 /* XMPPMessage.m in Sources */,
 				87A3C09D1B461129009A3B07 /* RequestController.m in Sources */,
 				87FC2D251B4797CA0017F30E /* PaymentOptionViewController.m in Sources */,
+				BC9603D01BC34886003F37BF /* NotificationController.swift in Sources */,
 				BCC276561B79B41D00147E82 /* DDFileLogger.m in Sources */,
 				BCC276531B79B41D00147E82 /* GCDAsyncSocket.m in Sources */,
 				8EB982501B2280D800ADE430 /* Spinner.m in Sources */,

@@ -17,6 +17,7 @@
 #import "DBManager.h"
 #import "URLConfig.h"
 #import "JGProgressHUD.h"
+#import "MBProgressHUD.h"
 #define kOFFSET_FOR_KEYBOARD 215.0
 
 @interface ChatDetailViewController ()
@@ -278,28 +279,7 @@
 }
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-//    // register for keyboard notifications
-//    [[NSNotificationCenter defaultCenter] addObserver:self
-//                                             selector:@selector(keyboardWillShow)
-//                                                 name:UIKeyboardWillShowNotification
-//                                               object:nil];
-//    
-//    [[NSNotificationCenter defaultCenter] addObserver:self
-//                                             selector:@selector(keyboardWillHide)
-//                                                 name:UIKeyboardWillHideNotification
-//                                               object:nil];
 
-//    [self.tableView reloadData];
-//    NSIndexPath* ip = [NSIndexPath indexPathForRow:[self.tableView numberOfRowsInSection:0] - 1 inSection:0];
-//    CGFloat height = self.tableView.contentSize.height - self.tableView.bounds.size.height;
-//    [self.tableView setContentOffset:CGPointMake(0, CGFLOAT_MAX) animated:YES];
-//    NSIndexPath* ip = [NSIndexPath indexPathForRow:[self.tableView numberOfRowsInSection:0] - 1 inSection:0];
-//    CGFloat height = self.tableView.contentSize.height - self.tableView.bounds.size.height;
-// 	  [self.tableView setContentOffset:CGPointMake(0, CGFLOAT_MAX+50.0) animated:YES];
-//    [self.tableView reloadData];
-//    NSIndexPath* ip = [NSIndexPath indexPathForRow:[self.tableView numberOfRowsInSection:0] - 1 inSection:0];
-//    [self.tableView scrollToRowAtIndexPath:ip atScrollPosition:UITableViewScrollPositionTop animated:NO];
-    //[self.tableView scrollToRowAtIndexPath:ip atScrollPosition:UITableViewScrollPositionTop animated:NO];
 }
 - (void)viewDidLayoutSubviews
 {
@@ -318,6 +298,14 @@
     [textView resignFirstResponder];
 }
 - (IBAction)dismissChatDetail:(id)sender {
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+	    [self uploadingMessage];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+        });
+    });
+
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 - (void)didReceiveMemoryWarning {
@@ -327,18 +315,18 @@
 
 
 
-- (void)viewWillDisappear:(BOOL)animated
-{
-    [super viewWillDisappear:animated];
-    // unregister for keyboard notifications while not visible.
-    [[NSNotificationCenter defaultCenter] removeObserver:self
-                                                    name:UIKeyboardWillShowNotification
-                                                  object:nil];
-    
-    [[NSNotificationCenter defaultCenter] removeObserver:self
-                                                    name:UIKeyboardWillHideNotification
-                                                  object:nil];
-}
+//- (void)viewWillDisappear:(BOOL)animated
+//{
+//    [super viewWillDisappear:animated];
+//    // unregister for keyboard notifications while not visible.
+//    [[NSNotificationCenter defaultCenter] removeObserver:self
+//                                                    name:UIKeyboardWillShowNotification
+//                                                  object:nil];
+//    
+//    [[NSNotificationCenter defaultCenter] removeObserver:self
+//                                                    name:UIKeyboardWillHideNotification
+//                                                  object:nil];
+//}
 
 
 #pragma mark - send message function
@@ -562,92 +550,101 @@
 }
 
 #pragma mark uploading API
--(void)viewDidDisappear:(BOOL)animated{
-    NSManagedObjectContext *managedObjectContext = [self managedObjectContext];
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Message"];
-    allMessage = [[managedObjectContext executeFetchRequest:fetchRequest error:nil] mutableCopy];
-    
-    for (id message in allRelevantMessage)
-    {
-        if ([[message valueForKey:@"local_id"] longLongValue] > currentFlag) {
-            NSLog(@"New Message!");
-            NSDictionary *tmp = [[NSDictionary alloc] initWithObjectsAndKeys:
-                                 [NSNumber numberWithInt:[[message valueForKey:@"receiver_id"] intValue]], @"receiver_id",
-                                 [message valueForKey:@"message_content"], @"msg_content",
-                                 [message valueForKey:@"message_time"], @"msg_date",
-                                 [NSNumber numberWithLongLong:[[message valueForKey:@"local_id"] longLongValue]], @"local_id",
-                                 nil];
-            
-            [updateMessage addObject:tmp];
-
-        }
-    }
-    updateDict = [[NSDictionary alloc] initWithObjectsAndKeys:updateMessage, @"messages", nil];
-#if DEBUG
-    NSLog(@"updated dict: %@",updateDict);
-#endif
-    //config the api url
-    NSURL *url = [NSURL URLWithString:[URLConfig serviceMessageURLString]];
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
-    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    [request setHTTPMethod:@"POST"];
-    NSString *token = [[NSUserDefaults standardUserDefaults] secretObjectForKey:@"user_token"];
-#if DEBUG
-    NSLog(@"token; %@", token);
-#endif
-    [request addValue:[NSString stringWithFormat:@"token %@",token]  forHTTPHeaderField:@"Authorization"];
-    if ([updateMessage count] != 0) {
-        NSData *postdata = [NSJSONSerialization dataWithJSONObject:updateDict options:0 error:nil];
-        [request setHTTPBody:postdata];
+-(void)viewWillDisappear:(BOOL)animated{
+//    [self uploadingMessage];
+}
+-(void)uploadingMessage {
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+        NSManagedObjectContext *managedObjectContext = [self managedObjectContext];
+        NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Message"];
+        allMessage = [[managedObjectContext executeFetchRequest:fetchRequest error:nil] mutableCopy];
         
-    #if DEBUG
-        NSString * decodedData =[[NSString alloc] initWithData:postdata encoding:NSUTF8StringEncoding];
-        NSLog(@"Sending data = %@", decodedData);
-    #endif
-        NSError *connectionError = nil;
-        NSURLResponse *response = nil;
-        
-        NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&connectionError];
-        
-        if (connectionError == nil) {
-            NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *) response;
-            
-            NSMutableArray *result = [NSJSONSerialization JSONObjectWithData:data
-                                                                   options:0
-                                                                     error:nil];
-            
-            if ([httpResponse statusCode] == 200) {
-    //update the global_id in core data
-                NSString *old_local_id = nil;
-                NSString *new_global_id = nil;
-                for (NSDictionary *m in result){
-                    old_local_id = [NSString stringWithFormat:@"%@",[m objectForKey:@"local_id"]];
-                    new_global_id = [NSString stringWithFormat:@"%@",[m objectForKey:@"global_id"]];
-                    NSManagedObjectContext *managedObjectContext = [self managedObjectContext];
-                    NSFetchRequest * desFetctRequest = [NSFetchRequest fetchRequestWithEntityName:@"Message"];
-                    NSPredicate *local_id_Predicate = [NSPredicate predicateWithFormat:@"local_id = %@", old_local_id];
-                    [desFetctRequest setPredicate:local_id_Predicate];
-                    NSError *error = nil;
-                    NSArray *selectedMsgs = [managedObjectContext executeFetchRequest:desFetctRequest error:&error];
-                    NSManagedObject* rightMsg = [selectedMsgs objectAtIndex:0];
-                    [rightMsg setValue:new_global_id forKey:@"global_id"];
-                    NSLog(@"GLOBAL ID: %@",[rightMsg valueForKey:@"global_id"]);
-                  }
+        for (id message in allRelevantMessage)
+        {
+            if ([[message valueForKey:@"local_id"] longLongValue] > currentFlag) {
+                NSLog(@"New Message!");
+                NSDictionary *tmp = [[NSDictionary alloc] initWithObjectsAndKeys:
+                                     [NSNumber numberWithInt:[[message valueForKey:@"receiver_id"] intValue]], @"receiver_id",
+                                     [message valueForKey:@"message_content"], @"msg_content",
+                                     [message valueForKey:@"message_time"], @"msg_date",
+                                     [NSNumber numberWithLongLong:[[message valueForKey:@"local_id"] longLongValue]], @"local_id",
+                                     nil];
+                
+                [updateMessage addObject:tmp];
+                
             }
-    #if DEBUG
-            NSString *decodedData = [[NSString alloc] initWithData:data
-                                                          encoding:NSUTF8StringEncoding];
-            NSLog(@"Receiving data = %@", decodedData);
-    #endif
-        } else {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"no_network", nil)
-                                                            message:NSLocalizedString(@"no_network_msg", nil)
-                                                           delegate:nil
-                                                  cancelButtonTitle:NSLocalizedString(@"ok_button", nil)
-                                                  otherButtonTitles:nil];
-            [alert show];
         }
-	}
+        updateDict = [[NSDictionary alloc] initWithObjectsAndKeys:updateMessage, @"messages", nil];
+#if DEBUG
+        NSLog(@"updated dict: %@",updateDict);
+#endif
+        //config the api url
+        NSURL *url = [NSURL URLWithString:[URLConfig serviceMessageURLString]];
+        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+        [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+        [request setHTTPMethod:@"POST"];
+        NSString *token = [[NSUserDefaults standardUserDefaults] secretObjectForKey:@"user_token"];
+#if DEBUG
+        NSLog(@"token; %@", token);
+#endif
+        [request addValue:[NSString stringWithFormat:@"token %@",token]  forHTTPHeaderField:@"Authorization"];
+        if ([updateMessage count] != 0) {
+            NSData *postdata = [NSJSONSerialization dataWithJSONObject:updateDict options:0 error:nil];
+            [request setHTTPBody:postdata];
+            
+#if DEBUG
+            NSString * decodedData =[[NSString alloc] initWithData:postdata encoding:NSUTF8StringEncoding];
+            NSLog(@"Sending data = %@", decodedData);
+#endif
+            NSError *connectionError = nil;
+            NSURLResponse *response = nil;
+            
+            NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&connectionError];
+            
+            if (connectionError == nil) {
+                NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *) response;
+                
+                NSMutableArray *result = [NSJSONSerialization JSONObjectWithData:data
+                                                                         options:0
+                                                                           error:nil];
+                
+                if ([httpResponse statusCode] == 200) {
+                    //update the global_id in core data
+                    NSString *old_local_id = nil;
+                    NSString *new_global_id = nil;
+                    for (NSDictionary *m in result){
+                        old_local_id = [NSString stringWithFormat:@"%@",[m objectForKey:@"local_id"]];
+                        new_global_id = [NSString stringWithFormat:@"%@",[m objectForKey:@"global_id"]];
+                        NSManagedObjectContext *managedObjectContext = [self managedObjectContext];
+                        NSFetchRequest * desFetctRequest = [NSFetchRequest fetchRequestWithEntityName:@"Message"];
+                        NSPredicate *local_id_Predicate = [NSPredicate predicateWithFormat:@"local_id = %@", old_local_id];
+                        [desFetctRequest setPredicate:local_id_Predicate];
+                        NSError *error = nil;
+                        NSArray *selectedMsgs = [managedObjectContext executeFetchRequest:desFetctRequest error:&error];
+                        NSManagedObject* rightMsg = [selectedMsgs objectAtIndex:0];
+                        [rightMsg setValue:new_global_id forKey:@"global_id"];
+                        NSLog(@"GLOBAL ID: %@",[rightMsg valueForKey:@"global_id"]);
+                    }
+                }
+#if DEBUG
+                NSString *decodedData = [[NSString alloc] initWithData:data
+                                                              encoding:NSUTF8StringEncoding];
+                NSLog(@"Receiving data = %@", decodedData);
+#endif
+            } else {
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"no_network", nil)
+                                                                message:NSLocalizedString(@"no_network_msg", nil)
+                                                               delegate:nil
+                                                      cancelButtonTitle:NSLocalizedString(@"ok_button", nil)
+                                                      otherButtonTitles:nil];
+                [alert show];
+            }
+        }
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+        });
+    });
 
 }
 
