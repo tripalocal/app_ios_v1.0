@@ -78,7 +78,7 @@
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)];
     [self.view addGestureRecognizer:tap];
         AppDelegate *del = [self appDelegate];
-    del._messageDelegate = self;
+    del.messageDelegate = self;
     
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
