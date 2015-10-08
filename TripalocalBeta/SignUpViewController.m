@@ -95,7 +95,7 @@
             [[NSUserDefaults standardUserDefaults] synchronize];
             //sign up the openfire account
             NSString *username = [NSString stringWithFormat:@"%@%@",user_id,@"@tripalocal.com"];
-            NSString *password = user_id;
+            NSString *password = [NSString stringWithFormat:@"%@", user_id];
             
             AppDelegate *del = (AppDelegate *)[[UIApplication sharedApplication] delegate];
             
@@ -106,26 +106,20 @@
             
             if (del.xmppStream.supportsInBandRegistration) {
                 NSError *error = nil;
+                [del.xmppStream registerWithPassword:password error:&error];
                 if (![del.xmppStream registerWithPassword:password error:&error])
                 {
                     NSLog(@"Oops, I forgot something: %@", error);
                 }else{
                     NSLog(@"No Error");
                 }
-
+            }
+            
             [self mpTrackSignup:userDefaults token:token];
 
             [self.presentingViewController.presentingViewController dismissViewControllerAnimated:YES completion:nil];
             
-        } else {
-            NSString *errorMsg = [result objectForKey:@"error"];
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"signup_failed", nil)
-                                                            message:errorMsg
-                                                           delegate:nil
-                                                  cancelButtonTitle:NSLocalizedString(@"ok", nil)
-                                                  otherButtonTitles:nil];
-            [alert show];
-        }
+
         
 #if DEBUG
         NSString *decodedData = [[NSString alloc] initWithData:data

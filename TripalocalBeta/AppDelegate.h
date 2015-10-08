@@ -22,14 +22,17 @@
     
     NSString *password;
     BOOL isOpen;
+    
+    __unsafe_unretained NSObject <SMChatDelegate> *_chatDelegate;
+    __unsafe_unretained NSObject <SMMessageDelegate> *_messageDelegate;
 
 }
 
 @property (strong, nonatomic) UIWindow *window;
 @property (nonatomic, retain) IBOutlet ChatOverviewController *viewController;
 @property (nonatomic, readonly) XMPPStream *xmppStream;
-@property (nonatomic, assign) NSObject <SMChatDelegate> *chatDelegate;
-@property (nonatomic, assign) NSObject <SMMessageDelegate> *messageDelegate;
+@property (nonatomic, assign) id _chatDelegate;
+@property (nonatomic, assign) id _messageDelegate;
 
 -(BOOL)connect;
 -(void)disconnect;

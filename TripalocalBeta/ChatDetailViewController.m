@@ -78,7 +78,7 @@
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)];
     [self.view addGestureRecognizer:tap];
         AppDelegate *del = [self appDelegate];
-    del.messageDelegate = self;
+    del._messageDelegate = self;
     
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
@@ -519,8 +519,8 @@
     NSLog(@"received in chatview!!");
 #endif
     [self.tableView reloadData];
-    CGPoint offset = CGPointMake(0, self.tableView.contentSize.height - self.tableView.frame.size.height);
-    [self.tableView setContentOffset:offset animated:YES];
+    NSIndexPath* ip = [NSIndexPath indexPathForRow:[self.tableView numberOfRowsInSection:0] - 1 inSection:0];
+    [self.tableView scrollToRowAtIndexPath:ip atScrollPosition:UITableViewScrollPositionTop animated:YES];
 
 }
 
@@ -548,7 +548,7 @@
 
 #pragma mark uploading API
 -(void)viewWillDisappear:(BOOL)animated{
-//    [self uploadingMessage];
+    [self uploadingMessage];
 }
 -(void)uploadingMessage {
     

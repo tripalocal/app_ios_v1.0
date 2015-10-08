@@ -62,7 +62,7 @@
     
     //set view controller as a delegate for the chat protocol
     AppDelegate *del = [self appDelegate];
-    del.chatDelegate = self;
+    del._chatDelegate = self;
 	//get the user info
     [HUD showInView:self.view];
     [HUD dismissAfterDelay:1.0];

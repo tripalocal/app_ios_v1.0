@@ -29,7 +29,7 @@
 @end
 
 @implementation AppDelegate
-@synthesize xmppStream, viewController;
+@synthesize xmppStream, viewController, _chatDelegate, _messageDelegate;
 @synthesize managedObjectContext = _managedObjectContext;
 @synthesize managedObjectModel = _managedObjectModel;
 @synthesize persistentStoreCoordinator = _persistentStoreCoordinator;
@@ -192,8 +192,9 @@
     
     [xmppStream setMyJID:[XMPPJID jidWithString:jabberID]];
     password = myPassword;
-
     NSError *error = nil;
+    
+    //NSError *error = nil;
     if (![xmppStream connectWithTimeout:XMPPStreamTimeoutNone error:&error])
     {
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error connecting"
@@ -281,6 +282,14 @@
     NSLog(@"User Connected");
     isOpen = YES;
     NSError *error = nil;
+    [self.xmppStream registerWithPassword:password error:&error];
+    if (![self.xmppStream registerWithPassword:password error:&error])
+    {
+        NSLog(@"Oops, I forgot something: %@", error);
+    }else{
+        NSLog(@"No Error");
+    }
+
     [[self xmppStream] authenticateWithPassword:password error:nil];
     [self.xmppStream sendElement:[XMPPPresence presence]];
     
@@ -330,31 +339,23 @@
     if (![context save:&error]) {
         NSLog(@"Can't Save! %@ %@", error, [error localizedDescription]);
     }
+    UILocalNotification* localNotification = [[UILocalNotification alloc] init];
+    localNotification.fireDate = [NSDate date];
+    localNotification.alertBody = [m objectForKey:@"msg"];
+    localNotification.alertAction = @"Show me the message";
+    localNotification.timeZone = [NSTimeZone defaultTimeZone];
+    localNotification.applicationIconBadgeNumber = [[UIApplication sharedApplication] applicationIconBadgeNumber] + 1;
+    
+    [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
+    
+    // Request to reload table view data
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadData" object:self];
+
 //load message in chat detail view
     [_messageDelegate newMessageReceived:m];
 #if DEBUG
     NSLog(@"Message received: %@",m);
 #endif
-    
-    
-    
-    
-    
-//    //init database object
-//    self.dbManager = [[DBManager alloc] initWithDatabaseFileName:@"message.sql"];
-//    //execute the sql command
-//    NSString *query = [NSString stringWithFormat:@"INSERT INTO message VALUES(null, '%d', '%d', NULL,'%@', '%@')",[receiver_id intValue],[[m objectForKey:@"sender"] intValue],[m objectForKey:@"msg"],timeStamp];
-//    
-//    // Execute the query.
-//    [self.dbManager executeQuery:query];
-//    
-//    // If the query was successfully executed
-//    if (self.dbManager.affectedRows != 0) {
-//        NSLog(@"Query was executed successfully. Affected rows = %d", self.dbManager.affectedRows);
-//    }
-//    else{
-//        NSLog(@"Could not execute the query.");
-//    }
     
 }
 -(void)xmppStream:(XMPPStream *)sender didReceivePresence:(XMPPPresence *)presence{
