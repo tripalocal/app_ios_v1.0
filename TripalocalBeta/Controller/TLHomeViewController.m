@@ -270,6 +270,14 @@ NSInteger const WeChatCellPos = 6;
     [self.navigationController setNavigationBarHidden:YES animated:animated];
     self.searchController.searchBar.hidden = NO;
     [super viewWillAppear:animated];
+    AppDelegate *del = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    if ([del connect])
+    {
+        NSLog(@"Connected!");
+    } else
+    {
+        NSLog(@"Not Connected!");
+    }
 }
 
 - (void)viewWillDisappear:(BOOL)animated {

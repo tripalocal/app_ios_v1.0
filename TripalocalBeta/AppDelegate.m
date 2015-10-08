@@ -193,7 +193,6 @@
     [xmppStream setMyJID:[XMPPJID jidWithString:jabberID]];
     password = myPassword;
     NSError *error = nil;
-    
     //NSError *error = nil;
     if (![xmppStream connectWithTimeout:XMPPStreamTimeoutNone error:&error])
     {
@@ -279,17 +278,9 @@
 }
 
 -(void)xmppStreamDidConnect:(XMPPStream *)sender{
-    NSLog(@"User Connected");
+    NSLog(@"USER connected: %d", [self.xmppStream isConnected]);
     isOpen = YES;
     NSError *error = nil;
-    [self.xmppStream registerWithPassword:password error:&error];
-    if (![self.xmppStream registerWithPassword:password error:&error])
-    {
-        NSLog(@"Oops, I forgot something: %@", error);
-    }else{
-        NSLog(@"No Error");
-    }
-
     [[self xmppStream] authenticateWithPassword:password error:nil];
     [self.xmppStream sendElement:[XMPPPresence presence]];
     

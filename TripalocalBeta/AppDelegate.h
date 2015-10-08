@@ -22,7 +22,7 @@
     
     NSString *password;
     BOOL isOpen;
-    
+    BOOL hasUser;
     __unsafe_unretained NSObject <SMChatDelegate> *_chatDelegate;
     __unsafe_unretained NSObject <SMMessageDelegate> *_messageDelegate;
 

@@ -85,10 +85,11 @@
             [userDefaults setSecretObject:token forKey:@"user_token"];
             [userDefaults setObject:user_id forKey:@"user_id"];
             [[NSUserDefaults standardUserDefaults] synchronize];
+                        
             [self.unloggedinVC hideUnloggedinView];
 
             [self mpTrackSignin:userDefaults token:token];
-
+			
             
 #ifdef CN_VERSION
                 [self.presentingViewController.presentingViewController dismissViewControllerAnimated:YES completion:nil];
