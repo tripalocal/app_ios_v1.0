@@ -47,6 +47,7 @@
 }
 
 - (IBAction)signup:(id)sender {
+    BOOL success;
     [self.signupButton setEnabled:NO];
     self.signupButton.alpha = 0.5;
     
@@ -103,17 +104,18 @@
             
             NSLog(@"Does supports registration");
             NSLog(@"Attempting registration for username %@",del.xmppStream.myJID.bare);
-            
-            if (del.xmppStream.supportsInBandRegistration) {
-                NSError *error = nil;
-                [del.xmppStream registerWithPassword:password error:&error];
-                if (![del.xmppStream registerWithPassword:password error:&error])
-                {
-                    NSLog(@"Oops, I forgot something: %@", error);
-                }else{
-                    NSLog(@"No Error");
-                }
+            NSError *error = nil;
+            success = [del.xmppStream registerWithPassword:password error:&error];
+            if (success)
+            {
+                del.isRegistering = YES;
+                NSLog(@"Registration in progress");
             }
+            else
+            {
+                NSLog(@"Create user failed");
+            }
+
             
             [self mpTrackSignup:userDefaults token:token];
 

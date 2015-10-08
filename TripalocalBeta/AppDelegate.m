@@ -29,7 +29,7 @@
 @end
 
 @implementation AppDelegate
-@synthesize xmppStream, viewController, _chatDelegate, _messageDelegate;
+@synthesize xmppStream, viewController, _chatDelegate, _messageDelegate, isRegistering;
 @synthesize managedObjectContext = _managedObjectContext;
 @synthesize managedObjectModel = _managedObjectModel;
 @synthesize persistentStoreCoordinator = _persistentStoreCoordinator;
@@ -281,8 +281,27 @@
     NSLog(@"USER connected: %d", [self.xmppStream isConnected]);
     isOpen = YES;
     NSError *error = nil;
-    [[self xmppStream] authenticateWithPassword:password error:nil];
-    [self.xmppStream sendElement:[XMPPPresence presence]];
+    if (isRegistering)
+    {
+        // Start **_asynchronous_** operation.
+        //
+        // If there's some kind of problem, the method will return NO and report the reason.
+        // For example: "server doesn't support in-band-registration"
+        //
+        [[self xmppStream] registerWithPassword:password error:&error];
+    }
+    else
+    {
+        // Start **_asynchronous_** operation.
+        //
+        // If there's some kind of problem, the method will return NO and report the reason.
+        // For example: "xmpp stream isn't connected"
+        //
+        [[self xmppStream] authenticateWithPassword:password error:&error];
+        [self.xmppStream sendElement:[XMPPPresence presence]];
+    }
+
+    
     
 }
 -(void)xmppStreamDidAuthenticate:(XMPPStream *)sender{
@@ -364,6 +383,18 @@
 }
 -(BOOL)xmppStream:(XMPPStream *)sender didReceiveIQ:(XMPPIQ *)iq{
     return NO;
+}
+
+- (void)xmppStreamDidRegister:(XMPPStream *)sender
+{
+    // Update tracking variables
+    isRegistering = NO;
+}
+
+- (void)xmppStream:(XMPPStream *)sender didNotRegister:(NSXMLElement *)error
+{
+    // Update tracking variables
+    isRegistering = NO;
 }
 -(BOOL)isConnected{
     return [self.xmppStream isConnected];
