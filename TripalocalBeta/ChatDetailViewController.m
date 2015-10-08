@@ -429,7 +429,6 @@
     static NSString *cellFromIdentifier = @"ChatDetailFromCell";
     NSLog(@"Cell enter.");
     static NSString *cellToIdentifier = @"ChatDetailToCell";
-   
     //test data
     NSManagedObject *message = [sortedMessage objectAtIndex:indexPath.row];
     
@@ -518,6 +517,18 @@
 #if DEBUG
     NSLog(@"received in chatview!!");
 #endif
+    //get the last inserted entry and add it into allRelevantMessage
+    [allRelevantMessage addObject:self.allMessage.lastObject];
+    //sort the local arrary
+    NSSortDescriptor *sortDescriptor;
+    sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"local_id"
+                                                 ascending:YES];
+    NSMutableArray *sortDescriptors = [NSMutableArray arrayWithObject:sortDescriptor];
+    NSArray *sortedArray = [[NSArray alloc]init];
+    sortedMessage = [[NSMutableArray alloc]init];
+    sortedArray = [allRelevantMessage sortedArrayUsingDescriptors:sortDescriptors];
+    [sortedMessage addObjectsFromArray:sortedArray];
+
     [self.tableView reloadData];
     NSIndexPath* ip = [NSIndexPath indexPathForRow:[self.tableView numberOfRowsInSection:0] - 1 inSection:0];
     [self.tableView scrollToRowAtIndexPath:ip atScrollPosition:UITableViewScrollPositionTop animated:YES];
