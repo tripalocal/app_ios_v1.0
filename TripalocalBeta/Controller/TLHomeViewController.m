@@ -268,6 +268,8 @@ NSInteger const WeChatCellPos = 6;
 
 - (void)viewWillAppear:(BOOL)animated {
     AppDelegate *del = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    [del disconnect];
+    [del connect];
     if ([del connect])
     {
         NSLog(@"Connected!");
