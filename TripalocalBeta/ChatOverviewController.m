@@ -117,6 +117,7 @@
                 
                 
                 NSLog(@"messageInfo loading...");
+                NSString *global_id = [message_info objectForKey:@"id"];
                 NSString *sender_id = [message_info objectForKey:@"sender_id"];
                 NSLog(@"sender_id loaded...");
                 NSString *messageContent = [message_info objectForKey:@"msg_content"];

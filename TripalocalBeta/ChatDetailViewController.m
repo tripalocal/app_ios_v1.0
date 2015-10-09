@@ -207,7 +207,10 @@
     //get the message from web service if they are missing
     NSManagedObject *lastObject = [sortedArray lastObject];
     NSString *lastGolablID = [lastObject valueForKey:@"global_id"];
-    if (lastGolablID.length != 0) {
+    if (lastGolablID.length != 0 || [sortedArray count] == 0) {
+        if (lastGolablID.length == 0){
+            lastGolablID = @"1";
+        }
         NSString *url_with_id_msg = [NSString stringWithFormat:@"%@%@%@%@%@",[URLConfig serviceMessageURLString],@"?last_update_id=",lastGolablID,@"&sender_id=",chatWithUser];
         NSURL *url_msg = [NSURL URLWithString:url_with_id_msg];
         NSMutableURLRequest *request_msg = [NSMutableURLRequest requestWithURL:url_msg];
@@ -269,7 +272,31 @@
                                                           encoding:NSUTF8StringEncoding];
             NSLog(@"Receiving data = %@", decodedData);
     #endif
-            
+            NSManagedObjectContext *managedObjectContext = [self managedObjectContext];
+            NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Message"];
+            self.allMessage = [[managedObjectContext executeFetchRequest:fetchRequest error:nil] mutableCopy];
+            allRelevantMessage = [[NSMutableArray alloc] init];
+            NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
+            NSString *sender_id = [userDefault objectForKey:@"user_id"];
+            for (NSManagedObject *message in allMessage){
+                
+                if ([[message valueForKey:@"sender_id"] intValue] == [sender_id intValue] && [[message valueForKey:@"receiver_id"] intValue] == [chatWithUser intValue]) {
+                    
+                    [allRelevantMessage addObject:message];
+                } else if ([[message valueForKey:@"receiver_id"] intValue] == [sender_id intValue] && [[message valueForKey:@"sender_id"] intValue] == [chatWithUser intValue]){
+                    
+                    [allRelevantMessage addObject:message];
+                }
+            }
+            //sort the local arrary
+            NSSortDescriptor *sortDescriptor;
+            sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"local_id"
+                                                         ascending:YES];
+            NSMutableArray *sortDescriptors = [NSMutableArray arrayWithObject:sortDescriptor];
+            NSArray *sortedArray = [[NSArray alloc]init];
+            sortedMessage = [[NSMutableArray alloc]init];
+            sortedArray = [allRelevantMessage sortedArrayUsingDescriptors:sortDescriptors];
+            [sortedMessage addObjectsFromArray:sortedArray];
         }
     }
     
