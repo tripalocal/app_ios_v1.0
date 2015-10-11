@@ -25,8 +25,9 @@
 	JGProgressHUD *HUD;
     NSInteger _clickedRow;
 }
-
-
+@synthesize managedObjectContext = _managedObjectContext;
+@synthesize managedObjectModel= _managedObjectModel;
+@synthesize allMessage;
 -(AppDelegate *)appDelegate {
     return (AppDelegate *)[[UIApplication sharedApplication] delegate];
 }
@@ -97,7 +98,7 @@
 -(void)showChatList {
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     NSString *token = [userDefaults secretObjectForKey:@"user_token"];
-    
+    NSString *user_id = [userDefaults objectForKey:@"user_id"];
     NSURL *url = [NSURL URLWithString:[URLConfig serviceMessageListURLString]];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     
@@ -117,22 +118,33 @@
                 
                 
                 NSLog(@"messageInfo loading...");
+                
                 NSString *global_id = [message_info objectForKey:@"id"];
                 NSString *sender_id = [message_info objectForKey:@"sender_id"];
-                NSLog(@"sender_id loaded...");
+                
                 NSString *messageContent = [message_info objectForKey:@"msg_content"];
-                NSLog(@"messageContent loaded...");
+                
                 NSString *messageDate = [message_info objectForKey:@"msg_date"];
-                NSString *diff = [Utility showTimeDifference:messageDate];
-                NSLog(@"messageDate loaded... Diff: %@",diff);
                 NSString *senderImageURL = [message_info objectForKey:@"sender_image"];
                 UIImage *image = [self fetchImage:token :senderImageURL];
-                NSLog(@"messageImageURL loaded...");
+                
     //            NSInteger global_id = [[NSString stringWithFormat: @"%@", [messageInfo valueForKeyPath: @"id" ] ] integerValue ];
                 NSString *sender_name = [message_info valueForKey:@"sender_name"];
-                NSLog(@"messageName loaded...");
+                //compare the api data with core data
+				NSManagedObjectContext *managedObjectContext = [self managedObjectContext];
+                NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Message"];
+                self.allMessage = [[managedObjectContext executeFetchRequest:fetchRequest error:nil] mutableCopy];
+                for (NSManagedObject *message in allMessage){
+                    if ([[message valueForKey:@"global_id"] integerValue] > [global_id integerValue]){
+                        if ([[message valueForKey:@"sender_id"] isEqualToString:[NSString stringWithFormat:@"%@", user_id]]) {
+                            messageContent = [message valueForKey:@"message_content"];
+                            messageDate = [message valueForKey:@"message_time"];
+                        }
+                    }
+                }
+				NSString *diff = [Utility showTimeDifference:messageDate];
                 NSLog(@"content: %@, date: %@, image: %@, name: %@, sender_id: %@", messageContent, messageDate,senderImageURL, sender_name, sender_id);
-                if (!([messageList containsObject:messageContent] && [sender_id_list containsObject:sender_id])) {
+                //if (!([messageList containsObject:messageContent] && [sender_id_list containsObject:sender_id])) {
                     if (image){
                         [imgList addObject:image];
                     } else {
@@ -142,7 +154,7 @@
                     [nameList addObject:sender_name];
                     [messageList addObject:messageContent];
                     [timeList addObject:diff];
-                }
+                //}
         	}
             [self.tableView reloadData];
         }
@@ -257,6 +269,25 @@
     // Dispose of any resources that can be recreated.
 }
 
-
+- (void)saveContext {
+    NSManagedObjectContext *managedObjectContext = self.managedObjectContext;
+    if (managedObjectContext != nil) {
+        NSError *error = nil;
+        if ([managedObjectContext hasChanges] && ![managedObjectContext save:&error]) {
+            // Replace this implementation with code to handle the error appropriately.
+            // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+            NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+            abort();
+        }
+    }
+}
+- (NSManagedObjectContext *)managedObjectContext {
+    NSManagedObjectContext *context = nil;
+    id delegate = [[UIApplication sharedApplication] delegate];
+    if ([delegate performSelector:@selector(managedObjectContext)]) {
+        context = [delegate managedObjectContext];
+    }
+    return context;
+}
 
 @end
