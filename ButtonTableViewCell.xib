@@ -119,31 +119,67 @@
                             </mask>
                         </variation>
                     </view>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sMs-T7-W76" userLabel="HorizontalLine">
+                        <rect key="frame" x="0.0" y="60" width="208" height="1"/>
+                        <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="8cM-R7-EPR"/>
+                        </constraints>
+                    </view>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uMT-Hx-APk" userLabel="VerticalLine">
+                        <rect key="frame" x="208" y="0.0" width="1" height="119"/>
+                        <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="1" id="8i3-Qt-rJF"/>
+                        </constraints>
+                    </view>
                 </subviews>
                 <color key="backgroundColor" red="0.96862745098039216" green="0.96862745098039216" blue="0.96862745098039216" alpha="1" colorSpace="calibratedRGB"/>
                 <constraints>
+                    <constraint firstItem="zXk-K0-rkY" firstAttribute="top" secondItem="uMT-Hx-APk" secondAttribute="top" id="1pG-us-OsQ"/>
                     <constraint firstItem="zXk-K0-rkY" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" multiplier="1.65" id="4Km-Pq-Ycw"/>
                     <constraint firstItem="zXk-K0-rkY" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="7I2-eJ-Et6"/>
                     <constraint firstItem="CdG-oo-gby" firstAttribute="height" secondItem="Vfj-Fx-wVC" secondAttribute="height" id="878-2H-F3b"/>
                     <constraint firstItem="Vfj-Fx-wVC" firstAttribute="top" secondItem="CdG-oo-gby" secondAttribute="bottom" id="BZX-2h-1vj"/>
                     <constraint firstItem="qhV-kY-Qba" firstAttribute="leading" secondItem="TmD-5O-X96" secondAttribute="leading" id="D8z-g8-PCn"/>
+                    <constraint firstItem="zXk-K0-rkY" firstAttribute="leading" secondItem="uMT-Hx-APk" secondAttribute="trailing" id="FFd-f9-fPN"/>
                     <constraint firstItem="CdG-oo-gby" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="Gu3-gn-TCa"/>
                     <constraint firstItem="CdG-oo-gby" firstAttribute="height" secondItem="Vfj-Fx-wVC" secondAttribute="height" id="J3l-vq-auE"/>
+                    <constraint firstItem="uMT-Hx-APk" firstAttribute="leading" secondItem="Vfj-Fx-wVC" secondAttribute="trailing" id="Lk1-jx-jtc"/>
                     <constraint firstItem="CdG-oo-gby" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="MHs-Cm-OdB"/>
                     <constraint firstItem="olY-gj-LOK" firstAttribute="centerX" secondItem="FlY-fH-c7x" secondAttribute="centerX" id="Nkz-rC-Aj5"/>
                     <constraint firstItem="zXk-K0-rkY" firstAttribute="leading" secondItem="Vfj-Fx-wVC" secondAttribute="trailing" id="PJL-VG-1kN"/>
                     <constraint firstAttribute="bottom" secondItem="zXk-K0-rkY" secondAttribute="bottom" id="Qxu-PU-5uZ"/>
                     <constraint firstAttribute="bottom" secondItem="Vfj-Fx-wVC" secondAttribute="bottom" id="UVd-OS-hPe"/>
                     <constraint firstItem="Vfj-Fx-wVC" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="ckD-Ld-EFb"/>
+                    <constraint firstItem="zXk-K0-rkY" firstAttribute="leading" secondItem="uMT-Hx-APk" secondAttribute="trailing" id="cmE-N4-bIS"/>
                     <constraint firstItem="zXk-K0-rkY" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" multiplier="0.3" id="eCT-39-cbF"/>
+                    <constraint firstItem="uMT-Hx-APk" firstAttribute="leading" secondItem="sMs-T7-W76" secondAttribute="trailing" id="gUb-GH-Xlf"/>
                     <constraint firstAttribute="trailing" secondItem="zXk-K0-rkY" secondAttribute="trailing" id="joP-ag-n17"/>
+                    <constraint firstItem="sMs-T7-W76" firstAttribute="top" secondItem="CdG-oo-gby" secondAttribute="bottom" id="kwc-xd-k0X"/>
+                    <constraint firstItem="CdG-oo-gby" firstAttribute="width" secondItem="sMs-T7-W76" secondAttribute="width" id="mC1-pv-pNs"/>
+                    <constraint firstItem="zXk-K0-rkY" firstAttribute="height" secondItem="uMT-Hx-APk" secondAttribute="height" id="oX6-Zl-euI"/>
+                    <constraint firstItem="uMT-Hx-APk" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="oew-FQ-IpG"/>
                     <constraint firstItem="KZQ-qa-cPj" firstAttribute="leading" secondItem="CdG-oo-gby" secondAttribute="trailing" id="okU-68-Hs9"/>
                     <constraint firstItem="zXk-K0-rkY" firstAttribute="leading" secondItem="CdG-oo-gby" secondAttribute="trailing" id="p4s-uP-zmL"/>
+                    <constraint firstItem="zXk-K0-rkY" firstAttribute="leading" secondItem="sMs-T7-W76" secondAttribute="trailing" id="rbK-7j-xDA"/>
+                    <constraint firstItem="uMT-Hx-APk" firstAttribute="leading" secondItem="sMs-T7-W76" secondAttribute="trailing" constant="-1" id="tpH-Ux-cvn"/>
+                    <constraint firstItem="zXk-K0-rkY" firstAttribute="centerY" secondItem="uMT-Hx-APk" secondAttribute="centerY" id="w5t-g0-9rd"/>
+                    <constraint firstAttribute="centerY" secondItem="sMs-T7-W76" secondAttribute="centerY" id="wgG-43-3ce"/>
+                    <constraint firstItem="zXk-K0-rkY" firstAttribute="height" secondItem="uMT-Hx-APk" secondAttribute="height" id="xsk-y2-UHk"/>
                 </constraints>
                 <variation key="default">
                     <mask key="constraints">
                         <exclude reference="878-2H-F3b"/>
+                        <exclude reference="wgG-43-3ce"/>
+                        <exclude reference="Lk1-jx-jtc"/>
+                        <exclude reference="oew-FQ-IpG"/>
+                        <exclude reference="tpH-Ux-cvn"/>
+                        <exclude reference="1pG-us-OsQ"/>
+                        <exclude reference="FFd-f9-fPN"/>
+                        <exclude reference="cmE-N4-bIS"/>
                         <exclude reference="eCT-39-cbF"/>
+                        <exclude reference="oX6-Zl-euI"/>
                         <exclude reference="okU-68-Hs9"/>
                     </mask>
                 </variation>
@@ -153,7 +189,7 @@
                 <outlet property="localExperienceView" destination="Vfj-Fx-wVC" id="B4d-6q-XDZ"/>
                 <outlet property="travelWithLocalView" destination="CdG-oo-gby" id="1pj-jj-HVO"/>
             </connections>
-            <point key="canvasLocation" x="300" y="296"/>
+            <point key="canvasLocation" x="377" y="388"/>
         </tableViewCell>
     </objects>
     <resources>
