@@ -20,6 +20,8 @@
 		87046A8A1B6606C40084E2E3 /* TLBannerTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 87046A881B6606C40084E2E3 /* TLBannerTableViewCell.m */; };
 		87046A8C1B660D590084E2E3 /* TLBannerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87046A8E1B660D590084E2E3 /* TLBannerTableViewCell.xib */; };
 		870AEB791B53A81D00959465 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 870AEB7B1B53A81D00959465 /* Localizable.strings */; };
+		870BC00A1BCB4FCA00BB59F7 /* ButtonTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 870BC0081BCB4FCA00BB59F7 /* ButtonTableViewCell.m */; };
+		870BC00B1BCB4FCA00BB59F7 /* ButtonTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 870BC0091BCB4FCA00BB59F7 /* ButtonTableViewCell.xib */; };
 		870F22481B5B6A2100CD1AD2 /* URLConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 870F22471B5B6A2000CD1AD2 /* URLConfig.m */; };
 		8711965A1B4FF74300BA8672 /* NeedToLoginView.m in Sources */ = {isa = PBXBuildFile; fileRef = 871196591B4FF74300BA8672 /* NeedToLoginView.m */; };
 		8711A65B1B5A63EE00578BB2 /* PageContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8711A65A1B5A63EE00578BB2 /* PageContentViewController.m */; };
@@ -79,7 +81,7 @@
 		8EB570FF1B01CF2B0026D419 /* TripalocalBetaTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EB570FE1B01CF2B0026D419 /* TripalocalBetaTests.m */; };
 		8EB982501B2280D800ADE430 /* Spinner.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EB9824F1B2280D800ADE430 /* Spinner.m */; };
 		8EC86D5C1B0229F100B0A655 /* TLHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EC86D5B1B0229F100B0A655 /* TLHomeViewController.m */; };
-		BC8C39021BAFD57500AB4060 /* TLMultiDaySearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BC8C39011BAFD57500AB4060 /* TLMultiDaySearchViewController.m */; settings = {ASSET_TAGS = (); }; };
+		BC8C39021BAFD57500AB4060 /* TLMultiDaySearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BC8C39011BAFD57500AB4060 /* TLMultiDaySearchViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -115,6 +117,9 @@
 		870AEB781B53A6B000959465 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		870AEB7A1B53A81D00959465 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		870AEB7C1B53A82900959465 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		870BC0071BCB4FCA00BB59F7 /* ButtonTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ButtonTableViewCell.h; path = ../ButtonTableViewCell.h; sourceTree = "<group>"; };
+		870BC0081BCB4FCA00BB59F7 /* ButtonTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ButtonTableViewCell.m; path = ../ButtonTableViewCell.m; sourceTree = "<group>"; };
+		870BC0091BCB4FCA00BB59F7 /* ButtonTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ButtonTableViewCell.xib; path = ../ButtonTableViewCell.xib; sourceTree = "<group>"; };
 		870F22461B5B6A2000CD1AD2 /* URLConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = URLConfig.h; sourceTree = "<group>"; };
 		870F22471B5B6A2000CD1AD2 /* URLConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = URLConfig.m; sourceTree = "<group>"; };
 		871196581B4FF74300BA8672 /* NeedToLoginView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NeedToLoginView.h; sourceTree = "<group>"; };
@@ -339,6 +344,8 @@
 				87046A871B6606C40084E2E3 /* TLBannerTableViewCell.h */,
 				87046A881B6606C40084E2E3 /* TLBannerTableViewCell.m */,
 				8729E13A1B4A6335004C3065 /* MyTripTableViewCell.h */,
+				870BC0071BCB4FCA00BB59F7 /* ButtonTableViewCell.h */,
+				870BC0081BCB4FCA00BB59F7 /* ButtonTableViewCell.m */,
 				8729E13B1B4A6335004C3065 /* MyTripTableViewCell.m */,
 				8E26A6611B0397EF00A5A5CF /* TLHomeTableViewCell.h */,
 				8E26A6621B0397EF00A5A5CF /* TLHomeTableViewCell.m */,
@@ -561,6 +568,7 @@
 				87046A8E1B660D590084E2E3 /* TLBannerTableViewCell.xib */,
 				87E74B651B54BD6C00C41CBF /* NeedToLoginView.xib */,
 				87E74B701B54E73B00C41CBF /* MyTripTableViewCell.xib */,
+				870BC0091BCB4FCA00BB59F7 /* ButtonTableViewCell.xib */,
 				8EB570EC1B01CF2B0026D419 /* Main.storyboard */,
 				87E74B6B1B54C2AF00C41CBF /* SearchViewCell.xib */,
 			);
@@ -743,6 +751,7 @@
 				5649BDF01B46702300465D6C /* (null) in Resources */,
 				870AEB791B53A81D00959465 /* Localizable.strings in Resources */,
 				87E74B691B54C2AF00C41CBF /* SearchViewCell.xib in Resources */,
+				870BC00B1BCB4FCA00BB59F7 /* ButtonTableViewCell.xib in Resources */,
 				87EF8C831B5CE46400292225 /* loading_screen.jpg in Resources */,
 				87E74B6E1B54E73B00C41CBF /* MyTripTableViewCell.xib in Resources */,
 				87046A8C1B660D590084E2E3 /* TLBannerTableViewCell.xib in Resources */,
@@ -835,6 +844,7 @@
 				874522AB1B4E3FDF00876EB4 /* WishLishViewController.m in Sources */,
 				87F356421B439D3B00949F43 /* PaymentViewController.m in Sources */,
 				87FC2DB91B480ABF0017F30E /* RSADataSigner.m in Sources */,
+				870BC00A1BCB4FCA00BB59F7 /* ButtonTableViewCell.m in Sources */,
 				87A3C09D1B461129009A3B07 /* RequestController.m in Sources */,
 				87FC2D251B4797CA0017F30E /* PaymentOptionViewController.m in Sources */,
 				8EB982501B2280D800ADE430 /* Spinner.m in Sources */,
