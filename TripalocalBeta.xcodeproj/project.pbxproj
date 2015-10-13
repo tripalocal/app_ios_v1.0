@@ -35,6 +35,7 @@
 		874522AB1B4E3FDF00876EB4 /* WishLishViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 874522AA1B4E3FDF00876EB4 /* WishLishViewController.m */; };
 		87A3C09D1B461129009A3B07 /* RequestController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87A3C09C1B461129009A3B07 /* RequestController.m */; };
 		87A3C0A11B463C6C009A3B07 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87A3C0A01B463C6C009A3B07 /* HomeViewController.m */; };
+		87AC2B161BCE16E800672288 /* SearchViewCell2.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87AC2B151BCE16E800672288 /* SearchViewCell2.xib */; };
 		87E74B631B54BD6C00C41CBF /* NeedToLoginView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87E74B651B54BD6C00C41CBF /* NeedToLoginView.xib */; };
 		87E74B691B54C2AF00C41CBF /* SearchViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87E74B6B1B54C2AF00C41CBF /* SearchViewCell.xib */; };
 		87E74B6E1B54E73B00C41CBF /* MyTripTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87E74B701B54E73B00C41CBF /* MyTripTableViewCell.xib */; };
@@ -146,6 +147,7 @@
 		87A3C09C1B461129009A3B07 /* RequestController.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.objc; path = RequestController.m; sourceTree = "<group>"; tabWidth = 4; usesTabs = 0; wrapsLines = 1; };
 		87A3C09F1B463C6C009A3B07 /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HomeViewController.h; path = Controller/HomeViewController.h; sourceTree = "<group>"; };
 		87A3C0A01B463C6C009A3B07 /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HomeViewController.m; path = Controller/HomeViewController.m; sourceTree = "<group>"; };
+		87AC2B151BCE16E800672288 /* SearchViewCell2.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchViewCell2.xib; sourceTree = "<group>"; };
 		87E311DB1B5E1DE500069826 /* libPods-TripalocalBeta-JGProgressHUD.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-TripalocalBeta-JGProgressHUD.a"; path = "Pods/../build/Debug-iphoneos/libPods-TripalocalBeta-JGProgressHUD.a"; sourceTree = "<group>"; };
 		87E74B641B54BD6C00C41CBF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/NeedToLoginView.xib; sourceTree = "<group>"; };
 		87E74B681B54BD7200C41CBF /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/NeedToLoginView.strings"; sourceTree = "<group>"; };
@@ -564,13 +566,14 @@
 			isa = PBXGroup;
 			children = (
 				871196581B4FF74300BA8672 /* NeedToLoginView.h */,
+				87AC2B151BCE16E800672288 /* SearchViewCell2.xib */,
+				87E74B6B1B54C2AF00C41CBF /* SearchViewCell.xib */,
 				871196591B4FF74300BA8672 /* NeedToLoginView.m */,
 				87046A8E1B660D590084E2E3 /* TLBannerTableViewCell.xib */,
 				87E74B651B54BD6C00C41CBF /* NeedToLoginView.xib */,
 				87E74B701B54E73B00C41CBF /* MyTripTableViewCell.xib */,
 				870BC0091BCB4FCA00BB59F7 /* ButtonTableViewCell.xib */,
 				8EB570EC1B01CF2B0026D419 /* Main.storyboard */,
-				87E74B6B1B54C2AF00C41CBF /* SearchViewCell.xib */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -752,6 +755,7 @@
 				870AEB791B53A81D00959465 /* Localizable.strings in Resources */,
 				87E74B691B54C2AF00C41CBF /* SearchViewCell.xib in Resources */,
 				870BC00B1BCB4FCA00BB59F7 /* ButtonTableViewCell.xib in Resources */,
+				87AC2B161BCE16E800672288 /* SearchViewCell2.xib in Resources */,
 				87EF8C831B5CE46400292225 /* loading_screen.jpg in Resources */,
 				87E74B6E1B54E73B00C41CBF /* MyTripTableViewCell.xib in Resources */,
 				87046A8C1B660D590084E2E3 /* TLBannerTableViewCell.xib in Resources */,

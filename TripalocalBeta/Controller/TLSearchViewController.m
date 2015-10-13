@@ -63,7 +63,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-//    self.automaticallyAdjustsScrollViewInsets = NO;
     self.navigationItem.title = NSLocalizedString([self.cityName lowercaseString], nil);
     dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"yyyy-LL-dd"];
@@ -83,6 +82,51 @@
     [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
 
     [self mpTrackViewSearchPage];
+    
+    [self updateFilterView];
+}
+
+- (void)updateFilterView {
+    if ([self.expSearchType isEqualToString:@"PRIVATE"]) {
+        self.travelWithLocalsImageView.highlighted = YES;
+        self.travelWithLocalsLabel.highlighted = YES;
+        
+        self.localExpImageView.highlighted = NO;
+        self.localExpLabel.highlighted = NO;
+        self.itinerariesImageView.highlighted = NO;
+        self.itenarariesLabel.highlighted = NO;
+    } else if ([self.expSearchType isEqualToString:@"LOCAL"]) {
+        self.localExpImageView.highlighted = YES;
+        self.localExpLabel.highlighted = YES;
+        
+        self.travelWithLocalsImageView.highlighted = NO;
+        self.travelWithLocalsLabel.highlighted = NO;
+        self.itinerariesImageView.highlighted = NO;
+        self.itenarariesLabel.highlighted = NO;
+    } else {
+        self.itinerariesImageView.highlighted = YES;
+        self.itenarariesLabel.highlighted = YES;
+        
+        self.travelWithLocalsImageView.highlighted = NO;
+        self.travelWithLocalsLabel.highlighted = NO;
+        self.localExpImageView.highlighted = NO;
+        self.localExpLabel.highlighted = NO;
+    }
+}
+
+- (IBAction)applyTravelWithLocals:(UIGestureRecognizer *)sender {
+    self.expSearchType = @"PRIVATE";
+    [self updateFilterView];
+}
+
+- (IBAction)applyLocalExp:(UIGestureRecognizer *)sender {
+    self.expSearchType = @"LOCAL";
+    [self updateFilterView];
+}
+
+- (IBAction)applyItinerary:(UIGestureRecognizer *)sender {
+    self.expSearchType = @"ITI";
+    [self updateFilterView];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -138,11 +182,23 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     static NSString *cellIdentifier = @"SearchCell";
+    static NSString *cellIdentifier2 = @"SearchCell2";
     
-    TLSearchTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"SearchCell"];
-    if(!cell) {
-        [tableView registerNib:[UINib nibWithNibName:@"SearchViewCell" bundle:nil] forCellReuseIdentifier:cellIdentifier];
+
+    TLSearchTableViewCell *cell2 = [tableView dequeueReusableCellWithIdentifier:cellIdentifier2];
+    TLSearchTableViewCell *cell;
+    if ([self.expSearchType isEqualToString:@"PRIVATE"]) {
         cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+        if(!cell) {
+            [tableView registerNib:[UINib nibWithNibName:@"SearchViewCell" bundle:nil] forCellReuseIdentifier:cellIdentifier];
+            cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+        }
+    } else {
+        cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier2];
+        if(!cell) {
+            [tableView registerNib:[UINib nibWithNibName:@"SearchViewCell2" bundle:nil] forCellReuseIdentifier:cellIdentifier2];
+            cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier2];
+        }
     }
     
     NSDictionary *exp = [self.expList objectAtIndex:indexPath.row];
@@ -156,17 +212,18 @@
     cell.languageLabel.text = [self transformLanugage:(NSString *)[exp objectForKey:@"language"]];
     cell.descriptionLabel.text = [exp objectForKey:@"description"];
 
-    NSString *hostImageRelativeURL = [exp objectForKey:@"host_image"];
-    if (hostImageRelativeURL != (id)[NSNull null] && hostImageRelativeURL.length > 0) {
-        NSString *hostImageURL = [[URLConfig imageServiceURLString] stringByAppendingString: hostImageRelativeURL];
-        
-        [cell.hostImage sd_setImageWithURL:[NSURL URLWithString:hostImageURL]
-                          placeholderImage:[UIImage imageNamed:@"default_profile_image.png"]
-                                   options:SDWebImageRefreshCached];
-    } else {
-        cell.hostImage.image = [UIImage imageNamed:@"default_profile_image.png"];
+    if ([self.expSearchType isEqualToString:@"PRIVATE"]) {
+        NSString *hostImageRelativeURL = [exp objectForKey:@"host_image"];
+        if (hostImageRelativeURL != (id)[NSNull null] && hostImageRelativeURL.length > 0) {
+            NSString *hostImageURL = [[URLConfig imageServiceURLString] stringByAppendingString: hostImageRelativeURL];
+            
+            [cell.hostImage sd_setImageWithURL:[NSURL URLWithString:hostImageURL]
+                              placeholderImage:[UIImage imageNamed:@"default_profile_image.png"]
+                                       options:SDWebImageRefreshCached];
+        } else {
+            cell.hostImage.image = [UIImage imageNamed:@"default_profile_image.png"];
+        }
     }
-
 
     
     NSString *backgroundImageURL = [NSString stringWithFormat:@"%@thumbnails/experiences/experience%@_1.jpg", [URLConfig imageServiceURLString], expIdString];
@@ -248,12 +305,20 @@
 
     NSString *startDate = [dateFormatter stringFromDate:today];
     NSString *endDate = [dateFormatter stringFromDate:today];
+    NSString *typeString;
+    if ([self.expSearchType isEqualToString:@"PRIVATE"]) {
+        typeString = @"\"type\":\"experience\"";
+    } else if ([self.expSearchType isEqualToString:@"LOCAL"]) {
+        typeString = @"\"type\":\"newproduct\"";
+    } else {
+        typeString = @"\"type\":\"itinerary\"";
+    }
     
 #ifdef CN_VERSION
-        post = [NSString stringWithFormat:@"{\"start_datetime\":\"%@\", \"end_datetime\":\"%@\", \"city\":\"%@\", \"guest_number\":\"2\", \"keywords\":\"\"}", startDate, endDate ,[cityName stringByReplacingOccurrencesOfString:@" " withString:@"" ]];
+        post = [NSString stringWithFormat:@"{%@, \"start_datetime\":\"%@\", \"end_datetime\":\"%@\", \"city\":\"%@\", \"guest_number\":\"2\", \"keywords\":\"\"}", typeString, startDate, endDate ,[cityName stringByReplacingOccurrencesOfString:@" " withString:@"" ]];
         [request setURL:[NSURL URLWithString:[URLConfig searchServiceURLString]]];
 #else
-        post = [NSString stringWithFormat:@"{\"start_datetime\":\"%@\", \"end_datetime\":\"%@\", \"city\":\"%@\", \"guest_number\":\"2\", \"keywords\":\"\"}", startDate, endDate ,[cityName stringByReplacingOccurrencesOfString:@" " withString:@"" ]];
+        post = [NSString stringWithFormat:@"{%@, \"start_datetime\":\"%@\", \"end_datetime\":\"%@\", \"city\":\"%@\", \"guest_number\":\"2\", \"keywords\":\"\"}", typeString, startDate, endDate ,[cityName stringByReplacingOccurrencesOfString:@" " withString:@"" ]];
         [request setURL:[NSURL URLWithString:[URLConfig searchServiceURLString]]];
 #endif
     
@@ -281,10 +346,10 @@
             NSDictionary *indexOfExperience = [allDataDictionary objectAtIndex:0];
             NSMutableArray *expListCopy = [indexOfExperience objectForKey:@"experiences"];
             for (NSDictionary *exp in expListCopy){
-                NSString *expType = [exp objectForKey:@"type"];
-                if ([expType isEqualToString:@"PRIVATE"]) {
+//                NSString *expType = [exp objectForKey:@"type"];
+//                if ([expType isEqualToString:self.expSearchType]) {
                     [expList addObject:exp];
-                }
+//                }
             }
 #ifdef DEBUG
             NSLog(@"number of cells: %lu", (unsigned long)expList.count);
@@ -315,9 +380,7 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-//    dispatch_async(dispatch_get_main_queue(), ^{
-        [self performSegueWithIdentifier:@"SearchResultSegue" sender:self];
-//    });
+    [self performSegueWithIdentifier:@"SearchResultSegue" sender:self];
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender

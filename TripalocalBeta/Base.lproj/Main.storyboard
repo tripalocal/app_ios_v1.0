@@ -86,68 +86,80 @@
                                     <rect key="frame" x="0.0" y="64" width="600" height="70"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4JZ-2r-heF">
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4JZ-2r-heF" userLabel="TravelWithLocalView">
                                             <rect key="frame" x="0.0" y="0.0" width="200" height="70"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="27" placeholderIntrinsicHeight="27" image="local" translatesAutoresizingMaskIntoConstraints="NO" id="1sK-Cz-2SL">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="27" placeholderIntrinsicHeight="27" image="local" highlightedImage="local_o" translatesAutoresizingMaskIntoConstraints="NO" id="1sK-Cz-2SL">
                                                     <rect key="frame" x="87" y="15" width="27" height="27"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Travel with Locals" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FUo-jF-Ruf">
                                                     <rect key="frame" x="58" y="47" width="84" height="12"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                                                    <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
+                                                    <color key="textColor" red="0.60000026226043701" green="0.60000020265579224" blue="0.59999996423721313" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="highlightedColor" red="0.20000000000000001" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
                                                 </label>
                                             </subviews>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <gestureRecognizers/>
                                             <constraints>
                                                 <constraint firstItem="FUo-jF-Ruf" firstAttribute="top" secondItem="1sK-Cz-2SL" secondAttribute="bottom" constant="5" id="GMM-xP-Non"/>
                                                 <constraint firstAttribute="centerX" secondItem="1sK-Cz-2SL" secondAttribute="centerX" id="O38-Rx-lWP"/>
                                                 <constraint firstAttribute="centerX" secondItem="FUo-jF-Ruf" secondAttribute="centerX" id="fGl-nX-6O7"/>
                                                 <constraint firstItem="1sK-Cz-2SL" firstAttribute="top" secondItem="4JZ-2r-heF" secondAttribute="top" constant="15" id="kgv-er-7as"/>
                                             </constraints>
+                                            <connections>
+                                                <outletCollection property="gestureRecognizers" destination="Ic7-PG-ZDb" appends="YES" id="tGT-yZ-lI1"/>
+                                            </connections>
                                         </view>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="scd-ss-HQA">
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="scd-ss-HQA" userLabel="ItenerariesView">
                                             <rect key="frame" x="400" y="0.0" width="200" height="70"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="27" placeholderIntrinsicHeight="27" image="iti" translatesAutoresizingMaskIntoConstraints="NO" id="i3o-3S-jHj">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="27" placeholderIntrinsicHeight="27" image="iti" highlightedImage="iti_o" translatesAutoresizingMaskIntoConstraints="NO" id="i3o-3S-jHj">
                                                     <rect key="frame" x="87" y="15" width="27" height="27"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Iteneraries" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Wn-Cd-u7D" userLabel="Iteneraries">
                                                     <rect key="frame" x="75" y="47" width="50" height="12"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                                     <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
+                                                    <color key="highlightedColor" red="0.20000000000000001" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
                                                 </label>
                                             </subviews>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <gestureRecognizers/>
                                             <constraints>
                                                 <constraint firstItem="9Wn-Cd-u7D" firstAttribute="top" secondItem="i3o-3S-jHj" secondAttribute="bottom" constant="5" id="P80-7H-Fdc"/>
                                                 <constraint firstItem="i3o-3S-jHj" firstAttribute="top" secondItem="scd-ss-HQA" secondAttribute="top" constant="15" id="VKk-pS-UmI"/>
                                                 <constraint firstAttribute="centerX" secondItem="9Wn-Cd-u7D" secondAttribute="centerX" id="Yvs-14-aC5"/>
                                                 <constraint firstAttribute="centerX" secondItem="i3o-3S-jHj" secondAttribute="centerX" id="b2D-Za-1MP"/>
                                             </constraints>
+                                            <connections>
+                                                <outletCollection property="gestureRecognizers" destination="W0I-QC-elC" appends="YES" id="LTp-YT-Ypg"/>
+                                            </connections>
                                         </view>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wc6-M3-fdD">
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wc6-M3-fdD" userLabel="LocalExpView">
                                             <rect key="frame" x="200" y="0.0" width="200" height="70"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="27" placeholderIntrinsicHeight="27" image="hot" translatesAutoresizingMaskIntoConstraints="NO" id="B0I-3s-N6p">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="27" placeholderIntrinsicHeight="27" image="hot" highlightedImage="hot_o" translatesAutoresizingMaskIntoConstraints="NO" id="B0I-3s-N6p">
                                                     <rect key="frame" x="87" y="15" width="27" height="27"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Local Experiences" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BUr-x4-x9Y">
                                                     <rect key="frame" x="57" y="47" width="86" height="12"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                                     <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
+                                                    <color key="highlightedColor" red="0.20000000000000001" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
                                                 </label>
                                             </subviews>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <gestureRecognizers/>
                                             <constraints>
                                                 <constraint firstItem="B0I-3s-N6p" firstAttribute="top" secondItem="wc6-M3-fdD" secondAttribute="top" constant="15" id="8jA-BM-ldG"/>
                                                 <constraint firstItem="BUr-x4-x9Y" firstAttribute="top" secondItem="B0I-3s-N6p" secondAttribute="bottom" constant="5" id="BqN-Hq-ba4"/>
                                                 <constraint firstAttribute="centerX" secondItem="B0I-3s-N6p" secondAttribute="centerX" id="cKl-V7-2FQ"/>
                                                 <constraint firstAttribute="centerX" secondItem="BUr-x4-x9Y" secondAttribute="centerX" id="rqS-Z4-AlA"/>
                                             </constraints>
+                                            <connections>
+                                                <outletCollection property="gestureRecognizers" destination="8vy-q4-Ot1" appends="YES" id="7D0-2k-7TV"/>
+                                            </connections>
                                         </view>
                                     </subviews>
                                     <color key="backgroundColor" red="0.96862745098039216" green="0.96862745098039216" blue="0.96862745098039216" alpha="1" colorSpace="calibratedRGB"/>
@@ -182,12 +194,33 @@
                     <navigationItem key="navigationItem" id="YWn-7T-EAB"/>
                     <connections>
                         <outlet property="filterView" destination="Hym-NL-aec" id="JHq-Fy-c8z"/>
+                        <outlet property="itenarariesLabel" destination="9Wn-Cd-u7D" id="4Nz-VE-kN2"/>
+                        <outlet property="itinerariesImageView" destination="i3o-3S-jHj" id="31n-FJ-LJx"/>
+                        <outlet property="localExpImageView" destination="B0I-3s-N6p" id="g6n-K1-1Kx"/>
+                        <outlet property="localExpLabel" destination="BUr-x4-x9Y" id="Jd4-1T-dDD"/>
                         <outlet property="tableView" destination="5Bj-PW-wbu" id="NB8-YT-BA4"/>
+                        <outlet property="travelWithLocalsImageView" destination="1sK-Cz-2SL" id="EYR-2d-ejb"/>
+                        <outlet property="travelWithLocalsLabel" destination="FUo-jF-Ruf" id="Uz8-lu-tch"/>
                         <segue destination="LMA-mX-Yu6" kind="show" identifier="SearchResultSegue" id="yiP-PS-w0n"/>
                         <segue destination="Gep-Sa-s2z" kind="presentation" identifier="login_segue" id="chc-HC-F4Z"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="T7l-hn-DwO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="Ic7-PG-ZDb">
+                    <connections>
+                        <action selector="applyTravelWithLocals:" destination="Vj1-wG-sag" id="xXM-R4-w9U"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="W0I-QC-elC">
+                    <connections>
+                        <action selector="applyItinerary:" destination="Vj1-wG-sag" id="vgI-D1-XLR"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="8vy-q4-Ot1">
+                    <connections>
+                        <action selector="applyLocalExp:" destination="Vj1-wG-sag" id="ywJ-ia-Jwc"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="2220" y="284"/>
         </scene>
@@ -1889,12 +1922,13 @@
                     <connections>
                         <outlet property="tableView" destination="NVF-HZ-jJe" id="8UB-aP-2N0"/>
                         <segue destination="Vj1-wG-sag" kind="show" identifier="searchToExpList" id="1ny-n2-okc"/>
-                        <segue destination="hqc-WX-8tC" kind="show" identifier="searchToMultiExpList" id="9Jc-SZ-Ajb"/>
+                        <segue destination="Vj1-wG-sag" kind="show" identifier="searchToExpListLocal" id="1MU-e6-KUX"/>
+                        <segue destination="Vj1-wG-sag" kind="show" identifier="searchToExpListItI" id="FaZ-kM-Q6M"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kiN-fn-PkQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="933" y="-44"/>
+            <point key="canvasLocation" x="1129" y="14"/>
         </scene>
         <!--Page Content View Controller-->
         <scene sceneID="EkU-9J-4SQ">
@@ -4384,8 +4418,11 @@
         <image name="face" width="105" height="105"/>
         <image name="heart_lg" width="27" height="27"/>
         <image name="hot" width="27" height="27"/>
+        <image name="hot_o" width="27" height="27"/>
         <image name="iti" width="27" height="27"/>
+        <image name="iti_o" width="27" height="27"/>
         <image name="local" width="27" height="27"/>
+        <image name="local_o" width="27" height="27"/>
         <image name="meals" width="27" height="27"/>
         <image name="profile_customitinerary_cn" width="470" height="200"/>
         <image name="tickets" width="27" height="27"/>
@@ -4394,8 +4431,9 @@
         <image name="tripalocal_logo_zh" width="132" height="46"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="nLM-hT-IzS"/>
-        <segue reference="ZH7-ZN-DcH"/>
+        <segue reference="chc-HC-F4Z"/>
+        <segue reference="1MU-e6-KUX"/>
+        <segue reference="yiP-PS-w0n"/>
         <segue reference="olF-su-vgo"/>
     </inferredMetricsTieBreakers>
 </document>

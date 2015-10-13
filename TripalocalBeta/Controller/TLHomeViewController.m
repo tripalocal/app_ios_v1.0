@@ -147,8 +147,17 @@ NSInteger const WeChatCellPos = 7;
 
             UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc]
                                                      initWithTarget:self action:@selector(gotoTravelWithLocal:)];
+            UITapGestureRecognizer *tapRecognizerLocal = [[UITapGestureRecognizer alloc]
+                                                     initWithTarget:self action:@selector(gotoLocalExp:)];
+            UITapGestureRecognizer *tapRecognizerITI = [[UITapGestureRecognizer alloc]
+                                                          initWithTarget:self action:@selector(gotoItinerary:)];
             tapRecognizer.numberOfTapsRequired = 1;
+            tapRecognizerLocal.numberOfTapsRequired = 1;
+            tapRecognizerITI.numberOfTapsRequired = 1;
             [buttonCell.travelWithLocalView addGestureRecognizer:tapRecognizer];
+            [buttonCell.localExperienceView addGestureRecognizer:tapRecognizerLocal];
+            [buttonCell.itenerariesView addGestureRecognizer:tapRecognizerITI];
+            
             return buttonCell;
             
         } else if (indexPath.row == WeChatCellPos) {
@@ -188,9 +197,18 @@ NSInteger const WeChatCellPos = 7;
     }
 }
 
-- (IBAction)gotoTravelWithLocal:(UITapGestureRecognizer *)recognizer {
+- (void)gotoTravelWithLocal:(UITapGestureRecognizer *)recognizer {
     [self performSegueWithIdentifier:@"searchToExpList" sender:@"Melbourne"];
 }
+
+- (void)gotoLocalExp:(UITapGestureRecognizer *)recognizer {
+    [self performSegueWithIdentifier:@"searchToExpListLocal" sender:@"Melbourne"];
+}
+
+- (void)gotoItinerary:(UITapGestureRecognizer *)recognizer {
+    [self performSegueWithIdentifier:@"searchToExpListItI" sender:@"Melbourne"];
+}
+
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (self.searchController.active) {
@@ -310,12 +328,14 @@ NSInteger const WeChatCellPos = 7;
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    TLSearchViewController *vc=[segue destinationViewController];
+    vc.cityName = (NSString *)sender;
     if ([segue.identifier isEqualToString:@"searchToExpList"]) {
-        TLSearchViewController *vc=[segue destinationViewController];
-        vc.cityName = (NSString *)sender;
-    } else if ([segue.identifier isEqualToString:@"searchToMultiExpList"]){
-        TLMultiDaySearchViewController *vc = [segue destinationViewController];
-        vc.cityName = (NSString *)sender;
+        vc.expSearchType = @"PRIVATE";
+    } else if ([segue.identifier isEqualToString:@"searchToExpListLocal"]) {
+        vc.expSearchType = @"LOCAL";
+    } else {
+        vc.expSearchType = @"ITI";
     }
 }
 
