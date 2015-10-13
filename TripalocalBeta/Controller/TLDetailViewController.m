@@ -102,6 +102,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+
+    
     HUD = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleDark];
     HUD.HUDView.layer.shadowColor = [UIColor blackColor].CGColor;
     HUD.HUDView.layer.shadowOffset = CGSizeZero;

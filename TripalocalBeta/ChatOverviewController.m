@@ -52,12 +52,6 @@
     UIBarButtonItem *closeButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Close", nil) style:UIBarButtonItemStylePlain target:self action:@selector(dismissChatOverview:)];
     closeButton.tintColor = [Utility themeColor];
     self.navigationItem.leftBarButtonItem = closeButton;
-    //initial the information arraies
-    imgList = [[NSMutableArray alloc] init];
-    nameList = [[NSMutableArray alloc] init];
-    messageList = [[NSMutableArray alloc] init];
-    timeList = [[NSMutableArray alloc] init];
-    sender_id_list = [[NSMutableArray alloc] init];
     //loading the message data in here
     //	:load three arraies
     
@@ -96,6 +90,13 @@
 }
 
 -(void)showChatList {
+    //initial the information arraies
+    imgList = [[NSMutableArray alloc] init];
+    nameList = [[NSMutableArray alloc] init];
+    messageList = [[NSMutableArray alloc] init];
+    timeList = [[NSMutableArray alloc] init];
+    sender_id_list = [[NSMutableArray alloc] init];
+
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     NSString *token = [userDefaults secretObjectForKey:@"user_token"];
     NSString *user_id = [userDefaults objectForKey:@"user_id"];
@@ -154,8 +155,8 @@
                     [nameList addObject:sender_name];
                     [messageList addObject:messageContent];
                     [timeList addObject:diff];
-                //}
-        	}
+                }
+        	//}
             [self.tableView reloadData];
         }
     }

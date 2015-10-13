@@ -61,6 +61,7 @@
     [[UIApplication sharedApplication] registerUserNotificationSettings:mySettings];
     [[UIApplication sharedApplication] registerForRemoteNotifications];
     
+    
 #ifdef DEBUG
     [Mixpanel sharedInstanceWithToken:MIXPANEL_TOKEN_DEV];
 #else
@@ -330,7 +331,7 @@
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     NSString *receiver_id = [userDefaults objectForKey:@"user_id"];
     //get current time in UTC
-    NSString *timeStamp = [Utility getCurrentUTCTime];
+    NSString *timeStamp = [NSString stringWithFormat:@"%@%@",[[Utility getCurrentUTCTime] stringByReplacingOccurrencesOfString:@"\\" withString:@""],@"/000000"];;
     // here you have new Date with desired format and TimeZone.
 #if DEBUG
     NSLog(@"Message received: %@",message);

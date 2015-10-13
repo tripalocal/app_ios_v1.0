@@ -1180,6 +1180,14 @@
 					8EB570DE1B01CF2B0026D419 = {
 						CreatedOnToolsVersion = 6.3.1;
 						DevelopmentTeam = TBHHB4A59A;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 					8EB570F71B01CF2B0026D419 = {
 						CreatedOnToolsVersion = 6.3.1;
