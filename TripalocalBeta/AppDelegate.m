@@ -53,6 +53,14 @@
     
     [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment:UIOffsetMake(0, -60)
                                                          forBarMetrics:UIBarMetricsDefault];
+    if ([UIApplication instancesRespondToSelector:@selector(registerUserNotificationSettings:)]){
+        [application registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert|UIUserNotificationTypeBadge|UIUserNotificationTypeSound categories:nil]];
+    }
+    UIUserNotificationType types = UIUserNotificationTypeBadge | UIUserNotificationTypeSound | UIUserNotificationTypeAlert;
+    UIUserNotificationSettings *mySettings = [UIUserNotificationSettings settingsForTypes:types categories:nil];
+    [[UIApplication sharedApplication] registerUserNotificationSettings:mySettings];
+    [[UIApplication sharedApplication] registerForRemoteNotifications];
+    
 #ifdef DEBUG
     [Mixpanel sharedInstanceWithToken:MIXPANEL_TOKEN_DEV];
 #else
@@ -69,6 +77,15 @@
     }
 
     return YES;
+}
+- (void)application:(UIApplication*)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData*)deviceToken
+{
+    NSLog(@"My token is: %@", deviceToken);
+}
+
+- (void)application:(UIApplication*)application didFailToRegisterForRemoteNotificationsWithError:(NSError*)error
+{
+    NSLog(@"Failed to get token, error: %@", error);
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
@@ -349,6 +366,11 @@
     if (![context save:&error]) {
         NSLog(@"Can't Save! %@ %@", error, [error localizedDescription]);
     }
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(receiveMessage:)
+                                                 name:@"reload"
+                                               object:nil];
+
     UILocalNotification* localNotification = [[UILocalNotification alloc] init];
     localNotification.fireDate = [NSDate date];
     localNotification.alertBody = [m objectForKey:@"msg"];
@@ -367,6 +389,9 @@
     NSLog(@"Message received: %@",m);
 #endif
     
+}
+- (void)receiveMessage:(NSNotification *)note {
+
 }
 -(void)xmppStream:(XMPPStream *)sender didReceivePresence:(XMPPPresence *)presence{
     NSString *presenceType = [presence type]; //online or offline
@@ -486,9 +511,9 @@
 {
     UIApplicationState state = [application applicationState];
     if (state == UIApplicationStateActive) {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Reminder"
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"New message"
                                                         message:notification.alertBody
-                                                       delegate:self cancelButtonTitle:@"OK"
+                                                       delegate:self cancelButtonTitle:@"Got it"
                                               otherButtonTitles:nil];
         [alert show];
     }
@@ -498,6 +523,11 @@
     
     // Set icon badge number to zero
     application.applicationIconBadgeNumber = 0;
+}
+-(void)application:(UIApplication *)application didReceiveRemoteNotification:(nonnull NSDictionary *)userInfo{
+    
+    [UIApplication sharedApplication].applicationIconBadgeNumber =
+    [UIApplication sharedApplication].applicationIconBadgeNumber+1;
 }
 
 
