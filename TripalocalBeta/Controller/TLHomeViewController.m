@@ -175,6 +175,7 @@ NSInteger const WeChatCellPos = 7;
                                   placeholderImage:nil
                                            options:SDWebImageRefreshCached
                                          completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+                                             cell.homeLocationImage.image = [Utility filledImageFrom:image withColor:[UIColor colorWithWhite:0.0 alpha:0.3]];
                                              [activityIndicator removeFromSuperview];
                                          }];
         [cell.homeLocationImage addSubview:activityIndicator];
@@ -262,7 +263,7 @@ NSInteger const WeChatCellPos = 7;
         city = loc.location;
     }
     
-    [self.searchController setActive:FALSE];
+//    [self.searchController setActive:FALSE];
     [self performSegueWithIdentifier:@"searchToExpList" sender:city];
 }
 
@@ -285,6 +286,9 @@ NSInteger const WeChatCellPos = 7;
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return 1;
 }
+
+
+
 
 - (void)viewWillAppear:(BOOL)animated {
     [self.navigationController setNavigationBarHidden:YES animated:animated];
