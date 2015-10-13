@@ -11,6 +11,7 @@
 
 @interface TLSearchViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, SearchTableViewCellDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UIView *filterView;
 @property NSString *cityName;
 @property (nonatomic, retain) NSMutableArray *expList;
 

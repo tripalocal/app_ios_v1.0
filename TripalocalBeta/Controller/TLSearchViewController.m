@@ -28,6 +28,22 @@
     NSDateFormatter *dateFormatter;
 }
 
+- (void)viewDidLayoutSubviews {
+    [super viewDidLayoutSubviews];
+
+    UIView *header = self.filterView;
+
+    [header setNeedsLayout];
+    [header layoutIfNeeded];
+
+    CGRect frame = header.frame;
+
+    frame.size.height = 55;
+    header.frame = frame;
+
+    self.tableView.tableHeaderView = header;
+}
+
 - (void)mpTrackViewSearchPage {
     Mixpanel *mixpanel = [Mixpanel sharedInstance];
     NSString *language = [[NSLocale preferredLanguages] objectAtIndex:0];
@@ -47,6 +63,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+//    self.automaticallyAdjustsScrollViewInsets = NO;
     self.navigationItem.title = NSLocalizedString([self.cityName lowercaseString], nil);
     dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"yyyy-LL-dd"];
