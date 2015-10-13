@@ -38,7 +38,7 @@
 
     CGRect frame = header.frame;
 
-    frame.size.height = 55;
+    frame.size.height = 70;
     header.frame = frame;
 
     self.tableView.tableHeaderView = header;
