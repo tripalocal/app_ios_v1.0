@@ -248,8 +248,15 @@ NSInteger const WeChatCellPos = 6;
 }
 
 - (void)emailUs {
-    [self.searchController setActive:FALSE];
-    [self performSegueWithIdentifier:@"searchToMultiExpList" sender:@"Melbourne"];
+    NSURL *emailURL = [NSURL URLWithString:[NSString  stringWithFormat:@"mailto:%@", enqueryEmail]];
+    
+    if ([[UIApplication sharedApplication] canOpenURL:emailURL]) {
+        [[UIApplication sharedApplication] openURL:emailURL];
+    } else {
+        UIAlertView * alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"alert", nil) message:NSLocalizedString(@"alert_email", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"ok_button", nil) otherButtonTitles:nil];
+        [alert show];
+    }
+
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
