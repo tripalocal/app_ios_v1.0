@@ -12,12 +12,12 @@
 
 + (NSString *)homePageCityImageURLString
 {
-#ifdef CN_VERSION
-    return @"https://www.tripalocal.com.cn/images/mobile/home/";
-#else
-    return @"https://www.tripalocal.com/images/mobile/home/";
-#endif
-
+//#ifdef CN_VERSION
+//    return @"https://www.tripalocal.com.cn/images/mobile/home/";
+//#else
+//    return @"https://www.tripalocal.com/images/mobile/home/";
+//#endif
+    return @"https://tripalocal-static.s3.amazonaws.com/images/mobile/home/";
 }
 + (NSString *)myTripServiceURLString
 {
