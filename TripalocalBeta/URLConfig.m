@@ -30,11 +30,12 @@
 
 + (NSString *)imageServiceURLString
 {
-#ifdef CN_VERSION
-        return @"https://www.tripalocal.com.cn/images/";
-#else
-        return @"https://www.tripalocal.com/images/";
-#endif
+//#ifdef CN_VERSION
+//        return @"https://www.tripalocal.com.cn/images/";
+//#else
+//        return @"https://www.tripalocal.com/images/";
+//#endif
+    return @"https://tripalocal-static.s3.amazonaws.com/images/";
 }
 
 + (NSString *)loginServiceURLString
