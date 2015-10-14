@@ -158,7 +158,14 @@
     NSIndexPath * index = [NSIndexPath indexPathForRow:buttonTag inSection:0];
     
     if (token) {
-        NSString *expIdString = [[[self.expList objectAtIndex:index.row] objectForKey:@"id"] stringValue];
+        NSString *expIdString;
+        if ([self.expSearchType isEqualToString:@"PRIVATE"]) {
+            expIdString = [[[self.normalExpList objectAtIndex:index.row] objectForKey:@"id"] stringValue];
+        } else if ([self.expSearchType isEqualToString:@"LOCAL"]) {
+            expIdString = [[[self.localExpList objectAtIndex:index.row] objectForKey:@"id"] stringValue];
+        }
+        
+//        NSString *expIdString = [[[self.expList objectAtIndex:index.row] objectForKey:@"id"] stringValue];
         NSMutableArray *wishList = [NSMutableArray arrayWithArray:(NSArray *)[userDefaults objectForKey:@"wish_list"]];
         if ([wishList containsObject:expIdString]) {
             [wishList removeObject:expIdString];
@@ -278,7 +285,7 @@
     }
     cell.delegate = self;
     cell.wishListButton.tag = indexPath.row;
-    NSString *priceString = [Utility decimalwithFormat:@"0" floatV:[[[self.expList objectAtIndex:indexPath.row] objectForKey:@"price"] floatValue]];
+    NSString *priceString = [Utility decimalwithFormat:@"0" floatV:[exp[@"price"] floatValue]];
     cell.priceLabel.text = priceString;
     //???
     [dynamicPricingArray addObject:priceString];
@@ -429,10 +436,19 @@
         navController.hidesBottomBarWhenPushed = YES;
         TLDetailViewController *vc = (TLDetailViewController *) navController.topViewController;
         NSIndexPath *index=[_tableView indexPathForSelectedRow];
-        vc.experience_id_string = [[[self.expList objectAtIndex:index.row] objectForKey:@"id"] stringValue];
-        
+//        vc.experience_id_string = [[[self.expList objectAtIndex:index.row] objectForKey:@"id"] stringValue];
+        if ([self.expSearchType isEqualToString:@"PRIVATE"]) {
+            vc.experience_id_string = [[self.normalExpList objectAtIndex:index.row][@"id"] stringValue];
+            vc.expPrice = [Utility decimalwithFormat:@"0" floatV:[[[self.normalExpList objectAtIndex:index.row] objectForKey:@"price"] floatValue]];
+        } else if ([self.expSearchType isEqualToString:@"LOCAL"]) {
+            vc.experience_id_string = [[self.localExpList objectAtIndex:index.row][@"id"] stringValue];
+            vc.expPrice = [Utility decimalwithFormat:@"0" floatV:[[[self.localExpList objectAtIndex:index.row] objectForKey:@"price"] floatValue]];
+        } else {
+            vc.experience_id_string = [[self.itineraryExpList objectAtIndex:index.row][@"id"] stringValue];
+            vc.expPrice = [Utility decimalwithFormat:@"0" floatV:[[[self.itineraryExpList objectAtIndex:index.row] objectForKey:@"price"] floatValue]];
+        }
 //        vc.expPrice = [dynamicPricingArray objectAtIndex:index.row];
-        vc.expPrice = [Utility decimalwithFormat:@"0" floatV:[[[self.expList objectAtIndex:index.row] objectForKey:@"price"] floatValue]];
+//        vc.expPrice = [Utility decimalwithFormat:@"0" floatV:[[[self.expList objectAtIndex:index.row] objectForKey:@"price"] floatValue]];
     }
     
 }
