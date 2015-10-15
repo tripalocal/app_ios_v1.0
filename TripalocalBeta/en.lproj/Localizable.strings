@@ -112,6 +112,8 @@
 
 "exp_detail_per_person_for" = "for %@ hours";
 
+"local_exp_detail_per_person_for" = "%@ hour Public Tour";
+
 "send_verification_code" = "Send Verification Code";
 
 "verification_count_msg" = "Seconds Remaining: %@";

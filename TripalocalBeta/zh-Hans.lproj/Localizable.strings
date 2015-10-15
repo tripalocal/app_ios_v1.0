@@ -112,6 +112,8 @@
 
 "exp_detail_per_person_for" = "约 %@ 小时";
 
+"local_exp_detail_per_person_for" = "%@小时非私人团";
+
 "connection_failed" = "连接错误";
 
 "send_verification_code" = "发送验证码";

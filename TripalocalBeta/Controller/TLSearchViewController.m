@@ -18,6 +18,7 @@
 #import "Mixpanel.h"
 #import "JGProgressHUD.h"
 #import "MultidayTableViewCell.h"
+#import "LocalDetailViewController.h"
 
 @interface TLSearchViewController (){
     NSMutableArray *dynamicPricingArray;
@@ -304,7 +305,6 @@
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-//    return [self.expList count];
     if ([self.expSearchType isEqualToString:@"PRIVATE"]) {
         return [self.normalExpList count];
     } else if ([self.expSearchType isEqualToString:@"LOCAL"]) {
@@ -426,7 +426,13 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [self performSegueWithIdentifier:@"SearchResultSegue" sender:self];
+    if ([self.expSearchType isEqualToString:@"PRIVATE"]) {
+        [self performSegueWithIdentifier:@"SearchResultSegue" sender:self];
+    } else if ([self.expSearchType isEqualToString:@"LOCAL"]) {
+        [self performSegueWithIdentifier:@"LocalSearchResultSegue" sender:self];
+    } else {
+        NSLog(@"Not implemented");
+    }
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -436,21 +442,21 @@
         navController.hidesBottomBarWhenPushed = YES;
         TLDetailViewController *vc = (TLDetailViewController *) navController.topViewController;
         NSIndexPath *index=[_tableView indexPathForSelectedRow];
-//        vc.experience_id_string = [[[self.expList objectAtIndex:index.row] objectForKey:@"id"] stringValue];
-        if ([self.expSearchType isEqualToString:@"PRIVATE"]) {
-            vc.experience_id_string = [[self.normalExpList objectAtIndex:index.row][@"id"] stringValue];
-            vc.expPrice = [Utility decimalwithFormat:@"0" floatV:[[[self.normalExpList objectAtIndex:index.row] objectForKey:@"price"] floatValue]];
-        } else if ([self.expSearchType isEqualToString:@"LOCAL"]) {
-            vc.experience_id_string = [[self.localExpList objectAtIndex:index.row][@"id"] stringValue];
-            vc.expPrice = [Utility decimalwithFormat:@"0" floatV:[[[self.localExpList objectAtIndex:index.row] objectForKey:@"price"] floatValue]];
-        } else {
-            vc.experience_id_string = [[self.itineraryExpList objectAtIndex:index.row][@"id"] stringValue];
-            vc.expPrice = [Utility decimalwithFormat:@"0" floatV:[[[self.itineraryExpList objectAtIndex:index.row] objectForKey:@"price"] floatValue]];
-        }
-//        vc.expPrice = [dynamicPricingArray objectAtIndex:index.row];
-//        vc.expPrice = [Utility decimalwithFormat:@"0" floatV:[[[self.expList objectAtIndex:index.row] objectForKey:@"price"] floatValue]];
+
+        vc.experience_id_string = [[self.normalExpList objectAtIndex:index.row][@"id"] stringValue];
+        vc.expPrice = [Utility decimalwithFormat:@"0" floatV:[[[self.normalExpList objectAtIndex:index.row] objectForKey:@"price"] floatValue]];
+        
+    } else if ([segue.identifier isEqualToString:@"LocalSearchResultSegue"]) {
+        UINavigationController *navController = (UINavigationController *)segue.destinationViewController;
+        navController.hidesBottomBarWhenPushed = YES;
+        LocalDetailViewController *vc = (LocalDetailViewController *) navController.topViewController;
+        NSIndexPath *index=[_tableView indexPathForSelectedRow];
+        
+        vc.experience_id_string = [[self.localExpList objectAtIndex:index.row][@"id"] stringValue];
+        vc.expPrice = [Utility decimalwithFormat:@"0" floatV:[[[self.localExpList objectAtIndex:index.row] objectForKey:@"price"] floatValue]];
+
     }
-    
+
 }
 
 @end
