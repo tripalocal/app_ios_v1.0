@@ -400,7 +400,6 @@
 #if DEBUG
     NSLog(@"Message received: %@",m);
 #endif
-    
 }
 - (void)receiveMessage:(NSNotification *)note {
 
@@ -537,6 +536,8 @@
     application.applicationIconBadgeNumber = 0;
 }
 -(void)application:(UIApplication *)application didReceiveRemoteNotification:(nonnull NSDictionary *)userInfo{
+    NSLog(@"Remote Notification!");
+    
     [PFPush handlePush:userInfo];
     [UIApplication sharedApplication].applicationIconBadgeNumber =
     [UIApplication sharedApplication].applicationIconBadgeNumber+1;

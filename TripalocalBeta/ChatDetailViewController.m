@@ -17,6 +17,7 @@
 #import "DBManager.h"
 #import "URLConfig.h"
 #import "JGProgressHUD.h"
+#import <Parse/Parse.h>
 
 #define kOFFSET_FOR_KEYBOARD 215.0
 
@@ -440,7 +441,13 @@
     sortedMessage = [[NSMutableArray alloc]init];
     sortedArray = [allRelevantMessage sortedArrayUsingDescriptors:sortDescriptors];
     [sortedMessage addObjectsFromArray:sortedArray];
-
+    //Push notification
+    PFQuery *pushQuery = [PFInstallation query];
+    [pushQuery whereKey:@"deviceType" equalTo:@"ios"];
+    
+    // Send push notification to query
+    [PFPush sendPushMessageToQueryInBackground:pushQuery
+                                   withMessage:[NSString stringWithFormat:@"%@: %@", sender_id, messageStr]];
     [self.tableView reloadData];
     NSIndexPath* ip = [NSIndexPath indexPathForRow:[self.tableView numberOfRowsInSection:0] - 1 inSection:0];
     [self.tableView scrollToRowAtIndexPath:ip atScrollPosition:UITableViewScrollPositionTop animated:YES];
