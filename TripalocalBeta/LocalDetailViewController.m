@@ -22,6 +22,7 @@
 #import "Utility.h"
 #import "Mixpanel.h"
 #import <SecureNSUserDefaults/NSUserDefaults+SecureAdditions.h>
+#import "DetailDescTableViewController.h"
 
 @interface LocalDetailViewController ()
 {
@@ -231,8 +232,8 @@
     static NSString *cellIdentifier1=@"cell1";
     TLDetailTableViewCell1 *cell1=(TLDetailTableViewCell1 *) [tableView dequeueReusableCellWithIdentifier:cellIdentifier1];
     
-    static NSString *cellIdentifier2=@"cell2";
-    TLDetailTableViewCell2 *cell2=(TLDetailTableViewCell2 *) [tableView dequeueReusableCellWithIdentifier:cellIdentifier2];
+//    static NSString *cellIdentifier2=@"cell2";
+//    TLDetailTableViewCell2 *cell2=(TLDetailTableViewCell2 *) [tableView dequeueReusableCellWithIdentifier:cellIdentifier2];
     
     static NSString *cellIdentifier3=@"cell3";
     TLDetailTableViewCell3 *cell3=(TLDetailTableViewCell3 *) [tableView dequeueReusableCellWithIdentifier:cellIdentifier3];
@@ -410,7 +411,10 @@
         ReviewTableViewController *vc = [segue destinationViewController];
         vc.reviews = reviews;
     } else if ([segue.identifier isEqualToString:@"view_detail_description"]) {
-  
+        DetailDescTableViewController *vc = [segue destinationViewController];
+        vc.description_detail = description;
+        vc.tips = tips;
+        vc.highlights = highlights;
     }
     
 }

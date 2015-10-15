@@ -23,6 +23,8 @@
 		870BC00A1BCB4FCA00BB59F7 /* ButtonTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 870BC0081BCB4FCA00BB59F7 /* ButtonTableViewCell.m */; };
 		870BC00B1BCB4FCA00BB59F7 /* ButtonTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 870BC0091BCB4FCA00BB59F7 /* ButtonTableViewCell.xib */; };
 		870D13B51BCF2A2800D3BCEB /* LocalDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 870D13B41BCF2A2800D3BCEB /* LocalDetailViewController.m */; };
+		870D13BB1BCF680B00D3BCEB /* DetailDescTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 870D13BA1BCF680B00D3BCEB /* DetailDescTableViewController.m */; };
+		870D13C11BCF70A100D3BCEB /* DetailDescCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 870D13C01BCF70A100D3BCEB /* DetailDescCell.m */; };
 		870F22481B5B6A2100CD1AD2 /* URLConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 870F22471B5B6A2000CD1AD2 /* URLConfig.m */; };
 		8711965A1B4FF74300BA8672 /* NeedToLoginView.m in Sources */ = {isa = PBXBuildFile; fileRef = 871196591B4FF74300BA8672 /* NeedToLoginView.m */; };
 		8711A65B1B5A63EE00578BB2 /* PageContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8711A65A1B5A63EE00578BB2 /* PageContentViewController.m */; };
@@ -126,6 +128,10 @@
 		870BC0091BCB4FCA00BB59F7 /* ButtonTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ButtonTableViewCell.xib; path = ../ButtonTableViewCell.xib; sourceTree = "<group>"; };
 		870D13B31BCF2A2800D3BCEB /* LocalDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalDetailViewController.h; sourceTree = "<group>"; };
 		870D13B41BCF2A2800D3BCEB /* LocalDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalDetailViewController.m; sourceTree = "<group>"; };
+		870D13B91BCF680B00D3BCEB /* DetailDescTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailDescTableViewController.h; sourceTree = "<group>"; };
+		870D13BA1BCF680B00D3BCEB /* DetailDescTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailDescTableViewController.m; sourceTree = "<group>"; };
+		870D13BF1BCF70A100D3BCEB /* DetailDescCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailDescCell.h; sourceTree = "<group>"; };
+		870D13C01BCF70A100D3BCEB /* DetailDescCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailDescCell.m; sourceTree = "<group>"; };
 		870F22461B5B6A2000CD1AD2 /* URLConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = URLConfig.h; sourceTree = "<group>"; };
 		870F22471B5B6A2000CD1AD2 /* URLConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = URLConfig.m; sourceTree = "<group>"; };
 		871196581B4FF74300BA8672 /* NeedToLoginView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NeedToLoginView.h; sourceTree = "<group>"; };
@@ -351,6 +357,8 @@
 		5649BD311B3FC32800465D6C /* Custom Cells */ = {
 			isa = PBXGroup;
 			children = (
+				870D13BF1BCF70A100D3BCEB /* DetailDescCell.h */,
+				870D13C01BCF70A100D3BCEB /* DetailDescCell.m */,
 				87AC2B191BCE1C2300672288 /* MultidayTableViewCell.h */,
 				87AC2B1A1BCE1C2300672288 /* MultidayTableViewCell.m */,
 				87046A871B6606C40084E2E3 /* TLBannerTableViewCell.h */,
@@ -592,6 +600,8 @@
 		8EC86D511B021DDC00B0A655 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				870D13B91BCF680B00D3BCEB /* DetailDescTableViewController.h */,
+				870D13BA1BCF680B00D3BCEB /* DetailDescTableViewController.m */,
 				870D13B31BCF2A2800D3BCEB /* LocalDetailViewController.h */,
 				870D13B41BCF2A2800D3BCEB /* LocalDetailViewController.m */,
 				873C8E6C1B61D1F300CB1D9E /* AlipayFailedViewController.h */,
@@ -868,6 +878,7 @@
 				87FC2D251B4797CA0017F30E /* PaymentOptionViewController.m in Sources */,
 				8EB982501B2280D800ADE430 /* Spinner.m in Sources */,
 				873C8E6E1B61D1F300CB1D9E /* AlipayFailedViewController.m in Sources */,
+				870D13C11BCF70A100D3BCEB /* DetailDescCell.m in Sources */,
 				5649BD3D1B3FD56E00465D6C /* TLDetailTableViewCell2.m in Sources */,
 				568AE8301B52087500D48DBC /* InstantBookingTableViewCell.m in Sources */,
 				87E75F721B55EC4C00E53741 /* SmsVerificationViewController.m in Sources */,
@@ -883,6 +894,7 @@
 				8EB570E51B01CF2B0026D419 /* main.m in Sources */,
 				87F356401B439D3B00949F43 /* Constant.m in Sources */,
 				87FC2DB51B480ABF0017F30E /* DataVerifier.m in Sources */,
+				870D13BB1BCF680B00D3BCEB /* DetailDescTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
