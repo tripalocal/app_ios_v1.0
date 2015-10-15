@@ -13,8 +13,6 @@
 @property (strong, nonatomic) NSMutableArray *cellHeights;
 @property NSString *experience_id_string;
 @property UIImage *coverImage;
-@property BOOL isExpReadMoreOpen;
-@property BOOL isHostReadMoreOpen;
 @property NSString *expPrice;
 
 @end

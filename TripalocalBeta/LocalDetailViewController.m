@@ -36,6 +36,8 @@
     NSString *PREreviewerImageURL;
     NSString *reviewerImageURL;
     NSString *reviewComment;
+    NSString *highlights;
+    NSString *tips;
     NSString *dollarsign;
     NSString *currency;
     NSString *city;
@@ -96,7 +98,7 @@
     reviewComment = @"";
     reviewerImageURL = @"";
     
-    self.cellHeights = [@[@320, @240, @320, @385, @164, @320] mutableCopy];
+    self.cellHeights = [@[@320, @240, @385, @164, @320] mutableCopy];
     _myTable.delegate = self;
     _myTable.dataSource = self;
     
@@ -141,6 +143,8 @@
                 currency = expData[@"experience_currency"];
                 dollarsign = expData[@"experience_dollarsign"];
                 city = expData[@"experience_city"];
+                highlights = expData[@"highlights"];
+                tips = expData[@"tips"];
                 description = expData[@"description"];
 
                 reviews = expData[@"experience_reviews"];
@@ -281,38 +285,8 @@
             cell1.parentView = self.myTable;
             cell1.selectionStyle = UITableViewCellSelectionStyleNone;
             cell1.expDescriptionLabel.text = description;
-            if (self.isExpReadMoreOpen) {
-                [cell1.readMoreButton setTitle:NSLocalizedString(@"read_less", nil) forState:UIControlStateNormal];
-                cell1.expDescriptionLabel.lineBreakMode = NSLineBreakByWordWrapping;
-                cell1.expDescriptionLabel.numberOfLines = 0;
-                [cell1.expDescriptionLabel sizeToFit];
-            } else {
-                [cell1.readMoreButton setTitle:NSLocalizedString(@"read_more", nil) forState:UIControlStateNormal];
-                cell1.expDescriptionLabel.lineBreakMode = NSLineBreakByTruncatingTail;
-                cell1.expDescriptionLabel.numberOfLines = 5;
-            }
-            
             return cell1;
         case 2:
-            if(!cell2)
-            {
-                cell2=[[TLDetailTableViewCell2 alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier2];
-            }
-            cell2.parentView = self.myTable;
-            cell2.selectionStyle = UITableViewCellSelectionStyleNone;
-            if (self.isHostReadMoreOpen) {
-                [cell2.readMoreButton setTitle:NSLocalizedString(@"read_less", nil) forState:UIControlStateNormal];
-                cell2.hostBioLabel.lineBreakMode = NSLineBreakByWordWrapping;
-                cell2.hostBioLabel.numberOfLines = 0;
-                [cell2.hostBioLabel sizeToFit];
-            } else {
-                [cell2.readMoreButton setTitle:NSLocalizedString(@"read_more", nil) forState:UIControlStateNormal];
-                cell2.hostBioLabel.lineBreakMode = NSLineBreakByTruncatingTail;
-                cell2.hostBioLabel.numberOfLines = 5;
-            }
-            
-            return cell2;
-        case 3:
         {
             if(!cell3)
             {
@@ -334,7 +308,7 @@
             }
             return cell3;
         }
-        case 4:
+        case 3:
         {
             if(!cell4) {
                 cell4=[[TLDetailTableViewCell4 alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier4];
@@ -357,7 +331,7 @@
             
             return cell4;
         }
-        case 5:
+        case 4: {
             if(!cell5)
             {
                 cell5=[[TLDetailTableViewCell5 alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier5];
@@ -368,19 +342,17 @@
             cell5.transportLabel.text = [cell5.transportLabel.text stringByAppendingFormat:@": %@", transportString];
             
             return cell5;
-            
+        }
         default:
-            break;
+            return cell;
     }
     
-    
-    return cell;
 }
 
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 6;
+    return 5;
 }
 
 
@@ -411,15 +383,13 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     switch (indexPath.row){
-        case 3:
+        case 2:
             if ([nReviews intValue] <= 0) {
                 return 0.0;
             }
         default:
             return [self.cellHeights[indexPath.row] floatValue];
     }
-    
-    
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
@@ -439,6 +409,8 @@
     } else if ([segue.identifier isEqualToString:@"view_all_reviews"]) {
         ReviewTableViewController *vc = [segue destinationViewController];
         vc.reviews = reviews;
+    } else if ([segue.identifier isEqualToString:@"view_detail_description"]) {
+  
     }
     
 }
