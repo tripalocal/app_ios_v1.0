@@ -82,6 +82,7 @@
     
     [Parse setApplicationId:@"4cpQPEXEfrw12IJ8e4W8rz9ZpneQFVMUBsdzoU2s"
                   clientKey:@"mHQFpD0EeUxvVVmRokTuH5SUfXg7QJAE9whXylRn"];
+    
     return YES;
 }
 - (void)application:(UIApplication*)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData*)deviceToken

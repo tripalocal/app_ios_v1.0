@@ -447,7 +447,7 @@
     
     // Send push notification to query
     [PFPush sendPushMessageToQueryInBackground:pushQuery
-                                   withMessage:[NSString stringWithFormat:@"%@: %@", sender_id, messageStr]];
+                                   withMessage:[NSString stringWithFormat:@"%@: %@", sender_id, messageStr]] ;
     [self.tableView reloadData];
     NSIndexPath* ip = [NSIndexPath indexPathForRow:[self.tableView numberOfRowsInSection:0] - 1 inSection:0];
     [self.tableView scrollToRowAtIndexPath:ip atScrollPosition:UITableViewScrollPositionTop animated:YES];

@@ -1577,8 +1577,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				BUNDLE_ID = Bentuke;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: 薛 嵩 (7JRGGT584F)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: 薛 嵩 (7JRGGT584F)";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1656,7 +1656,7 @@
 					"\"UIKit\"",
 					"-lxml2",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = TL.Tripalocal.msg;
+				PRODUCT_BUNDLE_IDENTIFIER = TL.Tripalocal;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "TripalocalBeta/TripalocalBeta-Bridging-Header.h";
@@ -1732,8 +1732,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				BUNDLE_ID = Bentuke;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: 薛 嵩 (7JRGGT584F)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: 薛 嵩 (7JRGGT584F)";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1811,7 +1811,7 @@
 					"\"UIKit\"",
 					"-lxml2",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = TL.Tripalocal.msg;
+				PRODUCT_BUNDLE_IDENTIFIER = TL.Tripalocal;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "TripalocalBeta/TripalocalBeta-Bridging-Header.h";
@@ -1926,8 +1926,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				BUNDLE_ID = Tripalocal;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: 薛 嵩 (7JRGGT584F)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: 薛 嵩 (7JRGGT584F)";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2004,7 +2004,7 @@
 					"\"UIKit\"",
 					"-lxml2",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = TL.Tripalocal.msg;
+				PRODUCT_BUNDLE_IDENTIFIER = TL.Tripalocal;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "TripalocalBeta/TripalocalBeta-Bridging-Header.h";
@@ -2021,8 +2021,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				BUNDLE_ID = Tripalocal;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: 薛 嵩 (7JRGGT584F)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: 薛 嵩 (7JRGGT584F)";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2099,7 +2099,7 @@
 					"\"UIKit\"",
 					"-lxml2",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = TL.Tripalocal.msg;
+				PRODUCT_BUNDLE_IDENTIFIER = TL.Tripalocal;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "TripalocalBeta/TripalocalBeta-Bridging-Header.h";
