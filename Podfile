@@ -10,7 +10,6 @@ target 'TripalocalBeta' do
     pod 'JGProgressHUD'
     pod 'AKPickerView'
     pod 'SecureNSUserDefaults', '~> 1.0.0'
-
     pod 'HPGrowingTextView', '~> 1.1'
     pod 'TPKeyboardAvoiding', '~> 1.2'
     pod 'IQKeyboardManager', '~> 3.3'

@@ -12,7 +12,6 @@
 #import "SMChatDelegate.h"
 #import "SMMessageDelegate.h"
 
-
 @class ChatOverviewController;
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>{

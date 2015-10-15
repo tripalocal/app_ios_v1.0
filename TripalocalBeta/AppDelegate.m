@@ -16,6 +16,8 @@
 #import "Utility.h"
 #import "IQKeyboardManager.h"
 #import "Mixpanel.h"
+#import <Parse/Parse.h>
+
 
 #define MIXPANEL_TOKEN @"f94e94414c9de0cc38874706d853c400"
 #define MIXPANEL_TOKEN_DEV @"c2510512c6cb4c34b4b32bd32a0cf866"
@@ -37,6 +39,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [[NSUserDefaults standardUserDefaults] setSecret:@"your_secret_goes_here"];
+    
     
     UIPageControl *pageControl = [UIPageControl appearance];
     pageControl.pageIndicatorTintColor = [UIColor lightGrayColor];
@@ -76,15 +79,23 @@
         // Set icon badge number to zero
         application.applicationIconBadgeNumber = 0;
     }
-
+    
+    [Parse setApplicationId:@"4cpQPEXEfrw12IJ8e4W8rz9ZpneQFVMUBsdzoU2s"
+                  clientKey:@"mHQFpD0EeUxvVVmRokTuH5SUfXg7QJAE9whXylRn"];
     return YES;
 }
 - (void)application:(UIApplication*)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData*)deviceToken
 {
     NSLog(@"My token is: %@", deviceToken);
+    // Store the deviceToken in the current installation and save it to Parse.
+    PFInstallation *currentInstallation = [PFInstallation currentInstallation];
+    [currentInstallation setDeviceTokenFromData:deviceToken];
+    currentInstallation.channels = @[ @"global" ];
+    [currentInstallation saveInBackground];
+    
 }
 
-- (void)application:(UIApplication*)application didFailToRegisterForRemoteNotificationsWithError:(NSError*)error
+- (void)application:(UIApplication*)application didFailToRegisterForRemoteNotificationsWithError:(NSError*)error:(NSDictionary *)userInfo
 {
     NSLog(@"Failed to get token, error: %@", error);
 }
@@ -526,7 +537,7 @@
     application.applicationIconBadgeNumber = 0;
 }
 -(void)application:(UIApplication *)application didReceiveRemoteNotification:(nonnull NSDictionary *)userInfo{
-    
+    [PFPush handlePush:userInfo];
     [UIApplication sharedApplication].applicationIconBadgeNumber =
     [UIApplication sharedApplication].applicationIconBadgeNumber+1;
 }
