@@ -19,7 +19,7 @@ static NSString * const cellIdentifier0 = @"detailCell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    self.tableView.contentInset = UIEdgeInsetsMake(64,0,0,0);
 }
 
 
@@ -34,9 +34,10 @@ static NSString * const cellIdentifier0 = @"detailCell";
 }
 
 - (void)setUpCell:(DetailDescCell *)cell atIndexPath:(NSIndexPath *)indexPath {
+    cell.hidden = NO;
     switch (indexPath.row) {
         case 0: {
-            cell.titleLabel.text = @"Description";
+            cell.titleLabel.text = @"Overview";
             cell.contentLabel.text = self.description_detail;
             break;
         }
@@ -46,20 +47,23 @@ static NSString * const cellIdentifier0 = @"detailCell";
             break;
         }
         case 2: {
-            cell.titleLabel.text = @"Tips";
-            cell.contentLabel.text = self.tips;
+            cell.titleLabel.text = @"Service";
+            cell.contentLabel.text = self.service;
             break;
         }
         default: {
             NSLog(@"Wrong number of cells.");
         }
     }
+    
+    if ([cell.contentLabel.text length] == 0) {
+        cell.hidden = YES;
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     DetailDescCell *cell = [self.tableView dequeueReusableCellWithIdentifier:cellIdentifier0 forIndexPath:indexPath];
-    
     [self setUpCell:cell atIndexPath:indexPath];
     
     return cell;
@@ -79,6 +83,9 @@ static NSString * const cellIdentifier0 = @"detailCell";
 }
 
 - (CGFloat)calculateHeightForConfiguredSizingCell:(UITableViewCell *)sizingCell {
+    if (sizingCell.hidden == YES) {
+        return 1.f;
+    }
     [sizingCell setNeedsLayout];
     [sizingCell layoutIfNeeded];
     

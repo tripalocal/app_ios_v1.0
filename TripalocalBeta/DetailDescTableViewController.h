@@ -11,5 +11,5 @@
 @interface DetailDescTableViewController : UITableViewController
 @property (weak, nonatomic) NSString *description_detail;
 @property (weak, nonatomic) NSString *highlights;
-@property (weak, nonatomic) NSString *tips;
+@property (weak, nonatomic) NSString *service;
 @end

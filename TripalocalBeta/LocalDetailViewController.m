@@ -39,6 +39,7 @@
     NSString *reviewComment;
     NSString *highlights;
     NSString *tips;
+    NSString *service;
     NSString *dollarsign;
     NSString *currency;
     NSString *city;
@@ -146,6 +147,7 @@
                 city = expData[@"experience_city"];
                 highlights = expData[@"highlights"];
                 tips = expData[@"tips"];
+                service = expData[@"service"];
                 description = expData[@"description"];
 
                 reviews = expData[@"experience_reviews"];
@@ -413,7 +415,7 @@
     } else if ([segue.identifier isEqualToString:@"view_detail_description"]) {
         DetailDescTableViewController *vc = [segue destinationViewController];
         vc.description_detail = description;
-        vc.tips = tips;
+        vc.service = service;
         vc.highlights = highlights;
     }
     
