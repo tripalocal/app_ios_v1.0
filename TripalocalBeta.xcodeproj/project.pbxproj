@@ -41,6 +41,8 @@
 		87AC2B161BCE16E800672288 /* SearchViewCell2.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87AC2B151BCE16E800672288 /* SearchViewCell2.xib */; };
 		87AC2B1C1BCE1C2300672288 /* MultidayTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 87AC2B1A1BCE1C2300672288 /* MultidayTableViewCell.m */; };
 		87AC2B1D1BCE1C2300672288 /* MultidayTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87AC2B1B1BCE1C2300672288 /* MultidayTableViewCell.xib */; };
+		87C638E71BD07E3B0002A162 /* TitleDescCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C638E61BD07E3B0002A162 /* TitleDescCell.m */; };
+		87C638EA1BD086640002A162 /* SectionDescViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C638E91BD086640002A162 /* SectionDescViewController.m */; };
 		87E74B631B54BD6C00C41CBF /* NeedToLoginView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87E74B651B54BD6C00C41CBF /* NeedToLoginView.xib */; };
 		87E74B691B54C2AF00C41CBF /* SearchViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87E74B6B1B54C2AF00C41CBF /* SearchViewCell.xib */; };
 		87E74B6E1B54E73B00C41CBF /* MyTripTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87E74B701B54E73B00C41CBF /* MyTripTableViewCell.xib */; };
@@ -162,6 +164,10 @@
 		87AC2B191BCE1C2300672288 /* MultidayTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultidayTableViewCell.h; sourceTree = "<group>"; };
 		87AC2B1A1BCE1C2300672288 /* MultidayTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultidayTableViewCell.m; sourceTree = "<group>"; };
 		87AC2B1B1BCE1C2300672288 /* MultidayTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MultidayTableViewCell.xib; sourceTree = "<group>"; };
+		87C638E51BD07E3B0002A162 /* TitleDescCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TitleDescCell.h; sourceTree = "<group>"; };
+		87C638E61BD07E3B0002A162 /* TitleDescCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TitleDescCell.m; sourceTree = "<group>"; };
+		87C638E81BD086640002A162 /* SectionDescViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SectionDescViewController.h; sourceTree = "<group>"; };
+		87C638E91BD086640002A162 /* SectionDescViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SectionDescViewController.m; sourceTree = "<group>"; };
 		87E311DB1B5E1DE500069826 /* libPods-TripalocalBeta-JGProgressHUD.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-TripalocalBeta-JGProgressHUD.a"; path = "Pods/../build/Debug-iphoneos/libPods-TripalocalBeta-JGProgressHUD.a"; sourceTree = "<group>"; };
 		87E74B641B54BD6C00C41CBF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/NeedToLoginView.xib; sourceTree = "<group>"; };
 		87E74B681B54BD7200C41CBF /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/NeedToLoginView.strings"; sourceTree = "<group>"; };
@@ -357,6 +363,8 @@
 		5649BD311B3FC32800465D6C /* Custom Cells */ = {
 			isa = PBXGroup;
 			children = (
+				87C638E51BD07E3B0002A162 /* TitleDescCell.h */,
+				87C638E61BD07E3B0002A162 /* TitleDescCell.m */,
 				870D13BF1BCF70A100D3BCEB /* DetailDescCell.h */,
 				870D13C01BCF70A100D3BCEB /* DetailDescCell.m */,
 				87AC2B191BCE1C2300672288 /* MultidayTableViewCell.h */,
@@ -600,6 +608,8 @@
 		8EC86D511B021DDC00B0A655 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				87C638E81BD086640002A162 /* SectionDescViewController.h */,
+				87C638E91BD086640002A162 /* SectionDescViewController.m */,
 				870D13B91BCF680B00D3BCEB /* DetailDescTableViewController.h */,
 				870D13BA1BCF680B00D3BCEB /* DetailDescTableViewController.m */,
 				870D13B31BCF2A2800D3BCEB /* LocalDetailViewController.h */,
@@ -849,6 +859,7 @@
 				8729E13C1B4A6335004C3065 /* MyTripTableViewCell.m in Sources */,
 				87FC2DB41B480ABF0017F30E /* DataSigner.m in Sources */,
 				87EF8C6D1B5C805500292225 /* Utility.m in Sources */,
+				87C638EA1BD086640002A162 /* SectionDescViewController.m in Sources */,
 				87FC2DB31B480ABF0017F30E /* base64.m in Sources */,
 				87F356431B439D3B00949F43 /* SignUpViewController.m in Sources */,
 				8711A65E1B5A69DA00578BB2 /* RootViewController.m in Sources */,
@@ -863,6 +874,7 @@
 				87F356411B439D3B00949F43 /* LoginViewController.m in Sources */,
 				BC8C39021BAFD57500AB4060 /* TLMultiDaySearchViewController.m in Sources */,
 				8729E1321B4A0374004C3065 /* MyTripViewController.m in Sources */,
+				87C638E71BD07E3B0002A162 /* TitleDescCell.m in Sources */,
 				87F6F7661B4B948100A3A6EB /* MyTripTableViewController.m in Sources */,
 				87F356561B43C8C300949F43 /* UnloginViewController.m in Sources */,
 				87FC2D4C1B4803190017F30E /* Order.m in Sources */,
