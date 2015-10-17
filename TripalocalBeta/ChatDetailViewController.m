@@ -446,8 +446,10 @@
     [pushQuery whereKey:@"deviceType" equalTo:@"ios"];
     
     // Send push notification to query
-    [PFPush sendPushMessageToQueryInBackground:pushQuery
-                                   withMessage:[NSString stringWithFormat:@"%@: %@", sender_id, messageStr]] ;
+    PFPush *pushMessage = [[PFPush alloc] init];
+    [pushMessage setChannel:[NSString stringWithFormat:@"iOS-%@", chatWithUser]];
+    [pushMessage setMessage: [NSString stringWithFormat:@"%@: %@", sender_id, messageStr]];
+    [pushMessage sendPushInBackground];
     [self.tableView reloadData];
     NSIndexPath* ip = [NSIndexPath indexPathForRow:[self.tableView numberOfRowsInSection:0] - 1 inSection:0];
     [self.tableView scrollToRowAtIndexPath:ip atScrollPosition:UITableViewScrollPositionTop animated:YES];

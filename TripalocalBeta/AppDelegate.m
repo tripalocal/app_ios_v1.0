@@ -91,7 +91,8 @@
     // Store the deviceToken in the current installation and save it to Parse.
     PFInstallation *currentInstallation = [PFInstallation currentInstallation];
     [currentInstallation setDeviceTokenFromData:deviceToken];
-    currentInstallation.channels = @[ @"global" ];
+    [currentInstallation addUniqueObject:[NSString stringWithFormat:@"iOS-%@",[[NSUserDefaults standardUserDefaults] objectForKey:@"user_id"]] forKey:@"channels"];
+    NSLog(@"Current app icon: %ld", (long)currentInstallation.badge);
     [currentInstallation saveInBackground];
     
 }
@@ -379,23 +380,6 @@
     if (![context save:&error]) {
         NSLog(@"Can't Save! %@ %@", error, [error localizedDescription]);
     }
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(receiveMessage:)
-                                                 name:@"reload"
-                                               object:nil];
-
-    UILocalNotification* localNotification = [[UILocalNotification alloc] init];
-    localNotification.fireDate = [NSDate date];
-    localNotification.alertBody = [m objectForKey:@"msg"];
-    localNotification.alertAction = @"Show me the message";
-    localNotification.timeZone = [NSTimeZone defaultTimeZone];
-    localNotification.applicationIconBadgeNumber = [[UIApplication sharedApplication] applicationIconBadgeNumber] + 1;
-    
-    [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
-    
-    // Request to reload table view data
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadData" object:self];
-
 //load message in chat detail view
     [_messageDelegate newMessageReceived:m];
 #if DEBUG
