@@ -11,6 +11,7 @@
 #import "XMPP.h"
 #import "SMChatDelegate.h"
 #import "SMMessageDelegate.h"
+#import <Parse/Parse.h>
 
 @class ChatOverviewController;
 
@@ -29,6 +30,7 @@
 @property (strong, nonatomic) UIWindow *window;
 @property (nonatomic, retain) IBOutlet ChatOverviewController *viewController;
 @property (nonatomic, readonly) XMPPStream *xmppStream;
+@property (nonatomic, readonly) PFInstallation *currentInstallation;
 @property (nonatomic, assign) id _chatDelegate;
 @property (nonatomic, assign) id _messageDelegate;
 @property (nonatomic, assign) BOOL isRegistering;

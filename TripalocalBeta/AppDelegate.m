@@ -16,7 +16,6 @@
 #import "Utility.h"
 #import "IQKeyboardManager.h"
 #import "Mixpanel.h"
-#import <Parse/Parse.h>
 
 
 #define MIXPANEL_TOKEN @"f94e94414c9de0cc38874706d853c400"
@@ -31,7 +30,7 @@
 @end
 
 @implementation AppDelegate
-@synthesize xmppStream, viewController, _chatDelegate, _messageDelegate, isRegistering;
+@synthesize xmppStream, viewController, _chatDelegate, _messageDelegate, isRegistering, currentInstallation;
 @synthesize managedObjectContext = _managedObjectContext;
 @synthesize managedObjectModel = _managedObjectModel;
 @synthesize persistentStoreCoordinator = _persistentStoreCoordinator;
@@ -74,12 +73,6 @@
     [[IQKeyboardManager sharedManager] setEnableAutoToolbar :NO];
     
     // Handle launching from a notification
-    UILocalNotification *locationNotification = [launchOptions objectForKey:UIApplicationLaunchOptionsLocalNotificationKey];
-    if (locationNotification) {
-        // Set icon badge number to zero
-        application.applicationIconBadgeNumber = 0;
-    }
-    
     [Parse setApplicationId:@"4cpQPEXEfrw12IJ8e4W8rz9ZpneQFVMUBsdzoU2s"
                   clientKey:@"mHQFpD0EeUxvVVmRokTuH5SUfXg7QJAE9whXylRn"];
     
@@ -89,10 +82,11 @@
 {
     NSLog(@"My token is: %@", deviceToken);
     // Store the deviceToken in the current installation and save it to Parse.
-    PFInstallation *currentInstallation = [PFInstallation currentInstallation];
+    currentInstallation = [PFInstallation currentInstallation];
     [currentInstallation setDeviceTokenFromData:deviceToken];
     NSString *defaultChannel = @"global";
-    NSArray *channels = [[NSArray alloc] init];
+    NSMutableArray *channels = [[NSMutableArray alloc] init];
+    [channels addObject:defaultChannel];
     [currentInstallation setChannels:channels];
     [currentInstallation addUniqueObject:[NSString stringWithFormat:@"iOS-%@",[[NSUserDefaults standardUserDefaults] objectForKey:@"user_id"]] forKey:@"channels"];
     NSLog(@"Current app icon: %ld", (long)currentInstallation.badge);
@@ -118,11 +112,16 @@
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+    //[currentInstallation setBadge:0];
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
     [self connect];
+    if (currentInstallation.badge != 0) {
+        currentInstallation.badge = 0;
+        [currentInstallation saveEventually];
+    }
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {

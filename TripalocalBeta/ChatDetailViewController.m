@@ -443,12 +443,13 @@
     [sortedMessage addObjectsFromArray:sortedArray];
     //Push notification
     PFQuery *pushQuery = [PFInstallation query];
-    [pushQuery whereKey:@"deviceType" equalTo:@"ios"];
+    [pushQuery whereKey:@"channels" equalTo:[NSString stringWithFormat:@"iOS-%@", chatWithUser]];
     
     // Send push notification to query
     PFPush *pushMessage = [[PFPush alloc] init];
-    [pushMessage setChannel:[NSString stringWithFormat:@"iOS-%@", chatWithUser]];
-    [pushMessage setMessage: [NSString stringWithFormat:@"%@: %@", sender_id, messageStr]];
+    [pushMessage setQuery:pushQuery];
+    NSDictionary *data = [NSDictionary dictionaryWithObjectsAndKeys: [NSString stringWithFormat:@"%@: %@", sender_id, messageStr],@"alert",@"Increment", @"badge", nil];
+    [pushMessage setData:data];
     [pushMessage sendPushInBackground];
     [self.tableView reloadData];
     NSIndexPath* ip = [NSIndexPath indexPathForRow:[self.tableView numberOfRowsInSection:0] - 1 inSection:0];
