@@ -91,6 +91,9 @@
     // Store the deviceToken in the current installation and save it to Parse.
     PFInstallation *currentInstallation = [PFInstallation currentInstallation];
     [currentInstallation setDeviceTokenFromData:deviceToken];
+    NSString *defaultChannel = @"global";
+    NSArray *channels = [[NSArray alloc] init];
+    [currentInstallation setChannels:channels];
     [currentInstallation addUniqueObject:[NSString stringWithFormat:@"iOS-%@",[[NSUserDefaults standardUserDefaults] objectForKey:@"user_id"]] forKey:@"channels"];
     NSLog(@"Current app icon: %ld", (long)currentInstallation.badge);
     [currentInstallation saveInBackground];
