@@ -39,6 +39,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithRed:255.0 green:255.0 blue:255.0 alpha:1.0]];
     NSLog(@"View loading.");
     HUD = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleDark];
     HUD.HUDView.layer.shadowColor = [UIColor blackColor].CGColor;
