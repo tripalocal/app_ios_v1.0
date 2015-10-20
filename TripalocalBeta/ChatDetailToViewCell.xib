@@ -16,10 +16,10 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0cq-pT-lFM">
-                        <rect key="frame" x="14" y="8" width="264" height="101"/>
+                        <rect key="frame" x="23" y="8" width="255" height="101"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Messages" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y1B-jV-60i">
-                                <rect key="frame" x="20" y="20" width="204" height="20.5"/>
+                                <rect key="frame" x="20" y="15" width="195" height="40"/>
                                 <animations/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="iZ3-De-aRE"/>
@@ -34,7 +34,7 @@
                                 </variation>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XQK-Bd-sg1">
-                                <rect key="frame" x="20" y="61" width="30" height="16"/>
+                                <rect key="frame" x="20" y="70" width="30" height="16"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -45,14 +45,17 @@
                         <color key="backgroundColor" red="0.72156862745098038" green="0.90196078431372551" blue="0.89803921568627454" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="XQK-Bd-sg1" firstAttribute="top" secondItem="Y1B-jV-60i" secondAttribute="bottom" constant="20" id="21L-w1-xUt"/>
-                            <constraint firstAttribute="bottom" secondItem="XQK-Bd-sg1" secondAttribute="bottom" constant="24" id="G7U-yM-jUa"/>
+                            <constraint firstItem="XQK-Bd-sg1" firstAttribute="leading" secondItem="Y1B-jV-60i" secondAttribute="leading" id="FD6-s4-M5Y"/>
+                            <constraint firstAttribute="bottom" secondItem="XQK-Bd-sg1" secondAttribute="bottom" constant="15" id="G7U-yM-jUa"/>
                             <constraint firstItem="Y1B-jV-60i" firstAttribute="leading" secondItem="0cq-pT-lFM" secondAttribute="leading" constant="20" id="WcF-VE-IUL"/>
-                            <constraint firstItem="Y1B-jV-60i" firstAttribute="top" secondItem="0cq-pT-lFM" secondAttribute="top" constant="20" id="cgy-6N-OHj"/>
+                            <constraint firstItem="Y1B-jV-60i" firstAttribute="top" secondItem="0cq-pT-lFM" secondAttribute="top" constant="15" id="cgy-6N-OHj"/>
+                            <constraint firstItem="XQK-Bd-sg1" firstAttribute="top" secondItem="Y1B-jV-60i" secondAttribute="bottom" constant="15" id="dRt-wZ-BCw"/>
                             <constraint firstItem="XQK-Bd-sg1" firstAttribute="top" secondItem="Y1B-jV-60i" secondAttribute="bottom" constant="20" id="iu6-pl-S58"/>
                             <constraint firstAttribute="trailing" secondItem="Y1B-jV-60i" secondAttribute="trailing" constant="40" id="l9F-Xj-KLF"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
+                                <exclude reference="21L-w1-xUt"/>
                                 <exclude reference="iu6-pl-S58"/>
                             </mask>
                         </variation>
@@ -71,11 +74,16 @@
                     <constraint firstItem="0cq-pT-lFM" firstAttribute="top" secondItem="PoG-pN-NtG" secondAttribute="topMargin" id="GnT-pm-u9K"/>
                     <constraint firstItem="LG8-Uv-28e" firstAttribute="leading" secondItem="XQK-Bd-sg1" secondAttribute="trailing" constant="193" id="KHv-Vj-nZ0"/>
                     <constraint firstAttribute="trailingMargin" secondItem="LG8-Uv-28e" secondAttribute="trailing" constant="10" id="Kss-Iv-o7d"/>
-                    <constraint firstItem="0cq-pT-lFM" firstAttribute="leading" secondItem="PoG-pN-NtG" secondAttribute="leadingMargin" constant="6" id="kRM-0q-1Of"/>
+                    <constraint firstItem="0cq-pT-lFM" firstAttribute="leading" secondItem="PoG-pN-NtG" secondAttribute="leadingMargin" constant="15" id="kRM-0q-1Of"/>
                     <constraint firstAttribute="bottomMargin" secondItem="0cq-pT-lFM" secondAttribute="bottom" constant="12.5" id="lmz-oq-j60"/>
                     <constraint firstAttribute="bottomMargin" secondItem="LG8-Uv-28e" secondAttribute="bottom" constant="10" id="md7-Ev-qiT"/>
                     <constraint firstAttribute="trailingMargin" secondItem="0cq-pT-lFM" secondAttribute="trailing" constant="34" id="sf9-e3-LIP"/>
                 </constraints>
+                <variation key="default">
+                    <mask key="constraints">
+                        <exclude reference="KHv-Vj-nZ0"/>
+                    </mask>
+                </variation>
             </tableViewCellContentView>
             <animations/>
             <color key="backgroundColor" red="0.94509803921568625" green="0.94509803921568625" blue="0.94509803921568625" alpha="1" colorSpace="calibratedRGB"/>

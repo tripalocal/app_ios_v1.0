@@ -196,10 +196,6 @@
         cell.userName.text = [nameList objectAtIndex:indexPath.row];
         cell.messageContent.text = [messageList objectAtIndex:indexPath.row];
         cell.messageTime.text = [timeList objectAtIndex:indexPath.row];
-        UIView *bottomLineView = [[UIView alloc] initWithFrame:CGRectMake(15.0, cell.bounds.size.height-20.0, self.view.bounds.size.width - 30.0, 1)];
-        bottomLineView.backgroundColor = [UIColor colorWithRed:204.0f/255.0f green:204.0f/255.0f blue:204.0f/255.0f alpha:1.0];
-        [cell.contentView addSubview:bottomLineView];
-
     }
     else{
         cell.userImage.image = nil;

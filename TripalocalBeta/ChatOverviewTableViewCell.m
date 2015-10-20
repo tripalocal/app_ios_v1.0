@@ -16,7 +16,9 @@
 
 - (void)awakeFromNib {
     // Initialization code
-    
+    UIView *bottomLineView = [[UIView alloc] initWithFrame:CGRectMake(15.0, self.frame.size.height-20.0, self.frame.size.width+20.0, 1)];
+    bottomLineView.backgroundColor = [UIColor colorWithRed:204.0f/255.0f green:204.0f/255.0f blue:204.0f/255.0f alpha:1.0];
+    [self addSubview:bottomLineView];
     //set the apprearence of userImage
     CALayer *bottomBorder = [CALayer layer];
     bottomBorder.frame = CGRectMake(0, 0, self.backgroundView.frame.size.width, 1.0f);

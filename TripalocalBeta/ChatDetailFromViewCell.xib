@@ -12,14 +12,14 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="130"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="a9Q-If-e01" id="3Bl-EW-NtX">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="130"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="129.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5ni-HI-Ylv">
-                        <rect key="frame" x="42" y="8" width="264" height="101"/>
+                        <rect key="frame" x="42" y="8" width="255" height="101"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Messages" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ytI-2L-VOe">
-                                <rect key="frame" x="40" y="20" width="204" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Messages" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ytI-2L-VOe">
+                                <rect key="frame" x="40" y="15" width="195" height="40"/>
                                 <animations/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="fAn-dw-0Wi"/>
@@ -33,7 +33,7 @@
                                     </mask>
                                 </variation>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Time" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DSo-pL-qJ5">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DSo-pL-qJ5">
                                 <rect key="frame" x="36" y="70" width="30" height="16"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
@@ -48,9 +48,9 @@
                             <constraint firstItem="ytI-2L-VOe" firstAttribute="leading" secondItem="5ni-HI-Ylv" secondAttribute="leading" constant="40" id="Bo4-RL-9Ka"/>
                             <constraint firstItem="ytI-2L-VOe" firstAttribute="trailing" secondItem="DSo-pL-qJ5" secondAttribute="trailing" id="QBZ-rw-4ih"/>
                             <constraint firstAttribute="trailing" secondItem="ytI-2L-VOe" secondAttribute="trailing" constant="20" id="Ssy-cp-X9K"/>
-                            <constraint firstItem="ytI-2L-VOe" firstAttribute="top" secondItem="5ni-HI-Ylv" secondAttribute="top" constant="20" id="bX0-2i-obu"/>
+                            <constraint firstItem="ytI-2L-VOe" firstAttribute="top" secondItem="5ni-HI-Ylv" secondAttribute="top" constant="15" id="bX0-2i-obu"/>
                             <constraint firstItem="ytI-2L-VOe" firstAttribute="centerX" secondItem="5ni-HI-Ylv" secondAttribute="centerX" id="f5k-lc-CnC"/>
-                            <constraint firstItem="DSo-pL-qJ5" firstAttribute="top" secondItem="ytI-2L-VOe" secondAttribute="bottom" constant="29.5" id="f9U-rc-sLv"/>
+                            <constraint firstItem="DSo-pL-qJ5" firstAttribute="top" secondItem="ytI-2L-VOe" secondAttribute="bottom" constant="15" id="f9U-rc-sLv"/>
                             <constraint firstAttribute="bottom" secondItem="DSo-pL-qJ5" secondAttribute="bottom" constant="15" id="nRk-A4-7VY"/>
                             <constraint firstItem="DSo-pL-qJ5" firstAttribute="top" secondItem="ytI-2L-VOe" secondAttribute="bottom" constant="20" id="sJo-oa-7hP"/>
                         </constraints>
@@ -78,7 +78,7 @@
                     <constraint firstItem="DSo-pL-qJ5" firstAttribute="leading" secondItem="jQW-cI-kfl" secondAttribute="trailing" constant="15" id="84B-dZ-X5S"/>
                     <constraint firstAttribute="bottomMargin" secondItem="5ni-HI-Ylv" secondAttribute="bottom" constant="12.5" id="UAt-nJ-2jL"/>
                     <constraint firstItem="jQW-cI-kfl" firstAttribute="leading" secondItem="3Bl-EW-NtX" secondAttribute="leadingMargin" constant="10" id="WEb-WO-jy5"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="5ni-HI-Ylv" secondAttribute="trailing" constant="6" id="aGk-vn-OgD"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="5ni-HI-Ylv" secondAttribute="trailing" constant="15" id="aGk-vn-OgD"/>
                     <constraint firstItem="5ni-HI-Ylv" firstAttribute="leading" secondItem="3Bl-EW-NtX" secondAttribute="leadingMargin" constant="34" id="n3s-ny-yCT"/>
                     <constraint firstItem="5ni-HI-Ylv" firstAttribute="top" secondItem="3Bl-EW-NtX" secondAttribute="topMargin" id="rBI-zs-awP"/>
                 </constraints>

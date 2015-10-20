@@ -61,7 +61,7 @@
     //set localized string for send button
     sendButton.titleLabel.text = NSLocalizedString(@"send_button", nil);
     UIView *topBorder = [UIView new];
-    topBorder.backgroundColor = [UIColor grayColor];
+    topBorder.backgroundColor = [UIColor colorWithRed:204.0f/255.0f green:204.0f/255.0f blue:204.0f/255.0f alpha:1.0];
     topBorder.frame = CGRectMake(-17, 0, sendBarView.frame.size.width, 1.0f);
     [sendBarView addSubview:topBorder];
     //get the time
@@ -73,8 +73,11 @@
 #endif
 
     //close button
-    UIBarButtonItem *closeButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Close", nil) style:UIBarButtonItemStylePlain target:self action:@selector(dismissChatDetail:)];
-    closeButton.tintColor = [Utility themeColor];
+    int imageSize = 27; //REPLACE WITH YOUR IMAGE WIDTH
+
+    UIImage *barBackBtnImg = [[UIImage imageNamed:@"back.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, imageSize, 0, 0)];
+   
+    UIBarButtonItem *closeButton = [[UIBarButtonItem alloc] initWithImage:barBackBtnImg style:UIBarButtonItemStylePlain target:self action:@selector(dismissChatDetail:)];
     self.navigationItem.leftBarButtonItem = closeButton;
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)];
     [self.view addGestureRecognizer:tap];
@@ -98,7 +101,7 @@
 //    textView.maxHeight = 60.0f;
     textView.returnKeyType = UIReturnKeyGo; //just as an example
     textView.layer.borderWidth = 1.0f;
-    textView.layer.borderColor = [[UIColor grayColor] CGColor];
+    textView.layer.borderColor = [UIColor colorWithRed:204.0f/255.0f green:204.0f/255.0f blue:204.0f/255.0f alpha:1.0].CGColor;
     textView.layer.cornerRadius = 5.0f;
     [sendBarView addSubview:textView];
     NSLayoutConstraint *bottomSpaceConstraint = [NSLayoutConstraint constraintWithItem:textView
