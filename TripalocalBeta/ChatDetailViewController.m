@@ -77,7 +77,13 @@
 
     UIImage *barBackBtnImg = [[UIImage imageNamed:@"back.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, imageSize, 0, 0)];
    
-    UIBarButtonItem *closeButton = [[UIBarButtonItem alloc] initWithImage:barBackBtnImg style:UIBarButtonItemStylePlain target:self action:@selector(dismissChatDetail:)];
+    UIBarButtonItem *closeButton = [[UIBarButtonItem alloc] initWithImage:barBackBtnImg style:nil target:self action:@selector(dismissChatDetail:)];
+    [[UIBarButtonItem appearance] setBackButtonBackgroundImage:barBackBtnImg
+                                                      forState:UIControlStateNormal
+                                                    barMetrics:UIBarMetricsDefault];
+    
+    [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment:UIOffsetMake(0, -60)
+                                                         forBarMetrics:UIBarMetricsDefault];
     self.navigationItem.leftBarButtonItem = closeButton;
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)];
     [self.view addGestureRecognizer:tap];
@@ -91,12 +97,12 @@
     [self.tableView reloadData];
     _shouldScrollToLastRow = YES;
     //growing textView
-    textView = [[HPGrowingTextView alloc] initWithFrame:CGRectMake(10, 15, 260, 40)];
+    textView = [[HPGrowingTextView alloc] initWithFrame:CGRectMake(20, 20, [[UIScreen mainScreen] bounds].size.width-90, 40)];
     textView.isScrollable = NO;
     textView.contentInset = UIEdgeInsetsMake(0, 5, 0, 5);
     
     textView.minNumberOfLines = 1;
-    textView.maxNumberOfLines = 3;
+    textView.maxNumberOfLines = 2;
     // you can also set the maximum height in points with maxHeight
 //    textView.maxHeight = 60.0f;
     textView.returnKeyType = UIReturnKeyGo; //just as an example
