@@ -9,5 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface MultidayTableViewCell : UITableViewCell
+@property (weak, nonatomic) IBOutlet UIButton *check1NightMelbourneButton;
+@property (weak, nonatomic) IBOutlet UIButton *check1NightSydneyButton;
 
 @end

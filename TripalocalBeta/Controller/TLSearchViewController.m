@@ -18,6 +18,7 @@
 #import "Mixpanel.h"
 #import "JGProgressHUD.h"
 #import "MultidayTableViewCell.h"
+#import "MultidayTableViewCell2.h"
 #import "LocalDetailViewController.h"
 
 @interface TLSearchViewController (){
@@ -27,6 +28,7 @@
 @property (nonatomic, retain) NSMutableArray *normalExpList;
 @property (nonatomic, retain) NSMutableArray *localExpList;
 @property (nonatomic, retain) NSMutableArray *itineraryExpList;
+@property (nonatomic, retain) NSDictionary *exp;
 @end
 
 @implementation TLSearchViewController{
@@ -93,7 +95,6 @@
 }
 
 - (void)applyFilter {
-//    self.expList = [self fetchExpData:self.cityName];
     [self.tableView reloadData];
 }
 
@@ -200,14 +201,22 @@
     return [languages componentsJoinedByString:@" / "];
 }
 
+-(UITableViewCell *)configMultidayCell2:(MultidayTableViewCell *)cell atRow:(NSInteger)row {
+    return cell;
+}
+
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSDictionary *exp;
     static NSString *cellIdentifier = @"SearchCell";
     static NSString *cellIdentifier2 = @"SearchCell2";
     static NSString *multiDayCellID = @"MultiDayCell";
+    static NSString *multiDayCell2ID = @"MultiDayCell";
     
     TLSearchTableViewCell *cell;
     MultidayTableViewCell *multiDayCell;
+    MultidayTableViewCell2 *multiDayCell2;
+    
+    NSDictionary *expData;
+    
     if ([self.expSearchType isEqualToString:@"PRIVATE"]) {
         cell = nil;
         cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
@@ -215,7 +224,7 @@
             [tableView registerNib:[UINib nibWithNibName:@"SearchViewCell" bundle:nil] forCellReuseIdentifier:cellIdentifier];
             cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
         }
-        exp = [self.normalExpList objectAtIndex:indexPath.row];
+        expData = [self.normalExpList objectAtIndex:indexPath.row];
     } else if ([self.expSearchType isEqualToString:@"LOCAL"]) {
         cell = nil;
         cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier2];
@@ -223,28 +232,44 @@
             [tableView registerNib:[UINib nibWithNibName:@"SearchViewCell2" bundle:nil] forCellReuseIdentifier:cellIdentifier2];
             cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier2];
         }
-        exp = [self.localExpList objectAtIndex:indexPath.row];
+        expData = [self.localExpList objectAtIndex:indexPath.row];
     } else {
         multiDayCell = [tableView dequeueReusableCellWithIdentifier:multiDayCellID];
-        [tableView registerNib:[UINib nibWithNibName:@"MultidayTableViewCell" bundle:nil] forCellReuseIdentifier:multiDayCellID];
-        multiDayCell = [tableView dequeueReusableCellWithIdentifier:multiDayCellID];
-        exp = [self.itineraryExpList objectAtIndex:indexPath.row];
+        if(!multiDayCell) {
+            [tableView registerNib:[UINib nibWithNibName:@"MultidayTableViewCell" bundle:nil] forCellReuseIdentifier:multiDayCellID];
+        }
+        
+        multiDayCell.check1NightMelbourneButton.tag = 1;
+        multiDayCell.check1NightSydneyButton.tag = 2;
+        [multiDayCell.check1NightMelbourneButton addTarget:self
+                                                    action:@selector(checkMultidayDetail:) forControlEvents:UIControlEventTouchDown];
+        [multiDayCell.check1NightSydneyButton addTarget:self
+                                                    action:@selector(checkMultidayDetail:) forControlEvents:UIControlEventTouchDown];
+        
         return multiDayCell;
     }
+//    else {
+//        multiDayCell2 = [tableView dequeueReusableCellWithIdentifier:multiDayCell2ID];
+//        if(!multiDayCell2) {
+//            [tableView registerNib:[UINib nibWithNibName:@"MultidayTableViewCell2" bundle:nil] forCellReuseIdentifier:multiDayCell2ID];
+//        }
+//        
+//        return multiDayCell2;
+//    }
     
     
-    NSString *expIdString = [[exp objectForKey:@"id"] stringValue];
+    NSString *expIdString = [expData[@"id"] stringValue];
     
-    NSString *duration = [[exp objectForKey:@"duration"] stringValue];
+    NSString *duration = [expData[@"duration"] stringValue];
     NSString *handledDurationString = [duration stringByAppendingString:NSLocalizedString(@"Hours", nil)];
     cell.durationLabel.text = handledDurationString;
-    cell.titleLabel.text = [exp objectForKey:@"title"];
+    cell.titleLabel.text = expData[@"title"];
 
-    cell.languageLabel.text = [self transformLanugage:(NSString *)[exp objectForKey:@"language"]];
-    cell.descriptionLabel.text = [exp objectForKey:@"description"];
+    cell.languageLabel.text = [self transformLanugage:(NSString *)expData[@"language"]];
+    cell.descriptionLabel.text = expData[@"description"];
 
     if ([self.expSearchType isEqualToString:@"PRIVATE"]) {
-        NSString *hostImageRelativeURL = [exp objectForKey:@"host_image"];
+        NSString *hostImageRelativeURL = expData[@"host_image"];
         if (hostImageRelativeURL != (id)[NSNull null] && hostImageRelativeURL.length > 0) {
             NSString *hostImageURL = [[URLConfig imageServiceURLString] stringByAppendingString: hostImageRelativeURL];
             
@@ -286,23 +311,33 @@
     }
     cell.delegate = self;
     cell.wishListButton.tag = indexPath.row;
-    NSString *priceString = [Utility decimalwithFormat:@"0" floatV:[exp[@"price"] floatValue]];
+    NSString *priceString = [Utility decimalwithFormat:@"0" floatV:[expData[@"price"] floatValue]];
     cell.priceLabel.text = priceString;
-    //???
     [dynamicPricingArray addObject:priceString];
     
 
     return cell;
 }
 
-- (NSString *) decimalwithFormat:(NSString *)format  floatV:(float)floatV
-{
-    NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];
-    
-    [numberFormatter setPositiveFormat:format];
-    
-    return  [numberFormatter stringFromNumber:[NSNumber numberWithFloat:floatV]];
+-(void)checkMultidayDetail:(UIButton*)sender {
+    switch (sender.tag) {
+        case 1:
+            self.exp = self.itineraryExpList[0];
+            break;
+        case 2:
+            self.exp = self.itineraryExpList[1];
+            break;
+        default:
+            break;
+    }
+//    
+//    if ([self.exp[@"type"] isEqualToString:@"PRIVATE"]) {
+//        [self performSegueWithIdentifier:@"SearchResultSegue" sender:self];
+//    } else if ([self.exp[@"type"] isEqualToString:@"NEWPRODUCT"]) {
+//        [self performSegueWithIdentifier:@"LocalSearchResultSegue" sender:self];
+//    }
 }
+
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if ([self.expSearchType isEqualToString:@"PRIVATE"]) {
@@ -394,8 +429,11 @@
                 
                 self.localExpList = [NSMutableArray arrayWithArray:[expList filteredArrayUsingPredicate:p2]];
                 
-                self.itineraryExpList = [NSMutableArray arrayWithArray:[expList filteredArrayUsingPredicate:p3]];
-
+                NSArray *tempList = [expList filteredArrayUsingPredicate:p3];
+                
+                self.itineraryExpList = [[NSMutableArray alloc] init];
+                [self.itineraryExpList addObject:[self getExpById:@"651" inArray:tempList]];
+                [self.itineraryExpList addObject:[self getExpById:@"701" inArray:tempList]];
             }
 #ifdef DEBUG
             NSLog(@"number of cells: %lu", (unsigned long)expList.count);
@@ -427,12 +465,23 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if ([self.expSearchType isEqualToString:@"PRIVATE"]) {
+        self.exp = self.normalExpList[indexPath.row];
         [self performSegueWithIdentifier:@"SearchResultSegue" sender:self];
     } else if ([self.expSearchType isEqualToString:@"LOCAL"]) {
+        self.exp = self.localExpList[indexPath.row];
         [self performSegueWithIdentifier:@"LocalSearchResultSegue" sender:self];
     } else {
         NSLog(@"Not implemented");
     }
+}
+
+-(NSDictionary *)getExpById:(NSString *)id inArray:(NSArray *)expList {
+    for (NSDictionary *exp in expList) {
+        if ([exp[@"id"] isEqualToString:id]) {
+            return exp;
+        }
+    }
+    return nil;
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -441,19 +490,17 @@
         UINavigationController *navController = (UINavigationController *)segue.destinationViewController;
         navController.hidesBottomBarWhenPushed = YES;
         TLDetailViewController *vc = (TLDetailViewController *) navController.topViewController;
-        NSIndexPath *index=[_tableView indexPathForSelectedRow];
 
-        vc.experience_id_string = [[self.normalExpList objectAtIndex:index.row][@"id"] stringValue];
-        vc.expPrice = [Utility decimalwithFormat:@"0" floatV:[[[self.normalExpList objectAtIndex:index.row] objectForKey:@"price"] floatValue]];
+        vc.experience_id_string = [self.exp[@"id"] stringValue];
+        vc.expPrice = [Utility decimalwithFormat:@"0" floatV:[self.exp[@"price"] floatValue]];
         
     } else if ([segue.identifier isEqualToString:@"LocalSearchResultSegue"]) {
         UINavigationController *navController = (UINavigationController *)segue.destinationViewController;
         navController.hidesBottomBarWhenPushed = YES;
         LocalDetailViewController *vc = (LocalDetailViewController *) navController.topViewController;
-        NSIndexPath *index=[_tableView indexPathForSelectedRow];
         
-        vc.experience_id_string = [[self.localExpList objectAtIndex:index.row][@"id"] stringValue];
-        vc.expPrice = [Utility decimalwithFormat:@"0" floatV:[[[self.localExpList objectAtIndex:index.row] objectForKey:@"price"] floatValue]];
+        vc.experience_id_string = [self.exp[@"id"] stringValue];
+        vc.expPrice = [Utility decimalwithFormat:@"0" floatV:[self.exp[@"price"] floatValue]];
 
     }
 

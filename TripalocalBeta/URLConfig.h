@@ -31,4 +31,6 @@
 
 + (NSString *)expDetailServiceURLString;
 
++ (NSString *)staticServiceURLString;
+
 @end

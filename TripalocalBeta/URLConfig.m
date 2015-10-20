@@ -28,6 +28,11 @@
 #endif
 }
 
++ (NSString *)staticServiceURLString
+{
+    return @"https://tripalocal-static.s3.amazonaws.com/static/";
+}
+
 + (NSString *)imageServiceURLString
 {
 //#ifdef CN_VERSION

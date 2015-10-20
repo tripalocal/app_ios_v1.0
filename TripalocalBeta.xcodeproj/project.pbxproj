@@ -36,6 +36,8 @@
 		873C8E6E1B61D1F300CB1D9E /* AlipayFailedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 873C8E6D1B61D1F300CB1D9E /* AlipayFailedViewController.m */; };
 		874265871B4D272F00D76C72 /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 874265861B4D272F00D76C72 /* MenuViewController.m */; };
 		874522AB1B4E3FDF00876EB4 /* WishLishViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 874522AA1B4E3FDF00876EB4 /* WishLishViewController.m */; };
+		87531EAC1BD5BAFB001F0D60 /* MultidayTableViewCell2.m in Sources */ = {isa = PBXBuildFile; fileRef = 87531EAB1BD5BAFB001F0D60 /* MultidayTableViewCell2.m */; };
+		87531EAE1BD5BB0F001F0D60 /* MultidayTableViewCell2.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87531EAD1BD5BB0F001F0D60 /* MultidayTableViewCell2.xib */; };
 		87A3C09D1B461129009A3B07 /* RequestController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87A3C09C1B461129009A3B07 /* RequestController.m */; };
 		87A3C0A11B463C6C009A3B07 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87A3C0A01B463C6C009A3B07 /* HomeViewController.m */; };
 		87AC2B161BCE16E800672288 /* SearchViewCell2.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87AC2B151BCE16E800672288 /* SearchViewCell2.xib */; };
@@ -156,6 +158,9 @@
 		874265861B4D272F00D76C72 /* MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuViewController.m; sourceTree = "<group>"; };
 		874522A91B4E3FDF00876EB4 /* WishLishViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WishLishViewController.h; sourceTree = "<group>"; };
 		874522AA1B4E3FDF00876EB4 /* WishLishViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WishLishViewController.m; sourceTree = "<group>"; };
+		87531EAA1BD5BAFB001F0D60 /* MultidayTableViewCell2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultidayTableViewCell2.h; sourceTree = "<group>"; };
+		87531EAB1BD5BAFB001F0D60 /* MultidayTableViewCell2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultidayTableViewCell2.m; sourceTree = "<group>"; };
+		87531EAD1BD5BB0F001F0D60 /* MultidayTableViewCell2.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MultidayTableViewCell2.xib; sourceTree = "<group>"; };
 		87A3C09B1B461129009A3B07 /* RequestController.h */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.h; path = RequestController.h; sourceTree = "<group>"; tabWidth = 4; usesTabs = 0; wrapsLines = 1; };
 		87A3C09C1B461129009A3B07 /* RequestController.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.objc; path = RequestController.m; sourceTree = "<group>"; tabWidth = 4; usesTabs = 0; wrapsLines = 1; };
 		87A3C09F1B463C6C009A3B07 /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HomeViewController.h; path = Controller/HomeViewController.h; sourceTree = "<group>"; };
@@ -363,6 +368,8 @@
 		5649BD311B3FC32800465D6C /* Custom Cells */ = {
 			isa = PBXGroup;
 			children = (
+				87531EAA1BD5BAFB001F0D60 /* MultidayTableViewCell2.h */,
+				87531EAB1BD5BAFB001F0D60 /* MultidayTableViewCell2.m */,
 				87C638E51BD07E3B0002A162 /* TitleDescCell.h */,
 				87C638E61BD07E3B0002A162 /* TitleDescCell.m */,
 				870D13BF1BCF70A100D3BCEB /* DetailDescCell.h */,
@@ -591,6 +598,7 @@
 		8EC86D501B021DD800B0A655 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				87531EAD1BD5BB0F001F0D60 /* MultidayTableViewCell2.xib */,
 				87AC2B1B1BCE1C2300672288 /* MultidayTableViewCell.xib */,
 				871196581B4FF74300BA8672 /* NeedToLoginView.h */,
 				87AC2B151BCE16E800672288 /* SearchViewCell2.xib */,
@@ -784,6 +792,7 @@
 				8EB570EE1B01CF2B0026D419 /* Main.storyboard in Resources */,
 				5649BDF11B46702300465D6C /* (null) in Resources */,
 				8EB570F31B01CF2B0026D419 /* LaunchScreen.xib in Resources */,
+				87531EAE1BD5BB0F001F0D60 /* MultidayTableViewCell2.xib in Resources */,
 				87AC2B1D1BCE1C2300672288 /* MultidayTableViewCell.xib in Resources */,
 				5649BDF01B46702300465D6C /* (null) in Resources */,
 				870AEB791B53A81D00959465 /* Localizable.strings in Resources */,
@@ -893,6 +902,7 @@
 				870D13C11BCF70A100D3BCEB /* DetailDescCell.m in Sources */,
 				5649BD3D1B3FD56E00465D6C /* TLDetailTableViewCell2.m in Sources */,
 				568AE8301B52087500D48DBC /* InstantBookingTableViewCell.m in Sources */,
+				87531EAC1BD5BAFB001F0D60 /* MultidayTableViewCell2.m in Sources */,
 				87E75F721B55EC4C00E53741 /* SmsVerificationViewController.m in Sources */,
 				87FC2DB81B480ABF0017F30E /* openssl_wrapper.m in Sources */,
 				5649BD401B3FD58800465D6C /* TLDetailTableViewCell3.m in Sources */,
