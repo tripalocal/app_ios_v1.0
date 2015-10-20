@@ -29,17 +29,17 @@
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hym-NL-aec" userLabel="FilterView">
-                                            <rect key="frame" x="5" y="5" width="590" height="65"/>
+                                            <rect key="frame" x="5" y="5" width="590" height="60"/>
                                             <subviews>
-                                                <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4JZ-2r-heF" userLabel="TravelWithLocalView">
-                                                    <rect key="frame" x="0.0" y="0.0" width="200" height="70"/>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4JZ-2r-heF" userLabel="TravelWithLocalView">
+                                                    <rect key="frame" x="0.0" y="0.0" width="197" height="60"/>
                                                     <subviews>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" placeholderIntrinsicWidth="27" placeholderIntrinsicHeight="27" image="local" highlightedImage="local_o" translatesAutoresizingMaskIntoConstraints="NO" id="1sK-Cz-2SL">
-                                                            <rect key="frame" x="87" y="15" width="27" height="27"/>
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="27" placeholderIntrinsicHeight="27" image="local" highlightedImage="local_o" translatesAutoresizingMaskIntoConstraints="NO" id="1sK-Cz-2SL">
+                                                            <rect key="frame" x="85" y="12" width="27" height="27"/>
                                                             <animations/>
                                                         </imageView>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Travel with Locals" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FUo-jF-Ruf">
-                                                            <rect key="frame" x="58" y="47" width="84" height="12"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Travel with Locals" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FUo-jF-Ruf">
+                                                            <rect key="frame" x="56" y="44" width="84" height="12"/>
                                                             <animations/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                                             <color key="textColor" red="0.60000026226043701" green="0.60000020265579224" blue="0.59999996423721313" alpha="1" colorSpace="calibratedRGB"/>
@@ -51,23 +51,24 @@
                                                     <gestureRecognizers/>
                                                     <constraints>
                                                         <constraint firstItem="FUo-jF-Ruf" firstAttribute="top" secondItem="1sK-Cz-2SL" secondAttribute="bottom" constant="5" id="GMM-xP-Non"/>
+                                                        <constraint firstAttribute="bottom" secondItem="FUo-jF-Ruf" secondAttribute="bottom" constant="4" id="HK6-hP-Dgd"/>
                                                         <constraint firstAttribute="centerX" secondItem="1sK-Cz-2SL" secondAttribute="centerX" id="O38-Rx-lWP"/>
                                                         <constraint firstAttribute="centerX" secondItem="FUo-jF-Ruf" secondAttribute="centerX" id="fGl-nX-6O7"/>
-                                                        <constraint firstItem="1sK-Cz-2SL" firstAttribute="top" secondItem="4JZ-2r-heF" secondAttribute="top" constant="15" id="kgv-er-7as"/>
+                                                        <constraint firstItem="1sK-Cz-2SL" firstAttribute="top" relation="greaterThanOrEqual" secondItem="4JZ-2r-heF" secondAttribute="top" constant="10" id="kgv-er-7as"/>
                                                     </constraints>
                                                     <connections>
                                                         <outletCollection property="gestureRecognizers" destination="Ic7-PG-ZDb" appends="YES" id="tGT-yZ-lI1"/>
                                                     </connections>
                                                 </view>
-                                                <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="scd-ss-HQA" userLabel="ItenerariesView">
-                                                    <rect key="frame" x="400" y="0.0" width="200" height="70"/>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="scd-ss-HQA" userLabel="ItenerariesView">
+                                                    <rect key="frame" x="393" y="0.0" width="197" height="60"/>
                                                     <subviews>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" placeholderIntrinsicWidth="27" placeholderIntrinsicHeight="27" image="iti" highlightedImage="iti_o" translatesAutoresizingMaskIntoConstraints="NO" id="i3o-3S-jHj">
-                                                            <rect key="frame" x="87" y="15" width="27" height="27"/>
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="27" placeholderIntrinsicHeight="27" image="iti" highlightedImage="iti_o" translatesAutoresizingMaskIntoConstraints="NO" id="i3o-3S-jHj">
+                                                            <rect key="frame" x="85" y="12" width="27" height="27"/>
                                                             <animations/>
                                                         </imageView>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Iteneraries" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Wn-Cd-u7D" userLabel="Iteneraries">
-                                                            <rect key="frame" x="75" y="47" width="50" height="12"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Iteneraries" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Wn-Cd-u7D" userLabel="Iteneraries">
+                                                            <rect key="frame" x="74" y="44" width="50" height="12"/>
                                                             <animations/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                                             <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
@@ -78,8 +79,9 @@
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <gestureRecognizers/>
                                                     <constraints>
+                                                        <constraint firstAttribute="bottom" secondItem="9Wn-Cd-u7D" secondAttribute="bottom" constant="4" id="Nnj-Y9-wfP"/>
                                                         <constraint firstItem="9Wn-Cd-u7D" firstAttribute="top" secondItem="i3o-3S-jHj" secondAttribute="bottom" constant="5" id="P80-7H-Fdc"/>
-                                                        <constraint firstItem="i3o-3S-jHj" firstAttribute="top" secondItem="scd-ss-HQA" secondAttribute="top" constant="15" id="VKk-pS-UmI"/>
+                                                        <constraint firstItem="i3o-3S-jHj" firstAttribute="top" relation="greaterThanOrEqual" secondItem="scd-ss-HQA" secondAttribute="top" constant="10" id="VKk-pS-UmI"/>
                                                         <constraint firstAttribute="centerX" secondItem="9Wn-Cd-u7D" secondAttribute="centerX" id="Yvs-14-aC5"/>
                                                         <constraint firstAttribute="centerX" secondItem="i3o-3S-jHj" secondAttribute="centerX" id="b2D-Za-1MP"/>
                                                     </constraints>
@@ -87,15 +89,15 @@
                                                         <outletCollection property="gestureRecognizers" destination="W0I-QC-elC" appends="YES" id="LTp-YT-Ypg"/>
                                                     </connections>
                                                 </view>
-                                                <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wc6-M3-fdD" userLabel="LocalExpView">
-                                                    <rect key="frame" x="200" y="0.0" width="200" height="70"/>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wc6-M3-fdD" userLabel="LocalExpView">
+                                                    <rect key="frame" x="197" y="0.0" width="196" height="60"/>
                                                     <subviews>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" placeholderIntrinsicWidth="27" placeholderIntrinsicHeight="27" image="hot" highlightedImage="hot_o" translatesAutoresizingMaskIntoConstraints="NO" id="B0I-3s-N6p">
-                                                            <rect key="frame" x="87" y="15" width="27" height="27"/>
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="27" placeholderIntrinsicHeight="27" image="hot" highlightedImage="hot_o" translatesAutoresizingMaskIntoConstraints="NO" id="B0I-3s-N6p">
+                                                            <rect key="frame" x="85" y="12" width="27" height="27"/>
                                                             <animations/>
                                                         </imageView>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Local Experiences" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BUr-x4-x9Y">
-                                                            <rect key="frame" x="57" y="47" width="86" height="12"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Local Experiences" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BUr-x4-x9Y">
+                                                            <rect key="frame" x="55" y="44" width="86" height="12"/>
                                                             <animations/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                                             <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
@@ -106,8 +108,9 @@
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <gestureRecognizers/>
                                                     <constraints>
-                                                        <constraint firstItem="B0I-3s-N6p" firstAttribute="top" secondItem="wc6-M3-fdD" secondAttribute="top" constant="15" id="8jA-BM-ldG"/>
+                                                        <constraint firstItem="B0I-3s-N6p" firstAttribute="top" relation="greaterThanOrEqual" secondItem="wc6-M3-fdD" secondAttribute="top" constant="10" id="8jA-BM-ldG"/>
                                                         <constraint firstItem="BUr-x4-x9Y" firstAttribute="top" secondItem="B0I-3s-N6p" secondAttribute="bottom" constant="5" id="BqN-Hq-ba4"/>
+                                                        <constraint firstAttribute="bottom" secondItem="BUr-x4-x9Y" secondAttribute="bottom" constant="4" id="SXo-OK-JaX"/>
                                                         <constraint firstAttribute="centerX" secondItem="B0I-3s-N6p" secondAttribute="centerX" id="cKl-V7-2FQ"/>
                                                         <constraint firstAttribute="centerX" secondItem="BUr-x4-x9Y" secondAttribute="centerX" id="rqS-Z4-AlA"/>
                                                     </constraints>
@@ -146,9 +149,11 @@
                                         <constraint firstItem="Hym-NL-aec" firstAttribute="top" secondItem="zKe-mn-QFJ" secondAttribute="top" id="Q1C-7M-ZQx"/>
                                         <constraint firstItem="Hym-NL-aec" firstAttribute="leading" secondItem="zKe-mn-QFJ" secondAttribute="leading" id="dFI-t7-GoW"/>
                                         <constraint firstAttribute="trailing" secondItem="Hym-NL-aec" secondAttribute="trailing" id="f6a-KB-iYB"/>
+                                        <constraint firstAttribute="bottom" secondItem="Hym-NL-aec" secondAttribute="bottom" constant="5" id="qJG-nH-nAz"/>
                                     </constraints>
                                     <variation key="default">
                                         <mask key="constraints">
+                                            <exclude reference="P8J-aC-agY"/>
                                             <exclude reference="Q1C-7M-ZQx"/>
                                             <exclude reference="dFI-t7-GoW"/>
                                             <exclude reference="f6a-KB-iYB"/>

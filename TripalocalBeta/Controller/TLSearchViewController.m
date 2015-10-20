@@ -95,6 +95,13 @@
 }
 
 - (void)applyFilter {
+    if ([self.expSearchType isEqualToString:@"PRIVATE"] && [self.normalExpList count] == 0) {
+        [self fetchExpData:self.cityName];
+    } else if ([self.expSearchType isEqualToString:@"LOCAL"] && [self.localExpList count] == 0) {
+        [self fetchExpData:self.cityName];
+    } else if ([self.expSearchType isEqualToString:@"ITI"] && [self.itineraryExpList count] == 0) {
+        [self fetchExpData:self.cityName];
+    }
     [self.tableView reloadData];
 }
 
@@ -209,7 +216,7 @@
     static NSString *cellIdentifier = @"SearchCell";
     static NSString *cellIdentifier2 = @"SearchCell2";
     static NSString *multiDayCellID = @"MultiDayCell";
-    static NSString *multiDayCell2ID = @"MultiDayCell";
+    static NSString *multiDayCell2ID = @"MultiDayCell2";
     
     TLSearchTableViewCell *cell;
     MultidayTableViewCell *multiDayCell;
@@ -233,19 +240,39 @@
             cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier2];
         }
         expData = [self.localExpList objectAtIndex:indexPath.row];
-    } else {
+    } else if (indexPath.row == 0) {
+        [tableView registerNib:[UINib nibWithNibName:@"MultidayTableViewCell" bundle:nil] forCellReuseIdentifier:multiDayCellID];
         multiDayCell = [tableView dequeueReusableCellWithIdentifier:multiDayCellID];
-        if(!multiDayCell) {
-            [tableView registerNib:[UINib nibWithNibName:@"MultidayTableViewCell" bundle:nil] forCellReuseIdentifier:multiDayCellID];
-        }
         
         multiDayCell.check1NightMelbourneButton.tag = 1;
-        multiDayCell.check1NightSydneyButton.tag = 2;
+        multiDayCell.checkAllNightMelbourneButton.tag = 2;
+        multiDayCell.check1NightSydneyButton.tag = 3;
+        multiDayCell.checkAllNightSydneyButton.tag = 4;
+        
         [multiDayCell.check1NightMelbourneButton addTarget:self
                                                     action:@selector(checkMultidayDetail:) forControlEvents:UIControlEventTouchDown];
-        [multiDayCell.check1NightSydneyButton addTarget:self
+        [multiDayCell.checkAllNightMelbourneButton addTarget:self
                                                     action:@selector(checkMultidayDetail:) forControlEvents:UIControlEventTouchDown];
+        [multiDayCell.check1NightSydneyButton addTarget:self
+                                                 action:@selector(checkMultidayDetail:) forControlEvents:UIControlEventTouchDown];
+        [multiDayCell.checkAllNightSydneyButton addTarget:self
+                                                 action:@selector(checkMultidayDetail:) forControlEvents:UIControlEventTouchDown];
         
+        NSString *backgroundImageURL = [NSString stringWithFormat:@"%@img/homepage/travelling-01.jpg", [URLConfig staticServiceURLString]];
+        
+        __block UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+        activityIndicator.center = cell.experienceImage.center;
+        activityIndicator.hidesWhenStopped = YES;
+        [multiDayCell.multidayImage addSubview:activityIndicator];
+        [activityIndicator startAnimating];
+        
+        [multiDayCell.multidayImage sd_setImageWithURL:[NSURL URLWithString:backgroundImageURL]
+                                placeholderImage:nil
+                                         options:0
+                                       completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+                                           multiDayCell.multidayImage.image = [Utility filledImageFrom:image withColor:[UIColor colorWithWhite:0.0 alpha:0.3]];
+                                           [activityIndicator removeFromSuperview];
+                                       }];
         return multiDayCell;
     }
 //    else {
@@ -327,6 +354,12 @@
         case 2:
             self.exp = self.itineraryExpList[1];
             break;
+        case 3:
+            self.exp = self.itineraryExpList[2];
+            break;
+        case 4:
+            self.exp = self.itineraryExpList[3];
+            break;
         default:
             break;
     }
@@ -345,7 +378,7 @@
     } else if ([self.expSearchType isEqualToString:@"LOCAL"]) {
         return [self.localExpList count];
     } else {
-        return [self.itineraryExpList count];
+        return 1;
     }
 }
 
@@ -377,14 +410,15 @@
 
     NSString *startDate = [dateFormatter stringFromDate:today];
     NSString *endDate = [dateFormatter stringFromDate:today];
-    NSString *typeString = @"\"type\":\"all\"";
-//    if ([self.expSearchType isEqualToString:@"PRIVATE"]) {
-//        typeString = @"\"type\":\"experience\"";
-//    } else if ([self.expSearchType isEqualToString:@"LOCAL"]) {
-//        typeString = @"\"type\":\"newproduct\"";
-//    } else {
-//        typeString = @"\"type\":\"itinerary\"";
-//    }
+//    NSString *typeString = @"\"type\":\"all\"";
+    NSString *typeString = @"";
+    if ([self.expSearchType isEqualToString:@"PRIVATE"]) {
+        typeString = @"\"type\":\"experience\"";
+    } else if ([self.expSearchType isEqualToString:@"LOCAL"]) {
+        typeString = @"\"type\":\"newproduct\"";
+    } else {
+        typeString = @"\"type\":\"itinerary\"";
+    }
     
 #ifdef CN_VERSION
         post = [NSString stringWithFormat:@"{%@, \"start_datetime\":\"%@\", \"end_datetime\":\"%@\", \"city\":\"%@\", \"guest_number\":\"2\", \"keywords\":\"\"}", typeString, startDate, endDate ,[cityName stringByReplacingOccurrencesOfString:@" " withString:@"" ]];
@@ -419,22 +453,34 @@
             NSMutableArray *expListCopy = [indexOfExperience objectForKey:@"experiences"];
             for (NSDictionary *exp in expListCopy){
                 [expList addObject:exp];
-                NSPredicate *p = [NSPredicate predicateWithFormat:
-                                  @"SELF['type'] CONTAINS [cd] %@", @"PRIVATE"];
-                NSPredicate *p2 = [NSPredicate predicateWithFormat:
-                                  @"SELF['type'] CONTAINS [cd] %@", @"NEWPRODUCT"];
-                NSPredicate *p3 = [NSPredicate predicateWithFormat:
-                                   @"SELF['type'] CONTAINS [cd] %@", @"ITINERARY"];
-                self.normalExpList = [NSMutableArray arrayWithArray:[expList filteredArrayUsingPredicate:p]];
-                
-                self.localExpList = [NSMutableArray arrayWithArray:[expList filteredArrayUsingPredicate:p2]];
-                
-                NSArray *tempList = [expList filteredArrayUsingPredicate:p3];
-                
-                self.itineraryExpList = [[NSMutableArray alloc] init];
-                [self.itineraryExpList addObject:[self getExpById:@"651" inArray:tempList]];
-                [self.itineraryExpList addObject:[self getExpById:@"701" inArray:tempList]];
             }
+            
+            if ([self.expSearchType isEqualToString:@"PRIVATE"]) {
+                self.normalExpList = expList;
+            } else if ([self.expSearchType isEqualToString:@"LOCAL"]) {
+                self.localExpList = expList;
+            } else {
+                self.itineraryExpList = expList;
+            }
+            
+            self.expList = expList;
+//            NSPredicate *p = [NSPredicate predicateWithFormat:
+//                              @"SELF['type'] CONTAINS [cd] %@", @"PRIVATE"];
+//            NSPredicate *p2 = [NSPredicate predicateWithFormat:
+//                               @"SELF['type'] CONTAINS [cd] %@", @"NEWPRODUCT"];
+//            NSPredicate *p3 = [NSPredicate predicateWithFormat:
+//                               @"SELF['type'] CONTAINS [cd] %@", @"ITINERARY"];
+//            self.normalExpList = [NSMutableArray arrayWithArray:[expList filteredArrayUsingPredicate:p]];
+//            
+//            self.localExpList = [NSMutableArray arrayWithArray:[expList filteredArrayUsingPredicate:p2]];
+            
+//            NSArray *tempList = [expList filteredArrayUsingPredicate:p3];
+            
+//            self.itineraryExpList = [[NSMutableArray alloc] init];
+//            [self.itineraryExpList addObject:[self getExpById:@"651" inArray:expList]];
+//            [self.itineraryExpList addObject:[self getExpById:@"701" inArray:expList]];
+            
+//            [self.itineraryExpList addObject:[self getExpById:@"701" inArray:tempList]];
 #ifdef DEBUG
             NSLog(@"number of cells: %lu", (unsigned long)expList.count);
 #endif
@@ -477,7 +523,7 @@
 
 -(NSDictionary *)getExpById:(NSString *)id inArray:(NSArray *)expList {
     for (NSDictionary *exp in expList) {
-        if ([exp[@"id"] isEqualToString:id]) {
+        if ([[exp[@"id"] stringValue] isEqualToString:id]) {
             return exp;
         }
     }
