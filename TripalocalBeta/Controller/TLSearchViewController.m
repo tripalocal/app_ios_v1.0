@@ -240,7 +240,7 @@
             cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier2];
         }
         expData = [self.localExpList objectAtIndex:indexPath.row];
-    } else if (indexPath.row == 0) {
+    } else if (indexPath.row == 0 || indexPath.row == 1) {
         [tableView registerNib:[UINib nibWithNibName:@"MultidayTableViewCell" bundle:nil] forCellReuseIdentifier:multiDayCellID];
         multiDayCell = [tableView dequeueReusableCellWithIdentifier:multiDayCellID];
         
@@ -346,6 +346,14 @@
     return cell;
 }
 
+- (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if ([self.expSearchType isEqualToString:@"ITI"]) {
+        return 500.f;
+    } else {
+        return 340.f;
+    }
+}
+
 -(void)checkMultidayDetail:(UIButton*)sender {
     switch (sender.tag) {
         case 1:
@@ -378,7 +386,7 @@
     } else if ([self.expSearchType isEqualToString:@"LOCAL"]) {
         return [self.localExpList count];
     } else {
-        return 1;
+        return 2;
     }
 }
 
