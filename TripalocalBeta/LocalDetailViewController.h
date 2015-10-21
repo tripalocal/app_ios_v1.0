@@ -14,5 +14,6 @@
 @property NSString *experience_id_string;
 @property UIImage *coverImage;
 @property NSString *expPrice;
+@property NSString *expType;
 
 @end

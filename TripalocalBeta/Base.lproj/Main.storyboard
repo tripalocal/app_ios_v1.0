@@ -4976,11 +4976,11 @@
         <image name="tripalocal_logo_zh" width="132" height="46"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="chc-HC-F4Z"/>
+        <segue reference="eUH-Pw-4ka"/>
+        <segue reference="yiP-PS-w0n"/>
         <segue reference="1MU-e6-KUX"/>
         <segue reference="Mdr-Lh-99k"/>
-        <segue reference="yiP-PS-w0n"/>
-        <segue reference="tXC-gw-Kz7"/>
+        <segue reference="hPI-YE-UZz"/>
         <segue reference="olF-su-vgo"/>
     </inferredMetricsTieBreakers>
 </document>

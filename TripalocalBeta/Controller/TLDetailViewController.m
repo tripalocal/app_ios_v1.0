@@ -260,9 +260,13 @@
                 cell = [[TLDetailTableViewCell0 alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier0];
             }
             
-            [cell.hostImage sd_setImageWithURL:[NSURL URLWithString:hostImageURL]
-                              placeholderImage:[UIImage imageNamed:@"default_profile_image.png"]
-                                       options:SDWebImageRefreshCached];
+            if ([self.expType isEqualToString:@"PRIVATE"]) {
+                [cell.hostImage sd_setImageWithURL:[NSURL URLWithString:hostImageURL]
+                                  placeholderImage:[UIImage imageNamed:@"default_profile_image.png"]
+                                           options:SDWebImageRefreshCached];
+            } else {
+                cell.hostImage.hidden = YES;
+            }
             
             NSString *coverImageURL = [NSString stringWithFormat:@"%@thumbnails/experiences/experience%@_1.jpg", [URLConfig imageServiceURLString], _experience_id_string];
             
@@ -320,26 +324,32 @@
             {
                 cell2=[[TLDetailTableViewCell2 alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier2];
             }
-            cell2.parentView = self.myTable;
-            cell2.selectionStyle = UITableViewCellSelectionStyleNone;
-            if (self.isHostReadMoreOpen) {
-                [cell2.readMoreButton setTitle:NSLocalizedString(@"read_less", nil) forState:UIControlStateNormal];
-                cell2.hostBioLabel.lineBreakMode = NSLineBreakByWordWrapping;
-                cell2.hostBioLabel.numberOfLines = 0;
-                [cell2.hostBioLabel sizeToFit];
-            } else {
-                [cell2.readMoreButton setTitle:NSLocalizedString(@"read_more", nil) forState:UIControlStateNormal];
-                cell2.hostBioLabel.lineBreakMode = NSLineBreakByTruncatingTail;
-                cell2.hostBioLabel.numberOfLines = 5;
-            }
             
-            [cell2.hostImage sd_setImageWithURL:[NSURL URLWithString:hostImageURL]
-                              placeholderImage:[UIImage imageNamed:@"default_profile_image.png"]
-                                       options:SDWebImageRefreshCached];
-            if (hostFirstName) {
-                cell2.hostFirstNameLabel.text = [NSLocalizedString(@"about_the_host", nil) stringByAppendingString: hostFirstName];
+            
+            if ([self.expType isEqualToString:@"ITINERARY"]) {
+                cell2.hidden = YES;
+            } else {
+                cell2.parentView = self.myTable;
+                cell2.selectionStyle = UITableViewCellSelectionStyleNone;
+                if (self.isHostReadMoreOpen) {
+                    [cell2.readMoreButton setTitle:NSLocalizedString(@"read_less", nil) forState:UIControlStateNormal];
+                    cell2.hostBioLabel.lineBreakMode = NSLineBreakByWordWrapping;
+                    cell2.hostBioLabel.numberOfLines = 0;
+                    [cell2.hostBioLabel sizeToFit];
+                } else {
+                    [cell2.readMoreButton setTitle:NSLocalizedString(@"read_more", nil) forState:UIControlStateNormal];
+                    cell2.hostBioLabel.lineBreakMode = NSLineBreakByTruncatingTail;
+                    cell2.hostBioLabel.numberOfLines = 5;
+                }
+                
+                [cell2.hostImage sd_setImageWithURL:[NSURL URLWithString:hostImageURL]
+                                   placeholderImage:[UIImage imageNamed:@"default_profile_image.png"]
+                                            options:SDWebImageRefreshCached];
+                if (hostFirstName) {
+                    cell2.hostFirstNameLabel.text = [NSLocalizedString(@"about_the_host", nil) stringByAppendingString: hostFirstName];
+                }
+                cell2.hostBioLabel.text = hostBio;
             }
-            cell2.hostBioLabel.text = hostBio;
             
             return cell2;
         case 3:
@@ -435,8 +445,11 @@
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.row == 2 && [self.expType isEqualToString:@"ITINERARY"]) {
+        return 0.f;
+    }
     
-    switch (indexPath.row){
+    switch (indexPath.row) {
         case 3:
             if ([nReviews intValue] <= 0) {
                 return 0.0;
@@ -445,7 +458,6 @@
             return [self.cellHeights[indexPath.row] floatValue];
     }
     
-
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
