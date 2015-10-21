@@ -16,7 +16,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    self.navigationItem.title = self.sectionTitle;
     self.sectionDescLabel.text = self.sectionDescription;
 }
 

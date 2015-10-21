@@ -10,5 +10,6 @@
 
 @interface SectionDescViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UILabel *sectionDescLabel;
+@property (weak, nonatomic) NSString *sectionTitle;
 @property (weak, nonatomic) NSString *sectionDescription;
 @end

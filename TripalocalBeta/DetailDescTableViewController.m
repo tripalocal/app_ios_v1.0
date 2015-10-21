@@ -19,6 +19,7 @@ static NSString * const cellIdentifier0 = @"detailCell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.navigationItem.title = @"Listing Detail";
     self.tableView.contentInset = UIEdgeInsetsMake(64,0,0,0);
 }
 

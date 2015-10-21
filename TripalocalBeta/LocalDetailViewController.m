@@ -51,6 +51,7 @@
 }
 
 @property (strong, nonatomic) NSString *sectionDescription;
+@property (strong, nonatomic) NSString *sectionTitle;
 @end
 
 @implementation LocalDetailViewController
@@ -464,24 +465,31 @@
 - (IBAction)viewSectionDescription:(UIButton *)sender {
     switch (sender.tag) {
         case 4:
+            self.sectionTitle = @"Schedule";
             self.sectionDescription = expData[@"schedule"];
             break;
         case 5:
+            self.sectionTitle = @"Tips";
             self.sectionDescription = expData[@"tips"];
             break;
         case 6:
+            self.sectionTitle = @"What's included";
             self.sectionDescription = expData[@"whatsincluded"];
             break;
         case 7:
+            self.sectionTitle = @"Pick up detail";
             self.sectionDescription = expData[@"pickup_detail"];
             break;
         case 8:
+            self.sectionTitle = @"Disclaimer";
             self.sectionDescription = expData[@"disclaimer"];
             break;
         case 9:
+            self.sectionTitle = @"Refund Policy";
             self.sectionDescription = expData[@"refund_policy"];
             break;
         case 10:
+            self.sectionTitle = @"Insurance";
             self.sectionDescription = expData[@"insurance"];
             break;
         default:
@@ -516,6 +524,7 @@
     } else if ([segue.identifier isEqualToString:@"view_section_desc"]) {
         SectionDescViewController *vc = [segue destinationViewController];
         vc.sectionDescription = self.sectionDescription;
+        vc.sectionTitle = self.sectionTitle;
     }
     
 }
