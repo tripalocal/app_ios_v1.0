@@ -171,8 +171,6 @@
         [tableView registerNib:[UINib nibWithNibName:@"ChatOverviewViewCell" bundle:nil] forCellReuseIdentifier:cellIdentifier];
         cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     }
-    //load data
-    NSLog(@"Loading cell data!");
     
     if ([nameList count]!=0) {
         cell.userImage.image = [imgList objectAtIndex:indexPath.row];

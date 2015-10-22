@@ -189,7 +189,7 @@
     }
     //sort the local arrary
     NSSortDescriptor *sortDescriptor;
-    sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"local_id"
+    sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"message_time"
                                                  ascending:YES];
     NSMutableArray *sortDescriptors = [NSMutableArray arrayWithObject:sortDescriptor];
     NSArray *sortedArray = [[NSArray alloc]init];
@@ -213,7 +213,7 @@
         NSData *data_msg = [NSURLConnection sendSynchronousRequest:request_msg returningResponse:&response error:&connectionError];
     #if DEBUG
         NSString * decodedData =[[NSString alloc] initWithData:data_msg encoding:NSUTF8StringEncoding];
-        NSLog(@"Sending data = %@", decodedData);
+        NSLog(@"Receiving data = %@", decodedData);
     #endif
         if (connectionError == nil) {
             NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *) response;
@@ -224,6 +224,7 @@
             
             if ([httpResponse statusCode] == 200) {
                 if ([result_msg count] != 0) {
+                    long long local_id = 0;
                     for (NSDictionary *message_info in result_msg){
                         NSNumber *global_id = [message_info objectForKey:@"id"];
                         NSNumber *receiver_id = [message_info objectForKey:@"receiver_id"];
@@ -238,10 +239,7 @@
                         // Create a new managed object
                         NSManagedObject *newMessage = [NSEntityDescription
                                                        insertNewObjectForEntityForName:@"Message" inManagedObjectContext:context];
-                        long long local_id = (long long)([[NSDate date] timeIntervalSince1970] * 1000.0);
-    #if DEBUG
-                        NSLog(@"Current time when entering this view: %lld",local_id);
-    #endif
+                        local_id = local_id + 1;
                         [newMessage setValue:[NSString stringWithFormat:@"%lld",local_id] forKey:@"local_id"];
                         [newMessage setValue:[NSString stringWithFormat:@"%@",receiver_id] forKey:@"receiver_id"];
                         [newMessage setValue:[NSString stringWithFormat:@"%@",sender_id] forKey:@"sender_id"];
@@ -283,7 +281,7 @@
             }
             //sort the local arrary
             NSSortDescriptor *sortDescriptor;
-            sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"local_id"
+            sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"message_time"
                                                          ascending:YES];
             NSMutableArray *sortDescriptors = [NSMutableArray arrayWithObject:sortDescriptor];
             NSArray *sortedArray = [[NSArray alloc]init];
@@ -430,8 +428,6 @@
     [self.tableView reloadData];
     NSIndexPath* ip = [NSIndexPath indexPathForRow:[self.tableView numberOfRowsInSection:0] - 1 inSection:0];
     [self.tableView scrollToRowAtIndexPath:ip atScrollPosition:UITableViewScrollPositionTop animated:YES];
-//    CGPoint offset = CGPointMake(0, self.tableView.contentSize.height - self.tableView.frame.size.height);
-//    [self.tableView setContentOffset:offset animated:YES];
 }
 #pragma mark Tableview
 //introducing the custom cell
@@ -439,15 +435,10 @@
     NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
     NSString *sender_id = [userDefault objectForKey:@"user_id"];
     NSString *sender_name = [userDefault objectForKey:@"username"];
-    
-
     static NSString *cellFromIdentifier = @"ChatDetailFromCell";
-    NSLog(@"Cell enter.");
     static NSString *cellToIdentifier = @"ChatDetailToCell";
     //test data
     NSManagedObject *message = [sortedMessage objectAtIndex:indexPath.row];
-    
-    //NSLog(@"From Cell loading!!!");
     
     if ([allRelevantMessage count]!=0) {
         if ([[message valueForKey:@"sender_id"] intValue] == [sender_id intValue] && [[message valueForKey:@"receiver_id"] intValue] == [chatWithUser intValue]) {
@@ -664,7 +655,6 @@
                 [alert show];
             }
         }
-        
 }
 
 #pragma mark HPGrowTextVIEW
