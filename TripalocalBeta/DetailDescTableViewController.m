@@ -85,13 +85,13 @@ static NSString * const cellIdentifier0 = @"detailCell";
 
 - (CGFloat)calculateHeightForConfiguredSizingCell:(UITableViewCell *)sizingCell {
     if (sizingCell.hidden == YES) {
-        return 1.f;
+        return 0.f;
     }
     [sizingCell setNeedsLayout];
     [sizingCell layoutIfNeeded];
     
     CGSize size = [sizingCell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
-    return size.height;
+    return size.height + 20.f;
 }
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {

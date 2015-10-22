@@ -208,10 +208,6 @@
     return [languages componentsJoinedByString:@" / "];
 }
 
--(UITableViewCell *)configMultidayCell2:(MultidayTableViewCell *)cell atRow:(NSInteger)row {
-    return cell;
-}
-
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *cellIdentifier = @"SearchCell";
     static NSString *cellIdentifier2 = @"SearchCell2";
@@ -597,17 +593,13 @@
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([segue.identifier isEqualToString:@"SearchResultSegue"]) {
-        UINavigationController *navController = (UINavigationController *)segue.destinationViewController;
-        navController.hidesBottomBarWhenPushed = YES;
-        TLDetailViewController *vc = (TLDetailViewController *) navController.topViewController;
+        TLDetailViewController *vc = (TLDetailViewController *)segue.destinationViewController;
         vc.expType = self.exp[@"type"];
         vc.experience_id_string = [self.exp[@"id"] stringValue];
         vc.expPrice = [Utility decimalwithFormat:@"0" floatV:[self.exp[@"price"] floatValue]];
         
     } else if ([segue.identifier isEqualToString:@"LocalSearchResultSegue"]) {
-        UINavigationController *navController = (UINavigationController *)segue.destinationViewController;
-        navController.hidesBottomBarWhenPushed = YES;
-        LocalDetailViewController *vc = (LocalDetailViewController *) navController.topViewController;
+        LocalDetailViewController *vc = (LocalDetailViewController *) segue.destinationViewController;
         vc.expType = self.exp[@"type"];
         vc.experience_id_string = [self.exp[@"id"] stringValue];
         vc.expPrice = [Utility decimalwithFormat:@"0" floatV:[self.exp[@"price"] floatValue]];

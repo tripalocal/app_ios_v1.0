@@ -182,9 +182,9 @@
                         <outlet property="tableView" destination="5Bj-PW-wbu" id="NB8-YT-BA4"/>
                         <outlet property="travelWithLocalsImageView" destination="1sK-Cz-2SL" id="EYR-2d-ejb"/>
                         <outlet property="travelWithLocalsLabel" destination="FUo-jF-Ruf" id="Uz8-lu-tch"/>
-                        <segue destination="LMA-mX-Yu6" kind="show" identifier="SearchResultSegue" id="yiP-PS-w0n"/>
                         <segue destination="Gep-Sa-s2z" kind="presentation" identifier="login_segue" id="chc-HC-F4Z"/>
-                        <segue destination="e3N-tg-En3" kind="show" identifier="LocalSearchResultSegue" id="Mdr-Lh-99k"/>
+                        <segue destination="1Mj-3z-OfA" kind="show" identifier="SearchResultSegue" id="JEQ-2l-ewO"/>
+                        <segue destination="rfH-8O-mBV" kind="show" identifier="LocalSearchResultSegue" id="hSJ-3F-2mq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="T7l-hn-DwO" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -204,7 +204,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="2336" y="-708"/>
+            <point key="canvasLocation" x="2904" y="-944"/>
         </scene>
         <!--Experience Detail-->
         <scene sceneID="CJt-fC-pFw">
@@ -218,7 +218,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="1700"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="306" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="VsV-ga-mVG">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="306" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="VsV-ga-mVG">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="1651"/>
                                 <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -870,7 +870,7 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <button opaque="NO" alpha="0.90000000000000002" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ob8-Wd-umG">
+                            <button opaque="NO" alpha="0.90000000000000002" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ob8-Wd-umG">
                                 <rect key="frame" x="4" y="1606" width="592" height="45"/>
                                 <animations/>
                                 <color key="backgroundColor" red="0.20000000000000001" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
@@ -910,7 +910,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5IH-7H-1Yc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5661" y="-1289"/>
+            <point key="canvasLocation" x="4553" y="-1165"/>
         </scene>
         <!--Local Experience Detail-->
         <scene sceneID="k1a-ys-2mJ">
@@ -924,7 +924,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="1700"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="306" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Rv7-br-YSx">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="306" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Rv7-br-YSx">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="1606"/>
                                 <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1300,7 +1300,7 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <button opaque="NO" alpha="0.89999997615814209" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N19-TI-7hH">
+                            <button opaque="NO" alpha="0.89999997615814209" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N19-TI-7hH">
                                 <rect key="frame" x="4" y="1606" width="592" height="45"/>
                                 <animations/>
                                 <color key="backgroundColor" red="0.20000000000000001" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
@@ -1339,7 +1339,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5Ok-Y0-HvA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6625" y="-1134"/>
+            <point key="canvasLocation" x="5381" y="750"/>
         </scene>
         <!--Detail Desc Table View Controller-->
         <scene sceneID="0ie-4p-3KB">
@@ -2704,8 +2704,8 @@
                     <connections>
                         <outlet property="nomatchesView" destination="hjh-dK-rmF" id="hpS-Ej-1X6"/>
                         <outlet property="tableView" destination="CgK-32-han" id="Aip-9u-UxN"/>
-                        <segue destination="LMA-mX-Yu6" kind="show" identifier="MyTripsToExpList" id="Mv9-dv-dnM"/>
-                        <segue destination="e3N-tg-En3" kind="show" identifier="LocalMyTripsToExpList" id="6p9-n5-XtB"/>
+                        <segue destination="1Mj-3z-OfA" kind="show" identifier="MyTripsToExpList" id="9cx-4o-yzp"/>
+                        <segue destination="rfH-8O-mBV" kind="show" identifier="MyTripsToExpList" id="TQO-CB-hTO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="D7P-md-TKe" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -4427,7 +4427,7 @@
                                     <constraint firstItem="DvV-aY-zzz" firstAttribute="leading" secondItem="Kc2-SR-fKy" secondAttribute="leading" id="WnD-zU-Ihc"/>
                                 </constraints>
                             </scrollView>
-                            <button opaque="NO" alpha="0.90000000000000002" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2w2-8z-grV">
+                            <button opaque="NO" alpha="0.90000000000000002" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2w2-8z-grV">
                                 <rect key="frame" x="0.0" y="1606" width="600" height="45"/>
                                 <animations/>
                                 <color key="backgroundColor" red="0.0" green="0.81568627449999997" blue="0.81568627449999997" alpha="1" colorSpace="calibratedRGB"/>
@@ -4586,46 +4586,6 @@
             </objects>
             <point key="canvasLocation" x="5906" y="4746"/>
         </scene>
-        <!--Local Exp Detail Nav Controller-->
-        <scene sceneID="WtH-bG-SRO">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" hidesBottomBarWhenPushed="YES" id="e3N-tg-En3" userLabel="Local Exp Detail Nav Controller" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationItem key="navigationItem" id="kWM-4x-2Id"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="q5e-Xf-Huc">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <animations/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="rfH-8O-mBV" kind="relationship" relationship="rootViewController" id="aR5-2B-f27"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="0I3-4L-L4o" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="4934" y="100"/>
-        </scene>
-        <!--Exp Detail Nav Controller-->
-        <scene sceneID="hEd-zI-itc">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" hidesBottomBarWhenPushed="YES" id="LMA-mX-Yu6" userLabel="Exp Detail Nav Controller" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationItem key="navigationItem" id="5Y9-O8-as6"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="6fk-FI-GOb">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <animations/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="1Mj-3z-OfA" kind="relationship" relationship="rootViewController" id="pXr-ir-qQo"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="XIj-hi-6l9" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="4400" y="-739"/>
-        </scene>
         <!--Wish List-->
         <scene sceneID="fXr-Ff-maN">
             <objects>
@@ -4705,8 +4665,8 @@
                         <outlet property="needToLoginView" destination="6o6-Os-fpy" id="eUE-Ck-ZXd"/>
                         <outlet property="noDataLabel" destination="knl-vT-AcR" id="mQg-JD-Jag"/>
                         <outlet property="tableView" destination="Jhg-L1-puJ" id="Lcl-13-dwU"/>
-                        <segue destination="LMA-mX-Yu6" kind="show" identifier="SearchResultSegue" id="Pkv-bo-ySw"/>
-                        <segue destination="e3N-tg-En3" kind="show" identifier="LocalSearchResultSegue" id="Udh-8n-EKT"/>
+                        <segue destination="1Mj-3z-OfA" kind="show" identifier="SearchResultSegue" id="R0C-ra-7wU"/>
+                        <segue destination="rfH-8O-mBV" kind="show" identifier="LocalSearchResultSegue" id="cP7-s9-LOc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EWo-w3-13c" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -4866,8 +4826,8 @@
                     <connections>
                         <outlet property="nomatchesView" destination="pZ0-ZD-Dih" id="ceW-JU-YXb"/>
                         <outlet property="tableView" destination="JhB-HX-rEO" id="VjT-0H-pS4"/>
-                        <segue destination="LMA-mX-Yu6" kind="show" identifier="MyTripsToExpList" id="JDy-lr-t91"/>
-                        <segue destination="e3N-tg-En3" kind="show" identifier="LocalMyTripsToExpList" id="ZqP-Vi-uNa"/>
+                        <segue destination="1Mj-3z-OfA" kind="show" identifier="MyTripsToExpList" id="vmz-8c-cGB"/>
+                        <segue destination="rfH-8O-mBV" kind="show" identifier="MyTripsToExpList" id="Ygy-AS-04z"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hU1-HZ-qVh" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -4976,11 +4936,11 @@
         <image name="tripalocal_logo_zh" width="132" height="46"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Mdr-Lh-99k"/>
-        <segue reference="1MU-e6-KUX"/>
-        <segue reference="yiP-PS-w0n"/>
-        <segue reference="hPI-YE-UZz"/>
-        <segue reference="olF-su-vgo"/>
         <segue reference="tXC-gw-Kz7"/>
+        <segue reference="cP7-s9-LOc"/>
+        <segue reference="R0C-ra-7wU"/>
+        <segue reference="olF-su-vgo"/>
+        <segue reference="chc-HC-F4Z"/>
+        <segue reference="1MU-e6-KUX"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -11,6 +11,7 @@
 #import "URLConfig.h"
 #import "Utility.h"
 #import <SecureNSUserDefaults/NSUserDefaults+SecureAdditions.h>
+#import <SDWebImage/UIImageView+WebCache.h>
 
 @interface WishLishViewController ()
 
@@ -29,7 +30,7 @@
     self.navigationItem.title = NSLocalizedString(@"wishlist_title", nil);
     if (!self.expList)
     {
-        self.expList = [self fetchExpData:self.cityName];
+        self.expList = [self fetchExpData];
     }
     
     refreshControl = [[UIRefreshControl alloc] init];
@@ -60,7 +61,7 @@
         }
         if (![wishList isEqualToSet:origWishList])
         {
-            self.expList = [self fetchExpData:self.cityName];
+            self.expList = [self fetchExpData];
         }
         
         [self.tableView reloadData];
@@ -76,7 +77,7 @@
     [refreshControl endRefreshing];
 }
 
-- (NSMutableArray *)fetchExpData:(NSString *) cityName {
+- (NSMutableArray *)fetchExpData {
     NSMutableArray *expList = [[NSMutableArray alloc] init];
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     NSMutableArray *wishList = [userDefaults objectForKey:@"wish_list"];
@@ -97,32 +98,32 @@
             NSDictionary *exp = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
             
             if ([httpResponse statusCode] == 200) {
-                NSMutableDictionary *resultExp = [[NSMutableDictionary alloc] init];
-                [resultExp setObject:[exp objectForKey:@"experience_duration"] forKey:@"duration"];
-                [resultExp setObject:[exp objectForKey:@"experience_title"] forKey:@"title"];
-                [resultExp setObject:[exp objectForKey:@"experience_language"] forKey:@"language"];
-                [resultExp setObject:[exp objectForKey:@"experience_description"] forKey:@"description"];
-                
-                NSMutableArray *dynamicPriceArray = [exp objectForKey:@"experience_dynamic_price"];
-                NSNumber *maxGuestNum = [exp objectForKey:@"experience_guest_number_max"];
-                NSNumber *minGuestNum = [exp objectForKey:@"experience_guest_number_min"];
-                
-                NSNumber *priceNumber = nil;
-                if ([dynamicPriceArray count] == 0) {
-                    priceNumber = exp[@"experience_price"];
-                } else if ([minGuestNum intValue] <= 4 && [maxGuestNum intValue] >= 4) {
-                    priceNumber = dynamicPriceArray[4 - [minGuestNum intValue]];
-                } else if ([minGuestNum intValue] > 4) {
-                    priceNumber = dynamicPriceArray[0];
-                } else if ([maxGuestNum intValue] < 4) {
-                    priceNumber = [dynamicPriceArray lastObject];
-                }
+//                NSMutableDictionary *resultExp = [[NSMutableDictionary alloc] init];
+//                [resultExp setObject:[exp objectForKey:@"experience_duration"] forKey:@"duration"];
+//                [resultExp setObject:[exp objectForKey:@"experience_title"] forKey:@"title"];
+//                [resultExp setObject:[exp objectForKey:@"experience_language"] forKey:@"language"];
+//                [resultExp setObject:[exp objectForKey:@"experience_description"] forKey:@"description"];
+//                
+//                NSMutableArray *dynamicPriceArray = [exp objectForKey:@"experience_dynamic_price"];
+//                NSNumber *maxGuestNum = [exp objectForKey:@"experience_guest_number_max"];
+//                NSNumber *minGuestNum = [exp objectForKey:@"experience_guest_number_min"];
+//                
+//                NSNumber *priceNumber = nil;
+//                if ([dynamicPriceArray count] == 0) {
+//                    priceNumber = exp[@"experience_price"];
+//                } else if ([minGuestNum intValue] <= 4 && [maxGuestNum intValue] >= 4) {
+//                    priceNumber = dynamicPriceArray[4 - [minGuestNum intValue]];
+//                } else if ([minGuestNum intValue] > 4) {
+//                    priceNumber = dynamicPriceArray[0];
+//                } else if ([maxGuestNum intValue] < 4) {
+//                    priceNumber = [dynamicPriceArray lastObject];
+//                }
 
-                [resultExp setObject:[Utility decimalwithFormat:@"0" floatV:[priceNumber floatValue]] forKey:@"price"];
+//                [resultExp setObject:[Utility decimalwithFormat:@"0" floatV:[priceNumber floatValue]] forKey:@"price"];
 
-                [resultExp setObject:[exp objectForKey:@"host_image"]forKey:@"host_image"];
-                [resultExp setObject:[NSNumber numberWithInt:[expID intValue]]forKey:@"id"];
-                [expList addObject:resultExp];
+//                [resultExp setObject:[exp objectForKey:@"host_image"]forKey:@"host_image"];
+//                [resultExp setObject:[NSNumber numberWithInt:[expID intValue]]forKey:@"id"];
+                [expList addObject:exp];
             }
             else {
                 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"server_error", nil)
@@ -181,6 +182,106 @@
     
     [super viewWillAppear:animated];
 }
+
+
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    static NSString *cellIdentifier = @"SearchCell";
+    static NSString *cellIdentifier2 = @"SearchCell2";
+    
+    TLSearchTableViewCell *cell;
+    
+    NSDictionary *exp = [self.expList objectAtIndex:indexPath.row];
+    
+    if ([exp[@"type"] isEqualToString:@"PRIVATE"]) {
+        cell = nil;
+        cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+        if(!cell) {
+            [tableView registerNib:[UINib nibWithNibName:@"SearchViewCell" bundle:nil] forCellReuseIdentifier:cellIdentifier];
+            cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+        }
+        
+    } else if ([exp[@"type"] isEqualToString:@"NEWPRODUCT"]) {
+        cell = nil;
+        cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier2];
+        if(!cell) {
+            [tableView registerNib:[UINib nibWithNibName:@"SearchViewCell2" bundle:nil] forCellReuseIdentifier:cellIdentifier2];
+            cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier2];
+        }
+    }
+    
+    NSString *expIdString = [exp[@"id"] stringValue];
+    
+    NSString *duration = [exp[@"duration"] stringValue];
+    NSString *handledDurationString = [duration stringByAppendingString:NSLocalizedString(@"Hours", nil)];
+    cell.durationLabel.text = handledDurationString;
+    cell.titleLabel.text = exp[@"title"];
+    
+    cell.languageLabel.text = [self transformLanugage:(NSString *)exp[@"language"]];
+    cell.descriptionLabel.text = exp[@"description"];
+    
+    if ([exp[@"type"] isEqualToString:@"PRIVATE"]) {
+        NSString *hostImageRelativeURL = exp[@"host_image"];
+        if (hostImageRelativeURL != (id)[NSNull null] && hostImageRelativeURL.length > 0) {
+            NSString *hostImageURL = [[URLConfig imageServiceURLString] stringByAppendingString: hostImageRelativeURL];
+            
+            [cell.hostImage sd_setImageWithURL:[NSURL URLWithString:hostImageURL]
+                              placeholderImage:[UIImage imageNamed:@"default_profile_image.png"]
+                                       options:SDWebImageRefreshCached];
+        } else {
+            cell.hostImage.image = [UIImage imageNamed:@"default_profile_image.png"];
+        }
+    }
+    
+    
+    NSString *backgroundImageURL = [NSString stringWithFormat:@"%@thumbnails/experiences/experience%@_1.jpg", [URLConfig imageServiceURLString], expIdString];
+    
+    __block UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    activityIndicator.center = cell.experienceImage.center;
+    activityIndicator.hidesWhenStopped = YES;
+    [cell.experienceImage addSubview:activityIndicator];
+    [activityIndicator startAnimating];
+    
+    [cell.experienceImage sd_setImageWithURL:[NSURL URLWithString:backgroundImageURL]
+                            placeholderImage:nil
+                                     options:0
+                                   completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+                                       [activityIndicator removeFromSuperview];
+                                   }];
+    
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    NSMutableArray *wishList = [userDefaults objectForKey:@"wish_list"];
+    
+    if ([wishList containsObject:expIdString]) {
+        [cell.wishListButton setBackgroundImage:[UIImage imageNamed:@"wishlisted.png"] forState:UIControlStateNormal];
+        cell.smallWishImage.image = [UIImage imageNamed:@"heart_sr.png"];
+        cell.wishStatus.text = NSLocalizedString(@"Saved", nil);;
+    } else {
+        [cell.wishListButton setBackgroundImage:[UIImage imageNamed:@"unwishlisted.png"] forState:UIControlStateNormal];
+        cell.smallWishImage.image = [UIImage imageNamed:@"heart_sw.png"];
+        cell.wishStatus.text = NSLocalizedString(@"add_to_wishlist", nil);
+    }
+    cell.delegate = self;
+    cell.wishListButton.tag = indexPath.row;
+    NSString *priceString = [Utility decimalwithFormat:@"0" floatV:[exp[@"price"] floatValue]];
+    cell.priceLabel.text = priceString;
+    
+
+    return cell;
+}
+
+- (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 340.f;
+}
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return [self.expList count];
+}
+
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 1;
+}
+
 
 - (IBAction)dismissWishList:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];

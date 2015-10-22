@@ -22,5 +22,5 @@
 @property (weak, nonatomic) IBOutlet UILabel *localExpLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *itinerariesImageView;
 @property (weak, nonatomic) IBOutlet UILabel *itenarariesLabel;
-
+-(NSString *) transformLanugage:(NSString *) languageString;
 @end
