@@ -468,8 +468,7 @@
 
             
             return cellTo;
-        }else if ([[message valueForKey:@"receiver_id"] intValue] == [sender_id intValue] && [[message valueForKey:@"sender_id"] intValue] == [chatWithUser intValue])
-        {
+        }else{
             //NSLog(@"FROM: message Sender: %d , userid: %d, equal: %d", [[message valueForKey:@"sender_id"] intValue], [sender_id intValue],[[message valueForKey:@"sender_id"] intValue] == [sender_id intValue]  );
             //[messageListFrom addObject:message];
             ChatDetailFromTableViewCell *cellFrom = (ChatDetailFromTableViewCell *)[tableView dequeueReusableCellWithIdentifier:cellFromIdentifier];
@@ -484,8 +483,11 @@
             return cellFrom;
         }
     }else{
-        NSLog(@"message list empty, sample data.");
+        NSLog(@"No messages available");
     }
+//    }else{
+//        NSLog(@"message list empty, sample data.");
+//    }
     ChatDetailFromTableViewCell *cellFrom = (ChatDetailFromTableViewCell *)[tableView dequeueReusableCellWithIdentifier:cellFromIdentifier];
     if (!cellFrom) {
         [tableView registerNib:[UINib nibWithNibName:@"ChatDetailFromViewCell" bundle:nil] forCellReuseIdentifier:cellFromIdentifier];
@@ -495,7 +497,6 @@
     cellFrom.messageContent.text = @"Wrong";
     cellFrom.messageTime.text = @"Wrong";
     return cellFrom;
-
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
