@@ -1166,6 +1166,7 @@
 				8EB570DC1B01CF2B0026D419 /* Frameworks */,
 				8EB570DD1B01CF2B0026D419 /* Resources */,
 				0F925872D042AC1B45D1417C /* Copy Pods Resources */,
+				665A3C96C66486EB0B153810 /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1288,6 +1289,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TripalocalBeta/Pods-TripalocalBeta-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		665A3C96C66486EB0B153810 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TripalocalBeta/Pods-TripalocalBeta-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		9E9349A752558E96174A8CB8 /* Check Pods Manifest.lock */ = {
