@@ -249,8 +249,7 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if([segue.identifier isEqualToString:@"payByCreditCard"]){
-        UINavigationController *navController = (UINavigationController *)segue.destinationViewController;
-        PaymentViewController *controller = (PaymentViewController *)navController.topViewController;
+        PaymentViewController *controller = (PaymentViewController *)segue.destinationViewController;
         controller.hostName = self.hostName;
         controller.expId = self.expId;
         controller.guestNumber = self.guestNumber;
