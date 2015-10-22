@@ -55,29 +55,33 @@
     
     [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment:UIOffsetMake(0, -60)
                                                          forBarMetrics:UIBarMetricsDefault];
+
+    // Pop up a window to ask user permission on notification
     if ([UIApplication instancesRespondToSelector:@selector(registerUserNotificationSettings:)]){
         [application registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert|UIUserNotificationTypeBadge|UIUserNotificationTypeSound categories:nil]];
     }
+    // Register user notification types
     UIUserNotificationType types = UIUserNotificationTypeBadge | UIUserNotificationTypeSound | UIUserNotificationTypeAlert;
+    // Register user notification
     UIUserNotificationSettings *mySettings = [UIUserNotificationSettings settingsForTypes:types categories:nil];
     [[UIApplication sharedApplication] registerUserNotificationSettings:mySettings];
     [[UIApplication sharedApplication] registerForRemoteNotifications];
-    
+    // Parse push service id and client key
+    [Parse setApplicationId:@"4cpQPEXEfrw12IJ8e4W8rz9ZpneQFVMUBsdzoU2s"
+                  clientKey:@"mHQFpD0EeUxvVVmRokTuH5SUfXg7QJAE9whXylRn"];
     
 #ifdef DEBUG
     [Mixpanel sharedInstanceWithToken:MIXPANEL_TOKEN_DEV];
 #else
     [Mixpanel sharedInstanceWithToken:MIXPANEL_TOKEN];
 #endif
-    
+    // Config global keyboard avoidance
     [[IQKeyboardManager sharedManager] setEnableAutoToolbar :NO];
     
-    // Handle launching from a notification
-    [Parse setApplicationId:@"4cpQPEXEfrw12IJ8e4W8rz9ZpneQFVMUBsdzoU2s"
-                  clientKey:@"mHQFpD0EeUxvVVmRokTuH5SUfXg7QJAE9whXylRn"];
-    
-    return YES;
+        return YES;
 }
+
+#pragma mark - Notification setup
 - (void)application:(UIApplication*)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData*)deviceToken
 {
     NSLog(@"My token is: %@", deviceToken);
@@ -99,6 +103,33 @@
     NSLog(@"Failed to get token, error: %@", error);
 }
 
+- (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification
+{
+    UIApplicationState state = [application applicationState];
+    if (state == UIApplicationStateActive) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"New message"
+                                                        message:notification.alertBody
+                                                       delegate:self cancelButtonTitle:@"Got it"
+                                              otherButtonTitles:nil];
+        [alert show];
+    }
+    
+    // Request to reload table view data
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadData" object:self];
+    
+    // Set icon badge number to zero
+    application.applicationIconBadgeNumber = 0;
+}
+
+-(void)application:(UIApplication *)application didReceiveRemoteNotification:(nonnull NSDictionary *)userInfo{
+    NSLog(@"Remote Notification!");
+    
+    [PFPush handlePush:userInfo];
+    [UIApplication sharedApplication].applicationIconBadgeNumber =
+    [UIApplication sharedApplication].applicationIconBadgeNumber+1;
+}
+
+#pragma mark - Application
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
     // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
@@ -117,7 +148,10 @@
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+    
+    // Connect to openfire server
     [self connect];
+    // Reassign the badge number to 0
     if (currentInstallation.badge != 0) {
         currentInstallation.badge = 0;
         [currentInstallation saveEventually];
@@ -128,7 +162,7 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
-
+#pragma mark - Payment
 - (BOOL)application:(UIApplication *)application
             openURL:(NSURL *)url
   sourceApplication:(NSString *)sourceApplication
@@ -190,27 +224,23 @@
     
     return NO;
 }
-
+#pragma mark - XMPP connection
 -(void)setupStream {
-    NSLog(@"Setting up the Stream!>");
+    NSLog(@"Setting up the Stream!");
     xmppStream = [[XMPPStream alloc] init];
     [xmppStream addDelegate:self delegateQueue:dispatch_get_main_queue()];
     [xmppStream disconnect];
-//    NSLog(@"xmpp Strean is connect? ==== %d", [xmppStream isDisconnected]);
-//    self.xmppStream.hostName = @"54.149.42.196";
-//    self.xmppStream.hostPort = 9090;
-//    NSLog(@"xmpp Strean is connect? ==== %d", [xmppStream isDisconnected]);
 }
 -(BOOL)connect {
     [self setupStream];
     //setting up the jabber id and password
-
     NSString *jabberID = [NSString stringWithFormat:@"%@%@",[[NSUserDefaults standardUserDefaults] objectForKey:@"user_id"], @"@tripalocal.com"];
     NSString *myPassword = [[NSUserDefaults standardUserDefaults] objectForKey:@"user_id"];
 #if DEBUG
     NSLog(@"Using JABBERID:%@, PASSWORD:%@", jabberID, myPassword);
 #endif
-    
+    // Disconnect before connect
+    // Avoid multiple login on openfire server
     if (![xmppStream isDisconnected]) {
         NSLog(@"connected: %d", [self.xmppStream isConnected]);
         return YES;
@@ -243,15 +273,11 @@
 -(void)disconnect{
     [self goOffline];
     [xmppStream disconnect];
-//    [_chatDelegate didDisconnect];
 }
 -(void)goOnline {
     XMPPPresence *presence = [XMPPPresence presence];
     NSXMLElement *priority = [NSXMLElement elementWithName:@"Priority" stringValue:@"0"];
     [presence addChild:priority];
-#if DEBUG
-    NSLog(@"XS Sending:%@",priority);
-#endif
     [[self xmppStream] sendElement:presence];
 }
 -(void)goOffline {
@@ -260,12 +286,10 @@
 }
 - (void)xmppStream:(XMPPStream *)sender socketDidConnect:(GCDAsyncSocket *)socket
 {
-    NSLog(@"SOCKET DID CONNECT$$$$$$$$$$$$$$$$$$$");
+
 }
 - (void)xmppStream:(XMPPStream *)sender willSecureWithSettings:(NSMutableDictionary *)settings
 {
-//    DDLogVerbose(@"%@: %@", THIS_FILE, THIS_METHOD);
-    
     NSString *expectedCertName = [xmppStream.myJID domain];
     NSLog(@"Domain Name: %@", expectedCertName);
     NSLog(@"willSecureWithSettings #####################");
@@ -274,18 +298,11 @@
     {
         settings[(NSString *) kCFStreamSSLPeerName] = expectedCertName;
     }
-    
-//    if (customCertEvaluation)
-//    {
-//        settings[GCDAsyncSocketManuallyEvaluateTrust] = @(YES);
-//    }
 }
 
 - (void)xmppStream:(XMPPStream *)sender didReceiveTrust:(SecTrustRef)trust
  completionHandler:(void (^)(BOOL shouldTrustPeer))completionHandler
 {
-//    DDLogVerbose(@"%@: %@", THIS_FILE, THIS_METHOD);
-    
     // The delegate method should likely have code similar to this,
     // but will presumably perform some extra security code stuff.
     // For example, allowing a specific self-signed certificate that is known to the app.
@@ -295,7 +312,6 @@
         
         SecTrustResultType result = kSecTrustResultDeny;
         OSStatus status = SecTrustEvaluate(trust, &result);
-        NSLog(@"DID RECEIVE TRUST *********************");
         if (status == noErr && (result == kSecTrustResultProceed || result == kSecTrustResultUnspecified)) {
             completionHandler(YES);
         }
@@ -306,8 +322,7 @@
 }
 - (void)xmppStreamDidSecure:(XMPPStream *)sender
 {
-    NSLog(@"DID SECURE ^^^^^^^^^^^^^^^^^^^^^^");
-//    DDLogVerbose(@"%@: %@", THIS_FILE, THIS_METHOD);
+
 }
 
 -(void)xmppStreamDidConnect:(XMPPStream *)sender{
@@ -338,9 +353,9 @@
     
 }
 -(void)xmppStreamDidAuthenticate:(XMPPStream *)sender{
-    NSLog(@"Authenticate!");
     [self goOnline];
 }
+#pragma mark - Receive message
 -(void)xmppStream:(XMPPStream *)sender didReceiveMessage:(XMPPMessage *)message{
     //get the user_id
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
@@ -348,14 +363,13 @@
     //get current time in UTC
     NSString *timeStamp = [NSString stringWithFormat:@"%@%@",[[Utility getCurrentUTCTime] stringByReplacingOccurrencesOfString:@"\\" withString:@""],@"/000000"];;
     // here you have new Date with desired format and TimeZone.
-#if DEBUG
-    NSLog(@"Message received: %@",message);
-#endif
+
+    // Handle empty message
     NSString *msg = [[message elementForName:@"body"] stringValue];
     if (msg == (id)[NSNull null] || msg.length == 0)  {
         msg = @"";
     }
-    
+    // Handle normal message
     NSString *fromWithDeviceID = [[message attributeForName:@"from"] stringValue];
     NSString *from = [[fromWithDeviceID	componentsSeparatedByString:@"@"] objectAtIndex:0];
 #if DEBUG
@@ -370,6 +384,7 @@
     
     // Create a new managed object
     NSManagedObject *newMessage = [NSEntityDescription insertNewObjectForEntityForName:@"Message" inManagedObjectContext:context];
+    // Fill in the details
     long long local_id = (long long)([[NSDate date] timeIntervalSince1970] * 1000.0);
     [newMessage setValue:[NSString stringWithFormat:@"%lld", local_id] forKey:@"local_id"];
     [newMessage setValue:[NSString stringWithFormat:@"%@", receiver_id] forKey:@"receiver_id"];
@@ -382,7 +397,7 @@
     if (![context save:&error]) {
         NSLog(@"Can't Save! %@ %@", error, [error localizedDescription]);
     }
-//load message in chat detail view
+	// Load message in chat detail view
     [_messageDelegate newMessageReceived:m];
 #if DEBUG
     NSLog(@"Message received: %@",m);
@@ -504,31 +519,7 @@
     }
 }
 
-#pragma mark - Notification
-- (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification
-{
-    UIApplicationState state = [application applicationState];
-    if (state == UIApplicationStateActive) {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"New message"
-                                                        message:notification.alertBody
-                                                       delegate:self cancelButtonTitle:@"Got it"
-                                              otherButtonTitles:nil];
-        [alert show];
-    }
-    
-    // Request to reload table view data
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadData" object:self];
-    
-    // Set icon badge number to zero
-    application.applicationIconBadgeNumber = 0;
-}
--(void)application:(UIApplication *)application didReceiveRemoteNotification:(nonnull NSDictionary *)userInfo{
-    NSLog(@"Remote Notification!");
-    
-    [PFPush handlePush:userInfo];
-    [UIApplication sharedApplication].applicationIconBadgeNumber =
-    [UIApplication sharedApplication].applicationIconBadgeNumber+1;
-}
+
 
 
 @end

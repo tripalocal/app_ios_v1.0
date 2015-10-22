@@ -15,6 +15,7 @@
     NSLog(@"From Cell loading...");
     self.otherUserImage.layer.cornerRadius = self.otherUserImage.frame.size.height / 2;
     self.otherUserImage.layer.masksToBounds = YES;
+    self.otherUserImage.contentMode = UIViewContentModeScaleAspectFill;
     self.otherUserImage.layer.borderColor = [UIColor colorWithRed:204.0f/255.0f green:204.0f/255.0f blue:204.0f/255.0f alpha:1.0].CGColor;
     self.otherUserImage.layer.borderWidth = 1.0f;
     self.messageContent.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0];

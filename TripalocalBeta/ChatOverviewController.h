@@ -18,9 +18,7 @@
     NSMutableArray *messageList;
 	NSMutableArray *timeList;
     NSMutableArray *sender_id_list;
-
     NSMutableArray *allMessage;
-   
 }
 
 @property (retain, nonatomic) IBOutlet UITableView *tableView;

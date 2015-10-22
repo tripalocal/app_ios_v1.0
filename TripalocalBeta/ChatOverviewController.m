@@ -16,7 +16,6 @@
 #import "UnloginViewController.h"
 #import "JGProgressHUD.h"
 
-
 @interface ChatOverviewController()
 	
 @end
@@ -28,6 +27,7 @@
 @synthesize managedObjectContext = _managedObjectContext;
 @synthesize managedObjectModel= _managedObjectModel;
 @synthesize allMessage;
+
 -(AppDelegate *)appDelegate {
     return (AppDelegate *)[[UIApplication sharedApplication] delegate];
 }
@@ -35,117 +35,110 @@
 -(XMPPStream *)xmppStream {
     return [[self appDelegate] xmppStream];
 }
-
-
+#pragma mark View
 - (void)viewDidLoad {
     [super viewDidLoad];
+    // Setup tableview delegate and data source
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+    // Set the back button
+    // ***********
+    // Removable !!
+    UIBarButtonItem *closeButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Close", nil) style:UIBarButtonItemStylePlain target:self action:@selector(dismissChatOverview:)];
+    closeButton.tintColor = [Utility themeColor];
     [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithRed:255.0 green:255.0 blue:255.0 alpha:1.0]];
-    NSLog(@"View loading.");
+    self.navigationItem.leftBarButtonItem = closeButton;
+    // ***********
+    //set view controller as a delegate for the chat protocol
+    AppDelegate *del = [self appDelegate];
+    del._chatDelegate = self;
+    // Setup HUD
     HUD = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleDark];
     HUD.HUDView.layer.shadowColor = [UIColor blackColor].CGColor;
     HUD.HUDView.layer.shadowOffset = CGSizeZero;
     HUD.HUDView.layer.shadowOpacity = 0.4f;
     HUD.HUDView.layer.shadowRadius = 8.0f;
     HUD.textLabel.text = NSLocalizedString(@"loading", nil);
-    self.tableView.delegate = self;
-    self.tableView.dataSource = self;
-    
-    UIBarButtonItem *closeButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Close", nil) style:UIBarButtonItemStylePlain target:self action:@selector(dismissChatOverview:)];
-    closeButton.tintColor = [Utility themeColor];
-    self.navigationItem.leftBarButtonItem = closeButton;
-    //loading the message data in here
-    //	:load three arraies
-    
-    //set view controller as a delegate for the chat protocol
-    AppDelegate *del = [self appDelegate];
-    del._chatDelegate = self;
-	//get the user info
     [HUD showInView:self.view];
     [HUD dismissAfterDelay:1.0];
     
 }
 -(void)viewDidAppear:(BOOL)animated {
-//    [[self appDelegate] connect];
     [super viewDidAppear:animated];
-    // how to get the user id
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    NSString *user_id = [userDefaults objectForKey:@"user_id"];
-    NSLog(@"show chat list");
-    
+    // Show chat list
     [self showChatList];
-    NSLog(@"chat list shown");
     [self.tableView reloadData];
-//	if ([[self appDelegate] connect]) {
-//            
-//        
-//    }else {
-//        NSLog(@"show sign in");
-//        [self showLogin];
-//    }
+}
+- (IBAction)dismissChatOverview:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-
+	// *************
+	// Can remove because user can't get in this view without login
 -(IBAction)showLogin {
     UnloginViewController *unLoginController = [[UnloginViewController alloc] init];
     [self presentViewController:unLoginController animated:YES completion:nil];
 }
-
+	// *************
+#pragma mark Show chat_list
 -(void)showChatList {
-    //initial the information arraies
+    //initial the message arraies
+    //# Store image urls (user profile images) #
     imgList = [[NSMutableArray alloc] init];
+    //# Store usernames #
     nameList = [[NSMutableArray alloc] init];
+    //# Store last message content of coresponding conversation #
     messageList = [[NSMutableArray alloc] init];
+    //# Store timestamps of those messages #
     timeList = [[NSMutableArray alloc] init];
+    //# Store senders' user_id #
     sender_id_list = [[NSMutableArray alloc] init];
-
+	// Get the current user info
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     NSString *token = [userDefaults secretObjectForKey:@"user_token"];
     NSString *user_id = [userDefaults objectForKey:@"user_id"];
+    //# Request from service_message_list API
     NSURL *url = [NSURL URLWithString:[URLConfig serviceMessageListURLString]];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
-    
+    // GET /service_message_list/
     [request setHTTPMethod:@"GET"];
     [request addValue:[NSString stringWithFormat:@"Token %@", token] forHTTPHeaderField:@"Authorization"];
-    
     NSError *connectionError = nil;
     NSURLResponse *response = nil;
-    
     NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&connectionError];
-    
     if (connectionError == nil) {
         NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *) response;
         NSDictionary *messageDetail = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
         if ([httpResponse statusCode] == 200) {
             for (id message_info in messageDetail) {
-                
-                
-                NSLog(@"messageInfo loading...");
-                
                 NSString *global_id = [message_info objectForKey:@"id"];
                 NSString *sender_id = [message_info objectForKey:@"sender_id"];
-                
                 NSString *messageContent = [message_info objectForKey:@"msg_content"];
-                
                 NSString *messageDate = [message_info objectForKey:@"msg_date"];
                 NSString *senderImageURL = [message_info objectForKey:@"sender_image"];
-                UIImage *image = [self fetchImage:token :senderImageURL];
-                
-    //            NSInteger global_id = [[NSString stringWithFormat: @"%@", [messageInfo valueForKeyPath: @"id" ] ] integerValue ];
                 NSString *sender_name = [message_info valueForKey:@"sender_name"];
-                //compare the api data with core data
+                UIImage *image = [self fetchImage:token :senderImageURL];
+                // Compare the API data with core data
 				NSManagedObjectContext *managedObjectContext = [self managedObjectContext];
                 NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Message"];
+                // Fetching all message from core data
                 self.allMessage = [[managedObjectContext executeFetchRequest:fetchRequest error:nil] mutableCopy];
+                // Sift out irrelevant messsages
                 for (NSManagedObject *message in allMessage){
+                    // Sift out those messages which are not new
                     if ([[message valueForKey:@"global_id"] integerValue] > [global_id integerValue]){
-                        if ([[message valueForKey:@"sender_id"] isEqualToString:[NSString stringWithFormat:@"%@", user_id]]) {
+                        // Sift out those messages which are not belonged to this conversation
+                        if ([[message valueForKey:@"receiver_id"] isEqualToString: [NSString stringWithFormat:@"%@",sender_id]]) {
+                            // Override the message content and timestamp with latest one
                             messageContent = [message valueForKey:@"message_content"];
                             messageDate = [message valueForKey:@"message_time"];
                         }
                     }
                 }
+                // Calculate the time difference
 				NSString *diff = [Utility showTimeDifference:messageDate];
                 NSLog(@"content: %@, date: %@, image: %@, name: %@, sender_id: %@", messageContent, messageDate,senderImageURL, sender_name, sender_id);
+                
                 //if (!([messageList containsObject:messageContent] && [sender_id_list containsObject:sender_id])) {
                     if (image){
                         [imgList addObject:image];
@@ -167,17 +160,8 @@
 #endif
     
 }
-- (IBAction)dismissChatOverview:(id)sender {
+#pragma mark Tableview
 
-    [self dismissViewControllerAnimated:YES completion:nil];
-
-    
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return 80;
-}
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     static NSString *cellIdentifier = @"ChatOverviewCell";
@@ -190,7 +174,6 @@
     //load data
     NSLog(@"Loading cell data!");
     
-//    [self showChatList];
     if ([nameList count]!=0) {
         cell.userImage.image = [imgList objectAtIndex:indexPath.row];
         cell.userName.text = [nameList objectAtIndex:indexPath.row];
@@ -205,16 +188,18 @@
     }
     return cell;
 }
-
--(NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    //    return [self.imgList count];
-    //return 2;
+	// Fix table cell height
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 80;
+}
+-(NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
     return [nameList count];
 }
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return 1;
 }
-
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     //start a chat
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
@@ -239,7 +224,7 @@
         destViewController.chatWithUser = [sender_id_list objectAtIndex:indexPath.row];
     }
 }
-
+#pragma mark Helper
 - (UIImage *) fetchImage:(NSString *) token :(NSString *) imageURL {
     NSString *absoluteImageURL = [NSString stringWithFormat:@"%@%@", [URLConfig imageServiceURLString], imageURL];
     NSURL *url = [NSURL URLWithString:absoluteImageURL];
@@ -271,6 +256,7 @@
     // Dispose of any resources that can be recreated.
 }
 
+# pragma mark Core data utility
 - (void)saveContext {
     NSManagedObjectContext *managedObjectContext = self.managedObjectContext;
     if (managedObjectContext != nil) {
