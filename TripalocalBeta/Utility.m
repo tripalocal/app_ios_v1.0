@@ -71,4 +71,19 @@
     //return the color-burned image
     return coloredImg;
 }
+
++(NSString *) transformLanugage:(NSString *) languageString {
+    NSMutableArray *languages = [[languageString componentsSeparatedByString:@";"] mutableCopy];
+    [languages removeLastObject];
+    for (NSUInteger i = 0; i < [languages count]; ++i) {
+        NSString * language = [languages objectAtIndex:i];
+        if ([language isEqualToString:@"mandarin"]) {
+            [languages replaceObjectAtIndex:i withObject:@"中文"];
+        } else {
+            [languages replaceObjectAtIndex:i withObject:[language capitalizedString]];
+        }
+    }
+    
+    return [languages componentsJoinedByString:@" / "];
+}
 @end

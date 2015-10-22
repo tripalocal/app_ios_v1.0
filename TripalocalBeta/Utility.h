@@ -14,4 +14,5 @@
 + (NSNumber *) numberWithFormat:(NSString *)format floatV:(float)floatV;
 + (UIColor *) themeColor;
 + (UIImage *)filledImageFrom:(UIImage *)source withColor:(UIColor *)color;
++ (NSString *) transformLanugage:(NSString *) languageString;
 @end

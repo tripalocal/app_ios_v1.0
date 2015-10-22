@@ -193,21 +193,6 @@
     
 }
 
--(NSString *) transformLanugage:(NSString *) languageString {
-    NSMutableArray *languages = [[languageString componentsSeparatedByString:@";"] mutableCopy];
-    [languages removeLastObject];
-    for (NSUInteger i = 0; i < [languages count]; ++i) {
-        NSString * language = [languages objectAtIndex:i];
-        if ([language isEqualToString:@"mandarin"]) {
-            [languages replaceObjectAtIndex:i withObject:@"中文"];
-        } else {
-            [languages replaceObjectAtIndex:i withObject:[language capitalizedString]];
-        }
-    }
-    
-    return [languages componentsJoinedByString:@" / "];
-}
-
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *cellIdentifier = @"SearchCell";
     static NSString *cellIdentifier2 = @"SearchCell2";
@@ -332,7 +317,7 @@
     cell.durationLabel.text = handledDurationString;
     cell.titleLabel.text = expData[@"title"];
 
-    cell.languageLabel.text = [self transformLanugage:(NSString *)expData[@"language"]];
+    cell.languageLabel.text = [Utility transformLanugage:(NSString *)expData[@"language"]];
     cell.descriptionLabel.text = expData[@"description"];
 
     if ([self.expSearchType isEqualToString:@"PRIVATE"]) {
@@ -605,7 +590,6 @@
         vc.expPrice = [Utility decimalwithFormat:@"0" floatV:[self.exp[@"price"] floatValue]];
 
     }
-
 }
 
 @end

@@ -9,9 +9,12 @@
 #import "WishLishViewController.h"
 #import "TLSearchViewController.h"
 #import "URLConfig.h"
+#import "TLDetailViewController.h"
+#import "LocalDetailViewController.h"
 #import "Utility.h"
 #import <SecureNSUserDefaults/NSUserDefaults+SecureAdditions.h>
 #import <SDWebImage/UIImageView+WebCache.h>
+#import "JGProgressHUD.h"
 
 @interface WishLishViewController ()
 
@@ -19,6 +22,7 @@
 
 @implementation WishLishViewController {
     UIRefreshControl *refreshControl;
+    JGProgressHUD *HUD;
 }
 
 - (void)viewDidLoad {
@@ -37,9 +41,24 @@
     refreshControl.backgroundColor = [Utility themeColor];
     refreshControl.tintColor = [UIColor whiteColor];
     [refreshControl addTarget:self
-                            action:@selector(reloadData)
-                  forControlEvents:UIControlEventValueChanged];
+                       action:@selector(reloadData)
+             forControlEvents:UIControlEventValueChanged];
     [self.tableView addSubview:refreshControl];
+    
+    HUD = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleDark];
+    HUD.HUDView.layer.shadowColor = [UIColor blackColor].CGColor;
+    HUD.HUDView.layer.shadowOffset = CGSizeZero;
+    HUD.HUDView.layer.shadowOpacity = 0.4f;
+    HUD.HUDView.layer.shadowRadius = 8.0f;
+    HUD.textLabel.text = NSLocalizedString(@"loading", nil);
+    [HUD showInView:self.view];
+    
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+    
+    [HUD dismissAfterDelay:1.0];
+    [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+
 }
 
 - (void)reloadData
@@ -56,7 +75,7 @@
         
         for (int i = 0; i < [self.expList count]; i++)
         {
-            NSNumber *expId = self.expList[i][@"id"];
+            NSNumber *expId = self.expList[i][@"experience_id"];
             [origWishList addObject:[expId stringValue]];
         }
         if (![wishList isEqualToSet:origWishList])
@@ -192,7 +211,7 @@
     
     NSDictionary *exp = [self.expList objectAtIndex:indexPath.row];
     
-    if ([exp[@"type"] isEqualToString:@"PRIVATE"]) {
+    if ([exp[@"experience_type"] isEqualToString:@"PRIVATE"] || [exp[@"experience_type"] isEqualToString:@"NONPRIVATE"]) {
         cell = nil;
         cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
         if(!cell) {
@@ -200,7 +219,7 @@
             cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
         }
         
-    } else if ([exp[@"type"] isEqualToString:@"NEWPRODUCT"]) {
+    } else if ([exp[@"experience_type"] isEqualToString:@"PrivateProduct"] || [exp[@"experience_type"] isEqualToString:@"PublicProduct"]) {
         cell = nil;
         cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier2];
         if(!cell) {
@@ -209,17 +228,17 @@
         }
     }
     
-    NSString *expIdString = [exp[@"id"] stringValue];
+    NSString *expIdString = [exp[@"experience_id"] stringValue];
     
-    NSString *duration = [exp[@"duration"] stringValue];
+    NSString *duration = [exp[@"experience_duration"] stringValue];
     NSString *handledDurationString = [duration stringByAppendingString:NSLocalizedString(@"Hours", nil)];
     cell.durationLabel.text = handledDurationString;
-    cell.titleLabel.text = exp[@"title"];
+    cell.titleLabel.text = exp[@"experience_title"];
     
-    cell.languageLabel.text = [self transformLanugage:(NSString *)exp[@"language"]];
-    cell.descriptionLabel.text = exp[@"description"];
+    cell.languageLabel.text = [Utility transformLanugage:(NSString *)exp[@"experience_language"]];
+    cell.descriptionLabel.text = exp[@"experience_description"];
     
-    if ([exp[@"type"] isEqualToString:@"PRIVATE"]) {
+    if ([exp[@"experience_type"] isEqualToString:@"PRIVATE"] || [exp[@"experience_type"] isEqualToString:@"NONPRIVATE"]) {
         NSString *hostImageRelativeURL = exp[@"host_image"];
         if (hostImageRelativeURL != (id)[NSNull null] && hostImageRelativeURL.length > 0) {
             NSString *hostImageURL = [[URLConfig imageServiceURLString] stringByAppendingString: hostImageRelativeURL];
@@ -231,7 +250,6 @@
             cell.hostImage.image = [UIImage imageNamed:@"default_profile_image.png"];
         }
     }
-    
     
     NSString *backgroundImageURL = [NSString stringWithFormat:@"%@thumbnails/experiences/experience%@_1.jpg", [URLConfig imageServiceURLString], expIdString];
     
@@ -262,7 +280,7 @@
     }
     cell.delegate = self;
     cell.wishListButton.tag = indexPath.row;
-    NSString *priceString = [Utility decimalwithFormat:@"0" floatV:[exp[@"price"] floatValue]];
+    NSString *priceString = [Utility decimalwithFormat:@"0" floatV:[exp[@"experience_price"] floatValue]];
     cell.priceLabel.text = priceString;
     
 
@@ -282,6 +300,62 @@
     return 1;
 }
 
+
+- (void)saveToWishListClicked:(NSInteger)buttonTag {
+    [self toggleWishList: buttonTag];
+}
+
+- (IBAction)toggleWishList:(NSInteger)buttonTag {
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    NSString *token = [userDefaults secretStringForKey:@"user_token"];
+    NSIndexPath * index = [NSIndexPath indexPathForRow:buttonTag inSection:0];
+    
+    if (token) {
+        NSString *expIdString = [self.expList[index.row][@"experience_id"] stringValue];
+        NSMutableArray *wishList = [NSMutableArray arrayWithArray:(NSArray *)[userDefaults objectForKey:@"wish_list"]];
+        if ([wishList containsObject:expIdString]) {
+            [wishList removeObject:expIdString];
+        } else {
+            [wishList addObject:expIdString];
+        }
+        
+        [userDefaults setObject:wishList forKey:@"wish_list"];
+        [userDefaults synchronize];
+        
+        NSArray *indexPaths = @[index];
+        [self.tableView reloadRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationMiddle];
+    } else {
+        [self performSegueWithIdentifier:@"login_segue" sender:nil];
+    }
+    
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSString *expType = self.expList[indexPath.row][@"experience_type"];
+    if ([expType isEqualToString:@"PRIVATE"] || [expType isEqualToString:@"NONPRIVATE"]) {
+        [self performSegueWithIdentifier:@"SearchResultSegue" sender:self];
+    } else if ([expType isEqualToString:@"PrivateProduct"] || [expType isEqualToString:@"PublicProduct"]) {
+        [self performSegueWithIdentifier:@"LocalSearchResultSegue" sender:self];
+    }
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    NSDictionary *exp = self.expList[self.tableView.indexPathForSelectedRow.row];
+    if ([segue.identifier isEqualToString:@"SearchResultSegue"]) {
+        TLDetailViewController *vc = (TLDetailViewController *)segue.destinationViewController;
+        vc.expType = @"PRIVATE";
+        vc.experience_id_string = [exp[@"experience_id"] stringValue];
+        vc.expPrice = [Utility decimalwithFormat:@"0" floatV:[exp[@"experience_price"] floatValue]];
+        
+    } else if ([segue.identifier isEqualToString:@"LocalSearchResultSegue"]) {
+        LocalDetailViewController *vc = (LocalDetailViewController *) segue.destinationViewController;
+        vc.expType = @"LOCAL";
+        vc.experience_id_string = [exp[@"experience_id"] stringValue];
+        vc.expPrice = [Utility decimalwithFormat:@"0" floatV:[exp[@"experience_price"] floatValue]];
+        
+    }
+}
 
 - (IBAction)dismissWishList:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];

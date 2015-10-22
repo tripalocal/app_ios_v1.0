@@ -10,7 +10,10 @@
 #import "TLSearchViewController.h"
 #import "NeedToLoginView.h"
 
-@interface WishLishViewController : TLSearchViewController <NeedToLoginViewDelegate>
+@interface WishLishViewController : UIViewController <NeedToLoginViewDelegate, UITableViewDelegate, UITableViewDataSource, SearchTableViewCellDelegate>
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (nonatomic, retain) NSMutableArray *expList;
+
 @property (retain, nonatomic) IBOutlet NeedToLoginView *needToLoginView;
 @property (strong, nonatomic) IBOutlet UILabel *noDataLabel;
 @end
