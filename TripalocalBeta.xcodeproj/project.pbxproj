@@ -85,7 +85,6 @@
 		BC2B61D01B9816E800934EA0 /* ChatDetailToViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BCDF1E461B707C7A004A79A3 /* ChatDetailToViewCell.xib */; };
 		BC2B61D11B9816EC00934EA0 /* ChatDetailFromViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BCDF1E441B707818004A79A3 /* ChatDetailFromViewCell.xib */; };
 		BC4C4B891BCF65C200D3C91F /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = BC4C4B881BCF65C200D3C91F /* libz.tbd */; };
-		BC4C4BA31BCF803E00D3C91F /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC4C4BA21BCF803E00D3C91F /* Parse.framework */; settings = {ASSET_TAGS = (); }; };
 		BC837DE61B8F34C800862FF8 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BC837DE51B8F34C800862FF8 /* libsqlite3.dylib */; };
 		BC837DEB1B8F35CD00862FF8 /* DBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BC837DEA1B8F35CD00862FF8 /* DBManager.m */; };
 		BCC275DC1B79B3EE00147E82 /* XMPPConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = BCC275C91B79B3EE00147E82 /* XMPPConstants.m */; };
@@ -376,8 +375,6 @@
 		BC2B61CE1B95569800934EA0 /* Message.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Message.m; path = Model/Message.m; sourceTree = "<group>"; };
 		BC4C4B881BCF65C200D3C91F /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		BC4C4BA01BCF7B9B00D3C91F /* libParse.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libParse.a; path = "Pods/../build/Debug-iphoneos/libParse.a"; sourceTree = "<group>"; };
-		BC4C4BA21BCF803E00D3C91F /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
-		BC4C4BA41BCF80AA00D3C91F /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
 		BC837DE51B8F34C800862FF8 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		BC837DEA1B8F35CD00862FF8 /* DBManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DBManager.m; path = Database/DBManager.m; sourceTree = "<group>"; };
 		BC837DEC1B8F364100862FF8 /* DBManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DBManager.h; path = Database/DBManager.h; sourceTree = "<group>"; };
@@ -522,7 +519,6 @@
 				BC837DE61B8F34C800862FF8 /* libsqlite3.dylib in Frameworks */,
 				BCC2766E1B79B63D00147E82 /* libresolv.dylib in Frameworks */,
 				BCC2766C1B79B62E00147E82 /* libxml2.dylib in Frameworks */,
-				BC4C4BA31BCF803E00D3C91F /* Parse.framework in Frameworks */,
 				87FC2D461B47FAF60017F30E /* libcrypto.a in Frameworks */,
 				87FC2D471B47FAF60017F30E /* libssl.a in Frameworks */,
 				87FC2D431B47FA800017F30E /* AlipaySDK.framework in Frameworks */,
@@ -1134,8 +1130,6 @@
 		F82D1B26B1D2E61BDB99608C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				BC4C4BA41BCF80AA00D3C91F /* Bolts.framework */,
-				BC4C4BA21BCF803E00D3C91F /* Parse.framework */,
 				BC4C4BA01BCF7B9B00D3C91F /* libParse.a */,
 				BC4C4B881BCF65C200D3C91F /* libz.tbd */,
 				BCC529091BCCD8CF00656022 /* StoreKit.framework */,
@@ -1172,7 +1166,6 @@
 				8EB570DC1B01CF2B0026D419 /* Frameworks */,
 				8EB570DD1B01CF2B0026D419 /* Resources */,
 				0F925872D042AC1B45D1417C /* Copy Pods Resources */,
-				3414F1A2AB016ECE7A505EAC /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1295,21 +1288,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TripalocalBeta/Pods-TripalocalBeta-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		3414F1A2AB016ECE7A505EAC /* Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TripalocalBeta/Pods-TripalocalBeta-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		9E9349A752558E96174A8CB8 /* Check Pods Manifest.lock */ = {
@@ -1565,7 +1543,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
-				ONLY_ACTIVE_ARCH = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				SDKROOT = iphoneos;
 			};
 			name = Debug_CN;
@@ -1870,7 +1848,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
-				ONLY_ACTIVE_ARCH = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				SDKROOT = iphoneos;
 			};
 			name = Debug;

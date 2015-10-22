@@ -8,17 +8,6 @@ PODS:
   - Bolts/Tasks (1.3.0)
   - CocoaSecurity (1.2.4)
   - EDStarRating (1.1)
-  - FBSDKCoreKit (4.7.0):
-    - Bolts (~> 1.1)
-    - FBSDKCoreKit/arc (= 4.7.0)
-    - FBSDKCoreKit/no-arc (= 4.7.0)
-  - FBSDKCoreKit/arc (4.7.0):
-    - Bolts (~> 1.1)
-  - FBSDKCoreKit/no-arc (4.7.0):
-    - Bolts (~> 1.1)
-    - FBSDKCoreKit/arc
-  - FBSDKLoginKit (4.7.0):
-    - FBSDKCoreKit
   - HPGrowingTextView (1.1)
   - IQKeyboardManager (3.3.2)
   - JGProgressHUD (1.3.1)
@@ -26,6 +15,8 @@ PODS:
   - Mixpanel (2.9.0):
     - Mixpanel/Mixpanel (= 2.9.0)
   - Mixpanel/Mixpanel (2.9.0)
+  - Parse (1.9.0):
+    - Bolts/Tasks (>= 1.3.0)
   - SDWebImage (3.7.3):
     - SDWebImage/Core (= 3.7.3)
   - SDWebImage/Core (3.7.3)
@@ -37,14 +28,14 @@ PODS:
 
 DEPENDENCIES:
   - AKPickerView
+  - Bolts (~> 1.3)
   - EDStarRating
-  - FBSDKCoreKit
-  - FBSDKLoginKit
   - HPGrowingTextView (~> 1.1)
   - IQKeyboardManager (~> 3.3)
   - JGProgressHUD
   - MBProgressHUD (~> 0.9.1)
   - Mixpanel
+  - Parse (~> 1.9)
   - SDWebImage (~> 3.7)
   - SecureNSUserDefaults (~> 1.0.0)
   - TPKeyboardAvoiding (~> 1.2)
@@ -55,16 +46,15 @@ SPEC CHECKSUMS:
   Bolts: 805a4a87413e49d4a0c2b7d469084cbc46b09342
   CocoaSecurity: d288a6f87e0f363823d2cb83e753814a6944f71a
   EDStarRating: a41a6440a945020745d0e9ff8ada7d1afa952114
-  FBSDKCoreKit: eb580bfc2040ad44f4c0b4f4d0befb1d35bce59c
-  FBSDKLoginKit: 01bce8dd3f3a26a023b0ba4ffdde7ef5062889fe
   HPGrowingTextView: 88a716d97fb853bcb08a4a08e4727da17efc9b19
   IQKeyboardManager: d863eb0bca424d1f6dad6bdd1f856af52664add8
   JGProgressHUD: 153053a21d81208cb5f659691996bcefce6a9885
   MBProgressHUD: c47f2c166c126cf2ce36498d80f33e754d4e93ad
   Mixpanel: 42ae6168effc48481d957f7883dd8514a398738d
+  Parse: 712efbc476d4f47b0f96b70db7e53101575753aa
   SDWebImage: 1d2b1a1efda1ade1b00b6f8498865f8ddedc8a84
   SecureNSUserDefaults: 60a27d6e7fd2cad47448fef5dea22803e098433a
   TPKeyboardAvoiding: 614ebec846ec28b83d548769297fa5fb56468904
   UIActivityIndicator-for-SDWebImage: 7bf7ebbf0ed1747dedc0d6e949c4603a6d0f9e0c
 
-COCOAPODS: 0.39.0
+COCOAPODS: 0.37.2

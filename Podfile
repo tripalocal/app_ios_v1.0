@@ -2,13 +2,13 @@
 # platform :ios, '6.0'
 
 target 'TripalocalBeta' do
-    pod 'FBSDKCoreKit'
-    pod 'FBSDKLoginKit'
     pod 'EDStarRating'
     pod 'SDWebImage', '~>3.7'
     pod 'UIActivityIndicator-for-SDWebImage'
     pod 'JGProgressHUD'
     pod 'AKPickerView'
+    pod 'Bolts', '~> 1.3'
+    pod 'Parse', '~> 1.9'
     pod 'SecureNSUserDefaults', '~> 1.0.0'
     pod 'HPGrowingTextView', '~> 1.1'
     pod 'TPKeyboardAvoiding', '~> 1.2'
