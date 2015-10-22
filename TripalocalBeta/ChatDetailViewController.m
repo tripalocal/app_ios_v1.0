@@ -19,8 +19,6 @@
 #import "JGProgressHUD.h"
 #import <Parse/Parse.h>
 
-#define kOFFSET_FOR_KEYBOARD 215.0
-
 @interface ChatDetailViewController ()
 
 @property (nonatomic, strong) DBManager *dbManager;
@@ -36,42 +34,30 @@
 @synthesize managedObjectModel = _managedObjectModel;
 @synthesize persistentStoreCoordinator = _persistentStoreCoordinator;
 
-
 -(AppDelegate *)appDelegate {
     return (AppDelegate *)[[UIApplication sharedApplication] delegate];
 }
+
 -(XMPPStream *)xmppStream {
     return [[self appDelegate] xmppStream];
 }
-//-(id) initWithUser:(NSString *) userName {
-//    if (self = [super init]) {
-//        chatWithUser = userName;
-//    }
-//    return self;
-//}
+#pragma mark View
 - (void)viewDidLoad {
     [super viewDidLoad];
-    HUD = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleDark];
-    HUD.HUDView.layer.shadowColor = [UIColor blackColor].CGColor;
-    HUD.HUDView.layer.shadowOffset = CGSizeZero;
-    HUD.HUDView.layer.shadowOpacity = 0.4f;
-    HUD.HUDView.layer.shadowRadius = 8.0f;
-    HUD.textLabel.text = NSLocalizedString(@"loading", nil);
-
     //set localized string for send button
     sendButton.titleLabel.text = NSLocalizedString(@"send_button", nil);
+    // Set a top border for send message bar
     UIView *topBorder = [UIView new];
     topBorder.backgroundColor = [UIColor colorWithRed:204.0f/255.0f green:204.0f/255.0f blue:204.0f/255.0f alpha:1.0];
     topBorder.frame = CGRectMake(-17, 0, sendBarView.frame.size.width, 1.0f);
     [sendBarView addSubview:topBorder];
-    //get the time
+    //get the timestamp
     currentFlag = (long long)([[NSDate date] timeIntervalSince1970] * 1000.0);
     //allocate a new update array
     updateMessage = [[NSMutableArray alloc] init];
 #if DEBUG
     NSLog(@"Current time when entering this view: %lld",currentFlag);
 #endif
-
     //close button
     int imageSize = 27; //REPLACE WITH YOUR IMAGE WIDTH
 
@@ -117,22 +103,19 @@
                                                                              attribute:NSLayoutAttributeBottom
                                                                             multiplier:1.0
                                                                               constant:-12.0];
-//    NSLayoutConstraint *topSpaceConstraint = [NSLayoutConstraint constraintWithItem:self.tableView
-//                                                                             attribute:NSLayoutAttributeBottom
-//                                                                             relatedBy:0
-//                                                                                toItem:self.sendBarView
-//                                                                             attribute:NSLayoutAttributeTop
-//                                                                            multiplier:1.0
-//                                                                              constant:0.0];
 
     [self.sendBarView addConstraint:bottomSpaceConstraint];
-//    [self.view addConstraint:topSpaceConstraint];
     [textView resignFirstResponder];
 	sendBarView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
     self.tableView.estimatedRowHeight = 100.0;
     self.tableView.rowHeight = UITableViewAutomaticDimension;
-    
-    [HUD showInView:self.view];
+    //setup HUD
+    HUD = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleDark];
+    HUD.HUDView.layer.shadowColor = [UIColor blackColor].CGColor;
+    HUD.HUDView.layer.shadowOffset = CGSizeZero;
+    HUD.HUDView.layer.shadowOpacity = 0.4f;
+    HUD.HUDView.layer.shadowRadius = 8.0f;
+    HUD.textLabel.text = NSLocalizedString(@"loading", nil);    [HUD showInView:self.view];
     [HUD dismissAfterDelay:1.0];
 
 }
@@ -347,22 +330,6 @@
     // Dispose of any resources that can be recreated.
 }
 
-
-
-//- (void)viewWillDisappear:(BOOL)animated
-//{
-//    [super viewWillDisappear:animated];
-//    // unregister for keyboard notifications while not visible.
-//    [[NSNotificationCenter defaultCenter] removeObserver:self
-//                                                    name:UIKeyboardWillShowNotification
-//                                                  object:nil];
-//    
-//    [[NSNotificationCenter defaultCenter] removeObserver:self
-//                                                    name:UIKeyboardWillHideNotification
-//                                                  object:nil];
-//}
-
-
 #pragma mark - send message function
 
 - (IBAction)sendMessage:(id)sender {
@@ -466,6 +433,7 @@
 //    CGPoint offset = CGPointMake(0, self.tableView.contentSize.height - self.tableView.frame.size.height);
 //    [self.tableView setContentOffset:offset animated:YES];
 }
+#pragma mark Tableview
 //introducing the custom cell
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
@@ -524,8 +492,8 @@
         cellFrom = [tableView dequeueReusableCellWithIdentifier:cellFromIdentifier];
     }
     cellFrom.otherUserImage.image = nil;
-    cellFrom.messageContent.text = @"";
-    cellFrom.messageTime.text = @"";
+    cellFrom.messageContent.text = @"Wrong";
+    cellFrom.messageTime.text = @"Wrong";
     return cellFrom;
 
 }

@@ -13,7 +13,6 @@
 #import "HPGrowingTextView.h"
 
 @interface ChatDetailViewController : UIViewController<SMMessageDelegate, UITableViewDelegate, UITableViewDataSource>{
-//    UITextView *textField;
 	HPGrowingTextView *textView;
     UITableView *tableview;
     NSString *messageContent;
@@ -28,18 +27,13 @@
     NSMutableArray *sortedMessage;
     __unsafe_unretained NSObject <SMChatDelegate> *_chatDelegate;
     __unsafe_unretained NSObject <SMMessageDelegate> *_messageDelegate;
-
 }
-//@property (strong) NSMutableArray *messageListFrom;
-//@property (strong) NSMutableArray *messageListTo;
+
 @property (nonatomic, assign) id _messageDelegate;
 @property (weak, nonatomic) IBOutlet UIView *sendBarView;
-//@property (strong, nonatomic) IBOutlet UIScrollView *detailScrollView;
-//@property (nonatomic,retain) IBOutlet UITextView *textField;
 @property (nonatomic,weak) IBOutlet UIButton *sendButton;
 @property (nonatomic,retain) IBOutlet UITableView *tableView;
 @property (nonatomic,strong) NSString *chatWithUser;
-- (IBAction)sendMessage:(id)sender;
 @property (strong) NSMutableArray *allMessage;
 @property (strong) UIImage *userImage;
 @property (strong) UIImage *otherUserImage;
@@ -50,6 +44,7 @@
 @property (readonly, strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
 @property (nonatomic, assign) BOOL shouldScrollToLastRow;
 
+- (IBAction)sendMessage:(id)sender;
 - (void)saveContext;
 - (NSURL *)applicationDocumentsDirectory;
 
