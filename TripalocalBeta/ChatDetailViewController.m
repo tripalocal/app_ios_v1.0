@@ -337,7 +337,7 @@
     NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
     NSString *sender_id = [userDefault objectForKey:@"user_id"];
     NSString *sender_address = [NSString stringWithFormat:@"%@@tripalocal.com",sender_id];
-    
+    NSString *sender_user_name = [userDefault objectForKey:@"host_name"];
     //get current time in UTC
        NSString *timeStamp = [NSString stringWithFormat:@"%@%@",[[Utility getCurrentUTCTime] stringByReplacingOccurrencesOfString:@"\\" withString:@""],@"/000000"];
     // here you have new Date with desired format and TimeZone.
@@ -424,7 +424,7 @@
     // Send push notification to query
     PFPush *pushMessage = [[PFPush alloc] init];
     [pushMessage setQuery:pushQuery];
-    NSDictionary *data = [NSDictionary dictionaryWithObjectsAndKeys: [NSString stringWithFormat:@"%@: %@", sender_id, messageStr],@"alert",@"Increment", @"badge", nil];
+    NSDictionary *data = [NSDictionary dictionaryWithObjectsAndKeys: [NSString stringWithFormat:@"%@: %@", sender_user_name, messageStr],@"alert",@"Increment", @"badge", nil];
     [pushMessage setData:data];
     [pushMessage sendPushInBackground];
     [self.tableView reloadData];
@@ -438,6 +438,7 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
     NSString *sender_id = [userDefault objectForKey:@"user_id"];
+    NSString *sender_name = [userDefault objectForKey:@"username"];
     
 
     static NSString *cellFromIdentifier = @"ChatDetailFromCell";
