@@ -219,26 +219,6 @@
             cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
         }
         
-    } else if ([exp[@"experience_type"] isEqualToString:@"PrivateProduct"] || [exp[@"experience_type"] isEqualToString:@"PublicProduct"]) {
-        cell = nil;
-        cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier2];
-        if(!cell) {
-            [tableView registerNib:[UINib nibWithNibName:@"SearchViewCell2" bundle:nil] forCellReuseIdentifier:cellIdentifier2];
-            cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier2];
-        }
-    }
-    
-    NSString *expIdString = [exp[@"experience_id"] stringValue];
-    
-    NSString *duration = [exp[@"experience_duration"] stringValue];
-    NSString *handledDurationString = [duration stringByAppendingString:NSLocalizedString(@"Hours", nil)];
-    cell.durationLabel.text = handledDurationString;
-    cell.titleLabel.text = exp[@"experience_title"];
-    
-    cell.languageLabel.text = [Utility transformLanugage:(NSString *)exp[@"experience_language"]];
-    cell.descriptionLabel.text = exp[@"experience_description"];
-    
-    if ([exp[@"experience_type"] isEqualToString:@"PRIVATE"] || [exp[@"experience_type"] isEqualToString:@"NONPRIVATE"]) {
         NSString *hostImageRelativeURL = exp[@"host_image"];
         if (hostImageRelativeURL != (id)[NSNull null] && hostImageRelativeURL.length > 0) {
             NSString *hostImageURL = [[URLConfig imageServiceURLString] stringByAppendingString: hostImageRelativeURL];
@@ -249,7 +229,28 @@
         } else {
             cell.hostImage.image = [UIImage imageNamed:@"default_profile_image.png"];
         }
+        
+        cell.titleLabel.text = exp[@"experience_title"];
+        cell.descriptionLabel.text = exp[@"experience_description"];
+        
+    } else if ([exp[@"experience_type"] isEqualToString:@"PrivateProduct"] || [exp[@"experience_type"] isEqualToString:@"PublicProduct"]) {
+        cell = nil;
+        cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier2];
+        if(!cell) {
+            [tableView registerNib:[UINib nibWithNibName:@"SearchViewCell2" bundle:nil] forCellReuseIdentifier:cellIdentifier2];
+            cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier2];
+        }
+        
+        cell.titleLabel.text = exp[@"title"];
+        cell.descriptionLabel.text = exp[@"description"];
     }
+    
+    NSString *expIdString = [exp[@"experience_id"] stringValue];
+    
+    NSString *duration = [exp[@"experience_duration"] stringValue];
+    NSString *handledDurationString = [duration stringByAppendingString:NSLocalizedString(@"Hours", nil)];
+    cell.durationLabel.text = handledDurationString;
+    cell.languageLabel.text = [Utility transformLanugage:(NSString *)exp[@"experience_language"]];
     
     NSString *backgroundImageURL = [NSString stringWithFormat:@"%@thumbnails/experiences/experience%@_1.jpg", [URLConfig imageServiceURLString], expIdString];
     
