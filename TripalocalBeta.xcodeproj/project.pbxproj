@@ -20,6 +20,11 @@
 		87046A8A1B6606C40084E2E3 /* TLBannerTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 87046A881B6606C40084E2E3 /* TLBannerTableViewCell.m */; };
 		87046A8C1B660D590084E2E3 /* TLBannerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87046A8E1B660D590084E2E3 /* TLBannerTableViewCell.xib */; };
 		870AEB791B53A81D00959465 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 870AEB7B1B53A81D00959465 /* Localizable.strings */; };
+		870BC00A1BCB4FCA00BB59F7 /* ButtonTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 870BC0081BCB4FCA00BB59F7 /* ButtonTableViewCell.m */; };
+		870BC00B1BCB4FCA00BB59F7 /* ButtonTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 870BC0091BCB4FCA00BB59F7 /* ButtonTableViewCell.xib */; };
+		870D13B51BCF2A2800D3BCEB /* LocalDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 870D13B41BCF2A2800D3BCEB /* LocalDetailViewController.m */; };
+		870D13BB1BCF680B00D3BCEB /* DetailDescTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 870D13BA1BCF680B00D3BCEB /* DetailDescTableViewController.m */; };
+		870D13C11BCF70A100D3BCEB /* DetailDescCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 870D13C01BCF70A100D3BCEB /* DetailDescCell.m */; };
 		870F22481B5B6A2100CD1AD2 /* URLConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 870F22471B5B6A2000CD1AD2 /* URLConfig.m */; };
 		8711965A1B4FF74300BA8672 /* NeedToLoginView.m in Sources */ = {isa = PBXBuildFile; fileRef = 871196591B4FF74300BA8672 /* NeedToLoginView.m */; };
 		8711A65B1B5A63EE00578BB2 /* PageContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8711A65A1B5A63EE00578BB2 /* PageContentViewController.m */; };
@@ -31,8 +36,15 @@
 		873C8E6E1B61D1F300CB1D9E /* AlipayFailedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 873C8E6D1B61D1F300CB1D9E /* AlipayFailedViewController.m */; };
 		874265871B4D272F00D76C72 /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 874265861B4D272F00D76C72 /* MenuViewController.m */; };
 		874522AB1B4E3FDF00876EB4 /* WishLishViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 874522AA1B4E3FDF00876EB4 /* WishLishViewController.m */; };
+		87531EAC1BD5BAFB001F0D60 /* MultidayTableViewCell2.m in Sources */ = {isa = PBXBuildFile; fileRef = 87531EAB1BD5BAFB001F0D60 /* MultidayTableViewCell2.m */; };
+		87531EAE1BD5BB0F001F0D60 /* MultidayTableViewCell2.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87531EAD1BD5BB0F001F0D60 /* MultidayTableViewCell2.xib */; };
 		87A3C09D1B461129009A3B07 /* RequestController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87A3C09C1B461129009A3B07 /* RequestController.m */; };
 		87A3C0A11B463C6C009A3B07 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87A3C0A01B463C6C009A3B07 /* HomeViewController.m */; };
+		87AC2B161BCE16E800672288 /* SearchViewCell2.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87AC2B151BCE16E800672288 /* SearchViewCell2.xib */; };
+		87AC2B1C1BCE1C2300672288 /* MultidayTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 87AC2B1A1BCE1C2300672288 /* MultidayTableViewCell.m */; };
+		87AC2B1D1BCE1C2300672288 /* MultidayTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87AC2B1B1BCE1C2300672288 /* MultidayTableViewCell.xib */; };
+		87C638E71BD07E3B0002A162 /* TitleDescCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C638E61BD07E3B0002A162 /* TitleDescCell.m */; };
+		87C638EA1BD086640002A162 /* SectionDescViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C638E91BD086640002A162 /* SectionDescViewController.m */; };
 		87E74B631B54BD6C00C41CBF /* NeedToLoginView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87E74B651B54BD6C00C41CBF /* NeedToLoginView.xib */; };
 		87E74B691B54C2AF00C41CBF /* SearchViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87E74B6B1B54C2AF00C41CBF /* SearchViewCell.xib */; };
 		87E74B6E1B54E73B00C41CBF /* MyTripTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87E74B701B54E73B00C41CBF /* MyTripTableViewCell.xib */; };
@@ -145,6 +157,7 @@
 		BCDF1E4D1B709267004A79A3 /* ChatDetailFromTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BCDF1E4C1B709267004A79A3 /* ChatDetailFromTableViewCell.m */; };
 		BCDF1E501B7092F0004A79A3 /* ChatDetailToTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BCDF1E4F1B7092F0004A79A3 /* ChatDetailToTableViewCell.m */; };
 		BCDF1E531B709D4A004A79A3 /* ChatDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BCDF1E521B709D4A004A79A3 /* ChatDetailViewController.m */; };
+		BC8C39021BAFD57500AB4060 /* TLMultiDaySearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BC8C39011BAFD57500AB4060 /* TLMultiDaySearchViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -180,6 +193,15 @@
 		870AEB781B53A6B000959465 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		870AEB7A1B53A81D00959465 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		870AEB7C1B53A82900959465 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		870BC0071BCB4FCA00BB59F7 /* ButtonTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ButtonTableViewCell.h; path = ../ButtonTableViewCell.h; sourceTree = "<group>"; };
+		870BC0081BCB4FCA00BB59F7 /* ButtonTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ButtonTableViewCell.m; path = ../ButtonTableViewCell.m; sourceTree = "<group>"; };
+		870BC0091BCB4FCA00BB59F7 /* ButtonTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ButtonTableViewCell.xib; path = ../ButtonTableViewCell.xib; sourceTree = "<group>"; };
+		870D13B31BCF2A2800D3BCEB /* LocalDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalDetailViewController.h; sourceTree = "<group>"; };
+		870D13B41BCF2A2800D3BCEB /* LocalDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalDetailViewController.m; sourceTree = "<group>"; };
+		870D13B91BCF680B00D3BCEB /* DetailDescTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailDescTableViewController.h; sourceTree = "<group>"; };
+		870D13BA1BCF680B00D3BCEB /* DetailDescTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailDescTableViewController.m; sourceTree = "<group>"; };
+		870D13BF1BCF70A100D3BCEB /* DetailDescCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailDescCell.h; sourceTree = "<group>"; };
+		870D13C01BCF70A100D3BCEB /* DetailDescCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailDescCell.m; sourceTree = "<group>"; };
 		870F22461B5B6A2000CD1AD2 /* URLConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = URLConfig.h; sourceTree = "<group>"; };
 		870F22471B5B6A2000CD1AD2 /* URLConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = URLConfig.m; sourceTree = "<group>"; };
 		871196581B4FF74300BA8672 /* NeedToLoginView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NeedToLoginView.h; sourceTree = "<group>"; };
@@ -202,10 +224,21 @@
 		874265861B4D272F00D76C72 /* MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuViewController.m; sourceTree = "<group>"; };
 		874522A91B4E3FDF00876EB4 /* WishLishViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WishLishViewController.h; sourceTree = "<group>"; };
 		874522AA1B4E3FDF00876EB4 /* WishLishViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WishLishViewController.m; sourceTree = "<group>"; };
+		87531EAA1BD5BAFB001F0D60 /* MultidayTableViewCell2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultidayTableViewCell2.h; sourceTree = "<group>"; };
+		87531EAB1BD5BAFB001F0D60 /* MultidayTableViewCell2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultidayTableViewCell2.m; sourceTree = "<group>"; };
+		87531EAD1BD5BB0F001F0D60 /* MultidayTableViewCell2.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MultidayTableViewCell2.xib; sourceTree = "<group>"; };
 		87A3C09B1B461129009A3B07 /* RequestController.h */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.h; path = RequestController.h; sourceTree = "<group>"; tabWidth = 4; usesTabs = 0; wrapsLines = 1; };
 		87A3C09C1B461129009A3B07 /* RequestController.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.objc; path = RequestController.m; sourceTree = "<group>"; tabWidth = 4; usesTabs = 0; wrapsLines = 1; };
 		87A3C09F1B463C6C009A3B07 /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HomeViewController.h; path = Controller/HomeViewController.h; sourceTree = "<group>"; };
 		87A3C0A01B463C6C009A3B07 /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HomeViewController.m; path = Controller/HomeViewController.m; sourceTree = "<group>"; };
+		87AC2B151BCE16E800672288 /* SearchViewCell2.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchViewCell2.xib; sourceTree = "<group>"; };
+		87AC2B191BCE1C2300672288 /* MultidayTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultidayTableViewCell.h; sourceTree = "<group>"; };
+		87AC2B1A1BCE1C2300672288 /* MultidayTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultidayTableViewCell.m; sourceTree = "<group>"; };
+		87AC2B1B1BCE1C2300672288 /* MultidayTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MultidayTableViewCell.xib; sourceTree = "<group>"; };
+		87C638E51BD07E3B0002A162 /* TitleDescCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TitleDescCell.h; sourceTree = "<group>"; };
+		87C638E61BD07E3B0002A162 /* TitleDescCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TitleDescCell.m; sourceTree = "<group>"; };
+		87C638E81BD086640002A162 /* SectionDescViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SectionDescViewController.h; sourceTree = "<group>"; };
+		87C638E91BD086640002A162 /* SectionDescViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SectionDescViewController.m; sourceTree = "<group>"; };
 		87E311DB1B5E1DE500069826 /* libPods-TripalocalBeta-JGProgressHUD.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-TripalocalBeta-JGProgressHUD.a"; path = "Pods/../build/Debug-iphoneos/libPods-TripalocalBeta-JGProgressHUD.a"; sourceTree = "<group>"; };
 		87E74B641B54BD6C00C41CBF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/NeedToLoginView.xib; sourceTree = "<group>"; };
 		87E74B681B54BD7200C41CBF /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/NeedToLoginView.strings"; sourceTree = "<group>"; };
@@ -497,6 +530,8 @@
 		BCDF1E4F1B7092F0004A79A3 /* ChatDetailToTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatDetailToTableViewCell.m; sourceTree = "<group>"; };
 		BCDF1E511B709D4A004A79A3 /* ChatDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatDetailViewController.h; sourceTree = "<group>"; };
 		BCDF1E521B709D4A004A79A3 /* ChatDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatDetailViewController.m; sourceTree = "<group>"; };
+		BC8C39001BAFD57500AB4060 /* TLMultiDaySearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TLMultiDaySearchViewController.h; path = Controller/TLMultiDaySearchViewController.h; sourceTree = "<group>"; };
+		BC8C39011BAFD57500AB4060 /* TLMultiDaySearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TLMultiDaySearchViewController.m; path = Controller/TLMultiDaySearchViewController.m; sourceTree = "<group>"; };
 		CB095F374C2B9151DA4B6FA4 /* Pods-TripalocalBeta.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TripalocalBeta.release.xcconfig"; path = "Pods/Target Support Files/Pods-TripalocalBeta/Pods-TripalocalBeta.release.xcconfig"; sourceTree = "<group>"; };
 		D1136758DFF7CE52CD971824 /* libPods-TripalocalBeta.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TripalocalBeta.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -546,9 +581,19 @@
 				BCDF1E4C1B709267004A79A3 /* ChatDetailFromTableViewCell.m */,
 				BCDF1E481B708E3F004A79A3 /* ChatOverviewTableViewCell.h */,
 				BCDF1E491B708E3F004A79A3 /* ChatOverviewTableViewCell.m */,
+				87531EAA1BD5BAFB001F0D60 /* MultidayTableViewCell2.h */,
+				87531EAB1BD5BAFB001F0D60 /* MultidayTableViewCell2.m */,
+				87C638E51BD07E3B0002A162 /* TitleDescCell.h */,
+				87C638E61BD07E3B0002A162 /* TitleDescCell.m */,
+				870D13BF1BCF70A100D3BCEB /* DetailDescCell.h */,
+				870D13C01BCF70A100D3BCEB /* DetailDescCell.m */,
+				87AC2B191BCE1C2300672288 /* MultidayTableViewCell.h */,
+				87AC2B1A1BCE1C2300672288 /* MultidayTableViewCell.m */,
 				87046A871B6606C40084E2E3 /* TLBannerTableViewCell.h */,
 				87046A881B6606C40084E2E3 /* TLBannerTableViewCell.m */,
 				8729E13A1B4A6335004C3065 /* MyTripTableViewCell.h */,
+				870BC0071BCB4FCA00BB59F7 /* ButtonTableViewCell.h */,
+				870BC0081BCB4FCA00BB59F7 /* ButtonTableViewCell.m */,
 				8729E13B1B4A6335004C3065 /* MyTripTableViewCell.m */,
 				8E26A6611B0397EF00A5A5CF /* TLHomeTableViewCell.h */,
 				8E26A6621B0397EF00A5A5CF /* TLHomeTableViewCell.m */,
@@ -772,13 +817,17 @@
 		8EC86D501B021DD800B0A655 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				87531EAD1BD5BB0F001F0D60 /* MultidayTableViewCell2.xib */,
+				87AC2B1B1BCE1C2300672288 /* MultidayTableViewCell.xib */,
 				871196581B4FF74300BA8672 /* NeedToLoginView.h */,
+				87AC2B151BCE16E800672288 /* SearchViewCell2.xib */,
+				87E74B6B1B54C2AF00C41CBF /* SearchViewCell.xib */,
 				871196591B4FF74300BA8672 /* NeedToLoginView.m */,
 				87046A8E1B660D590084E2E3 /* TLBannerTableViewCell.xib */,
 				87E74B651B54BD6C00C41CBF /* NeedToLoginView.xib */,
 				87E74B701B54E73B00C41CBF /* MyTripTableViewCell.xib */,
+				870BC0091BCB4FCA00BB59F7 /* ButtonTableViewCell.xib */,
 				8EB570EC1B01CF2B0026D419 /* Main.storyboard */,
-				87E74B6B1B54C2AF00C41CBF /* SearchViewCell.xib */,
 				BCDF1E421B706FE9004A79A3 /* ChatOverviewViewCell.xib */,
 				BCDF1E441B707818004A79A3 /* ChatDetailFromViewCell.xib */,
 				BCDF1E461B707C7A004A79A3 /* ChatDetailToViewCell.xib */,
@@ -789,6 +838,12 @@
 		8EC86D511B021DDC00B0A655 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				87C638E81BD086640002A162 /* SectionDescViewController.h */,
+				87C638E91BD086640002A162 /* SectionDescViewController.m */,
+				870D13B91BCF680B00D3BCEB /* DetailDescTableViewController.h */,
+				870D13BA1BCF680B00D3BCEB /* DetailDescTableViewController.m */,
+				870D13B31BCF2A2800D3BCEB /* LocalDetailViewController.h */,
+				870D13B41BCF2A2800D3BCEB /* LocalDetailViewController.m */,
 				873C8E6C1B61D1F300CB1D9E /* AlipayFailedViewController.h */,
 				873C8E6D1B61D1F300CB1D9E /* AlipayFailedViewController.m */,
 				8711A6591B5A63EE00578BB2 /* PageContentViewController.h */,
@@ -841,6 +896,8 @@
 				8EC86D5B1B0229F100B0A655 /* TLHomeViewController.m */,
 				8E26A66A1B080BE300A5A5CF /* TLSearchViewController.h */,
 				8E26A66B1B080BE300A5A5CF /* TLSearchViewController.m */,
+				BC8C39001BAFD57500AB4060 /* TLMultiDaySearchViewController.h */,
+				BC8C39011BAFD57500AB4060 /* TLMultiDaySearchViewController.m */,
 				8E92CF781B3E2B3700D4BB4B /* TLDetailViewController.h */,
 				8E92CF791B3E2B3700D4BB4B /* TLDetailViewController.m */,
 				BCDF1E3D1B704E40004A79A3 /* ChatOverviewController.h */,
@@ -1258,6 +1315,11 @@
 				87E74B691B54C2AF00C41CBF /* SearchViewCell.xib in Resources */,
 				BC2B61D01B9816E800934EA0 /* ChatDetailToViewCell.xib in Resources */,
 				BCDF1E431B706FE9004A79A3 /* ChatOverviewViewCell.xib in Resources */,
+				87531EAE1BD5BB0F001F0D60 /* MultidayTableViewCell2.xib in Resources */,
+				87AC2B1D1BCE1C2300672288 /* MultidayTableViewCell.xib in Resources */,
+				870AEB791B53A81D00959465 /* Localizable.strings in Resources */,
+				870BC00B1BCB4FCA00BB59F7 /* ButtonTableViewCell.xib in Resources */,
+				87AC2B161BCE16E800672288 /* SearchViewCell2.xib in Resources */,
 				87EF8C831B5CE46400292225 /* loading_screen.jpg in Resources */,
 				87E74B6E1B54E73B00C41CBF /* MyTripTableViewCell.xib in Resources */,
 				BC2B61D11B9816EC00934EA0 /* ChatDetailFromViewCell.xib in Resources */,
@@ -1356,6 +1418,7 @@
 				8729E13C1B4A6335004C3065 /* MyTripTableViewCell.m in Sources */,
 				87FC2DB41B480ABF0017F30E /* DataSigner.m in Sources */,
 				87EF8C6D1B5C805500292225 /* Utility.m in Sources */,
+				87C638EA1BD086640002A162 /* SectionDescViewController.m in Sources */,
 				87FC2DB31B480ABF0017F30E /* base64.m in Sources */,
 				BCDF1E501B7092F0004A79A3 /* ChatDetailToTableViewCell.m in Sources */,
 				BCC2764D1B79B41D00147E82 /* GCDMulticastDelegate.m in Sources */,
@@ -1367,6 +1430,7 @@
 				BCC276511B79B41D00147E82 /* XMPPStringPrep.m in Sources */,
 				87FFF3D31B4D380100326104 /* EditProfileViewController.m in Sources */,
 				BCC2765D1B79B41D00147E82 /* NSString+DDXML.m in Sources */,
+				870D13B51BCF2A2800D3BCEB /* LocalDetailViewController.m in Sources */,
 				87FCA4A81B52002A0060AA8B /* ReviewTableViewController.m in Sources */,
 				BCC275E11B79B3EE00147E82 /* XMPPModule.m in Sources */,
 				BCC276461B79B41D00147E82 /* XMPPSCRAMSHA1Authentication.m in Sources */,
@@ -1379,7 +1443,9 @@
 				870F22481B5B6A2100CD1AD2 /* URLConfig.m in Sources */,
 				87FC2DB71B480ABF0017F30E /* NSDataEx.m in Sources */,
 				87F356411B439D3B00949F43 /* LoginViewController.m in Sources */,
+				BC8C39021BAFD57500AB4060 /* TLMultiDaySearchViewController.m in Sources */,
 				8729E1321B4A0374004C3065 /* MyTripViewController.m in Sources */,
+				87C638E71BD07E3B0002A162 /* TitleDescCell.m in Sources */,
 				87F6F7661B4B948100A3A6EB /* MyTripTableViewController.m in Sources */,
 				BCC275E21B79B3EE00147E82 /* XMPPParser.m in Sources */,
 				87F356561B43C8C300949F43 /* UnloginViewController.m in Sources */,
@@ -1400,6 +1466,7 @@
 				87FC2DB91B480ABF0017F30E /* RSADataSigner.m in Sources */,
 				BCDF1E4D1B709267004A79A3 /* ChatDetailFromTableViewCell.m in Sources */,
 				BCC275E01B79B3EE00147E82 /* XMPPMessage.m in Sources */,
+				870BC00A1BCB4FCA00BB59F7 /* ButtonTableViewCell.m in Sources */,
 				87A3C09D1B461129009A3B07 /* RequestController.m in Sources */,
 				87FC2D251B4797CA0017F30E /* PaymentOptionViewController.m in Sources */,
 				BCC276561B79B41D00147E82 /* DDFileLogger.m in Sources */,
@@ -1407,12 +1474,15 @@
 				8EB982501B2280D800ADE430 /* Spinner.m in Sources */,
 				BCC2764B1B79B41D00147E82 /* NSXMLElement+XMPP.m in Sources */,
 				873C8E6E1B61D1F300CB1D9E /* AlipayFailedViewController.m in Sources */,
+				870D13C11BCF70A100D3BCEB /* DetailDescCell.m in Sources */,
 				5649BD3D1B3FD56E00465D6C /* TLDetailTableViewCell2.m in Sources */,
 				568AE8301B52087500D48DBC /* InstantBookingTableViewCell.m in Sources */,
+				87531EAC1BD5BAFB001F0D60 /* MultidayTableViewCell2.m in Sources */,
 				87E75F721B55EC4C00E53741 /* SmsVerificationViewController.m in Sources */,
 				87FC2DB81B480ABF0017F30E /* openssl_wrapper.m in Sources */,
 				5649BD401B3FD58800465D6C /* TLDetailTableViewCell3.m in Sources */,
 				BCC275E31B79B3EE00147E82 /* XMPPPresence.m in Sources */,
+				87AC2B1C1BCE1C2300672288 /* MultidayTableViewCell.m in Sources */,
 				8E26A6631B0397EF00A5A5CF /* TLHomeTableViewCell.m in Sources */,
 				BCC275DD1B79B3EE00147E82 /* XMPPElement.m in Sources */,
 				87A3C0A11B463C6C009A3B07 /* HomeViewController.m in Sources */,
@@ -1431,6 +1501,7 @@
 				BCC276581B79B41D00147E82 /* DDTTYLogger.m in Sources */,
 				BCDF1E411B7051D6004A79A3 /* ChatOverviewController.m in Sources */,
 				87FC2DB51B480ABF0017F30E /* DataVerifier.m in Sources */,
+				870D13BB1BCF680B00D3BCEB /* DetailDescTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1574,6 +1645,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer: 薛 嵩 (7JRGGT584F)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: 薛 嵩 (7JRGGT584F)";
+
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1726,6 +1798,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer: 薛 嵩 (7JRGGT584F)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: 薛 嵩 (7JRGGT584F)";
+
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1918,6 +1991,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer: 薛 嵩 (7JRGGT584F)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: 薛 嵩 (7JRGGT584F)";
+
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",

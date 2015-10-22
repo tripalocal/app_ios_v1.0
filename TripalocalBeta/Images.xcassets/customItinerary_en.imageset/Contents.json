@@ -2,8 +2,8 @@
   "images" : [
     {
       "idiom" : "universal",
-      "scale" : "1x",
-      "filename" : "customItinerary_en.jpg"
+      "filename" : "customItinerary_en.jpg",
+      "scale" : "1x"
     },
     {
       "idiom" : "universal",

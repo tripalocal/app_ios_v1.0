@@ -17,13 +17,10 @@
 @end
 
 @implementation ReviewTableViewController {
-    NSMutableDictionary *cachedImages;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    cachedImages = [[NSMutableDictionary alloc] init];
 }
 
 - (void)didReceiveMemoryWarning {

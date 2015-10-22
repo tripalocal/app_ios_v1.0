@@ -15,4 +15,6 @@
 + (UIColor *) 	themeColor;
 + (NSString *)	showTimeDifference:(NSString *)previousTime;
 + (NSString *)  getCurrentUTCTime;
++ (UIImage *)filledImageFrom:(UIImage *)source withColor:(UIColor *)color;
++ (NSString *) transformLanugage:(NSString *) languageString;
 @end

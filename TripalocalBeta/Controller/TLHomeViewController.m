@@ -9,15 +9,18 @@
 #import "TLHomeViewController.h"
 #import "TLHomeTableViewCell.h"
 #import "TLSearchViewController.h"
+#import "TLMultiDaySearchViewController.h"
 #import "TLBannerTableViewCell.h"
 #import <SDWebImage/UIImageView+WebCache.h>
+#import "ButtonTableViewCell.h"
 #import "Constant.h"
 #import "Utility.h"
 #import "Location.h"
 #import "URLConfig.h"
 
-NSInteger const CustomItineraryPos = 2;
-NSInteger const WeChatCellPos = 6;
+NSInteger const ButtonCellPos = 1;
+NSInteger const CustomItineraryPos = 3;
+NSInteger const WeChatCellPos = 7;
 
 @interface TLHomeViewController () {
     NSMutableArray *locations;
@@ -97,9 +100,11 @@ NSInteger const WeChatCellPos = 6;
     static NSString *cellIdentifier=@"homeTableCell";
     static NSString *cityCell=@"CityCell";
     static NSString *bannerCellID=@"BannerCell";
+    static NSString *buttonCellID=@"ButtonCell";
 
     TLHomeTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     TLBannerTableViewCell *bannerCell = [tableView dequeueReusableCellWithIdentifier:bannerCellID];
+    ButtonTableViewCell *buttonCell = [tableView dequeueReusableCellWithIdentifier:buttonCellID];
     UITableViewCell *cell2 = (UITableViewCell *) [tableView dequeueReusableCellWithIdentifier:cityCell];
     if(!cell)
     {
@@ -115,6 +120,12 @@ NSInteger const WeChatCellPos = 6;
     {
         [tableView registerNib:[UINib nibWithNibName:@"TLBannerTableViewCell" bundle:nil] forCellReuseIdentifier:bannerCellID];
         bannerCell = [tableView dequeueReusableCellWithIdentifier:bannerCellID];
+    }
+    
+    if (!buttonCell)
+    {
+        [tableView registerNib:[UINib nibWithNibName:@"ButtonTableViewCell" bundle:nil] forCellReuseIdentifier:buttonCellID];
+        buttonCell = [tableView dequeueReusableCellWithIdentifier:buttonCellID];
     }
     
     if (self.searchController.active) {
@@ -137,14 +148,33 @@ NSInteger const WeChatCellPos = 6;
             bannerCell.bannerImage.image = [UIImage imageNamed:NSLocalizedString(@"custom_itinerary", nil)];
             bannerCell.backgroundColor = [UIColor whiteColor];
             return bannerCell;
+        } else if (indexPath.row == ButtonCellPos) {
+
+            UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc]
+                                                     initWithTarget:self action:@selector(gotoTravelWithLocal:)];
+            UITapGestureRecognizer *tapRecognizerLocal = [[UITapGestureRecognizer alloc]
+                                                     initWithTarget:self action:@selector(gotoLocalExp:)];
+            UITapGestureRecognizer *tapRecognizerITI = [[UITapGestureRecognizer alloc]
+                                                          initWithTarget:self action:@selector(gotoItinerary:)];
+            tapRecognizer.numberOfTapsRequired = 1;
+            tapRecognizerLocal.numberOfTapsRequired = 1;
+            tapRecognizerITI.numberOfTapsRequired = 1;
+            [buttonCell.travelWithLocalView addGestureRecognizer:tapRecognizer];
+            [buttonCell.localExperienceView addGestureRecognizer:tapRecognizerLocal];
+            [buttonCell.itenerariesView addGestureRecognizer:tapRecognizerITI];
+            
+            return buttonCell;
+            
         } else if (indexPath.row == WeChatCellPos) {
             bannerCell.bannerImage.image = [UIImage imageNamed:NSLocalizedString(@"wechat_banner", nil)];
             bannerCell.backgroundColor = [Utility themeColor];
             return bannerCell;
-        } else if (indexPath.row > CustomItineraryPos && indexPath.row < WeChatCellPos) {
+        } else if (indexPath.row > ButtonCellPos && indexPath.row < CustomItineraryPos) {
             iLocation = indexPath.row - 1;
-        } else if (indexPath.row > CustomItineraryPos && indexPath.row > WeChatCellPos){
+        } else if (indexPath.row > CustomItineraryPos && indexPath.row < WeChatCellPos) {
             iLocation = indexPath.row - 2;
+        } else if (indexPath.row > CustomItineraryPos && indexPath.row > WeChatCellPos){
+            iLocation = indexPath.row - 3;
         } else {
             iLocation = indexPath.row;
         }
@@ -159,6 +189,7 @@ NSInteger const WeChatCellPos = 6;
                                   placeholderImage:nil
                                            options:SDWebImageRefreshCached
                                          completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+                                             cell.homeLocationImage.image = [Utility filledImageFrom:image withColor:[UIColor colorWithWhite:0.0 alpha:0.3]];
                                              [activityIndicator removeFromSuperview];
                                          }];
         [cell.homeLocationImage addSubview:activityIndicator];
@@ -171,12 +202,27 @@ NSInteger const WeChatCellPos = 6;
     }
 }
 
+- (void)gotoTravelWithLocal:(UITapGestureRecognizer *)recognizer {
+    [self performSegueWithIdentifier:@"searchToExpList" sender:@"Melbourne"];
+}
+
+- (void)gotoLocalExp:(UITapGestureRecognizer *)recognizer {
+    [self performSegueWithIdentifier:@"searchToExpListLocal" sender:@"Melbourne"];
+}
+
+- (void)gotoItinerary:(UITapGestureRecognizer *)recognizer {
+    [self performSegueWithIdentifier:@"searchToExpListItI" sender:@"Melbourne"];
+}
+
+
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (self.searchController.active) {
         return 44.f;
     } else if (indexPath.row == CustomItineraryPos || indexPath.row == WeChatCellPos) {
         return 220.f;
-    } else {
+    } else if (indexPath.row == ButtonCellPos) {
+        return 120.f;
+    }else {
         return 308.f;
     }
 }
@@ -201,7 +247,7 @@ NSInteger const WeChatCellPos = 6;
             return [filteredLocations count];
         }
     } else {
-        return [locations count] + 2;
+        return [locations count] + 3;
     }
 }
 
@@ -224,10 +270,14 @@ NSInteger const WeChatCellPos = 6;
         } else if (indexPath.row == WeChatCellPos) {
             [self openWeChat];
             return;
-        } else if (indexPath.row > CustomItineraryPos && indexPath.row < WeChatCellPos) {
+        } else if (indexPath.row == ButtonCellPos) {
+            return;
+        } else if (indexPath.row > ButtonCellPos && indexPath.row < CustomItineraryPos) {
             iLocation = indexPath.row - 1;
-        } else if (indexPath.row > CustomItineraryPos && indexPath.row > WeChatCellPos){
+        } else if (indexPath.row > CustomItineraryPos && indexPath.row < WeChatCellPos) {
             iLocation = indexPath.row - 2;
+        } else if (indexPath.row > CustomItineraryPos && indexPath.row > WeChatCellPos){
+            iLocation = indexPath.row - 3;
         } else {
             iLocation = indexPath.row;
         }
@@ -236,7 +286,7 @@ NSInteger const WeChatCellPos = 6;
         city = loc.location;
     }
     
-    [self.searchController setActive:FALSE];
+//    [self.searchController setActive:FALSE];
     [self performSegueWithIdentifier:@"searchToExpList" sender:city];
 }
 
@@ -260,11 +310,15 @@ NSInteger const WeChatCellPos = 6;
         UIAlertView * alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"alert", nil) message:NSLocalizedString(@"alert_email", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"ok_button", nil) otherButtonTitles:nil];
         [alert show];
     }
+
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return 1;
 }
+
+
+
 
 - (void)viewWillAppear:(BOOL)animated {
     AppDelegate *del = (AppDelegate *)[[UIApplication sharedApplication] delegate];
@@ -289,11 +343,16 @@ NSInteger const WeChatCellPos = 6;
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    TLSearchViewController *vc=[segue destinationViewController];
+    vc.cityName = (NSString *)sender;
     if ([segue.identifier isEqualToString:@"searchToExpList"]) {
-        TLSearchViewController *vc=[segue destinationViewController];
-        vc.cityName = (NSString *)sender;
-        self.searchTime = 1;
+        vc.expSearchType = @"PRIVATE";
+    } else if ([segue.identifier isEqualToString:@"searchToExpListLocal"]) {
+        vc.expSearchType = @"LOCAL";
+    } else {
+        vc.expSearchType = @"ITI";
     }
+self.searchTime = 1;
 }
 
 - (IBAction)unwindToHome:(UIStoryboardSegue *)unwindSegue {
