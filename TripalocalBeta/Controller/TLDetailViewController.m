@@ -86,7 +86,7 @@
 
 - (void)mpTrackViewExperience {
     Mixpanel *mixpanel = [Mixpanel sharedInstance];
-    NSString *language = [[NSLocale preferredLanguages] objectAtIndex:0];
+    NSString *localLanguage = [[NSLocale preferredLanguages] objectAtIndex:0];
     
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     NSString *token = [userDefaults secretStringForKey:@"user_token"];
@@ -97,7 +97,7 @@
         [mixpanel.people set:@{}];
     }
     
-    [mixpanel track:mpTrackViewExperience properties:@{@"language":language}];
+    [mixpanel track:mpTrackViewExperience properties:@{@"language":localLanguage}];
 }
 
 - (void)viewDidLoad {
@@ -111,10 +111,7 @@
     HUD.HUDView.layer.shadowRadius = 8.0f;
     HUD.textLabel.text = NSLocalizedString(@"loading", nil);
     [HUD showInView:self.view];
-    //set close button to fix the missing nav bar item
-    UIBarButtonItem *closeButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Close", nil) style:UIBarButtonItemStylePlain target:self action:@selector(dismissExpDetail:)];
-    closeButton.tintColor = [Utility themeColor];
-    self.navigationItem.leftBarButtonItem = closeButton;
+
     reviewerFirstName = @"";
     reviewerLastName = @"";
     reviewComment = @"";
@@ -510,9 +507,7 @@
     }
     
     else if ([segue.identifier isEqualToString:@"expDetailToChat"]) {
-
-        UINavigationController *navController = segue.destinationViewController;
-        ChatDetailViewController *chatDetailVC = navController.topViewController;
+        ChatDetailViewController *chatDetailVC = segue.destinationViewController;
         chatDetailVC.chatWithUser = host_id;
         chatDetailVC.otherUserImageURL = hostImageURL;
         
