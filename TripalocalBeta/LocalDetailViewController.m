@@ -255,8 +255,9 @@
             }
             
             if (hideTip == YES) {
-                cell.descLabel.hidden = YES;
+                cell.tipView.hidden = YES;
             } else {
+                cell.tipView.hidden = NO;
                 cell.descLabel.text = popularityText;
             }
 

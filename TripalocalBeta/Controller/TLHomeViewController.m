@@ -286,8 +286,7 @@ NSInteger const WeChatCellPos = 7;
         city = loc.location;
     }
     
-//    [self.searchController setActive:FALSE];
-    [self performSegueWithIdentifier:@"searchToExpList" sender:city];
+    [self performSegueWithIdentifier:@"searchToExpListLocal" sender:city];
 }
 
 - (void)openWeChat {
