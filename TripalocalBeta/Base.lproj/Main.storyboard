@@ -1312,11 +1312,12 @@
                     <connections>
                         <outlet property="myTable" destination="Rv7-br-YSx" id="2DW-ZA-eEM"/>
                         <segue destination="z4i-9t-qBr" kind="show" identifier="view_section_desc" id="vbY-Sn-I4z"/>
+                        <segue destination="3mc-0F-dSQ" kind="show" identifier="checkoutSegue" id="8OV-QQ-x1V"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5Ok-Y0-HvA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5269" y="858"/>
+            <point key="canvasLocation" x="5553" y="975"/>
         </scene>
         <!--Detail Desc Table View Controller-->
         <scene sceneID="0ie-4p-3KB">
@@ -1389,7 +1390,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5Q2-R5-5tM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="7431" y="-1767"/>
+            <point key="canvasLocation" x="6703" y="1225"/>
         </scene>
         <!--Section Desc View Controller-->
         <scene sceneID="jXy-CI-zYp">
@@ -1427,20 +1428,20 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Re0-of-qPy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="7489" y="-1180"/>
+            <point key="canvasLocation" x="6605" y="1632"/>
         </scene>
         <!--Review Table View Controller-->
         <scene sceneID="Wgk-Co-mXi">
             <objects>
                 <tableViewController id="rSl-rG-TVH" customClass="ReviewTableViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="293" sectionHeaderHeight="22" sectionFooterHeight="22" id="6vE-o7-yXn">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="1600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="500"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell3" rowHeight="270" id="mS1-cj-nMH" customClass="TLDetailTableViewCell3">
-                                <rect key="frame" x="0.0" y="22" width="600" height="270"/>
+                                <rect key="frame" x="0.0" y="86" width="600" height="270"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="mS1-cj-nMH" id="RKM-vr-m4n">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="269"/>
@@ -1495,10 +1496,12 @@
                             <outlet property="delegate" destination="rSl-rG-TVH" id="mIU-fN-aBZ"/>
                         </connections>
                     </tableView>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="600" height="500"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Lqm-yb-nN4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="7040" y="757"/>
+            <point key="canvasLocation" x="6690" y="631"/>
         </scene>
         <!--My Trip View Controller-->
         <scene sceneID="KA0-qX-Fmj">
@@ -2901,7 +2904,7 @@
                             <tableViewSection id="w58-PR-eyV">
                                 <cells>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="75" id="tI5-oK-C7L">
-                                        <rect key="frame" x="0.0" y="0.0" width="600" height="75"/>
+                                        <rect key="frame" x="0.0" y="64" width="600" height="75"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="tI5-oK-C7L" id="JXm-YE-rQm">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="74"/>
@@ -2949,7 +2952,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="75" id="OZw-p2-sEq">
-                                        <rect key="frame" x="0.0" y="75" width="600" height="75"/>
+                                        <rect key="frame" x="0.0" y="139" width="600" height="75"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="OZw-p2-sEq" id="HuA-ok-1Y9">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="74"/>
@@ -3023,7 +3026,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aBM-4S-nfl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6809" y="2780"/>
+            <point key="canvasLocation" x="6113" y="2576"/>
         </scene>
         <!--Credit Card-->
         <scene sceneID="4Vg-eh-K08">
@@ -4549,7 +4552,7 @@
                                     <constraint firstItem="DvV-aY-zzz" firstAttribute="leading" secondItem="Kc2-SR-fKy" secondAttribute="leading" id="WnD-zU-Ihc"/>
                                 </constraints>
                             </scrollView>
-                            <button opaque="NO" alpha="0.90000000000000002" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2w2-8z-grV">
+                            <button opaque="NO" alpha="0.90000000000000002" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2w2-8z-grV">
                                 <rect key="frame" x="0.0" y="855" width="600" height="45"/>
                                 <animations/>
                                 <color key="backgroundColor" red="0.0" green="0.81568627449999997" blue="0.81568627449999997" alpha="1" colorSpace="calibratedRGB"/>
@@ -4606,7 +4609,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ocD-zP-ayy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6004" y="3231"/>
+            <point key="canvasLocation" x="4996" y="2607"/>
         </scene>
         <!--Alipay Failed View Controller-->
         <scene sceneID="s83-8Y-88j">
@@ -5051,12 +5054,13 @@
         <image name="tripalocal_logo_zh" width="132" height="46"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="vmz-8c-cGB"/>
-        <segue reference="hPI-YE-UZz"/>
-        <segue reference="eUH-Pw-4ka"/>
-        <segue reference="EIY-8l-W0M"/>
-        <segue reference="I7p-1k-Jcw"/>
+        <segue reference="8OV-QQ-x1V"/>
         <segue reference="hSJ-3F-2mq"/>
         <segue reference="FaZ-kM-Q6M"/>
+        <segue reference="tXC-gw-Kz7"/>
+        <segue reference="olF-su-vgo"/>
+        <segue reference="hPI-YE-UZz"/>
+        <segue reference="vmz-8c-cGB"/>
+        <segue reference="EIY-8l-W0M"/>
     </inferredMetricsTieBreakers>
 </document>
