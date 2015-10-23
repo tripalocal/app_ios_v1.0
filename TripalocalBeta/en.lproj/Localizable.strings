@@ -153,3 +153,7 @@
 "send_message" = "Send Message";
 
 "send_button" = "Send";
+
+"hurry_up_80" = "Hurry, more than 80% of this tour has been booked within next 6 months";
+
+"hurry_up_50" = "Hurry, more than 50% of this tour has been booked within next 6 months";

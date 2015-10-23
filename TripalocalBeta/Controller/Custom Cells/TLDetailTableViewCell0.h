@@ -18,5 +18,5 @@
 @property (weak, nonatomic) IBOutlet UILabel *durationLabel;
 @property (weak, nonatomic) IBOutlet UILabel *cityLabel;
 @property (weak, nonatomic) IBOutlet UILabel *currencyLabel;
-
+@property (weak, nonatomic) IBOutlet UILabel *descLabel;
 @end

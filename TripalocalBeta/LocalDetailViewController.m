@@ -47,7 +47,9 @@
     NSString *transportString;
     NSArray *reviews;
     NSDictionary *expData;
+    NSString *popularityText;
     UIImage *nextPageCoverImage;
+    BOOL hideTip;
 }
 
 @property (strong, nonatomic) NSString *sectionDescription;
@@ -85,6 +87,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    hideTip = NO;
     HUD = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleDark];
     HUD.HUDView.layer.shadowColor = [UIColor blackColor].CGColor;
     HUD.HUDView.layer.shadowOffset = CGSizeZero;
@@ -97,7 +100,7 @@
     reviewComment = @"";
     reviewerImageURL = @"";
     
-    self.cellHeights = [@[@320, @240, @385, @164, @55, @55, @55, @55, @55, @55, @55] mutableCopy];
+    self.cellHeights = [@[@400, @240, @385, @164, @55, @55, @55, @55, @55, @55, @55] mutableCopy];
     _myTable.delegate = self;
     _myTable.dataSource = self;
     
@@ -106,6 +109,21 @@
     
     [self mpTrackViewExperience];
     
+    if ([expData count] == 0) {
+        [self fetchData];
+    }
+    
+    float popularity = [expData[@"experience_popularity"] floatValue];
+    if (popularity >= 80) {
+        popularityText = NSLocalizedString(@"hurry_up_80", nil);
+    } else if (popularity >= 50) {
+        popularityText = NSLocalizedString(@"hurry_up_50", nil);
+    } else {
+        self.cellHeights[0] = @(320);
+        hideTip = YES;
+    }
+    
+    [HUD dismissAfterDelay:1];
 }
 
 - (void)fetchData
@@ -201,15 +219,6 @@
     self.expPrice = [Utility decimalwithFormat:@"0" floatV:[priceNumber floatValue]];
 }
 
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-    if ([expData count] == 0) {
-        [self fetchData];
-    }
-    
-    [HUD dismissAfterDelay:1];
-}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -245,6 +254,12 @@
                 cell = [[TLDetailTableViewCell0 alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier0];
             }
             
+            if (hideTip == YES) {
+                cell.descLabel.hidden = YES;
+            } else {
+                cell.descLabel.text = popularityText;
+            }
+
             NSString *coverImageURL = [NSString stringWithFormat:@"%@thumbnails/experiences/experience%@_1.jpg", [URLConfig imageServiceURLString], _experience_id_string];
             
             __block UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
