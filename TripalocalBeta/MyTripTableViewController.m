@@ -57,12 +57,12 @@
             NSArray *allTrips = [NSJSONSerialization JSONObjectWithData:data
                                                                 options:0
                                                                   error:nil];
-            NSDictionary *my_trip = allTrips[0];
-            NSLog(@"Array: %@", my_trip[@"host_id"]);
-            if ([allTrips count]>0) {
-                host_id = my_trip[@"host_id"];
-                NSLog(@"Getting host id: %@",host_id);
-            }
+//            NSDictionary *my_trip = allTrips[0];
+//            NSLog(@"Array: %@", my_trip[@"host_id"]);
+//            if ([allTrips count]>0) {
+//                host_id = my_trip[@"host_id"];
+//                NSLog(@"Getting host id: %@",host_id);
+//            }
             myTrips = [self abstractTripsFilter:allTrips];
             
         }
