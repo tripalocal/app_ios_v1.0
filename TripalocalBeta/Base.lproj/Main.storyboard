@@ -39,8 +39,8 @@
                                                             <rect key="frame" x="85" y="12" width="27" height="27"/>
                                                             <animations/>
                                                         </imageView>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Local Experiences" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BUr-x4-x9Y">
-                                                            <rect key="frame" x="55" y="44" width="86" height="12"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Local Experiences" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BUr-x4-x9Y">
+                                                            <rect key="frame" x="54" y="44" width="88" height="12"/>
                                                             <animations/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                                             <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
@@ -68,8 +68,8 @@
                                                             <rect key="frame" x="85" y="12" width="27" height="27"/>
                                                             <animations/>
                                                         </imageView>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Travel with Locals" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FUo-jF-Ruf">
-                                                            <rect key="frame" x="56" y="44" width="84" height="12"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Travel with Locals" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FUo-jF-Ruf">
+                                                            <rect key="frame" x="55" y="44" width="87" height="12"/>
                                                             <animations/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                                             <color key="textColor" red="0.60000026226043701" green="0.60000020265579224" blue="0.59999996423721313" alpha="1" colorSpace="calibratedRGB"/>
@@ -97,8 +97,8 @@
                                                             <rect key="frame" x="85" y="12" width="27" height="27"/>
                                                             <animations/>
                                                         </imageView>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Iteneraries" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Wn-Cd-u7D" userLabel="Iteneraries">
-                                                            <rect key="frame" x="74" y="44" width="50" height="12"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Iteneraries" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Wn-Cd-u7D" userLabel="Iteneraries">
+                                                            <rect key="frame" x="73" y="44" width="52" height="12"/>
                                                             <animations/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                                             <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
@@ -5129,13 +5129,13 @@
         <image name="tripalocal_logo_zh" width="132" height="46"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="8OV-QQ-x1V"/>
+        <segue reference="hSJ-3F-2mq"/>
         <segue reference="FaZ-kM-Q6M"/>
         <segue reference="JEQ-2l-ewO"/>
-        <segue reference="hSJ-3F-2mq"/>
-        <segue reference="zFv-4M-BDv"/>
-        <segue reference="eUH-Pw-4ka"/>
         <segue reference="9MV-3y-eFP"/>
         <segue reference="hPI-YE-UZz"/>
+        <segue reference="tXC-gw-Kz7"/>
         <segue reference="olF-su-vgo"/>
     </inferredMetricsTieBreakers>
 </document>

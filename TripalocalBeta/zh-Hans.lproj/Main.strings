@@ -230,6 +230,8 @@
 /* Class = "UILabel"; text = "per person"; ObjectID = "jSP-6t-dAh"; */
 "jSP-6t-dAh.text" = "每人起";
 
+"L6U-hK-kZE.text" = "每人起";
+
 /* Class = "UILabel"; text = "Payment failed please call:"; ObjectID = "jZd-K8-egz"; */
 "jZd-K8-egz.text" = "付款失败,请拨打：";
 
@@ -238,6 +240,8 @@
 
 /* Class = "UITabBarItem"; title = "Item"; ObjectID = "kcL-w8-bSH"; */
 "kcL-w8-bSH.title" = "Item";
+
+"4f7-w4-CLe.text" = "行程概况";
 
 /* Class = "UITextView"; text = "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda."; ObjectID = "kip-Yz-I1K"; */
 "kip-Yz-I1K.text" = "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.";
@@ -346,3 +350,10 @@
 
 /* Class = "UIButton"; normalTitle = "Confirm and Pay"; ObjectID = "zsH-ad-ErN"; */
 "zsH-ad-ErN.normalTitle" = "确认并支付";
+
+"BUr-x4-x9Y.text" = "特色体验";
+
+"FUo-jF-Ruf.text" = "旅游达人";
+
+"9Wn-Cd-u7D.text" = "精品路线";
+

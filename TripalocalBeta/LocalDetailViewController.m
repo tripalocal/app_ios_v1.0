@@ -349,7 +349,7 @@
                 self.cellHeights[4] = @(0);
             } else {
                 sectionTitleCell.hidden = NO;
-                sectionTitleCell.sectionTitleLabel.text = @"Schedule";
+                sectionTitleCell.sectionTitleLabel.text = NSLocalizedString(@"schedule_title", nil);
                 sectionTitleCell.sectionButton.tag = 4;
             }
 
@@ -361,7 +361,7 @@
                 self.cellHeights[5] = @(0);
             } else {
                 sectionTitleCell.hidden = NO;
-                sectionTitleCell.sectionTitleLabel.text = @"Tips";
+                sectionTitleCell.sectionTitleLabel.text = NSLocalizedString(@"tips_title", nil);
                 sectionTitleCell.sectionButton.tag = 5;
             }
             
@@ -373,7 +373,7 @@
                 self.cellHeights[6] = @(0);
             } else {
                 sectionTitleCell.hidden = NO;
-                sectionTitleCell.sectionTitleLabel.text = @"What's included";
+                sectionTitleCell.sectionTitleLabel.text = NSLocalizedString(@"whatsincluded_title", nil);
                 sectionTitleCell.sectionButton.tag = 6;
             }
             
@@ -385,7 +385,7 @@
                 self.cellHeights[7] = @(0);
             } else {
                 sectionTitleCell.hidden = NO;
-                sectionTitleCell.sectionTitleLabel.text = @"Pick up detail";
+                sectionTitleCell.sectionTitleLabel.text = NSLocalizedString(@"pickup_title", nil);
                 sectionTitleCell.sectionButton.tag = 7;
             }
             
@@ -397,7 +397,7 @@
                 self.cellHeights[8] = @(0);
             } else {
                 sectionTitleCell.hidden = NO;
-                sectionTitleCell.sectionTitleLabel.text = @"Disclaimer";
+                sectionTitleCell.sectionTitleLabel.text = NSLocalizedString(@"disclaimer_title", nil);
                 sectionTitleCell.sectionButton.tag = 8;
             }
             
@@ -409,7 +409,7 @@
                 self.cellHeights[9] = @(0);
             } else {
                 sectionTitleCell.hidden = NO;
-                sectionTitleCell.sectionTitleLabel.text = @"Refund Policy";
+                sectionTitleCell.sectionTitleLabel.text = NSLocalizedString(@"refund_title", nil);
                 sectionTitleCell.sectionButton.tag = 9;
             }
             
@@ -421,7 +421,7 @@
                 self.cellHeights[10] = @(0);
             } else {
                 sectionTitleCell.hidden = NO;
-                sectionTitleCell.sectionTitleLabel.text = @"Insurance";
+                sectionTitleCell.sectionTitleLabel.text = NSLocalizedString(@"insurance_title", nil);
                 sectionTitleCell.sectionButton.tag = 10;
             }
 
@@ -481,31 +481,31 @@
 - (IBAction)viewSectionDescription:(UIButton *)sender {
     switch (sender.tag) {
         case 4:
-            self.sectionTitle = @"Schedule";
+            self.sectionTitle = NSLocalizedString(@"schedule_title", nil);;
             self.sectionDescription = expData[@"schedule"];
             break;
         case 5:
-            self.sectionTitle = @"Tips";
+            self.sectionTitle = NSLocalizedString(@"tips_title", nil);
             self.sectionDescription = expData[@"tips"];
             break;
         case 6:
-            self.sectionTitle = @"What's included";
+            self.sectionTitle = NSLocalizedString(@"whatsincluded_title", nil);
             self.sectionDescription = expData[@"whatsincluded"];
             break;
         case 7:
-            self.sectionTitle = @"Pick up detail";
+            self.sectionTitle = NSLocalizedString(@"pickup_title", nil);
             self.sectionDescription = expData[@"pickup_detail"];
             break;
         case 8:
-            self.sectionTitle = @"Disclaimer";
+            self.sectionTitle = NSLocalizedString(@"disclaimer_title", nil);
             self.sectionDescription = expData[@"disclaimer"];
             break;
         case 9:
-            self.sectionTitle = @"Refund Policy";
+            self.sectionTitle = NSLocalizedString(@"refund_title", nil);
             self.sectionDescription = expData[@"refund_policy"];
             break;
         case 10:
-            self.sectionTitle = @"Insurance";
+            self.sectionTitle = NSLocalizedString(@"insurance_title", nil);
             self.sectionDescription = expData[@"insurance"];
             break;
         default:

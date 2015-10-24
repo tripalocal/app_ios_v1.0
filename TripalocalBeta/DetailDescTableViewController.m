@@ -38,17 +38,17 @@ static NSString * const cellIdentifier0 = @"detailCell";
     cell.hidden = NO;
     switch (indexPath.row) {
         case 0: {
-            cell.titleLabel.text = @"Overview";
+            cell.titleLabel.text = NSLocalizedString(@"overview_title", nil);
             cell.contentLabel.text = self.description_detail;
             break;
         }
         case 1: {
-            cell.titleLabel.text = @"Highlights";
+            cell.titleLabel.text = NSLocalizedString(@"highlights_title", nil);
             cell.contentLabel.text = self.highlights;
             break;
         }
         case 2: {
-            cell.titleLabel.text = @"Service";
+            cell.titleLabel.text = NSLocalizedString(@"desc_title", nil);
             cell.contentLabel.text = self.service;
             break;
         }
