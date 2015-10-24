@@ -4293,8 +4293,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="900"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Kc2-SR-fKy">
-                                <rect key="frame" x="0.0" y="64" width="600" height="1536"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kc2-SR-fKy">
+                                <rect key="frame" x="4" y="64" width="592" height="742"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DvV-aY-zzz" userLabel="Content View">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="717"/>
@@ -4630,8 +4630,8 @@
                                     <constraint firstItem="DvV-aY-zzz" firstAttribute="leading" secondItem="Kc2-SR-fKy" secondAttribute="leading" id="WnD-zU-Ihc"/>
                                 </constraints>
                             </scrollView>
-                            <button opaque="NO" alpha="0.90000000000000002" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2w2-8z-grV">
-                                <rect key="frame" x="0.0" y="855" width="600" height="45"/>
+                            <button opaque="NO" alpha="0.90000000000000002" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2w2-8z-grV">
+                                <rect key="frame" x="0.0" y="806" width="600" height="45"/>
                                 <animations/>
                                 <color key="backgroundColor" red="0.0" green="0.81568627449999997" blue="0.81568627449999997" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -4650,7 +4650,7 @@
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="Std-hm-k1M" firstAttribute="top" secondItem="Kc2-SR-fKy" secondAttribute="bottom" id="2mD-ff-QWN"/>
+                            <constraint firstItem="Std-hm-k1M" firstAttribute="top" secondItem="Kc2-SR-fKy" secondAttribute="bottom" constant="45" id="2mD-ff-QWN"/>
                             <constraint firstItem="Std-hm-k1M" firstAttribute="top" secondItem="2w2-8z-grV" secondAttribute="bottom" id="77j-1q-A7G"/>
                             <constraint firstItem="Kc2-SR-fKy" firstAttribute="leading" secondItem="qns-7F-obJ" secondAttribute="leadingMargin" constant="-16" id="B7w-6d-imd"/>
                             <constraint firstItem="Kc2-SR-fKy" firstAttribute="top" secondItem="dkn-o6-t6g" secondAttribute="bottom" id="C5f-cZ-nj4"/>
@@ -5135,11 +5135,11 @@
     <inferredMetricsTieBreakers>
         <segue reference="FaZ-kM-Q6M"/>
         <segue reference="hSJ-3F-2mq"/>
-        <segue reference="chc-HC-F4Z"/>
         <segue reference="JEQ-2l-ewO"/>
         <segue reference="tXC-gw-Kz7"/>
         <segue reference="8OV-QQ-x1V"/>
         <segue reference="olF-su-vgo"/>
         <segue reference="9MV-3y-eFP"/>
+        <segue reference="hPI-YE-UZz"/>
     </inferredMetricsTieBreakers>
 </document>

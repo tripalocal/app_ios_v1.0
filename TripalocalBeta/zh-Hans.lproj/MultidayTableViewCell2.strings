@@ -1,0 +1,36 @@
+
+/* Class = "UILabel"; text = "$"; ObjectID = "5Yb-QI-7NT"; */
+"5Yb-QI-7NT.text" = "$";
+
+/* Class = "UILabel"; text = "3 Day Trip"; ObjectID = "9be-f7-Vu7"; */
+"9be-f7-Vu7.text" = "3 Day Trip";
+
+/* Class = "UIButton"; normalTitle = "Check Details"; ObjectID = "CgX-9f-LVB"; */
+"CgX-9f-LVB.normalTitle" = "查看路线";
+
+/* Class = "UIButton"; normalTitle = "Check Details"; ObjectID = "FUd-uD-QEt"; */
+"FUd-uD-QEt.normalTitle" = "查看路线";
+
+/* Class = "UILabel"; text = "1234"; ObjectID = "K6e-iM-I3j"; */
+"K6e-iM-I3j.text" = "1234";
+
+/* Class = "UILabel"; text = "1234"; ObjectID = "P0F-dM-bjC"; */
+"P0F-dM-bjC.text" = "1234";
+
+/* Class = "UILabel"; text = "AUD"; ObjectID = "VMY-OI-5f1"; */
+"VMY-OI-5f1.text" = "澳元";
+
+/* Class = "UILabel"; text = "Melbourne or Sydney"; ObjectID = "brK-wx-j4g"; */
+"brK-wx-j4g.text" = "Melbourne or Sydney";
+
+/* Class = "UILabel"; text = "Include 1 night accomondation"; ObjectID = "cbS-dq-zor"; */
+"cbS-dq-zor.text" = "包括1晚住宿";
+
+/* Class = "UILabel"; text = "Include all accomondation"; ObjectID = "ccl-yh-dea"; */
+"ccl-yh-dea.text" = "包括2晚住宿";
+
+/* Class = "UILabel"; text = "AUD"; ObjectID = "iqy-Dj-zJs"; */
+"iqy-Dj-zJs.text" = "澳元";
+
+/* Class = "UILabel"; text = "$"; ObjectID = "u0a-oF-Rzi"; */
+"u0a-oF-Rzi.text" = "$";

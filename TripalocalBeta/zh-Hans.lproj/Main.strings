@@ -101,6 +101,8 @@
 /* Class = "UIButton"; normalTitle = "Request to Book"; ObjectID = "Ob8-Wd-umG"; */
 "Ob8-Wd-umG.normalTitle" = "预订";
 
+"N19-TI-7hH.normalTitle" = "预订";
+
 /* Class = "UILabel"; text = "$ 999.99 AUD x 4 pp"; ObjectID = "QMJ-QN-apu"; */
 "QMJ-QN-apu.text" = "$ 999.99 AUD x 4 pp";
 
