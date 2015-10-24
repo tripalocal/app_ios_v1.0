@@ -212,8 +212,8 @@
     
     if([segue.identifier isEqualToString:@"showDetail"]){
         NSIndexPath *indexPath = (NSIndexPath *)sender;
-        UINavigationController *navController = segue.destinationViewController;
-        ChatDetailViewController *destViewController = navController.topViewController;
+        
+        ChatDetailViewController *destViewController = (ChatDetailViewController *)segue.destinationViewController;
         
 #if DEBUG
         NSLog(@"passing string: %@",[sender_id_list objectAtIndex:indexPath.row]);

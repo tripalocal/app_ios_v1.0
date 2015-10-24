@@ -21,7 +21,6 @@
 		87046A8C1B660D590084E2E3 /* TLBannerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87046A8E1B660D590084E2E3 /* TLBannerTableViewCell.xib */; };
 		870AEB791B53A81D00959465 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 870AEB7B1B53A81D00959465 /* Localizable.strings */; };
 		870BC00A1BCB4FCA00BB59F7 /* ButtonTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 870BC0081BCB4FCA00BB59F7 /* ButtonTableViewCell.m */; };
-		870BC00B1BCB4FCA00BB59F7 /* ButtonTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 870BC0091BCB4FCA00BB59F7 /* ButtonTableViewCell.xib */; };
 		870D13B51BCF2A2800D3BCEB /* LocalDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 870D13B41BCF2A2800D3BCEB /* LocalDetailViewController.m */; };
 		870D13BB1BCF680B00D3BCEB /* DetailDescTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 870D13BA1BCF680B00D3BCEB /* DetailDescTableViewController.m */; };
 		870D13C11BCF70A100D3BCEB /* DetailDescCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 870D13C01BCF70A100D3BCEB /* DetailDescCell.m */; };
@@ -29,6 +28,8 @@
 		8711965A1B4FF74300BA8672 /* NeedToLoginView.m in Sources */ = {isa = PBXBuildFile; fileRef = 871196591B4FF74300BA8672 /* NeedToLoginView.m */; };
 		8711A65B1B5A63EE00578BB2 /* PageContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8711A65A1B5A63EE00578BB2 /* PageContentViewController.m */; };
 		8711A65E1B5A69DA00578BB2 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8711A65D1B5A69DA00578BB2 /* RootViewController.m */; };
+		8721B82A1BDB392500778D13 /* ButtonTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8721B82C1BDB392500778D13 /* ButtonTableViewCell.xib */; };
+		8721B82F1BDB3B0C00778D13 /* SearchViewCell2.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8721B8311BDB3B0C00778D13 /* SearchViewCell2.xib */; };
 		8729E1321B4A0374004C3065 /* MyTripViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8729E1311B4A0374004C3065 /* MyTripViewController.m */; };
 		8729E1361B4A1D7F004C3065 /* UpcommingTripsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8729E1351B4A1D7F004C3065 /* UpcommingTripsViewController.m */; };
 		8729E1391B4A1D9B004C3065 /* PreviousTripsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8729E1381B4A1D9B004C3065 /* PreviousTripsViewController.m */; };
@@ -40,7 +41,6 @@
 		87531EAE1BD5BB0F001F0D60 /* MultidayTableViewCell2.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87531EAD1BD5BB0F001F0D60 /* MultidayTableViewCell2.xib */; };
 		87A3C09D1B461129009A3B07 /* RequestController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87A3C09C1B461129009A3B07 /* RequestController.m */; };
 		87A3C0A11B463C6C009A3B07 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87A3C0A01B463C6C009A3B07 /* HomeViewController.m */; };
-		87AC2B161BCE16E800672288 /* SearchViewCell2.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87AC2B151BCE16E800672288 /* SearchViewCell2.xib */; };
 		87AC2B1C1BCE1C2300672288 /* MultidayTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 87AC2B1A1BCE1C2300672288 /* MultidayTableViewCell.m */; };
 		87AC2B1D1BCE1C2300672288 /* MultidayTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87AC2B1B1BCE1C2300672288 /* MultidayTableViewCell.xib */; };
 		87C638E71BD07E3B0002A162 /* TitleDescCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C638E61BD07E3B0002A162 /* TitleDescCell.m */; };
@@ -171,7 +171,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		260BBCF7DD8ACB078C0A93D6 /* Pods-TripalocalBeta.debug_cn.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TripalocalBeta.debug_cn.xcconfig"; path = "Pods/Target Support Files/Pods-TripalocalBeta/Pods-TripalocalBeta.debug_cn.xcconfig"; sourceTree = "<group>"; };
 		343996C22E7455135C839270 /* Pods-TripalocalBeta.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TripalocalBeta.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TripalocalBeta/Pods-TripalocalBeta.debug.xcconfig"; sourceTree = "<group>"; };
+		4B8C4486067C079B25BBC562 /* Pods-TripalocalBeta.release_cn.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TripalocalBeta.release_cn.xcconfig"; path = "Pods/Target Support Files/Pods-TripalocalBeta/Pods-TripalocalBeta.release_cn.xcconfig"; sourceTree = "<group>"; };
 		5649BD351B3FC40F00465D6C /* TLDetailTableViewCell0.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TLDetailTableViewCell0.h; path = "Controller/Custom Cells/TLDetailTableViewCell0.h"; sourceTree = "<group>"; };
 		5649BD361B3FC40F00465D6C /* TLDetailTableViewCell0.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TLDetailTableViewCell0.m; path = "Controller/Custom Cells/TLDetailTableViewCell0.m"; sourceTree = "<group>"; };
 		5649BD381B3FC42600465D6C /* TLDetailTableViewCell1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TLDetailTableViewCell1.h; path = "Controller/Custom Cells/TLDetailTableViewCell1.h"; sourceTree = "<group>"; };
@@ -195,7 +197,6 @@
 		870AEB7C1B53A82900959465 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		870BC0071BCB4FCA00BB59F7 /* ButtonTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ButtonTableViewCell.h; path = ../ButtonTableViewCell.h; sourceTree = "<group>"; };
 		870BC0081BCB4FCA00BB59F7 /* ButtonTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ButtonTableViewCell.m; path = ../ButtonTableViewCell.m; sourceTree = "<group>"; };
-		870BC0091BCB4FCA00BB59F7 /* ButtonTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ButtonTableViewCell.xib; path = ../ButtonTableViewCell.xib; sourceTree = "<group>"; };
 		870D13B31BCF2A2800D3BCEB /* LocalDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalDetailViewController.h; sourceTree = "<group>"; };
 		870D13B41BCF2A2800D3BCEB /* LocalDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalDetailViewController.m; sourceTree = "<group>"; };
 		870D13B91BCF680B00D3BCEB /* DetailDescTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailDescTableViewController.h; sourceTree = "<group>"; };
@@ -210,6 +211,10 @@
 		8711A65A1B5A63EE00578BB2 /* PageContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PageContentViewController.m; sourceTree = "<group>"; };
 		8711A65C1B5A69DA00578BB2 /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
 		8711A65D1B5A69DA00578BB2 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
+		8721B82B1BDB392500778D13 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/ButtonTableViewCell.xib; sourceTree = "<group>"; };
+		8721B82E1BDB393000778D13 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/ButtonTableViewCell.strings"; sourceTree = "<group>"; };
+		8721B8301BDB3B0C00778D13 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/SearchViewCell2.xib; sourceTree = "<group>"; };
+		8721B8331BDB3B0F00778D13 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/SearchViewCell2.strings"; sourceTree = "<group>"; };
 		8729E1301B4A0374004C3065 /* MyTripViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyTripViewController.h; sourceTree = "<group>"; };
 		8729E1311B4A0374004C3065 /* MyTripViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyTripViewController.m; sourceTree = "<group>"; };
 		8729E1341B4A1D7F004C3065 /* UpcommingTripsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpcommingTripsViewController.h; sourceTree = "<group>"; };
@@ -231,7 +236,6 @@
 		87A3C09C1B461129009A3B07 /* RequestController.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.objc; path = RequestController.m; sourceTree = "<group>"; tabWidth = 4; usesTabs = 0; wrapsLines = 1; };
 		87A3C09F1B463C6C009A3B07 /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HomeViewController.h; path = Controller/HomeViewController.h; sourceTree = "<group>"; };
 		87A3C0A01B463C6C009A3B07 /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HomeViewController.m; path = Controller/HomeViewController.m; sourceTree = "<group>"; };
-		87AC2B151BCE16E800672288 /* SearchViewCell2.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchViewCell2.xib; sourceTree = "<group>"; };
 		87AC2B191BCE1C2300672288 /* MultidayTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultidayTableViewCell.h; sourceTree = "<group>"; };
 		87AC2B1A1BCE1C2300672288 /* MultidayTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultidayTableViewCell.m; sourceTree = "<group>"; };
 		87AC2B1B1BCE1C2300672288 /* MultidayTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MultidayTableViewCell.xib; sourceTree = "<group>"; };
@@ -820,13 +824,13 @@
 				87531EAD1BD5BB0F001F0D60 /* MultidayTableViewCell2.xib */,
 				87AC2B1B1BCE1C2300672288 /* MultidayTableViewCell.xib */,
 				871196581B4FF74300BA8672 /* NeedToLoginView.h */,
-				87AC2B151BCE16E800672288 /* SearchViewCell2.xib */,
+				8721B8311BDB3B0C00778D13 /* SearchViewCell2.xib */,
 				87E74B6B1B54C2AF00C41CBF /* SearchViewCell.xib */,
 				871196591B4FF74300BA8672 /* NeedToLoginView.m */,
 				87046A8E1B660D590084E2E3 /* TLBannerTableViewCell.xib */,
 				87E74B651B54BD6C00C41CBF /* NeedToLoginView.xib */,
 				87E74B701B54E73B00C41CBF /* MyTripTableViewCell.xib */,
-				870BC0091BCB4FCA00BB59F7 /* ButtonTableViewCell.xib */,
+				8721B82C1BDB392500778D13 /* ButtonTableViewCell.xib */,
 				8EB570EC1B01CF2B0026D419 /* Main.storyboard */,
 				BCDF1E421B706FE9004A79A3 /* ChatOverviewViewCell.xib */,
 				BCDF1E441B707818004A79A3 /* ChatDetailFromViewCell.xib */,
@@ -1180,6 +1184,8 @@
 			children = (
 				343996C22E7455135C839270 /* Pods-TripalocalBeta.debug.xcconfig */,
 				CB095F374C2B9151DA4B6FA4 /* Pods-TripalocalBeta.release.xcconfig */,
+				260BBCF7DD8ACB078C0A93D6 /* Pods-TripalocalBeta.debug_cn.xcconfig */,
+				4B8C4486067C079B25BBC562 /* Pods-TripalocalBeta.release_cn.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -1318,8 +1324,8 @@
 				87531EAE1BD5BB0F001F0D60 /* MultidayTableViewCell2.xib in Resources */,
 				87AC2B1D1BCE1C2300672288 /* MultidayTableViewCell.xib in Resources */,
 				870AEB791B53A81D00959465 /* Localizable.strings in Resources */,
-				870BC00B1BCB4FCA00BB59F7 /* ButtonTableViewCell.xib in Resources */,
-				87AC2B161BCE16E800672288 /* SearchViewCell2.xib in Resources */,
+				8721B82A1BDB392500778D13 /* ButtonTableViewCell.xib in Resources */,
+				8721B82F1BDB3B0C00778D13 /* SearchViewCell2.xib in Resources */,
 				87EF8C831B5CE46400292225 /* loading_screen.jpg in Resources */,
 				87E74B6E1B54E73B00C41CBF /* MyTripTableViewCell.xib in Resources */,
 				BC2B61D11B9816EC00934EA0 /* ChatDetailFromViewCell.xib in Resources */,
@@ -1541,6 +1547,25 @@
 			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
+		8721B82C1BDB392500778D13 /* ButtonTableViewCell.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8721B82B1BDB392500778D13 /* Base */,
+				8721B82E1BDB393000778D13 /* zh-Hans */,
+			);
+			name = ButtonTableViewCell.xib;
+			path = ..;
+			sourceTree = "<group>";
+		};
+		8721B8311BDB3B0C00778D13 /* SearchViewCell2.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8721B8301BDB3B0C00778D13 /* Base */,
+				8721B8331BDB3B0F00778D13 /* zh-Hans */,
+			);
+			name = SearchViewCell2.xib;
+			sourceTree = "<group>";
+		};
 		87E74B651B54BD6C00C41CBF /* NeedToLoginView.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -1637,7 +1662,7 @@
 		};
 		873C8E701B61F8CD00CB1D9E /* Debug_CN */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 343996C22E7455135C839270 /* Pods-TripalocalBeta.debug.xcconfig */;
+			baseConfigurationReference = 260BBCF7DD8ACB078C0A93D6 /* Pods-TripalocalBeta.debug_cn.xcconfig */;
 			buildSettings = {
 				APP_NAME = "本土客";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -1787,7 +1812,7 @@
 		};
 		873C8E731B61F8DC00CB1D9E /* Release_CN */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = CB095F374C2B9151DA4B6FA4 /* Pods-TripalocalBeta.release.xcconfig */;
+			baseConfigurationReference = 4B8C4486067C079B25BBC562 /* Pods-TripalocalBeta.release_cn.xcconfig */;
 			buildSettings = {
 				APP_NAME = "本土客";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
