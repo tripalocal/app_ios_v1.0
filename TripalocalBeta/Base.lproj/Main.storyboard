@@ -184,7 +184,9 @@
                             <constraint firstItem="5Bj-PW-wbu" firstAttribute="bottom" secondItem="PVO-HM-5jl" secondAttribute="top" id="rmR-pW-e4Y"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="YWn-7T-EAB"/>
+                    <navigationItem key="navigationItem" id="YWn-7T-EAB">
+                        <barButtonItem key="backBarButtonItem" title=" " id="pkz-El-ZWW"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="filterView" destination="zKe-mn-QFJ" id="gxF-OR-7Xj"/>
                         <outlet property="itenarariesLabel" destination="9Wn-Cd-u7D" id="4Nz-VE-kN2"/>
@@ -1380,7 +1382,9 @@
                             <constraint firstItem="N19-TI-7hH" firstAttribute="leading" secondItem="kl3-tm-fCq" secondAttribute="leadingMargin" constant="-16" id="ySY-Au-XhY"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Experience Detail" id="W9n-BE-gtj"/>
+                    <navigationItem key="navigationItem" title="Experience Detail" id="W9n-BE-gtj">
+                        <barButtonItem key="backBarButtonItem" title=" " id="Nmk-yy-0up"/>
+                    </navigationItem>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="600" height="1700"/>
                     <connections>
@@ -5129,13 +5133,13 @@
         <image name="tripalocal_logo_zh" width="132" height="46"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="8OV-QQ-x1V"/>
-        <segue reference="hSJ-3F-2mq"/>
         <segue reference="FaZ-kM-Q6M"/>
+        <segue reference="hSJ-3F-2mq"/>
+        <segue reference="chc-HC-F4Z"/>
         <segue reference="JEQ-2l-ewO"/>
-        <segue reference="9MV-3y-eFP"/>
-        <segue reference="hPI-YE-UZz"/>
         <segue reference="tXC-gw-Kz7"/>
+        <segue reference="8OV-QQ-x1V"/>
         <segue reference="olF-su-vgo"/>
+        <segue reference="9MV-3y-eFP"/>
     </inferredMetricsTieBreakers>
 </document>
