@@ -413,6 +413,7 @@
         default:
             break;
     }
+    
     [self performSegueWithIdentifier:@"SearchResultSegue" sender:self];
 }
 
@@ -455,7 +456,7 @@
 
     NSString *startDate = [dateFormatter stringFromDate:today];
     NSString *endDate = [dateFormatter stringFromDate:today];
-//    NSString *typeString = @"\"type\":\"all\"";
+
     NSString *typeString = @"";
     if ([self.expSearchType isEqualToString:@"PRIVATE"]) {
         typeString = @"\"type\":\"experience\"";
@@ -509,23 +510,7 @@
             }
             
             self.expList = expList;
-//            NSPredicate *p = [NSPredicate predicateWithFormat:
-//                              @"SELF['type'] CONTAINS [cd] %@", @"PRIVATE"];
-//            NSPredicate *p2 = [NSPredicate predicateWithFormat:
-//                               @"SELF['type'] CONTAINS [cd] %@", @"NEWPRODUCT"];
-//            NSPredicate *p3 = [NSPredicate predicateWithFormat:
-//                               @"SELF['type'] CONTAINS [cd] %@", @"ITINERARY"];
-//            self.normalExpList = [NSMutableArray arrayWithArray:[expList filteredArrayUsingPredicate:p]];
-//            
-//            self.localExpList = [NSMutableArray arrayWithArray:[expList filteredArrayUsingPredicate:p2]];
-            
-//            NSArray *tempList = [expList filteredArrayUsingPredicate:p3];
-            
-//            self.itineraryExpList = [[NSMutableArray alloc] init];
-//            [self.itineraryExpList addObject:[self getExpById:@"651" inArray:expList]];
-//            [self.itineraryExpList addObject:[self getExpById:@"701" inArray:expList]];
-            
-//            [self.itineraryExpList addObject:[self getExpById:@"701" inArray:tempList]];
+
 #ifdef DEBUG
             NSLog(@"number of cells: %lu", (unsigned long)expList.count);
 #endif
@@ -553,6 +538,7 @@
     
     return expList;
 }
+
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if ([self.expSearchType isEqualToString:@"PRIVATE"]) {

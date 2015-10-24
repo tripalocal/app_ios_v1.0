@@ -244,8 +244,8 @@
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="305"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Reservation with" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qeu-2l-orb">
-                                                    <rect key="frame" x="236" y="172" width="128" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Reservation with" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qeu-2l-orb">
+                                                    <rect key="frame" x="237" y="172" width="127" height="21"/>
                                                     <animations/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -5133,13 +5133,13 @@
         <image name="tripalocal_logo_zh" width="132" height="46"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="zFv-4M-BDv"/>
+        <segue reference="JEQ-2l-ewO"/>
         <segue reference="FaZ-kM-Q6M"/>
         <segue reference="hSJ-3F-2mq"/>
-        <segue reference="JEQ-2l-ewO"/>
-        <segue reference="tXC-gw-Kz7"/>
-        <segue reference="8OV-QQ-x1V"/>
-        <segue reference="olF-su-vgo"/>
+        <segue reference="eUH-Pw-4ka"/>
         <segue reference="9MV-3y-eFP"/>
         <segue reference="hPI-YE-UZz"/>
+        <segue reference="olF-su-vgo"/>
     </inferredMetricsTieBreakers>
 </document>

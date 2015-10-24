@@ -280,16 +280,16 @@
     
     switch (indexPath.row) {
         case 0: {
-            if (!cell) {
-                cell = [[TLDetailTableViewCell0 alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier0];
-            }
+            cell = [[TLDetailTableViewCell0 alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier0];
             
-            if ([self.expType isEqualToString:@"PRIVATE"]) {
+            if ([self.expType isEqualToString:@"PRIVATE"] || [self.expType isEqualToString:@"NONPRIVATE"]) {
                 [cell.hostImage sd_setImageWithURL:[NSURL URLWithString:hostImageURL]
                                   placeholderImage:[UIImage imageNamed:@"default_profile_image.png"]
                                            options:SDWebImageRefreshCached];
+                cell.reservationLabel.text = [NSString stringWithFormat:@"%@ %@ %@", NSLocalizedString(@"reservationPrefix", nil), hostFirstName, NSLocalizedString(@"reservationSuffix",nil)];
             } else {
                 cell.hostImage.hidden = YES;
+                cell.reservationLabel.hidden = YES;
             }
             
             NSString *coverImageURL = [NSString stringWithFormat:@"%@thumbnails/experiences/experience%@_1.jpg", [URLConfig imageServiceURLString], _experience_id_string];
@@ -310,9 +310,6 @@
                                               nextPageCoverImage = image;
                                           }
                                       }];
-            
-            
-            cell.reservationLabel.text = [NSString stringWithFormat:@"%@ %@ %@", NSLocalizedString(@"reservationPrefix", nil), hostFirstName, NSLocalizedString(@"reservationSuffix",nil)];
             
             // language
             cell.languageLabel.text = language;
