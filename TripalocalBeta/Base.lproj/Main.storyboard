@@ -2244,7 +2244,7 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="gvs-6g-1yh">
                                 <rect key="frame" x="0.0" y="64" width="600" height="417"/>
                                 <animations/>
-                                <color key="backgroundColor" red="0.95686274509803926" green="0.95686274509803926" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.92549019607843142" green="0.92549019607843142" blue="0.92549019607843142" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="sectionIndexBackgroundColor" red="0.24313725489999999" green="0.7843137255" blue="0.7725490196" alpha="1" colorSpace="calibratedRGB"/>
                             </tableView>
                             <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="i4i-5w-lVL" userLabel="sendBarView">

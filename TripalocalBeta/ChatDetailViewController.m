@@ -394,7 +394,19 @@
     }
     NSManagedObjectContext *managedObjectContext = [self managedObjectContext];
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Message"];
-    allRelevantMessage = [[managedObjectContext executeFetchRequest:fetchRequest error:nil] mutableCopy];
+    self.allMessage = [[managedObjectContext executeFetchRequest:fetchRequest error:nil] mutableCopy];
+    allRelevantMessage = [[NSMutableArray alloc] init];
+    for (NSManagedObject *message in allMessage){
+        
+        if ([[message valueForKey:@"sender_id"] intValue] == [sender_id intValue] && [[message valueForKey:@"receiver_id"] intValue] == [chatWithUser intValue]) {
+            
+            [allRelevantMessage addObject:message];
+        } else if ([[message valueForKey:@"receiver_id"] intValue] == [sender_id intValue] && [[message valueForKey:@"sender_id"] intValue] == [chatWithUser intValue]){
+            
+            [allRelevantMessage addObject:message];
+        }
+    }
+
     NSSortDescriptor *sortDescriptor;
     sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"local_id"
                                                  ascending:YES];
