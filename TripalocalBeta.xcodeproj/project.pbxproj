@@ -99,6 +99,7 @@
 		BC4C4B891BCF65C200D3C91F /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = BC4C4B881BCF65C200D3C91F /* libz.tbd */; };
 		BC837DE61B8F34C800862FF8 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BC837DE51B8F34C800862FF8 /* libsqlite3.dylib */; };
 		BC837DEB1B8F35CD00862FF8 /* DBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BC837DEA1B8F35CD00862FF8 /* DBManager.m */; };
+		BC8C39021BAFD57500AB4060 /* TLMultiDaySearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BC8C39011BAFD57500AB4060 /* TLMultiDaySearchViewController.m */; };
 		BCC275DC1B79B3EE00147E82 /* XMPPConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = BCC275C91B79B3EE00147E82 /* XMPPConstants.m */; };
 		BCC275DD1B79B3EE00147E82 /* XMPPElement.m in Sources */ = {isa = PBXBuildFile; fileRef = BCC275CB1B79B3EE00147E82 /* XMPPElement.m */; };
 		BCC275DE1B79B3EE00147E82 /* XMPPIQ.m in Sources */ = {isa = PBXBuildFile; fileRef = BCC275CE1B79B3EE00147E82 /* XMPPIQ.m */; };
@@ -157,7 +158,6 @@
 		BCDF1E4D1B709267004A79A3 /* ChatDetailFromTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BCDF1E4C1B709267004A79A3 /* ChatDetailFromTableViewCell.m */; };
 		BCDF1E501B7092F0004A79A3 /* ChatDetailToTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BCDF1E4F1B7092F0004A79A3 /* ChatDetailToTableViewCell.m */; };
 		BCDF1E531B709D4A004A79A3 /* ChatDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BCDF1E521B709D4A004A79A3 /* ChatDetailViewController.m */; };
-		BC8C39021BAFD57500AB4060 /* TLMultiDaySearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BC8C39011BAFD57500AB4060 /* TLMultiDaySearchViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -171,7 +171,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		260BBCF7DD8ACB078C0A93D6 /* Pods-TripalocalBeta.debug_cn.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TripalocalBeta.debug_cn.xcconfig"; path = "Pods/Target Support Files/Pods-TripalocalBeta/Pods-TripalocalBeta.debug_cn.xcconfig"; sourceTree = "<group>"; };
 		343996C22E7455135C839270 /* Pods-TripalocalBeta.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TripalocalBeta.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TripalocalBeta/Pods-TripalocalBeta.debug.xcconfig"; sourceTree = "<group>"; };
+		4B8C4486067C079B25BBC562 /* Pods-TripalocalBeta.release_cn.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TripalocalBeta.release_cn.xcconfig"; path = "Pods/Target Support Files/Pods-TripalocalBeta/Pods-TripalocalBeta.release_cn.xcconfig"; sourceTree = "<group>"; };
 		5649BD351B3FC40F00465D6C /* TLDetailTableViewCell0.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TLDetailTableViewCell0.h; path = "Controller/Custom Cells/TLDetailTableViewCell0.h"; sourceTree = "<group>"; };
 		5649BD361B3FC40F00465D6C /* TLDetailTableViewCell0.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TLDetailTableViewCell0.m; path = "Controller/Custom Cells/TLDetailTableViewCell0.m"; sourceTree = "<group>"; };
 		5649BD381B3FC42600465D6C /* TLDetailTableViewCell1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TLDetailTableViewCell1.h; path = "Controller/Custom Cells/TLDetailTableViewCell1.h"; sourceTree = "<group>"; };
@@ -411,6 +413,8 @@
 		BC837DE51B8F34C800862FF8 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		BC837DEA1B8F35CD00862FF8 /* DBManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DBManager.m; path = Database/DBManager.m; sourceTree = "<group>"; };
 		BC837DEC1B8F364100862FF8 /* DBManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DBManager.h; path = Database/DBManager.h; sourceTree = "<group>"; };
+		BC8C39001BAFD57500AB4060 /* TLMultiDaySearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TLMultiDaySearchViewController.h; path = Controller/TLMultiDaySearchViewController.h; sourceTree = "<group>"; };
+		BC8C39011BAFD57500AB4060 /* TLMultiDaySearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TLMultiDaySearchViewController.m; path = Controller/TLMultiDaySearchViewController.m; sourceTree = "<group>"; };
 		BCC275C71B79B3EE00147E82 /* XMPP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMPP.h; sourceTree = "<group>"; };
 		BCC275C81B79B3EE00147E82 /* XMPPConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMPPConstants.h; sourceTree = "<group>"; };
 		BCC275C91B79B3EE00147E82 /* XMPPConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMPPConstants.m; sourceTree = "<group>"; };
@@ -530,8 +534,6 @@
 		BCDF1E4F1B7092F0004A79A3 /* ChatDetailToTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatDetailToTableViewCell.m; sourceTree = "<group>"; };
 		BCDF1E511B709D4A004A79A3 /* ChatDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatDetailViewController.h; sourceTree = "<group>"; };
 		BCDF1E521B709D4A004A79A3 /* ChatDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatDetailViewController.m; sourceTree = "<group>"; };
-		BC8C39001BAFD57500AB4060 /* TLMultiDaySearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TLMultiDaySearchViewController.h; path = Controller/TLMultiDaySearchViewController.h; sourceTree = "<group>"; };
-		BC8C39011BAFD57500AB4060 /* TLMultiDaySearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TLMultiDaySearchViewController.m; path = Controller/TLMultiDaySearchViewController.m; sourceTree = "<group>"; };
 		CB095F374C2B9151DA4B6FA4 /* Pods-TripalocalBeta.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TripalocalBeta.release.xcconfig"; path = "Pods/Target Support Files/Pods-TripalocalBeta/Pods-TripalocalBeta.release.xcconfig"; sourceTree = "<group>"; };
 		D1136758DFF7CE52CD971824 /* libPods-TripalocalBeta.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TripalocalBeta.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -1180,6 +1182,8 @@
 			children = (
 				343996C22E7455135C839270 /* Pods-TripalocalBeta.debug.xcconfig */,
 				CB095F374C2B9151DA4B6FA4 /* Pods-TripalocalBeta.release.xcconfig */,
+				260BBCF7DD8ACB078C0A93D6 /* Pods-TripalocalBeta.debug_cn.xcconfig */,
+				4B8C4486067C079B25BBC562 /* Pods-TripalocalBeta.release_cn.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -1637,7 +1641,7 @@
 		};
 		873C8E701B61F8CD00CB1D9E /* Debug_CN */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 343996C22E7455135C839270 /* Pods-TripalocalBeta.debug.xcconfig */;
+			baseConfigurationReference = 260BBCF7DD8ACB078C0A93D6 /* Pods-TripalocalBeta.debug_cn.xcconfig */;
 			buildSettings = {
 				APP_NAME = "本土客";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -1645,7 +1649,6 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer: 薛 嵩 (7JRGGT584F)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: 薛 嵩 (7JRGGT584F)";
-
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1790,7 +1793,7 @@
 		};
 		873C8E731B61F8DC00CB1D9E /* Release_CN */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = CB095F374C2B9151DA4B6FA4 /* Pods-TripalocalBeta.release.xcconfig */;
+			baseConfigurationReference = 4B8C4486067C079B25BBC562 /* Pods-TripalocalBeta.release_cn.xcconfig */;
 			buildSettings = {
 				APP_NAME = "本土客";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -1798,7 +1801,6 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer: 薛 嵩 (7JRGGT584F)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: 薛 嵩 (7JRGGT584F)";
-
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1991,7 +1993,6 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer: 薛 嵩 (7JRGGT584F)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: 薛 嵩 (7JRGGT584F)";
-
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
