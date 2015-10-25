@@ -17,11 +17,11 @@
 #import "JGProgressHUD.h"
 
 @interface ChatOverviewController()
-	
+
 @end
 
 @implementation ChatOverviewController  {
-	JGProgressHUD *HUD;
+    JGProgressHUD *HUD;
     NSInteger _clickedRow;
 }
 @synthesize managedObjectContext = _managedObjectContext;
@@ -73,13 +73,13 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-	// *************
-	// Can remove because user can't get in this view without login
+// *************
+// Can remove because user can't get in this view without login
 -(IBAction)showLogin {
     UnloginViewController *unLoginController = [[UnloginViewController alloc] init];
     [self presentViewController:unLoginController animated:YES completion:nil];
 }
-	// *************
+// *************
 #pragma mark Show chat_list
 -(void)showChatList {
     //initial the message arraies
@@ -93,7 +93,7 @@
     timeList = [[NSMutableArray alloc] init];
     //# Store senders' user_id #
     sender_id_list = [[NSMutableArray alloc] init];
-	// Get the current user info
+    // Get the current user info
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     NSString *token = [userDefaults secretObjectForKey:@"user_token"];
     NSString *user_id = [userDefaults objectForKey:@"user_id"];
@@ -106,6 +106,9 @@
     NSError *connectionError = nil;
     NSURLResponse *response = nil;
     NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&connectionError];
+    NSMutableArray *sender_list = [[NSMutableArray alloc] init];
+    NSMutableArray *new_chat_list = [[NSMutableArray alloc] init];
+    
     if (connectionError == nil) {
         NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *) response;
         NSDictionary *messageDetail = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
@@ -118,8 +121,9 @@
                 NSString *senderImageURL = [message_info objectForKey:@"sender_image"];
                 NSString *sender_name = [message_info valueForKey:@"sender_name"];
                 UIImage *image = [self fetchImage:token :senderImageURL];
+                [sender_list addObject:[NSString stringWithFormat:@"%@", sender_id]];
                 // Compare the API data with core data
-				NSManagedObjectContext *managedObjectContext = [self managedObjectContext];
+                NSManagedObjectContext *managedObjectContext = [self managedObjectContext];
                 NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Message"];
                 // Fetching all message from core data
                 self.allMessage = [[managedObjectContext executeFetchRequest:fetchRequest error:nil] mutableCopy];
@@ -136,21 +140,94 @@
                     }
                 }
                 // Calculate the time difference
-				NSString *diff = [Utility showTimeDifference:messageDate];
+                NSString *diff = [Utility showTimeDifference:messageDate];
                 NSLog(@"content: %@, date: %@, image: %@, name: %@, sender_id: %@", messageContent, messageDate,senderImageURL, sender_name, sender_id);
                 
                 //if (!([messageList containsObject:messageContent] && [sender_id_list containsObject:sender_id])) {
-                    if (image){
-                        [imgList addObject:image];
-                    } else {
-                        [imgList addObject:[UIImage imageNamed:@"default_profile_image.png"]];
-                    }
-                    [sender_id_list addObject:sender_id];
-                    [nameList addObject:sender_name];
-                    [messageList addObject:messageContent];
-                    [timeList addObject:diff];
+                if (image){
+                    [imgList addObject:image];
+                } else {
+                    [imgList addObject:[UIImage imageNamed:@"default_profile_image.png"]];
                 }
-        	//}
+                [sender_id_list addObject:sender_id];
+                [nameList addObject:sender_name];
+                [messageList addObject:messageContent];
+                [timeList addObject:diff];
+            }
+            //temp fix
+            //*********************
+            for (NSManagedObject *message in allMessage){
+                NSNumber *tmp = [message valueForKey:@"receiver_id"];
+                if (![sender_list containsObject:tmp] && ![new_chat_list containsObject:tmp]){
+                    [new_chat_list addObject:[message valueForKey:@"receiver_id"]];
+                }
+            }
+            if ([new_chat_list count] != 0) {
+                for (NSString *new_id in new_chat_list){
+                    NSString *url_with_id = [NSString stringWithFormat:@"%@%@%@",[URLConfig servicePublicProfileURLString],@"?user_id=",new_id];
+                    NSURL *url = [NSURL URLWithString:url_with_id];
+                    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+                    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+                    [request setHTTPMethod:@"GET"];
+                    NSString *token = [[NSUserDefaults standardUserDefaults] secretObjectForKey:@"user_token"];
+                    [request setValue:[NSString stringWithFormat:@"token %@",token] forHTTPHeaderField:@"Authorization"];
+                    NSError *connectionError = nil;
+                    NSURLResponse *response = nil;
+                    
+                    NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&connectionError];
+                    if (connectionError == nil) {
+                        NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *) response;
+                        
+                        NSDictionary *result = [NSJSONSerialization JSONObjectWithData:data
+                                                                               options:0
+                                                                                 error:nil];
+                        
+                        if ([httpResponse statusCode] == 200) {
+                            NSString *otherUserImageURL = [result objectForKey:@"image"];
+                            NSString *otherUserFirstName = [result objectForKey:@"first_name"];
+                            NSString *otherUserLastName = [result objectForKey:@"last_name"];
+                            
+                            if (otherUserImageURL.length != 0) {
+                                UIImage *otherUserImage = [self fetchImage:token :otherUserImageURL];
+                                [imgList addObject:otherUserImage];
+                            }else{
+                                UIImage *otherUserImage = [UIImage imageNamed:@"default_profile_image.png"];
+                                [imgList addObject:otherUserImage];
+                            }
+                            [nameList addObject:otherUserFirstName];
+                            [sender_id_list addObject:new_id];
+                            NSString *messageContent = nil;
+                            NSString *messageDate = nil;
+                            for (NSManagedObject *message in allMessage){
+                                // Sift out those messages which are not new
+                                if ([[message valueForKey:@"receiver_id"] isEqualToString: [NSString stringWithFormat:@"%@",new_id]]) {
+                                        // Override the message content and timestamp with latest one
+                                        messageContent = [message valueForKey:@"message_content"];
+                                        messageDate = [message valueForKey:@"message_time"];
+                                }
+                            }
+                            NSString *diff = [Utility showTimeDifference:messageDate];
+                            [messageList addObject:messageContent];
+                            [timeList addObject:diff];
+                            
+                        }
+    #if DEBUG
+                        NSString *decodedData = [[NSString alloc] initWithData:data
+                                                                      encoding:NSUTF8StringEncoding];
+                        NSLog(@"Receiving data = %@", decodedData);
+    #endif
+                        
+                    } else {
+                        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"no_network", nil)
+                                                                        message:NSLocalizedString(@"no_network_msg", nil)
+                                                                       delegate:nil
+                                                              cancelButtonTitle:NSLocalizedString(@"ok_button", nil)
+                                                              otherButtonTitles:nil];
+                        [alert show];
+                    }
+                }
+            }
+            
             [self.tableView reloadData];
         }
     }
@@ -186,7 +263,7 @@
     }
     return cell;
 }
-	// Fix table cell height
+// Fix table cell height
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return 80;
@@ -201,7 +278,7 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     //start a chat
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-	[self performSegueWithIdentifier:@"showDetail" sender: indexPath];
+    [self performSegueWithIdentifier:@"showDetail" sender: indexPath];
     _clickedRow = indexPath.row;
 #if DEBUG
     NSLog(@"Selected row: %ld", (long)_clickedRow);
@@ -212,8 +289,7 @@
     
     if([segue.identifier isEqualToString:@"showDetail"]){
         NSIndexPath *indexPath = (NSIndexPath *)sender;
-        
-        ChatDetailViewController *destViewController = (ChatDetailViewController *)segue.destinationViewController;
+    	ChatDetailViewController *destViewController = (ChatDetailViewController *)segue.destinationViewController;
         
 #if DEBUG
         NSLog(@"passing string: %@",[sender_id_list objectAtIndex:indexPath.row]);
