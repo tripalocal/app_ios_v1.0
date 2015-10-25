@@ -43,6 +43,7 @@
 		87A3C09D1B461129009A3B07 /* RequestController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87A3C09C1B461129009A3B07 /* RequestController.m */; };
 		87A3C0A11B463C6C009A3B07 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87A3C0A01B463C6C009A3B07 /* HomeViewController.m */; };
 		87AC2B1C1BCE1C2300672288 /* MultidayTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 87AC2B1A1BCE1C2300672288 /* MultidayTableViewCell.m */; };
+		87AF0B491BDDA050000E98D9 /* RelatedExpTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 87AF0B481BDDA050000E98D9 /* RelatedExpTableViewCell.m */; settings = {ASSET_TAGS = (); }; };
 		87C638E71BD07E3B0002A162 /* TitleDescCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C638E61BD07E3B0002A162 /* TitleDescCell.m */; };
 		87C638EA1BD086640002A162 /* SectionDescViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C638E91BD086640002A162 /* SectionDescViewController.m */; };
 		87E74B631B54BD6C00C41CBF /* NeedToLoginView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87E74B651B54BD6C00C41CBF /* NeedToLoginView.xib */; };
@@ -241,6 +242,8 @@
 		87A3C0A01B463C6C009A3B07 /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HomeViewController.m; path = Controller/HomeViewController.m; sourceTree = "<group>"; };
 		87AC2B191BCE1C2300672288 /* MultidayTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultidayTableViewCell.h; sourceTree = "<group>"; };
 		87AC2B1A1BCE1C2300672288 /* MultidayTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultidayTableViewCell.m; sourceTree = "<group>"; };
+		87AF0B471BDDA050000E98D9 /* RelatedExpTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RelatedExpTableViewCell.h; sourceTree = "<group>"; };
+		87AF0B481BDDA050000E98D9 /* RelatedExpTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RelatedExpTableViewCell.m; sourceTree = "<group>"; };
 		87C638E51BD07E3B0002A162 /* TitleDescCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TitleDescCell.h; sourceTree = "<group>"; };
 		87C638E61BD07E3B0002A162 /* TitleDescCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TitleDescCell.m; sourceTree = "<group>"; };
 		87C638E81BD086640002A162 /* SectionDescViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SectionDescViewController.h; sourceTree = "<group>"; };
@@ -581,6 +584,8 @@
 		5649BD311B3FC32800465D6C /* Custom Cells */ = {
 			isa = PBXGroup;
 			children = (
+				87AF0B471BDDA050000E98D9 /* RelatedExpTableViewCell.h */,
+				87AF0B481BDDA050000E98D9 /* RelatedExpTableViewCell.m */,
 				BCDF1E4E1B7092F0004A79A3 /* ChatDetailToTableViewCell.h */,
 				BCDF1E4F1B7092F0004A79A3 /* ChatDetailToTableViewCell.m */,
 				BCDF1E4B1B709267004A79A3 /* ChatDetailFromTableViewCell.h */,
@@ -1483,6 +1488,7 @@
 				BCC2764B1B79B41D00147E82 /* NSXMLElement+XMPP.m in Sources */,
 				873C8E6E1B61D1F300CB1D9E /* AlipayFailedViewController.m in Sources */,
 				870D13C11BCF70A100D3BCEB /* DetailDescCell.m in Sources */,
+				87AF0B491BDDA050000E98D9 /* RelatedExpTableViewCell.m in Sources */,
 				5649BD3D1B3FD56E00465D6C /* TLDetailTableViewCell2.m in Sources */,
 				568AE8301B52087500D48DBC /* InstantBookingTableViewCell.m in Sources */,
 				87531EAC1BD5BAFB001F0D60 /* MultidayTableViewCell2.m in Sources */,
