@@ -30,6 +30,8 @@
 		8711A65E1B5A69DA00578BB2 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8711A65D1B5A69DA00578BB2 /* RootViewController.m */; };
 		8721B82A1BDB392500778D13 /* ButtonTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8721B82C1BDB392500778D13 /* ButtonTableViewCell.xib */; };
 		8721B82F1BDB3B0C00778D13 /* SearchViewCell2.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8721B8311BDB3B0C00778D13 /* SearchViewCell2.xib */; };
+		8721B8341BDBB70D00778D13 /* MultidayTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8721B8361BDBB70D00778D13 /* MultidayTableViewCell.xib */; };
+		8721B8391BDBB9DE00778D13 /* MultidayTableViewCell2.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8721B83B1BDBB9DE00778D13 /* MultidayTableViewCell2.xib */; };
 		8729E1321B4A0374004C3065 /* MyTripViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8729E1311B4A0374004C3065 /* MyTripViewController.m */; };
 		8729E1361B4A1D7F004C3065 /* UpcommingTripsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8729E1351B4A1D7F004C3065 /* UpcommingTripsViewController.m */; };
 		8729E1391B4A1D9B004C3065 /* PreviousTripsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8729E1381B4A1D9B004C3065 /* PreviousTripsViewController.m */; };
@@ -38,11 +40,9 @@
 		874265871B4D272F00D76C72 /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 874265861B4D272F00D76C72 /* MenuViewController.m */; };
 		874522AB1B4E3FDF00876EB4 /* WishLishViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 874522AA1B4E3FDF00876EB4 /* WishLishViewController.m */; };
 		87531EAC1BD5BAFB001F0D60 /* MultidayTableViewCell2.m in Sources */ = {isa = PBXBuildFile; fileRef = 87531EAB1BD5BAFB001F0D60 /* MultidayTableViewCell2.m */; };
-		87531EAE1BD5BB0F001F0D60 /* MultidayTableViewCell2.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87531EAD1BD5BB0F001F0D60 /* MultidayTableViewCell2.xib */; };
 		87A3C09D1B461129009A3B07 /* RequestController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87A3C09C1B461129009A3B07 /* RequestController.m */; };
 		87A3C0A11B463C6C009A3B07 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87A3C0A01B463C6C009A3B07 /* HomeViewController.m */; };
 		87AC2B1C1BCE1C2300672288 /* MultidayTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 87AC2B1A1BCE1C2300672288 /* MultidayTableViewCell.m */; };
-		87AC2B1D1BCE1C2300672288 /* MultidayTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87AC2B1B1BCE1C2300672288 /* MultidayTableViewCell.xib */; };
 		87C638E71BD07E3B0002A162 /* TitleDescCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C638E61BD07E3B0002A162 /* TitleDescCell.m */; };
 		87C638EA1BD086640002A162 /* SectionDescViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C638E91BD086640002A162 /* SectionDescViewController.m */; };
 		87E74B631B54BD6C00C41CBF /* NeedToLoginView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87E74B651B54BD6C00C41CBF /* NeedToLoginView.xib */; };
@@ -215,6 +215,10 @@
 		8721B82E1BDB393000778D13 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/ButtonTableViewCell.strings"; sourceTree = "<group>"; };
 		8721B8301BDB3B0C00778D13 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/SearchViewCell2.xib; sourceTree = "<group>"; };
 		8721B8331BDB3B0F00778D13 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/SearchViewCell2.strings"; sourceTree = "<group>"; };
+		8721B8351BDBB70D00778D13 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MultidayTableViewCell.xib; sourceTree = "<group>"; };
+		8721B8381BDBB71000778D13 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/MultidayTableViewCell.strings"; sourceTree = "<group>"; };
+		8721B83A1BDBB9DE00778D13 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MultidayTableViewCell2.xib; sourceTree = "<group>"; };
+		8721B83E1BDBBA1000778D13 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/MultidayTableViewCell2.strings"; sourceTree = "<group>"; };
 		8729E1301B4A0374004C3065 /* MyTripViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyTripViewController.h; sourceTree = "<group>"; };
 		8729E1311B4A0374004C3065 /* MyTripViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyTripViewController.m; sourceTree = "<group>"; };
 		8729E1341B4A1D7F004C3065 /* UpcommingTripsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpcommingTripsViewController.h; sourceTree = "<group>"; };
@@ -231,14 +235,12 @@
 		874522AA1B4E3FDF00876EB4 /* WishLishViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WishLishViewController.m; sourceTree = "<group>"; };
 		87531EAA1BD5BAFB001F0D60 /* MultidayTableViewCell2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultidayTableViewCell2.h; sourceTree = "<group>"; };
 		87531EAB1BD5BAFB001F0D60 /* MultidayTableViewCell2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultidayTableViewCell2.m; sourceTree = "<group>"; };
-		87531EAD1BD5BB0F001F0D60 /* MultidayTableViewCell2.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MultidayTableViewCell2.xib; sourceTree = "<group>"; };
 		87A3C09B1B461129009A3B07 /* RequestController.h */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.h; path = RequestController.h; sourceTree = "<group>"; tabWidth = 4; usesTabs = 0; wrapsLines = 1; };
 		87A3C09C1B461129009A3B07 /* RequestController.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.objc; path = RequestController.m; sourceTree = "<group>"; tabWidth = 4; usesTabs = 0; wrapsLines = 1; };
 		87A3C09F1B463C6C009A3B07 /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HomeViewController.h; path = Controller/HomeViewController.h; sourceTree = "<group>"; };
 		87A3C0A01B463C6C009A3B07 /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HomeViewController.m; path = Controller/HomeViewController.m; sourceTree = "<group>"; };
 		87AC2B191BCE1C2300672288 /* MultidayTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultidayTableViewCell.h; sourceTree = "<group>"; };
 		87AC2B1A1BCE1C2300672288 /* MultidayTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultidayTableViewCell.m; sourceTree = "<group>"; };
-		87AC2B1B1BCE1C2300672288 /* MultidayTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MultidayTableViewCell.xib; sourceTree = "<group>"; };
 		87C638E51BD07E3B0002A162 /* TitleDescCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TitleDescCell.h; sourceTree = "<group>"; };
 		87C638E61BD07E3B0002A162 /* TitleDescCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TitleDescCell.m; sourceTree = "<group>"; };
 		87C638E81BD086640002A162 /* SectionDescViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SectionDescViewController.h; sourceTree = "<group>"; };
@@ -821,8 +823,8 @@
 		8EC86D501B021DD800B0A655 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				87531EAD1BD5BB0F001F0D60 /* MultidayTableViewCell2.xib */,
-				87AC2B1B1BCE1C2300672288 /* MultidayTableViewCell.xib */,
+				8721B83B1BDBB9DE00778D13 /* MultidayTableViewCell2.xib */,
+				8721B8361BDBB70D00778D13 /* MultidayTableViewCell.xib */,
 				871196581B4FF74300BA8672 /* NeedToLoginView.h */,
 				8721B8311BDB3B0C00778D13 /* SearchViewCell2.xib */,
 				87E74B6B1B54C2AF00C41CBF /* SearchViewCell.xib */,
@@ -1321,8 +1323,8 @@
 				87E74B691B54C2AF00C41CBF /* SearchViewCell.xib in Resources */,
 				BC2B61D01B9816E800934EA0 /* ChatDetailToViewCell.xib in Resources */,
 				BCDF1E431B706FE9004A79A3 /* ChatOverviewViewCell.xib in Resources */,
-				87531EAE1BD5BB0F001F0D60 /* MultidayTableViewCell2.xib in Resources */,
-				87AC2B1D1BCE1C2300672288 /* MultidayTableViewCell.xib in Resources */,
+				8721B8391BDBB9DE00778D13 /* MultidayTableViewCell2.xib in Resources */,
+				8721B8341BDBB70D00778D13 /* MultidayTableViewCell.xib in Resources */,
 				870AEB791B53A81D00959465 /* Localizable.strings in Resources */,
 				8721B82A1BDB392500778D13 /* ButtonTableViewCell.xib in Resources */,
 				8721B82F1BDB3B0C00778D13 /* SearchViewCell2.xib in Resources */,
@@ -1564,6 +1566,24 @@
 				8721B8331BDB3B0F00778D13 /* zh-Hans */,
 			);
 			name = SearchViewCell2.xib;
+			sourceTree = "<group>";
+		};
+		8721B8361BDBB70D00778D13 /* MultidayTableViewCell.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8721B8351BDBB70D00778D13 /* Base */,
+				8721B8381BDBB71000778D13 /* zh-Hans */,
+			);
+			name = MultidayTableViewCell.xib;
+			sourceTree = "<group>";
+		};
+		8721B83B1BDBB9DE00778D13 /* MultidayTableViewCell2.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8721B83A1BDBB9DE00778D13 /* Base */,
+				8721B83E1BDBBA1000778D13 /* zh-Hans */,
+			);
+			name = MultidayTableViewCell2.xib;
 			sourceTree = "<group>";
 		};
 		87E74B651B54BD6C00C41CBF /* NeedToLoginView.xib */ = {

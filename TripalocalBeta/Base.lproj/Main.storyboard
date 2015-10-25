@@ -184,7 +184,9 @@
                             <constraint firstItem="5Bj-PW-wbu" firstAttribute="bottom" secondItem="PVO-HM-5jl" secondAttribute="top" id="rmR-pW-e4Y"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="YWn-7T-EAB"/>
+                    <navigationItem key="navigationItem" id="YWn-7T-EAB">
+                        <barButtonItem key="backBarButtonItem" title=" " id="pkz-El-ZWW"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="filterView" destination="zKe-mn-QFJ" id="gxF-OR-7Xj"/>
                         <outlet property="itenarariesLabel" destination="9Wn-Cd-u7D" id="4Nz-VE-kN2"/>
@@ -230,7 +232,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="1600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="306" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="VsV-ga-mVG">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="306" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="VsV-ga-mVG">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="1551"/>
                                 <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -242,8 +244,8 @@
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="305.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Reservation with" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qeu-2l-orb">
-                                                    <rect key="frame" x="236" y="172" width="128" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Reservation with" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qeu-2l-orb">
+                                                    <rect key="frame" x="237" y="172" width="127" height="21"/>
                                                     <animations/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -819,7 +821,7 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <button opaque="NO" alpha="0.90000000000000002" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ob8-Wd-umG">
+                            <button opaque="NO" alpha="0.90000000000000002" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ob8-Wd-umG">
                                 <rect key="frame" x="4" y="1501" width="296" height="50"/>
                                 <animations/>
                                 <color key="backgroundColor" red="0.20000000000000001" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
@@ -841,7 +843,7 @@
                                     <action selector="checkout:" destination="1Mj-3z-OfA" eventType="touchUpInside" id="4Og-r4-ZdL"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z9W-tJ-1go">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z9W-tJ-1go">
                                 <rect key="frame" x="300" y="1501" width="296" height="50"/>
                                 <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1380,7 +1382,9 @@
                             <constraint firstItem="N19-TI-7hH" firstAttribute="leading" secondItem="kl3-tm-fCq" secondAttribute="leadingMargin" constant="-16" id="ySY-Au-XhY"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Experience Detail" id="W9n-BE-gtj"/>
+                    <navigationItem key="navigationItem" title="Experience Detail" id="W9n-BE-gtj">
+                        <barButtonItem key="backBarButtonItem" title=" " id="Nmk-yy-0up"/>
+                    </navigationItem>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="600" height="1700"/>
                     <connections>
@@ -4289,8 +4293,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="900"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Kc2-SR-fKy">
-                                <rect key="frame" x="0.0" y="64" width="600" height="1536"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kc2-SR-fKy">
+                                <rect key="frame" x="4" y="64" width="592" height="742"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DvV-aY-zzz" userLabel="Content View">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="717"/>
@@ -4627,7 +4631,7 @@
                                 </constraints>
                             </scrollView>
                             <button opaque="NO" alpha="0.90000000000000002" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2w2-8z-grV">
-                                <rect key="frame" x="0.0" y="855" width="600" height="45"/>
+                                <rect key="frame" x="0.0" y="806" width="600" height="45"/>
                                 <animations/>
                                 <color key="backgroundColor" red="0.0" green="0.81568627449999997" blue="0.81568627449999997" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -4646,7 +4650,7 @@
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="Std-hm-k1M" firstAttribute="top" secondItem="Kc2-SR-fKy" secondAttribute="bottom" id="2mD-ff-QWN"/>
+                            <constraint firstItem="Std-hm-k1M" firstAttribute="top" secondItem="Kc2-SR-fKy" secondAttribute="bottom" constant="45" id="2mD-ff-QWN"/>
                             <constraint firstItem="Std-hm-k1M" firstAttribute="top" secondItem="2w2-8z-grV" secondAttribute="bottom" id="77j-1q-A7G"/>
                             <constraint firstItem="Kc2-SR-fKy" firstAttribute="leading" secondItem="qns-7F-obJ" secondAttribute="leadingMargin" constant="-16" id="B7w-6d-imd"/>
                             <constraint firstItem="Kc2-SR-fKy" firstAttribute="top" secondItem="dkn-o6-t6g" secondAttribute="bottom" id="C5f-cZ-nj4"/>
@@ -5129,13 +5133,13 @@
         <image name="tripalocal_logo_zh" width="132" height="46"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="tXC-gw-Kz7"/>
-        <segue reference="hSJ-3F-2mq"/>
         <segue reference="FaZ-kM-Q6M"/>
-        <segue reference="f6t-s1-EUE"/>
-        <segue reference="R0C-ra-7wU"/>
-        <segue reference="zFv-4M-BDv"/>
+        <segue reference="JEQ-2l-ewO"/>
+        <segue reference="hSJ-3F-2mq"/>
+        <segue reference="eUH-Pw-4ka"/>
         <segue reference="hPI-YE-UZz"/>
+        <segue reference="zFv-4M-BDv"/>
         <segue reference="olF-su-vgo"/>
+        <segue reference="f6t-s1-EUE"/>
     </inferredMetricsTieBreakers>
 </document>

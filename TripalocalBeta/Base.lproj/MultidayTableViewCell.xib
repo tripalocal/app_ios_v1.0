@@ -21,8 +21,8 @@
                             <constraint firstAttribute="height" constant="190" id="mIE-If-YqO"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Melbourne or Sydney" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="brK-wx-j4g">
-                        <rect key="frame" x="90" y="112" width="139" height="17"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Melbourne or Sydney" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="brK-wx-j4g">
+                        <rect key="frame" x="91" y="112" width="138" height="17"/>
                         <animations/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -127,8 +127,8 @@
                             <constraint firstAttribute="height" constant="1" id="gEq-Cr-jST"/>
                         </constraints>
                     </view>
-                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KN8-8T-hNm" userLabel="PriceView">
-                        <rect key="frame" x="35" y="266" width="248" height="30"/>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KN8-8T-hNm" userLabel="PriceView">
+                        <rect key="frame" x="35" y="266" width="249" height="30"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="AUD" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iqy-Dj-zJs" userLabel="AUD">
                                 <rect key="frame" x="174" y="7" width="30" height="17"/>
@@ -311,8 +311,8 @@
                             <constraint firstAttribute="height" constant="1" id="IYY-Kz-U9H"/>
                         </constraints>
                     </view>
-                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cGx-am-2Tr" userLabel="PriceView">
-                        <rect key="frame" x="36" y="416" width="248" height="30"/>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cGx-am-2Tr" userLabel="PriceView">
+                        <rect key="frame" x="35" y="416" width="249" height="30"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="AUD" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zl7-cJ-BdC" userLabel="AUD">
                                 <rect key="frame" x="174" y="7" width="30" height="17"/>

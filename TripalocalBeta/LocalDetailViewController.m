@@ -123,6 +123,8 @@
         hideTip = YES;
     }
     
+    self.navigationItem.title = title;
+
     [HUD dismissAfterDelay:1];
 }
 
@@ -155,7 +157,7 @@
             @try {
                 language = [self transformLanugage:expData[@"experience_language"]];
                 duration = [expData[@"experience_duration"] stringValue];
-                title = expData[@"experience_title"];
+                title = expData[@"title"];
                 reviews = expData[@"experience_reviews"];
                 nReviews = [@([reviews count]) stringValue];
                 rate = [expData[@"experience_rate"] stringValue];

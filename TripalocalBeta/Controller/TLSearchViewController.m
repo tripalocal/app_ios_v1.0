@@ -268,8 +268,8 @@
         if (indexPath.row == 1) {
             multiDayCell2.onNightCheckButton.tag = 5;
             multiDayCell2.allNightCheckButton.tag = 6;
-            multiDayCell2.nDayTripLabel.text = @"7 Day Trip";
-            multiDayCell2.localtionLabel.text = @"Melbourne + Sydney";
+            multiDayCell2.nDayTripLabel.text = NSLocalizedString(@"7_day_trip", nil);
+            multiDayCell2.localtionLabel.text = NSLocalizedString(@"mel_syd", nil);
             
             multiDayCell2.oneNightPriceLabel.text = [[self getExpById:@"681" inArray:self.itineraryExpList][@"price"] stringValue];
             multiDayCell2.allNightPriceLabel.text = [[self getExpById:@"731" inArray:self.itineraryExpList][@"price"] stringValue];
@@ -278,8 +278,8 @@
         } else {
             multiDayCell2.onNightCheckButton.tag = 7;
             multiDayCell2.allNightCheckButton.tag = 8;
-            multiDayCell2.nDayTripLabel.text = @"10 Day Trip";
-            multiDayCell2.localtionLabel.text = @"Melbourne + Sydney + Gold Coast";
+            multiDayCell2.nDayTripLabel.text = NSLocalizedString(@"10_day_trip", nil);
+            multiDayCell2.localtionLabel.text = NSLocalizedString(@"mel_syd_gold", nil);
             
             multiDayCell2.oneNightPriceLabel.text = [[self getExpById:@"691" inArray:self.itineraryExpList][@"price"] stringValue];
             multiDayCell2.allNightPriceLabel.text = [[self getExpById:@"771" inArray:self.itineraryExpList][@"price"] stringValue];
@@ -413,6 +413,7 @@
         default:
             break;
     }
+    
     [self performSegueWithIdentifier:@"SearchResultSegue" sender:self];
 }
 
@@ -455,7 +456,7 @@
 
     NSString *startDate = [dateFormatter stringFromDate:today];
     NSString *endDate = [dateFormatter stringFromDate:today];
-//    NSString *typeString = @"\"type\":\"all\"";
+
     NSString *typeString = @"";
     if ([self.expSearchType isEqualToString:@"PRIVATE"]) {
         typeString = @"\"type\":\"experience\"";
@@ -509,23 +510,7 @@
             }
             
             self.expList = expList;
-//            NSPredicate *p = [NSPredicate predicateWithFormat:
-//                              @"SELF['type'] CONTAINS [cd] %@", @"PRIVATE"];
-//            NSPredicate *p2 = [NSPredicate predicateWithFormat:
-//                               @"SELF['type'] CONTAINS [cd] %@", @"NEWPRODUCT"];
-//            NSPredicate *p3 = [NSPredicate predicateWithFormat:
-//                               @"SELF['type'] CONTAINS [cd] %@", @"ITINERARY"];
-//            self.normalExpList = [NSMutableArray arrayWithArray:[expList filteredArrayUsingPredicate:p]];
-//            
-//            self.localExpList = [NSMutableArray arrayWithArray:[expList filteredArrayUsingPredicate:p2]];
-            
-//            NSArray *tempList = [expList filteredArrayUsingPredicate:p3];
-            
-//            self.itineraryExpList = [[NSMutableArray alloc] init];
-//            [self.itineraryExpList addObject:[self getExpById:@"651" inArray:expList]];
-//            [self.itineraryExpList addObject:[self getExpById:@"701" inArray:expList]];
-            
-//            [self.itineraryExpList addObject:[self getExpById:@"701" inArray:tempList]];
+
 #ifdef DEBUG
             NSLog(@"number of cells: %lu", (unsigned long)expList.count);
 #endif
@@ -553,6 +538,7 @@
     
     return expList;
 }
+
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if ([self.expSearchType isEqualToString:@"PRIVATE"]) {
