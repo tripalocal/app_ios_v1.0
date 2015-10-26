@@ -3681,7 +3681,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="tripalocal_logo_en" translatesAutoresizingMaskIntoConstraints="NO" id="RZk-n3-EJK">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tripalocal_logo_en" translatesAutoresizingMaskIntoConstraints="NO" id="RZk-n3-EJK">
                                 <rect key="frame" x="200" y="50" width="200" height="65"/>
                                 <animations/>
                                 <constraints>
@@ -3700,7 +3700,7 @@
                                     <action selector="dismissLogin:" destination="Gep-Sa-s2z" eventType="touchUpInside" id="gEi-Hf-A3D"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email Address" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bvK-Y0-Ggi">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email Address" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bvK-Y0-Ggi">
                                 <rect key="frame" x="170" y="145" width="260" height="40"/>
                                 <animations/>
                                 <constraints>
@@ -3713,7 +3713,7 @@
                                     <action selector="inputFieldChanged:" destination="Gep-Sa-s2z" eventType="editingChanged" id="Rv5-am-K1m"/>
                                 </connections>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="THH-3M-C7P">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="THH-3M-C7P">
                                 <rect key="frame" x="170" y="200" width="260" height="40"/>
                                 <animations/>
                                 <constraints>
@@ -3731,7 +3731,7 @@
                                     <action selector="inputFieldChanged:" destination="Gep-Sa-s2z" eventType="editingChanged" id="hQw-Tj-glf"/>
                                 </connections>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dil-Ca-PYR">
+                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dil-Ca-PYR">
                                 <rect key="frame" x="170" y="280" width="260" height="40"/>
                                 <animations/>
                                 <color key="backgroundColor" red="0.20000000000000001" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
@@ -3753,7 +3753,7 @@
                                     <action selector="login:" destination="Gep-Sa-s2z" eventType="touchUpInside" id="RXG-0k-xaM"/>
                                 </connections>
                             </button>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="right" misplaced="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5fo-kU-Kno">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="right" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5fo-kU-Kno">
                                 <rect key="frame" x="322" y="244" width="108" height="31"/>
                                 <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

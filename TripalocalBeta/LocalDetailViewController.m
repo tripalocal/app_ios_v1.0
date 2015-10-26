@@ -445,7 +445,7 @@
                 NSDictionary *exp1 = expData[@"related_experiences"][0];
                 cell6.expTitle.text = exp1[@"title"];
                 cell6.dollarsign.text = exp1[@"dollarsign"];
-                cell6.durationLabel.text = [[exp1[@"duration"] stringValue] stringByAppendingString:@"hrs"];
+                cell6.durationLabel.text = [[exp1[@"duration"] stringValue] stringByAppendingString:NSLocalizedString(@"Hours", nil)];
                 cell6.priceLabel.text = [Utility decimalwithFormat:@"0" floatV:[exp1[@"price"] floatValue]];
                 cell6.languageLabel.text = [Utility transformLanugage:exp1[@"language"]];
                 

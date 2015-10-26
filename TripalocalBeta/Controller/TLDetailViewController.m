@@ -262,7 +262,7 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *cellIdentifier0=@"cell0";
-    TLDetailTableViewCell0 *cell=(TLDetailTableViewCell0 *) [tableView dequeueReusableCellWithIdentifier:cellIdentifier0];
+
     static NSString *cellIdentifier1=@"cell1";
     TLDetailTableViewCell1 *cell1=(TLDetailTableViewCell1 *) [tableView dequeueReusableCellWithIdentifier:cellIdentifier1];
     
@@ -280,8 +280,7 @@
     
     switch (indexPath.row) {
         case 0: {
-            cell = [[TLDetailTableViewCell0 alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier0];
-            
+            TLDetailTableViewCell0 *cell=(TLDetailTableViewCell0 *) [tableView dequeueReusableCellWithIdentifier:cellIdentifier0];
             if ([self.expType isEqualToString:@"PRIVATE"] || [self.expType isEqualToString:@"NONPRIVATE"]) {
                 [cell.hostImage sd_setImageWithURL:[NSURL URLWithString:hostImageURL]
                                   placeholderImage:[UIImage imageNamed:@"default_profile_image.png"]
@@ -434,8 +433,7 @@
             break;
     }
     
-    
-    return cell;
+    return nil;
 }
 
 
