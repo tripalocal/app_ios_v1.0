@@ -43,7 +43,7 @@
 		87A3C09D1B461129009A3B07 /* RequestController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87A3C09C1B461129009A3B07 /* RequestController.m */; };
 		87A3C0A11B463C6C009A3B07 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87A3C0A01B463C6C009A3B07 /* HomeViewController.m */; };
 		87AC2B1C1BCE1C2300672288 /* MultidayTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 87AC2B1A1BCE1C2300672288 /* MultidayTableViewCell.m */; };
-		87AF0B491BDDA050000E98D9 /* RelatedExpTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 87AF0B481BDDA050000E98D9 /* RelatedExpTableViewCell.m */; settings = {ASSET_TAGS = (); }; };
+		87AF0B491BDDA050000E98D9 /* RelatedExpTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 87AF0B481BDDA050000E98D9 /* RelatedExpTableViewCell.m */; };
 		87C638E71BD07E3B0002A162 /* TitleDescCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C638E61BD07E3B0002A162 /* TitleDescCell.m */; };
 		87C638EA1BD086640002A162 /* SectionDescViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C638E91BD086640002A162 /* SectionDescViewController.m */; };
 		87E74B631B54BD6C00C41CBF /* NeedToLoginView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87E74B651B54BD6C00C41CBF /* NeedToLoginView.xib */; };
