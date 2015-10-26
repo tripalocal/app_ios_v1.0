@@ -41,6 +41,7 @@
     // Setup tableview delegate and data source
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
+    self.title = @"Messages";
     // Set the back button
     // ***********
     // Removable !!
@@ -184,8 +185,8 @@
                         
                         if ([httpResponse statusCode] == 200) {
                             NSString *otherUserImageURL = [result objectForKey:@"image"];
-                            NSString *otherUserFirstName = [result objectForKey:@"first_name"];
-                            NSString *otherUserLastName = [result objectForKey:@"last_name"];
+                            otherUserFirstName = [result objectForKey:@"first_name"];
+                            otherUserLastName = [result objectForKey:@"last_name"];
                             
                             if (otherUserImageURL.length != 0) {
                                 UIImage *otherUserImage = [self fetchImage:token :otherUserImageURL];
@@ -296,6 +297,7 @@
         
 #endif
         destViewController.chatWithUser = [sender_id_list objectAtIndex:indexPath.row];
+        destViewController.otherUserFirstName = [nameList objectAtIndex:indexPath.row];
     }
 }
 #pragma mark Helper

@@ -19,6 +19,8 @@
 	NSMutableArray *timeList;
     NSMutableArray *sender_id_list;
     NSMutableArray *allMessage;
+    NSString *otherUserFirstName;
+    NSString *otherUserLastName;
 }
 
 @property (retain, nonatomic) IBOutlet UITableView *tableView;

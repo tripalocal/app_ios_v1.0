@@ -2392,8 +2392,8 @@
                                 <color key="backgroundColor" red="0.92549019607843142" green="0.92549019607843142" blue="0.92549019607843142" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="sectionIndexBackgroundColor" red="0.24313725489999999" green="0.7843137255" blue="0.7725490196" alpha="1" colorSpace="calibratedRGB"/>
                             </tableView>
-                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="i4i-5w-lVL" userLabel="sendBarView">
-                                <rect key="frame" x="0.0" y="481" width="600" height="70"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="i4i-5w-lVL" userLabel="sendBarView">
+                                <rect key="frame" x="0.0" y="539" width="600" height="70"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T7w-Oo-0wL">
                                         <rect key="frame" x="539" y="21" width="36" height="30"/>
@@ -2411,7 +2411,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="6aY-MP-u6P"/>
                                     <constraint firstAttribute="trailing" secondItem="T7w-Oo-0wL" secondAttribute="trailing" constant="25" id="BvO-OW-pyp"/>
-                                    <constraint firstItem="T7w-Oo-0wL" firstAttribute="centerY" secondItem="i4i-5w-lVL" secondAttribute="centerY" id="Nnp-hK-Jzp"/>
+                                    <constraint firstItem="T7w-Oo-0wL" firstAttribute="centerY" secondItem="i4i-5w-lVL" secondAttribute="centerY" constant="-4" id="Nnp-hK-Jzp"/>
                                     <constraint firstAttribute="width" constant="240" id="p4Y-H1-vZp"/>
                                     <constraint firstAttribute="height" constant="70" id="tQd-8g-RPO"/>
                                 </constraints>
@@ -2426,12 +2426,15 @@
                         <animations/>
                         <color key="backgroundColor" red="0.92941176469999998" green="0.92941176469999998" blue="0.92941176469999998" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstItem="i4i-5w-lVL" firstAttribute="top" secondItem="gvs-6g-1yh" secondAttribute="bottom" constant="57" id="9pO-gj-Y75"/>
                             <constraint firstAttribute="trailing" secondItem="i4i-5w-lVL" secondAttribute="trailing" id="BQ3-QK-ZXp"/>
                             <constraint firstAttribute="trailing" secondItem="gvs-6g-1yh" secondAttribute="trailing" id="C4O-qk-7YZ"/>
+                            <constraint firstItem="sjC-Xa-S2u" firstAttribute="top" secondItem="gvs-6g-1yh" secondAttribute="bottom" constant="70" id="Dke-bH-SMZ"/>
                             <constraint firstItem="gvs-6g-1yh" firstAttribute="leading" secondItem="Bnj-gF-L6h" secondAttribute="leading" id="I4I-IZ-NgL"/>
-                            <constraint firstItem="sjC-Xa-S2u" firstAttribute="top" secondItem="i4i-5w-lVL" secondAttribute="bottom" id="NPq-QD-Iek"/>
+                            <constraint firstItem="sjC-Xa-S2u" firstAttribute="top" secondItem="i4i-5w-lVL" secondAttribute="bottom" constant="-9" id="NPq-QD-Iek"/>
                             <constraint firstItem="i4i-5w-lVL" firstAttribute="top" secondItem="gvs-6g-1yh" secondAttribute="bottom" id="SAi-wp-hzK"/>
                             <constraint firstItem="i4i-5w-lVL" firstAttribute="leading" secondItem="Bnj-gF-L6h" secondAttribute="leading" id="Wtd-ou-O2Q"/>
+                            <constraint firstItem="i4i-5w-lVL" firstAttribute="top" secondItem="gvs-6g-1yh" secondAttribute="bottom" constant="70" id="hJo-U0-oqV"/>
                             <constraint firstItem="i4i-5w-lVL" firstAttribute="centerX" secondItem="Bnj-gF-L6h" secondAttribute="centerX" id="naH-D6-Afh"/>
                             <constraint firstItem="gvs-6g-1yh" firstAttribute="centerX" secondItem="Bnj-gF-L6h" secondAttribute="centerX" id="qso-WZ-tRM"/>
                             <constraint firstItem="i4i-5w-lVL" firstAttribute="top" secondItem="gvs-6g-1yh" secondAttribute="bottom" id="xcl-HN-Cor"/>
@@ -2439,7 +2442,10 @@
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
+                                <exclude reference="9pO-gj-Y75"/>
                                 <exclude reference="SAi-wp-hzK"/>
+                                <exclude reference="hJo-U0-oqV"/>
+                                <exclude reference="xcl-HN-Cor"/>
                             </mask>
                         </variation>
                     </view>

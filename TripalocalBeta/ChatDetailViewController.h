@@ -34,6 +34,8 @@
 @property (nonatomic,weak) IBOutlet UIButton *sendButton;
 @property (nonatomic,retain) IBOutlet UITableView *tableView;
 @property (nonatomic,strong) NSString *chatWithUser;
+@property (nonatomic, strong) NSString *otherUserFirstName;
+@property (nonatomic, strong) NSString *otherUserLastName;
 @property (strong) NSMutableArray *allMessage;
 @property (strong) UIImage *userImage;
 @property (strong) UIImage *otherUserImage;

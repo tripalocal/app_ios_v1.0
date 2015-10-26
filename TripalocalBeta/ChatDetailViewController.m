@@ -28,7 +28,7 @@
 @implementation ChatDetailViewController{
     JGProgressHUD *HUD;
 }
-@synthesize sendButton,chatWithUser, sendBarView, allMessage, userImage, otherUserImageURL, otherUserImage;
+@synthesize sendButton,chatWithUser, sendBarView, allMessage, userImage, otherUserImageURL, otherUserImage, otherUserFirstName;
 @synthesize _messageDelegate;
 @synthesize managedObjectContext = _managedObjectContext;
 @synthesize managedObjectModel = _managedObjectModel;
@@ -44,6 +44,10 @@
 #pragma mark View
 - (void)viewDidLoad {
     [super viewDidLoad];
+    // set the nav title
+    [self.navigationItem setTitle: [NSString stringWithFormat:@"Chat with %@", otherUserFirstName]];
+    //self.navigationItem.titleView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+    //self.navigationItem.leftBarButtonItem.title = [NSString stringWithFormat:@"Chat with %@", otherUserFirstName];
     //set localized string for send button
     sendButton.titleLabel.text = NSLocalizedString(@"send_button", nil);
     // Set a top border for send message bar
@@ -71,7 +75,7 @@
     [self.tableView reloadData];
     _shouldScrollToLastRow = YES;
     //growing textView
-    textView = [[HPGrowingTextView alloc] initWithFrame:CGRectMake(20, 20, [[UIScreen mainScreen] bounds].size.width-90, 40)];
+    textView = [[HPGrowingTextView alloc] initWithFrame:CGRectMake(20, 16, [[UIScreen mainScreen] bounds].size.width-90, 40)];
     textView.isScrollable = NO;
     textView.contentInset = UIEdgeInsetsMake(0, 5, 0, 5);
     
