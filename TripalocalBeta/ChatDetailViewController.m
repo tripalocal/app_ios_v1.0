@@ -283,7 +283,7 @@
     if ([self.tableView numberOfRowsInSection:0] != 0) {
         NSIndexPath* ip = [NSIndexPath indexPathForRow:[self.tableView numberOfRowsInSection:0] - 1 inSection:0];
         [self.tableView scrollToRowAtIndexPath:ip atScrollPosition:UITableViewScrollPositionTop animated:NO];
-
+        [self scrollTableToBottom];
     }
     
 }
@@ -428,8 +428,36 @@
     [self.tableView reloadData];
     NSIndexPath* ip = [NSIndexPath indexPathForRow:[self.tableView numberOfRowsInSection:0] - 1 inSection:0];
     [self.tableView scrollToRowAtIndexPath:ip atScrollPosition:UITableViewScrollPositionTop animated:YES];
+	[self scrollTableToBottom];
 }
 #pragma mark Tableview
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    
+    UIView *headerView = [[UIView alloc] initWithFrame:CGRectZero];
+    headerView.userInteractionEnabled = NO; // all touches within this space must go through to the video layer
+    
+    return headerView;   // empty header above chat, so messages flow in from bottom
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return self.tableView.frame.size.height;            // empty header above chat, so messages flow in from bottom
+}
+- (void)scrollTableToBottom
+{
+    if (!self.isViewLoaded || allRelevantMessage.count == 0)
+        return;
+    
+    CGFloat offsetY = self.tableView.contentSize.height - self.tableView.frame.size.height + self.tableView.contentInset.bottom;
+    
+    [UIView animateWithDuration:0.33
+                          delay:0
+                        options:UIViewAnimationOptionCurveEaseOut | UIViewAnimationOptionAllowUserInteraction
+                     animations:^{
+                         [self.tableView setContentOffset:CGPointMake(0, offsetY) animated:NO];
+                     }
+                     completion:nil];
+}
 //introducing the custom cell
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
@@ -539,7 +567,7 @@
     [self.tableView reloadData];
     NSIndexPath* ip = [NSIndexPath indexPathForRow:[self.tableView numberOfRowsInSection:0] - 1 inSection:0];
     [self.tableView scrollToRowAtIndexPath:ip atScrollPosition:UITableViewScrollPositionTop animated:YES];
-
+    [self scrollTableToBottom];
 }
 
 
