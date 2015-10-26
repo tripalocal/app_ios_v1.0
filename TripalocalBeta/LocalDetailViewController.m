@@ -24,6 +24,7 @@
 #import <SecureNSUserDefaults/NSUserDefaults+SecureAdditions.h>
 #import "DetailDescTableViewController.h"
 #import "TitleDescCell.h"
+#import "RelatedExpTableViewCell.h"
 #import "SectionDescViewController.h"
 
 @interface LocalDetailViewController () {
@@ -100,7 +101,7 @@
     reviewComment = @"";
     reviewerImageURL = @"";
     
-    self.cellHeights = [@[@400, @240, @385, @164, @55, @55, @55, @55, @55, @55, @55] mutableCopy];
+    self.cellHeights = [@[@400, @240, @385, @164, @55, @55, @55, @55, @55, @55, @55, @55, @90, @90] mutableCopy];
     _myTable.delegate = self;
     _myTable.dataSource = self;
     
@@ -241,6 +242,12 @@
 
     static NSString *cellIdentifier4=@"cell4";
     TitleDescCell *sectionTitleCell=(TitleDescCell *) [tableView dequeueReusableCellWithIdentifier:cellIdentifier4];
+    
+    static NSString *cellIdentifier5=@"cell5";
+    UITableViewCell *cell5=(TitleDescCell *) [tableView dequeueReusableCellWithIdentifier:cellIdentifier5];
+    
+    static NSString *cellIdentifier6=@"cell6";
+    RelatedExpTableViewCell *cell6=(TitleDescCell *) [tableView dequeueReusableCellWithIdentifier:cellIdentifier6];
     
     NSString *schedule = expData[@"schedule"];
     NSString *tips = [expData[@"tips"] stringByAppendingString:expData[@"notice"]];
@@ -428,6 +435,57 @@
             }
 
             return sectionTitleCell;
+        }
+        case 11: {
+            return cell5;
+        }
+        case 12: {
+            if ([expData[@"related_experiences"] count] >= 1) {
+                cell6.hidden = NO;
+                NSDictionary *exp1 = expData[@"related_experiences"][0];
+                cell6.expTitle.text = exp1[@"title"];
+                cell6.dollarsign.text = exp1[@"dollarsign"];
+                cell6.durationLabel.text = [[exp1[@"duration"] stringValue] stringByAppendingString:NSLocalizedString(@"Hours", nil)];
+                cell6.priceLabel.text = [Utility decimalwithFormat:@"0" floatV:[exp1[@"price"] floatValue]];
+                cell6.languageLabel.text = [Utility transformLanugage:exp1[@"language"]];
+                
+                
+                NSString *expImageURL = [NSString stringWithFormat:@"%@%@", [URLConfig imageServiceURLString], exp1[@"image"]];
+                
+                [cell6.expImageView sd_setImageWithURL:[NSURL URLWithString:expImageURL]
+                                    placeholderImage:nil
+                                             options:SDWebImageRefreshCached
+                                           completed:nil];
+
+            } else {
+                cell6.hidden = YES;
+                self.cellHeights[12] = @(0);
+            }
+            
+            return cell6;
+        }
+        case 13: {
+            if ([expData[@"related_experiences"] count] >= 2) {
+                cell6.hidden = NO;
+                NSDictionary *exp1 = expData[@"related_experiences"][1];
+                cell6.expTitle.text = exp1[@"title"];
+                cell6.dollarsign.text = exp1[@"dollarsign"];
+                cell6.durationLabel.text = [[exp1[@"duration"] stringValue] stringByAppendingString:@"hrs"];
+                cell6.priceLabel.text = [Utility decimalwithFormat:@"0" floatV:[exp1[@"price"] floatValue]];
+                cell6.languageLabel.text = [Utility transformLanugage:exp1[@"language"]];
+                
+                NSString *expImageURL = [NSString stringWithFormat:@"%@%@", [URLConfig imageServiceURLString], exp1[@"image"]];
+                
+                [cell6.expImageView sd_setImageWithURL:[NSURL URLWithString:expImageURL]
+                                      placeholderImage:nil
+                                               options:SDWebImageRefreshCached
+                                             completed:nil];
+            } else {
+                cell6.hidden = YES;
+                self.cellHeights[13] = @(0);
+            }
+            
+            return cell6;
         }
         
         default:
