@@ -15,6 +15,7 @@
 #import "Constant.h"
 #import "TLHomeViewController.h"
 #import "ChatDetailViewController.h"
+#import "LocalDetailViewController.h"
 #import <SecureNSUserDefaults/NSUserDefaults+SecureAdditions.h>
 
 @interface MyTripTableViewController () 
@@ -107,7 +108,13 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 //    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    [self performSegueWithIdentifier:@"MyTripsToExpList" sender:self];
+    NSDictionary *trip = [myTrips objectAtIndex:indexPath.row];
+    if ([trip[@"experience_type"] isEqualToString:@"PRIVATE"] || [trip[@"experience_type"] isEqualToString:@"NONPRIVATE"]) {
+        [self performSegueWithIdentifier:@"MyTripsToExpList" sender:self];
+    } else {
+        [self performSegueWithIdentifier:@"MyTripsToLocalExpList" sender:self];
+    }
+    
 }
 
 
@@ -241,18 +248,29 @@
     mytripController.segmentTitleView.hidden = YES;
     mytripController.titleViewHeight.constant = 0.f;
 
-    UINavigationController *navController = (UINavigationController *)segue.destinationViewController;
-    TLDetailViewController *controller = (TLDetailViewController *)navController.topViewController;
+//    UINavigationController *navController = (UINavigationController *)segue.destinationViewController;
+
     NSIndexPath *index = [self.tableView indexPathForSelectedRow];
     NSDictionary *trip = [myTrips objectAtIndex:index.row];
+
     
-    controller.experience_id_string = trip[@"experience_id"];
     if ([segue.identifier isEqualToString:@"myTripToChat"]){
         ChatDetailViewController *chatDetail = [segue destinationViewController];
         chatDetail.chatWithUser = host_id;
         NSLog(@"Passing the host id: %@",host_id);
-    }
+    }  else if ([segue.identifier isEqualToString:@"MyTripsToExpList"]) {
+//        UINavigationController *navController = (UINavigationController *)segue.destinationViewController;
+        TLDetailViewController *vc = (TLDetailViewController *)segue.destinationViewController;
 
+        vc.expType = trip[@"type"];
+        vc.experience_id_string = [trip[@"experience_id"] stringValue];
+
+    } else if ([segue.identifier isEqualToString:@"MyTripsToLocalExpList"]) {
+        LocalDetailViewController *vc = (LocalDetailViewController *)segue.destinationViewController;
+
+        vc.expType = trip[@"type"];
+        vc.experience_id_string = [trip[@"experience_id"] stringValue];
+    }
 }
 
 - (UIImage *)fetchImage:(NSString *) imageURL {
