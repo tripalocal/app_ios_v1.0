@@ -588,6 +588,7 @@
         vc.durationString = duration;
         vc.maxGuestNum = maxGuestNum;
         vc.minGuestNum = minGuestNum;
+        vc.expType = self.expType;
 
     } else if ([segue.identifier isEqualToString:@"view_all_reviews"]) {
         ReviewTableViewController *vc = [segue destinationViewController];

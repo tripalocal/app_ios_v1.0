@@ -128,6 +128,7 @@
     if([segue.identifier isEqualToString:@"paymentSuccess"]){
         PaymentSuccessViewController *paymentSuccessVC = (PaymentSuccessViewController *)segue.destinationViewController;
         paymentSuccessVC.hostName = self.hostName;
+        paymentSuccessVC.expType = self.expType;
     }
 }
 

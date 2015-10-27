@@ -256,9 +256,11 @@
         controller.unitPrice = self.unitPrice;
         controller.totalPrice = self.totalPrice;
         controller.coupon = self.coupon;
+        controller.expType = self.expType;
     } else if ([segue.identifier isEqualToString:@"alipaySuccess"]) {
         PaymentSuccessViewController *paymentSuccessVC = (PaymentSuccessViewController *)segue.destinationViewController;
         paymentSuccessVC.hostName = self.hostName;
+        paymentSuccessVC.expType = self.expType;
     } else if ([segue.identifier isEqualToString:@"alipayFail"]) {
         AlipayFailedViewController *alipayFailedVC = (AlipayFailedViewController *)segue.destinationViewController;
         alipayFailedVC.orderNumber = orderNumber;

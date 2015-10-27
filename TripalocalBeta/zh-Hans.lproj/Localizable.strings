@@ -104,6 +104,8 @@
 
 "payment_failed" = "支付失败";
 
+"payment_success" = "您会在24小时内收到确认通知";
+
 "payment_failed_msg" = "支付过程中遇到问题";
 
 "n_reviews" = "%@ 条评论";
