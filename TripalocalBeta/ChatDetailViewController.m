@@ -634,6 +634,8 @@
 #if DEBUG
         NSLog(@"token; %@", token);
 #endif
+    
+    
         [request addValue:[NSString stringWithFormat:@"token %@",token]  forHTTPHeaderField:@"Authorization"];
         if ([updateMessage count] != 0) {
             NSData *postdata = [NSJSONSerialization dataWithJSONObject:updateDict options:0 error:nil];
@@ -643,12 +645,12 @@
             NSString * decodedData =[[NSString alloc] initWithData:postdata encoding:NSUTF8StringEncoding];
             NSLog(@"Sending data = %@", decodedData);
 #endif
-            NSError *connectionError = nil;
-            NSURLResponse *response = nil;
-            
-            NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&connectionError];
-            
-            if (connectionError == nil) {
+//            NSError *connectionError = nil;
+//            NSURLResponse *response = nil;
+            NSOperationQueue *queue = [[NSOperationQueue alloc]init];
+//            NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&connectionError];
+            [NSURLConnection sendAsynchronousRequest:request queue:queue completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+            if (error == nil) {
                 NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *) response;
                 
                 NSMutableArray *result = [NSJSONSerialization JSONObjectWithData:data
@@ -686,7 +688,8 @@
                                                       otherButtonTitles:nil];
                 [alert show];
             }
-        }
+        }];
+    }
 }
 
 #pragma mark HPGrowTextVIEW
