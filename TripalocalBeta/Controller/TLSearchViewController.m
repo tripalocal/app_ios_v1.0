@@ -114,6 +114,7 @@
         self.localExpLabel.highlighted = NO;
         self.itinerariesImageView.highlighted = NO;
         self.itenarariesLabel.highlighted = NO;
+        self.navigationItem.title = NSLocalizedString([self.cityName lowercaseString], nil);
     } else if ([self.expSearchType isEqualToString:@"LOCAL"]) {
         self.localExpImageView.highlighted = YES;
         self.localExpLabel.highlighted = YES;
@@ -122,6 +123,7 @@
         self.travelWithLocalsLabel.highlighted = NO;
         self.itinerariesImageView.highlighted = NO;
         self.itenarariesLabel.highlighted = NO;
+        self.navigationItem.title = NSLocalizedString([self.cityName lowercaseString], nil);
     } else {
         self.itinerariesImageView.highlighted = YES;
         self.itenarariesLabel.highlighted = YES;
@@ -130,6 +132,7 @@
         self.travelWithLocalsLabel.highlighted = NO;
         self.localExpImageView.highlighted = NO;
         self.localExpLabel.highlighted = NO;
+        self.navigationItem.title = NSLocalizedString(@"itineraries", nil);
     }
 }
 
