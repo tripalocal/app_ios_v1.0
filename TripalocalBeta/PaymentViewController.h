@@ -18,4 +18,5 @@
 @property (nonatomic) NSString *date;
 @property (nonatomic) NSString *timePeriod;
 @property (nonatomic) NSString *hostName;
+@property (nonatomic) NSString *expType;
 @end

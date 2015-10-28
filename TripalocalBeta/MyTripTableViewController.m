@@ -11,9 +11,11 @@
 #import "TLDetailViewController.h"
 #import "MyTripViewController.h"
 #import "URLConfig.h"
+#import "JGProgressHUD.h"
 #import "Constant.h"
 #import "TLHomeViewController.h"
 #import "ChatDetailViewController.h"
+#import "LocalDetailViewController.h"
 #import <SecureNSUserDefaults/NSUserDefaults+SecureAdditions.h>
 
 @interface MyTripTableViewController () 
@@ -21,6 +23,7 @@
 @end
 
 @implementation MyTripTableViewController {
+    JGProgressHUD *HUD;
     NSMutableArray *myTrips;
     NSDateFormatter *dateFormatter;
     NSDateFormatter *timeFormatter;
@@ -29,6 +32,15 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    HUD = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleDark];
+    HUD.HUDView.layer.shadowColor = [UIColor blackColor].CGColor;
+    HUD.HUDView.layer.shadowOffset = CGSizeZero;
+    HUD.HUDView.layer.shadowOpacity = 0.4f;
+    HUD.HUDView.layer.shadowRadius = 8.0f;
+    HUD.textLabel.text = NSLocalizedString(@"loading", nil);
+    [HUD showInView:self.view];
+    [HUD dismissAfterDelay:1.0];
+    
     myTrips = [[NSMutableArray alloc] init];
     dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"dd-LL-yyyy"];
@@ -57,12 +69,7 @@
             NSArray *allTrips = [NSJSONSerialization JSONObjectWithData:data
                                                                 options:0
                                                                   error:nil];
-//            NSDictionary *my_trip = allTrips[0];
-//            NSLog(@"Array: %@", my_trip[@"host_id"]);
-//            if ([allTrips count]>0) {
-//                host_id = my_trip[@"host_id"];
-//                NSLog(@"Getting host id: %@",host_id);
-//            }
+
             myTrips = [self abstractTripsFilter:allTrips];
             
         }
@@ -101,7 +108,13 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 //    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    [self performSegueWithIdentifier:@"MyTripsToExpList" sender:self];
+    NSDictionary *trip = [myTrips objectAtIndex:indexPath.row];
+    if ([trip[@"experience_type"] isEqualToString:@"PRIVATE"] || [trip[@"experience_type"] isEqualToString:@"NONPRIVATE"]) {
+        [self performSegueWithIdentifier:@"MyTripsToExpList" sender:self];
+    } else {
+        [self performSegueWithIdentifier:@"MyTripsToLocalExpList" sender:self];
+    }
+    
 }
 
 
@@ -117,16 +130,30 @@
     cell.tag = indexPath.row;
     cell.parentView = self.tableView;
     NSDictionary *trip = [myTrips objectAtIndex:indexPath.row];
-    NSString *imageURL = [trip objectForKey:@"host_image"];
     
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        NSData *hostImageData = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString: [[URLConfig imageServiceURLString] stringByAppendingString: imageURL]]];
-        dispatch_sync(dispatch_get_main_queue(), ^{
-            cell.hostImage.image = [[UIImage alloc] initWithData:hostImageData];
+    if ([trip[@"experience_type"] isEqualToString:@"PRIVATE"] || [trip[@"experience_type"] isEqualToString:@"NONPRIVATE"]) {
+        
+        cell.hostImage.hidden = NO;
+        cell.hostNameLabel.hidden = NO;
+        NSString *imageURL = trip[@"host_image"];
+        
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            NSData *hostImageData = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString: [[URLConfig imageServiceURLString] stringByAppendingString: imageURL]]];
+            dispatch_sync(dispatch_get_main_queue(), ^{
+                cell.hostImage.image = [[UIImage alloc] initWithData:hostImageData];
+            });
         });
-    });
+        
+        cell.hostNameLabel.text = [@"with " stringByAppendingString:trip[@"host_name"]];
+
+    } else {
+        cell.hostImage.hidden = YES;
+        cell.hostNameLabel.hidden = YES;
+    }
     
-    NSString *absoluteImageURL = [NSString stringWithFormat:@"%@thumbnails/experiences/experience%@_1.jpg", [URLConfig imageServiceURLString], [trip objectForKey:@"experience_id"]];
+    
+    cell.telephoneLabel.text = trip[@"host_phone_number"];
+    NSString *absoluteImageURL = [NSString stringWithFormat:@"%@thumbnails/experiences/experience%@_1.jpg", [URLConfig imageServiceURLString], trip[@"experience_id"]];
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         NSData *backgroundImageData = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:absoluteImageURL]];
@@ -135,7 +162,7 @@
         });
     });
     
-    NSString *datetimeString = [trip objectForKey:@"datetime"];
+    NSString *datetimeString = trip[@"datetime"];
     // Convert string to date object
     NSDate *dateUTC = [self parseDateTimeString:datetimeString];
     
@@ -151,13 +178,13 @@
     }
     
     cell.timeLabel.text = [timeFormatter stringFromDate:dateUTC];
-    cell.hostNameLabel.text = [@"with " stringByAppendingString:[trip objectForKey:@"host_name"]];
-    cell.guestNumberLabel.text = [[trip objectForKey:@"guest_number"] stringValue];
-    cell.experienceTitle.text = [trip objectForKey:@"experience_title"];
+
+    cell.guestNumberLabel.text = [trip[@"guest_number"] stringValue];
+    cell.experienceTitle.text = trip[@"experience_title"];
     [cell.experienceTitle setTextColor:[UIColor colorWithRed:0.00f green:0.82f blue:0.82f alpha:1.0f]];
-    cell.telephoneLabel.text = [trip objectForKey:@"host_phone_number"];
-    cell.instructionText.text = [trip objectForKey:@"meetup_spot"];
-    NSString *status = [trip objectForKey:@"status"];
+
+    cell.instructionText.text = trip[@"meetup_spot"];
+    NSString *status = trip[@"status"];
     if ([status isEqualToString:@"paid"]) {
         [cell.statusButton setTitle:NSLocalizedString(@"booking_status_requested", nil) forState:UIControlStateNormal];
         [cell.statusButton setBackgroundColor:[UIColor colorWithRed:0.00f green:0.82f blue:0.82f alpha:1.0f]];
@@ -221,18 +248,29 @@
     mytripController.segmentTitleView.hidden = YES;
     mytripController.titleViewHeight.constant = 0.f;
 
-    UINavigationController *navController = (UINavigationController *)segue.destinationViewController;
-    TLDetailViewController *controller = (TLDetailViewController *)navController.topViewController;
+//    UINavigationController *navController = (UINavigationController *)segue.destinationViewController;
+
     NSIndexPath *index = [self.tableView indexPathForSelectedRow];
     NSDictionary *trip = [myTrips objectAtIndex:index.row];
+
     
-    controller.experience_id_string = [trip objectForKey:@"experience_id"];
     if ([segue.identifier isEqualToString:@"myTripToChat"]){
         ChatDetailViewController *chatDetail = [segue destinationViewController];
         chatDetail.chatWithUser = host_id;
         NSLog(@"Passing the host id: %@",host_id);
-    }
+    }  else if ([segue.identifier isEqualToString:@"MyTripsToExpList"]) {
+//        UINavigationController *navController = (UINavigationController *)segue.destinationViewController;
+        TLDetailViewController *vc = (TLDetailViewController *)segue.destinationViewController;
 
+        vc.expType = trip[@"type"];
+        vc.experience_id_string = [trip[@"experience_id"] stringValue];
+
+    } else if ([segue.identifier isEqualToString:@"MyTripsToLocalExpList"]) {
+        LocalDetailViewController *vc = (LocalDetailViewController *)segue.destinationViewController;
+
+        vc.expType = trip[@"type"];
+        vc.experience_id_string = [trip[@"experience_id"] stringValue];
+    }
 }
 
 - (UIImage *)fetchImage:(NSString *) imageURL {

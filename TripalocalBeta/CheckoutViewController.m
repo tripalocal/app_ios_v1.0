@@ -478,6 +478,7 @@
 
         controller.unitPrice = self.unitPrice;
         controller.totalPrice = self.totalPrice;
+        controller.expType = self.expType;
     }
 }
 

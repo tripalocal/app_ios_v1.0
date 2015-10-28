@@ -44,4 +44,6 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *tableVisibleConstrain;
 @property (weak, nonatomic) IBOutlet UIButton *confirmButton;
 
+@property (nonatomic) NSString *expType;
+
 @end

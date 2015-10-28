@@ -78,6 +78,8 @@
 
 "payment_failed" = "Payment Failed";
 
+"payment_success" = "You will receive a confirmation within 24 hours";
+
 "payment_failed_msg" = "Occured an error during payment.";
 
 "Hours" = " hrs";
@@ -185,3 +187,5 @@
 "mel_syd" = "Melbourne + Sydney";
 
 "mel_syd_gold" = "Melbourne + Sydney + Gold Coast";
+
+"itineraries" = "Itineraries";

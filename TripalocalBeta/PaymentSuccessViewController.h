@@ -11,4 +11,5 @@
 @interface PaymentSuccessViewController : UIViewController
 @property (strong, nonatomic) IBOutlet UIButton *viewItInMyTripButton;
 @property (strong, nonatomic) NSString *hostName;
+@property (strong, nonatomic) NSString *expType;
 @end

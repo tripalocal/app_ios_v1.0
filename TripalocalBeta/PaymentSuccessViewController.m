@@ -46,12 +46,18 @@
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     UIImage* image = [UIImage imageWithData:[userDefaults objectForKey:@"user_image"]];
 
-    if (image) {
-        self.hostImage.image = image;
+    if ([self.expType isEqualToString:@"PRIVATE"] || [self.expType isEqualToString:@"NONPRIVATE"]) {
+        if (image) {
+            self.hostImage.image = image;
+        } else {
+            self.hostImage.image = [UIImage imageNamed: @"default_profile_image.png"];
+        }
+        self.sentToNameLabel.text = [self.sentToNameLabel.text stringByAppendingString:_hostName];
     } else {
-        self.hostImage.image = [UIImage imageNamed: @"default_profile_image.png"];
+        self.hostImage.image = [UIImage imageNamed: @"AppIcon.png"];
+        self.sentToNameLabel.text = NSLocalizedString(@"payment_success", nil);
     }
-    self.sentToNameLabel.text = [self.sentToNameLabel.text stringByAppendingString:_hostName];
+
     
     [self mpTrackCompletedPayment:userDefaults];
 

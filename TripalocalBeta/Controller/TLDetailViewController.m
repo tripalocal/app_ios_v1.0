@@ -495,6 +495,7 @@
         vc.minGuestNum = minGuestNum;
         NSString *lastNameInitial = [[hostLastName substringWithRange:NSMakeRange(0, 1)] stringByAppendingString:@"."];
         vc.hostName = [@[hostFirstName, lastNameInitial] componentsJoinedByString:@" "];
+        vc.expType = self.expType;
 
     } else if ([segue.identifier isEqualToString:@"view_all_reviews"]) {
         ReviewTableViewController *vc = [segue destinationViewController];
