@@ -79,7 +79,7 @@
 		8EB570FF1B01CF2B0026D419 /* TripalocalBetaTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EB570FE1B01CF2B0026D419 /* TripalocalBetaTests.m */; };
 		8EB982501B2280D800ADE430 /* Spinner.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EB9824F1B2280D800ADE430 /* Spinner.m */; };
 		8EC86D5C1B0229F100B0A655 /* TLHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EC86D5B1B0229F100B0A655 /* TLHomeViewController.m */; };
-		BC8C39021BAFD57500AB4060 /* TLMultiDaySearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BC8C39011BAFD57500AB4060 /* TLMultiDaySearchViewController.m */; settings = {ASSET_TAGS = (); }; };
+		BC8C39021BAFD57500AB4060 /* TLMultiDaySearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BC8C39011BAFD57500AB4060 /* TLMultiDaySearchViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -664,6 +664,7 @@
 				8EB570DC1B01CF2B0026D419 /* Frameworks */,
 				8EB570DD1B01CF2B0026D419 /* Resources */,
 				0F925872D042AC1B45D1417C /* Copy Pods Resources */,
+				7135AAE0BDFC1DDCD55E7909 /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -773,6 +774,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TripalocalBeta/Pods-TripalocalBeta-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7135AAE0BDFC1DDCD55E7909 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TripalocalBeta/Pods-TripalocalBeta-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		9E9349A752558E96174A8CB8 /* Check Pods Manifest.lock */ = {
