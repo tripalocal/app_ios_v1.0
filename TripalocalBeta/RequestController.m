@@ -71,6 +71,7 @@
             NSString *bio = [result objectForKey:@"bio"];
             NSString *phoneNumber = [result objectForKey:@"phone_number"];
             NSString *imageURL = [result objectForKey:@"image"];
+            NSString *user_id = [NSString stringWithFormat:@"%@", [result objectForKey:@"id"]];
             UIImage *image = [self fetchImage:token :imageURL];
             
             NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
@@ -78,11 +79,12 @@
             [userDefaults setObject:firstName forKey:@"user_first_name"];
             [userDefaults setObject:email forKey:@"user_email"];
             [userDefaults setObject:bio forKey:@"user_bio"];
-            [userDefaults setObject:phoneNumber forKey:@"user_phone_number"];
+
+           	[userDefaults setObject:phoneNumber forKey:@"user_phone_number"];
+            [userDefaults setObject:user_id forKey:@"user_id"];
 
             NSMutableArray *wishList = [[NSMutableArray alloc] init];
             [userDefaults setObject:wishList forKey:@"wish_list"];
-            
             [userDefaults setObject:UIImagePNGRepresentation(image) forKey:@"user_image"];
             NSString *hostName = [NSString stringWithFormat:@"%@ %@", lastName, firstName];
             [userDefaults setObject:hostName forKey:@"host_name"];

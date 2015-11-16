@@ -81,9 +81,7 @@
         order.productDescription = @"Experience in au"; //商品描述
         
         //商品价格
-//        order.amount = [NSString stringWithFormat:@"%.2f",self.totalPrice.floatValue];
-
-        order.amount = [self.unitPrice stringValue];
+        order.amount = [NSString stringWithFormat:@"%.2f",self.totalPrice.floatValue];
         
         order.notifyURL =  @"http://notify.msp.hk/notify.htm";
         order.service = @"mobile.securitypay.pay";
@@ -249,8 +247,7 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if([segue.identifier isEqualToString:@"payByCreditCard"]){
-        UINavigationController *navController = (UINavigationController *)segue.destinationViewController;
-        PaymentViewController *controller = (PaymentViewController *)navController.topViewController;
+        PaymentViewController *controller = (PaymentViewController *)segue.destinationViewController;
         controller.hostName = self.hostName;
         controller.expId = self.expId;
         controller.guestNumber = self.guestNumber;
@@ -259,9 +256,11 @@
         controller.unitPrice = self.unitPrice;
         controller.totalPrice = self.totalPrice;
         controller.coupon = self.coupon;
+        controller.expType = self.expType;
     } else if ([segue.identifier isEqualToString:@"alipaySuccess"]) {
         PaymentSuccessViewController *paymentSuccessVC = (PaymentSuccessViewController *)segue.destinationViewController;
         paymentSuccessVC.hostName = self.hostName;
+        paymentSuccessVC.expType = self.expType;
     } else if ([segue.identifier isEqualToString:@"alipayFail"]) {
         AlipayFailedViewController *alipayFailedVC = (AlipayFailedViewController *)segue.destinationViewController;
         alipayFailedVC.orderNumber = orderNumber;

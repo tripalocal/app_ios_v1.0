@@ -47,6 +47,7 @@
 }
 
 - (IBAction)signup:(id)sender {
+    BOOL success;
     [self.signupButton setEnabled:NO];
     self.signupButton.alpha = 0.5;
     
@@ -86,25 +87,41 @@
         
         if ([httpResponse statusCode] == 200) {
             NSString *token = [result objectForKey:@"token"];
+            NSString *user_id = [result objectForKey:@"user_id"];
+            
             [self fetchProfileAndCache: token];
             
             NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
             [userDefaults setSecretObject:token forKey:@"user_token"];
             [[NSUserDefaults standardUserDefaults] synchronize];
+            //sign up the openfire account
+            NSString *username = [NSString stringWithFormat:@"%@%@",user_id,@"@tripalocal.com"];
+            NSString *password = [NSString stringWithFormat:@"%@", user_id];
+            
+            AppDelegate *del = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+            
+            del.xmppStream.myJID = [XMPPJID jidWithString:username];
+            
+            NSLog(@"Does supports registration");
+            NSLog(@"Attempting registration for username %@",del.xmppStream.myJID.bare);
+            NSError *error = nil;
+            success = [del.xmppStream registerWithPassword:password error:&error];
+            if (success)
+            {
+                del.isRegistering = YES;
+                NSLog(@"Registration in progress");
+            }
+            else
+            {
+                NSLog(@"Create user failed");
+            }
 
+            
             [self mpTrackSignup:userDefaults token:token];
 
             [self.presentingViewController.presentingViewController dismissViewControllerAnimated:YES completion:nil];
             
-        } else {
-            NSString *errorMsg = [result objectForKey:@"error"];
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"signup_failed", nil)
-                                                            message:errorMsg
-                                                           delegate:nil
-                                                  cancelButtonTitle:NSLocalizedString(@"ok", nil)
-                                                  otherButtonTitles:nil];
-            [alert show];
-        }
+
         
 #if DEBUG
         NSString *decodedData = [[NSString alloc] initWithData:data
@@ -122,6 +139,7 @@
     
     [self.signupButton setEnabled:YES];
     self.signupButton.alpha = 1;
+}
 }
 
 - (IBAction)dismissSignup:(id)sender {

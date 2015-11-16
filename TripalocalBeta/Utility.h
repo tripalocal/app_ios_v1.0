@@ -9,8 +9,12 @@
 #import <Foundation/Foundation.h>
 
 @interface Utility : NSObject
-+ (UIImage *)croppIngimageByImageName:(UIImage *)imageToCrop toRect:(CGRect)rect;
-+ (NSString *) decimalwithFormat:(NSString *)format floatV:(float)floatV;
-+ (NSNumber *) numberWithFormat:(NSString *)format floatV:(float)floatV;
-+ (UIColor *) themeColor;
++ (UIImage *)	croppIngimageByImageName:(UIImage *)imageToCrop toRect:(CGRect)rect;
++ (NSString *) 	decimalwithFormat:(NSString *)format floatV:(float)floatV;
++ (NSNumber *) 	numberWithFormat:(NSString *)format floatV:(float)floatV;
++ (UIColor *) 	themeColor;
++ (NSString *)	showTimeDifference:(NSString *)previousTime;
++ (NSString *)  getCurrentUTCTime;
++ (UIImage *)filledImageFrom:(UIImage *)source withColor:(UIColor *)color;
++ (NSString *) transformLanugage:(NSString *) languageString;
 @end

@@ -17,6 +17,7 @@
     self.hostImage.layer.masksToBounds = YES;
     self.hostImage.layer.borderColor = [UIColor whiteColor].CGColor;
     self.hostImage.layer.borderWidth = 3.0f;
+    self.hostImage.contentMode = UIViewContentModeScaleAspectFill;
     self.PriceBackgroundView.backgroundColor = [[UIColor blackColor]colorWithAlphaComponent:0.65f];
     
     UITapGestureRecognizer *wishStatusClick = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(saveToWishList)];

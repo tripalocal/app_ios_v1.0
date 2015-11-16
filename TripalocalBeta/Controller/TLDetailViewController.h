@@ -11,11 +11,13 @@
 @interface TLDetailViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *myTable;
 @property (strong, nonatomic) NSMutableArray *cellHeights;
+@property NSString *expType;
 @property NSString *experience_id_string;
 @property UIImage *coverImage;
 @property UIImage *hostImage;
 @property BOOL isExpReadMoreOpen;
 @property BOOL isHostReadMoreOpen;
 @property NSString *expPrice;
+@property NSString *host_id;
 
 @end

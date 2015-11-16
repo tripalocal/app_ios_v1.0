@@ -1,0 +1,34 @@
+
+/* Class = "UILabel"; text = "AUD/person"; ObjectID = "3df-Gx-GKh"; */
+"3df-Gx-GKh.text" = "澳元/每人起";
+
+/* Class = "UILabel"; text = "Experience Title"; ObjectID = "Arv-NA-oKb"; */
+"Arv-NA-oKb.text" = "Experience Title";
+
+/* Class = "UILabel"; text = "•"; ObjectID = "LpN-oS-Izi"; */
+"LpN-oS-Izi.text" = "•";
+
+/* Class = "UILabel"; text = "English/中文"; ObjectID = "VXA-RA-wwn"; */
+"VXA-RA-wwn.text" = "English/中文";
+
+/* Class = "UILabel"; text = "•"; ObjectID = "WP7-gk-RL6"; */
+"WP7-gk-RL6.text" = "•";
+
+/* Class = "UILabel"; text = "nhrs"; ObjectID = "WrF-UF-LNZ"; */
+"WrF-UF-LNZ.text" = "nhrs";
+
+/* Class = "UILabel"; text = "from"; ObjectID = "Xe1-ZQ-8dn"; */
+"Xe1-ZQ-8dn.text" = "";
+
+/* Class = "UILabel"; text = "$"; ObjectID = "aqg-NU-KF1"; */
+"aqg-NU-KF1.text" = "$";
+
+/* Class = "UILabel"; text = "999"; ObjectID = "n8b-jk-X4D"; */
+"n8b-jk-X4D.text" = "999";
+
+/* Class = "UILabel"; text = "Add to Wishlist"; ObjectID = "vbT-Pi-N42"; */
+"vbT-Pi-N42.text" = "保存至兴趣列表";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "yPu-mj-PYq"; */
+"yPu-mj-PYq.text" = "Label";
+

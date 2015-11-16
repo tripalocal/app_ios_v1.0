@@ -16,6 +16,7 @@
 #import "JGProgressHUD.h"
 #import "Constant.h"
 #import "CheckoutViewController.h"
+#import "ChatDetailViewController.h"
 #import "ReviewTableViewController.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "URLConfig.h"
@@ -35,6 +36,7 @@
     NSString *hostFirstName;
     NSString *hostLastName;
     NSString *hostBio;
+    NSString *host_id;
     NSString *nReviews;
     NSString *rate;
     NSString *reviewerFirstName;
@@ -57,6 +59,7 @@
 @end
 
 @implementation TLDetailViewController
+@synthesize host_id;
 
 - (IBAction)checkout:(id)sender {
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
@@ -69,9 +72,21 @@
     }
 }
 
+- (IBAction)send_message:(id)sender {
+    //get the host id
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    NSString *token = [userDefaults secretStringForKey:@"user_token"];
+    
+    if (!token) {
+        [self performSegueWithIdentifier:@"loginSegue" sender:nil];
+    } else {
+        [self performSegueWithIdentifier:@"expDetailToChat" sender:nil];
+    }
+}
+
 - (void)mpTrackViewExperience {
     Mixpanel *mixpanel = [Mixpanel sharedInstance];
-    NSString *language = [[NSLocale preferredLanguages] objectAtIndex:0];
+    NSString *localLanguage = [[NSLocale preferredLanguages] objectAtIndex:0];
     
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     NSString *token = [userDefaults secretStringForKey:@"user_token"];
@@ -82,11 +97,13 @@
         [mixpanel.people set:@{}];
     }
     
-    [mixpanel track:mpTrackViewExperience properties:@{@"language":language}];
+    [mixpanel track:mpTrackViewExperience properties:@{@"language":localLanguage}];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+
+    
     HUD = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleDark];
     HUD.HUDView.layer.shadowColor = [UIColor blackColor].CGColor;
     HUD.HUDView.layer.shadowOffset = CGSizeZero;
@@ -94,6 +111,7 @@
     HUD.HUDView.layer.shadowRadius = 8.0f;
     HUD.textLabel.text = NSLocalizedString(@"loading", nil);
     [HUD showInView:self.view];
+
     reviewerFirstName = @"";
     reviewerLastName = @"";
     reviewComment = @"";
@@ -110,7 +128,9 @@
     [self mpTrackViewExperience];
 
 }
-
+- (IBAction)dismissExpDetail:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
 - (void)fetchData
 {
     NSString *queryString = [NSString stringWithFormat:@"%@?experience_id=%@",[URLConfig expDetailServiceURLString],_experience_id_string];
@@ -167,7 +187,11 @@
                 dynamicPriceArray = expData[@"experience_dynamic_price"];
                 maxGuestNum = expData[@"experience_guest_number_max"];
                 minGuestNum = expData[@"experience_guest_number_min"];
-
+                
+                host_id	= expData[@"host_id"];
+#if DEBUG
+                NSLog(@"Host id: %@",host_id);
+#endif
                 [self setMinimalPrice];
 
                 if ([nReviews intValue] > 0) {
@@ -238,7 +262,7 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *cellIdentifier0=@"cell0";
-    TLDetailTableViewCell0 *cell=(TLDetailTableViewCell0 *) [tableView dequeueReusableCellWithIdentifier:cellIdentifier0];
+
     static NSString *cellIdentifier1=@"cell1";
     TLDetailTableViewCell1 *cell1=(TLDetailTableViewCell1 *) [tableView dequeueReusableCellWithIdentifier:cellIdentifier1];
     
@@ -256,13 +280,16 @@
     
     switch (indexPath.row) {
         case 0: {
-            if (!cell) {
-                cell = [[TLDetailTableViewCell0 alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier0];
+            TLDetailTableViewCell0 *cell=(TLDetailTableViewCell0 *) [tableView dequeueReusableCellWithIdentifier:cellIdentifier0];
+            if ([self.expType isEqualToString:@"PRIVATE"] || [self.expType isEqualToString:@"NONPRIVATE"]) {
+                [cell.hostImage sd_setImageWithURL:[NSURL URLWithString:hostImageURL]
+                                  placeholderImage:[UIImage imageNamed:@"default_profile_image.png"]
+                                           options:SDWebImageRefreshCached];
+                cell.reservationLabel.text = [NSString stringWithFormat:@"%@ %@ %@", NSLocalizedString(@"reservationPrefix", nil), hostFirstName, NSLocalizedString(@"reservationSuffix",nil)];
+            } else {
+                cell.hostImage.hidden = YES;
+                cell.reservationLabel.hidden = YES;
             }
-            
-            [cell.hostImage sd_setImageWithURL:[NSURL URLWithString:hostImageURL]
-                              placeholderImage:[UIImage imageNamed:@"default_profile_image.png"]
-                                       options:SDWebImageRefreshCached];
             
             NSString *coverImageURL = [NSString stringWithFormat:@"%@thumbnails/experiences/experience%@_1.jpg", [URLConfig imageServiceURLString], _experience_id_string];
             
@@ -282,9 +309,6 @@
                                               nextPageCoverImage = image;
                                           }
                                       }];
-            
-            
-            cell.reservationLabel.text = [NSString stringWithFormat:@"%@ %@ %@", NSLocalizedString(@"reservationPrefix", nil), hostFirstName, NSLocalizedString(@"reservationSuffix",nil)];
             
             // language
             cell.languageLabel.text = language;
@@ -320,26 +344,32 @@
             {
                 cell2=[[TLDetailTableViewCell2 alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier2];
             }
-            cell2.parentView = self.myTable;
-            cell2.selectionStyle = UITableViewCellSelectionStyleNone;
-            if (self.isHostReadMoreOpen) {
-                [cell2.readMoreButton setTitle:NSLocalizedString(@"read_less", nil) forState:UIControlStateNormal];
-                cell2.hostBioLabel.lineBreakMode = NSLineBreakByWordWrapping;
-                cell2.hostBioLabel.numberOfLines = 0;
-                [cell2.hostBioLabel sizeToFit];
-            } else {
-                [cell2.readMoreButton setTitle:NSLocalizedString(@"read_more", nil) forState:UIControlStateNormal];
-                cell2.hostBioLabel.lineBreakMode = NSLineBreakByTruncatingTail;
-                cell2.hostBioLabel.numberOfLines = 5;
-            }
             
-            [cell2.hostImage sd_setImageWithURL:[NSURL URLWithString:hostImageURL]
-                              placeholderImage:[UIImage imageNamed:@"default_profile_image.png"]
-                                       options:SDWebImageRefreshCached];
-            if (hostFirstName) {
-                cell2.hostFirstNameLabel.text = [NSLocalizedString(@"about_the_host", nil) stringByAppendingString: hostFirstName];
+            
+            if ([self.expType isEqualToString:@"ITINERARY"]) {
+                cell2.hidden = YES;
+            } else {
+                cell2.parentView = self.myTable;
+                cell2.selectionStyle = UITableViewCellSelectionStyleNone;
+                if (self.isHostReadMoreOpen) {
+                    [cell2.readMoreButton setTitle:NSLocalizedString(@"read_less", nil) forState:UIControlStateNormal];
+                    cell2.hostBioLabel.lineBreakMode = NSLineBreakByWordWrapping;
+                    cell2.hostBioLabel.numberOfLines = 0;
+                    [cell2.hostBioLabel sizeToFit];
+                } else {
+                    [cell2.readMoreButton setTitle:NSLocalizedString(@"read_more", nil) forState:UIControlStateNormal];
+                    cell2.hostBioLabel.lineBreakMode = NSLineBreakByTruncatingTail;
+                    cell2.hostBioLabel.numberOfLines = 5;
+                }
+                
+                [cell2.hostImage sd_setImageWithURL:[NSURL URLWithString:hostImageURL]
+                                   placeholderImage:[UIImage imageNamed:@"default_profile_image.png"]
+                                            options:SDWebImageRefreshCached];
+                if (hostFirstName) {
+                    cell2.hostFirstNameLabel.text = [NSLocalizedString(@"about_the_host", nil) stringByAppendingString: hostFirstName];
+                }
+                cell2.hostBioLabel.text = hostBio;
             }
-            cell2.hostBioLabel.text = hostBio;
             
             return cell2;
         case 3:
@@ -403,8 +433,7 @@
             break;
     }
     
-    
-    return cell;
+    return nil;
 }
 
 
@@ -435,8 +464,11 @@
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.row == 2 && [self.expType isEqualToString:@"ITINERARY"]) {
+        return 0.f;
+    }
     
-    switch (indexPath.row){
+    switch (indexPath.row) {
         case 3:
             if ([nReviews intValue] <= 0) {
                 return 0.0;
@@ -445,7 +477,6 @@
             return [self.cellHeights[indexPath.row] floatValue];
     }
     
-
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
@@ -464,13 +495,22 @@
         vc.minGuestNum = minGuestNum;
         NSString *lastNameInitial = [[hostLastName substringWithRange:NSMakeRange(0, 1)] stringByAppendingString:@"."];
         vc.hostName = [@[hostFirstName, lastNameInitial] componentsJoinedByString:@" "];
+        vc.expType = self.expType;
 
     } else if ([segue.identifier isEqualToString:@"view_all_reviews"]) {
         ReviewTableViewController *vc = [segue destinationViewController];
         vc.reviews = reviews;
     }
     
+    else if ([segue.identifier isEqualToString:@"expDetailToChat"]) {
+        ChatDetailViewController *chatDetailVC = segue.destinationViewController;
+        chatDetailVC.chatWithUser = host_id;
+        chatDetailVC.otherUserImageURL = hostImageURL;
+        
+    }
+    
 }
+
 
 
 @end

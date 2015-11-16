@@ -451,8 +451,7 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if([segue.identifier isEqualToString:@"showPaymentOption"]){
-        UINavigationController *navController = (UINavigationController *)segue.destinationViewController;
-        PaymentOptionViewController *controller = (PaymentOptionViewController *)navController.topViewController;
+        PaymentOptionViewController *controller = (PaymentOptionViewController *)segue.destinationViewController;
         
         controller.coupon = self.couponField.text;
         controller.expId = _exp_ID_string ;
@@ -479,6 +478,7 @@
 
         controller.unitPrice = self.unitPrice;
         controller.totalPrice = self.totalPrice;
+        controller.expType = self.expType;
     }
 }
 

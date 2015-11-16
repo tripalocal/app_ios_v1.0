@@ -5,7 +5,8 @@
 //  Created by Ye He on 6/07/2015.
 //  Copyright (c) 2015 Tripalocal. All rights reserved.
 //
-
+#import "MyTripTableViewController.h"
+#import "MyTripTableViewCell.h"
 #import "MyTripViewController.h"
 #import "UpcommingTripsViewController.h"
 #import "PreviousTripsViewController.h"
@@ -16,6 +17,7 @@
 @property (nonatomic, copy) NSArray *allViewControllers;
 
 @property (retain, nonatomic) IBOutlet NeedToLoginView *needToLoginView;
+
 @property (strong, nonatomic) IBOutlet UIView *myTripContentView;
 @property (strong, nonatomic) IBOutlet UIButton *upcommingButton;
 @property (strong, nonatomic) IBOutlet UIButton *previousButton;
@@ -55,7 +57,21 @@
 }
 
 - (void)loginClicked {
+    NSLog(@"login click");
     [[NSNotificationCenter defaultCenter] postNotificationName:@"openPartialMenu" object:nil];
+}
+
+- (void)sendClicked{
+    NSLog(@"CHECK");
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    NSString *token = [userDefaults secretStringForKey:@"user_token"];
+    UIViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"chat_detail_view_controller"];
+    if (!token) {
+        [self performSegueWithIdentifier:@"loginSegue" sender:nil];
+    } else {
+        NSLog(@"CHECK");
+        [self presentViewController:vc animated:YES completion:nil];
+    }
 }
 
 - (IBAction)changeToPreviousView:(id)sender {

@@ -8,7 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+#import "Constant.h"
+#import "XMPP.h"
 #import "RequestController.h"
+#import "AppDelegate.h"
 
 @interface SignUpViewController : RequestController <UITextFieldDelegate>
 

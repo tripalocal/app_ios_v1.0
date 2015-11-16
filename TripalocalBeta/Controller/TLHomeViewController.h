@@ -7,9 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AppDelegate.h"
 
 @interface TLHomeViewController : UIViewController<UITableViewDelegate,UITableViewDataSource, UISearchResultsUpdating, UISearchBarDelegate>
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) UISearchController *searchController;
+@property int searchTime;
 - (IBAction)myButton:(id)sender;
 @end

@@ -11,19 +11,25 @@
 #import "URLConfig.h"
 #import "Utility.h"
 #import "Constant.h"
+#import "AppDelegate.h"
+
 
 @interface MenuViewController ()
 @property (weak, nonatomic) IBOutlet UIImageView *image;
 @property (weak, nonatomic) IBOutlet UILabel *hostName;
 @property (strong, nonatomic) IBOutlet UIView *wishLIstImage;
+@property (strong, nonatomic) IBOutlet UIView *messageImage;
 @property (strong, nonatomic) IBOutlet UIView *backgroundView;
 
 @end
 
-@implementation MenuViewController
+@implementation MenuViewController{
+
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     
     [self.requestTripButton.layer setMasksToBounds:YES];
     [self.requestTripButton.layer setCornerRadius:5.0f];
@@ -46,16 +52,19 @@
     self.image.layer.masksToBounds = YES;
     self.image.layer.borderColor = [UIColor whiteColor].CGColor;
     self.image.layer.borderWidth = 3.0f;
-    
+// 	host img tap
     UITapGestureRecognizer *hostImageSingleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapHostImage)];
     hostImageSingleTap.numberOfTapsRequired = 1;
     [self.image setUserInteractionEnabled:YES];
     [self.image addGestureRecognizer:hostImageSingleTap];
-    
-    UITapGestureRecognizer *wishListSingleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(wishListTapped)];
-    wishListSingleTap.numberOfTapsRequired = 1;
-    [self.wishLIstImage setUserInteractionEnabled:YES];
-    [self.wishLIstImage addGestureRecognizer:wishListSingleTap];
+
+    UITapGestureRecognizer *chatSingleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapChatOverview)]; 
+    chatSingleTap.numberOfTapsRequired = 1;
+//    wishlist tap
+//    UITapGestureRecognizer *wishListSingleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(wishListTapped)];
+//    wishListSingleTap.numberOfTapsRequired = 1;
+//    [self.wishLIstImage setUserInteractionEnabled:YES];
+//    [self.wishLIstImage addGestureRecognizer:wishListSingleTap];
 }
 
 - (IBAction)emailUs:(id)sender {
@@ -78,7 +87,11 @@
     [self performSegueWithIdentifier:@"show_my_profile" sender:self];
 }
 
+-(void)tapChatOverview{
+    [self performSegueWithIdentifier:@"show_chat_overview" sender:self];
+}
 - (IBAction)logout:(id)sender {
+    
     NSURL *url = [NSURL URLWithString:[URLConfig logoutServiceURLString]];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     [request setHTTPMethod:@"POST"];
@@ -118,6 +131,8 @@
                                               otherButtonTitles:nil];
         [alert show];
     }
+    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
+    [appDelegate disconnect];
     
 }
 

@@ -78,6 +78,8 @@
 
 "payment_failed" = "Payment Failed";
 
+"payment_success" = "You will receive a confirmation within 24 hours";
+
 "payment_failed_msg" = "Occured an error during payment.";
 
 "Hours" = " hrs";
@@ -111,6 +113,8 @@
 "no_reviews" = "0 Review";
 
 "exp_detail_per_person_for" = "for %@ hours";
+
+"local_exp_detail_per_person_for" = "%@ hour Public Tour";
 
 "send_verification_code" = "Send Verification Code";
 
@@ -147,3 +151,41 @@
 "mismatch_pwd" = "Please enter password again";
 
 "mismatch_pwd_hint" = "You must enter the same passwords";
+
+"send_message" = "Send Message";
+
+"send_button" = "Send";
+
+"hurry_up_80" = "Hurry, more than 80% of this tour has been booked within next 6 months";
+
+"hurry_up_50" = "Hurry, more than 50% of this tour has been booked within next 6 months";
+
+"tips_title" = "Tips";
+
+"schedule_title" = "Schedule";
+
+"whatsincluded_title" = "What's included";
+
+"pickup_title" = "Pick up detail";
+
+"disclaimer_title" = "Disclaimer";
+
+"refund_title" = "Refund Policy";
+
+"insurance_title" = "Insurance";
+
+"highlights_title" = "Highlights";
+
+"overview_title" = "Overview";
+
+"desc_title" = "Description";
+
+"7_day_trip" = "7 Day Trip";
+
+"10_day_trip" = "10 Day Trip";
+
+"mel_syd" = "Melbourne + Sydney";
+
+"mel_syd_gold" = "Melbourne + Sydney + Gold Coast";
+
+"itineraries" = "Itineraries";

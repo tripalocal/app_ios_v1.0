@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="7701" systemVersion="15A278b" minimumToolsVersion="Xcode 4.3">
+    <entity name="Message" representedClassName="Message" syncable="YES">
+        <attribute name="global_id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="local_id" attributeType="String" syncable="YES"/>
+        <attribute name="message_content" attributeType="String" syncable="YES"/>
+        <attribute name="message_time" attributeType="String" syncable="YES"/>
+        <attribute name="receiver_id" attributeType="String" syncable="YES"/>
+        <attribute name="sender_id" attributeType="String" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Message" positionX="-63" positionY="-18" width="128" height="135"/>
+    </elements>
+</model>

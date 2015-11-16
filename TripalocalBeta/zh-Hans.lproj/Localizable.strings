@@ -104,6 +104,8 @@
 
 "payment_failed" = "支付失败";
 
+"payment_success" = "您会在24小时内收到确认通知";
+
 "payment_failed_msg" = "支付过程中遇到问题";
 
 "n_reviews" = "%@ 条评论";
@@ -111,6 +113,8 @@
 "no_reviews" = "没有评论";
 
 "exp_detail_per_person_for" = "约 %@ 小时";
+
+"local_exp_detail_per_person_for" = "%@小时非私人团";
 
 "connection_failed" = "连接错误";
 
@@ -147,3 +151,41 @@
 "mismatch_pwd" = "再次输入密码";
 
 "mismatch_pwd_hint" = "密码必须保持一致";
+
+"send_message" = "私信";
+
+"send_button" = "发送";
+
+"hurry_up_80" = "赶快抓紧哦，6个月内超过80%的时间已经被订掉了！";
+
+"hurry_up_50" = "赶快抓紧哦，6个月内超过50%的时间已经被订掉了！";
+
+"tips_title" = "贴心提示";
+
+"schedule_title" = "行程时间";
+
+"whatsincluded_title" = "票价包括";
+
+"pickup_title" = "接送详情";
+
+"disclaimer_title" = "免责声明";
+
+"refund_title" = "退改政策";
+
+"insurance_title" = "保险";
+
+"highlights_title" = "行程亮点";
+
+"overview_title" = "行程概况";
+
+"desc_title" = "详细介绍";
+
+"7_day_trip" = "7日私人精品游";
+
+"10_day_trip" = "10日私人精品游";
+
+"mel_syd" = "墨尔本 + 悉尼";
+
+"mel_syd_gold" = "墨尔本 + 悉尼 + 黄金海岸";
+
+"itineraries" = "特色体验";

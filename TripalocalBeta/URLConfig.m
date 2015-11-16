@@ -12,12 +12,12 @@
 
 + (NSString *)homePageCityImageURLString
 {
-#ifdef CN_VERSION
-    return @"https://www.tripalocal.com.cn/images/mobile/home/";
-#else
-    return @"https://www.tripalocal.com/images/mobile/home/";
-#endif
-
+//#ifdef CN_VERSION
+//    return @"https://www.tripalocal.com.cn/images/mobile/home/";
+//#else
+//    return @"https://www.tripalocal.com/images/mobile/home/";
+//#endif
+    return @"https://tripalocal-static.s3.amazonaws.com/images/mobile/home/";
 }
 + (NSString *)myTripServiceURLString
 {
@@ -28,13 +28,19 @@
 #endif
 }
 
++ (NSString *)staticServiceURLString
+{
+    return @"https://tripalocal-static.s3.amazonaws.com/static/";
+}
+
 + (NSString *)imageServiceURLString
 {
-#ifdef CN_VERSION
-        return @"https://www.tripalocal.com.cn/images/";
-#else
-        return @"https://www.tripalocal.com/images/";
-#endif
+//#ifdef CN_VERSION
+//        return @"https://www.tripalocal.com.cn/images/";
+//#else
+//        return @"https://www.tripalocal.com/images/";
+//#endif
+    return @"https://tripalocal-static.s3.amazonaws.com/images/";
 }
 
 + (NSString *)loginServiceURLString
@@ -109,4 +115,30 @@
 #endif
 }
 
++ (NSString *)serviceMessageListURLString
+{
+#ifdef CN_VERSION
+    return @"https://tripalocal.com.cn/service_message_list/";
+#else
+    return @"https://tripalocal.com/service_message_list/";
+#endif
+}
+
++ (NSString *)serviceMessageURLString
+{
+#ifdef CN_VERSION
+    return @"https://tripalocal.com.cn/service_message/";
+#else
+    return @"https://tripalocal.com/service_message/";
+#endif
+}
+
++ (NSString *)servicePublicProfileURLString
+{
+#ifdef CN_VERSION
+    return @"https://tripalocal.com.cn/service_publicprofile/";
+#else
+    return @"https://tripalocal.com/service_publicprofile/";
+#endif
+}
 @end
