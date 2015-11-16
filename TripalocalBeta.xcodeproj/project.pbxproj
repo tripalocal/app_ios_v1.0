@@ -92,9 +92,6 @@
 		8EB570FF1B01CF2B0026D419 /* TripalocalBetaTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EB570FE1B01CF2B0026D419 /* TripalocalBetaTests.m */; };
 		8EB982501B2280D800ADE430 /* Spinner.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EB9824F1B2280D800ADE430 /* Spinner.m */; };
 		8EC86D5C1B0229F100B0A655 /* TLHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EC86D5B1B0229F100B0A655 /* TLHomeViewController.m */; };
-
-		BC8C39021BAFD57500AB4060 /* TLMultiDaySearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BC8C39011BAFD57500AB4060 /* TLMultiDaySearchViewController.m */; };
-
 		BC2B61941B95507F00934EA0 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC2B61931B95507F00934EA0 /* CoreData.framework */; };
 		BC2B61CC1B95527200934EA0 /* Tripalocal.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BC2B61CA1B95527200934EA0 /* Tripalocal.xcdatamodeld */; };
 		BC2B61CF1B95569800934EA0 /* Message.m in Sources */ = {isa = PBXBuildFile; fileRef = BC2B61CE1B95569800934EA0 /* Message.m */; };
@@ -162,7 +159,6 @@
 		BCDF1E4D1B709267004A79A3 /* ChatDetailFromTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BCDF1E4C1B709267004A79A3 /* ChatDetailFromTableViewCell.m */; };
 		BCDF1E501B7092F0004A79A3 /* ChatDetailToTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BCDF1E4F1B7092F0004A79A3 /* ChatDetailToTableViewCell.m */; };
 		BCDF1E531B709D4A004A79A3 /* ChatDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BCDF1E521B709D4A004A79A3 /* ChatDetailViewController.m */; };
-
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1241,7 +1237,6 @@
 				8EB570DD1B01CF2B0026D419 /* Resources */,
 				0F925872D042AC1B45D1417C /* Copy Pods Resources */,
 				665A3C96C66486EB0B153810 /* Embed Pods Frameworks */,
-
 			);
 			buildRules = (
 			);
@@ -1372,7 +1367,6 @@
 			showEnvVarsInLog = 0;
 		};
 		665A3C96C66486EB0B153810 /* Embed Pods Frameworks */ = {
-
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1700,8 +1694,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				BUNDLE_ID = Bentuke;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: 薛 嵩 (7JRGGT584F)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: 薛 嵩 (7JRGGT584F)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1850,8 +1844,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				BUNDLE_ID = Bentuke;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: 薛 嵩 (7JRGGT584F)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: 薛 嵩 (7JRGGT584F)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2040,8 +2034,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				BUNDLE_ID = Tripalocal;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: 薛 嵩 (7JRGGT584F)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: 薛 嵩 (7JRGGT584F)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2133,8 +2127,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				BUNDLE_ID = Tripalocal;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: 薛 嵩 (7JRGGT584F)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: 薛 嵩 (7JRGGT584F)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
