@@ -49,5 +49,17 @@
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
 	</array>
+    <key>NSAppTransportSecurity</key>
+    <dict>
+        <!--Include to allow all connections (DANGER)-->
+        <key>NSAllowsArbitraryLoads</key>
+        <true/>
+    </dict>
+    <key>LSApplicationQueriesSchemes</key>
+    <array>
+        <string>alipay</string>
+        <string>cydia</string>
+        <string>safepay</string>
+    </array>
 </dict>
 </plist>
