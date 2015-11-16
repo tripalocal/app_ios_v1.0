@@ -10,6 +10,7 @@
 #import "PaymentSuccessViewController.h"
 #import "URLConfig.h"
 #import "Constant.h"
+#import "Utility.h"
 #import <SecureNSUserDefaults/NSUserDefaults+SecureAdditions.h>
 
 @interface PaymentViewController ()
@@ -156,6 +157,14 @@
     self.totalPriceLabel.text = [@"$" stringByAppendingFormat:@" %@ AUD", [fmt stringFromNumber: self.totalPrice]];
     self.totalPriceLabel.textColor = [UIColor colorWithRed:0.00f green:0.82f blue:0.82f alpha:1.0f];
 
+    UIBarButtonItem *cancalButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"cancel", nil) style:UIBarButtonItemStylePlain target:self action:@selector(dismiss:)];
+    cancalButton.tintColor = [Utility themeColor];
+    self.navigationItem.leftBarButtonItem = cancalButton;
+}
+
+- (void) dismiss:(id) sender
+{
+    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
 }
 
 -(void)dismissKeyboard {

@@ -12,6 +12,7 @@
 #import <AlipaySDK/AlipaySDK.h>
 #import "Order.h"
 #import "URLConfig.h"
+#import "Utility.h"
 #import "DataSigner.h"
 #import "DataVerifier.h"
 #import <SecureNSUserDefaults/NSUserDefaults+SecureAdditions.h>
@@ -27,6 +28,15 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(alipayNotification:) name:@"alipayNotification" object:nil];
+    
+    UIBarButtonItem *cancalButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"cancel", nil) style:UIBarButtonItemStylePlain target:self action:@selector(dismiss:)];
+    cancalButton.tintColor = [Utility themeColor];
+    self.navigationItem.leftBarButtonItem = cancalButton;
+}
+
+- (void) dismiss:(id) sender
+{
+    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark -

@@ -87,6 +87,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    UIBarButtonItem *cancalButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"cancel", nil) style:UIBarButtonItemStylePlain target:self action:@selector(dismiss:)];
+    cancalButton.tintColor = [Utility themeColor];
+    self.navigationItem.leftBarButtonItem = cancalButton;
+    
     HUD = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleDark];
     HUD.HUDView.layer.shadowColor = [UIColor blackColor].CGColor;
     HUD.HUDView.layer.shadowOffset = CGSizeZero;
@@ -109,6 +114,11 @@
 
     [self mpTrackViewExperience];
 
+}
+
+- (void) dismiss:(id) sender
+{
+    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)fetchData
