@@ -30,11 +30,17 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>6</string>
+	<string>7</string>
 	<key>FacebookAppID</key>
 	<string></string>
 	<key>FacebookDisplayName</key>
 	<string></string>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>alipay</string>
+		<string>cydia</string>
+		<string>safepay</string>
+	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>
@@ -58,12 +64,5 @@
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
 	</array>
-    
-    <key>LSApplicationQueriesSchemes</key>
-    <array>
-        <string>alipay</string>
-        <string>cydia</string>
-        <string>safepay</string>
-    </array>
 </dict>
 </plist>
