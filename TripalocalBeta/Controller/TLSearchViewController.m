@@ -94,15 +94,32 @@
     [self updateFilterView];
 }
 
-- (void)applyFilter {
+- (void)applyFilterWithHandler:(void(^)()) handler {
     if ([self.expSearchType isEqualToString:@"PRIVATE"] && [self.normalExpList count] == 0) {
-        [self fetchExpData:self.cityName];
+        [HUD showInView:self.view];
+        [self fetchExpData:self.cityName completionHandler:^(NSMutableArray *expList) {
+            [HUD dismissAfterDelay:0.3];
+            [self.tableView reloadData];
+            handler();
+        }];
     } else if ([self.expSearchType isEqualToString:@"LOCAL"] && [self.localExpList count] == 0) {
-        [self fetchExpData:self.cityName];
+        [HUD showInView:self.view];
+        [self fetchExpData:self.cityName completionHandler:^(NSMutableArray *expList) {
+            [HUD dismissAfterDelay:0.3];
+            [self.tableView reloadData];
+            handler();
+        }];
     } else if ([self.expSearchType isEqualToString:@"ITI"] && [self.itineraryExpList count] == 0) {
-        [self fetchExpData:self.cityName];
+        [HUD showInView:self.view];
+        [self fetchExpData:self.cityName completionHandler:^(NSMutableArray *expList) {
+            [HUD dismissAfterDelay:0.3];
+            [self.tableView reloadData];
+            handler();
+        }];
+    } else {
+        [self.tableView reloadData];
+        handler();
     }
-    [self.tableView reloadData];
 }
 
 - (void)updateFilterView {
@@ -138,20 +155,23 @@
 
 - (IBAction)applyTravelWithLocals:(UIGestureRecognizer *)sender {
     self.expSearchType = @"PRIVATE";
-    [self applyFilter];
-    [self updateFilterView];
+    [self applyFilterWithHandler:^{
+        [self updateFilterView];
+    }];
 }
 
 - (IBAction)applyLocalExp:(UIGestureRecognizer *)sender {
     self.expSearchType = @"LOCAL";
-    [self applyFilter];
-    [self updateFilterView];
+    [self applyFilterWithHandler:^{
+        [self updateFilterView];
+    }];
 }
 
 - (IBAction)applyItinerary:(UIGestureRecognizer *)sender {
     self.expSearchType = @"ITI";
-    [self applyFilter];
-    [self updateFilterView];
+    [self applyFilterWithHandler:^{
+        [self updateFilterView];
+    }];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -445,12 +465,14 @@
 {
     [super viewDidAppear:animated];
     if ([self.expList count] == 0) {
-        self.expList = [self fetchExpData:self.cityName];
-        [self.tableView reloadData];
+        [self fetchExpData:self.cityName completionHandler:^(NSMutableArray *expList) {
+            self.expList = expList;
+            [self.tableView reloadData];
+        }];
     }
 }
 
-- (NSMutableArray *)fetchExpData:(NSString *) cityName {
+- (void) fetchExpData:(NSString *) cityName completionHandler:(void (^)(NSMutableArray *expList)) handler {
     NSMutableArray *expList = [[NSMutableArray alloc] init];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
 
@@ -488,58 +510,61 @@
     [request setValue:postLength forHTTPHeaderField:@"Content-Length"];
     [request setHTTPBody:postData];
     
-    NSError *connectionError = nil;
-    NSURLResponse *response = nil;
+//    NSError *connectionError = nil;
+//    NSURLResponse *response = nil;
     
-    NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&connectionError];
+//    NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&connectionError];
     
-    if (connectionError == nil) {
-        NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *) response;
-        NSMutableArray *allDataDictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
-        
-        if ([httpResponse statusCode] == 200) {
-            NSDictionary *indexOfExperience = [allDataDictionary objectAtIndex:0];
-            NSMutableArray *expListCopy = [indexOfExperience objectForKey:@"experiences"];
-            for (NSDictionary *exp in expListCopy){
-                [expList addObject:exp];
-            }
-            
-            if ([self.expSearchType isEqualToString:@"PRIVATE"]) {
-                self.normalExpList = expList;
-            } else if ([self.expSearchType isEqualToString:@"LOCAL"]) {
-                self.localExpList = expList;
+    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse * _Nullable response, NSData * _Nullable data, NSError * _Nullable connectionError) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (connectionError == nil) {
+                NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *) response;
+                NSMutableArray *allDataDictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+                
+                if ([httpResponse statusCode] == 200) {
+                    NSDictionary *indexOfExperience = [allDataDictionary objectAtIndex:0];
+                    NSMutableArray *expListCopy = [indexOfExperience objectForKey:@"experiences"];
+                    for (NSDictionary *exp in expListCopy){
+                        [expList addObject:exp];
+                    }
+                    
+                    if ([self.expSearchType isEqualToString:@"PRIVATE"]) {
+                        self.normalExpList = expList;
+                    } else if ([self.expSearchType isEqualToString:@"LOCAL"]) {
+                        self.localExpList = expList;
+                    } else {
+                        self.itineraryExpList = expList;
+                    }
+                    
+                    self.expList = expList;
+                    
+#ifdef DEBUG
+                    NSLog(@"number of cells: %lu", (unsigned long)expList.count);
+#endif
+                    
+                }
+                else {
+#ifdef DEBUG
+                    NSLog(@"Sending data = %@",[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
+#endif
+                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"server_error", nil)
+                                                                    message:NSLocalizedString(@"connection_failed", nil)
+                                                                   delegate:nil
+                                                          cancelButtonTitle:NSLocalizedString(@"ok_button", nil)
+                                                          otherButtonTitles:nil];
+                    [alert show];
+                }
             } else {
-                self.itineraryExpList = expList;
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"no_network", nil)
+                                                                message:NSLocalizedString(@"no_network_msg", nil)
+                                                               delegate:nil
+                                                      cancelButtonTitle:NSLocalizedString(@"ok_button", nil)
+                                                      otherButtonTitles:nil];
+                [alert show];
             }
-            
-            self.expList = expList;
-
-#ifdef DEBUG
-            NSLog(@"number of cells: %lu", (unsigned long)expList.count);
-#endif
-            
-        }
-        else {
-#ifdef DEBUG
-            NSLog(@"Sending data = %@",[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
-#endif
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"server_error", nil)
-                                                            message:NSLocalizedString(@"connection_failed", nil)
-                                                           delegate:nil
-                                                  cancelButtonTitle:NSLocalizedString(@"ok_button", nil)
-                                                  otherButtonTitles:nil];
-            [alert show];
-        }
-    } else {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"no_network", nil)
-                                                        message:NSLocalizedString(@"no_network_msg", nil)
-                                                       delegate:nil
-                                              cancelButtonTitle:NSLocalizedString(@"ok_button", nil)
-                                              otherButtonTitles:nil];
-        [alert show];
-    }
-    
-    return expList;
+            handler(expList);
+        });
+    }];
 }
 
 

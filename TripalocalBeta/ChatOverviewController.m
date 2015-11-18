@@ -15,6 +15,7 @@
 #import "XMPP.h"
 #import "UnloginViewController.h"
 #import "JGProgressHUD.h"
+#import "Message.h"
 
 @interface ChatOverviewController()
 
@@ -210,8 +211,8 @@
                             NSString *diff = [Utility showTimeDifference:messageDate];
                             [messageList addObject:messageContent];
                             [timeList addObject:diff];
-                            
                         }
+                        
     #if DEBUG
                         NSString *decodedData = [[NSString alloc] initWithData:data
                                                                       encoding:NSUTF8StringEncoding];
