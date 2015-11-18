@@ -18,6 +18,7 @@
 #import "URLConfig.h"
 #import "JGProgressHUD.h"
 #import <Parse/Parse.h>
+#import "Message.h"
 
 @interface ChatDetailViewController ()
 
@@ -414,10 +415,24 @@
     NSSortDescriptor *sortDescriptor;
     sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"local_id"
                                                  ascending:YES];
-    NSMutableArray *sortDescriptors = [NSMutableArray arrayWithObject:sortDescriptor];
+//    NSMutableArray *sortDescriptors = [NSMutableArray arrayWithObject:sortDescriptor];
     NSArray *sortedArray = [[NSArray alloc]init];
     sortedMessage = [[NSMutableArray alloc]init];
-    sortedArray = [allRelevantMessage sortedArrayUsingDescriptors:sortDescriptors];
+//    sortedArray = [allRelevantMessage sortedArrayUsingDescriptors:sortDescriptors];
+    
+    sortedArray = [allRelevantMessage sortedArrayUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
+        Message *m1 = obj1;
+        Message *m2 = obj2;
+        if ([m1.local_id integerValue] > [m2.local_id integerValue])
+        {
+            return NSOrderedDescending;
+        }
+        else
+        {
+            return NSOrderedAscending;
+        }
+    }];
+    
     [sortedMessage addObjectsFromArray:sortedArray];
     //Push notification
     PFQuery *pushQuery = [PFInstallation query];
