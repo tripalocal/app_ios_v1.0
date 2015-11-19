@@ -821,13 +821,37 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <button opaque="NO" alpha="0.90000000000000002" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ob8-Wd-umG">
-                                <rect key="frame" x="4" y="1501" width="596" height="50"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sf1-e9-jh2">
+                                <rect key="frame" x="300" y="1501" width="296" height="50"/>
+                                <animations/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="289" id="klr-fK-hPm"/>
+                                    <constraint firstAttribute="width" constant="304" id="m1S-Tb-hlT"/>
+                                    <constraint firstAttribute="height" constant="50" id="p96-XJ-x9L"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                <color key="tintColor" red="0.24313725489999999" green="0.7843137255" blue="0.7725490196" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Send Message">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="klr-fK-hPm"/>
+                                        <exclude reference="m1S-Tb-hlT"/>
+                                    </mask>
+                                </variation>
+                                <connections>
+                                    <action selector="send_message:" destination="1Mj-3z-OfA" eventType="touchUpInside" id="HxH-1o-vrz"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" alpha="0.89999997615814209" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7u9-1G-34c">
+                                <rect key="frame" x="4" y="1501" width="296" height="50"/>
                                 <animations/>
                                 <color key="backgroundColor" red="0.20000000000000001" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="JUe-kZ-YaV"/>
-                                    <constraint firstAttribute="width" constant="303" id="nDL-xH-AOo"/>
+                                    <constraint firstAttribute="width" constant="303" id="8Nr-p9-E7b"/>
+                                    <constraint firstAttribute="height" constant="50" id="K47-Hk-8kJ"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                 <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -836,31 +860,28 @@
                                 </state>
                                 <variation key="default">
                                     <mask key="constraints">
-                                        <exclude reference="nDL-xH-AOo"/>
+                                        <exclude reference="8Nr-p9-E7b"/>
                                     </mask>
                                 </variation>
                                 <connections>
-                                    <action selector="checkout:" destination="1Mj-3z-OfA" eventType="touchUpInside" id="4Og-r4-ZdL"/>
+                                    <action selector="checkout:" destination="1Mj-3z-OfA" eventType="touchUpInside" id="UmY-xK-1t4"/>
                                 </connections>
                             </button>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="Ob8-Wd-umG" firstAttribute="bottom" secondItem="VsV-ga-mVG" secondAttribute="bottom" constant="-777" id="Gcd-he-dNk"/>
+                            <constraint firstItem="sf1-e9-jh2" firstAttribute="leading" secondItem="7u9-1G-34c" secondAttribute="trailing" id="8xg-aX-KbM"/>
                             <constraint firstAttribute="trailing" secondItem="VsV-ga-mVG" secondAttribute="trailing" id="HCw-QP-W9Z"/>
-                            <constraint firstItem="Ob8-Wd-umG" firstAttribute="leading" secondItem="LLn-bB-sKH" secondAttribute="leadingMargin" constant="-16" id="Qoz-pQ-Sv5"/>
+                            <constraint firstItem="ZBL-Vl-4G4" firstAttribute="top" secondItem="7u9-1G-34c" secondAttribute="bottom" id="MX4-ap-76I"/>
+                            <constraint firstItem="7u9-1G-34c" firstAttribute="leading" secondItem="LLn-bB-sKH" secondAttribute="leadingMargin" constant="-16" id="PL7-OZ-EKV"/>
+                            <constraint firstItem="7u9-1G-34c" firstAttribute="width" secondItem="sf1-e9-jh2" secondAttribute="width" id="Vbo-EU-Enm"/>
                             <constraint firstItem="VsV-ga-mVG" firstAttribute="top" secondItem="LLn-bB-sKH" secondAttribute="top" id="aeG-OG-RzB"/>
                             <constraint firstItem="VsV-ga-mVG" firstAttribute="bottom" secondItem="ZBL-Vl-4G4" secondAttribute="top" id="cFs-ev-9hx"/>
-                            <constraint firstItem="ZBL-Vl-4G4" firstAttribute="top" secondItem="Ob8-Wd-umG" secondAttribute="bottom" id="iIN-jK-McY"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="Ob8-Wd-umG" secondAttribute="trailing" constant="-16" id="p3t-s1-cK5"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="sf1-e9-jh2" secondAttribute="trailing" constant="-16" id="pOF-Vm-6O9"/>
+                            <constraint firstItem="7u9-1G-34c" firstAttribute="top" secondItem="sf1-e9-jh2" secondAttribute="top" id="rtO-OP-D3F"/>
                             <constraint firstItem="VsV-ga-mVG" firstAttribute="leading" secondItem="LLn-bB-sKH" secondAttribute="leading" id="sth-lL-eJB"/>
                         </constraints>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="Gcd-he-dNk"/>
-                            </mask>
-                        </variation>
                     </view>
                     <navigationItem key="navigationItem" title="Experience Detail" id="qO2-vR-8Y8"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
@@ -5255,13 +5276,13 @@
         <image name="tripalocal_logo_zh" width="132" height="46"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="zFv-4M-BDv"/>
+        <segue reference="JEQ-2l-ewO"/>
         <segue reference="FaZ-kM-Q6M"/>
         <segue reference="hSJ-3F-2mq"/>
-        <segue reference="JEQ-2l-ewO"/>
-        <segue reference="eUH-Pw-4ka"/>
-        <segue reference="9MV-3y-eFP"/>
         <segue reference="hPI-YE-UZz"/>
-        <segue reference="zFv-4M-BDv"/>
+        <segue reference="9MV-3y-eFP"/>
+        <segue reference="eUH-Pw-4ka"/>
         <segue reference="olF-su-vgo"/>
     </inferredMetricsTieBreakers>
 </document>

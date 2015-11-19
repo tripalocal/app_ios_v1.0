@@ -423,7 +423,8 @@
     sortedArray = [allRelevantMessage sortedArrayUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
         Message *m1 = obj1;
         Message *m2 = obj2;
-        if ([m1.local_id integerValue] > [m2.local_id integerValue])
+        if ([m1.message_time compare:m2.message_time] == NSOrderedDescending)
+//        if ([m1.local_id integerValue] > [m2.local_id integerValue])
         {
             return NSOrderedDescending;
         }
@@ -575,7 +576,7 @@
     [allRelevantMessage addObject:self.allMessage.lastObject];
     //sort the local arrary
     NSSortDescriptor *sortDescriptor;
-    sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"local_id"
+    sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"message_time"
                                                  ascending:YES];
     NSMutableArray *sortDescriptors = [NSMutableArray arrayWithObject:sortDescriptor];
     NSArray *sortedArray = [[NSArray alloc]init];
