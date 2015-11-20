@@ -17,6 +17,9 @@
 #import "JGProgressHUD.h"
 #import "Message.h"
 
+static NSString *customerServiceID = @"5001";
+static NSString *customerServiceImgName = @"customerServiceImg";
+
 @interface ChatOverviewController()
 
 @end
@@ -114,7 +117,8 @@
     if (connectionError == nil) {
         NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *) response;
         NSDictionary *messageDetail = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
-        if ([httpResponse statusCode] == 200) {
+        if ([httpResponse statusCode] == 200)
+        {
             for (id message_info in messageDetail) {
                 NSString *global_id = [message_info objectForKey:@"id"];
                 NSString *sender_id = [message_info objectForKey:@"sender_id"];
@@ -159,12 +163,17 @@
             //temp fix
             //*********************
             for (NSManagedObject *message in allMessage){
-                NSNumber *tmp = [message valueForKey:@"receiver_id"];
+                NSNumber *tmp = [message valueForKey:@"sender_id"];
                 if (![sender_list containsObject:tmp] && ![new_chat_list containsObject:tmp]){
-                    [new_chat_list addObject:[message valueForKey:@"receiver_id"]];
+                    NSNumber *senderId = [message valueForKey:@"sender_id"];
+                    if ([senderId integerValue] != [user_id integerValue])
+                    {
+                        [new_chat_list addObject:[message valueForKey:@"sender_id"]];
+                    }
                 }
             }
-            if ([new_chat_list count] != 0) {
+            if ([new_chat_list count] != 0)
+            {
                 for (NSString *new_id in new_chat_list){
                     NSString *url_with_id = [NSString stringWithFormat:@"%@%@%@",[URLConfig servicePublicProfileURLString],@"?user_id=",new_id];
                     NSURL *url = [NSURL URLWithString:url_with_id];
@@ -230,6 +239,97 @@
                 }
             }
             
+            
+            // remove user self from list
+            // I cannot endure the poor quality of the code anymore
+            
+//            NSInteger selfIdx = -1;
+//            for (NSObject *sender_id in sender_id_list)
+//            {
+//                if ([sender_id isKindOfClass:[NSNumber class]])
+//                {
+//                    if ([(NSNumber *)sender_id integerValue] == [user_id integerValue])
+//                    {
+//                        selfIdx = [sender_id_list indexOfObject:sender_id];
+//                        break;
+//                    }
+//                }
+//                else if ([sender_id isKindOfClass:[NSString class]])
+//                {
+//                    if ([(NSString *)sender_id isEqualToString:user_id])
+//                    {
+//                        selfIdx = [sender_id_list indexOfObject:sender_id];
+//                        break;
+//                    }
+//                }
+//                else
+//                {
+//                    NSLog(@"what the hell is that?!");
+//                    abort();
+//                }
+//            }
+//            if (selfIdx != -1)
+//            {
+//                [imgList removeObjectAtIndex:selfIdx];
+//                [nameList removeObjectAtIndex:selfIdx];
+//                [messageList removeObjectAtIndex:selfIdx];
+//                [timeList removeObjectAtIndex:selfIdx];
+//                [sender_id_list removeObjectAtIndex:selfIdx];
+//            }
+            
+            // add customer service at top
+            // Attemption!! Guys, if you are reading the codes and think those
+            //  codes are totally shit, do not unleash your anger on me, because
+            //  i am also the victim.
+            
+            NSInteger csIdx = -1;
+            for (NSObject *sender_id in sender_id_list)
+            {
+                if ([sender_id isKindOfClass:[NSNumber class]])
+                {
+                    if ([(NSNumber *)sender_id integerValue] == [customerServiceID integerValue])
+                    {
+                        csIdx = [sender_id_list indexOfObject:sender_id];
+                        break;
+                    }
+                }
+                else if ([sender_id isKindOfClass:[NSString class]])
+                {
+                    if ([(NSString *)sender_id isEqualToString:customerServiceID])
+                    {
+                        csIdx = [sender_id_list indexOfObject:sender_id];
+                        break;
+                    }
+                }
+                else
+                {
+                    NSLog(@"what the hell is that?!");
+                    abort();
+                }
+            }
+            if (csIdx == -1)
+            {
+                // add customer service at top
+                [imgList insertObject:[UIImage imageNamed:customerServiceImgName] atIndex:0];
+                [nameList insertObject:NSLocalizedString(@"customer_service_name", nil) atIndex:0];
+                [messageList insertObject:NSLocalizedString(@"customer_service_placeholder", nil) atIndex:0];
+                [timeList insertObject:@"" atIndex:0];
+                [sender_id_list insertObject:customerServiceID atIndex:0];
+            }
+            else
+            {
+                // move to top
+//                [self moveObjectInArray:imgList fromIndex:csIdx toIndex:0];
+//                [self moveObjectInArray:nameList fromIndex:csIdx toIndex:0];
+                [imgList removeObjectAtIndex:csIdx];
+                [imgList insertObject:[UIImage imageNamed:customerServiceImgName] atIndex:0];
+                [nameList removeObjectAtIndex:csIdx];
+                [nameList insertObject:NSLocalizedString(@"customer_service_name", nil) atIndex:0];
+                [self moveObjectInArray:messageList fromIndex:csIdx toIndex:0];
+                [self moveObjectInArray:timeList fromIndex:csIdx toIndex:0];
+                [self moveObjectInArray:sender_id_list fromIndex:csIdx toIndex:0];
+            }
+            
             [self.tableView reloadData];
         }
     }
@@ -239,6 +339,14 @@
 #endif
     
 }
+
+- (void) moveObjectInArray:(NSMutableArray *) array fromIndex:(NSInteger) fromIndex toIndex:(NSInteger) toIndex
+{
+    NSObject *obj = [array objectAtIndex:fromIndex];
+    [array removeObjectAtIndex:fromIndex];
+    [array insertObject:obj atIndex:toIndex];
+}
+
 #pragma mark Tableview
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -303,6 +411,10 @@
 }
 #pragma mark Helper
 - (UIImage *) fetchImage:(NSString *) token :(NSString *) imageURL {
+    if (imageURL == nil || [imageURL isEqual:[NSNull null]])
+    {
+        return nil;
+    }
     NSString *absoluteImageURL = [NSString stringWithFormat:@"%@%@", [URLConfig imageServiceURLString], imageURL];
     NSURL *url = [NSURL URLWithString:absoluteImageURL];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
