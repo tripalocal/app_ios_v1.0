@@ -357,6 +357,11 @@
 }
 #pragma mark - Receive message
 -(void)xmppStream:(XMPPStream *)sender didReceiveMessage:(XMPPMessage *)message{
+    
+    if ([[[message attributeForName:@"type"] stringValue] isEqualToString:@"error"])
+    {
+        return;
+    }
     //get the user_id
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     NSString *receiver_id = [userDefaults objectForKey:@"user_id"];
